@@ -1912,16 +1912,15 @@ theme.variantStrings = {
   </div>
 
   <!-- 4. Add To Cart Main Button (Moved Above Bundle) -->
-  <div class="main-cta-wrapper my-4" style="margin: 18px 0 14px 0;">
+  <div class="main-cta-wrapper my-4" style="margin: 18px 0 14px 0; --color-button-text: 0 0 0; --color-button-background: 255 255 255; --color-button-border: 255 255 255; --buttons-radius: 9999px; --buttons-border-width: 0px; --buttons-shadow-horizontal-offset: 0px; --buttons-shadow-vertical-offset: 0px; --buttons-shadow-opacity: 0; --buttons-border-opacity: 0;">
     <button
       type="button"
       id="hero-cta"
-      class="product-form__submit button button--primary w-full py-4 px-6 rounded-full font-bold text-base sm:text-lg tracking-wide flex items-center justify-center gap-2"
-      style="border-radius: 9999px; width: 100%; font-weight: 700; padding: 16px 24px; font-size: 1.05rem;"
-      is="hover-button"
-    >
+      class="button button--primary"
+      style="width: 100%; font-size: 1.05rem;"
+      is="hover-button">
       <span class="btn-fill" data-fill></span>
-      <span class="btn-text" id="main-cta-text" style="color: #000000; font-weight: 700;">Add To Cart + 2 Free Gifts</span>
+      <span class="btn-text" id="main-cta-text">Add To Cart + 2 Free Gifts</span>
     </button>
   </div>
 
@@ -2187,31 +2186,18 @@ theme.variantStrings = {
 </div><!-- =========================================================================
      1. MOVING MARQUEE BANNER (Directly below product details ends)
      ========================================================================= -->
-<div id="shopify-section-template--24203751129433__scrolling_text_P3gRex" class="shopify-section scrolling-text-section" style="background: #000000; border-top: 1px solid rgba(255,255,255,0.1); border-bottom: 1px solid rgba(255,255,255,0.1); padding: 22px 0; overflow: hidden; width: 100%;">
-  <div class="miroooo-marquee-track">
-    <!-- Group 1 -->
-    <div class="scrolling-text__item with-text flex items-center body tracking-heading" style="font-family: 'Inter', sans-serif; font-size: clamp(1.1rem, 1.8vw, 1.5rem); font-weight: 600; color: #ffffff; text-transform: uppercase; letter-spacing: 0.05em; display: inline-flex; align-items: center; gap: 28px; padding-right: 28px; white-space: nowrap; flex-shrink: 0;">
-      <span>Free shipping on all orders</span>
-      <span style="display: inline-block; width: 6px; height: 6px; border-radius: 50%; background: #ffffff; flex-shrink: 0; opacity: 0.5;"></span>
-      <span>90-day risk-free trial</span>
-      <span style="display: inline-block; width: 6px; height: 6px; border-radius: 50%; background: #ffffff; flex-shrink: 0; opacity: 0.5;"></span>
-      <span>Free shipping on all orders</span>
-      <span style="display: inline-block; width: 6px; height: 6px; border-radius: 50%; background: #ffffff; flex-shrink: 0; opacity: 0.5;"></span>
-      <span>90-day risk-free trial</span>
-      <span style="display: inline-block; width: 6px; height: 6px; border-radius: 50%; background: #ffffff; flex-shrink: 0; opacity: 0.5;"></span>
-    </div>
-    <!-- Group 2 (Identical duplicate for seamless continuous loop) -->
-    <div class="scrolling-text__item with-text flex items-center body tracking-heading" style="font-family: 'Inter', sans-serif; font-size: clamp(1.1rem, 1.8vw, 1.5rem); font-weight: 600; color: #ffffff; text-transform: uppercase; letter-spacing: 0.05em; display: inline-flex; align-items: center; gap: 28px; padding-right: 28px; white-space: nowrap; flex-shrink: 0;" aria-hidden="true">
-      <span>Free shipping on all orders</span>
-      <span style="display: inline-block; width: 6px; height: 6px; border-radius: 50%; background: #ffffff; flex-shrink: 0; opacity: 0.5;"></span>
-      <span>90-day risk-free trial</span>
-      <span style="display: inline-block; width: 6px; height: 6px; border-radius: 50%; background: #ffffff; flex-shrink: 0; opacity: 0.5;"></span>
-      <span>Free shipping on all orders</span>
-      <span style="display: inline-block; width: 6px; height: 6px; border-radius: 50%; background: #ffffff; flex-shrink: 0; opacity: 0.5;"></span>
-      <span>90-day risk-free trial</span>
-      <span style="display: inline-block; width: 6px; height: 6px; border-radius: 50%; background: #ffffff; flex-shrink: 0; opacity: 0.5;"></span>
-    </div>
-  </div>
+<div id="shopify-section-template--24203751129433__scrolling_text_P3gRex" class="shopify-section scrolling-text-section"><style>
+  #shopify-section-template--24203751129433__scrolling_text_P3gRex {
+    --section-padding-top: 72px;
+    --section-padding-bottom: 72px;--section-grid-gap: 65px;
+  }
+</style>
+
+<div class="section section--padding">
+  <div class="relative z-1"><marquee-element class="scrolling-text scrolling-text--left flex items-center" data-speed="20" data-direction="left"><div class="marquee with-dot flex items-center flex-auto whitespace-nowrap"><div class="scrolling-text__item with-text flex items-center flex-auto body tracking-heading" style="--font-size: 30px;" >Free shipping on all orders</div><div class="scrolling-text__item with-text flex items-center flex-auto body tracking-heading" style="--font-size: 30px;" >90-day risk-free trial</div></div></marquee-element></div>
+</div>
+
+
 </div>
 
 <!-- =========================================================================
