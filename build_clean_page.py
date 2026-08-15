@@ -689,7 +689,7 @@ footer_injections = """
 <script>
 const VARIANTS_DATA = {
   "Rose Gold": {
-    title: "Brush One Rose Gold",
+    title: "Miroooo X - Pink",
     price: "€89,00",
     images: [
       "https://cdn.shopify.com/s/files/1/0810/6023/3561/files/RoseGold-color-1.jpg?v=1734444500",
@@ -703,7 +703,7 @@ const VARIANTS_DATA = {
     ]
   },
   "Grey": {
-    title: "Brush One Grey",
+    title: "Miroooo X - Grey",
     price: "€89,00",
     images: [
       "https://cdn.shopify.com/s/files/1/0810/6023/3561/files/Grey-color-8.jpg?v=1734444578",
@@ -717,7 +717,7 @@ const VARIANTS_DATA = {
     ]
   },
   "Silver": {
-    title: "Brush One Silver",
+    title: "Miroooo X - Silver",
     price: "€89,00",
     images: [
       "https://cdn.shopify.com/s/files/1/0810/6023/3561/files/Brushone_bc23c130-0175-4280-a940-991c90ef5864.jpg?v=1734177610",

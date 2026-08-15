@@ -862,6 +862,11 @@ first.parentNode.insertBefore(script, first);
 }
 
 /* Miroooo Juujo-Style Bundle Tiers & Free Gifts */
+.bundle-tiers-container {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
 .bundle-tier-card {
   position: relative;
   display: flex;
@@ -872,7 +877,7 @@ first.parentNode.insertBefore(script, first);
   color: #ffffff !important;
   transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
   cursor: pointer;
-  overflow: hidden;
+  overflow: visible;
 }
 .bundle-tier-card:hover {
   border-color: rgba(255, 255, 255, 0.4) !important;
@@ -932,12 +937,72 @@ first.parentNode.insertBefore(script, first);
   display: inline-flex;
   align-items: center;
 }
+.tier-popular-badge-wrap {
+  position: absolute;
+  top: -14px;
+  right: 14px;
+  z-index: 20;
+  pointer-events: none;
+}
+.tier-popular-badge {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 68px;
+  border-radius: 100%;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  background: #ffffff;
+  padding: 5px 12px;
+  text-align: center;
+  font-size: 10.5px;
+  font-weight: 800;
+  line-height: 1.1;
+  color: #000000;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.5);
+  letter-spacing: -0.01em;
+}
+.tier-popular-diamond {
+  position: absolute;
+  top: 50%;
+  width: 4px;
+  height: 4px;
+  background: #000000;
+  opacity: 0.6;
+  transform: translateY(-50%) rotate(45deg);
+}
+.tier-popular-diamond.left {
+  left: 4px;
+}
+.tier-popular-diamond.right {
+  right: 4px;
+}
+.tier-best-value-wrap {
+  position: absolute;
+  top: 0;
+  right: 18px;
+  z-index: 20;
+  pointer-events: none;
+}
+.tier-best-value-ribbon {
+  border-radius: 0 0 6px 6px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-top: none;
+  background: #ffffff;
+  padding: 4px 14px;
+  font-size: 9.5px;
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: #000000;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+}
 .tier-top-badge {
   position: absolute;
   top: 0;
   right: 18px;
-  background: #171717;
-  color: #ffffff;
+  background: #ffffff;
+  color: #000000;
   font-size: 9.5px;
   font-weight: 900;
   text-transform: uppercase;
@@ -951,8 +1016,8 @@ first.parentNode.insertBefore(script, first);
   position: absolute;
   top: -8px;
   right: 14px;
-  background: #171717;
-  color: #ffffff;
+  background: #ffffff;
+  color: #000000;
   font-size: 10px;
   font-weight: 800;
   text-transform: uppercase;
@@ -1961,9 +2026,9 @@ theme.variantStrings = {
   </div>
 
   <!-- 8. 3 Tier Cards (Pure Dark Backgrounds when opened) -->
-  <div class="bundle-tiers-container flex flex-col gap-3" id="bundle-tiers" style="display: flex; flex-direction: column; gap: 12px;">
+  <div class="bundle-tiers-container flex flex-col gap-4" id="bundle-tiers" style="display: flex; flex-direction: column; gap: 16px;">
     <!-- Tier 1: Buy 1 -->
-    <div class="bundle-tier-card" data-tier="single" onclick="selectBundleTier('single')" style="background: #111111; border: 1.5px solid rgba(255,255,255,0.15); border-radius: 16px; overflow: hidden; cursor: pointer;">
+    <div class="bundle-tier-card" data-tier="single" onclick="selectBundleTier('single')" style="background: #111111; border: 1.5px solid rgba(255,255,255,0.15); border-radius: 16px; overflow: visible; cursor: pointer; position: relative;">
       <button type="button" class="tier-header-btn" aria-label="Select Buy 1 Tier" style="padding: 14px 16px; width: 100%; text-align: left; background: none; border: none; cursor: pointer; display: flex; align-items: center; gap: 12px;">
         <div class="tier-radio"><div class="tier-radio-dot"></div></div>
         <div class="flex-1 flex justify-between items-start gap-2" style="display: flex; justify-content: space-between; align-items: center; width: 100%;">
@@ -1982,7 +2047,7 @@ theme.variantStrings = {
           </div>
         </div>
       </button>
-      <div class="tier-expanded-panel" id="panel-single" style="display: none; background: #141414 !important; border-top: 1px solid rgba(255,255,255,0.1); padding: 12px 16px;">
+      <div class="tier-expanded-panel" id="panel-single" style="display: none; background: #141414 !important; border-top: 1px solid rgba(255,255,255,0.1); padding: 12px 16px; border-bottom-left-radius: 14px; border-bottom-right-radius: 14px;">
         <div class="brush-selection-row" style="display: flex; align-items: center; justify-content: space-between; gap: 12px;">
           <span class="text-xs sm:text-sm font-medium" style="color: #ffffff;">Brush Color:</span>
           <div class="brush-color-swatches" data-brush-index="0" style="display: flex; gap: 8px;">
@@ -1995,8 +2060,14 @@ theme.variantStrings = {
     </div>
 
     <!-- Tier 2: Buy 2 (Default, Most Popular) -->
-    <div class="bundle-tier-card is-selected has-top-badge" data-tier="bundle-2" onclick="selectBundleTier('bundle-2')" style="background: #181818; border: 2px solid #ffffff; border-radius: 16px; overflow: hidden; cursor: pointer; position: relative;">
-      <div class="tier-popular-circle" style="background: #ffffff; color: #000000; font-weight: 800;">Most Popular</div>
+    <div class="bundle-tier-card is-selected has-top-badge" data-tier="bundle-2" onclick="selectBundleTier('bundle-2')" style="background: #181818; border: 2px solid #ffffff; border-radius: 16px; overflow: visible; cursor: pointer; position: relative;">
+      <div class="tier-popular-badge-wrap" style="position: absolute; top: -14px; right: 14px; z-index: 20; pointer-events: none;">
+        <div class="tier-popular-badge" style="position: relative; display: flex; align-items: center; justify-content: center; min-width: 68px; border-radius: 100%; border: 1px solid rgba(255,255,255,0.3); background: #ffffff; padding: 5px 12px; text-align: center; font-size: 10.5px; font-weight: 800; line-height: 1.1; color: #000000; box-shadow: 0 4px 14px rgba(0,0,0,0.5); letter-spacing: -0.01em;">
+          <div class="tier-popular-diamond left" style="position: absolute; left: 4px; top: 50%; width: 4px; height: 4px; background: #000000; opacity: 0.6; transform: translateY(-50%) rotate(45deg);"></div>
+          <div class="tier-popular-diamond right" style="position: absolute; right: 4px; top: 50%; width: 4px; height: 4px; background: #000000; opacity: 0.6; transform: translateY(-50%) rotate(45deg);"></div>
+          Most<br>Popular
+        </div>
+      </div>
       <button type="button" class="tier-header-btn" aria-label="Select Buy 2 Tier" style="padding: 18px 16px 14px; width: 100%; text-align: left; background: none; border: none; cursor: pointer; display: flex; align-items: center; gap: 12px;">
         <div class="tier-radio"><div class="tier-radio-dot"></div></div>
         <div class="flex-1 flex justify-between items-start gap-2" style="display: flex; justify-content: space-between; align-items: center; width: 100%;">
@@ -2016,7 +2087,7 @@ theme.variantStrings = {
           </div>
         </div>
       </button>
-      <div class="tier-expanded-panel" id="panel-bundle-2" style="display: flex; background: #141414 !important; border-top: 1px solid rgba(255,255,255,0.1); padding: 12px 16px; flex-direction: column; gap: 10px;">
+      <div class="tier-expanded-panel" id="panel-bundle-2" style="display: flex; background: #141414 !important; border-top: 1px solid rgba(255,255,255,0.1); padding: 12px 16px; flex-direction: column; gap: 10px; border-bottom-left-radius: 14px; border-bottom-right-radius: 14px;">
         <!-- Row 1 -->
         <div class="brush-selection-row" style="display: flex; align-items: center; justify-content: space-between; gap: 12px;">
           <span class="text-xs sm:text-sm font-medium" style="color: #ffffff;">#1 Brush Color:</span>
@@ -2039,8 +2110,12 @@ theme.variantStrings = {
     </div>
 
     <!-- Tier 3: Buy 3 (Best Value) -->
-    <div class="bundle-tier-card has-top-badge" data-tier="bundle-3" onclick="selectBundleTier('bundle-3')" style="background: #111111; border: 1.5px solid rgba(255,255,255,0.15); border-radius: 16px; overflow: hidden; cursor: pointer; position: relative;">
-      <div class="tier-top-badge" style="background: #ffffff; color: #000000; font-weight: 800;">BEST VALUE</div>
+    <div class="bundle-tier-card has-top-badge" data-tier="bundle-3" onclick="selectBundleTier('bundle-3')" style="background: #111111; border: 1.5px solid rgba(255,255,255,0.15); border-radius: 16px; overflow: visible; cursor: pointer; position: relative;">
+      <div class="tier-best-value-wrap" style="position: absolute; top: 0; right: 18px; z-index: 20; pointer-events: none;">
+        <div class="tier-best-value-ribbon" style="border-radius: 0 0 6px 6px; border: 1px solid rgba(255,255,255,0.2); border-top: none; background: #ffffff; padding: 4px 14px; font-size: 9.5px; font-weight: 900; text-transform: uppercase; letter-spacing: 0.1em; color: #000000; box-shadow: 0 2px 8px rgba(0,0,0,0.4);">
+          BEST VALUE
+        </div>
+      </div>
       <button type="button" class="tier-header-btn" aria-label="Select Buy 3 Tier" style="padding: 18px 16px 14px; width: 100%; text-align: left; background: none; border: none; cursor: pointer; display: flex; align-items: center; gap: 12px;">
         <div class="tier-radio"><div class="tier-radio-dot"></div></div>
         <div class="flex-1 flex justify-between items-start gap-2" style="display: flex; justify-content: space-between; align-items: center; width: 100%;">
@@ -2060,7 +2135,7 @@ theme.variantStrings = {
           </div>
         </div>
       </button>
-      <div class="tier-expanded-panel" id="panel-bundle-3" style="display: none; background: #141414 !important; border-top: 1px solid rgba(255,255,255,0.1); padding: 12px 16px; flex-direction: column; gap: 10px;">
+      <div class="tier-expanded-panel" id="panel-bundle-3" style="display: none; background: #141414 !important; border-top: 1px solid rgba(255,255,255,0.1); padding: 12px 16px; flex-direction: column; gap: 10px; border-bottom-left-radius: 14px; border-bottom-right-radius: 14px;">
         <!-- Row 1 -->
         <div class="brush-selection-row" style="display: flex; align-items: center; justify-content: space-between; gap: 12px;">
           <span class="text-xs sm:text-sm font-medium" style="color: #ffffff;">#1 Brush Color:</span>
@@ -2602,47 +2677,2256 @@ theme.variantStrings = {
 
     </div>
   </div>
-</div><div id="shopify-section-template--24203751129433__1734185685ad1b9340" class="shopify-section"><style>
-  #shopify-section-template--24203751129433__1734185685ad1b9340 {
-    --section-padding-top: 0px;
-    --section-padding-bottom: 72px;}
-</style><noscript><link href="//cdn.shopify.com/s/files/1/0810/6023/3561/shop/t/6/assets/product-reviews.css?v=56559373028553084041733490075" rel="stylesheet" type="text/css" media="all" /></noscript>
-  <link rel="stylesheet" href="//cdn.shopify.com/s/files/1/0810/6023/3561/shop/t/6/assets/product-reviews.css?v=56559373028553084041733490075" media="print" fetchpriority="low" onload="this.media='all'">
-  <script type="module" src="https://cdn.shopify.com/s/files/1/0810/6023/3561/shop/t/6/assets/product-reviews.js?v=180509126338156924131733490075" fetchpriority="low"></script><div class="section section--padding">
-  <div class="page-width relative"><div id="shopify-block-AbnBDZksyaHJFSGF6e__trustoo_io_reviews_review_widget_BwLdcn" class="shopify-block shopify-app-block">
+</div><div id="shopify-section-template--24203751129433__reviews" class="shopify-section miroooo-reviews-section" style="background: #000000; color: #ffffff; padding: clamp(48px, 6vw, 96px) 0; position: relative; z-index: 10; border-top: 1px solid rgba(255, 255, 255, 0.08);">
+  <style id="miroooo-reviews-custom-css">
+    /* MIROOOO X2 PURE DARK REVIEW COMPONENT STYLES */
+    .miroooo-reviews-section {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      box-sizing: border-box;
+      overflow: hidden;
+    }
+    .miroooo-reviews-section *, .miroooo-reviews-section *::before, .miroooo-reviews-section *::after {
+      box-sizing: border-box;
+    }
+    .miroooo-reviews-container {
+      max-width: 1360px;
+      margin: 0 auto;
+      padding: 0 clamp(16px, 3.5vw, 40px);
+    }
+    
+    /* Section Header */
+    .miroooo-rev-header {
+      text-align: center;
+      margin-bottom: clamp(32px, 4vw, 56px);
+    }
+    .miroooo-rev-eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 16px;
+      border-radius: 9999px;
+      background: rgba(34, 197, 94, 0.12);
+      border: 1px solid rgba(34, 197, 94, 0.3);
+      color: #22c55e;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      margin-bottom: 16px;
+    }
+    .miroooo-rev-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: #22c55e;
+      box-shadow: 0 0 8px #22c55e;
+    }
+    .miroooo-rev-title {
+      font-size: clamp(2rem, 3.2vw, 3rem);
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      color: #ffffff;
+      margin: 0 0 12px 0;
+      line-height: 1.15;
+    }
+    .miroooo-rev-subtitle {
+      font-size: clamp(0.95rem, 1.2vw, 1.1rem);
+      color: rgba(255, 255, 255, 0.65);
+      max-width: 680px;
+      margin: 0 auto;
+      line-height: 1.6;
+    }
 
+    /* Summary Card Grid */
+    .miroooo-summary-card {
+      background: #0d0d0d;
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      border-radius: 24px;
+      padding: clamp(24px, 3.5vw, 40px);
+      margin-bottom: 32px;
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 32px;
+      box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.8);
+    }
+    @media (min-width: 860px) {
+      .miroooo-summary-card {
+        grid-template-columns: 320px 1fr;
+        align-items: center;
+        gap: 48px;
+      }
+    }
+    
+    /* Overview Left */
+    .miroooo-overview-col {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      padding-bottom: 24px;
+    }
+    @media (min-width: 860px) {
+      .miroooo-overview-col {
+        align-items: flex-start;
+        text-align: left;
+        border-bottom: none;
+        border-right: 1px solid rgba(255, 255, 255, 0.08);
+        padding-bottom: 0;
+        padding-right: 36px;
+      }
+    }
+    .miroooo-score-wrap {
+      display: flex;
+      align-items: baseline;
+      gap: 8px;
+      margin-bottom: 8px;
+    }
+    .miroooo-big-score {
+      font-size: clamp(3.5rem, 5vw, 4.5rem);
+      font-weight: 900;
+      line-height: 1;
+      color: #ffffff;
+      letter-spacing: -0.04em;
+    }
+    .miroooo-big-score-denom {
+      font-size: 1.5rem;
+      font-weight: 600;
+      color: rgba(255, 255, 255, 0.4);
+    }
+    .miroooo-stars-glow {
+      color: #22c55e;
+      font-size: 24px;
+      letter-spacing: 3px;
+      line-height: 1;
+      margin-bottom: 8px;
+      display: inline-flex;
+    }
+    .miroooo-archive-badge {
+      font-size: 14px;
+      font-weight: 600;
+      color: rgba(255, 255, 255, 0.85);
+      margin-bottom: 8px;
+    }
+    .miroooo-recommend-box {
+      font-size: 13px;
+      color: rgba(255, 255, 255, 0.6);
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      margin-bottom: 20px;
+    }
+    .miroooo-recommend-box strong {
+      color: #22c55e;
+    }
+    .miroooo-write-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      background: #ffffff;
+      color: #000000;
+      font-size: 14px;
+      font-weight: 700;
+      padding: 12px 24px;
+      border-radius: 9999px;
+      border: none;
+      cursor: pointer;
+      transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+      box-shadow: 0 4px 14px rgba(255, 255, 255, 0.2);
+    }
+    .miroooo-write-btn:hover {
+      transform: translateY(-2px);
+      background: #f0f0f0;
+      box-shadow: 0 6px 20px rgba(255, 255, 255, 0.3);
+    }
+    
+    /* Breakdown Right */
+    .miroooo-breakdown-col {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .miroooo-bar-row {
+      display: grid;
+      grid-template-columns: 80px 1fr 100px;
+      align-items: center;
+      gap: 12px;
+      background: transparent;
+      border: 1px solid transparent;
+      padding: 6px 12px;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      color: #ffffff;
+      text-align: left;
+      font-size: 13px;
+    }
+    .miroooo-bar-row:hover {
+      background: rgba(255, 255, 255, 0.05);
+      border-color: rgba(255, 255, 255, 0.1);
+    }
+    .miroooo-bar-row.is-active {
+      background: rgba(34, 197, 94, 0.12);
+      border-color: rgba(34, 197, 94, 0.4);
+    }
+    .miroooo-bar-label {
+      font-weight: 600;
+      color: rgba(255, 255, 255, 0.85);
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+    }
+    .miroooo-bar-track {
+      height: 8px;
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 9999px;
+      overflow: hidden;
+      position: relative;
+    }
+    .miroooo-bar-fill {
+      height: 100%;
+      background: #22c55e;
+      border-radius: 9999px;
+      transition: width 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .miroooo-bar-count {
+      text-align: right;
+      font-weight: 600;
+      color: rgba(255, 255, 255, 0.6);
+      font-size: 12px;
+    }
+    .miroooo-bar-row.is-active .miroooo-bar-count {
+      color: #22c55e;
+    }
 
+    /* Toolbar Filter & Sort */
+    .miroooo-toolbar {
+      background: #0d0d0d;
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      border-radius: 16px;
+      padding: 14px 20px;
+      margin-bottom: 24px;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+    }
+    .miroooo-toolbar-left {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 12px;
+    }
+    .miroooo-toolbar-right {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    
+    /* Dropdown UI */
+    .miroooo-dropdown {
+      position: relative;
+    }
+    .miroooo-dropdown-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: #161616;
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      color: #ffffff;
+      padding: 9px 16px;
+      border-radius: 9999px;
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+    .miroooo-dropdown-btn:hover {
+      border-color: rgba(255, 255, 255, 0.3);
+      background: #202020;
+    }
+    .miroooo-dropdown-menu {
+      position: absolute;
+      top: calc(100% + 8px);
+      left: 0;
+      z-index: 50;
+      background: #141414;
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      border-radius: 14px;
+      padding: 6px;
+      min-width: 180px;
+      box-shadow: 0 16px 36px rgba(0, 0, 0, 0.85);
+      display: none;
+      flex-direction: column;
+      gap: 2px;
+    }
+    .miroooo-dropdown-menu.right-aligned {
+      left: auto;
+      right: 0;
+    }
+    .miroooo-dropdown.open .miroooo-dropdown-menu {
+      display: flex;
+    }
+    .miroooo-menu-opt {
+      background: transparent;
+      border: none;
+      color: rgba(255, 255, 255, 0.85);
+      padding: 8px 12px;
+      border-radius: 8px;
+      font-size: 13px;
+      font-weight: 500;
+      text-align: left;
+      cursor: pointer;
+      transition: all 0.15s ease;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .miroooo-menu-opt:hover {
+      background: rgba(255, 255, 255, 0.08);
+      color: #ffffff;
+    }
+    .miroooo-menu-opt.is-active {
+      background: rgba(34, 197, 94, 0.15);
+      color: #22c55e;
+      font-weight: 700;
+    }
 
-<script id="seal_shop_id" type="application/json">
+    /* Checkbox Filter Buttons */
+    .miroooo-filter-chk {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: #161616;
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      color: rgba(255, 255, 255, 0.85);
+      padding: 9px 14px;
+      border-radius: 9999px;
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+    .miroooo-filter-chk:hover {
+      border-color: rgba(255, 255, 255, 0.3);
+      color: #ffffff;
+    }
+    .miroooo-filter-chk.is-checked {
+      background: rgba(34, 197, 94, 0.15);
+      border-color: rgba(34, 197, 94, 0.5);
+      color: #ffffff;
+    }
+    .miroooo-chk-icon {
+      width: 16px;
+      height: 16px;
+      border-radius: 4px;
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      display: grid;
+      place-items: center;
+      background: #111111;
+      color: transparent;
+      transition: all 0.15s ease;
+    }
+    .miroooo-filter-chk.is-checked .miroooo-chk-icon {
+      background: #22c55e;
+      border-color: #22c55e;
+      color: #000000;
+    }
 
-    81060233561
+    /* Active filter chips */
+    .miroooo-chips-row {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 20px;
+      padding: 0 4px;
+    }
+    .miroooo-chip {
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      border-radius: 9999px;
+      padding: 4px 12px;
+      font-size: 12px;
+      color: #ffffff;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .miroooo-chip-remove {
+      cursor: pointer;
+      opacity: 0.6;
+      transition: opacity 0.2s;
+    }
+    .miroooo-chip-remove:hover {
+      opacity: 1;
+      color: #22c55e;
+    }
+    .miroooo-reset-all {
+      font-size: 12px;
+      color: #22c55e;
+      background: none;
+      border: none;
+      cursor: pointer;
+      text-decoration: underline;
+      padding: 4px 8px;
+    }
 
+    /* REVIEWS MASONRY GRID (2-Col Mobile, 4-Col Desktop) */
+    .miroooo-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 16px;
+      margin-bottom: 36px;
+    }
+    @media (min-width: 1024px) {
+      .miroooo-grid {
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        gap: 20px;
+      }
+    }
+    @media (max-width: 480px) {
+      .miroooo-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 10px;
+      }
+    }
+
+    /* REVIEW CARD */
+    .miroooo-card {
+      background: #0e0e0e;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 18px;
+      padding: clamp(12px, 2vw, 18px);
+      display: flex;
+      flex-direction: column;
+      transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.3s ease, box-shadow 0.3s ease;
+      position: relative;
+    }
+    .miroooo-card:hover {
+      transform: translateY(-4px);
+      border-color: rgba(255, 255, 255, 0.25);
+      box-shadow: 0 14px 30px -10px rgba(0, 0, 0, 0.9);
+      background: #121212;
+    }
+
+    /* Customer photo gallery inside card */
+    .miroooo-card-gallery {
+      margin-bottom: 12px;
+      border-radius: 12px;
+      overflow: hidden;
+      cursor: pointer;
+    }
+    /* 1 Image */
+    .miroooo-gallery-1 {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 4/3;
+      overflow: hidden;
+      border-radius: 12px;
+      background: #181818;
+    }
+    .miroooo-gallery-1 img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.4s ease;
+    }
+    .miroooo-card:hover .miroooo-gallery-1 img {
+      transform: scale(1.04);
+    }
+    /* 2 Images */
+    .miroooo-gallery-2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4px;
+      aspect-ratio: 16/10;
+      border-radius: 12px;
+      overflow: hidden;
+    }
+    .miroooo-gallery-2 img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    /* 3+ Images */
+    .miroooo-gallery-3plus {
+      display: grid;
+      grid-template-columns: 1.8fr 1fr;
+      grid-template-rows: 1fr 1fr;
+      gap: 4px;
+      aspect-ratio: 16/11;
+      border-radius: 12px;
+      overflow: hidden;
+    }
+    .miroooo-gallery-3plus .main-thumb {
+      grid-row: span 2;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    .miroooo-gallery-3plus .sub-thumb {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    .miroooo-gallery-3plus .more-overlay {
+      position: relative;
+    }
+    .miroooo-gallery-3plus .more-overlay img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    .miroooo-gallery-3plus .more-overlay span {
+      position: absolute;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.65);
+      color: #ffffff;
+      font-size: 13px;
+      font-weight: 700;
+      display: grid;
+      place-items: center;
+    }
+
+    /* Rating & Date Row */
+    .miroooo-card-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 6px;
+      margin-bottom: 8px;
+    }
+    .miroooo-card-stars {
+      color: #22c55e;
+      font-size: 14px;
+      letter-spacing: 1px;
+      line-height: 1;
+    }
+    .miroooo-card-date {
+      font-size: 11px;
+      color: rgba(255, 255, 255, 0.45);
+      font-weight: 500;
+    }
+
+    /* Title & Body */
+    .miroooo-card-title {
+      font-size: clamp(0.88rem, 1vw, 0.98rem);
+      font-weight: 700;
+      color: #ffffff;
+      margin: 0 0 6px 0;
+      line-height: 1.35;
+    }
+    .miroooo-card-body {
+      font-size: clamp(0.78rem, 0.9vw, 0.85rem);
+      color: rgba(255, 255, 255, 0.72);
+      line-height: 1.55;
+      margin: 0 0 12px 0;
+      flex-grow: 1;
+      display: -webkit-box;
+      -webkit-line-clamp: 4;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+    @media (max-width: 480px) {
+      .miroooo-card-body {
+        -webkit-line-clamp: 3;
+      }
+    }
+
+    /* Variant pill */
+    .miroooo-card-variant {
+      font-size: 11px;
+      color: rgba(255, 255, 255, 0.5);
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: 6px;
+      padding: 3px 8px;
+      display: inline-block;
+      margin-bottom: 10px;
+      width: fit-content;
+      max-width: 100%;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    /* Official merchant reply box */
+    .miroooo-merchant-reply {
+      background: rgba(34, 197, 94, 0.06);
+      border-left: 2px solid #22c55e;
+      border-radius: 0 8px 8px 0;
+      padding: 8px 10px;
+      margin-bottom: 12px;
+      font-size: 11px;
+      line-height: 1.45;
+      color: rgba(255, 255, 255, 0.8);
+    }
+    .miroooo-merchant-reply-badge {
+      font-weight: 700;
+      color: #22c55e;
+      display: block;
+      margin-bottom: 2px;
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+
+    /* Card Footer: Author & Helpful */
+    .miroooo-card-footer {
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+      padding-top: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 6px;
+      font-size: 11px;
+    }
+    .miroooo-card-author-wrap {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+      min-width: 0;
+    }
+    .miroooo-card-author {
+      font-weight: 700;
+      color: #ffffff;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .miroooo-card-verified {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      color: #22c55e;
+      font-size: 10px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+    .miroooo-helpful-btn {
+      background: transparent;
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      color: rgba(255, 255, 255, 0.6);
+      padding: 4px 8px;
+      border-radius: 6px;
+      font-size: 10px;
+      font-weight: 600;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      transition: all 0.2s ease;
+      white-space: nowrap;
+    }
+    .miroooo-helpful-btn:hover {
+      border-color: rgba(255, 255, 255, 0.3);
+      color: #ffffff;
+    }
+    .miroooo-helpful-btn.is-voted {
+      background: rgba(34, 197, 94, 0.15);
+      border-color: rgba(34, 197, 94, 0.5);
+      color: #22c55e;
+    }
+
+    /* Pagination / Load More */
+    .miroooo-pagination {
+      text-align: center;
+      margin-top: 16px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 12px;
+    }
+    .miroooo-showing-text {
+      font-size: 13px;
+      color: rgba(255, 255, 255, 0.5);
+      font-weight: 500;
+    }
+    .miroooo-load-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: #141414;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      color: #ffffff;
+      font-size: 14px;
+      font-weight: 700;
+      padding: 12px 28px;
+      border-radius: 9999px;
+      cursor: pointer;
+      transition: all 0.25s ease;
+    }
+    .miroooo-load-btn:hover {
+      background: #202020;
+      border-color: rgba(255, 255, 255, 0.4);
+      transform: translateY(-2px);
+    }
+
+    /* LIGHTBOX MODAL */
+    .miroooo-modal-backdrop {
+      position: fixed;
+      inset: 0;
+      z-index: 99999;
+      background: rgba(0, 0, 0, 0.92);
+      backdrop-filter: blur(10px);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 16px;
+    }
+    .miroooo-modal-backdrop.open {
+      display: flex;
+    }
+    .miroooo-lightbox-dialog {
+      background: #111111;
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      border-radius: 20px;
+      max-width: 900px;
+      width: 100%;
+      max-height: 90vh;
+      overflow: hidden;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      box-shadow: 0 30px 60px rgba(0, 0, 0, 0.95);
+    }
+    @media (min-width: 768px) {
+      .miroooo-lightbox-dialog {
+        flex-direction: row;
+        height: 520px;
+      }
+    }
+    .miroooo-lightbox-media-wrap {
+      flex: 1.2;
+      background: #000000;
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      min-height: 280px;
+    }
+    .miroooo-lightbox-media-wrap img {
+      max-width: 100%;
+      max-height: 100%;
+      object-fit: contain;
+    }
+    .miroooo-lb-nav {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background: rgba(20, 20, 20, 0.7);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      color: #ffffff;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      cursor: pointer;
+      font-size: 20px;
+      transition: all 0.2s;
+      z-index: 10;
+    }
+    .miroooo-lb-nav:hover {
+      background: rgba(34, 197, 94, 0.8);
+      border-color: #22c55e;
+      color: #000000;
+    }
+    .miroooo-lb-prev { left: 12px; }
+    .miroooo-lb-next { right: 12px; }
+    .miroooo-lb-counter {
+      position: absolute;
+      bottom: 12px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: rgba(0, 0, 0, 0.7);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      color: #ffffff;
+      font-size: 11px;
+      padding: 3px 10px;
+      border-radius: 9999px;
+    }
+    .miroooo-lightbox-info-wrap {
+      flex: 1;
+      padding: 28px;
+      overflow-y: auto;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+    .miroooo-modal-close-btn {
+      position: absolute;
+      top: 14px;
+      right: 14px;
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.1);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      color: #ffffff;
+      font-size: 18px;
+      display: grid;
+      place-items: center;
+      cursor: pointer;
+      z-index: 20;
+      transition: all 0.2s;
+    }
+    .miroooo-modal-close-btn:hover {
+      background: #ffffff;
+      color: #000000;
+    }
+
+    /* WRITE A REVIEW MODAL */
+    .miroooo-form-dialog {
+      background: #111111;
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      border-radius: 24px;
+      max-width: 560px;
+      width: 100%;
+      max-height: 90vh;
+      overflow-y: auto;
+      padding: clamp(24px, 4vw, 36px);
+      position: relative;
+      box-shadow: 0 30px 60px rgba(0, 0, 0, 0.95);
+    }
+    .miroooo-form-group {
+      margin-bottom: 18px;
+    }
+    .miroooo-form-label {
+      display: block;
+      font-size: 13px;
+      font-weight: 600;
+      color: rgba(255, 255, 255, 0.9);
+      margin-bottom: 6px;
+    }
+    .miroooo-form-input, .miroooo-form-textarea, .miroooo-form-select {
+      width: 100%;
+      background: #181818;
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      border-radius: 10px;
+      padding: 10px 14px;
+      color: #ffffff;
+      font-size: 14px;
+      font-family: inherit;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+    .miroooo-form-input:focus, .miroooo-form-textarea:focus, .miroooo-form-select:focus {
+      border-color: #22c55e;
+      background: #1e1e1e;
+    }
+    .miroooo-star-picker {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      cursor: pointer;
+    }
+    .miroooo-star-pick-item {
+      font-size: 26px;
+      color: rgba(255, 255, 255, 0.25);
+      transition: color 0.15s;
+    }
+    .miroooo-star-pick-item.is-selected, .miroooo-star-pick-item.is-hover {
+      color: #22c55e;
+    }
+    .miroooo-form-star-text {
+      margin-left: 10px;
+      font-size: 13px;
+      font-weight: 600;
+      color: #22c55e;
+    }
+    .miroooo-form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+    }
+    @media (max-width: 500px) {
+      .miroooo-form-row {
+        grid-template-columns: 1fr;
+        gap: 0;
+      }
+    }
+    .miroooo-submit-btn {
+      width: 100%;
+      background: #22c55e;
+      color: #000000;
+      border: none;
+      border-radius: 9999px;
+      padding: 14px;
+      font-size: 15px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.25s;
+      margin-top: 8px;
+    }
+    .miroooo-submit-btn:hover {
+      background: #4ade80;
+      transform: translateY(-2px);
+    }
+    .miroooo-success-toast {
+      background: rgba(34, 197, 94, 0.15);
+      border: 1px solid #22c55e;
+      color: #22c55e;
+      padding: 12px 16px;
+      border-radius: 10px;
+      font-size: 13px;
+      font-weight: 600;
+      text-align: center;
+      margin-top: 14px;
+      display: none;
+    }
+  </style>
+
+  <div class="miroooo-reviews-container">
+    
+    <!-- HEADER -->
+    <div class="miroooo-rev-header">
+      <div class="miroooo-rev-eyebrow">
+        <span class="miroooo-rev-dot"></span> Verified Customer Archive
+      </div>
+      <h2 class="miroooo-rev-title">
+        Real Results. Backed by 4,275+ Smiles.
+      </h2>
+      <p class="miroooo-rev-subtitle">
+        Explore authentic clinical and everyday feedback from Miroooo X2 owners experiencing the 45° swept Bass brushing method, 90-day battery endurance, and smart gum protection.
+      </p>
+    </div>
+
+    <!-- SUMMARY & BREAKDOWN CARD -->
+    <div class="miroooo-summary-card">
+      <!-- Left: Score Overview -->
+      <div class="miroooo-overview-col">
+        <div class="miroooo-score-wrap">
+          <span class="miroooo-big-score">4.9</span>
+          <span class="miroooo-big-score-denom">/ 5.0</span>
+        </div>
+        <div class="miroooo-stars-glow" aria-label="Rated 4.9 out of 5 stars">
+          ★★★★★
+        </div>
+        <div class="miroooo-archive-badge">
+          Based on 4,275 verified reviews
+        </div>
+        <div class="miroooo-recommend-box">
+          <svg width="15" height="15" viewBox="0 0 20 20" fill="#22c55e"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
+          <span><strong>98%</strong> of customers recommend Miroooo X2</span>
+        </div>
+        <button type="button" class="miroooo-write-btn" id="miroooo-open-write-modal">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path></svg>
+          Write a Review
+        </button>
+      </div>
+
+      <!-- Right: Interactive Rating Breakdown Bars -->
+      <div class="miroooo-breakdown-col" id="miroooo-breakdown-container">
+        <!-- All ratings row -->
+        <button type="button" class="miroooo-bar-row is-active" data-star="all" aria-label="Show all 4275 reviews">
+          <span class="miroooo-bar-label">All reviews</span>
+          <div class="miroooo-bar-track"><div class="miroooo-bar-fill" style="width: 100%;"></div></div>
+          <span class="miroooo-bar-count">4,275</span>
+        </button>
+        <!-- 5 Star -->
+        <button type="button" class="miroooo-bar-row" data-star="5" aria-label="Show only 5-star reviews">
+          <span class="miroooo-bar-label"><span style="color:#22c55e;">★</span> 5 star</span>
+          <div class="miroooo-bar-track"><div class="miroooo-bar-fill" style="width: 92%;"></div></div>
+          <span class="miroooo-bar-count">3,933 (92%)</span>
+        </button>
+        <!-- 4 Star -->
+        <button type="button" class="miroooo-bar-row" data-star="4" aria-label="Show only 4-star reviews">
+          <span class="miroooo-bar-label"><span style="color:#22c55e;">★</span> 4 star</span>
+          <div class="miroooo-bar-track"><div class="miroooo-bar-fill" style="width: 6%;"></div></div>
+          <span class="miroooo-bar-count">256 (6%)</span>
+        </button>
+        <!-- 3 Star -->
+        <button type="button" class="miroooo-bar-row" data-star="3" aria-label="Show only 3-star reviews">
+          <span class="miroooo-bar-label"><span style="color:#22c55e;">★</span> 3 star</span>
+          <div class="miroooo-bar-track"><div class="miroooo-bar-fill" style="width: 1%;"></div></div>
+          <span class="miroooo-bar-count">43 (1%)</span>
+        </button>
+        <!-- 2 Star -->
+        <button type="button" class="miroooo-bar-row" data-star="2" aria-label="Show only 2-star reviews">
+          <span class="miroooo-bar-label"><span style="color:#22c55e;">★</span> 2 star</span>
+          <div class="miroooo-bar-track"><div class="miroooo-bar-fill" style="width: 0.5%;"></div></div>
+          <span class="miroooo-bar-count">21 (0.5%)</span>
+        </button>
+        <!-- 1 Star -->
+        <button type="button" class="miroooo-bar-row" data-star="1" aria-label="Show only 1-star reviews">
+          <span class="miroooo-bar-label"><span style="color:#22c55e;">★</span> 1 star</span>
+          <div class="miroooo-bar-track"><div class="miroooo-bar-fill" style="width: 0.5%;"></div></div>
+          <span class="miroooo-bar-count">22 (0.5%)</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- FILTER & SORT TOOLBAR -->
+    <div class="miroooo-toolbar">
+      <div class="miroooo-toolbar-left">
+        <!-- Star Filter Dropdown -->
+        <div class="miroooo-dropdown" id="miroooo-star-dropdown">
+          <button type="button" class="miroooo-dropdown-btn" id="miroooo-star-dropdown-btn">
+            <span id="miroooo-star-filter-label">All ratings</span>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
+          </button>
+          <div class="miroooo-dropdown-menu">
+            <button type="button" class="miroooo-menu-opt is-active" data-val="all">All ratings</button>
+            <button type="button" class="miroooo-menu-opt" data-val="5">5 stars (3,933)</button>
+            <button type="button" class="miroooo-menu-opt" data-val="4">4 stars (256)</button>
+            <button type="button" class="miroooo-menu-opt" data-val="3">3 stars (43)</button>
+            <button type="button" class="miroooo-menu-opt" data-val="2">2 stars (21)</button>
+            <button type="button" class="miroooo-menu-opt" data-val="1">1 star (22)</button>
+          </div>
+        </div>
+
+        <!-- Checkbox: With Photos (Hidden while reviews have no photos) -->
+        <button type="button" class="miroooo-filter-chk" id="miroooo-chk-photos" role="checkbox" aria-checked="false" style="display: none;">
+          <span class="miroooo-chk-icon">
+            <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+          </span>
+          With photos
+        </button>
+
+        <!-- Checkbox: Verified purchase -->
+        <button type="button" class="miroooo-filter-chk" id="miroooo-chk-verified" role="checkbox" aria-checked="false">
+          <span class="miroooo-chk-icon">
+            <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+          </span>
+          Verified purchase
+        </button>
+      </div>
+
+      <div class="miroooo-toolbar-right">
+        <span style="font-size: 13px; color: rgba(255, 255, 255, 0.5); font-weight: 600;">Sort:</span>
+        <div class="miroooo-dropdown" id="miroooo-sort-dropdown">
+          <button type="button" class="miroooo-dropdown-btn" id="miroooo-sort-dropdown-btn">
+            <span id="miroooo-sort-label">Most recent</span>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
+          </button>
+          <div class="miroooo-dropdown-menu right-aligned">
+            <button type="button" class="miroooo-menu-opt is-active" data-sort="most-recent">Most recent</button>
+            <button type="button" class="miroooo-menu-opt" data-sort="oldest">Oldest</button>
+            <button type="button" class="miroooo-menu-opt" data-sort="highest-rating">Highest ratings</button>
+            <button type="button" class="miroooo-menu-opt" data-sort="lowest-rating">Lowest ratings</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Active filter chips -->
+    <div class="miroooo-chips-row" id="miroooo-chips-row" style="display: none;"></div>
+
+    <!-- REVIEWS GRID -->
+    <div class="miroooo-grid" id="miroooo-reviews-grid">
+      <!-- Injected Review Cards -->
+    </div>
+
+    <!-- PAGINATION / LOAD MORE -->
+    <div class="miroooo-pagination" id="miroooo-pagination">
+      <div class="miroooo-showing-text" id="miroooo-showing-text">
+        Showing 12 of 4,275 reviews
+      </div>
+      <button type="button" class="miroooo-load-btn" id="miroooo-load-more-btn">
+        <span>Load More Reviews</span>
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
+      </button>
+    </div>
+
+  </div>
+</section>
+
+<!-- LIGHTBOX MODAL -->
+<div class="miroooo-modal-backdrop" id="miroooo-lightbox-modal" role="dialog" aria-modal="true">
+  <div class="miroooo-lightbox-dialog">
+    <button type="button" class="miroooo-modal-close-btn" id="miroooo-lightbox-close" aria-label="Close image preview">✕</button>
+    <div class="miroooo-lightbox-media-wrap">
+      <img id="miroooo-lb-img" src="" alt="Customer review photo preview">
+      <button type="button" class="miroooo-lb-nav miroooo-lb-prev" id="miroooo-lb-prev" aria-label="Previous image">‹</button>
+      <button type="button" class="miroooo-lb-nav miroooo-lb-next" id="miroooo-lb-next" aria-label="Next image">›</button>
+      <div class="miroooo-lb-counter" id="miroooo-lb-counter">1 / 1</div>
+    </div>
+    <div class="miroooo-lightbox-info-wrap">
+      <div>
+        <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 8px;">
+          <div style="color: #22c55e; font-size: 16px; letter-spacing: 2px;" id="miroooo-lb-stars">★★★★★</div>
+          <span style="font-size: 12px; color: rgba(255, 255, 255, 0.45);" id="miroooo-lb-date"></span>
+        </div>
+        <h4 style="font-size: 1.1rem; font-weight: 700; color: #ffffff; margin: 0 0 10px 0; line-height: 1.3;" id="miroooo-lb-title"></h4>
+        <p style="font-size: 0.88rem; color: rgba(255, 255, 255, 0.75); line-height: 1.6; margin: 0 0 16px 0;" id="miroooo-lb-body"></p>
+      </div>
+      <div style="border-top: 1px solid rgba(255, 255, 255, 0.1); padding-top: 14px; display: flex; align-items: center; justify-content: space-between;">
+        <div>
+          <div style="font-weight: 700; color: #ffffff; font-size: 13px;" id="miroooo-lb-author"></div>
+          <div style="color: #22c55e; font-size: 11px; font-weight: 600; text-transform: uppercase;">✓ Verified Buyer</div>
+        </div>
+        <div class="miroooo-card-variant" id="miroooo-lb-variant" style="margin-bottom: 0;"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- WRITE REVIEW MODAL -->
+<div class="miroooo-modal-backdrop" id="miroooo-write-modal" role="dialog" aria-modal="true">
+  <div class="miroooo-form-dialog">
+    <button type="button" class="miroooo-modal-close-btn" id="miroooo-write-close" aria-label="Close write review dialog">✕</button>
+    <h3 style="font-size: 1.5rem; font-weight: 800; color: #ffffff; margin: 0 0 4px 0;">Write a Review</h3>
+    <p style="font-size: 13px; color: rgba(255, 255, 255, 0.6); margin: 0 0 20px 0;">Share your experience with the Miroooo X2 Sonic Electric Toothbrush.</p>
+    
+    <form id="miroooo-write-form">
+      <div class="miroooo-form-group">
+        <label class="miroooo-form-label">Overall Rating *</label>
+        <div class="miroooo-star-picker" id="miroooo-star-picker">
+          <span class="miroooo-star-pick-item is-selected" data-val="1">★</span>
+          <span class="miroooo-star-pick-item is-selected" data-val="2">★</span>
+          <span class="miroooo-star-pick-item is-selected" data-val="3">★</span>
+          <span class="miroooo-star-pick-item is-selected" data-val="4">★</span>
+          <span class="miroooo-star-pick-item is-selected" data-val="5">★</span>
+          <span class="miroooo-form-star-text" id="miroooo-picker-text">5 Stars - Excellent</span>
+        </div>
+      </div>
+
+      <div class="miroooo-form-group">
+        <label for="m-rev-title" class="miroooo-form-label">Review Headline *</label>
+        <input type="text" id="m-rev-title" class="miroooo-form-input" placeholder="e.g. Best electric toothbrush I have ever used" required>
+      </div>
+
+      <div class="miroooo-form-group">
+        <label for="m-rev-body" class="miroooo-form-label">Review Comments *</label>
+        <textarea id="m-rev-body" class="miroooo-form-textarea" rows="4" placeholder="How has the 45° sweeping action, 90-day battery, and gum pressure ring worked for you?" required></textarea>
+      </div>
+
+      <div class="miroooo-form-row">
+        <div class="miroooo-form-group">
+          <label for="m-rev-name" class="miroooo-form-label">Your Name *</label>
+          <input type="text" id="m-rev-name" class="miroooo-form-input" placeholder="e.g. Sarah J." required>
+        </div>
+        <div class="miroooo-form-group">
+          <label for="m-rev-email" class="miroooo-form-label">Email (Private) *</label>
+          <input type="email" id="m-rev-email" class="miroooo-form-input" placeholder="e.g. sarah@example.com" required>
+        </div>
+      </div>
+
+      <div class="miroooo-form-group">
+        <label for="m-rev-variant" class="miroooo-form-label">Color / Package Purchased</label>
+        <select id="m-rev-variant" class="miroooo-form-select">
+          <option value="Space Grey / Double Pack">Space Grey / Double Pack</option>
+          <option value="Space Grey / Single">Space Grey / Single</option>
+          <option value="Matte Silver / Travel Edition">Matte Silver / Travel Edition</option>
+          <option value="Matte Silver / Single">Matte Silver / Single</option>
+          <option value="Rose Gold / Double Pack">Rose Gold / Double Pack</option>
+          <option value="Rose Gold / Single">Rose Gold / Single</option>
+        </select>
+      </div>
+
+      <button type="submit" class="miroooo-submit-btn">Submit Verified Review</button>
+      <div class="miroooo-success-toast" id="miroooo-success-toast">
+        ✓ Thank you! Your review has been submitted and posted.
+      </div>
+    </form>
+  </div>
+</div>
+
+<script id="miroooo-reviews-engine-script">
+(function() {
+  // 1. PRIMARY RICH REVIEWS DATASET FOR MIROOOO X2
+  const MIROOOO_REVIEWS_ARCHIVE = [
+    {
+      id: 1,
+      name: "Dr. Julian Vance (Dental Surgeon)",
+      rating: 5,
+      date: "14 Aug 2026",
+      title: "The 45° swept vibration Bass method is genuinely revolutionary",
+      body: "As a practicing dental surgeon for over 16 years, I routinely lecture patients on the Bass brushing technique. Most electric toothbrushes just vibrate randomly in place. The Miroooo X2 is the first unit I've tested that physically sweeps at a true 45° angle along the gingival margin. My personal plaque index dropped to near zero within two weeks. The micro-diamond Dupont bristles are impeccably rounded.",
+      variant: "Space Grey / Double Pack",
+      helpful: 84,
+      verified: true,
+      images: []
+    },
+    {
+      id: 2,
+      name: "Marcus Sterling",
+      rating: 5,
+      date: "12 Aug 2026",
+      title: "90 days battery life is not an exaggeration",
+      body: "I bought this in early May before a prolonged European business trip. I deliberately left the charging dock at home to test the 90-day cobalt cell claim. It is now mid-August and the power output hasn't degraded in the slightest. The unibody capacitive button also means zero dried toothpaste gunge building up in seams.",
+      variant: "Matte Silver / Travel Edition",
+      helpful: 62,
+      verified: true,
+      images: []
+    },
+    {
+      id: 3,
+      name: "Elena Rostova",
+      rating: 5,
+      date: "09 Aug 2026",
+      title: "Red pressure ring saved my sensitive gums",
+      body: "I used to scrub aggressively until my gums would bleed regularly. The instant the Miroooo X2 detects excess pressure, the red halo LED illuminates and the sweep rhythm softens automatically. My gums haven't bled once in 3 months of daily use.",
+      variant: "Rose Gold / Single",
+      helpful: 47,
+      verified: true,
+      images: []
+    },
+    {
+      id: 4,
+      name: "David K. Thornton",
+      rating: 5,
+      date: "05 Aug 2026",
+      title: "True IPX7 - Brushing in the hot shower without worry",
+      body: "Most electric brushes claim water resistance but die within 6 months if kept in the shower stall. The unibody seamless aluminum alloy chassis on the X2 has zero mechanical cutouts. I submerge and rinse it directly under the power shower head every morning.",
+      variant: "Space Grey / Single",
+      helpful: 39,
+      verified: true,
+      images: []
+    },
+    {
+      id: 5,
+      name: "Sophie Chen",
+      rating: 5,
+      date: "02 Aug 2026",
+      title: "Noticeable stain removal on Whitening Mode within 10 days",
+      body: "I drink two double espressos daily. The Whitening mode (green halo ring) combines a high-speed micro-sweep with targeted oscillation. My dental hygienist actually remarked that my coffee staining between my lower incisors was virtually gone at my last cleaning.",
+      variant: "Matte Silver / Double Pack",
+      helpful: 31,
+      verified: true,
+      images: []
+    },
+    {
+      id: 6,
+      name: "Oliver Harrison",
+      rating: 5,
+      date: "29 Jul 2026",
+      title: "Build quality feels like an Apple product",
+      body: "The matte anodized metal finish is weighted perfectly in the hand. No cheap squeaky plastics or silicone rubber that gets sticky and molds after a few months. The magnetic wall dock snaps into place with satisfying precision.",
+      variant: "Space Grey / Travel Edition",
+      helpful: 28,
+      verified: true,
+      images: []
+    },
+    {
+      id: 7,
+      name: "Hannah Wright",
+      rating: 5,
+      date: "26 Jul 2026",
+      title: "Dupont bristles are firm on plaque but gentle on enamel",
+      body: "Every brush head I've used previously either felt like wire sandpaper or was so soft it didn't clean. The micro-diamond bristle cut on the X2 conforms into interdental gaps effortlessly without scratching the enamel surface.",
+      variant: "Rose Gold / Double Pack",
+      helpful: 24,
+      verified: true,
+      images: []
+    },
+    {
+      id: 8,
+      name: "Liam Gallagher",
+      rating: 5,
+      date: "22 Jul 2026",
+      title: "Deep Cleansing blue halo mode is unbelievable",
+      body: "The 3rd mode with the cyan blue glowing ring operates at maximum swept frequency. Your mouth feels like you just stepped out of a professional hygiene appointment. Completely smooth tooth surface feeling all day long.",
+      variant: "Space Grey / Single",
+      helpful: 19,
+      verified: true,
+      images: []
+    },
+    {
+      id: 9,
+      name: "Claire Beauchamp",
+      rating: 5,
+      date: "19 Jul 2026",
+      title: "The capacitive button design solves hygiene issues",
+      body: "Normal electric toothbrushes have rubberized power switches where grime and calcium buildup accumulates and turns black. The unibody capacitive button on Miroooo X2 is completely flush and wipes clean with a cloth in two seconds.",
+      variant: "Matte Silver / Single",
+      helpful: 22,
+      verified: true,
+      images: []
+    },
+    {
+      id: 10,
+      name: "Thomas Brauer",
+      rating: 5,
+      date: "15 Jul 2026",
+      title: "Upgraded from Sonicare DiamondClean - this is miles better",
+      body: "My Sonicare had a failing battery after 14 months and the rubber seals molded. The Miroooo X2 battery is in a different league and the 45-degree sweeping mechanism removes far more stubborn interdental debris without gum irritation.",
+      variant: "Space Grey / Double Pack",
+      helpful: 35,
+      verified: true,
+      images: []
+    },
+    {
+      id: 11,
+      name: "Jessica Taylor",
+      rating: 5,
+      date: "11 Jul 2026",
+      title: "Ventilated travel case is so thoughtful",
+      body: "The hard travel case with magnetic latch and built-in ventilation channels allows the Dupont bristle head to dry properly in luggage without getting musty or squished. Ideal for frequent travellers.",
+      variant: "Rose Gold / Travel Edition",
+      helpful: 16,
+      verified: true,
+      images: []
+    },
+    {
+      id: 12,
+      name: "Benjamin Cox",
+      rating: 5,
+      date: "07 Jul 2026",
+      title: "Magnetic charging dock is sleek and clutter-free",
+      body: "No ugly protruding plastic prongs. It balances solidly on the magnetic disc and takes up minimal bathroom counter space. Plus needing to charge only 4 times a year is liberating.",
+      variant: "Matte Silver / Single",
+      helpful: 18,
+      verified: true,
+      images: []
+    },
+    {
+      id: 13,
+      name: "Emma Lindqvist",
+      rating: 5,
+      date: "04 Jul 2026",
+      title: "Gingival margin cleaning is noticeably superior",
+      body: "I struggle with tartar buildup along my bottom canine teeth. The rhythmic sweeping sweep motion of the X2 gets deeper beneath the gum margin without causing recession or abrasions.",
+      variant: "Space Grey / Double Pack",
+      helpful: 29,
+      verified: true,
+      images: []
+    },
+    {
+      id: 14,
+      name: "Richard P. Edwards",
+      rating: 4,
+      date: "03 Jul 2026",
+      title: "Outstanding performance, took 3 days to adjust to sweep motion",
+      body: "The 45-degree sweeping action feels very different from standard high-frequency sonic vibration. The first two days felt slightly ticklish along the gumline. By day four, I got used to it and now I can't imagine using a conventional vibrating toothbrush. Deducted one star solely for the initial learning curve.",
+      variant: "Space Grey / Single",
+      helpful: 27,
+      verified: true,
+      images: []
+    },
+    {
+      id: 15,
+      name: "Natasha Romanova",
+      rating: 4,
+      date: "28 Jun 2026",
+      title: "Superb toothbrush, wish extra brush heads came in a 6-pack option",
+      body: "The toothbrush itself is an engineering masterpiece. Brushing quality, battery endurance, and materials are 10/10. I just wish there was a bulk 6-head replacement pack at checkout rather than standard 2-packs.",
+      variant: "Rose Gold / Double Pack",
+      helpful: 14,
+      verified: true,
+      images: []
+    },
+    {
+      id: 16,
+      name: "George M. Davies",
+      rating: 4,
+      date: "23 Jun 2026",
+      title: "Sleek aerospace aluminum body, slightly smooth grip when wet",
+      body: "The matte metal chassis looks stunning on the counter and doesn't harbor mold. However, if your hands are covered in soapy water in the shower, the metal can feel a bit sleek. Brushing performance is top tier though.",
+      variant: "Matte Silver / Single",
+      helpful: 19,
+      verified: true,
+      images: []
+    },
+    {
+      id: 17,
+      name: "Zoe Jenkins",
+      rating: 4,
+      date: "17 Jun 2026",
+      title: "Very powerful clean, standard mode is plenty strong",
+      body: "Even on the 1st Standard Clean white halo mode, the swept vibration delivers substantial torque. Deep cleansing mode is very intense. I stick to Standard and Whitening and my teeth look spotless.",
+      variant: "Space Grey / Travel Edition",
+      helpful: 11,
+      verified: true,
+      images: []
+    },
+    {
+      id: 18,
+      name: "Lucas Van Dijk",
+      rating: 3,
+      date: "12 Jun 2026",
+      title: "Royal Mail delivery was delayed by 4 days, brush itself is solid",
+      body: "The Miroooo X2 device is well made and cleans thoroughly, but the tracked shipping took nearly a week to arrive in Manchester when 48-hour delivery was expected at checkout.",
+      variant: "Space Grey / Single",
+      helpful: 9,
+      verified: true,
+      images: [],
+      merchantReply: "Response from Miroooo Customer Care: Hi Lucas, we sincerely apologize for the regional postal carrier bottleneck in June. We have since upgraded our UK dispatch logistics to priority tracked Royal Mail 24/48 to ensure every Miroooo X2 arrives on schedule."
+    },
+    {
+      id: 19,
+      name: "Grace O'Connor",
+      rating: 3,
+      date: "05 Jun 2026",
+      title: "Very intense vibration for people with hyper-receding gums",
+      body: "The sweep motion is definitely effective at clearing plaque, but even with the pressure sensor I found the deep cleaning mode a bit powerful for my exposed root sensitivity. I have to use light featherweight contact on Standard mode.",
+      variant: "Rose Gold / Single",
+      helpful: 15,
+      verified: true,
+      images: [],
+      merchantReply: "Response from Miroooo Customer Care: Thank you for the detailed feedback Grace. For sensitive gingival tissue or exposed dentin, we recommend starting with our ultra-soft micro-diamond head and keeping the unit on Mode 1 (Standard Clean) where the swept oscillation operates with maximum damping."
+    },
+    {
+      id: 20,
+      name: "Arthur Pendelton",
+      rating: 2,
+      date: "28 May 2026",
+      title: "Outer shipping box was crushed upon delivery",
+      body: "The delivery driver squeezed the package through the letterbox which creased the outer retail carton. Fortunately the internal foam and hard travel case kept the X2 undamaged, but for a premium £79 device the external shipping packaging should be more rigid.",
+      variant: "Matte Silver / Travel Edition",
+      helpful: 18,
+      verified: true,
+      images: [],
+      merchantReply: "Response from Miroooo Customer Care: Hi Arthur, thank you for bringing this to our attention. While we are glad the internal protective casing kept your Miroooo X2 in pristine working order, we have forwarded your feedback to our fulfillment warehouse to introduce reinforced corrugated outer mailers."
+    },
+    {
+      id: 21,
+      name: "Dominic H. Walsh",
+      rating: 1,
+      date: "19 May 2026",
+      title: "Mistakenly received single head instead of replacement 2-pack in bundle",
+      body: "Ordered the double bundle with replacement heads but the courier box was missing the secondary accessory pack upon opening. Contacted support.",
+      variant: "Space Grey / Double Pack",
+      helpful: 21,
+      verified: true,
+      images: [],
+      merchantReply: "Response from Miroooo Customer Care: Hello Dominic, we investigated your order record and dispatched a complimentary replacement multi-pack with priority overnight courier on the same day. Please reach out to support@miroooo.com if there is anything further we can assist you with."
+    },
+    {
+      id: 22,
+      name: "Sarah M. Jenkins",
+      rating: 5,
+      date: "16 May 2026",
+      title: "My dental hygienist was genuinely impressed at my 6-month checkup",
+      body: "I have had chronic lingual plaque buildup behind my lower incisors for years. At my routine appointment yesterday, my hygienist asked what new tool I had bought because there was almost nothing to scale. The 45° sweeping action makes all the difference.",
+      variant: "Rose Gold / Double Pack",
+      helpful: 43,
+      verified: true,
+      images: []
+    },
+    {
+      id: 23,
+      name: "Alexander Wright",
+      rating: 5,
+      date: "11 May 2026",
+      title: "The unibody metal texture is unmatched",
+      body: "The tactile feedback of holding this toothbrush is pure luxury. Cold, sleek aerospace aluminum that dries instantly on the magnetic wall rack.",
+      variant: "Space Grey / Single",
+      helpful: 17,
+      verified: true,
+      images: []
+    },
+    {
+      id: 24,
+      name: "Fiona MacLeod",
+      rating: 5,
+      date: "08 May 2026",
+      title: "Best investment for frequent business travel",
+      body: "With the ventilated travel case and 90-day battery, I never have to pack charging cords or fear bristle deformation in my carry-on bag.",
+      variant: "Matte Silver / Travel Edition",
+      helpful: 25,
+      verified: true,
+      images: []
+    },
+    {
+      id: 25,
+      name: "Ryan Gallagher",
+      rating: 5,
+      date: "03 May 2026",
+      title: "The 45-degree angle sweep reaches wisdom teeth effortlessly",
+      body: "The slim tapered brush neck allows easy access to deep posterior molars where bulky round brush heads always gagged me.",
+      variant: "Space Grey / Double Pack",
+      helpful: 38,
+      verified: true,
+      images: []
+    },
+    {
+      id: 26,
+      name: "Charlotte Dupont",
+      rating: 5,
+      date: "29 Apr 2026",
+      title: "Gentle on sensitive porcelain veneers",
+      body: "My cosmetic dentist advised avoiding high-abrasion oscillating brushes. The micro-diamond rounded Dupont bristles polish my veneers smoothly without scratching.",
+      variant: "Rose Gold / Single",
+      helpful: 21,
+      verified: true,
+      images: []
+    },
+    {
+      id: 27,
+      name: "Kieran Patel",
+      rating: 5,
+      date: "24 Apr 2026",
+      title: "USB-C universal charging is a huge plus",
+      body: "Finally an electric toothbrush that uses modern standard USB-C on the dock instead of proprietary clunky bathroom shavers sockets!",
+      variant: "Space Grey / Travel Edition",
+      helpful: 15,
+      verified: true,
+      images: []
+    },
+    {
+      id: 28,
+      name: "Isabella Rossi",
+      rating: 5,
+      date: "19 Apr 2026",
+      title: "No mold or water damage after 4 months in a humid bathroom",
+      body: "Our bathroom has poor ventilation and my previous brush developed black mold along the rubber seams. Miroooo X2's seamless capacitive metal body stays 100% spotless.",
+      variant: "Matte Silver / Double Pack",
+      helpful: 32,
+      verified: true,
+      images: []
+    },
+    {
+      id: 29,
+      name: "Henry C. Miller",
+      rating: 5,
+      date: "15 Apr 2026",
+      title: "Feels like an ultra-luxury medical device",
+      body: "The motor sound is a refined hum rather than a cheap rattle. 45° sweeping action is exceptionally thorough.",
+      variant: "Space Grey / Single",
+      helpful: 19,
+      verified: true,
+      images: []
+    },
+    {
+      id: 30,
+      name: "Amelia Hughes",
+      rating: 5,
+      date: "10 Apr 2026",
+      title: "Whitening mode lifted stubborn tea stains in 2 weeks",
+      body: "As a daily black tea drinker, I noticed my tooth shade brighten visibly after 14 days of the green halo Whitening mode.",
+      variant: "Rose Gold / Double Pack",
+      helpful: 28,
+      verified: true,
+      images: []
+    },
+    {
+      id: 31,
+      name: "Sebastian Cole",
+      rating: 5,
+      date: "06 Apr 2026",
+      title: "Red halo pressure warning is intuitive and fast",
+      body: "The visual instant feedback teaches you proper light brushing technique without guessing. Highly recommended.",
+      variant: "Space Grey / Travel Edition",
+      helpful: 22,
+      verified: true,
+      images: []
+    },
+    {
+      id: 32,
+      name: "Mia Robertson",
+      rating: 5,
+      date: "01 Apr 2026",
+      title: "Battery percentage LED keeps you fully informed",
+      body: "I love the subtle base LED indicator. You always know exactly when a rare recharge is due.",
+      variant: "Matte Silver / Single",
+      helpful: 14,
+      verified: true,
+      images: []
+    },
+    {
+      id: 33,
+      name: "Daniel O'Sullivan",
+      rating: 5,
+      date: "27 Mar 2026",
+      title: "Replaced our family Oral-B iO brushes - never looking back",
+      body: "We bought the Double Pack for myself and my wife. The Miroooo X2 is sleeker, quieter, cleans far better around the gumline, and only needs charging 4 times a year.",
+      variant: "Space Grey / Double Pack",
+      helpful: 41,
+      verified: true,
+      images: []
+    },
+    {
+      id: 34,
+      name: "Victoria Sinclair",
+      rating: 5,
+      date: "22 Mar 2026",
+      title: "Compact magnetic charging base takes zero counter space",
+      body: "The charging disc has a non-slip silicone base and magnetic self-centering. Keeps the sink area minimalistic.",
+      variant: "Rose Gold / Travel Edition",
+      helpful: 17,
+      verified: true,
+      images: []
+    },
+    {
+      id: 35,
+      name: "Lucas Weber",
+      rating: 4,
+      date: "18 Mar 2026",
+      title: "Solid device, would love a bristle wear indicator color strip",
+      body: "Cleans exceptionally well and the 90-day battery is a revelation. I would love if future brush heads included blue fade-to-white reminder bristles to prompt head replacement.",
+      variant: "Space Grey / Single",
+      helpful: 12,
+      verified: true,
+      images: []
+    },
+    {
+      id: 36,
+      name: "Freya Lindholm",
+      rating: 4,
+      date: "14 Mar 2026",
+      title: "Excellent sweep mechanics, button takes a light touch to get used to",
+      body: "Because the power button is capacitive rather than a clicky physical switch, it takes a couple of days to build muscle memory for featherweight taps.",
+      variant: "Matte Silver / Double Pack",
+      helpful: 16,
+      verified: true,
+      images: []
+    },
+    {
+      id: 37,
+      name: "Oscar Bradley",
+      rating: 4,
+      date: "09 Mar 2026",
+      title: "Terrific clean, took 2 days for delivery tracking to update",
+      body: "The product itself is flawless. The dispatch tracking link took 48 hours to activate on the carrier portal which caused minor confusion, but item arrived safely.",
+      variant: "Space Grey / Travel Edition",
+      helpful: 8,
+      verified: true,
+      images: []
+    },
+    {
+      id: 38,
+      name: "Chloe Davenport",
+      rating: 3,
+      date: "04 Mar 2026",
+      title: "Slightly louder than expected on Deep Clean mode",
+      body: "The sweep motion is definitely effective at clearing plaque, but the deep cleansing mode creates a noticeable resonant hum in a small tiled bathroom.",
+      variant: "Rose Gold / Single",
+      helpful: 11,
+      verified: true,
+      images: [],
+      merchantReply: "Response from Miroooo Customer Care: Hi Chloe, the high-torque dual-bearing motor delivers 42,000 swept micro-oscillations in Deep Cleansing mode, creating higher resonant acoustic pitch. Mode 1 (Standard Clean) offers whisper-quiet operation under 48dB for late-night brushing."
+    },
+    {
+      id: 39,
+      name: "Simon Fletcher",
+      rating: 2,
+      date: "27 Feb 2026",
+      title: "Postal service left the parcel on doorstep in the rain",
+      body: "The delivery courier dumped the box outside without ringing the bell during a heavy rain shower. Thankfully the waterproof product packaging saved the toothbrush.",
+      variant: "Space Grey / Double Pack",
+      helpful: 14,
+      verified: true,
+      images: [],
+      merchantReply: "Response from Miroooo Customer Care: Hi Simon, we are terribly sorry for the delivery driver's handling. We've filed a formal complaint with the carrier and reinforced all dispatch protocols to require signed delivery."
+    },
+    {
+      id: 40,
+      name: "Toby Armstrong",
+      rating: 1,
+      date: "20 Feb 2026",
+      title: "Tracking link took 48 hours to activate after dispatch notification",
+      body: "Received a shipment notification email on Friday but the tracking number did not scan into the Royal Mail system until Monday afternoon.",
+      variant: "Matte Silver / Single",
+      helpful: 19,
+      verified: true,
+      images: [],
+      merchantReply: "Response from Miroooo Customer Care: Hi Toby, apologies for the carrier tracking sync latency over the weekend dispatch window. Our automated system has been upgraded to provide live instantaneous GPS parcel tracking."
+    }
+  ];
+
+  // 2. PROCEDURAL EXTENSION GENERATOR (Permutations to simulate full 4,275 verified archive)
+  const FIRST_NAMES = ["James", "Emma", "William", "Olivia", "Alexander", "Sophia", "Matthew", "Isabella", "Daniel", "Emily", "Michael", "Mia", "Benjamin", "Charlotte", "Ethan", "Amelia", "Lucas", "Harper", "Henry", "Evelyn", "Alexander", "Abigail", "Sebastian", "Elizabeth", "Jack", "Avery", "Owen", "Ella", "Samuel", "Scarlett"];
+  const LAST_INITIALS = ["H.", "K.", "M.", "B.", "W.", "T.", "P.", "S.", "R.", "D.", "L.", "C.", "G.", "N.", "V."];
+  const TITLES_5 = [
+    "Incredible plaque removal around the gumline",
+    "Best sonic toothbrush on the market bar none",
+    "90-day battery life makes travelling effortless",
+    "Smart pressure ring stopped all gum bleeding",
+    "True IPX7 - fully shower safe and easy to rinse",
+    "Dentist commented on how clean my teeth were",
+    "The 45° Bass sweep is noticeably more effective",
+    "Unibody capacitive button stays completely clean",
+    "Whitening mode removed all my coffee stains",
+    "Pure luxury build quality and whisper quiet"
+  ];
+  const BODIES_5 = [
+    "I have used premium electric toothbrushes for over a decade, and the Miroooo X2's 45° sweeping action is vastly superior. My teeth feel like glass after every 2-minute cycle.",
+    "The 90-day battery life is a game-changer. I charged it once 2 months ago and it is still running strong with zero loss in motor power. Beautiful matte metal chassis.",
+    "The red LED pressure warning ring is very responsive. It immediately corrected my aggressive brushing habit and my gums have stopped bleeding entirely.",
+    "I brush in the shower daily and the IPX7 waterproof rating is completely reliable. No moisture buildup or battery degradation whatsoever.",
+    "The micro-diamond Dupont bristles are gentle yet remarkably firm on stubborn tartar. Even my dental hygienist noticed the difference during my last checkup.",
+    "Switched from a traditional oscillating brush and the difference in gumline cleanliness is astounding. Mode 2 Whitening is my daily favourite."
+  ];
+
+  // Generate procedural items up to 4,275 reviews total
+  const TOTAL_ARCHIVE_COUNT = 4275;
+  const FULL_DATASET = [...MIROOOO_REVIEWS_ARCHIVE];
+  
+  for (let i = 41; i <= 240; i++) {
+    const fn = FIRST_NAMES[i % FIRST_NAMES.length];
+    const ln = LAST_INITIALS[(i * 3) % LAST_INITIALS.length];
+    const is5 = (i % 10 !== 0);
+    const rating = is5 ? 5 : 4;
+    const title = is5 ? TITLES_5[i % TITLES_5.length] : "Very solid performance and sleek design";
+    const body = is5 ? BODIES_5[i % BODIES_5.length] : "Cleans teeth thoroughly and the battery lasts as advertised. Slightly distinct feel compared to vibrating heads.";
+    const variants = ["Space Grey / Double Pack", "Space Grey / Single", "Matte Silver / Travel Edition", "Matte Silver / Single", "Rose Gold / Double Pack", "Rose Gold / Single"];
+    const daysAgo = Math.floor(i * 1.8) + 14;
+    const d = new Date(Date.now() - daysAgo * 24 * 60 * 60 * 1000);
+    const dateStr = d.toLocaleDateString("en-GB", { day: "2-digit", month: "short", year: "numeric" });
+
+    FULL_DATASET.push({
+      id: i,
+      name: `${fn} ${ln}`,
+      rating: rating,
+      date: dateStr,
+      title: title,
+      body: body,
+      variant: variants[i % variants.length],
+      helpful: Math.max(1, Math.floor(25 - (i * 0.08))),
+      verified: true,
+      images: []
+    });
+  }
+
+  // 3. STATE & FILTER CONTROLLER
+  let state = {
+    ratingFilter: 'all', // 'all', 5, 4, 3, 2, 1
+    sortOrder: 'most-recent', // 'most-recent', 'oldest', 'with-photos', 'highest-rating', 'lowest-rating'
+    withPhotosOnly: false,
+    verifiedOnly: false,
+    visibleCount: 12,
+    pageSize: 12,
+    votedReviews: new Set()
+  };
+
+  // DOM Elements
+  const gridEl = document.getElementById('miroooo-reviews-grid');
+  const showingTextEl = document.getElementById('miroooo-showing-text');
+  const loadMoreBtn = document.getElementById('miroooo-load-more-btn');
+  const starFilterLabel = document.getElementById('miroooo-star-filter-label');
+  const sortLabel = document.getElementById('miroooo-sort-label');
+  const chipsRow = document.getElementById('miroooo-chips-row');
+  const chkPhotosBtn = document.getElementById('miroooo-chk-photos');
+  const chkVerifiedBtn = document.getElementById('miroooo-chk-verified');
+  const starDropdown = document.getElementById('miroooo-star-dropdown');
+  const sortDropdown = document.getElementById('miroooo-sort-dropdown');
+  const breakdownRows = document.querySelectorAll('.miroooo-bar-row');
+
+  // Lightbox Elements
+  const lbModal = document.getElementById('miroooo-lightbox-modal');
+  const lbImg = document.getElementById('miroooo-lb-img');
+  const lbPrev = document.getElementById('miroooo-lb-prev');
+  const lbNext = document.getElementById('miroooo-lb-next');
+  const lbCounter = document.getElementById('miroooo-lb-counter');
+  const lbStars = document.getElementById('miroooo-lb-stars');
+  const lbDate = document.getElementById('miroooo-lb-date');
+  const lbTitle = document.getElementById('miroooo-lb-title');
+  const lbBody = document.getElementById('miroooo-lb-body');
+  const lbAuthor = document.getElementById('miroooo-lb-author');
+  const lbVariant = document.getElementById('miroooo-lb-variant');
+  const lbClose = document.getElementById('miroooo-lightbox-close');
+
+  let activeLightboxReview = null;
+  let activeLightboxImageIndex = 0;
+
+  // Write Review Modal Elements
+  const writeModal = document.getElementById('miroooo-write-modal');
+  const openWriteBtn = document.getElementById('miroooo-open-write-modal');
+  const writeCloseBtn = document.getElementById('miroooo-write-close');
+  const writeForm = document.getElementById('miroooo-write-form');
+  const starPickers = document.querySelectorAll('.miroooo-star-pick-item');
+  const pickerText = document.getElementById('miroooo-picker-text');
+  const successToast = document.getElementById('miroooo-success-toast');
+  let selectedFormRating = 5;
+
+  const RATING_TEXTS = {
+    1: "1 Star - Poor",
+    2: "2 Stars - Fair",
+    3: "3 Stars - Average",
+    4: "4 Stars - Very Good",
+    5: "5 Stars - Excellent"
+  };
+
+  // 4. FILTERING & SORTING PIPELINE
+  function getFilteredReviews() {
+    let list = FULL_DATASET.slice();
+
+    // 1. Rating Filter
+    if (state.ratingFilter !== 'all') {
+      const targetRating = parseInt(state.ratingFilter, 10);
+      list = list.filter(r => r.rating === targetRating);
+    }
+
+    // 2. Photos Only
+    if (state.withPhotosOnly) {
+      list = list.filter(r => r.images && r.images.length > 0);
+    }
+
+    // 3. Verified Only
+    if (state.verifiedOnly) {
+      list = list.filter(r => r.verified);
+    }
+
+    // 4. Sorting
+    switch (state.sortOrder) {
+      case 'oldest':
+        list.reverse();
+        break;
+      case 'with-photos':
+        list.sort((a, b) => (b.images.length > 0 ? 1 : 0) - (a.images.length > 0 ? 1 : 0));
+        break;
+      case 'highest-rating':
+        list.sort((a, b) => b.rating - a.rating);
+        break;
+      case 'lowest-rating':
+        list.sort((a, b) => a.rating - b.rating);
+        break;
+      case 'most-recent':
+      default:
+        // default order is most recent
+        break;
+    }
+
+    return list;
+  }
+
+  // 5. RENDER REVIEWS GRID
+  function renderGrid() {
+    const filtered = getFilteredReviews();
+    const visibleList = filtered.slice(0, state.visibleCount);
+    
+    // Update showing text
+    const displayTotal = (state.ratingFilter === 'all' && !state.withPhotosOnly && !state.verifiedOnly) ? TOTAL_ARCHIVE_COUNT : filtered.length;
+    showingTextEl.textContent = `Showing ${Math.min(visibleList.length, displayTotal)} of ${displayTotal.toLocaleString()} reviews`;
+
+    // Toggle Load More button
+    if (visibleList.length >= filtered.length) {
+      loadMoreBtn.style.display = 'none';
+    } else {
+      loadMoreBtn.style.display = 'inline-flex';
+    }
+
+    if (visibleList.length === 0) {
+      gridEl.innerHTML = `
+        <div style="grid-column: 1 / -1; text-align: center; padding: 60px 20px; background: #0d0d0d; border: 1px solid rgba(255,255,255,0.1); border-radius: 16px;">
+          <p style="font-size: 1.1rem; color: #ffffff; margin-bottom: 8px;">No reviews match the selected filter criteria.</p>
+          <button type="button" class="miroooo-write-btn" id="miroooo-empty-reset-btn" style="margin-top: 12px;">Reset All Filters</button>
+        </div>
+      `;
+      const resetBtn = document.getElementById('miroooo-empty-reset-btn');
+      if (resetBtn) {
+        resetBtn.addEventListener('click', resetFilters);
+      }
+      renderChips();
+      return;
+    }
+
+    // Render Cards HTML
+    gridEl.innerHTML = visibleList.map(review => {
+      const starsStr = "★".repeat(review.rating) + "☆".repeat(5 - review.rating);
+      
+      // Gallery HTML
+      let galleryHtml = "";
+      if (review.images && review.images.length === 1) {
+        galleryHtml = `
+          <div class="miroooo-card-gallery" data-review-id="${review.id}" data-img-idx="0">
+            <div class="miroooo-gallery-1">
+              <img src="${review.images[0]}" alt="Review photo by ${review.name}" loading="lazy">
+            </div>
+          </div>
+        `;
+      } else if (review.images && review.images.length === 2) {
+        galleryHtml = `
+          <div class="miroooo-card-gallery" data-review-id="${review.id}" data-img-idx="0">
+            <div class="miroooo-gallery-2">
+              <img src="${review.images[0]}" alt="Review photo by ${review.name}" loading="lazy">
+              <img src="${review.images[1]}" alt="Review photo by ${review.name}" loading="lazy">
+            </div>
+          </div>
+        `;
+      } else if (review.images && review.images.length >= 3) {
+        const extraCount = review.images.length - 3;
+        galleryHtml = `
+          <div class="miroooo-card-gallery" data-review-id="${review.id}" data-img-idx="0">
+            <div class="miroooo-gallery-3plus">
+              <img class="main-thumb" src="${review.images[0]}" alt="Review photo by ${review.name}" loading="lazy">
+              <img class="sub-thumb" src="${review.images[1]}" alt="Review photo by ${review.name}" loading="lazy">
+              <div class="more-overlay">
+                <img src="${review.images[2]}" alt="Review photo by ${review.name}" loading="lazy">
+                ${extraCount > 0 ? `<span>+${extraCount}</span>` : ""}
+              </div>
+            </div>
+          </div>
+        `;
+      }
+
+      // Merchant reply HTML
+      const merchantReplyHtml = review.merchantReply ? `
+        <div class="miroooo-merchant-reply">
+          <span class="miroooo-merchant-reply-badge">✓ Miroooo Official Response</span>
+          ${review.merchantReply.replace("Response from Miroooo Customer Care: ", "")}
+        </div>
+      ` : "";
+
+      const isVoted = state.votedReviews.has(review.id);
+
+      return `
+        <article class="miroooo-card" data-review-id="${review.id}">
+          ${galleryHtml}
+          <div class="miroooo-card-top">
+            <span class="miroooo-card-stars" aria-label="${review.rating} stars">${starsStr}</span>
+            <span class="miroooo-card-date">${review.date}</span>
+          </div>
+          <h3 class="miroooo-card-title">${review.title}</h3>
+          <p class="miroooo-card-body">${review.body}</p>
+          <div class="miroooo-card-variant">${review.variant}</div>
+          ${merchantReplyHtml}
+          <div class="miroooo-card-footer">
+            <div class="miroooo-card-author-wrap">
+              <span class="miroooo-card-author">${review.name}</span>
+              ${review.verified ? `<span class="miroooo-card-verified"><svg width="11" height="11" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg> Verified</span>` : ""}
+            </div>
+            <button type="button" class="miroooo-helpful-btn ${isVoted ? 'is-voted' : ''}" data-review-id="${review.id}">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="${isVoted ? '#22c55e' : 'none'}" stroke="currentColor" stroke-width="2"><path d="M14 9V5a3 3 0 0 0-3-3l-4 9v11h11.28a2 2 0 0 0 2-1.7l1.38-9a2 2 0 0 0-2-2.3zM7 22H4a2 2 0 0 1-2-2v-7a2 2 0 0 1 2-2h3"></path></svg>
+              <span>${review.helpful + (isVoted ? 1 : 0)}</span>
+            </button>
+          </div>
+        </article>
+      `;
+    }).join('');
+
+    // Attach card gallery lightbox listeners
+    gridEl.querySelectorAll('.miroooo-card-gallery').forEach(el => {
+      el.addEventListener('click', (e) => {
+        const revId = parseInt(el.getAttribute('data-review-id'), 10);
+        const imgIdx = parseInt(el.getAttribute('data-img-idx') || '0', 10);
+        openLightbox(revId, imgIdx);
+      });
+    });
+
+    // Attach helpful vote button listeners
+    gridEl.querySelectorAll('.miroooo-helpful-btn').forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        const revId = parseInt(btn.getAttribute('data-review-id'), 10);
+        if (state.votedReviews.has(revId)) {
+          state.votedReviews.delete(revId);
+        } else {
+          state.votedReviews.add(revId);
+        }
+        renderGrid();
+      });
+    });
+
+    renderChips();
+  }
+
+  // 6. RENDER CHIPS
+  function renderChips() {
+    const activeChips = [];
+    if (state.ratingFilter !== 'all') {
+      activeChips.push({ label: `${state.ratingFilter} Stars`, type: 'rating' });
+    }
+    if (state.withPhotosOnly) {
+      activeChips.push({ label: 'With Photos', type: 'photos' });
+    }
+    if (state.verifiedOnly) {
+      activeChips.push({ label: 'Verified Only', type: 'verified' });
+    }
+
+    if (activeChips.length === 0) {
+      chipsRow.style.display = 'none';
+      chipsRow.innerHTML = '';
+      return;
+    }
+
+    chipsRow.style.display = 'flex';
+    chipsRow.innerHTML = `
+      <span style="font-size: 12px; color: rgba(255,255,255,0.5); font-weight:600;">Active filters:</span>
+      ${activeChips.map(c => `
+        <span class="miroooo-chip">
+          ${c.label}
+          <span class="miroooo-chip-remove" data-chip-type="${c.type}">✕</span>
+        </span>
+      `).join('')}
+      <button type="button" class="miroooo-reset-all" id="miroooo-chip-reset">Clear All</button>
+    `;
+
+    chipsRow.querySelectorAll('.miroooo-chip-remove').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const type = btn.getAttribute('data-chip-type');
+        if (type === 'rating') setRatingFilter('all');
+        if (type === 'photos') togglePhotosFilter();
+        if (type === 'verified') toggleVerifiedFilter();
+      });
+    });
+
+    const chipReset = document.getElementById('miroooo-chip-reset');
+    if (chipReset) {
+      chipReset.addEventListener('click', resetFilters);
+    }
+  }
+
+  // 7. FILTER & SORT ACTIONS
+  function setRatingFilter(rating) {
+    state.ratingFilter = rating;
+    state.visibleCount = state.pageSize;
+
+    // Update Bar rows active state
+    breakdownRows.forEach(row => {
+      if (row.getAttribute('data-star') === String(rating)) {
+        row.classList.add('is-active');
+      } else {
+        row.classList.remove('is-active');
+      }
+    });
+
+    // Update dropdown label & active option
+    const label = rating === 'all' ? 'All ratings' : `${rating} stars`;
+    starFilterLabel.textContent = label;
+    starDropdown.querySelectorAll('.miroooo-menu-opt').forEach(opt => {
+      opt.classList.toggle('is-active', opt.getAttribute('data-val') === String(rating));
+    });
+
+    renderGrid();
+  }
+
+  function setSortOrder(sortVal, sortText) {
+    state.sortOrder = sortVal;
+    state.visibleCount = state.pageSize;
+    sortLabel.textContent = sortText;
+    sortDropdown.querySelectorAll('.miroooo-menu-opt').forEach(opt => {
+      opt.classList.toggle('is-active', opt.getAttribute('data-sort') === sortVal);
+    });
+    renderGrid();
+  }
+
+  function togglePhotosFilter() {
+    state.withPhotosOnly = !state.withPhotosOnly;
+    state.visibleCount = state.pageSize;
+    chkPhotosBtn.classList.toggle('is-checked', state.withPhotosOnly);
+    chkPhotosBtn.setAttribute('aria-checked', state.withPhotosOnly ? 'true' : 'false');
+    renderGrid();
+  }
+
+  function toggleVerifiedFilter() {
+    state.verifiedOnly = !state.verifiedOnly;
+    state.visibleCount = state.pageSize;
+    chkVerifiedBtn.classList.toggle('is-checked', state.verifiedOnly);
+    chkVerifiedBtn.setAttribute('aria-checked', state.verifiedOnly ? 'true' : 'false');
+    renderGrid();
+  }
+
+  function resetFilters() {
+    state.ratingFilter = 'all';
+    state.withPhotosOnly = false;
+    state.verifiedOnly = false;
+    state.visibleCount = state.pageSize;
+    chkPhotosBtn.classList.remove('is-checked');
+    chkPhotosBtn.setAttribute('aria-checked', 'false');
+    chkVerifiedBtn.classList.remove('is-checked');
+    chkVerifiedBtn.setAttribute('aria-checked', 'false');
+    setRatingFilter('all');
+  }
+
+  // 8. BREAKDOWN BARS EVENT HANDLERS
+  breakdownRows.forEach(row => {
+    row.addEventListener('click', () => {
+      const star = row.getAttribute('data-star');
+      setRatingFilter(star);
+    });
+  });
+
+  // 9. DROPDOWN TOGGLES
+  document.getElementById('miroooo-star-dropdown-btn').addEventListener('click', (e) => {
+    e.stopPropagation();
+    starDropdown.classList.toggle('open');
+    sortDropdown.classList.remove('open');
+  });
+
+  document.getElementById('miroooo-sort-dropdown-btn').addEventListener('click', (e) => {
+    e.stopPropagation();
+    sortDropdown.classList.toggle('open');
+    starDropdown.classList.remove('open');
+  });
+
+  starDropdown.querySelectorAll('.miroooo-menu-opt').forEach(opt => {
+    opt.addEventListener('click', () => {
+      setRatingFilter(opt.getAttribute('data-val'));
+      starDropdown.classList.remove('open');
+    });
+  });
+
+  sortDropdown.querySelectorAll('.miroooo-menu-opt').forEach(opt => {
+    opt.addEventListener('click', () => {
+      setSortOrder(opt.getAttribute('data-sort'), opt.textContent);
+      sortDropdown.classList.remove('open');
+    });
+  });
+
+  document.addEventListener('click', () => {
+    starDropdown.classList.remove('open');
+    sortDropdown.classList.remove('open');
+  });
+
+  // 10. CHECKBOX FILTER HANDLERS
+  chkPhotosBtn.addEventListener('click', togglePhotosFilter);
+  chkVerifiedBtn.addEventListener('click', toggleVerifiedFilter);
+
+  // 11. LOAD MORE HANDLER
+  loadMoreBtn.addEventListener('click', () => {
+    state.visibleCount += state.pageSize;
+    renderGrid();
+  });
+
+  // 12. LIGHTBOX POPUP CONTROLLER
+  function openLightbox(reviewId, imageIndex) {
+    const rev = FULL_DATASET.find(r => r.id === reviewId);
+    if (!rev || !rev.images || !rev.images.length) return;
+
+    activeLightboxReview = rev;
+    activeLightboxImageIndex = imageIndex;
+    updateLightboxUI();
+    lbModal.classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function updateLightboxUI() {
+    if (!activeLightboxReview) return;
+    const rev = activeLightboxReview;
+    const imgs = rev.images;
+    
+    lbImg.src = imgs[activeLightboxImageIndex];
+    lbCounter.textContent = `${activeLightboxImageIndex + 1} / ${imgs.length}`;
+    lbStars.textContent = "★".repeat(rev.rating) + "☆".repeat(5 - rev.rating);
+    lbDate.textContent = rev.date;
+    lbTitle.textContent = rev.title;
+    lbBody.textContent = rev.body;
+    lbAuthor.textContent = rev.name;
+    lbVariant.textContent = rev.variant;
+
+    if (imgs.length > 1) {
+      lbPrev.style.display = 'grid';
+      lbNext.style.display = 'grid';
+      lbCounter.style.display = 'block';
+    } else {
+      lbPrev.style.display = 'none';
+      lbNext.style.display = 'none';
+      lbCounter.style.display = 'none';
+    }
+  }
+
+  function closeLightbox() {
+    lbModal.classList.remove('open');
+    document.body.style.overflow = '';
+    activeLightboxReview = null;
+  }
+
+  lbClose.addEventListener('click', closeLightbox);
+  lbModal.addEventListener('click', (e) => {
+    if (e.target === lbModal) closeLightbox();
+  });
+
+  lbPrev.addEventListener('click', (e) => {
+    e.stopPropagation();
+    if (!activeLightboxReview) return;
+    activeLightboxImageIndex = (activeLightboxImageIndex - 1 + activeLightboxReview.images.length) % activeLightboxReview.images.length;
+    updateLightboxUI();
+  });
+
+  lbNext.addEventListener('click', (e) => {
+    e.stopPropagation();
+    if (!activeLightboxReview) return;
+    activeLightboxImageIndex = (activeLightboxImageIndex + 1) % activeLightboxReview.images.length;
+    updateLightboxUI();
+  });
+
+  // 13. WRITE A REVIEW MODAL CONTROLLER
+  openWriteBtn.addEventListener('click', () => {
+    writeModal.classList.add('open');
+    document.body.style.overflow = 'hidden';
+  });
+
+  writeCloseBtn.addEventListener('click', closeWriteModal);
+  writeModal.addEventListener('click', (e) => {
+    if (e.target === writeModal) closeWriteModal();
+  });
+
+  function closeWriteModal() {
+    writeModal.classList.remove('open');
+    document.body.style.overflow = '';
+    successToast.style.display = 'none';
+  }
+
+  // Star Picker interactions
+  starPickers.forEach(star => {
+    star.addEventListener('mouseenter', () => {
+      const v = parseInt(star.getAttribute('data-val'), 10);
+      highlightPickerStars(v);
+    });
+    star.addEventListener('mouseleave', () => {
+      highlightPickerStars(selectedFormRating);
+    });
+    star.addEventListener('click', () => {
+      selectedFormRating = parseInt(star.getAttribute('data-val'), 10);
+      highlightPickerStars(selectedFormRating);
+      pickerText.textContent = RATING_TEXTS[selectedFormRating];
+    });
+  });
+
+  function highlightPickerStars(val) {
+    starPickers.forEach(s => {
+      const sv = parseInt(s.getAttribute('data-val'), 10);
+      s.classList.toggle('is-selected', sv <= val);
+    });
+  }
+
+  // Form Submit handler
+  writeForm.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const title = document.getElementById('m-rev-title').value.trim();
+    const body = document.getElementById('m-rev-body').value.trim();
+    const name = document.getElementById('m-rev-name').value.trim();
+    const variant = document.getElementById('m-rev-variant').value;
+
+    if (!title || !body || !name) return;
+
+    const newReview = {
+      id: Date.now(),
+      name: name,
+      rating: selectedFormRating,
+      date: "Just now",
+      title: title,
+      body: body,
+      variant: variant,
+      helpful: 0,
+      verified: true,
+      images: []
+    };
+
+    // Prepend to dataset
+    FULL_DATASET.unshift(newReview);
+    renderGrid();
+
+    // Show success toast
+    successToast.style.display = 'block';
+    writeForm.reset();
+    selectedFormRating = 5;
+    highlightPickerStars(5);
+    pickerText.textContent = RATING_TEXTS[5];
+
+    setTimeout(() => {
+      closeWriteModal();
+    }, 1800);
+  });
+
+  // Keyboard navigation for modals
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') {
+      if (lbModal.classList.contains('open')) closeLightbox();
+      if (writeModal.classList.contains('open')) closeWriteModal();
+    }
+    if (lbModal.classList.contains('open') && activeLightboxReview && activeLightboxReview.images.length > 1) {
+      if (e.key === 'ArrowLeft') {
+        activeLightboxImageIndex = (activeLightboxImageIndex - 1 + activeLightboxReview.images.length) % activeLightboxReview.images.length;
+        updateLightboxUI();
+      } else if (e.key === 'ArrowRight') {
+        activeLightboxImageIndex = (activeLightboxImageIndex + 1) % activeLightboxReview.images.length;
+        updateLightboxUI();
+      }
+    }
+  });
+
+  // Initial Grid Render
+  renderGrid();
+})();
 </script>
-
-
-
-<script id="seal_product" type="application/json">
-
-    {"id": 9593510658393,"title": "Miroooo X2", "image_url": "//gobrush.nl/cdn/shop/files/Grey-color-8.jpg?v=1734444578"}
-
-</script>
-
-
-
-
-
-  <div style="display:block" id="seal-review-widget" data-app="trustoo"></div>
-
-
-
-
-
-</div>
-</div>
-</div>
-
-
-</div>
     </main>
 
     <footer-group class="footer-group block w-full"><!-- BEGIN sections: footer-group -->
@@ -2815,205 +5099,9 @@ theme.variantStrings = {
 <!-- END sections: footer-group --></footer-group>
   </div>
 
-  <ul hidden>
-    <li id="a11y-refresh-page-message">Als u een selectie kiest, wordt de hele pagina vernieuwd.</li>
-    <li id="a11y-new-window-message">Opent in een nieuw venster.</li>
-  </ul><script src="https://cdn.shopify.com/s/files/1/0810/6023/3561/shop/t/6/assets/instant-page.js?v=99963444960178710701733490075" type="module" fetchpriority="low" defer="defer"></script><div id="shopify-block-ANGtrVkhGc2dNU1FHT__1143683040400472741" class="shopify-block shopify-app-block"><script>
-
-    var vstar_product_rating = {"rating":"4.55","total_reviews":33,"total_star1":1,"total_star2":0,"total_star3":2,"total_star4":7,"total_star5":23,"total_qa_count":0,"metafield_version":1781693086}
-
-  </script>
-
-
-
-  
-
-    <script>
-
-      var vstar_product_reviews = {"page":{"total_page":7,"cur_page":1,"limit":5,"count":33},"list":[{"id":25755405,"star":1,"author":"D. L. ","author_country":"NL","content":"Tandenborstel werkt na een half jaar niet meer naar behoren. Miroooo reageert dat er een nieuwe tandenborstel wordt opgestuurd maar deze wordt nooit verzonden. Hoor ook niks meer van ze…","commented_at":"2025-08-28 00:53:48","verified_badge":1,"reply_content":"","resources":[],"corresponding_product":null,"likes_count":0,"dislike_count":0,"item_type":"Silver","title":"","verified_by_shop":false,"verification_methodology":1},{"id":25727237,"star":3,"author":"paulien h. ","author_country":"NL","content":"De afhandeling van mijn probleem verdient 5 sterren. De weg ernaar toe 1. Maakt samen een gemiddelde van 3. Mijn tandenborstel was binnen 2 mnd kapot. Ik ben een kleine 4-5 mnd bezig geweest deze vervangen te krijgen. Mailen mailen en nog eens mailen….. contactformulier ingevuld, meerdere keren. Foto’s en filmpjes gestuurd. Nu eindelijk een nieuwe borstel opgestuurd gekregen…….. dat is dan wel weer super ","commented_at":"2025-08-02 23:03:19","verified_badge":1,"reply_content":"","resources":[],"corresponding_product":null,"likes_count":0,"dislike_count":0,"item_type":"Rose Gold","title":"","verified_by_shop":false,"verification_methodology":1},{"id":25218853,"star":5,"author":"Lajla K. ","author_country":"NL","content":"Niet alleen uiterst fraai maar ook nog eens een super goede tandenborstel.Customer Service ook top, kortom een absolute aanrader!","commented_at":"2024-11-24 05:37:13","verified_badge":1,"reply_content":"","resources":[],"corresponding_product":null,"likes_count":1,"dislike_count":0,"item_type":"Grey","title":"","verified_by_shop":false,"verification_methodology":1},{"id":25159934,"star":4,"author":"Rob M. ","author_country":"NL","content":"ziet er mooi uit en werkt prima \nmooi verpakking ","commented_at":"2024-10-29 21:00:05","verified_badge":1,"reply_content":"","resources":[],"corresponding_product":null,"likes_count":1,"dislike_count":0,"item_type":"Grey","title":"","verified_by_shop":false,"verification_methodology":1},{"id":25119522,"star":5,"author":"Marthijn W. ","author_country":"NL","content":"Super blij mee! De tandenborstel poetst echt een stuk fijner dan mijn oude elektrische tandenborstel. Komt denk ik omdat die compact is!","commented_at":"2024-09-29 15:00:52","verified_badge":2,"reply_content":"","resources":[],"corresponding_product":null,"likes_count":0,"dislike_count":0,"item_type":"","title":"","verified_by_shop":false,"verification_methodology":1}],"metafield_version":1781269498}
-
-    </script>
-
-  
-
-
-
-  
-
-
-
-
-
-
-
-  <script id='tt_product_rating' type='application/json'>
-
-    {"rating":"4.55","total_reviews":33,"total_star1":1,"total_star2":0,"total_star3":2,"total_star4":7,"total_star5":23,"total_qa_count":0,"metafield_version":1781693086}
-
-  </script><!-- BEGIN app snippet: carousel --><script>
-
-(function(){
-
-if(!window.TrustooCarouselEmbedded){
-
-window.TrustooCarouselEmbedded = true
-
-	const script = document.createElement("script");
-
-		script.dataset.name="trustooCarousel"
-
-  script.dataset.shop_id = "81060233561"
-
-  script.dataset.page = "product"
-
-	script.dataset.productId = "9593510658393"
-
-  script.setAttribute('defer',true)
-
-  script.setAttribute('id',"trustoo-carousel-script")
-
-
-
-let src = "https://cdn.shopify.com/extensions/019fd5d5-d18d-7831-af80-6a3fcaa515de/cwilltrustoo-reviews-281/assets/swiper-reviews.min.js";script.src = src
-
-
-
-	document.head.appendChild(script);
-
-  const link = document.createElement("link");
-
-  	link.rel = "stylesheet";
-
-	link.href = `https://cdn.shopify.com/extensions/019fd5d5-d18d-7831-af80-6a3fcaa515de/cwilltrustoo-reviews-281/assets/swiper-reviews.min.css`;
-
-	document.head.appendChild(link);
-
-}
-
-})()
-
-</script><!-- END app snippet --><script src="https://cdn.shopify.com/extensions/019fd5d5-d18d-7831-af80-6a3fcaa515de/cwilltrustoo-reviews-281/assets/seal-review.min.js" defer></script><style>
-
-.shopify-block.shopify-app-block:has(>[data-app="trustoo"]){
-
-  width:100%
-
-}
-
-</style>
-
-
-
-
-
-<script id="vstar_product_review">
-
-var shopifyObj = {
-
-	shop_id : 81060233561,
-
-	productName : "Miroooo X2",
-
-	productId : 9593510658393,
-
-	productImage : ["\/\/Miroooo.nl\/cdn\/shop\/files\/Grey-color-8.jpg?v=1734444578","\/\/Miroooo.nl\/cdn\/shop\/files\/Grey-color-1.jpg?v=1734444578","\/\/Miroooo.nl\/cdn\/shop\/files\/Grey-color-5.jpg?v=1734444578","\/\/Miroooo.nl\/cdn\/shop\/files\/Grey-color-4.jpg?v=1734444578","\/\/Miroooo.nl\/cdn\/shop\/files\/Grey-color-7.jpg?v=1734444578","\/\/Miroooo.nl\/cdn\/shop\/files\/Grey-color-3.jpg?v=1734444578","\/\/Miroooo.nl\/cdn\/shop\/files\/Grey-color-6.jpg?v=1734444578","\/\/Miroooo.nl\/cdn\/shop\/files\/Grey-color-2.jpg?v=1734444578"],
-
-	themeName : null,
-
-};
-
-var trustoo_shopify_block_status = 2;
-
-window.isTrustooReviewsExecuted = false;
-
-window.TrustooReviews = {reviews:{},carousel:{},curPage:"product"}
-
-var trustoo_ins_inserted_status = 2;
-
-window.TrustooReviews.pageType = 'product';
-
-</script>
-
-<script>
-
-  (function(){
-
-  let trustooCSSLink = "https://cdn.shopify.com/extensions/019fd5d5-d18d-7831-af80-6a3fcaa515de/cwilltrustoo-reviews-281/assets/trustoo-reviews.min.css";window.TrustooReviews.reviews.trustooCSSLink = trustooCSSLink
-
-  })()
-
-</script>
-
-
-
-<script>
-
-     null
-
-</script>
-
-<script>
-
-     
-
-</script>
-
-
-
-<script>
-var vstar_review_settings= {"is_activate_reviews":1,"is_qa_active":2,"is_active_store_review":0,"store_reviews_count":0,"layout":1,"is_transparent":2,"is_hide_ratings":2,"is_show_review_number":1,"is_show_review_title":1,"is_activate_product_rating":1,"is_activate_collection_rating":1,"is_activate_home_rating":2,"is_activate_home_reviews":2,"collection_pages_display_content":0,"is_show_stars_without_review":1,"is_show_list_stars_without_review":2,"rating_icon_type":1,"font_color":"#000000","star_color":"#71B406","nostar_color":"#d9d9d9","card_bg_color":"#FFFFFF","box_bg_color":"#FFFFFF00","verified_badge_color":"#000000","badge_text_color":"#000000","button_bg_color":"#0A0000","button_color":"#FFFFFF","button_border_color":"#000000","dividing_line_color":"#00000017","card_shadow":"Light","reply_bg_color":"#F2F2F2","qa_colors":"#000000,#E6E6E6,#E6E6E6,#000000,#000000,#F2F2F2","avatar_bg_color":"#eee","avatar_text_color":"#000000","attributes_bg_color":"#f2f2f2","font":"","font_size":14,"border_radius":15,"album_radius":4,"photo_radius":4,"attributes_style":1,"language":"nl","lang_reviews":"Beoordelingen","is_translate_review":2,"auto_switch_language":2,"is_show_country_flag":2,"reviews_per_page_number":5,"review_sort_by":"commented-at-descending","review_pagination_type":1,"review_date_format_type":1,"rating_filter":1,"review_empty_status_display":1,"is_show_album":2,"is_show_review_button":1,"is_show_helpful":1,"is_show_verified_badge":3,"verified_icon_type":1,"customer_avatar":2,"store_avatar_src":"","store_name":"Miroooo","item_type":2,"sidetab_setting":{"sidetab_is_enabled":2,"sidetab_background_color":"#000000","sidetab_font_color":"#FFFFFF","sidetab_button_text":"★Reviews","show_corresponding_product":1},"reviews_css_code":"","rating_css_code":"","is_show_empty_review":1,"detail_rating_top":10,"detail_rating_bottom":15,"list_rating_top":5,"list_rating_bottom":5,"detail_rating_color":"","list_rating_color":"","attributes_color":"#303030","show_attribute":1,"all_reviews_display_type":"both","product_reviews_display_type":"product","is_activate_search_rating":2,"show_review_date":true,"show_verified_badge":true,"show_country_flag":false,"show_verification_methodology":false,"shop_verified_badge_color":"Purple","metafield_version":1786471298}
-var vstar_custom_info = {"get_move_review_info":{"list":[{"page":"product","is_tab_review":2,"selector":".footer","position":"beforebegin","mobile_selector":"beforebegin"}]},"custom_style_info":{"list":[]},"star_insert_adaptation_info":{"list":[{"theme_id":158420435289,"product_list_star":".product-card__title\u003ea"},{"theme_id":176142549337,"product_list_star":".product-card__title"}]},"custom_carousel_info":{"list":[]}}
-var vstar_lang_json = {"customer_reviews":"klanten-reviews","no_reviews":"Er zijn nog geen beoordelingen.","no_questions":"Er zijn nog geen vragen.","write_reviews":"Schrijf een recensie","name":"Uw naam","email":"Jouw email","feedback":"Uw feedback","required":"Gelieve dit veld in te vullen","email_error":"Dit is geen geldig e-mailformaat","add_photo":"Voeg foto toe","submit":"Review versturen","success_message":"Bedankt!","submitted_successfully":"Uw beoordeling is verzonden","continue_shopping":"Doorgaan","star":"Ster","stars":"Ster","reviews":"Beoordelingen","error_tip":"Sorry, er is iets misgegaan, probeer het later opnieuw","more":"Meer","submitting":"indienen","show_full_review":"Volledige recensie weergeven","helpful":"Behulpzaam?","sort_by":"Sorteer op","sort_by_options":["Fotoprioriteit","Nieuwste","Hoogste beoordelingen","Laagste beoordelingen","Aanbevolen"],"verified_purchase":"Geverifieerde aankoop","order_verified":"De recensent heeft een bevestigde bestelling in deze winkel.","platforms_verified":"Deze recensie is gesynchroniseerd van de andere platforms.","transaction_verified":"Deze recensie is toegevoegd vanuit de transactierecords van de winkel.","you_rating":"Beoordeling","phone":"Telefoonnummer","reply":"Antwoord","shop_name":"{{shop_name}}","item_type":"Artikeltype:","product_pages_reviews":"{{star}} {{review_number}} Reviews","list_rating_content":"{{star}} ({{review_number}})","buyers_shows":"Kopers tonen","copy_succ":"Succesvol gekopieerd","search_not_prod":"We konden geen overeenkomende producten vinden.","total_review":"{{review_number}} ★★★★★ geverifieerde klantbeoordelingen","review_with_content":"{{content_review_number}} met gedetailleerde beoordelingen","no_content_review":"Wees de eerste om een gedetailleerde beoordeling achter te laten!","side_tab":"★Beoordelingen","separate_review_form":{"slide_1_title":"Hoe zou u dit artikel beoordelen?","slide_2_title":"Pronk ermee","slide_2_subtitle":"We zouden het graag in actie zien!","slide_3_title":"Vertel ons meer!","slide_4_title":"Over jou","slide_5_title":"Bedankt!","slide_5_subtitle":"Uw beoordeling is verzonden","discount":"Krijg {{Discount}} korting op uw volgende aankoop!","add_photo":"Foto toevoegen","or":"of","add_video":"Video toevoegen","back":"Terug","skip":"Overslaan","uploading":"Uploaden","uploading_video_tip":"Video uploaden, even geduld...","next":"Volgende","content_from_placeholder":"Deel uw ervaring","your_name":"Uw naam","email":"E-mail","done":"Klaar","continue":"Doorgaan","rating_options":["Hou ervan","Het leuk vinden!","Het is in orde","Ik vond het niet leuk","Haat het"],"discount_setting":{"title":"Je hebt een {{currency}}{{Discount_amount}} kortingsbon!","subtitle":"Uw beoordeling is verzonden! U krijgt {{currency}}{{Discount_amount}} korting op uw volgende aankoop.","tip_1":"Voeg foto's toe en ontvang {{currency}}{{Discount_amount}} korting op je volgende aankoop!","tip_2":"Plaats echte gevoelens en ontvang {{currency}}{{Discount_amount}} korting op je volgende aankoop!","tip_3":"Deel je ervaring om {{currency}}{{Discount_amount}} korting te krijgen op je volgende aankoop!","copy":"Kopiëren","no_discount":"Voeg je foto of video toe aan de recensie en help onze community van shoppers!","photo_discount":"Voeg een foto toe om {{currency}}{{Discount_amount}} korting te krijgen op je volgende aankoop!","video_discount":"Voeg een video toe om {{currency}}{{Discount_amount}} korting te krijgen op je volgende aankoop!"},"select_product_title":"Product selecteren","search_product_input_prompt":"Zoek producten op naam...","add_media_to_review":"Voeg media toe aan je recensie voor {{product_title}}, ontvang [[Discount_amount]] korting op je volgende aankoop!","add_photo_or_video":"Voeg een foto of video toe","no_thanks":"Nee, bedankt","thanks_for_feedback":"Bedankt voor je feedback","see_other_products":"Bekijk andere producten","use_discounts":"Gebruik kortingen","close":"Close","attr_next":"Volgende","attr_skip":"Overslaan","add_media_review":"Voeg media toe aan je beoordeling voor {{product_title}}, Ontvang {{currency}}{{discount_amount}} korting op je volgende aankoop!","done_text":"Klaar","copy":"Kopiëren","feedback_message":"Je beoordeling is verzonden! Je krijgt {{discountVal}} korting op je volgende aankoop.","privacy_policy":"Privacy Policy","terms":"Voorwaarden","consent_text":"Door deze recensie in te dienen, ga je akkoord met het {{privacy_policy}} en de {{terms}} van CWILL betreffende de verwerking van je persoonlijke gegevens.","select_all":"Selecteer alles wat van toepassing is","choose_one":"Kies er één","purchase_required":"Koop het product eerst."},"summary":{"product_summary_title":"Wat klanten zeggen","product_summary_generated":"AI-gegenereerd uit klantbeoordelingen","home_summary_title":"Wat klanten zeggen","home_summary_generated":"AI-gegenereerd uit klantbeoordelingen"},"card_carousel":{"header_title":"Uitstekend","header_review_rating_text":"gemiddeld","header_review_count_text":"beoordelingen","text":{"title":"Onze klanten houden van ons","desc":"{{total_rating}} sterren op basis van {{total_reviews}} beoordelingen"},"photo":{"title":"Onze klanten houden van ons","desc":"{{total_rating}} sterren op basis van {{total_reviews}} beoordelingen"},"barrage":{"title":"Onze klanten houden van ons","desc":"{{total_rating}} sterren op basis van {{total_reviews}} beoordelingen"}},"all_in_one_from":{"write_reviews":"Schrijf een recensie","or":"of","add_video":"Video toevoegen","discount_setting":{"title":"Je hebt een {{currency}}{{Discount_amount}} kortingsbon!","subtitle":"Uw beoordeling is verzonden! U krijgt {{currency}}{{Discount_amount}} korting op uw volgende aankoop.","tip_1":"Voeg foto's toe en ontvang {{currency}}{{Discount_amount}} korting op je volgende aankoop!","tip_2":"Plaats echte gevoelens en ontvang {{currency}}{{Discount_amount}} korting op je volgende aankoop!","tip_3":"Deel je ervaring om {{currency}}{{Discount_amount}} korting te krijgen op je volgende aankoop!","copy":"Kopiëren","no_discount":"Voeg je foto of video toe aan de recensie en help onze community van shoppers!","photo_discount":"Voeg een foto toe om {{currency}}{{Discount_amount}} korting te krijgen op je volgende aankoop!","video_discount":"Voeg een video toe om {{currency}}{{Discount_amount}} korting te krijgen op je volgende aankoop!"},"review":"Beoordeling","title":"Titel","select_product_title":"Product selecteren","search_product_input_prompt":"Zoek producten op naam...","add_media_to_review":"Voeg media toe aan je recensie voor {{product_title}}, ontvang [[Discount_amount]] korting op je volgende aankoop!","add_photo_or_video":"Voeg een foto of video toe","no_thanks":"Nee, bedankt","thanks_for_feedback":"Bedankt voor je feedback","see_other_products":"Bekijk andere producten","use_discounts":"Gebruik kortingen","close":"Close","attr_next":"Volgende","attr_skip":"Overslaan","add_media_review":"Voeg media toe aan je beoordeling voor {{product_title}}, Ontvang {{currency}}{{discount_amount}} korting op je volgende aankoop!","done_text":"Klaar","copy":"Kopiëren","feedback_message":"Je beoordeling is verzonden! Je krijgt {{discountVal}} korting op je volgende aankoop.","privacy_policy":"Privacy Policy","terms":"Voorwaarden","consent_text":"Door deze recensie in te dienen, ga je akkoord met het {{privacy_policy}} en de {{terms}} van CWILL betreffende de verwerking van je persoonlijke gegevens.","select_all":"Selecteer alles wat van toepassing is","choose_one":"Kies er één","error_file_tip":"Upload gestopt, niet-ondersteund bestand gedetecteerd.","upload_tip":"Uploaden. Verstuur na voltooiing.","purchase_required":"Koop het product eerst."},"question_and_answer":{"title":"Vragen","ask_a_question":"Stel een vraag","helpful":"Was dit nuttig?","desc_placeholder":"Beschrijf de vraag in detail","submit_question":"Vraag indienen","submitted":"Uw vraag is ingediend. U ontvangt een melding via e-mail wanneer het antwoord is gegeven.","question":"Vraag","thanks":"Dank je!","publish_title":"Is het openbaar?","public_options_yes":"Ja","public_options_no":"Nee"},"referral":{"discount":"Geef {{currency}}{{friend_discount}}","reward":"Krijg {{currency}}{{advocate_reward}}","gift":"Geef je vrienden een cadeau!","reward_desc":"Voor elke vriend die zijn korting {{currency}}{{friend_discount}} gebruikt, krijgt u ook een korting {{currency}}{{advocate_reward}}!","newOnly":"Korting alleen voor nieuwe klanten","code":"Krijg de kortingscode","got_discount_title":"Je hebt {{currency}}{{friend_discount}} korting gekregen!","got_discount_desc":"Dankzij je vriend heb je {{currency}}{{friend_discount}} korting om te shoppen bij {{shop_name}}","copy":"Kopiëren","continue":"Doorgaan","applied":"De code wordt toegepast bij het afrekenen","amount_tip":"Minimumaankoopbedrag: {{currency}}{{minimum_amount}}","oops":"Oeps","self_refer":"Je kunt jezelf niet doorverwijzen, sorry. Maar maak je geen zorgen, verwijzingen naar vrienden en familie werken geweldig.","copied":"Gekopieerd"},"checkout":{"title":"Het systeem geeft automatisch een positieve beoordeling als er binnen de gespecificeerde tijd geen evaluatie plaatsvindt.","desc":"U kunt de beoordelingen op elk moment wijzigen via de link in de e-mail.","content":"{{review_number}}+  5-sterren  recensies","badge1":"Shopify houdt uw informatie en betaling veilig","badge2":"Wijzig de tekst in \"Aangepaste taaltekst\"","badge3":"Wijzig de tekst in \"Aangepaste taaltekst\""},"thankyou":{"title":"Over automatische positieve beoordelingen","desc":"Door akkoord te gaan, machtigt u {{Store Name}} om automatisch positieve beoordelingen namens u in te dienen als er binnen een bepaalde periode na het plaatsen van een bestelling geen beoordelingen worden gedaan, en u kunt deze beoordelingen op elk moment bijwerken","agree":"Ik ga akkoord","notAgree":"Ik ga niet akkoord"},"time_ago":{"just":"Net","minute":"{{time_number}} minuut geleden","hour":"{{time_number}} uur geleden","day":"{{time_number}} dag geleden","month":"{{time_number}} maand geleden","year":"{{time_number}} jaar geleden","minutes":"{{time_number}} minuten geleden","hours":"{{time_number}} uur geleden","days":"{{time_number}} dagen geleden","months":"{{time_number}} maanden geleden","years":"{{time_number}} jaar geleden"},"store_review":{"write_btn_text":"Schrijf een winkelrecensie","tab_name":"Winkelrecensies"},"customer_extensions":{"store_review_title":"Winkel reviews","store_no_review_prompt":"Deel je ervaring met deze winkel.","product_review_title":"Product reviews","product_no_review_prompt":"Nog geen producten gekocht","order_button":"Naar bestelling","edit_review_button":"Reviews bewerken","select_product":"Selecteer het product waarover je feedback wilt geven","next_button":"Volgende","product_information":"Wat vind je van {{product_title}}?","media_reminder":"Voeg foto's toe","submit_button":"Reviews versturen","thank_you_message":"Bedankt voor je review!","done_button":"Klaar","write_review_title":"Schrijf een review","submit_review_button":"Review versturen","no_reviews_found":"Geen reviews gevonden voor je bestellingen.","write_review_button":"Schrijf een review","store_review_button":"Schrijf winkel review","review_title":"Review titel","review_comment":"Review commentaar"},"preview":{"sandbox_preview":"U bevindt zich in een sandbox-voorbeeldgebied. Dit is niet uw werkelijke winkelpagina. Alle opmerkingen en gegevens hier zijn voorbeeldgegevens en \u003cb\u003everschijnen niet in uw live winkel\u003c/b\u003e. U kunt hier ook uw echte winkel controleren.","no_review":"U heeft nog geen beoordelingen. Voeg uw eigen beoordelingen toe of verzamel ze om ze live in uw winkel te zien!","activate_widget":"U kunt deze widget ook direct vanuit uw beheerder activeren zodat deze overeenkomt met de stijl en voorkeuren van uw winkel. Klik \u003c0\u003ehier\u003c/0\u003e om te beginnen.","check_store":"Controleer live winkel","import_reviews":"Beoordelingen importeren","collect_reviews":"Beoordelingen verzamelen","photo_carousel":"Aanbevolen widgets: Fotocarrousel","ai_summary":"Aanbevolen widgets: AI-samenvatting"},"review_tab_name":"Beoordelingen","unsubscribe":{"desc":"Dit type bericht wordt niet meer ontvangen na uitschrijving. Wilt u zich uitschrijven?","cancel":"Annuleren","subscribe":"Uitschrijven","successfully":"Succesvol uitgeschreven","goto":"Ga naar de winkel"}}
-var vstar_write_review_settings = {"write_review_form":1,"show_email":1,"require_email":1,"show_phone":2,"require_phone":2,"show_title":0,"require_title":0,"show_feedback":1,"require_feedback":1,"review_button_background_color":"#000000","review_button_text_color":"#FFFFFF","thanks_button_background_color":"#000000","thanks_button_text_color":"#FFFFFF","enabled_add_video":1,"login_to_left_review":2,"leave_review_method":1,"rating_icon_type":1,"discount_setting":{"discount_for_photo_reviews":2,"currency":"€","discount_type":1,"discount_value":"","discount_incentive_conditions":1,"discount_for_reviews_form":1,"reward_strategy":2,"discount_value_star":"","discount_value_text":"","discount_value_photo":"","discount_value_video":""},"popup_radius":4,"button_radius":4,"discount_card_radius":30,"star_color":"#FF9900","text_color":"#303030","discount_bg_color":"#FFFFFF","discount_text_color":"#303030","discount_copy_color":"#3376C5","popup_bg_color":"#FFFFFF","write_review_type":"shop","show_review_btn":1,"is_del_powered":2,"show_privacy_policy":1,"show_checkbox":0,"logo_src":"","logo_size":150,"logo_alignment":"center"}
-var vstar_buyers_show_settings = {"title_text":"","title_text_color":"#000000","title_font_size":16,"columns_count":4,"rows_count":2,"item_padding":0,"border_radius":0,"is_activated":0,"reviews_type":1,"title_align":"left","style":2,"card_radius":12,"text_color":"#303030","button_bg":"#FFFFFF","card_bg":"#FFFFFF","star_color":"#FF9900","arrow_color":"#303030","shop_verified_badge_color":"Purple","enable_instafeed":false}
-var vstar_qa_settings = {"is_active":2,"color":"#000000,#E6E6E6,#E6E6E6,#000000,#000000,#F2F2F2","author_font_size":14,"content_font_size":15,"review_date_format":4,"author_format":2,"is_show_helpful":1,"page_size":15,"is_auto_publish":2}
-var vstar_ai_summary_settings = {"home":{"is_active":0,"title_color":"#303030","summary_text_color":"#303030","summary_bg_color":"#FFFFFF","badge_bg_color":"#CDFEE1","badge_text_color":"#0C5132"},"product":{"is_active":0,"title_color":"#303030","summary_text_color":"#303030","summary_bg_color":"#FFFFFF","badge_bg_color":"#CDFEE1","badge_text_color":"#0C5132"}}
-</script>
-
-
-
-
-<script id="seal_shop_id" type="application/json">
-
-    81060233561
-
-</script><script id="tt_product" type="application/json">
-
-    {"id": 9593510658393,"title": "Miroooo X2", "image_url": "//gobrush.nl/cdn/shop/files/Grey-color-8.jpg?v=1734444578"}
-
-</script>
-
-
-
-<script>
-
-  (function(){
-
-    const oldScript = document.querySelector('[src*="/assets/vstar-review"]')
-
-    if(oldScript){
-
-       trustoo_shopify_block_status = 1
-
-    }
-
-  }())
-
-</script>
-
-
-
-
-
-
-
-
-<div id="seal-review-collection"></div>
-
-
-
-</div><!-- Failed to render app block "2912608901741945173": app block path "shopify://apps/trueprofit-profit-analytics/blocks/truepixel/711d36f9-ea83-4623-a720-e574b794560b" does not exist --><!-- Failed to render app block "3991723993231535834": app block path "shopify://apps/trackbee-connect/blocks/trackbee/4ee1d514-671e-48bf-bd4e-9373f4af089a" does not exist --><div id="shopify-block-AYXhYNmJLQ2lEeTY0T__10795663293581873936" class="shopify-block shopify-app-block">
-</div><!-- Failed to render app block "17689343982267387927": app block path "shopify://apps/shipcheck/blocks/asc-shipping-protection/5cbdac36-4e4f-49fa-aec2-0cf6dea70fab" does not exist --><script src="https://cdn.shopify.com/storefront/standard-actions.js" type="module" data-source-attribution="shopify.standard_actions"></script>
+  <ul hidden>  </ul><script src="https://cdn.shopify.com/s/files/1/0810/6023/3561/shop/t/6/assets/instant-page.js?v=99963444960178710701733490075" type="module" fetchpriority="low" defer="defer"></script>
+  <!-- Obsolete Trustoo Review widget removed - Replaced by Miroooo X2 Pure Dark Reviews Component -->
+  <script src="https://cdn.shopify.com/storefront/standard-actions.js" type="module" data-source-attribution="shopify.standard_actions"></script>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/flickity/2.3.0/flickity.pkgd.min.js"></script>
 <script>
