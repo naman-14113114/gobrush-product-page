@@ -1,0 +1,26 @@
+# Logs and caches
+*.log
+__pycache__/
+.tempmediaStorage/
+.user_uploaded/
+
+# Temporary scraped and dumped files
+*.png
+*.txt
+scraped_page.html
+miroshine_page.html
+all_gobrush_products.json
+brush-one-grey.json
+full_page_analysis.json
+dutch_texts.json
+sec_*.html
+section_*.html
+full_*.html
+miroooo_*.html
+miroshine_*.html
+extracted_*.html
+*.tmp
+
+# System files
+.DS_Store
+Thumbs.db
