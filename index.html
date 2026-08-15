@@ -83,34 +83,34 @@
 }
 :root {
     /*! General */
-    --color-base-text: 23 23 23;
+    --color-base-text: 255 255 255;
     --color-base-highlight: 0 153 255;
-    --color-base-background: 255 255 255;
-    --color-base-button: 23 23 23;
-    --color-base-button-gradient: #171717;
-    --color-base-button-text: 255 255 255;
+    --color-base-background: 0 0 0;
+    --color-base-button: 255 255 255;
+    --color-base-button-gradient: #ffffff;
+    --color-base-button-text: 0 0 0;
     --color-keyboard-focus: 0 153 255;
-    --color-shadow: 250 250 250;
-    --color-price: 23 23 23;
-    --color-sale-price: 23 23 23;
+    --color-shadow: 0 0 0;
+    --color-price: 255 255 255;
+    --color-sale-price: 255 255 255;
     --color-sale-tag: 225 29 72;
     --color-sale-tag-text: 255 255 255;
-    --color-rating: 245 158 11;
-    --color-placeholder: 250 250 250;
-    --color-success-text: 77 124 15;
-    --color-success-background: 247 254 231;
-    --color-error-text: 190 18 60;
-    --color-error-background: 255 241 242;
+    --color-rating: 34 197 94;
+    --color-placeholder: 40 40 40;
+    --color-success-text: 74 222 128;
+    --color-success-background: 20 40 20;
+    --color-error-text: 248 113 113;
+    --color-error-background: 50 20 20;
     --color-info-text: 0 153 255;
     --color-info-background: 255 111 0;
     
     /*! Menu and drawers */
-    --color-drawer-text: 23 23 23;
-    --color-drawer-background: 255 255 255;
-    --color-drawer-button-background: 255 111 0;
-    --color-drawer-button-gradient: #ff6f00;
-    --color-drawer-button-text: 255 255 255;
-    --color-drawer-overlay: 23 23 23;
+    --color-drawer-text: 255 255 255;
+    --color-drawer-background: 17 17 17;
+    --color-drawer-button-background: 255 255 255;
+    --color-drawer-button-gradient: #ffffff;
+    --color-drawer-button-text: 0 0 0;
+    --color-drawer-overlay: 0 0 0;
 
     /*! Product card */
     --card-radius: var(--rounded-card);
@@ -726,10 +726,15 @@ first.parentNode.insertBefore(script, first);
   .luxurious-media {
     min-height: 340px !important;
     aspect-ratio: 16/9;
+    background: #000000 !important;
+    border-radius: 12px;
+    overflow: hidden;
   }
   .luxurious-media video {
     min-height: 340px !important;
     max-height: 460px !important;
+    background: #000000 !important;
+    border-radius: 12px;
   }
 }
 @media screen and (min-width: 1024px) {
@@ -754,6 +759,8 @@ first.parentNode.insertBefore(script, first);
   .luxurious-media video {
     min-height: 600px !important;
     height: 100% !important;
+    background: #000000 !important;
+    border-radius: 12px;
   }
 }
 
@@ -847,21 +854,22 @@ first.parentNode.insertBefore(script, first);
   transition: border-color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
   border-radius: 8px;
   padding: 8px 16px;
-  border: 1px solid rgba(0,0,0,0.15);
+  border: 1px solid rgba(255,255,255,0.2);
   display: inline-flex;
   align-items: center;
   justify-content: center;
+  color: #ffffff;
 }
 .swatches--variant a.is-selected .label-swatch,
 .swatches--variant a:hover .label-swatch {
-  border-color: #000000;
-  box-shadow: 0 0 0 1px #000000;
+  border-color: #ffffff;
+  box-shadow: 0 0 0 1px #ffffff;
 }
 .product__media img {
   transition: opacity 0.3s ease;
 }
 
-/* Miroooo X Bundle Tiers & Free Gifts */
+/* Miroooo X Juujo-Style Bundle Tiers & Free Gifts (Dark Theme) */
 .bundle-tiers-container {
   display: flex;
   flex-direction: column;
@@ -872,19 +880,20 @@ first.parentNode.insertBefore(script, first);
   display: flex;
   flex-direction: column;
   border-radius: 16px;
-  border: 1.5px solid #e5e5e5;
-  background: #ffffff;
+  border: 1.5px solid rgba(255, 255, 255, 0.15);
+  background: #111111;
+  color: #ffffff;
   transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
   cursor: pointer;
   overflow: visible;
 }
 .bundle-tier-card:hover {
-  border-color: #737373;
+  border-color: rgba(255, 255, 255, 0.4);
 }
 .bundle-tier-card.is-selected {
-  border: 2px solid #171717;
-  background: #fafafa;
-  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.05);
+  border: 2px solid #ffffff;
+  background: #181818;
+  box-shadow: 0 4px 25px rgba(0, 0, 0, 0.6);
 }
 .bundle-tier-card .tier-header-btn {
   display: flex;
@@ -906,7 +915,7 @@ first.parentNode.insertBefore(script, first);
   width: 20px;
   height: 20px;
   border-radius: 50%;
-  border: 1.5px solid #737373;
+  border: 1.5px solid rgba(255, 255, 255, 0.4);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -915,24 +924,27 @@ first.parentNode.insertBefore(script, first);
   background: transparent;
 }
 .bundle-tier-card.is-selected .tier-radio {
-  border-color: #171717;
-  background: #171717;
+  border-color: #ffffff;
+  background: #ffffff;
+}
+.bundle-tier-card.is-selected .tier-radio .tier-radio-dot {
+  background: #000000;
 }
 .tier-radio-dot {
   width: 8px;
   height: 8px;
   border-radius: 50%;
-  background: #ffffff;
+  background: transparent;
 }
 .tier-badge-pill {
-  font-size: 11px;
+  font-size: 10.5px;
   font-weight: 800;
   text-transform: uppercase;
   letter-spacing: 0.04em;
   padding: 2.5px 8px;
   border-radius: 9999px;
-  background: #171717;
-  color: #ffffff;
+  background: #ffffff;
+  color: #000000;
   display: inline-flex;
   align-items: center;
 }
@@ -942,7 +954,7 @@ first.parentNode.insertBefore(script, first);
   position: absolute;
   top: -14px;
   right: 14px;
-  z-index: 10;
+  z-index: 20;
   pointer-events: none;
 }
 .tier-popular-badge {
@@ -952,15 +964,15 @@ first.parentNode.insertBefore(script, first);
   justify-content: center;
   min-width: 68px;
   border-radius: 100%;
-  border: 1px solid rgba(255, 255, 255, 0.25);
-  background: #171717;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  background: #ffffff;
   padding: 5px 12px;
   text-align: center;
   font-size: 10.5px;
   font-weight: 800;
   line-height: 1.1;
-  color: #ffffff;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+  color: #000000;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.5);
   letter-spacing: -0.01em;
 }
 .tier-popular-diamond {
@@ -968,7 +980,7 @@ first.parentNode.insertBefore(script, first);
   top: 50%;
   width: 4px;
   height: 4px;
-  background: #ffffff;
+  background: #000000;
   opacity: 0.6;
   transform: translateY(-50%) rotate(45deg);
 }
@@ -984,29 +996,29 @@ first.parentNode.insertBefore(script, first);
   position: absolute;
   top: 0;
   right: 18px;
-  z-index: 10;
+  z-index: 20;
   pointer-events: none;
 }
 .tier-best-value-ribbon {
   border-radius: 0 0 6px 6px;
-  border: 1px solid #171717;
+  border: 1px solid rgba(255, 255, 255, 0.2);
   border-top: none;
-  background: #171717;
+  background: #ffffff;
   padding: 4px 14px;
   font-size: 9.5px;
   font-weight: 900;
   text-transform: uppercase;
   letter-spacing: 0.1em;
-  color: #ffffff;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+  color: #000000;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
 }
 
 .tier-expanded-panel {
-  border-top: 1px solid #ededed;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
   border-bottom-left-radius: 14px;
   border-bottom-right-radius: 14px;
   padding: 12px 16px 14px;
-  background: #ffffff;
+  background: #141414;
   display: flex;
   flex-direction: column;
   gap: 10px;
@@ -1048,25 +1060,25 @@ first.parentNode.insertBefore(script, first);
 .color-swatch-btn.swatch-pink { background-color: #f2a7b3; }
 .color-swatch-btn.swatch-silver { background-color: #e5e5e5; }
 
-/* Free Gifts 3-Tier Grid */
+/* Free Gifts 3-Tier Grid (Dark Theme) */
 .gift-card-item {
   position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;
   text-align: center;
-  background: #ffffff;
-  border: 1.5px solid #e5e5e5;
+  background: #141414;
+  border: 1.5px solid rgba(255, 255, 255, 0.12);
   border-radius: 14px;
   padding: 18px 8px 12px;
   transition: all 0.25s ease;
 }
 .gift-card-item.is-unlocked {
-  border-color: #171717;
-  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.05);
+  border-color: #ffffff;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.4);
 }
 .gift-card-item.is-locked {
-  opacity: 0.5;
+  opacity: 0.4;
   filter: grayscale(0.85);
 }
 .gift-badge {
@@ -1081,14 +1093,16 @@ first.parentNode.insertBefore(script, first);
   letter-spacing: 0.04em;
   padding: 3px 10px;
   border-radius: 9999px;
-  color: #ffffff;
+  color: #000000;
   z-index: 10;
 }
 .gift-badge.badge-unlocked {
-  background: #171717;
+  background: #ffffff;
+  color: #000000;
 }
 .gift-badge.badge-locked {
-  background: #9ca3af;
+  background: rgba(255, 255, 255, 0.2);
+  color: #ffffff;
 }
 .gift-image-wrap {
   width: 100%;
@@ -1155,10 +1169,19 @@ theme.variantStrings = {
     }
 
     #shopify-section-sections--24203576967513__announcement-bar {
-      --gradient-background: linear-gradient(275deg, rgba(251, 51, 166, 1) 4%, rgba(48, 145, 211, 1) 97%);
-      --color-background: 0 153 255;
-      --color-foreground: 250 250 250;
-      --color-highlight: 202 234 255;
+      --gradient-background: #000000;
+      --color-background: 0 0 0;
+      --color-foreground: 255 255 255;
+      --color-highlight: 255 255 255;
+      background: #000000 !important;
+      color: #ffffff !important;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08) !important;
+    }
+    #shopify-section-sections--24203576967513__announcement-bar .topbar,
+    #shopify-section-sections--24203576967513__announcement-bar .announcement-bar,
+    #shopify-section-sections--24203576967513__announcement-bar .announcement-text,
+    #shopify-section-sections--24203576967513__announcement-bar .highlighted-text {
+      color: #ffffff !important;
     }
   </style><div class="topbar topbar--center topbar--only page-width page-width--full section relative grid py-0 h-full w-full items-center"><div class="announcement-bar h-full flex justify-center lg:justify-center without-nav relative">
         <announcement-bar id="Slider-sections--24203576967513__announcement-bar" class="announcement__slides" autoplay autoplay-speed="5"><div class="announcement__slide flex h-full" ><div class="announcement__content flex items-center gap-2"><span class="announcement-icon"><svg class="icon icon-heart icon-xs stroke-1" viewBox="0 0 16 16" stroke="currentColor" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -1173,9 +1196,41 @@ theme.variantStrings = {
   #shopify-section-sections--24203576967513__header {
     --section-padding-top: 18px;
     --section-padding-bottom: 16px;
-    --color-background: 255 255 255;
-    --color-foreground: 52 52 52;
-    --color-transparent: 255 255 255;
+    --color-background: 0 0 0;
+    --color-foreground: 255 255 255;
+    --color-transparent: 0 0 0;
+    background: #000000 !important;
+    color: #ffffff !important;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  }
+  #shopify-section-sections--24203576967513__header header,
+  #shopify-section-sections--24203576967513__header .header {
+    background: #000000 !important;
+    color: #ffffff !important;
+  }
+  #shopify-section-sections--24203576967513__header .header__logo-link,
+  #shopify-section-sections--24203576967513__header .header__logo-link span {
+    color: #ffffff !important;
+  }
+  #shopify-section-sections--24203576967513__header .menu__item,
+  #shopify-section-sections--24203576967513__header .menu__item .btn-text {
+    color: #ffffff !important;
+  }
+  #shopify-section-sections--24203576967513__header .header__buttons button,
+  #shopify-section-sections--24203576967513__header .header__buttons a,
+  #shopify-section-sections--24203576967513__header .header__icons svg,
+  #shopify-section-sections--24203576967513__header .header__buttons svg,
+  #shopify-section-sections--24203576967513__header .cart-drawer-button svg,
+  #shopify-section-sections--24203576967513__header .menu-drawer-button svg {
+    color: #ffffff !important;
+  }
+  #shopify-section-sections--24203576967513__header .menu-drawer,
+  #shopify-section-sections--24203576967513__header .drawer__inner {
+    background: #0a0a0a !important;
+    color: #ffffff !important;
+  }
+  #shopify-section-sections--24203576967513__header .drawer__menu-item {
+    color: #ffffff !important;
   }
 </style><menu-drawer id="MenuDrawer" class="menu-drawer drawer drawer--start z-30 fixed bottom-0 left-0 h-full w-full pointer-events-none"
   data-section-id="sections--24203576967513__header"
@@ -1233,7 +1288,7 @@ theme.variantStrings = {
       itemprop="url"
       class="header__logo-link flex items-center relative"
       style="text-decoration: none;"
-    ><span style="font-family: 'Inter', -apple-system, sans-serif; font-size: clamp(1.3rem, 2vw, 1.6rem); font-weight: 800; letter-spacing: 0.2em; text-transform: uppercase; color: #171717;">MIROOOO</span></a></div><div class="header__icons header__icons--end flex justify-end z-2">
+    ><span style="font-family: 'Inter', -apple-system, sans-serif; font-size: clamp(1.3rem, 2vw, 1.6rem); font-weight: 800; letter-spacing: 0.2em; text-transform: uppercase; color: #ffffff;">MIROOOO</span></a></div><div class="header__icons header__icons--end flex justify-end z-2">
   <div class="header__buttons flex items-center gap-1d5"><a href="https://miroooo.com/customer_authentication/redirect?locale=nl&region_country=NL" class="hidden lg:flex items-center justify-center" is="magnet-link" rel="nofollow">
         <span class="sr-only"></span><svg class="icon icon-account icon-lg" viewBox="0 0 24 24" stroke="currentColor" fill="none" xmlns="http://www.w3.org/2000/svg">
       <rect width="10.5" height="10.5" x="6.75" y="1.75" rx="5.25"></rect>
@@ -1392,6 +1447,12 @@ theme.variantStrings = {
   #shopify-section-template--24203751129433__main-product {
     --section-padding-top: 16px;
     --section-padding-bottom: 0px;
+    padding-bottom: 0px !important;
+    margin-bottom: 0px !important;
+  }
+  #shopify-section-template--24203751129433__main-product .section {
+    padding-bottom: 0px !important;
+    margin-bottom: 0px !important;
   }
 
   @media screen and (min-width: 1024px) {
@@ -1590,33 +1651,33 @@ theme.variantStrings = {
       ><div class="product__title">
   <a href="#shopify-section-template--24203751129433__reviews" class="product__reviews-badge inline-flex items-center gap-2 mb-2 no-underline hover:opacity-80 transition-opacity cursor-pointer" style="display: inline-flex; align-items: center; gap: 8px; margin-bottom: 8px; text-decoration: none;">
     <div style="color: #22c55e; font-size: 20px; letter-spacing: 2px; line-height: 1; display: inline-flex;" aria-hidden="true">★★★★★</div>
-    <span style="color: #171717; font-size: 13px; font-weight: 700; letter-spacing: 0.04em; text-transform: uppercase;">4.9 · TRUSTED BY 40,000+ CUSTOMERS</span>
+    <span style="color: rgba(255, 255, 255, 0.9); font-size: 13px; font-weight: 700; letter-spacing: 0.04em; text-transform: uppercase;">4.9 · TRUSTED BY 40,000+ CUSTOMERS</span>
   </a>
-  <h1 class="heading leading-none product-title-sm mobile:product-title-sm col-span-full font-bold" id="main-product-title">
+  <h1 class="heading leading-none product-title-sm mobile:product-title-sm col-span-full font-bold" id="main-product-title" style="color: #ffffff;">
     Miroooo X - Grey
   </h1>
 </div>
 
 <div class="product__price grid gap-2 mt-2" id="main-product-price-section">
   <div class="flex flex-wrap items-baseline gap-2" style="display: flex; align-items: baseline; gap: 8px;">
-    <span class="text-2xl sm:text-3xl font-extrabold text-neutral-900" id="main-price-display" style="font-size: 1.85rem; font-weight: 800; color: #171717;">£59</span>
-    <span class="text-base sm:text-lg text-neutral-400 line-through" id="main-compare-price-display" style="color: #737373; font-size: 1.15rem; text-decoration: line-through;">£119</span>
-    <span class="inline-block px-2.5 py-0.5 rounded-full text-xs font-bold uppercase tracking-wider" id="main-discount-badge" style="background: #171717; color: #ffffff; font-size: 11px; font-weight: 800; padding: 3px 10px; border-radius: 9999px; letter-spacing: 0.05em; display: inline-flex; align-items: center;">50% OFF</span>
+    <span class="text-2xl sm:text-3xl font-extrabold text-white" id="main-price-display" style="font-size: 1.85rem; font-weight: 800; color: #ffffff;">£59</span>
+    <span class="text-base sm:text-lg line-through" id="main-compare-price-display" style="color: rgba(255, 255, 255, 0.5); font-size: 1.15rem; text-decoration: line-through;">£119</span>
+    <span class="inline-block px-2.5 py-0.5 rounded-full text-xs font-bold uppercase tracking-wider" id="main-discount-badge" style="background: #ffffff; color: #000000; font-size: 11px; font-weight: 800; padding: 3px 10px; border-radius: 9999px; letter-spacing: 0.05em; display: inline-flex; align-items: center;">50% OFF</span>
   </div>
 </div>
 
 <div class="product__features-list my-4">
-  <ul class="space-y-2 text-sm text-neutral-800" style="list-style: none; padding: 0;">
+  <ul class="space-y-2 text-sm" style="list-style: none; padding: 0; color: rgba(255, 255, 255, 0.85);">
     <li class="flex items-start gap-2">
-      <span class="text-neutral-900 font-bold">✓</span>
+      <span class="font-bold" style="color: #ffffff;">✓</span>
       <span>Brushes up to <strong>60 days</strong> on a single charge.</span>
     </li>
     <li class="flex items-start gap-2">
-      <span class="text-neutral-900 font-bold">✓</span>
+      <span class="font-bold" style="color: #ffffff;">✓</span>
       <span>Powerful <strong>sonic cleaning</strong> for a radiant and healthy smile.</span>
     </li>
     <li class="flex items-start gap-2">
-      <span class="text-neutral-900 font-bold">✓</span>
+      <span class="font-bold" style="color: #ffffff;">✓</span>
       <span>Includes convenient <strong>Travelcase</strong> worth £15.95.</span>
     </li>
   </ul>
@@ -1624,11 +1685,11 @@ theme.variantStrings = {
 
 <!-- Bundle Divider -->
 <div class="bundle-header-divider flex items-center gap-3 my-4">
-  <span class="h-px flex-1 bg-neutral-200" style="background-color: #e5e5e5; height: 1px; flex: 1;"></span>
-  <span class="text-[10.5px] sm:text-[11px] font-bold uppercase tracking-widest text-neutral-800" style="letter-spacing: 0.12em;">
+  <span class="h-px flex-1" style="background-color: rgba(255, 255, 255, 0.15); height: 1px; flex: 1;"></span>
+  <span class="text-[10.5px] sm:text-[11px] font-bold uppercase tracking-widest" style="letter-spacing: 0.12em; color: rgba(255, 255, 255, 0.7);">
     BUNDLE &amp; SAVE + FREE SHIPPING &amp; GIFTS
   </span>
-  <span class="h-px flex-1 bg-neutral-200" style="background-color: #e5e5e5; height: 1px; flex: 1;"></span>
+  <span class="h-px flex-1" style="background-color: rgba(255, 255, 255, 0.15); height: 1px; flex: 1;"></span>
 </div>
 
 <!-- 3 Tier Cards -->
@@ -1640,23 +1701,23 @@ theme.variantStrings = {
       <div class="flex-1 flex justify-between items-start gap-2">
         <div>
           <div class="flex items-center gap-2">
-            <span class="font-extrabold text-sm sm:text-base uppercase tracking-tight text-neutral-900">Buy 1</span>
+            <span class="font-extrabold text-sm sm:text-base uppercase tracking-tight" style="color: #ffffff;">Buy 1</span>
           </div>
-          <p class="text-xs sm:text-sm text-neutral-500 mt-0.5">Includes 1 Miroooo X set &amp; 1 Travel Case</p>
+          <p class="text-xs sm:text-sm mt-0.5" style="color: rgba(255, 255, 255, 0.6);">Includes 1 Miroooo X set &amp; 1 Travel Case</p>
         </div>
         <div class="text-right" style="text-align: right;">
           <div class="flex items-baseline gap-1.5 justify-end" style="display: flex; align-items: baseline; justify-content: flex-end; gap: 6px;">
-            <span class="font-bold text-base sm:text-lg text-neutral-900" style="font-weight: 700; font-size: 1.1rem; color: #171717;">£59</span>
-            <span class="text-xs sm:text-sm text-neutral-400 line-through" style="color: #737373; font-size: 12px; text-decoration: line-through;">£119</span>
+            <span class="font-bold text-base sm:text-lg" style="font-weight: 700; font-size: 1.1rem; color: #ffffff;">£59</span>
+            <span class="text-xs sm:text-sm line-through" style="color: rgba(255, 255, 255, 0.5); font-size: 12px; text-decoration: line-through;">£119</span>
           </div>
-          <span class="tier-badge-pill mt-0.5" style="background: #171717; color: #ffffff; font-size: 10.5px; font-weight: 800; padding: 2px 8px; border-radius: 9999px; display: inline-block;">50% OFF</span>
+          <span class="tier-badge-pill mt-0.5" style="background: #ffffff; color: #000000; font-size: 10.5px; font-weight: 800; padding: 2px 8px; border-radius: 9999px; display: inline-block;">50% OFF</span>
         </div>
       </div>
     </button>
     <div class="tier-expanded-panel" id="panel-single" style="display: none;">
       <!-- Row 1 -->
       <div class="brush-selection-row">
-        <span class="text-xs sm:text-sm font-medium text-neutral-700">Brush Color:</span>
+        <span class="text-xs sm:text-sm font-medium" style="color: rgba(255, 255, 255, 0.8);">Brush Color:</span>
         <div class="brush-color-swatches" data-brush-index="0">
           <button type="button" class="color-swatch-btn swatch-grey is-active" title="Grey" aria-label="Grey" onclick="setBrushChoice('single', 0, 'Grey', event)"></button>
           <button type="button" class="color-swatch-btn swatch-pink" title="Pink" aria-label="Pink" onclick="setBrushChoice('single', 0, 'Pink', event)"></button>
@@ -1680,24 +1741,24 @@ theme.variantStrings = {
       <div class="flex-1 flex justify-between items-start gap-2">
         <div>
           <div class="flex items-center gap-2">
-            <span class="font-extrabold text-sm sm:text-base uppercase tracking-tight text-neutral-900">Buy 2</span>
+            <span class="font-extrabold text-sm sm:text-base uppercase tracking-tight" style="color: #ffffff;">Buy 2</span>
             <span class="tier-badge-pill">£20 OFF</span>
           </div>
-          <p class="text-xs sm:text-sm text-neutral-500 mt-0.5">Includes 2 Miroooo X sets &amp; <strong>2 FREE Gifts</strong> (£35.90 Value)</p>
+          <p class="text-xs sm:text-sm mt-0.5" style="color: rgba(255, 255, 255, 0.6);">Includes 2 Miroooo X sets &amp; <strong>2 FREE Gifts</strong> (£35.90 Value)</p>
         </div>
         <div class="text-right" style="text-align: right;">
           <div class="flex items-baseline gap-1.5 justify-end" style="display: flex; align-items: baseline; justify-content: flex-end; gap: 6px;">
-            <span class="font-bold text-base sm:text-lg text-neutral-900" style="font-weight: 700; font-size: 1.1rem; color: #171717;">£59</span>
-            <span class="text-xs sm:text-sm text-neutral-400 line-through" style="color: #737373; font-size: 12px; text-decoration: line-through;">£119</span>
+            <span class="font-bold text-base sm:text-lg" style="font-weight: 700; font-size: 1.1rem; color: #ffffff;">£59</span>
+            <span class="text-xs sm:text-sm line-through" style="color: rgba(255, 255, 255, 0.5); font-size: 12px; text-decoration: line-through;">£119</span>
           </div>
-          <span class="tier-badge-pill mt-0.5" style="background: #171717; color: #ffffff; font-size: 10.5px; font-weight: 800; padding: 2px 8px; border-radius: 9999px; display: inline-block;">50% OFF</span>
+          <span class="tier-badge-pill mt-0.5" style="background: #ffffff; color: #000000; font-size: 10.5px; font-weight: 800; padding: 2px 8px; border-radius: 9999px; display: inline-block;">50% OFF</span>
         </div>
       </div>
     </button>
     <div class="tier-expanded-panel" id="panel-bundle-2">
       <!-- Row 1 -->
       <div class="brush-selection-row">
-        <span class="text-xs sm:text-sm font-medium text-neutral-700">#1 Brush Color:</span>
+        <span class="text-xs sm:text-sm font-medium" style="color: rgba(255, 255, 255, 0.8);">#1 Brush Color:</span>
         <div class="brush-color-swatches" data-brush-index="0">
           <button type="button" class="color-swatch-btn swatch-grey is-active" title="Grey" aria-label="Grey" onclick="setBrushChoice('bundle-2', 0, 'Grey', event)"></button>
           <button type="button" class="color-swatch-btn swatch-pink" title="Pink" aria-label="Pink" onclick="setBrushChoice('bundle-2', 0, 'Pink', event)"></button>
@@ -1706,7 +1767,7 @@ theme.variantStrings = {
       </div>
       <!-- Row 2 -->
       <div class="brush-selection-row">
-        <span class="text-xs sm:text-sm font-medium text-neutral-700">#2 Brush Color:</span>
+        <span class="text-xs sm:text-sm font-medium" style="color: rgba(255, 255, 255, 0.8);">#2 Brush Color:</span>
         <div class="brush-color-swatches" data-brush-index="1">
           <button type="button" class="color-swatch-btn swatch-grey" title="Grey" aria-label="Grey" onclick="setBrushChoice('bundle-2', 1, 'Grey', event)"></button>
           <button type="button" class="color-swatch-btn swatch-pink is-active" title="Pink" aria-label="Pink" onclick="setBrushChoice('bundle-2', 1, 'Pink', event)"></button>
@@ -1728,24 +1789,24 @@ theme.variantStrings = {
       <div class="flex-1 flex justify-between items-start gap-2">
         <div>
           <div class="flex items-center gap-2">
-            <span class="font-extrabold text-sm sm:text-base uppercase tracking-tight text-neutral-900">Buy 3</span>
+            <span class="font-extrabold text-sm sm:text-base uppercase tracking-tight" style="color: #ffffff;">Buy 3</span>
             <span class="tier-badge-pill">£40 OFF</span>
           </div>
-          <p class="text-xs sm:text-sm text-neutral-500 mt-0.5">Includes 3 Miroooo X sets &amp; <strong>3 FREE Gifts</strong> (£60.85 Value)</p>
+          <p class="text-xs sm:text-sm mt-0.5" style="color: rgba(255, 255, 255, 0.6);">Includes 3 Miroooo X sets &amp; <strong>3 FREE Gifts</strong> (£60.85 Value)</p>
         </div>
         <div class="text-right" style="text-align: right;">
           <div class="flex items-baseline gap-1.5 justify-end" style="display: flex; align-items: baseline; justify-content: flex-end; gap: 6px;">
-            <span class="font-bold text-base sm:text-lg text-neutral-900" style="font-weight: 700; font-size: 1.1rem; color: #171717;">£149</span>
-            <span class="text-xs sm:text-sm text-neutral-400 line-through" style="color: #737373; font-size: 12px; text-decoration: line-through;">£357</span>
+            <span class="font-bold text-base sm:text-lg" style="font-weight: 700; font-size: 1.1rem; color: #ffffff;">£149</span>
+            <span class="text-xs sm:text-sm line-through" style="color: rgba(255, 255, 255, 0.5); font-size: 12px; text-decoration: line-through;">£357</span>
           </div>
-          <span class="tier-badge-pill mt-0.5" style="background: #171717; color: #ffffff; font-size: 10.5px; font-weight: 800; padding: 2px 8px; border-radius: 9999px; display: inline-block;">SAVE £208</span>
+          <span class="tier-badge-pill mt-0.5" style="background: #ffffff; color: #000000; font-size: 10.5px; font-weight: 800; padding: 2px 8px; border-radius: 9999px; display: inline-block;">SAVE £208</span>
         </div>
       </div>
     </button>
     <div class="tier-expanded-panel" id="panel-bundle-3" style="display: none;">
       <!-- Row 1 -->
       <div class="brush-selection-row">
-        <span class="text-xs sm:text-sm font-medium text-neutral-700">#1 Brush Color:</span>
+        <span class="text-xs sm:text-sm font-medium" style="color: rgba(255, 255, 255, 0.8);">#1 Brush Color:</span>
         <div class="brush-color-swatches" data-brush-index="0">
           <button type="button" class="color-swatch-btn swatch-grey is-active" title="Grey" aria-label="Grey" onclick="setBrushChoice('bundle-3', 0, 'Grey', event)"></button>
           <button type="button" class="color-swatch-btn swatch-pink" title="Pink" aria-label="Pink" onclick="setBrushChoice('bundle-3', 0, 'Pink', event)"></button>
@@ -1754,7 +1815,7 @@ theme.variantStrings = {
       </div>
       <!-- Row 2 -->
       <div class="brush-selection-row">
-        <span class="text-xs sm:text-sm font-medium text-neutral-700">#2 Brush Color:</span>
+        <span class="text-xs sm:text-sm font-medium" style="color: rgba(255, 255, 255, 0.8);">#2 Brush Color:</span>
         <div class="brush-color-swatches" data-brush-index="1">
           <button type="button" class="color-swatch-btn swatch-grey" title="Grey" aria-label="Grey" onclick="setBrushChoice('bundle-3', 1, 'Grey', event)"></button>
           <button type="button" class="color-swatch-btn swatch-pink is-active" title="Pink" aria-label="Pink" onclick="setBrushChoice('bundle-3', 1, 'Pink', event)"></button>
@@ -1763,7 +1824,7 @@ theme.variantStrings = {
       </div>
       <!-- Row 3 -->
       <div class="brush-selection-row">
-        <span class="text-xs sm:text-sm font-medium text-neutral-700">#3 Brush Color:</span>
+        <span class="text-xs sm:text-sm font-medium" style="color: rgba(255, 255, 255, 0.8);">#3 Brush Color:</span>
         <div class="brush-color-swatches" data-brush-index="2">
           <button type="button" class="color-swatch-btn swatch-grey" title="Grey" aria-label="Grey" onclick="setBrushChoice('bundle-3', 2, 'Grey', event)"></button>
           <button type="button" class="color-swatch-btn swatch-pink" title="Pink" aria-label="Pink" onclick="setBrushChoice('bundle-3', 2, 'Pink', event)"></button>
@@ -1775,12 +1836,12 @@ theme.variantStrings = {
 </div>
 
 <!-- Delivery Countdown Timer Box -->
-<div class="delivery-timer-box rounded-xl border border-neutral-200 bg-neutral-50/80 p-3.5 my-4 flex items-center gap-3 text-sm text-neutral-800">
-  <div class="w-8 h-8 rounded-full bg-neutral-200/80 flex items-center justify-center flex-shrink-0 text-neutral-800">
+<div class="delivery-timer-box rounded-xl p-3.5 my-4 flex items-center gap-3 text-sm" style="background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 255, 255, 0.1); color: rgba(255, 255, 255, 0.85);">
+  <div class="w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0" style="background: rgba(255, 255, 255, 0.1); color: #ffffff;">
     <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width: 16px; height: 16px;"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
   </div>
   <div class="flex-1 text-xs sm:text-sm leading-snug">
-    Order within <strong class="text-neutral-950 font-mono font-bold" id="bundle-countdown-timer">14:59</strong> to receive it by <strong class="text-neutral-950 font-bold" id="bundle-delivery-date">Wednesday, 19 Aug</strong>
+    Order within <strong class="font-mono font-bold" id="bundle-countdown-timer" style="color: #ffffff;">14:59</strong> to receive it by <strong class="font-bold" id="bundle-delivery-date" style="color: #ffffff;">Wednesday, 19 Aug</strong>
   </div>
 </div>
 
@@ -1789,37 +1850,37 @@ theme.variantStrings = {
   <button
     type="button"
     id="hero-cta"
-    class="product-form__submit button button--primary w-full py-4 px-6 rounded-full bg-neutral-950 text-white font-bold text-base sm:text-lg tracking-wide hover:bg-neutral-800 transition-all duration-200 shadow-md flex items-center justify-center gap-2 active:scale-[0.99]"
-    style="border-radius: 9999px; background: #171717; color: #ffffff; width: 100%; border: none; cursor: pointer;"
+    class="product-form__submit button button--primary w-full py-4 px-6 rounded-full font-bold text-base sm:text-lg tracking-wide transition-all duration-200 shadow-md flex items-center justify-center gap-2 active:scale-[0.99]"
+    style="border-radius: 9999px; background: #ffffff; color: #000000; width: 100%; border: none; cursor: pointer; font-weight: 800;"
   >
     <span class="btn-text" id="main-cta-text">Add To Cart + 2 Free Gifts</span>
   </button>
 </div>
 
 <!-- Trust Badges Strip -->
-<div class="grid grid-cols-3 gap-2 py-3 px-1 border-b border-neutral-200 mb-6 text-center" style="display: grid; grid-template-columns: repeat(3, 1fr); border-bottom: 1px solid #e5e5e5; padding: 12px 0 16px; margin-bottom: 24px;">
+<div class="grid grid-cols-3 gap-2 py-3 px-1 mb-6 text-center" style="display: grid; grid-template-columns: repeat(3, 1fr); border-bottom: 1px solid rgba(255, 255, 255, 0.12); padding: 12px 0 16px; margin-bottom: 24px;">
   <div class="flex flex-col items-center gap-1.5" style="display: flex; flex-direction: column; align-items: center; gap: 6px;">
-    <svg style="width: 24px; height: 24px; color: #171717;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-    <span class="text-[11px] font-bold uppercase tracking-tight text-neutral-800 leading-tight">2-Year<br/>Warranty</span>
+    <svg style="width: 24px; height: 24px; color: #ffffff;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+    <span class="text-[11px] font-bold uppercase tracking-tight leading-tight" style="color: rgba(255, 255, 255, 0.85);">2-Year<br/>Warranty</span>
   </div>
   <div class="flex flex-col items-center gap-1.5" style="display: flex; flex-direction: column; align-items: center; gap: 6px;">
-    <svg style="width: 24px; height: 24px; color: #171717;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M21 2v6h-6"/><path d="M3 12a9 9 0 0 1 15-6.7L21 8"/><path d="M3 22v-6h6"/><path d="M21 12a9 9 0 0 1-15 6.7L3 16"/></svg>
-    <span class="text-[11px] font-bold uppercase tracking-tight text-neutral-800 leading-tight">60-Day<br/>Trial</span>
+    <svg style="width: 24px; height: 24px; color: #ffffff;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M21 2v6h-6"/><path d="M3 12a9 9 0 0 1 15-6.7L21 8"/><path d="M3 22v-6h6"/><path d="M21 12a9 9 0 0 1-15 6.7L3 16"/></svg>
+    <span class="text-[11px] font-bold uppercase tracking-tight leading-tight" style="color: rgba(255, 255, 255, 0.85);">60-Day<br/>Trial</span>
   </div>
   <div class="flex flex-col items-center gap-1.5" style="display: flex; flex-direction: column; align-items: center; gap: 6px;">
-    <svg style="width: 24px; height: 24px; color: #171717;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><rect x="1" y="3" width="15" height="13" rx="1"/><polygon points="16 8 20 8 23 11 23 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
-    <span class="text-[11px] font-bold uppercase tracking-tight text-neutral-800 leading-tight">Free Tracked<br/>Shipping</span>
+    <svg style="width: 24px; height: 24px; color: #ffffff;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><rect x="1" y="3" width="15" height="13" rx="1"/><polygon points="16 8 20 8 23 11 23 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
+    <span class="text-[11px] font-bold uppercase tracking-tight leading-tight" style="color: rgba(255, 255, 255, 0.85);">Free Tracked<br/>Shipping</span>
   </div>
 </div>
 
-<!-- Free Gifts 3-Tier Section (Replaces Pairs Well With) -->
-<section class="free-gifts-unlock-section mb-6" id="free-gifts" style="margin-bottom: 24px;">
+<!-- Free Gifts 3-Tier Section (Dark Theme) -->
+<section class="free-gifts-unlock-section mb-6" id="free-gifts" style="margin-bottom: 24px; background: #0d0d0d; border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 16px; padding: 16px;">
   <div class="text-center mb-5 flex flex-col items-center" style="text-align: center; margin-bottom: 20px; display: flex; flex-direction: column; align-items: center;">
-    <h2 class="text-xl sm:text-2xl font-bold tracking-tight text-neutral-900" style="font-size: 1.4rem; font-weight: 700; color: #171717; margin: 0;">
+    <h2 class="text-xl sm:text-2xl font-bold tracking-tight" style="font-size: 1.4rem; font-weight: 700; color: #ffffff; margin: 0;">
       Miroooo Free Gifts
     </h2>
-    <p class="mt-2 inline-flex items-center justify-center gap-1.5 flex-wrap rounded-full px-3.5 py-1 text-xs font-bold tracking-wider text-neutral-900 bg-neutral-100 border border-neutral-200" style="margin-top: 8px; display: inline-flex; align-items: center; gap: 6px; padding: 4px 14px; border-radius: 9999px; background: #f5f5f5; border: 1px solid #e5e5e5; font-size: 11px;">
-      <span class="font-extrabold text-neutral-950" id="gifts-total-value-banner">£35.90</span>
+    <p class="mt-2 inline-flex items-center justify-center gap-1.5 flex-wrap rounded-full px-3.5 py-1 text-xs font-bold tracking-wider" style="margin-top: 8px; display: inline-flex; align-items: center; gap: 6px; padding: 4px 14px; border-radius: 9999px; background: rgba(255, 255, 255, 0.08); border: 1px solid rgba(255, 255, 255, 0.15); color: #ffffff; font-size: 11px;">
+      <span class="font-extrabold" id="gifts-total-value-banner" style="color: #ffffff;">£35.90</span>
       <span>VALUE OF FREE GIFTS FOR TODAY ONLY</span>
     </p>
   </div>
@@ -1830,7 +1891,7 @@ theme.variantStrings = {
       <div class="gift-image-wrap">
         <img src="https://gobrush.nl/cdn/shop/files/Grey-color-5.jpg?v=1734444578&width=300" alt="Luxury Travel Case" loading="lazy" />
       </div>
-      <span class="text-xs sm:text-sm font-bold text-neutral-900 leading-tight">Travel Case</span>
+      <span class="text-xs sm:text-sm font-bold leading-tight" style="color: #ffffff;">Travel Case</span>
     </div>
     <!-- Gift 2: 2x Replacement Brush Heads -->
     <div class="gift-card-item is-unlocked" id="gift-card-2">
@@ -1838,7 +1899,7 @@ theme.variantStrings = {
       <div class="gift-image-wrap">
         <img src="https://cdn.shopify.com/s/files/1/0810/6023/3561/files/Grey-color-4.jpg?v=1734444578&width=300" alt="2x Replacement Brush Heads" loading="lazy" />
       </div>
-      <span class="text-xs sm:text-sm font-bold text-neutral-900 leading-tight">2x Brush Heads</span>
+      <span class="text-xs sm:text-sm font-bold leading-tight" style="color: #ffffff;">2x Brush Heads</span>
     </div>
     <!-- Gift 3: Magnetic Charging Dock -->
     <div class="gift-card-item is-locked" id="gift-card-3">
@@ -1846,25 +1907,25 @@ theme.variantStrings = {
       <div class="gift-image-wrap">
         <img src="https://cdn.shopify.com/s/files/1/0810/6023/3561/files/Grey-color-7.jpg?v=1734444578&width=300" alt="Magnetic Charging Dock" loading="lazy" />
       </div>
-      <span class="text-xs sm:text-sm font-bold text-neutral-900 leading-tight">Charging Dock</span>
+      <span class="text-xs sm:text-sm font-bold leading-tight" style="color: #ffffff;">Charging Dock</span>
     </div>
   </div>
 </section>
-<details class="product__accordion details" is="accordion-details" >
-                <summary class="details__summary flex items-center justify-between gap-2 cursor-pointer">
+<details class="product__accordion details" is="accordion-details" style="border-top: 1px solid rgba(255, 255, 255, 0.12); color: #ffffff;">
+                <summary class="details__summary flex items-center justify-between gap-2 cursor-pointer" style="color: #ffffff;">
                   <div class="flex items-center gap-2d5"><svg class="icon icon-box icon-md" viewBox="0 0 20 20" stroke="currentColor" fill="none" xmlns="http://www.w3.org/2000/svg">
       <path d="M6.24986 7.91666L13.7499 3.33333M9.99996 10.4167L17.5 5.83333M9.99996 10.4167L2.49996 5.83333M9.99996 10.4167V18.75M1.66663 8.55104V11.4489C1.66663 12.44 1.66663 12.9355 1.80881 13.3807C1.93464 13.7747 2.14059 14.1385 2.41371 14.4491C2.72235 14.8001 3.14725 15.055 3.99705 15.5649L7.53038 17.6849C8.42828 18.2237 8.87723 18.493 9.35649 18.5983C9.78042 18.6914 10.2195 18.6914 10.6434 18.5983C11.1227 18.493 11.5716 18.2237 12.4695 17.6849L16.0029 15.5649C16.8527 15.055 17.2776 14.8001 17.5862 14.4491C17.8593 14.1385 18.0653 13.7747 18.1911 13.3807C18.3333 12.9355 18.3333 12.44 18.3333 11.4489V8.55104C18.3333 7.56002 18.3333 7.0645 18.1911 6.61926C18.0653 6.22525 17.8593 5.86151 17.5862 5.5509C17.2776 5.19989 16.8527 4.94495 16.0029 4.43508L12.4695 2.31508C11.5716 1.77634 11.1227 1.50697 10.6434 1.40172C10.2195 1.30863 9.78042 1.30863 9.35649 1.40172C8.87723 1.50697 8.42828 1.77634 7.53038 2.31508L3.99705 4.43508C3.14725 4.94495 2.72235 5.19989 2.41371 5.5509C2.14059 5.86151 1.93464 6.22525 1.80881 6.61926C1.66663 7.0645 1.66663 7.56002 1.66663 8.55104Z" stroke-linecap="round" stroke-linejoin="round"/>
     </svg><span class="text-sm-base font-medium leading-none">Package contents</span>
                   </div><svg class="icon icon-plus-alt icon-xs flex-auto" viewBox="0 0 14 14" stroke="currentColor" fill="none" xmlns="http://www.w3.org/2000/svg">
       <path stroke-linecap="round" stroke-linejoin="round" d="M7 1V13M13 7H1"></path>
     </svg></summary>
-                <div class="details__content rte text-sm text-opacity">
+                <div class="details__content rte text-sm text-opacity" style="color: rgba(255, 255, 255, 0.75);">
                   <ul><li>1x Miroooo X sonic toothbrush in selected colour</li><li>1x 2x replacement brush heads</li><li>1x Travel case</li><li>1x Magnetic charging dock with USB-C cable (power adapter not included)</li><li>1x luxe verpakking</li></ul>
                   
                   
                 </div>
-              </details><details class="product__accordion details" is="accordion-details" >
-                <summary class="details__summary flex items-center justify-between gap-2 cursor-pointer">
+              </details><details class="product__accordion details" is="accordion-details" style="border-top: 1px solid rgba(255, 255, 255, 0.12); color: #ffffff;">
+                <summary class="details__summary flex items-center justify-between gap-2 cursor-pointer" style="color: #ffffff;">
                   <div class="flex items-center gap-2d5"><svg class="icon icon-tag icon-md" viewBox="0 0 20 20" stroke="currentColor" fill="none" xmlns="http://www.w3.org/2000/svg">
       <path d="M2.5 8.39256C2.5 9.16362 2.5 9.54915 2.56885 9.91541C2.67113 10.4596 2.88529 10.9766 3.19775 11.4337C3.40805 11.7414 3.68066 12.014 4.22589 12.5592L6.66667 15C7.91326 16.2466 8.53656 16.8699 9.22498 17.1722C10.25 17.6223 11.4167 17.6223 12.4417 17.1722C13.1301 16.8699 13.7534 16.2466 15 15V15C16.2466 13.7534 16.8699 13.1301 17.1722 12.4417C17.6223 11.4167 17.6223 10.25 17.1722 9.22498C16.8699 8.53656 16.2466 7.91327 15 6.66667L12.5592 4.22589C12.014 3.68066 11.7414 3.40805 11.4337 3.19775C10.9766 2.88529 10.4596 2.67113 9.91541 2.56885C9.54915 2.5 9.16362 2.5 8.39256 2.5V2.5C6.6296 2.5 5.74812 2.5 5.04756 2.77301C4.0045 3.1795 3.1795 4.0045 2.77301 5.04756C2.5 5.74812 2.5 6.6296 2.5 8.39256V8.39256Z" stroke-linecap="round" stroke-linejoin="round"/>
       <path d="M10 8.33333C10 9.25381 9.25381 10 8.33333 10C7.41286 10 6.66667 9.25381 6.66667 8.33333C6.66667 7.41286 7.41286 6.66667 8.33333 6.66667C9.25381 6.66667 10 7.41286 10 8.33333Z" stroke-linecap="round" stroke-linejoin="round"/>
@@ -1872,7 +1933,7 @@ theme.variantStrings = {
                   </div><svg class="icon icon-plus-alt icon-xs flex-auto" viewBox="0 0 14 14" stroke="currentColor" fill="none" xmlns="http://www.w3.org/2000/svg">
       <path stroke-linecap="round" stroke-linejoin="round" d="M7 1V13M13 7H1"></path>
     </svg></summary>
-                <div class="details__content rte text-sm text-opacity">
+                <div class="details__content rte text-sm text-opacity" style="color: rgba(255, 255, 255, 0.75);">
                   <p>Is your toothbrush always out of battery right when you need it? We know that frustration all too well. That's why we engineered the Miroooo X: a toothbrush that is not only compact and powerful, but also features a high-density battery lasting up to 8 weeks on a single charge.</p>
                   
                   
@@ -1909,10 +1970,27 @@ theme.variantStrings = {
 </div>
 
 
-</div><div id="shopify-section-template--24203751129433__video_with_text_BkMKDR" class="shopify-section" style="background: #fafafa; color: #171717; width: 100%; overflow: hidden; padding: clamp(2.5rem, 4vw, 3.5rem) 0 0 0; margin-bottom: 0; box-sizing: border-box;"><style>
+</div><!-- =========================================================================
+     MOVING MARQUEE BANNER (Directly below product details)
+     ========================================================================= -->
+<div id="shopify-section-template--24203751129433__scrolling_text_P3gRex" class="shopify-section scrolling-text-section" style="background: #000000; color: #ffffff; border-top: 1px solid rgba(255,255,255,0.08); border-bottom: 1px solid rgba(255,255,255,0.08);"><style>
+  #shopify-section-template--24203751129433__scrolling_text_P3gRex {
+    --section-padding-top: 50px;
+    --section-padding-bottom: 50px;--section-grid-gap: 65px;
+  }
+</style>
+
+<div class="section section--padding" style="background: #000000;">
+  <div class="relative z-1"><marquee-element class="scrolling-text scrolling-text--left flex items-center" data-speed="20" data-direction="left"><div class="marquee with-dot flex items-center flex-auto whitespace-nowrap"><div class="scrolling-text__item with-text flex items-center flex-auto body tracking-heading" style="--font-size: 30px; color: #ffffff;" >Free shipping on all orders</div><div class="scrolling-text__item with-text flex items-center flex-auto body tracking-heading" style="--font-size: 30px; color: #ffffff;" >90-day risk-free trial</div></div></marquee-element></div>
+</div>
+
+
+</div><div id="shopify-section-template--24203751129433__video_with_text_BkMKDR" class="shopify-section" style="background: #fafafa; color: #171717; width: 100%; overflow: hidden; padding: 0 !important; margin-bottom: 0; box-sizing: border-box;"><style>
   #shopify-section-template--24203751129433__video_with_text_BkMKDR {
     background-color: #fafafa !important;
+    padding-top: 0 !important;
     padding-bottom: 0 !important;
+    padding: 0 !important;
     margin-bottom: 0 !important;
   }
   .video-mode-frame-grid {
@@ -2245,15 +2323,15 @@ theme.variantStrings = {
 
 
 <!-- 3 BRUSH FUNCTIONS, 1 EFFECTIVE TECHNOLOGY Section (From Miroooo) -->
-<div id="shopify-section-template--miroooo-brush-functions" class="shopify-section" style="background: #ffffff; color: #171717; width: 100%; overflow: hidden; padding: clamp(4.5rem, 7vw, 7.5rem) 0; box-sizing: border-box;">
+<div id="shopify-section-template--miroooo-brush-functions" class="shopify-section" style="background: #000000; color: #ffffff; width: 100%; overflow: hidden; padding: clamp(4rem, 6vw, 6.5rem) 0; box-sizing: border-box; border-top: 1px solid rgba(255,255,255,0.08);">
   <div style="max-width: 1240px; margin: 0 auto; padding: 0 clamp(16px, 4vw, 40px); box-sizing: border-box; width: 100%;">
     
     <!-- Section Header -->
     <div style="text-align: center; margin-bottom: clamp(3rem, 5.5vw, 5.5rem); width: 100%; display: flex; flex-direction: column; align-items: center;">
-      <h2 style="font-family: 'GFS Didot', 'Playfair Display', Georgia, serif; font-size: clamp(1.75rem, 3.2vw, 2.75rem); font-weight: 600; color: #111111; margin: 0 0 1.25rem 0; letter-spacing: 0.04em; text-transform: uppercase; line-height: 1.3; text-align: center; width: 100%;">
+      <h2 style="font-family: 'GFS Didot', 'Playfair Display', Georgia, serif; font-size: clamp(1.75rem, 3.2vw, 2.75rem); font-weight: 600; color: #ffffff; margin: 0 0 1.25rem 0; letter-spacing: 0.04em; text-transform: uppercase; line-height: 1.3; text-align: center; width: 100%;">
         3 BRUSH FUNCTIONS, 1 EFFECTIVE TECHNOLOGY
       </h2>
-      <p style="font-family: 'GFS Didot', Georgia, serif; font-size: clamp(1rem, 1.25vw, 1.2rem); color: #555555; max-width: 780px; margin: 0 auto; line-height: 1.65; text-align: center;">
+      <p style="font-family: 'GFS Didot', Georgia, serif; font-size: clamp(1rem, 1.25vw, 1.2rem); color: rgba(255, 255, 255, 0.7); max-width: 780px; margin: 0 auto; line-height: 1.65; text-align: center;">
         Our unique ultrasonic brushing method is complemented by three individual brushing functions, catering to every need, whether you seek a gentle or deep cleaning. The choice is yours!
       </p>
     </div>
@@ -2263,14 +2341,14 @@ theme.variantStrings = {
       
       <!-- Function 1: STANDARD -->
       <div class="function-item" style="display: flex; flex-direction: column; align-items: center; text-align: center; gap: 1.25rem;">
-        <div style="width: clamp(140px, 18vw, 220px); height: clamp(140px, 18vw, 220px); border-radius: 50%; overflow: hidden; background: #f8f8f8; display: flex; align-items: center; justify-content: center; box-shadow: 0 10px 30px rgba(0,0,0,0.06); transition: transform 0.3s ease;">
+        <div style="width: clamp(140px, 18vw, 220px); height: clamp(140px, 18vw, 220px); border-radius: 50%; overflow: hidden; background: #111111; display: flex; align-items: center; justify-content: center; box-shadow: 0 10px 30px rgba(0,0,0,0.6); border: 1px solid rgba(255,255,255,0.08); transition: transform 0.3s ease;">
           <img src="https://e-assets.beeketing.net/10684/10684350/themes/17866902250f48175f95.png" alt="Standard Mode" style="width: 100%; height: 100%; object-fit: cover; display: block;" />
         </div>
         <div>
-          <h3 style="font-family: 'GFS Didot', 'Playfair Display', Georgia, serif; font-size: clamp(1.1rem, 1.4vw, 1.35rem); font-weight: 600; color: #111111; letter-spacing: 0.08em; text-transform: uppercase; margin: 0 0 0.75rem 0;">
+          <h3 style="font-family: 'GFS Didot', 'Playfair Display', Georgia, serif; font-size: clamp(1.1rem, 1.4vw, 1.35rem); font-weight: 600; color: #ffffff; letter-spacing: 0.08em; text-transform: uppercase; margin: 0 0 0.75rem 0;">
             STANDARD
           </h3>
-          <p style="font-family: var(--font-body-family, 'Inter', sans-serif); font-size: clamp(0.9rem, 1.05vw, 1.02rem); color: #555555; line-height: 1.6; max-width: 320px; margin: 0 auto; text-align: center; font-weight: 400;">
+          <p style="font-family: var(--font-body-family, 'Inter', sans-serif); font-size: clamp(0.9rem, 1.05vw, 1.02rem); color: rgba(255, 255, 255, 0.7); line-height: 1.6; max-width: 320px; margin: 0 auto; text-align: center; font-weight: 400;">
             Gentle daily oral care designed for sensitive teeth and gums, providing a smooth, comfortable clean perfect for everyday brushing.
           </p>
         </div>
@@ -2278,14 +2356,14 @@ theme.variantStrings = {
 
       <!-- Function 2: WHITENING -->
       <div class="function-item" style="display: flex; flex-direction: column; align-items: center; text-align: center; gap: 1.25rem;">
-        <div style="width: clamp(140px, 18vw, 220px); height: clamp(140px, 18vw, 220px); border-radius: 50%; overflow: hidden; background: #f8f8f8; display: flex; align-items: center; justify-content: center; box-shadow: 0 10px 30px rgba(0,0,0,0.06); transition: transform 0.3s ease;">
+        <div style="width: clamp(140px, 18vw, 220px); height: clamp(140px, 18vw, 220px); border-radius: 50%; overflow: hidden; background: #111111; display: flex; align-items: center; justify-content: center; box-shadow: 0 10px 30px rgba(0,0,0,0.6); border: 1px solid rgba(255,255,255,0.08); transition: transform 0.3s ease;">
           <img src="https://e-assets.beeketing.net/10684/10684350/themes/17866902414eb46921b5.png" alt="Whitening Mode" style="width: 100%; height: 100%; object-fit: cover; display: block;" />
         </div>
         <div>
-          <h3 style="font-family: 'GFS Didot', 'Playfair Display', Georgia, serif; font-size: clamp(1.1rem, 1.4vw, 1.35rem); font-weight: 600; color: #111111; letter-spacing: 0.08em; text-transform: uppercase; margin: 0 0 0.75rem 0;">
+          <h3 style="font-family: 'GFS Didot', 'Playfair Display', Georgia, serif; font-size: clamp(1.1rem, 1.4vw, 1.35rem); font-weight: 600; color: #ffffff; letter-spacing: 0.08em; text-transform: uppercase; margin: 0 0 0.75rem 0;">
             WHITENING
           </h3>
-          <p style="font-family: var(--font-body-family, 'Inter', sans-serif); font-size: clamp(0.9rem, 1.05vw, 1.02rem); color: #555555; line-height: 1.6; max-width: 320px; margin: 0 auto; text-align: center; font-weight: 400;">
+          <p style="font-family: var(--font-body-family, 'Inter', sans-serif); font-size: clamp(0.9rem, 1.05vw, 1.02rem); color: rgba(255, 255, 255, 0.7); line-height: 1.6; max-width: 320px; margin: 0 auto; text-align: center; font-weight: 400;">
             Targeted high-frequency vibrations that effectively lift stubborn surface stains from coffee, tea, and food for a radiant smile.
           </p>
         </div>
@@ -2293,14 +2371,14 @@ theme.variantStrings = {
 
       <!-- Function 3: DEEP CLEANSING -->
       <div class="function-item" style="display: flex; flex-direction: column; align-items: center; text-align: center; gap: 1.25rem;">
-        <div style="width: clamp(140px, 18vw, 220px); height: clamp(140px, 18vw, 220px); border-radius: 50%; overflow: hidden; background: #f8f8f8; display: flex; align-items: center; justify-content: center; box-shadow: 0 10px 30px rgba(0,0,0,0.06); transition: transform 0.3s ease;">
+        <div style="width: clamp(140px, 18vw, 220px); height: clamp(140px, 18vw, 220px); border-radius: 50%; overflow: hidden; background: #111111; display: flex; align-items: center; justify-content: center; box-shadow: 0 10px 30px rgba(0,0,0,0.6); border: 1px solid rgba(255,255,255,0.08); transition: transform 0.3s ease;">
           <img src="https://e-assets.beeketing.net/10684/10684350/themes/1786690254f165e32fdc.png" alt="Deep Cleansing Mode" style="width: 100%; height: 100%; object-fit: cover; display: block;" />
         </div>
         <div>
-          <h3 style="font-family: 'GFS Didot', 'Playfair Display', Georgia, serif; font-size: clamp(1.1rem, 1.4vw, 1.35rem); font-weight: 600; color: #111111; letter-spacing: 0.08em; text-transform: uppercase; margin: 0 0 0.75rem 0;">
+          <h3 style="font-family: 'GFS Didot', 'Playfair Display', Georgia, serif; font-size: clamp(1.1rem, 1.4vw, 1.35rem); font-weight: 600; color: #ffffff; letter-spacing: 0.08em; text-transform: uppercase; margin: 0 0 0.75rem 0;">
             DEEP CLEANSING
           </h3>
-          <p style="font-family: var(--font-body-family, 'Inter', sans-serif); font-size: clamp(0.9rem, 1.05vw, 1.02rem); color: #555555; line-height: 1.6; max-width: 320px; margin: 0 auto; text-align: center; font-weight: 400;">
+          <p style="font-family: var(--font-body-family, 'Inter', sans-serif); font-size: clamp(0.9rem, 1.05vw, 1.02rem); color: rgba(255, 255, 255, 0.7); line-height: 1.6; max-width: 320px; margin: 0 auto; text-align: center; font-weight: 400;">
             Maximum sonic power for an intensive plaque-removing clean, delivering a dentist-fresh feeling along the gumline and hard-to-reach areas.
           </p>
         </div>
@@ -2312,12 +2390,12 @@ theme.variantStrings = {
 
 
 <!-- LUXURIOUS PROFESSIONALISM Section (From Miroooo) -->
-<div id="shopify-section-template--miroooo-luxurious-professionalism" class="shopify-section" style="background: #e6e6e6; color: #111111; width: 100%; overflow: hidden; position: relative;">
+<div id="shopify-section-template--miroooo-luxurious-professionalism" class="shopify-section" style="background: #000000 !important; color: #ffffff !important; width: 100%; overflow: hidden; position: relative; border-top: 1px solid rgba(255, 255, 255, 0.08);">
   <div style="width: 100%; max-width: 1856px; margin: 0 auto;">
-    <div class="luxurious-grid" style="display: grid; grid-template-columns: 1fr; width: 100%; min-height: 560px; background: #e6e6e6; align-items: stretch;">
+    <div class="luxurious-grid" style="display: grid; grid-template-columns: 1fr; width: 100%; min-height: 560px; background: #000000 !important; align-items: stretch;">
       
       <!-- Left Column: Video 2 -->
-      <div class="luxurious-media" style="position: relative; width: 100%; height: 100%; min-height: 460px; overflow: hidden; background: #e6e6e6;">
+      <div class="luxurious-media" style="position: relative; width: 100%; height: 100%; min-height: 460px; overflow: hidden; background: #000000 !important; border-radius: 12px;">
         <video
           id="luxurious-video"
           class="w-full h-full object-cover"
@@ -2329,17 +2407,17 @@ theme.variantStrings = {
           disablepictureinpicture
           controlslist="nodownload nofullscreen noremoteplayback"
           preload="auto"
-          style="width: 100%; height: 100%; min-height: 460px; object-fit: cover; display: block; background: #e6e6e6; pointer-events: none;"
+          style="width: 100%; height: 100%; min-height: 460px; object-fit: cover; display: block; background: #000000 !important; border-radius: 12px; pointer-events: none;"
         ></video>
       </div>
 
       <!-- Right Column: Content & Typography -->
-      <div class="luxurious-content" style="display: flex; flex-direction: column; justify-content: center; padding: clamp(3rem, 6vw, 6rem) clamp(1.75rem, 5vw, 6.5rem); background: #e6e6e6; color: #111111; z-index: 2; box-sizing: border-box;">
-        <h2 style="font-family: 'GFS Didot', 'Playfair Display', Georgia, serif; font-size: clamp(1.75rem, 3.2vw, 2.75rem); font-weight: 600; letter-spacing: 0.05em; text-transform: uppercase; line-height: 1.25; margin: 0 0 1.75rem 0; color: #111111; max-width: 540px; word-break: break-word;">
+      <div class="luxurious-content" style="display: flex; flex-direction: column; justify-content: center; padding: clamp(3rem, 6vw, 6rem) clamp(1.75rem, 5vw, 6.5rem); background: #000000 !important; color: #ffffff !important; z-index: 2; box-sizing: border-box;">
+        <h2 style="font-family: 'GFS Didot', 'Playfair Display', Georgia, serif; font-size: clamp(1.75rem, 3.2vw, 2.75rem); font-weight: 600; letter-spacing: 0.05em; text-transform: uppercase; line-height: 1.25; margin: 0 0 1.75rem 0; color: #ffffff !important; max-width: 540px; word-break: break-word;">
           LUXURIOUS PROFESSIONALISM
         </h2>
         
-        <p style="font-family: 'GFS Didot', Georgia, serif; font-size: clamp(1rem, 1.25vw, 1.2rem); color: #333333; line-height: 1.75; margin: 0; max-width: 580px;">
+        <p style="font-family: 'GFS Didot', Georgia, serif; font-size: clamp(1rem, 1.25vw, 1.2rem); color: rgba(255, 255, 255, 0.75) !important; line-height: 1.75; margin: 0; max-width: 580px;">
           Uncover the exceptional qualities of a toothbrush carefully designed for daily professional and personalized dental care. Its gentle yet potent performance ensures optimal health for your teeth and gums, making it an intelligent companion for your active on-the-go lifestyle.
         </p>
       </div>
@@ -2350,10 +2428,10 @@ theme.variantStrings = {
 
 
 <!-- Real customers, real reactions. (From Miroshine) -->
-<div id="shopify-section-template--miroshine-reels-container" class="shopify-section" style="background: #ffffff; padding: clamp(4rem, 6.5vw, 6.5rem) 0 clamp(4rem, 6.5vw, 6.5rem) 0; overflow: hidden; width: 100%;">
+<div id="shopify-section-template--miroshine-reels-container" class="shopify-section" style="background: #000000; color: #ffffff; padding: clamp(4rem, 6.5vw, 6.5rem) 0 clamp(4rem, 6.5vw, 6.5rem) 0; overflow: hidden; width: 100%; border-top: 1px solid rgba(255,255,255,0.08);">
   
   <div style="max-width: 1200px; margin: 0 auto clamp(2.5rem, 4vw, 3.5rem) auto; text-align: center; padding: 0 20px;">
-    <h2 style="font-family: var(--font-heading-family, 'Inter', -apple-system, sans-serif); font-size: clamp(2rem, 3.8vw, 3.4rem); font-weight: 400; color: #111111; letter-spacing: -0.03em; margin: 0; line-height: 1.15;">
+    <h2 style="font-family: var(--font-heading-family, 'Inter', -apple-system, sans-serif); font-size: clamp(2rem, 3.8vw, 3.4rem); font-weight: 400; color: #ffffff; letter-spacing: -0.03em; margin: 0; line-height: 1.15;">
       Real customers, real reactions.
     </h2>
   </div>
@@ -2443,7 +2521,7 @@ theme.variantStrings = {
   </div>
 </div>
 
-<div id="shopify-section-template--24203751129433__image_with_text_overlay_tfKPyw" class="shopify-section"><style>
+<div id="shopify-section-template--24203751129433__image_with_text_overlay_tfKPyw" class="shopify-section" style="background: #000000;"><style>
   #shopify-section-template--24203751129433__image_with_text_overlay_tfKPyw {
     --section-padding-top: 0px;
     --section-padding-bottom: 0px;--color-foreground: 255 255 255;
@@ -2454,10 +2532,10 @@ theme.variantStrings = {
       --ratio-percent: 56.25304136253041%;
     }</style>
 
-<div class="section section--padding section--rounded relative" allow-transparent-header>
+<div class="section section--padding relative" allow-transparent-header style="background: #000000;">
   <div class="page-width relative">
     <div class="banner media--adapt mobile:media--600px relative">
-      <media-element class="banner__media block w-full h-full overflow-hidden">
+      <media-element class="banner__media block w-full h-full overflow-hidden" style="border-radius: 16px;">
         <picture class="media media--height block w-full h-full relative overflow-hidden" is="animate-picture" data-animate="zoom-out"><source
                 media="(max-width: 767px)"
                 srcset="https://gobrush.nl/cdn/shop/files/Brushone_final-mobile.jpg?v=1733770533&width=400 400w, //gobrush.nl/cdn/shop/files/Brushone_final-mobile.jpg?v=1733770533&width=600 600w, //gobrush.nl/cdn/shop/files/Brushone_final-mobile.jpg?v=1733770533&width=800 800w, //gobrush.nl/cdn/shop/files/Brushone_final-mobile.jpg?v=1733770533&width=1000 1000w"
@@ -2467,32 +2545,20 @@ theme.variantStrings = {
       </media-element><span class="banner__overlay absolute top-0 left-0 w-full h-full pointer-events-none"></span>
         <div class="banner__content overflow-hidden absolute z-1 top-0 left-0 w-full h-full">
           <div class="page-width w-full h-full flex md:items-start md:justify-start items-start justify-start">
-            <div class="banner__box banner__box--medium md:text-left text-left"><h2 class="banner__title heading leading-none title-sm" >Radiant smile with <em class="highlighted-text inline-block not-italic relative" is="highlighted-text" data-style="text">sonic technology</em></h2><div class="rte leading-normal body subtext-sm" ><p>Removes plaque effectively, gentle on your gums. Compact and stylish for home & travel.</p></div></div>
+            <div class="banner__box banner__box--medium md:text-left text-left"><h2 class="banner__title heading leading-none title-sm" style="color: #ffffff;">Radiant smile with <em class="highlighted-text inline-block not-italic relative" is="highlighted-text" data-style="text" style="color: #ffffff;">sonic technology</em></h2><div class="rte leading-normal body subtext-sm" style="color: rgba(255, 255, 255, 0.85);"><p>Removes plaque effectively, gentle on your gums. Compact and stylish for home & travel.</p></div></div>
           </div>
         </div></div>
   </div>
 </div>
 
 
-</div><div id="shopify-section-template--24203751129433__scrolling_text_P3gRex" class="shopify-section scrolling-text-section"><style>
-  #shopify-section-template--24203751129433__scrolling_text_P3gRex {
-    --section-padding-top: 72px;
-    --section-padding-bottom: 72px;--section-grid-gap: 65px;
-  }
-</style>
-
-<div class="section section--padding">
-  <div class="relative z-1"><marquee-element class="scrolling-text scrolling-text--left flex items-center" data-speed="20" data-direction="left"><div class="marquee with-dot flex items-center flex-auto whitespace-nowrap"><div class="scrolling-text__item with-text flex items-center flex-auto body tracking-heading" style="--font-size: 30px;" >Free shipping over £99</div><div class="scrolling-text__item with-text flex items-center flex-auto body tracking-heading" style="--font-size: 30px;" >60-day risk-free trial</div></div></marquee-element></div>
-</div>
-
-
-</div><div id="shopify-section-template--24203751129433__image-with-text-1" class="shopify-section" style="background: #ffffff;"><style>
+</div><div id="shopify-section-template--24203751129433__image-with-text-1" class="shopify-section" style="background: #000000; color: #ffffff; padding: clamp(3rem, 5vw, 5rem) 0; box-sizing: border-box;"><style>
   #shopify-section-template--24203751129433__image-with-text-1 {
     --section-padding-top: 12px;
     --section-padding-bottom: 72px;
-    --color-background: 255 255 255;
-    --color-background-2: 255 255 255;
-    --color-foreground: 23 23 23;
+    --color-background: 0 0 0;
+    --color-background-2: 0 0 0;
+    --color-foreground: 255 255 255;
   --color-border: var(--color-foreground)/ 0.1;
   --color-border-dark: var(--color-foreground)/ 0.4;
   --color-border-light: var(--color-foreground)/ 0.06;--gradient-highlight: linear-gradient(278deg, rgba(251, 51, 166, 1), rgba(48, 145, 211, 1) 100%);
@@ -2505,175 +2571,24 @@ theme.variantStrings = {
     }
   </style>
 
-<div class="section section--padding" style="background: #ffffff;">
-  <div class="page-width relative"><div class="image-with-text lg:flex lg:gap-8 lg:flex-row" style="background: #ffffff; border-radius: 0;">
+<div class="section section--padding" style="background: #000000;">
+  <div class="page-width relative"><div class="image-with-text lg:flex lg:gap-8 lg:flex-row" style="background: #000000; border-radius: 0;">
       <div class="image-with-text__item grow shrink-0 relative">
         <div class="image-with-text__media h-full">
-          <media-element class="image-with-text__image block media--adapt mobile:media--adapt relative overflow-hidden">
-            <picture class="media media--height block w-full h-full relative overflow-hidden"><img src="https://gobrush.nl/cdn/shop/files/box-silver.jpg?v=1729620309&amp;width=4096" alt="" srcset="https://gobrush.nl/cdn/shop/files/box-silver.jpg?v=1729620309&amp;width=300 300w, //gobrush.nl/cdn/shop/files/box-silver.jpg?v=1729620309&amp;width=400 400w, //gobrush.nl/cdn/shop/files/box-silver.jpg?v=1729620309&amp;width=500 500w, //gobrush.nl/cdn/shop/files/box-silver.jpg?v=1729620309&amp;width=600 600w, //gobrush.nl/cdn/shop/files/box-silver.jpg?v=1729620309&amp;width=700 700w, //gobrush.nl/cdn/shop/files/box-silver.jpg?v=1729620309&amp;width=800 800w, //gobrush.nl/cdn/shop/files/box-silver.jpg?v=1729620309&amp;width=900 900w, //gobrush.nl/cdn/shop/files/box-silver.jpg?v=1729620309&amp;width=1000 1000w, //gobrush.nl/cdn/shop/files/box-silver.jpg?v=1729620309&amp;width=1200 1200w, //gobrush.nl/cdn/shop/files/box-silver.jpg?v=1729620309&amp;width=1400 1400w, //gobrush.nl/cdn/shop/files/box-silver.jpg?v=1729620309&amp;width=1600 1600w" width="4096" height="2732" loading="lazy" sizes="(max-width: 767px) 100vw, 50vw" is="lazy-image"></picture>
+          <media-element class="image-with-text__image block media--adapt mobile:media--adapt relative overflow-hidden" style="border-radius: 14px;">
+            <picture class="media media--height block w-full h-full relative overflow-hidden" style="border-radius: 14px; background: #111111;"><img src="https://gobrush.nl/cdn/shop/files/box-silver.jpg?v=1729620309&amp;width=4096" alt="" srcset="https://gobrush.nl/cdn/shop/files/box-silver.jpg?v=1729620309&amp;width=300 300w, //gobrush.nl/cdn/shop/files/box-silver.jpg?v=1729620309&amp;width=400 400w, //gobrush.nl/cdn/shop/files/box-silver.jpg?v=1729620309&amp;width=500 500w, //gobrush.nl/cdn/shop/files/box-silver.jpg?v=1729620309&amp;width=600 600w, //gobrush.nl/cdn/shop/files/box-silver.jpg?v=1729620309&amp;width=700 700w, //gobrush.nl/cdn/shop/files/box-silver.jpg?v=1729620309&amp;width=800 800w, //gobrush.nl/cdn/shop/files/box-silver.jpg?v=1729620309&amp;width=900 900w, //gobrush.nl/cdn/shop/files/box-silver.jpg?v=1729620309&amp;width=1000 1000w, //gobrush.nl/cdn/shop/files/box-silver.jpg?v=1729620309&amp;width=1200 1200w, //gobrush.nl/cdn/shop/files/box-silver.jpg?v=1729620309&amp;width=1400 1400w, //gobrush.nl/cdn/shop/files/box-silver.jpg?v=1729620309&amp;width=1600 1600w" width="4096" height="2732" loading="lazy" sizes="(max-width: 767px) 100vw, 50vw" is="lazy-image"></picture>
           </media-element>
         </div>
       </div>
 
       <div class="image-with-text__item grow shrink-0 align-self-center">
-        <div class="rich-text lg:text-left text-center relative z-1"><h2 class="heading leading-none title-sm" ><em class="highlighted-text inline-block not-italic relative with-gradient" is="highlighted-text" data-style="text">Package Contents</em></h2><div class="rte leading-normal body subtext-md text-opacity" ><p>Miroooo X sonic toothbrush in chosen colour, brush heads, Travel case, magnetic charging dock, and USB-C charging cable (adapter not included).</p></div></div>
+        <div class="rich-text lg:text-left text-center relative z-1"><h2 class="heading leading-none title-sm" style="color: #ffffff;"><em class="highlighted-text inline-block not-italic relative" is="highlighted-text" data-style="text" style="color: #ffffff; -webkit-text-fill-color: #ffffff;">Package Contents</em></h2><div class="rte leading-normal body subtext-md text-opacity" style="color: rgba(255, 255, 255, 0.8);"><p>Miroooo X sonic toothbrush in chosen colour, brush heads, Travel case, magnetic charging dock, and USB-C charging cable (adapter not included).</p></div></div>
       </div>
     </div>
   </div>
 </div>
 
 
-</div><div id="shopify-section-template--24203751129433__faq" class="shopify-section"><style>
-  #shopify-section-template--24203751129433__faq {
-    --section-padding-top: 0px;
-    --section-padding-bottom: 84px;--color-background: 23 23 23;--color-foreground: 255 255 255;
-  --color-border: var(--color-foreground)/ 0.1;
-  --color-border-dark: var(--color-foreground)/ 0.4;
-  --color-border-light: var(--color-foreground)/ 0.06;--color-button-background: 255 255 255;
-  --color-button-border: 255 255 255;--color-button-text: 23 23 23;--color-overlay: 255 255 255;--overlay-opacity: 0.04;}
-</style>
-
-<div class="section section--padding section--plain">
-  <div class="page-width relative"><div class="faqs with-background flex flex-col lg:flex-row relative z-1">
-        <div class="grow grid gap-8 md:gap-12"><div class="grid gap-4 text-left md:items-end md:flex-row"><div class="title-wrapper leading-none grid gap-4 text-left md:items-end md:flex-row"><h2 class="heading title-lg tracking-heading"><split-words class="split-words block" data-animate="fade-up-large">FAQs</split-words></h2></div></div><div class="faq"><div class="accordion">
-                    <details class="details" is="accordion-details" >
-                      <summary class="details__summary flex items-center justify-between gap-2 cursor-pointer">
-                        <span class="text-base lg:text-lg xl:text-xl font-medium leading-tight">What sets Miroooo X apart?</span><svg class="icon icon-plus-alt icon-xs flex-auto" viewBox="0 0 14 14" stroke="currentColor" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <path stroke-linecap="round" stroke-linejoin="round" d="M7 1V13M13 7H1"></path>
-    </svg></summary>
-                      <div class="details__content text-base rte"><p>Miroooo X offers premium oral care with style. Powered by advanced sonic technology, it removes up to 10x more plaque, with an elegant design that fits any aesthetic. Quality and style in one.</p></div>
-                    </details>
-                  </div><div class="accordion">
-                    <details class="details" is="accordion-details" >
-                      <summary class="details__summary flex items-center justify-between gap-2 cursor-pointer">
-                        <span class="text-base lg:text-lg xl:text-xl font-medium leading-tight">Is an electric toothbrush better than a manual toothbrush?</span><svg class="icon icon-plus-alt icon-xs flex-auto" viewBox="0 0 14 14" stroke="currentColor" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <path stroke-linecap="round" stroke-linejoin="round" d="M7 1V13M13 7H1"></path>
-    </svg></summary>
-                      <div class="details__content text-base rte"><p>Yes, research proves that electric toothbrushes are significantly more effective at removing plaque and improving gum health. Miroooo X produces 40,000 sonic vibrations per minute, cleaning faster and more thoroughly than manual brushing.</p></div>
-                    </details>
-                  </div><div class="accordion">
-                    <details class="details" is="accordion-details" >
-                      <summary class="details__summary flex items-center justify-between gap-2 cursor-pointer">
-                        <span class="text-base lg:text-lg xl:text-xl font-medium leading-tight">Is Miroooo X suitable for sensitive teeth and gums?</span><svg class="icon icon-plus-alt icon-xs flex-auto" viewBox="0 0 14 14" stroke="currentColor" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <path stroke-linecap="round" stroke-linejoin="round" d="M7 1V13M13 7H1"></path>
-    </svg></summary>
-                      <div class="details__content text-base rte"><p>Absolutely! Miroooo X features multiple brushing modes, including a dedicated mode for sensitive teeth and gums. You get a thorough clean without any discomfort, even with a sensitive mouth.</p></div>
-                    </details>
-                  </div><div class="accordion">
-                    <details class="details" is="accordion-details" >
-                      <summary class="details__summary flex items-center justify-between gap-2 cursor-pointer">
-                        <span class="text-base lg:text-lg xl:text-xl font-medium leading-tight">Can I subscribe for replacement brush heads?</span><svg class="icon icon-plus-alt icon-xs flex-auto" viewBox="0 0 14 14" stroke="currentColor" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <path stroke-linecap="round" stroke-linejoin="round" d="M7 1V13M13 7H1"></path>
-    </svg></summary>
-                      <div class="details__content text-base rte"><p>Yes, we offer a subscription where you automatically receive fresh brush heads every 3 months. You never have to worry about replacing your brush head, saving both time and money.</p><p>Contact us at support@miroooo.com</p></div>
-                    </details>
-                  </div><div class="accordion">
-                    <details class="details" is="accordion-details" >
-                      <summary class="details__summary flex items-center justify-between gap-2 cursor-pointer">
-                        <span class="text-base lg:text-lg xl:text-xl font-medium leading-tight">What is your warranty and return policy?</span><svg class="icon icon-plus-alt icon-xs flex-auto" viewBox="0 0 14 14" stroke="currentColor" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <path stroke-linecap="round" stroke-linejoin="round" d="M7 1V13M13 7H1"></path>
-    </svg></summary>
-                      <div class="details__content text-base rte"><p>We stand behind the quality of Miroooo with a 1-year warranty and a 30-day money-back guarantee. Not satisfied? Contact us and we will resolve it immediately!</p></div>
-                    </details>
-                  </div></div>
-        </div><form method="post" action="/contact#ContactForm-template--24203751129433__faq" id="ContactForm-template--24203751129433__faq" accept-charset="UTF-8" class="grow-0"><input type="hidden" name="form_type" value="contact" /><input type="hidden" name="utf8" value="✓" /><sticky-element class="contact__sidebar grid gap-7d5 md:gap-10 sticky top-0">
-              <div class="flex justify-between gap-6">
-                <div class="grid gap-2d5">
-                  <p class="heading lg:text-3xl text-2xl leading-none tracking-tight">Have questions?</p>
-                  <div class="text-opacity text-base rte"><p>Feel free to contact us</p></div>
-                </div><div class="media media--transparent relative"><img src="https://gobrush.nl/cdn/shop/files/chat.png?v=1733942884&amp;width=456" alt="" srcset="https://gobrush.nl/cdn/shop/files/chat.png?v=1733942884&amp;width=63 63w, //gobrush.nl/cdn/shop/files/chat.png?v=1733942884&amp;width=126 126w" width="456" height="434" loading="lazy" sizes="63.04147465437787px" style="--image-width: 63.04147465437787px; --image-height: 60px;" is="lazy-image"></div></div>
-              <div class="grid gap-4d5 md:gap-6"><div class="field">
-                  <input
-                    class="input is-floating"
-                    autocomplete="name"
-                    type="text"
-                    id="ContactFormName-template--24203751129433__faq"
-                    name="contact[Naam]"
-                    value=""
-                    placeholder="Name"
-                  />
-                  <label class="label is-floating" for="ContactFormName-template--24203751129433__faq">Naam</label>
-                </div>
-                <div class="field">
-                  <input
-                    class="input is-floating"
-                    autocomplete="email"
-                    type="email"
-                    id="ContactFormEmail-template--24203751129433__faq"
-                    name="contact[email]"
-                    spellcheck="false"
-                    autocapitalize="off"
-                    value=""
-                    placeholder="Email"
-                    required
-                  >
-                  <label class="label is-floating" for="ContactFormEmail-template--24203751129433__faq">E-mail</label>
-                </div><div class="field">
-                  <textarea
-                    class="textarea is-floating"
-                    rows="4"
-                    id="ContactFormMessage-template--24203751129433__faq"
-                    name="contact[Bericht]"
-                    placeholder=" "
-                  ></textarea>
-                  <label class="label is-floating" for="ContactFormMessage-template--24203751129433__faq">Bericht</label>
-                </div>
-                <div class="field">
-                  <label for="ContactSubmit-template--24203751129433__faq" class="sr-only">Send message</label>
-                  <button type="submit" id="ContactSubmit-template--24203751129433__faq" class="button button--primary button--fixed" is="hover-button">
-                    <span class="btn-fill" data-fill></span>
-                    <span class="btn-text">Send message</span>
-                  </button>
-                </div>
-              </div>
-            </sticky-element></form></div></div>
-</div><script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "FAQPage",
-      "mainEntity": [{
-            "@type": "Question",
-            "name": "What sets Miroooo X apart?",
-            "acceptedAnswer": {
-              "@type": "Answer",
-              "text": "\u003cp\u003eMiroooo X offers premium oral care with style. Powered by advanced sonic technology, it removes up to 10x more plaque, with an elegant design that fits any aesthetic. Quality and style in one.\u003c\/p\u003e"
-            }
-          },
-        {
-            "@type": "Question",
-            "name": "Is an electric toothbrush better than a manual toothbrush?",
-            "acceptedAnswer": {
-              "@type": "Answer",
-              "text": "\u003cp\u003eYes, research proves that electric toothbrushes are significantly more effective at removing plaque and improving gum health. Miroooo X produces 40,000 sonic vibrations per minute, cleaning faster and more thoroughly than manual brushing.\u003c\/p\u003e"
-            }
-          },
-        {
-            "@type": "Question",
-            "name": "Is Miroooo X suitable for sensitive teeth and gums?",
-            "acceptedAnswer": {
-              "@type": "Answer",
-              "text": "\u003cp\u003eAbsolutely! Miroooo X features multiple brushing modes, including a dedicated mode for sensitive teeth and gums. You get a thorough clean without any discomfort, even with a sensitive mouth.\u003c\/p\u003e"
-            }
-          },
-        {
-            "@type": "Question",
-            "name": "Can I subscribe for replacement brush heads?",
-            "acceptedAnswer": {
-              "@type": "Answer",
-              "text": "\u003cp\u003eYes, we offer a subscription where you automatically receive fresh brush heads every 3 months. You never have to worry about replacing your brush head, saving both time and money.\u003c\/p\u003e\u003cp\u003eContact us at support@miroooo.com\u003c\/p\u003e"
-            }
-          },
-        {
-            "@type": "Question",
-            "name": "What is your warranty and return policy?",
-            "acceptedAnswer": {
-              "@type": "Answer",
-              "text": "\u003cp\u003eWe stand behind the quality of Miroooo with a 1-year warranty and a 30-day money-back guarantee. Not satisfied? Contact us and we will resolve it immediately!\u003c\/p\u003e"
-            }
-          }
-        ]
-    }
-  </script>
 </div><div id="shopify-section-template--24203751129433__reviews" class="shopify-section">
   <!-- Miroooo Reviews Stylesheet -->
   <link rel="stylesheet" href="assets_ref/miroooo-reviews.css">
@@ -2987,6 +2902,185 @@ theme.variantStrings = {
   <!-- Review Script -->
   <script src="assets_ref/miroooo-reviews.js" defer></script>
 </div>
+
+<div id="shopify-section-template--24203751129433__faq" class="shopify-section" style="background: #000000; color: #ffffff; width: 100%; overflow: hidden; padding: clamp(4.5rem, 7vw, 7.5rem) 0; box-sizing: border-box; border-top: 1px solid rgba(255,255,255,0.08);"><style>
+  #shopify-section-template--24203751129433__faq {
+    --section-padding-top: 0px;
+    --section-padding-bottom: 84px;--color-background: 0 0 0;--color-foreground: 255 255 255;
+  --color-border: var(--color-foreground)/ 0.1;
+  --color-border-dark: var(--color-foreground)/ 0.4;
+  --color-border-light: var(--color-foreground)/ 0.06;--color-button-background: 255 255 255;
+  --color-button-border: 255 255 255;--color-button-text: 0 0 0;--color-overlay: 255 255 255;--overlay-opacity: 0.04;}
+  #shopify-section-template--24203751129433__faq .details {
+    background: #111111;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    margin-bottom: 12px;
+    padding: 16px 20px;
+    color: #ffffff;
+  }
+  #shopify-section-template--24203751129433__faq .details__summary {
+    color: #ffffff;
+  }
+  #shopify-section-template--24203751129433__faq .details__content {
+    color: rgba(255, 255, 255, 0.75);
+  }
+  #shopify-section-template--24203751129433__faq .contact__sidebar {
+    background: #111111;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 16px;
+    padding: 24px;
+    color: #ffffff;
+  }
+  #shopify-section-template--24203751129433__faq .input {
+    background: rgba(255, 255, 255, 0.06) !important;
+    border: 1px solid rgba(255, 255, 255, 0.15) !important;
+    color: #ffffff !important;
+  }
+</style>
+
+<div class="section section--padding section--plain" style="background: #000000;">
+  <div class="page-width relative"><div class="faqs with-background flex flex-col lg:flex-row relative z-1" style="background: transparent;">
+        <div class="grow grid gap-8 md:gap-12"><div class="grid gap-4 text-left md:items-end md:flex-row"><div class="title-wrapper leading-none grid gap-4 text-left md:items-end md:flex-row"><h2 class="heading title-lg tracking-heading" style="color: #ffffff;"><split-words class="split-words block" data-animate="fade-up-large">FAQs</split-words></h2></div></div><div class="faq"><div class="accordion">
+                    <details class="details" is="accordion-details" >
+                      <summary class="details__summary flex items-center justify-between gap-2 cursor-pointer">
+                        <span class="text-base lg:text-lg xl:text-xl font-medium leading-tight">What sets Miroooo X apart?</span><svg class="icon icon-plus-alt icon-xs flex-auto" viewBox="0 0 14 14" stroke="currentColor" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path stroke-linecap="round" stroke-linejoin="round" d="M7 1V13M13 7H1"></path>
+    </svg></summary>
+                      <div class="details__content text-base rte"><p>Miroooo X offers premium oral care with style. Powered by advanced sonic technology, it removes up to 10x more plaque, with an elegant design that fits any aesthetic. Quality and style in one.</p></div>
+                    </details>
+                  </div><div class="accordion">
+                    <details class="details" is="accordion-details" >
+                      <summary class="details__summary flex items-center justify-between gap-2 cursor-pointer">
+                        <span class="text-base lg:text-lg xl:text-xl font-medium leading-tight">Is an electric toothbrush better than a manual toothbrush?</span><svg class="icon icon-plus-alt icon-xs flex-auto" viewBox="0 0 14 14" stroke="currentColor" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path stroke-linecap="round" stroke-linejoin="round" d="M7 1V13M13 7H1"></path>
+    </svg></summary>
+                      <div class="details__content text-base rte"><p>Yes, research proves that electric toothbrushes are significantly more effective at removing plaque and improving gum health. Miroooo X produces 40,000 sonic vibrations per minute, cleaning faster and more thoroughly than manual brushing.</p></div>
+                    </details>
+                  </div><div class="accordion">
+                    <details class="details" is="accordion-details" >
+                      <summary class="details__summary flex items-center justify-between gap-2 cursor-pointer">
+                        <span class="text-base lg:text-lg xl:text-xl font-medium leading-tight">Is Miroooo X suitable for sensitive teeth and gums?</span><svg class="icon icon-plus-alt icon-xs flex-auto" viewBox="0 0 14 14" stroke="currentColor" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path stroke-linecap="round" stroke-linejoin="round" d="M7 1V13M13 7H1"></path>
+    </svg></summary>
+                      <div class="details__content text-base rte"><p>Absolutely! Miroooo X features multiple brushing modes, including a dedicated mode for sensitive teeth and gums. You get a thorough clean without any discomfort, even with a sensitive mouth.</p></div>
+                    </details>
+                  </div><div class="accordion">
+                    <details class="details" is="accordion-details" >
+                      <summary class="details__summary flex items-center justify-between gap-2 cursor-pointer">
+                        <span class="text-base lg:text-lg xl:text-xl font-medium leading-tight">Can I subscribe for replacement brush heads?</span><svg class="icon icon-plus-alt icon-xs flex-auto" viewBox="0 0 14 14" stroke="currentColor" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path stroke-linecap="round" stroke-linejoin="round" d="M7 1V13M13 7H1"></path>
+    </svg></summary>
+                      <div class="details__content text-base rte"><p>Yes, we offer a subscription where you automatically receive fresh brush heads every 3 months. You never have to worry about replacing your brush head, saving both time and money.</p><p>Contact us at support@miroooo.com</p></div>
+                    </details>
+                  </div><div class="accordion">
+                    <details class="details" is="accordion-details" >
+                      <summary class="details__summary flex items-center justify-between gap-2 cursor-pointer">
+                        <span class="text-base lg:text-lg xl:text-xl font-medium leading-tight">What is your warranty and return policy?</span><svg class="icon icon-plus-alt icon-xs flex-auto" viewBox="0 0 14 14" stroke="currentColor" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path stroke-linecap="round" stroke-linejoin="round" d="M7 1V13M13 7H1"></path>
+    </svg></summary>
+                      <div class="details__content text-base rte"><p>We stand behind the quality of Miroooo with a 1-year warranty and a 30-day money-back guarantee. Not satisfied? Contact us and we will resolve it immediately!</p></div>
+                    </details>
+                  </div></div>
+        </div><form method="post" action="/contact#ContactForm-template--24203751129433__faq" id="ContactForm-template--24203751129433__faq" accept-charset="UTF-8" class="grow-0"><input type="hidden" name="form_type" value="contact" /><input type="hidden" name="utf8" value="✓" /><sticky-element class="contact__sidebar grid gap-7d5 md:gap-10 sticky top-0">
+              <div class="flex justify-between gap-6">
+                <div class="grid gap-2d5">
+                  <p class="heading lg:text-3xl text-2xl leading-none tracking-tight" style="color: #ffffff;">Have questions?</p>
+                  <div class="text-opacity text-base rte" style="color: rgba(255,255,255,0.7);"><p>Feel free to contact us</p></div>
+                </div><div class="media media--transparent relative"><img src="https://gobrush.nl/cdn/shop/files/chat.png?v=1733942884&amp;width=456" alt="" srcset="https://gobrush.nl/cdn/shop/files/chat.png?v=1733942884&amp;width=63 63w, //gobrush.nl/cdn/shop/files/chat.png?v=1733942884&amp;width=126 126w" width="456" height="434" loading="lazy" sizes="63.04147465437787px" style="--image-width: 63.04147465437787px; --image-height: 60px;" is="lazy-image"></div></div>
+              <div class="grid gap-4d5 md:gap-6"><div class="field">
+                  <input
+                    class="input is-floating"
+                    autocomplete="name"
+                    type="text"
+                    id="ContactFormName-template--24203751129433__faq"
+                    name="contact[name]"
+                    value=""
+                    placeholder="Name"
+                  />
+                  <label class="label is-floating" for="ContactFormName-template--24203751129433__faq">Name</label>
+                </div>
+                <div class="field">
+                  <input
+                    class="input is-floating"
+                    autocomplete="email"
+                    type="email"
+                    id="ContactFormEmail-template--24203751129433__faq"
+                    name="contact[email]"
+                    spellcheck="false"
+                    autocapitalize="off"
+                    value=""
+                    placeholder="Email"
+                    required
+                  >
+                  <label class="label is-floating" for="ContactFormEmail-template--24203751129433__faq">Email</label>
+                </div><div class="field">
+                  <textarea
+                    class="textarea is-floating"
+                    rows="4"
+                    id="ContactFormMessage-template--24203751129433__faq"
+                    name="contact[message]"
+                    placeholder=" "
+                  ></textarea>
+                  <label class="label is-floating" for="ContactFormMessage-template--24203751129433__faq">Message</label>
+                </div>
+                <div class="field">
+                  <label for="ContactSubmit-template--24203751129433__faq" class="sr-only">Send message</label>
+                  <button type="submit" id="ContactSubmit-template--24203751129433__faq" class="button button--primary button--fixed" is="hover-button">
+                    <span class="btn-fill" data-fill></span>
+                    <span class="btn-text">Send message</span>
+                  </button>
+                </div>
+              </div>
+            </sticky-element></form></div></div>
+</div><script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [{
+            "@type": "Question",
+            "name": "What sets Miroooo X apart?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "\u003cp\u003eMiroooo X offers premium oral care with style. Powered by advanced sonic technology, it removes up to 10x more plaque, with an elegant design that fits any aesthetic. Quality and style in one.\u003c\/p\u003e"
+            }
+          },
+        {
+            "@type": "Question",
+            "name": "Is an electric toothbrush better than a manual toothbrush?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "\u003cp\u003eYes, research proves that electric toothbrushes are significantly more effective at removing plaque and improving gum health. Miroooo X produces 40,000 sonic vibrations per minute, cleaning faster and more thoroughly than manual brushing.\u003c\/p\u003e"
+            }
+          },
+        {
+            "@type": "Question",
+            "name": "Is Miroooo X suitable for sensitive teeth and gums?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "\u003cp\u003eAbsolutely! Miroooo X features multiple brushing modes, including a dedicated mode for sensitive teeth and gums. You get a thorough clean without any discomfort, even with a sensitive mouth.\u003c\/p\u003e"
+            }
+          },
+        {
+            "@type": "Question",
+            "name": "Can I subscribe for replacement brush heads?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "\u003cp\u003eYes, we offer a subscription where you automatically receive fresh brush heads every 3 months. You never have to worry about replacing your brush head, saving both time and money.\u003c\/p\u003e\u003cp\u003eContact us at support@miroooo.com\u003c\/p\u003e"
+            }
+          },
+        {
+            "@type": "Question",
+            "name": "What is your warranty and return policy?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "\u003cp\u003eWe stand behind the quality of Miroooo with a 1-year warranty and a 30-day money-back guarantee. Not satisfied? Contact us and we will resolve it immediately!\u003c\/p\u003e"
+            }
+          }
+        ]
+    }
+  </script>
+</div>
     </main>
 
     <footer-group class="footer-group block w-full"><!-- BEGIN sections: footer-group -->
@@ -3000,7 +3094,7 @@ theme.variantStrings = {
   <div class="page-width relative"><carousel-element class="text-with-icons with-border block lg:grid grid--4 relative z-1" watch-css><div class="column flex gap-5 w-full flex-col xl:flex-row xl:text-left text-center" ><div class="column__icon"><svg class="icon icon-support icon-lg inline-block" viewBox="0 0 24 24" stroke="currentColor" fill="none" xmlns="http://www.w3.org/2000/svg">
       <path class="fill" d="M6.09 17.43H4.75C3.65 17.43 2.75 16.54 2.75 15.43V12.28C2.75 11.18 3.64 10.28 4.75 10.28H6.09C7.19 10.28 8.09 11.17 8.09 12.28V15.43C8.09 16.53 7.2 17.43 6.09 17.43ZM20.56 15.43V12.28C20.56 11.18 19.67 10.28 18.56 10.28H17.22C16.12 10.28 15.22 11.17 15.22 12.28V15.43C15.22 16.53 16.11 17.43 17.22 17.43H18.56C19.66 17.43 20.56 16.54 20.56 15.43Z"/>
       <path d="M4.94 17.43V19.86C4.94 20.93 6.01 22 7.43 22H11.65M20.56 13.78V10.67C20.57 5.74 16.58 1.75 11.66 1.75C6.74 1.75 2.75 5.74 2.75 10.66V13.77M12.27 21.99C12.27 22.32 12 22.59 11.67 22.59C11.34 22.59 11.07 22.32 11.07 21.99M12.27 21.99C12.27 21.66 12 21.39 11.67 21.39C11.34 21.39 11.07 21.66 11.07 21.99M12.27 21.99H11.07M20.57 14.76V12.96C20.57 12.13 20.57 11.71 20.43 11.39C20.25 10.95 19.9 10.61 19.47 10.43C19.14 10.29 18.73 10.29 17.9 10.29C17.07 10.29 16.65 10.29 16.33 10.43C15.89 10.61 15.55 10.96 15.37 11.39C15.23 11.72 15.23 12.13 15.23 12.96V14.76C15.23 15.59 15.23 16.01 15.37 16.33C15.55 16.77 15.9 17.11 16.33 17.29C16.66 17.43 17.07 17.43 17.9 17.43C18.73 17.43 19.15 17.43 19.47 17.29C19.91 17.11 20.25 16.76 20.43 16.33C20.57 16 20.57 15.59 20.57 14.76ZM5.43 17.43C6.26 17.43 6.68 17.43 7 17.29C7.44 17.11 7.78 16.76 7.96 16.33C8.1 16 8.1 15.59 8.1 14.76V12.96C8.1 12.13 8.1 11.71 7.96 11.39C7.78 10.95 7.43 10.61 7 10.43C6.67 10.29 6.26 10.29 5.43 10.29C4.6 10.29 4.18 10.29 3.86 10.43C3.42 10.61 3.08 10.96 2.9 11.39C2.76 11.72 2.76 12.13 2.76 12.96V14.76C2.76 15.59 2.76 16.01 2.9 16.33C3.08 16.77 3.43 17.11 3.86 17.29C4.19 17.43 4.6 17.43 5.43 17.43Z" stroke-linecap="round" stroke-linejoin="round"/>
-    </svg></div><div class="column__content"><p class="column__title heading font-medium leading-tight tracking-none">Customer Service</p><div class="column__text rte"><p>info@gobrush.nl</p></div></div>
+    </svg></div><div class="column__content"><p class="column__title heading font-medium leading-tight tracking-none">Customer Service</p><div class="column__text rte"><p>support@miroooo.com</p></div></div>
         </div><div class="column flex gap-5 w-full flex-col xl:flex-row xl:text-left text-center" ><div class="column__icon"><svg class="icon icon-box icon-lg inline-block" viewBox="0 0 24 24" stroke="currentColor" fill="none" xmlns="http://www.w3.org/2000/svg">
       <path class="fill" d="M22 14.2825V7.28202C22 7.10718 21.9083 6.94515 21.7583 6.8552C21.5995 6.75991 21.4009 6.76067 21.2429 6.85718L14.5012 10.9731C13.5927 11.5278 13.1384 11.8052 12.6525 11.9135C12.2228 12.0092 11.7772 12.0092 11.3475 11.9135C10.8616 11.8052 10.4073 11.5278 9.49878 10.9731L2.75714 6.85718C2.59906 6.76067 2.40048 6.75991 2.24166 6.8552C2.09174 6.94515 2 7.10718 2 7.28202V14.2825C2 15.2735 2 15.769 2.14219 16.2143C2.26802 16.6083 2.47396 16.972 2.74708 17.2826C3.05572 17.6336 3.48062 17.8886 4.33042 18.3984L9.53042 21.5184C10.4283 22.0572 10.8773 22.3266 11.3565 22.4318C11.7805 22.5249 12.2195 22.5249 12.6435 22.4318C13.1227 22.3266 13.5717 22.0572 14.4696 21.5184L19.6696 18.3984C20.5194 17.8886 20.9443 17.6336 21.2529 17.2826C21.526 16.972 21.732 16.6083 21.8578 16.2143C22 15.769 22 15.2735 22 14.2825Z"/>
       <path d="M7.49988 9.5L16.5 4M12 12.5L21 7M12 12.5L3 7M12 12.5V22.5M2 9.71771V14.2823C2 15.2733 2 15.7688 2.14219 16.2141C2.26802 16.6081 2.47396 16.9718 2.74708 17.2824C3.05572 17.6334 3.48062 17.8884 4.33042 18.3983L9.53042 21.5183C10.4283 22.057 10.8773 22.3264 11.3565 22.4316C11.7805 22.5247 12.2195 22.5247 12.6435 22.4316C13.1227 22.3264 13.5717 22.057 14.4696 21.5183L19.6696 18.3983C20.5194 17.8884 20.9443 17.6334 21.2529 17.2824C21.526 16.9718 21.732 16.6081 21.8578 16.2141C22 15.7688 22 15.2733 22 14.2823V9.71771C22 8.72669 22 8.23117 21.8578 7.78593C21.732 7.39192 21.526 7.02818 21.2529 6.71757C20.9443 6.36657 20.5194 6.11163 19.6696 5.60175L14.4696 2.48175C13.5717 1.94301 13.1227 1.67364 12.6435 1.56839C12.2195 1.4753 11.7805 1.4753 11.3565 1.56839C10.8773 1.67364 10.4283 1.94301 9.53042 2.48175L4.33042 5.60175C3.48062 6.11163 3.05572 6.36657 2.74708 6.71757C2.47396 7.02818 2.26802 7.39192 2.14219 7.78593C2 8.23117 2 8.72669 2 9.71771Z" stroke-linecap="round" stroke-linejoin="round"/>
@@ -3014,7 +3108,7 @@ theme.variantStrings = {
     </svg></div><div class="column__content"><p class="column__title heading font-medium leading-tight tracking-none">Refer a Friend</p><div class="column__text rte"><p>Refer a friend and win a chance to get your full order value refunded </p></div></div>
         </div><div class="column flex gap-5 w-full flex-col xl:flex-row xl:text-left text-center" ><div class="column__icon"><svg class="icon icon-shield icon-lg inline-block" viewBox="0 0 24 24" stroke="currentColor" fill="none" xmlns="http://www.w3.org/2000/svg">
       <path class="fill" d="M3 8.11938C3 6.99027 3 6.42571 3.17756 5.93283C3.33451 5.49716 3.59019 5.10373 3.92457 4.78337C4.30286 4.42093 4.81875 4.19165 5.85055 3.73308L9.40073 2.15523C10.3579 1.72982 10.8365 1.51712 11.334 1.43311C11.7749 1.35866 12.2251 1.35866 12.666 1.43311C13.1635 1.51712 13.6421 1.72982 14.5993 2.15523L18.1495 3.73308C19.1812 4.19165 19.6971 4.42093 20.0754 4.78337C20.4098 5.10373 20.6655 5.49716 20.8224 5.93283C21 6.42571 21 6.99027 21 8.11938V13.5748C21 14.8271 21 15.4532 20.8274 16.0216C20.6746 16.5247 20.4241 16.9928 20.0902 17.3991C19.713 17.858 19.192 18.2053 18.1501 18.8999L14.6626 21.2249C13.7003 21.8665 13.2192 22.1872 12.6991 22.3118C12.2395 22.422 11.7605 22.422 11.3009 22.3118C10.7808 22.1872 10.2997 21.8665 9.33744 21.2249L5.84992 18.8999C4.80796 18.2053 4.28697 17.858 3.90982 17.3991C3.57592 16.9928 3.32541 16.5247 3.1726 16.0216C3 15.4532 3 14.8271 3 13.5748V8.11938Z"/>
-      <path d="M9 12L11 14L15.5 9.5M9.40073 2.15523L5.85055 3.73308C4.81875 4.19165 4.30286 4.42093 3.92457 4.78337C3.59019 5.10373 3.33451 5.49716 3.17756 5.93283C3 6.42571 3 6.99027 3 8.11938V13.5748C3 14.8271 3 15.4532 3.1726 16.0216C3.32541 16.5247 3.57592 16.9928 3.90982 17.3991C4.28697 17.858 4.80796 18.2053 5.84992 18.8999L9.33744 21.2249C10.2997 21.8665 10.7808 22.1872 11.3009 22.3118C11.7605 22.422 12.2395 22.422 12.6991 22.3118C13.2192 22.1872 13.7003 21.8665 14.6626 21.2249L18.1501 18.8999C19.192 18.2053 19.713 17.858 20.0902 17.3991C20.4241 16.9928 20.6746 16.5247 20.8274 16.0216C21 15.4532 21 14.8271 21 13.5748V8.11938C21 6.99027 21 6.42571 20.8224 5.93283C20.6655 5.49716 20.4098 5.10373 20.0754 4.78337C19.6971 4.42093 19.1812 4.19165 18.1495 3.73308L14.5993 2.15523C13.6421 1.72982 13.1635 1.51712 12.666 1.43311C12.2251 1.35866 11.7749 1.35866 11.334 1.43311C10.8365 1.51712 10.3579 1.72982 9.40073 2.15523Z" stroke-linecap="round" stroke-linejoin="round"/>
+      <path d="M9 12L11 14L15.5 9.5M9.40073 2.15523L5.85055 3.73308C4.81875 4.19165 4.30286 4.42093 3.92457 4.78337C3.59019 5.10373 3.33451 5.49716 3.17756 5.93283C3 6.42571 3 6.99027 3 8.11938V13.5748C3 14.8271 3 15.4532 3.1726 16.0216C3.32541 16.5247 3.57592 16.9928 3.90982 17.3991C4.28697 17.858 4.80796 18.2053 5.84992 18.8999L9.33744 21.2249C10.2997 21.8665 10.7808 22.1872 11.3009 22.3118C11.7605 22.422 12.2395 22.422 12.6991 22.3118C13.2192 22.1872 13.7003 21.8665 14.6626 21.2249L18.1501 18.8999C19.192 18.2053 19.713 17.858 20.0902 17.3991C20.4241 16.9928 20.6746 16.5247 20.8274 16.0216C21 15.4532 21 14.8271 21 13.5748V8.11938Z" stroke-linecap="round" stroke-linejoin="round"/>
     </svg></div><div class="column__content"><p class="column__title heading font-medium leading-tight tracking-none">Protect Your Order</p><div class="column__text rte"><p>Insure your order against loss or damage and receive an instant free replacement or refund</p></div></div>
         </div></carousel-element>
   </div>
@@ -3076,11 +3170,11 @@ theme.variantStrings = {
             <a
               class="link inline-block leading-tight text-left"
               
-                href="mailto:hello@domain.com"
+                href="mailto:support@miroooo.com"
               
               is="magnet-link"
             >
-              <span class="btn-text" data-text>info@gobrush.nl</span>
+              <span class="btn-text" data-text>support@miroooo.com</span>
             </a>
           </p></div>
     </div>
@@ -3089,7 +3183,7 @@ theme.variantStrings = {
         .footer__item--brand_information { width: calc(95% - var(--sp-12)); }
       }
     </style></div></div>
-      </div><div class="footer__right grid gap-10"><div class="footer__newsletter grid gap-6"><p class="h3 text-xl md:title-sm leading-none tracking-none font-medium lg:font-heading">Ontvang exclusieve kortingen en acties – schrijf je in!</p><form method="post" action="/contact#newsletter-sections--24203576869209__footer" id="newsletter-sections--24203576869209__footer" accept-charset="UTF-8" class="newsletter-form grid gap-5"><input type="hidden" name="form_type" value="customer" /><input type="hidden" name="utf8" value="✓" /><input type="hidden" name="contact[tags]" value="newsletter" />
+      </div><div class="footer__right grid gap-10"><div class="footer__newsletter grid gap-6"><p class="h3 text-xl md:title-sm leading-none tracking-none font-medium lg:font-heading">Receive exclusive discounts and updates – subscribe today!</p><form method="post" action="/contact#newsletter-sections--24203576869209__footer" id="newsletter-sections--24203576869209__footer" accept-charset="UTF-8" class="newsletter-form grid gap-5"><input type="hidden" name="form_type" value="customer" /><input type="hidden" name="utf8" value="✓" /><input type="hidden" name="contact[tags]" value="newsletter" />
   <input type="hidden" name="contact[context]" value="footer" />
   <div class="field relative">
     <input
@@ -3101,9 +3195,9 @@ theme.variantStrings = {
       autocorrect="off"
       autocapitalize="off"
       autocomplete="email"
-      placeholder="Voer uw e-mailadres in"
+      placeholder="Enter your email"
       required/>
-    <label class="label is-floating" for="NewsletterForm--sections--24203576869209__footer">Voer uw e-mailadres in</label>
+    <label class="label is-floating" for="NewsletterForm--sections--24203576869209__footer">Enter your email</label>
     <div class="self-submit-button absolute">
       <button type="submit" class="button button--primary self-button flex justify-center items-center" is="magnet-button" data-magnet="20" aria-label="">
         <span class="btn-text">

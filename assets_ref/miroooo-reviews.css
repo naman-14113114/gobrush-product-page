@@ -577,23 +577,28 @@
    3. REVIEW MASONRY GRID & CARDS
    ========================================================================== */
 .miroooo-reviews-grid {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 14px;
-  align-items: start;
+  column-count: 1;
+  column-gap: 14px;
 }
 
-@media (min-width: 768px) {
+@media (min-width: 640px) {
   .miroooo-reviews-grid {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: 18px;
+    column-count: 2;
+    column-gap: 16px;
   }
 }
 
-@media (min-width: 1024px) {
+@media (min-width: 900px) {
   .miroooo-reviews-grid {
-    grid-template-columns: repeat(4, minmax(0, 1fr));
-    gap: 20px;
+    column-count: 3;
+    column-gap: 18px;
+  }
+}
+
+@media (min-width: 1200px) {
+  .miroooo-reviews-grid {
+    column-count: 4;
+    column-gap: 20px;
   }
 }
 
@@ -604,8 +609,11 @@
   border-radius: var(--miroooo-radius-md);
   padding: 18px 16px;
   box-sizing: border-box;
-  display: flex;
-  flex-direction: column;
+  display: inline-block;
+  width: 100%;
+  break-inside: avoid;
+  page-break-inside: avoid;
+  margin-bottom: 20px;
   transition: var(--miroooo-transition);
   position: relative;
   overflow: hidden;
