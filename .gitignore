@@ -6,6 +6,7 @@ __pycache__/
 
 # Temporary scraped and dumped files
 *.png
+!assets_ref/**/*.png
 *.txt
 scraped_page.html
 miroshine_page.html
