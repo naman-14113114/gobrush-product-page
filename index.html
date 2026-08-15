@@ -484,7 +484,7 @@ Shopify.SignInWithShop.User.recognized = false;</script>
   window.ShopifyAnalytics = window.ShopifyAnalytics || {};
   window.ShopifyAnalytics.meta = window.ShopifyAnalytics.meta || {};
   window.ShopifyAnalytics.meta.currency = 'EUR';
-  var meta = {"product":{"id":9593510658393,"gid":"gid:\/\/shopify\/Product\/9593510658393","vendor":"GoBrush","type":"","handle":"brush-one-grey","variants":[{"id":49200206872921,"price":8900,"name":"Brush One Grey - Grey","public_title":"Grey","sku":"BRU-01"},{"id":49268138836313,"price":8900,"name":"Brush One Grey - Rose Gold","public_title":"Rose Gold","sku":"BRU-01"},{"id":49268163674457,"price":8900,"name":"Brush One Grey - Silver","public_title":"Silver","sku":"BRU-01"}],"remote":false},"page":{"pageType":"product","resourceType":"product","resourceId":9593510658393,"requestId":"d7b28d4c-0fdf-43c6-974a-e40759ac9b4c-1786682425"}};
+  var meta = {"product":{"id":9593510658393,"gid":"gid:\/\/shopify\/Product\/9593510658393","vendor":"GoBrush","type":"","handle":"brush-one-grey","variants":[{"id":49200206872921,"price":8900,"name":"Brush One Grey - Grey","public_title":"Grey","sku":"BRU-01"},{"id":49268138836313,"price":8900,"name":"Brush One Grey - Pink","public_title":"Pink","sku":"BRU-01"},{"id":49268163674457,"price":8900,"name":"Brush One Grey - Silver","public_title":"Silver","sku":"BRU-01"}],"remote":false},"page":{"pageType":"product","resourceType":"product","resourceId":9593510658393,"requestId":"d7b28d4c-0fdf-43c6-974a-e40759ac9b4c-1786682425"}};
   for (var attr in meta) {
     window.ShopifyAnalytics.meta[attr] = meta[attr];
   }
@@ -859,6 +859,215 @@ first.parentNode.insertBefore(script, first);
 }
 .product__media img {
   transition: opacity 0.3s ease;
+}
+
+/* GoBrush Juujo-Style Bundle Tiers & Free Gifts */
+.bundle-tier-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  border-radius: 16px;
+  border: 1.5px solid #e5e5e5;
+  background: #ffffff;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  cursor: pointer;
+  overflow: hidden;
+}
+.bundle-tier-card:hover {
+  border-color: #737373;
+}
+.bundle-tier-card.is-selected {
+  border: 2px solid #171717;
+  background: #fafafa;
+  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.05);
+}
+.bundle-tier-card .tier-header-btn {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 14px 16px;
+  width: 100%;
+  text-align: left;
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-family: inherit;
+}
+.bundle-tier-card.has-top-badge .tier-header-btn {
+  padding-top: 22px;
+}
+.tier-radio {
+  margin-top: 2px;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  border: 1.5px solid #737373;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  transition: all 0.15s ease;
+  background: transparent;
+}
+.bundle-tier-card.is-selected .tier-radio {
+  border-color: #171717;
+  background: #171717;
+}
+.tier-radio-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #ffffff;
+}
+.tier-badge-pill {
+  font-size: 11px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  padding: 2.5px 8px;
+  border-radius: 9999px;
+  background: #171717;
+  color: #ffffff;
+  display: inline-flex;
+  align-items: center;
+}
+.tier-top-badge {
+  position: absolute;
+  top: 0;
+  right: 18px;
+  background: #171717;
+  color: #ffffff;
+  font-size: 9.5px;
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  padding: 3.5px 12px;
+  border-radius: 0 0 6px 6px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+  z-index: 10;
+}
+.tier-popular-circle {
+  position: absolute;
+  top: -8px;
+  right: 14px;
+  background: #171717;
+  color: #ffffff;
+  font-size: 10px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  padding: 3px 10px;
+  border-radius: 9999px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+  z-index: 10;
+}
+.tier-expanded-panel {
+  border-top: 1px solid #ededed;
+  padding: 12px 16px 14px;
+  background: #ffffff;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.brush-selection-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 4px 0;
+}
+.brush-color-swatches {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.color-swatch-btn {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  border: 1px solid #d4d4d4;
+  position: relative;
+  cursor: pointer;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  outline: none;
+}
+.color-swatch-btn:hover {
+  transform: scale(1.12);
+}
+.color-swatch-btn.is-active {
+  box-shadow: 0 0 0 2px #ffffff, 0 0 0 4px #171717;
+  border-color: transparent;
+}
+.color-swatch-btn.swatch-grey { background-color: #737373; }
+.color-swatch-btn.swatch-pink { background-color: #f2a7b3; }
+.color-swatch-btn.swatch-silver { background-color: #e5e5e5; }
+
+/* Free Gifts 3-Tier Grid */
+.gift-card-item {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  background: #ffffff;
+  border: 1.5px solid #e5e5e5;
+  border-radius: 14px;
+  padding: 18px 8px 12px;
+  transition: all 0.25s ease;
+}
+.gift-card-item.is-unlocked {
+  border-color: #171717;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.05);
+}
+.gift-card-item.is-locked {
+  opacity: 0.5;
+  filter: grayscale(0.85);
+}
+.gift-badge {
+  position: absolute;
+  top: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  white-space: nowrap;
+  font-size: 10px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  padding: 3px 10px;
+  border-radius: 9999px;
+  color: #ffffff;
+  z-index: 10;
+}
+.gift-badge.badge-unlocked {
+  background: #171717;
+}
+.gift-badge.badge-locked {
+  background: #9ca3af;
+}
+.gift-image-wrap {
+  width: 100%;
+  aspect-ratio: 1;
+  border-radius: 10px;
+  overflow: hidden;
+  margin-top: 4px;
+  margin-bottom: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #f9f9f9;
+}
+.gift-image-wrap img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.25s ease;
+}
+.gift-card-item:hover .gift-image-wrap img {
+  transform: scale(1.06);
 }
 </style>
 <script>
@@ -1336,109 +1545,259 @@ theme.variantStrings = {
         data-product-id="9593510658393"
         data-product-url="/products/brush-one-grey"
         data-update-url="true"
-      ><div class="product__title" >
-                <h1 class="heading leading-none product-title-sm mobile:product-title-sm col-span-full">
-                  <split-words class="split-words block" data-animate="fade-up">Brush One Grey</split-words>
-                </h1></div><div class="product__price grid gap-3" >
-                <div class="no-js-hidden" id="Price-template--24203751129433__main-product-9593510658393"><div class="price price--on-sale flex flex-wrap items-baseline gap-2 lg:gap-1d5"
-><span class="sr-only">Sale price</span><span class="price__regular whitespace-nowrap">€89,00</span><span class="sr-only">Regular price</span>
-    <span class="price__sale inline-flex items-center h-auto relative">€123,75</span></div>
-</div><form method="post" action="/cart/add" id="ProductFormInstallment-template--24203751129433__main-product-9593510658393" accept-charset="UTF-8" class="installment text-sm leading-tight" enctype="multipart/form-data"><input type="hidden" name="form_type" value="product" /><input type="hidden" name="utf8" value="✓" /><input type="hidden" name="id" value="49200206872921" />
-                  
-<input type="hidden" name="product-id" value="9593510658393" /><input type="hidden" name="section-id" value="template--24203751129433__main-product" /></form></div><div class="variant-picker grid gap-5">
-    <fieldset class="product-form__input variant-input-wrapper">
-      <legend class="sr-only">Color</legend><div class="form__label flex items-center justify-between gap-2 w-full">
-        <div class="flex gap-2">Color:
-          <span class="font-medium">Grey</span>
-        </div></div>
-      <ul class="swatches swatches--round swatches--variant flex items-start flex-wrap gap-4"><li>
-            <a href="/products/brush-one-rosegold" class="block" is="magnet-link">
-              <input
-                type="radio"
-                class="sr-only"
-                id="template--24203751129433__main-product-9593510658393-color-0"
-                
-                tabindex="-1"
-              /><label
-                  for="template--24203751129433__main-product-9593510658393-color-0"
-                  class="label-swatch text-sm font-medium leading-none cursor-pointer relative pointer-events-none"
-                  title="Rose Gold"
-                >Rose Gold</label></a>
-          </li><li>
-            <a href="/products/brush-one-grey" class="block" is="magnet-link">
-              <input
-                type="radio"
-                class="sr-only"
-                id="template--24203751129433__main-product-9593510658393-color-1"
-                checked
-                tabindex="-1"
-              /><label
-                  for="template--24203751129433__main-product-9593510658393-color-1"
-                  class="label-swatch text-sm font-medium leading-none cursor-pointer relative pointer-events-none"
-                  title="Grey"
-                >Grey</label></a>
-          </li><li>
-            <a href="/products/brush-one-silver-1" class="block" is="magnet-link">
-              <input
-                type="radio"
-                class="sr-only"
-                id="template--24203751129433__main-product-9593510658393-color-2"
-                
-                tabindex="-1"
-              /><label
-                  for="template--24203751129433__main-product-9593510658393-color-2"
-                  class="label-swatch text-sm font-medium leading-none cursor-pointer relative pointer-events-none"
-                  title="Silver"
-                >Silver</label></a>
-          </li></ul>
-    </fieldset>
-  </div><div
-  class="product__inventory no-js-hidden"
-  id="Inventory-template--24203751129433__main-product-9593510658393"
-  role="status"
-  
-><div class="alert alert--success inline-flex items-center gap-3"><svg class="icon icon-ellipse icon-xs flex-auto" viewBox="0 0 16 16" stroke="currentColor" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <circle fill="currentColor" cx="8" cy="8" r="5"></circle>
-      <circle cx="8" cy="8" r="6.5" stroke-opacity="0.3" stroke-width="3"></circle>
-    </svg><span class="text-sm font-medium leading-tight">In stock</span>
-      </div></div>
-<div class="product-form-wrapper" ><form method="post" action="/cart/add" id="ProductForm-template--24203751129433__main-product-9593510658393" accept-charset="UTF-8" class="product-form grid gap-8" enctype="multipart/form-data" data-type="add-to-cart-form" data-hide-errors="false" is="product-form"><input type="hidden" name="form_type" value="product" /><input type="hidden" name="utf8" value="✓" /><input type="hidden" name="id" value="49200206872921" disabled /><div class="product-form__buttons grid gap-4" id="QuantityForm-template--24203751129433__main-product-9593510658393">
-      <div class="product-form__error-message alert alert--error text-sm font-medium leading-tight" role="alert" hidden></div><div class="buy-buttons flex gap-4"><label for="Quantity-template--24203751129433__main-product-9593510658393" class="label sr-only">Quantity</label>
-          <quantity-input class="quantity inline-flex flex-auto relative" data-section-id="template--24203751129433__main-product" data-product-id="9593510658393">
-            <button type="button" name="minus" class="quantity__button" aria-label="Verminder hoeveelheid voor Brush One Grey"><svg class="icon icon-chevron-left icon-sm stroke-2 transform" viewBox="0 0 24 24" stroke="currentColor" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <path stroke-linecap="round" stroke-linejoin="round" d="M14 6L8 12L14 18"></path>
-    </svg></button>
-            <input
-              id="Quantity-template--24203751129433__main-product-9593510658393"
-              class="quantity__input text-sm sm:text-base font-medium text-center"
-              type="number"
-              name="quantity"
-              inputmode="numeric"
-              autocomplete="off"
-              data-quantity-variant-id="49200206872921"
-              data-cart-quantity="0"
-              data-min="1"
-              min="1"
-              
-              step="1"
-              value="1"
-              form="ProductForm-template--24203751129433__main-product-9593510658393"
-            />
-            <button type="button" name="plus" class="quantity__button" aria-label="Verhoog de hoeveelheid voor Brush One Grey"><svg class="icon icon-chevron-right icon-sm stroke-2 transform" viewBox="0 0 24 24" stroke="currentColor" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <path stroke-linecap="round" stroke-linejoin="round" d="M10 6L16 12L10 18"></path>
-    </svg></button>
-          </quantity-input><button
-          type="submit"
-          name="add"
-          form="ProductForm-template--24203751129433__main-product-9593510658393"
-          class="product-form__submit button button--primary button--fixed w-full"
-          is="hover-button">
-          <span class="btn-fill" data-fill></span>
-          <span class="btn-text">Add to cart</span>
-        </button></div></div><input type="hidden" name="product-id" value="9593510658393" /><input type="hidden" name="section-id" value="template--24203751129433__main-product" /></form></div>
-<div class="product__text rte text-sm" ><p><span style="font-family: -apple-system, BlinkMacSystemFont, 'San Francisco', 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif; font-size: 0.875rem;">✓ <meta charset="UTF-8">Brushes up to <strong>60 days</strong><span> on a single charge.</span><br>✓ <meta charset="UTF-8"> <span>Powerful </span><strong>sonic cleaning</strong><span> for a radiant and healthy smile.</span></span><br><span style="font-family: -apple-system, BlinkMacSystemFont, 'San Francisco', 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif; font-size: 0.875rem;">✓ Includes convenient <strong>Travelcase</strong> worth €15.95.</span></p></div><product-recommendations class="complementary-products flex flex-col gap-5" data-url="/recommendations/products?section_id=template--24203751129433__main-product&product_id=9593510658393&limit=4&intent=complementary">
-  <div class="flex justify-between gap-4 items-center">
-    <p class="recommend__title font-medium text-lg grow">Pairs well with</p></div><div class="horizontal-products relative"></div></product-recommendations>
+      ><div class="product__title">
+  <a href="#shopify-section-template--24203751129433__reviews" class="product__reviews-badge inline-flex items-center gap-2 mb-2 no-underline hover:opacity-80 transition-opacity cursor-pointer">
+    <div class="text-amber-500 text-lg leading-none" aria-hidden="true">★★★★★</div>
+    <span class="text-xs font-bold tracking-wide uppercase text-neutral-800">4.8 · TRUSTED BY 40,000+ CUSTOMERS</span>
+  </a>
+  <h1 class="heading leading-none product-title-sm mobile:product-title-sm col-span-full font-bold" id="main-product-title">
+    Brush One Grey
+  </h1>
+</div>
+
+<div class="product__price grid gap-2 mt-2" id="main-product-price-section">
+  <div class="flex flex-wrap items-baseline gap-2">
+    <span class="text-2xl sm:text-3xl font-extrabold text-neutral-900" id="main-price-display">€158,00</span>
+    <span class="text-base sm:text-lg text-neutral-400 line-through" id="main-compare-price-display">€247,50</span>
+    <span class="inline-block px-2.5 py-0.5 rounded-full text-xs font-bold uppercase tracking-wider bg-neutral-900 text-white" id="main-discount-badge">Save €89,50</span>
+  </div>
+</div>
+
+<div class="product__features-list my-4">
+  <ul class="space-y-2 text-sm text-neutral-800" style="list-style: none; padding: 0;">
+    <li class="flex items-start gap-2">
+      <span class="text-neutral-900 font-bold">✓</span>
+      <span>Brushes up to <strong>60 days</strong> on a single charge.</span>
+    </li>
+    <li class="flex items-start gap-2">
+      <span class="text-neutral-900 font-bold">✓</span>
+      <span>Powerful <strong>sonic cleaning</strong> for a radiant and healthy smile.</span>
+    </li>
+    <li class="flex items-start gap-2">
+      <span class="text-neutral-900 font-bold">✓</span>
+      <span>Includes convenient <strong>Travelcase</strong> worth €15.95.</span>
+    </li>
+  </ul>
+</div>
+
+<!-- Bundle Divider -->
+<div class="bundle-header-divider flex items-center gap-3 my-4">
+  <span class="h-px flex-1 bg-neutral-200" style="background-color: #e5e5e5; height: 1px; flex: 1;"></span>
+  <span class="text-[10.5px] sm:text-[11px] font-bold uppercase tracking-widest text-neutral-800" style="letter-spacing: 0.12em;">
+    BUNDLE &amp; SAVE + FREE SHIPPING &amp; GIFTS
+  </span>
+  <span class="h-px flex-1 bg-neutral-200" style="background-color: #e5e5e5; height: 1px; flex: 1;"></span>
+</div>
+
+<!-- 3 Tier Cards -->
+<div class="bundle-tiers-container flex flex-col gap-3" id="bundle-tiers">
+  <!-- Tier 1: Buy 1 -->
+  <div class="bundle-tier-card" data-tier="single" onclick="selectBundleTier('single')">
+    <button type="button" class="tier-header-btn" aria-label="Select Buy 1 Tier">
+      <div class="tier-radio"><div class="tier-radio-dot"></div></div>
+      <div class="flex-1 flex justify-between items-start gap-2">
+        <div>
+          <div class="flex items-center gap-2">
+            <span class="font-extrabold text-sm sm:text-base uppercase tracking-tight text-neutral-900">Buy 1</span>
+          </div>
+          <p class="text-xs sm:text-sm text-neutral-500 mt-0.5">Includes 1 Brush One &amp; 1 Travel Case</p>
+        </div>
+        <div class="text-right">
+          <div class="flex items-baseline gap-1.5 justify-end">
+            <span class="font-bold text-base sm:text-lg text-neutral-900">€89,00</span>
+            <span class="text-xs sm:text-sm text-neutral-400 line-through">€123,75</span>
+          </div>
+          <span class="tier-badge-pill mt-0.5">SAVE €34,75</span>
+        </div>
+      </div>
+    </button>
+    <div class="tier-expanded-panel" id="panel-single" style="display: none;">
+      <!-- Row 1 -->
+      <div class="brush-selection-row">
+        <span class="text-xs sm:text-sm font-medium text-neutral-700">Brush Color:</span>
+        <div class="brush-color-swatches" data-brush-index="0">
+          <button type="button" class="color-swatch-btn swatch-grey is-active" title="Grey" aria-label="Grey" onclick="setBrushChoice('single', 0, 'Grey', event)"></button>
+          <button type="button" class="color-swatch-btn swatch-pink" title="Pink" aria-label="Pink" onclick="setBrushChoice('single', 0, 'Pink', event)"></button>
+          <button type="button" class="color-swatch-btn swatch-silver" title="Silver" aria-label="Silver" onclick="setBrushChoice('single', 0, 'Silver', event)"></button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Tier 2: Buy 2 (Default, Most Popular) -->
+  <div class="bundle-tier-card is-selected has-top-badge" data-tier="bundle-2" onclick="selectBundleTier('bundle-2')">
+    <div class="tier-popular-circle">Most Popular</div>
+    <button type="button" class="tier-header-btn" aria-label="Select Buy 2 Tier">
+      <div class="tier-radio"><div class="tier-radio-dot"></div></div>
+      <div class="flex-1 flex justify-between items-start gap-2">
+        <div>
+          <div class="flex items-center gap-2">
+            <span class="font-extrabold text-sm sm:text-base uppercase tracking-tight text-neutral-900">Buy 2</span>
+            <span class="tier-badge-pill">€20 OFF</span>
+          </div>
+          <p class="text-xs sm:text-sm text-neutral-500 mt-0.5">Includes 2 Brush One sets &amp; <strong>2 FREE Gifts</strong> (€35.90 Value)</p>
+        </div>
+        <div class="text-right">
+          <div class="flex items-baseline gap-1.5 justify-end">
+            <span class="font-bold text-base sm:text-lg text-neutral-900">€158,00</span>
+            <span class="text-xs sm:text-sm text-neutral-400 line-through">€247,50</span>
+          </div>
+          <span class="tier-badge-pill mt-0.5">SAVE €89,50</span>
+        </div>
+      </div>
+    </button>
+    <div class="tier-expanded-panel" id="panel-bundle-2">
+      <!-- Row 1 -->
+      <div class="brush-selection-row">
+        <span class="text-xs sm:text-sm font-medium text-neutral-700">#1 Brush Color:</span>
+        <div class="brush-color-swatches" data-brush-index="0">
+          <button type="button" class="color-swatch-btn swatch-grey is-active" title="Grey" aria-label="Grey" onclick="setBrushChoice('bundle-2', 0, 'Grey', event)"></button>
+          <button type="button" class="color-swatch-btn swatch-pink" title="Pink" aria-label="Pink" onclick="setBrushChoice('bundle-2', 0, 'Pink', event)"></button>
+          <button type="button" class="color-swatch-btn swatch-silver" title="Silver" aria-label="Silver" onclick="setBrushChoice('bundle-2', 0, 'Silver', event)"></button>
+        </div>
+      </div>
+      <!-- Row 2 -->
+      <div class="brush-selection-row">
+        <span class="text-xs sm:text-sm font-medium text-neutral-700">#2 Brush Color:</span>
+        <div class="brush-color-swatches" data-brush-index="1">
+          <button type="button" class="color-swatch-btn swatch-grey" title="Grey" aria-label="Grey" onclick="setBrushChoice('bundle-2', 1, 'Grey', event)"></button>
+          <button type="button" class="color-swatch-btn swatch-pink is-active" title="Pink" aria-label="Pink" onclick="setBrushChoice('bundle-2', 1, 'Pink', event)"></button>
+          <button type="button" class="color-swatch-btn swatch-silver" title="Silver" aria-label="Silver" onclick="setBrushChoice('bundle-2', 1, 'Silver', event)"></button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Tier 3: Buy 3 (Best Value) -->
+  <div class="bundle-tier-card has-top-badge" data-tier="bundle-3" onclick="selectBundleTier('bundle-3')">
+    <div class="tier-top-badge">BEST VALUE</div>
+    <button type="button" class="tier-header-btn" aria-label="Select Buy 3 Tier">
+      <div class="tier-radio"><div class="tier-radio-dot"></div></div>
+      <div class="flex-1 flex justify-between items-start gap-2">
+        <div>
+          <div class="flex items-center gap-2">
+            <span class="font-extrabold text-sm sm:text-base uppercase tracking-tight text-neutral-900">Buy 3</span>
+            <span class="tier-badge-pill">€40 OFF</span>
+          </div>
+          <p class="text-xs sm:text-sm text-neutral-500 mt-0.5">Includes 3 Brush One sets &amp; <strong>3 FREE Gifts</strong> (€60.85 Value)</p>
+        </div>
+        <div class="text-right">
+          <div class="flex items-baseline gap-1.5 justify-end">
+            <span class="font-bold text-base sm:text-lg text-neutral-900">€227,00</span>
+            <span class="text-xs sm:text-sm text-neutral-400 line-through">€371,25</span>
+          </div>
+          <span class="tier-badge-pill mt-0.5">SAVE €144,25</span>
+        </div>
+      </div>
+    </button>
+    <div class="tier-expanded-panel" id="panel-bundle-3" style="display: none;">
+      <!-- Row 1 -->
+      <div class="brush-selection-row">
+        <span class="text-xs sm:text-sm font-medium text-neutral-700">#1 Brush Color:</span>
+        <div class="brush-color-swatches" data-brush-index="0">
+          <button type="button" class="color-swatch-btn swatch-grey is-active" title="Grey" aria-label="Grey" onclick="setBrushChoice('bundle-3', 0, 'Grey', event)"></button>
+          <button type="button" class="color-swatch-btn swatch-pink" title="Pink" aria-label="Pink" onclick="setBrushChoice('bundle-3', 0, 'Pink', event)"></button>
+          <button type="button" class="color-swatch-btn swatch-silver" title="Silver" aria-label="Silver" onclick="setBrushChoice('bundle-3', 0, 'Silver', event)"></button>
+        </div>
+      </div>
+      <!-- Row 2 -->
+      <div class="brush-selection-row">
+        <span class="text-xs sm:text-sm font-medium text-neutral-700">#2 Brush Color:</span>
+        <div class="brush-color-swatches" data-brush-index="1">
+          <button type="button" class="color-swatch-btn swatch-grey" title="Grey" aria-label="Grey" onclick="setBrushChoice('bundle-3', 1, 'Grey', event)"></button>
+          <button type="button" class="color-swatch-btn swatch-pink is-active" title="Pink" aria-label="Pink" onclick="setBrushChoice('bundle-3', 1, 'Pink', event)"></button>
+          <button type="button" class="color-swatch-btn swatch-silver" title="Silver" aria-label="Silver" onclick="setBrushChoice('bundle-3', 1, 'Silver', event)"></button>
+        </div>
+      </div>
+      <!-- Row 3 -->
+      <div class="brush-selection-row">
+        <span class="text-xs sm:text-sm font-medium text-neutral-700">#3 Brush Color:</span>
+        <div class="brush-color-swatches" data-brush-index="2">
+          <button type="button" class="color-swatch-btn swatch-grey" title="Grey" aria-label="Grey" onclick="setBrushChoice('bundle-3', 2, 'Grey', event)"></button>
+          <button type="button" class="color-swatch-btn swatch-pink" title="Pink" aria-label="Pink" onclick="setBrushChoice('bundle-3', 2, 'Pink', event)"></button>
+          <button type="button" class="color-swatch-btn swatch-silver is-active" title="Silver" aria-label="Silver" onclick="setBrushChoice('bundle-3', 2, 'Silver', event)"></button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Delivery Countdown Timer Box -->
+<div class="delivery-timer-box rounded-xl border border-neutral-200 bg-neutral-50/80 p-3.5 my-4 flex items-center gap-3 text-sm text-neutral-800">
+  <div class="w-8 h-8 rounded-full bg-neutral-200/80 flex items-center justify-center flex-shrink-0 text-neutral-800">
+    <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width: 16px; height: 16px;"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+  </div>
+  <div class="flex-1 text-xs sm:text-sm leading-snug">
+    Order within <strong class="text-neutral-950 font-mono font-bold" id="bundle-countdown-timer">14:59</strong> to receive it by <strong class="text-neutral-950 font-bold" id="bundle-delivery-date">Wednesday, 19 Aug</strong>
+  </div>
+</div>
+
+<!-- Add To Cart Main Button -->
+<div class="main-cta-wrapper my-4">
+  <button
+    type="button"
+    id="hero-cta"
+    class="product-form__submit button button--primary w-full py-4 px-6 rounded-full bg-neutral-950 text-white font-bold text-base sm:text-lg tracking-wide hover:bg-neutral-800 transition-all duration-200 shadow-md flex items-center justify-center gap-2 active:scale-[0.99]"
+    style="border-radius: 9999px; background: #171717; color: #ffffff; width: 100%; border: none; cursor: pointer;"
+  >
+    <span class="btn-text" id="main-cta-text">Add To Cart + 2 Free Gifts</span>
+  </button>
+</div>
+
+<!-- Trust Badges Strip -->
+<div class="grid grid-cols-3 gap-2 py-3 px-1 border-b border-neutral-200 mb-6 text-center" style="display: grid; grid-template-columns: repeat(3, 1fr); border-bottom: 1px solid #e5e5e5; padding: 12px 0 16px; margin-bottom: 24px;">
+  <div class="flex flex-col items-center gap-1.5" style="display: flex; flex-direction: column; align-items: center; gap: 6px;">
+    <svg style="width: 24px; height: 24px; color: #171717;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+    <span class="text-[11px] font-bold uppercase tracking-tight text-neutral-800 leading-tight">2-Year<br/>Warranty</span>
+  </div>
+  <div class="flex flex-col items-center gap-1.5" style="display: flex; flex-direction: column; align-items: center; gap: 6px;">
+    <svg style="width: 24px; height: 24px; color: #171717;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M21 2v6h-6"/><path d="M3 12a9 9 0 0 1 15-6.7L21 8"/><path d="M3 22v-6h6"/><path d="M21 12a9 9 0 0 1-15 6.7L3 16"/></svg>
+    <span class="text-[11px] font-bold uppercase tracking-tight text-neutral-800 leading-tight">60-Day<br/>Trial</span>
+  </div>
+  <div class="flex flex-col items-center gap-1.5" style="display: flex; flex-direction: column; align-items: center; gap: 6px;">
+    <svg style="width: 24px; height: 24px; color: #171717;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><rect x="1" y="3" width="15" height="13" rx="1"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
+    <span class="text-[11px] font-bold uppercase tracking-tight text-neutral-800 leading-tight">Free Tracked<br/>Shipping</span>
+  </div>
+</div>
+
+<!-- Free Gifts 3-Tier Section (Replaces Pairs Well With) -->
+<section class="free-gifts-unlock-section mb-6" id="free-gifts" style="margin-bottom: 24px;">
+  <div class="text-center mb-5 flex flex-col items-center" style="text-align: center; margin-bottom: 20px; display: flex; flex-direction: column; align-items: center;">
+    <h2 class="text-xl sm:text-2xl font-bold tracking-tight text-neutral-900" style="font-size: 1.4rem; font-weight: 700; color: #171717; margin: 0;">
+      GoBrush Free Gifts
+    </h2>
+    <p class="mt-2 inline-flex items-center justify-center gap-1.5 flex-wrap rounded-full px-3.5 py-1 text-xs font-bold tracking-wider text-neutral-900 bg-neutral-100 border border-neutral-200" style="margin-top: 8px; display: inline-flex; align-items: center; gap: 6px; padding: 4px 14px; border-radius: 9999px; background: #f5f5f5; border: 1px solid #e5e5e5; font-size: 11px;">
+      <span class="font-extrabold text-neutral-950" id="gifts-total-value-banner">€60,85</span>
+      <span>VALUE OF FREE GIFTS FOR TODAY ONLY</span>
+    </p>
+  </div>
+  <div class="grid grid-cols-3 gap-2.5 sm:gap-3" id="gifts-grid" style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px;">
+    <!-- Gift 1: Luxury Travel Case (Always Unlocked) -->
+    <div class="gift-card-item is-unlocked" id="gift-card-1">
+      <span class="gift-badge badge-unlocked">FREE <span style="text-decoration: line-through; opacity: 0.8; font-weight: normal; margin-left: 2px;">€15,95</span></span>
+      <div class="gift-image-wrap">
+        <img src="https://gobrush.nl/cdn/shop/files/Grey-color-5.jpg?v=1734444578&width=300" alt="Luxury Travel Case" loading="lazy" />
+      </div>
+      <span class="text-xs sm:text-sm font-bold text-neutral-900 leading-tight">Travel Case</span>
+    </div>
+    <!-- Gift 2: 2x Replacement Brush Heads -->
+    <div class="gift-card-item is-unlocked" id="gift-card-2">
+      <span class="gift-badge badge-unlocked" id="gift-badge-2">FREE <span style="text-decoration: line-through; opacity: 0.8; font-weight: normal; margin-left: 2px;">€19,95</span></span>
+      <div class="gift-image-wrap">
+        <img src="https://cdn.shopify.com/s/files/1/0810/6023/3561/files/Grey-color-4.jpg?v=1734444578&width=300" alt="2x Replacement Brush Heads" loading="lazy" />
+      </div>
+      <span class="text-xs sm:text-sm font-bold text-neutral-900 leading-tight">2x Brush Heads</span>
+    </div>
+    <!-- Gift 3: Magnetic Charging Dock -->
+    <div class="gift-card-item is-locked" id="gift-card-3">
+      <span class="gift-badge badge-locked" id="gift-badge-3">BUY 3 TO UNLOCK</span>
+      <div class="gift-image-wrap">
+        <img src="https://cdn.shopify.com/s/files/1/0810/6023/3561/files/Grey-color-7.jpg?v=1734444578&width=300" alt="Magnetic Charging Dock" loading="lazy" />
+      </div>
+      <span class="text-xs sm:text-sm font-bold text-neutral-900 leading-tight">Charging Dock</span>
+    </div>
+  </div>
+</section>
 <details class="product__accordion details" is="accordion-details" >
                 <summary class="details__summary flex items-center justify-between gap-2 cursor-pointer">
                   <div class="flex items-center gap-2d5"><svg class="icon icon-box icon-md" viewBox="0 0 20 20" stroke="currentColor" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -1494,7 +1853,7 @@ theme.variantStrings = {
           </div>
           <div class="product-form__error-message alert alert--error text-sm font-medium leading-tight" role="alert" hidden></div>
         </div>
-      </product-sticky-form></div><script type="application/ld+json">{"@context":"http:\/\/schema.org\/","@id":"\/products\/brush-one-grey#product","@type":"ProductGroup","brand":{"@type":"Brand","name":"GoBrush"},"category":"Mondverzorging","description":"✓ Poets tot 60 dagen met slechts één keer opladen.✓  Krachtige sonische reiniging voor een stralend en gezond gebit.✓ Inclusief handig Travelcase voor onderweg t.w.v. €15,95.","hasVariant":[{"@id":"\/products\/brush-one-grey?variant=49200206872921#variant","@type":"Product","image":"https:\/\/gobrush.nl\/cdn\/shop\/files\/Grey-color-8.jpg?v=1734444578\u0026width=1920","name":"Brush One Grey - Grey","offers":{"@id":"\/products\/brush-one-grey?variant=49200206872921#offer","@type":"Offer","availability":"http:\/\/schema.org\/InStock","price":"89.00","priceCurrency":"EUR","url":"https:\/\/gobrush.nl\/products\/brush-one-grey?variant=49200206872921"},"sku":"BRU-01"},{"@id":"\/products\/brush-one-grey?variant=49268138836313#variant","@type":"Product","image":"https:\/\/gobrush.nl\/cdn\/shop\/files\/Grey-color-8.jpg?v=1734444578\u0026width=1920","name":"Brush One Grey - Rose Gold","offers":{"@id":"\/products\/brush-one-grey?variant=49268138836313#offer","@type":"Offer","availability":"http:\/\/schema.org\/InStock","price":"89.00","priceCurrency":"EUR","url":"https:\/\/gobrush.nl\/products\/brush-one-grey?variant=49268138836313"},"sku":"BRU-01"},{"@id":"\/products\/brush-one-grey?variant=49268163674457#variant","@type":"Product","image":"https:\/\/gobrush.nl\/cdn\/shop\/files\/Grey-color-8.jpg?v=1734444578\u0026width=1920","name":"Brush One Grey - Silver","offers":{"@id":"\/products\/brush-one-grey?variant=49268163674457#offer","@type":"Offer","availability":"http:\/\/schema.org\/InStock","price":"89.00","priceCurrency":"EUR","url":"https:\/\/gobrush.nl\/products\/brush-one-grey?variant=49268163674457"},"sku":"BRU-01"}],"name":"Brush One Grey","productGroupID":"9593510658393","url":"https:\/\/gobrush.nl\/products\/brush-one-grey"}</script>  
+      </product-sticky-form></div><script type="application/ld+json">{"@context":"http:\/\/schema.org\/","@id":"\/products\/brush-one-grey#product","@type":"ProductGroup","brand":{"@type":"Brand","name":"GoBrush"},"category":"Mondverzorging","description":"✓ Poets tot 60 dagen met slechts één keer opladen.✓  Krachtige sonische reiniging voor een stralend en gezond gebit.✓ Inclusief handig Travelcase voor onderweg t.w.v. €15,95.","hasVariant":[{"@id":"\/products\/brush-one-grey?variant=49200206872921#variant","@type":"Product","image":"https:\/\/gobrush.nl\/cdn\/shop\/files\/Grey-color-8.jpg?v=1734444578\u0026width=1920","name":"Brush One Grey - Grey","offers":{"@id":"\/products\/brush-one-grey?variant=49200206872921#offer","@type":"Offer","availability":"http:\/\/schema.org\/InStock","price":"89.00","priceCurrency":"EUR","url":"https:\/\/gobrush.nl\/products\/brush-one-grey?variant=49200206872921"},"sku":"BRU-01"},{"@id":"\/products\/brush-one-grey?variant=49268138836313#variant","@type":"Product","image":"https:\/\/gobrush.nl\/cdn\/shop\/files\/Grey-color-8.jpg?v=1734444578\u0026width=1920","name":"Brush One Grey - Pink","offers":{"@id":"\/products\/brush-one-grey?variant=49268138836313#offer","@type":"Offer","availability":"http:\/\/schema.org\/InStock","price":"89.00","priceCurrency":"EUR","url":"https:\/\/gobrush.nl\/products\/brush-one-grey?variant=49268138836313"},"sku":"BRU-01"},{"@id":"\/products\/brush-one-grey?variant=49268163674457#variant","@type":"Product","image":"https:\/\/gobrush.nl\/cdn\/shop\/files\/Grey-color-8.jpg?v=1734444578\u0026width=1920","name":"Brush One Grey - Silver","offers":{"@id":"\/products\/brush-one-grey?variant=49268163674457#offer","@type":"Offer","availability":"http:\/\/schema.org\/InStock","price":"89.00","priceCurrency":"EUR","url":"https:\/\/gobrush.nl\/products\/brush-one-grey?variant=49268163674457"},"sku":"BRU-01"}],"name":"Brush One Grey","productGroupID":"9593510658393","url":"https:\/\/gobrush.nl\/products\/brush-one-grey"}</script>  
 </div>
 
 
@@ -2593,9 +2952,13 @@ var vstar_ai_summary_settings = {"home":{"is_active":0,"title_color":"#303030","
 <script src="https://cdnjs.cloudflare.com/ajax/libs/flickity/2.3.0/flickity.pkgd.min.js"></script>
 <script>
 const VARIANTS_DATA = {
-  "Rose Gold": {
-    title: "Brush One Rose Gold",
+  "Pink": {
+    name: "Pink",
+    title: "Brush One Pink",
     price: "€89,00",
+    variantId: "1000020348812111",
+    productId: "1000000664011633",
+    swatchColor: "#f2a7b3",
     images: [
       "https://cdn.shopify.com/s/files/1/0810/6023/3561/files/RoseGold-color-1.jpg?v=1734444500",
       "https://cdn.shopify.com/s/files/1/0810/6023/3561/files/RoseGold-color-2.jpg?v=1734444500",
@@ -2608,8 +2971,12 @@ const VARIANTS_DATA = {
     ]
   },
   "Grey": {
+    name: "Grey",
     title: "Brush One Grey",
     price: "€89,00",
+    variantId: "1000020348812113",
+    productId: "1000000664011633",
+    swatchColor: "#737373",
     images: [
       "https://cdn.shopify.com/s/files/1/0810/6023/3561/files/Grey-color-8.jpg?v=1734444578",
       "https://cdn.shopify.com/s/files/1/0810/6023/3561/files/Grey-color-1.jpg?v=1734444578",
@@ -2622,8 +2989,12 @@ const VARIANTS_DATA = {
     ]
   },
   "Silver": {
+    name: "Silver",
     title: "Brush One Silver",
     price: "€89,00",
+    variantId: "1000020348812112",
+    productId: "1000000664011633",
+    swatchColor: "#e5e5e5",
     images: [
       "https://cdn.shopify.com/s/files/1/0810/6023/3561/files/Brushone_bc23c130-0175-4280-a940-991c90ef5864.jpg?v=1734177610",
       "https://cdn.shopify.com/s/files/1/0810/6023/3561/files/Brushone-2_bf1007db-6e2d-4d39-8848-6c2df6be0e02.jpg?v=1734444598",
@@ -2636,40 +3007,219 @@ const VARIANTS_DATA = {
     ]
   }
 };
+// Aliases
+VARIANTS_DATA["Gray"] = VARIANTS_DATA["Grey"];
+VARIANTS_DATA["Rose Gold"] = VARIANTS_DATA["Pink"];
+
+const TIERS = {
+  'single': {
+    id: 'single',
+    label: 'Buy 1',
+    count: 1,
+    priceNum: 89,
+    priceDisplay: '€89,00',
+    compareDisplay: '€123,75',
+    saveDisplay: 'Save €34,75',
+    unlockedGifts: 1,
+    giftsValue: '€15,95',
+    ctaText: 'Add To Cart + 1 Free Gift'
+  },
+  'bundle-2': {
+    id: 'bundle-2',
+    label: 'Buy 2',
+    count: 2,
+    priceNum: 158,
+    priceDisplay: '€158,00',
+    compareDisplay: '€247,50',
+    saveDisplay: 'Save €89,50',
+    unlockedGifts: 2,
+    giftsValue: '€35,90',
+    ctaText: 'Add To Cart + 2 Free Gifts'
+  },
+  'bundle-3': {
+    id: 'bundle-3',
+    label: 'Buy 3',
+    count: 3,
+    priceNum: 227,
+    priceDisplay: '€227,00',
+    compareDisplay: '€371,25',
+    saveDisplay: 'Save €144,25',
+    unlockedGifts: 3,
+    giftsValue: '€60,85',
+    ctaText: 'Add To Cart + 3 Free Gifts'
+  }
+};
+
+let activeTierId = 'bundle-2'; // Default preselected
+const choicesState = {
+  'single': ['Grey'],
+  'bundle-2': ['Grey', 'Pink'],
+  'bundle-3': ['Grey', 'Pink', 'Silver']
+};
+
+function selectBundleTier(tierId) {
+  if (!TIERS[tierId]) return;
+  activeTierId = tierId;
+  const tier = TIERS[tierId];
+
+  // 1. Update Bundle Cards Styling
+  document.querySelectorAll('.bundle-tier-card').forEach(card => {
+    if (card.dataset.tier === tierId) {
+      card.classList.add('is-selected');
+    } else {
+      card.classList.remove('is-selected');
+    }
+  });
+
+  // 2. Expand/Collapse Panels
+  ['single', 'bundle-2', 'bundle-3'].forEach(id => {
+    const panel = document.getElementById('panel-' + id);
+    if (panel) {
+      panel.style.display = (id === tierId) ? 'flex' : 'none';
+    }
+  });
+
+  // 3. Update Main Price Displays
+  const priceDisplay = document.getElementById('main-price-display');
+  if (priceDisplay) priceDisplay.textContent = tier.priceDisplay;
+
+  const compareDisplay = document.getElementById('main-compare-price-display');
+  if (compareDisplay) compareDisplay.textContent = tier.compareDisplay;
+
+  const discountBadge = document.getElementById('main-discount-badge');
+  if (discountBadge) discountBadge.textContent = tier.saveDisplay;
+
+  // 4. Update Main CTA Button Text
+  const mainCtaText = document.getElementById('main-cta-text');
+  if (mainCtaText) mainCtaText.textContent = tier.ctaText;
+
+  // 5. Update Free Gifts Section
+  const giftsBanner = document.getElementById('gifts-total-value-banner');
+  if (giftsBanner) giftsBanner.textContent = tier.giftsValue;
+
+  const giftCard1 = document.getElementById('gift-card-1');
+  const giftCard2 = document.getElementById('gift-card-2');
+  const giftCard3 = document.getElementById('gift-card-3');
+  const giftBadge2 = document.getElementById('gift-badge-2');
+  const giftBadge3 = document.getElementById('gift-badge-3');
+
+  // Gift 1 always unlocked
+  if (giftCard1) {
+    giftCard1.className = 'gift-card-item is-unlocked';
+  }
+
+  // Gift 2 unlocked for 2 or 3
+  if (giftCard2 && giftBadge2) {
+    if (tier.unlockedGifts >= 2) {
+      giftCard2.className = 'gift-card-item is-unlocked';
+      giftBadge2.className = 'gift-badge badge-unlocked';
+      giftBadge2.innerHTML = 'FREE <span style="text-decoration: line-through; opacity: 0.8; font-weight: normal; margin-left: 2px;">€19,95</span>';
+    } else {
+      giftCard2.className = 'gift-card-item is-locked';
+      giftBadge2.className = 'gift-badge badge-locked';
+      giftBadge2.textContent = 'BUY 2 TO UNLOCK';
+    }
+  }
+
+  // Gift 3 unlocked for 3
+  if (giftCard3 && giftBadge3) {
+    if (tier.unlockedGifts >= 3) {
+      giftCard3.className = 'gift-card-item is-unlocked';
+      giftBadge3.className = 'gift-badge badge-unlocked';
+      giftBadge3.innerHTML = 'FREE <span style="text-decoration: line-through; opacity: 0.8; font-weight: normal; margin-left: 2px;">€24,95</span>';
+    } else {
+      giftCard3.className = 'gift-card-item is-locked';
+      giftBadge3.className = 'gift-badge badge-locked';
+      giftBadge3.textContent = 'BUY 3 TO UNLOCK';
+    }
+  }
+
+  // 6. Update Sticky Bar
+  updateStickyBar();
+
+  // 7. Sync Gallery to first brush color in active tier
+  const firstColor = choicesState[tierId][0] || 'Grey';
+  selectColorVariant(firstColor);
+}
+
+function setBrushChoice(tierId, index, colorName, event) {
+  if (event) event.stopPropagation();
+  if (!choicesState[tierId]) return;
+  choicesState[tierId][index] = colorName;
+
+  // Update Swatch Button styles in that row
+  const panel = document.getElementById('panel-' + tierId);
+  if (panel) {
+    const swatchesContainer = panel.querySelectorAll('.brush-color-swatches')[index];
+    if (swatchesContainer) {
+      swatchesContainer.querySelectorAll('.color-swatch-btn').forEach(btn => {
+        if (btn.getAttribute('title') === colorName || btn.getAttribute('aria-label') === colorName) {
+          btn.classList.add('is-active');
+        } else {
+          btn.classList.remove('is-active');
+        }
+      });
+    }
+  }
+
+  // If first brush color changed, update gallery
+  if (index === 0) {
+    selectColorVariant(colorName);
+  }
+
+  // Update Sticky Bar options
+  updateStickyBar();
+}
+
+function updateStickyBar() {
+  const tier = TIERS[activeTierId];
+  if (!tier) return;
+
+  const choices = choicesState[activeTierId] || ['Grey'];
+  const firstColor = choices[0] || 'Grey';
+  const colorData = VARIANTS_DATA[firstColor] || VARIANTS_DATA['Grey'];
+
+  // Sticky Title & Options
+  const stickyTitle = document.querySelector('.product-sticky-form__variant p, .product-sticky-form h3');
+  if (stickyTitle) {
+    stickyTitle.textContent = `${tier.label} - Brush One (${choices.join(' + ')})`;
+  }
+
+  const stickyOptions = document.querySelector('[data-sticky-product-options]');
+  if (stickyOptions) {
+    stickyOptions.textContent = `${tier.label} · ${choices.join(', ')} · ${tier.unlockedGifts} Free Gifts`;
+  }
+
+  // Sticky Price
+  const stickyPrice = document.querySelector('#StickyPrice-template--24203751129433__main-product-9593510658393 .price__regular');
+  if (stickyPrice) stickyPrice.textContent = tier.priceDisplay;
+
+  const stickyCompare = document.querySelector('#StickyPrice-template--24203751129433__main-product-9593510658393 .price__sale');
+  if (stickyCompare) stickyCompare.textContent = tier.compareDisplay;
+
+  // Sticky CTA Button Text
+  const stickyCtaText = document.querySelector('.product-sticky-form button span.hidden, .product-sticky-form button .btn-text');
+  if (stickyCtaText) {
+    const textSpan = stickyCtaText.querySelector('span') || stickyCtaText;
+    textSpan.textContent = tier.ctaText;
+  }
+
+  // Sticky Thumbnail
+  const stickyImg = document.querySelector('[data-sticky-product-media] img, .product-sticky-form img');
+  if (stickyImg && colorData.images[0]) {
+    stickyImg.src = colorData.images[0] + '&width=160';
+  }
+}
 
 function selectColorVariant(colorName) {
   const data = VARIANTS_DATA[colorName];
   if (!data) return;
 
   // 1. Update Title
-  document.querySelectorAll('.product__title h1, .product-title, h1.product__title, .product__title').forEach(el => {
-    if (el.tagName === 'H1') el.textContent = data.title;
-    else {
-      const h1 = el.querySelector('h1');
-      if (h1) h1.textContent = data.title;
-    }
-  });
+  const mainTitle = document.getElementById('main-product-title');
+  if (mainTitle) mainTitle.textContent = data.title;
 
-  // 2. Update Color Label
-  document.querySelectorAll('.variant-picker .form__label span, .variant-picker label span, .variant-picker .form__label strong').forEach(el => {
-    el.textContent = colorName;
-  });
-
-  // 3. Update Swatches Active state
-  document.querySelectorAll('.swatches--variant a').forEach(a => {
-    const title = (a.querySelector('label')?.getAttribute('title') || a.textContent || '').trim();
-    if (title === colorName) {
-      a.classList.add('is-selected');
-      const radio = a.querySelector('input[type="radio"]');
-      if (radio) radio.checked = true;
-    } else {
-      a.classList.remove('is-selected');
-      const radio = a.querySelector('input[type="radio"]');
-      if (radio) radio.checked = false;
-    }
-  });
-
-  // 4. Update Main Gallery Images
+  // 2. Update Main Gallery Images
   const galleryImageMedia = document.querySelectorAll('.product__media-list .product__media:not(.product__media--video)');
   galleryImageMedia.forEach((mediaEl, idx) => {
     if (data.images[idx]) {
@@ -2680,12 +3230,12 @@ function selectColorVariant(colorName) {
           img.src = data.images[idx] + '&width=1500';
           img.srcset = `${data.images[idx]}&width=550 550w, ${data.images[idx]}&width=1100 1100w, ${data.images[idx]}&width=1500 1500w`;
           img.style.opacity = '1';
-        }, 150);
+        }, 120);
       }
     }
   });
 
-  // 5. Update Thumbnails
+  // 3. Update Thumbnails
   const thumbElements = document.querySelectorAll('.product__thumbnails-list .product__thumbnail:not([data-media-type="video"])');
   thumbElements.forEach((thumbEl, idx) => {
     if (data.images[idx]) {
@@ -2696,17 +3246,188 @@ function selectColorVariant(colorName) {
     }
   });
 
-  // Update video thumb background image
+  // 4. Update video thumb background image
   const videoThumbImg = document.getElementById('thumb-video-img');
   if (videoThumbImg && data.images[0]) {
     videoThumbImg.src = data.images[0] + '&width=200';
   }
+}
 
-  // 6. Update Sticky Bar
-  const stickyTitle = document.querySelector('.product-sticky-form__title, .product-sticky-form h3');
-  if (stickyTitle) stickyTitle.textContent = data.title;
-  const stickyImg = document.querySelector('.product-sticky-form__media img, .product-sticky-form img');
-  if (stickyImg && data.images[0]) stickyImg.src = data.images[0] + '&width=200';
+function openCartWithActiveBundle() {
+  const tier = TIERS[activeTierId];
+  const choices = choicesState[activeTierId] || ['Grey'];
+  const cartDrawer = document.getElementById('CartDrawer');
+  if (!cartDrawer) return;
+
+  const emptySection = cartDrawer.querySelector('.drawer__scrollable.text-center');
+  const scrollableSection = cartDrawer.querySelector('.drawer__scrollable.hidden');
+  const footerSection = cartDrawer.querySelector('.drawer__footer.hidden');
+  const headerSection = cartDrawer.querySelector('.drawer__header');
+  const contentSection = cartDrawer.querySelector('.drawer__content');
+  const panelSection = cartDrawer.querySelector('.drawer__panel');
+
+  if (emptySection) emptySection.classList.add('hidden');
+  if (scrollableSection) scrollableSection.classList.remove('hidden');
+  if (footerSection) footerSection.classList.remove('hidden');
+  if (headerSection) {
+    headerSection.classList.remove('opacity-0', 'invisible');
+    headerSection.classList.add('opacity-100', 'visible');
+  }
+  if (contentSection) {
+    contentSection.classList.remove('opacity-0', 'invisible');
+    contentSection.classList.add('opacity-100', 'visible');
+  }
+  if (panelSection) {
+    panelSection.classList.remove('opacity-0');
+    panelSection.classList.add('opacity-100');
+  }
+
+  // Update Cart Count
+  const cartCount = cartDrawer.querySelector('cart-count');
+  if (cartCount) {
+    cartCount.removeAttribute('hidden');
+    cartCount.textContent = String(tier.count);
+  }
+
+  // Populate Items
+  const itemsList = cartDrawer.querySelector('.horizontal-products');
+  if (itemsList) {
+    let itemsHTML = '';
+
+    // Add Toothbrushes
+    choices.forEach((color, idx) => {
+      const colorData = VARIANTS_DATA[color] || VARIANTS_DATA['Grey'];
+      const unitPriceDisplay = tier.count > 1 ? `€${Math.round(tier.priceNum / tier.count)},00` : tier.priceDisplay;
+      itemsHTML += `
+        <li class="horizontal-product flex gap-4 py-4 border-b border-neutral-100 items-center">
+          <div class="media media--adapt rounded-lg overflow-hidden flex-shrink-0" style="width: 70px; height: 70px;">
+            <img src="${colorData.images[0]}&width=140" alt="${colorData.title}" class="w-full h-full object-cover" />
+          </div>
+          <div class="flex-1 min-w-0">
+            <h4 class="font-bold text-sm text-neutral-900 leading-tight">Brush One - ${color}</h4>
+            <p class="text-xs text-neutral-500 mt-0.5">Sonic Electric Toothbrush</p>
+            <div class="mt-1 font-bold text-sm text-neutral-900">${unitPriceDisplay}</div>
+          </div>
+        </li>
+      `;
+    });
+
+    // Add Free Gifts
+    // Gift 1 (Travel Case)
+    itemsHTML += `
+      <li class="horizontal-product flex gap-4 py-3 border-b border-neutral-100 items-center bg-neutral-50/50 p-2 rounded-lg mt-1">
+        <div class="media media--adapt rounded-lg overflow-hidden flex-shrink-0" style="width: 55px; height: 55px;">
+          <img src="https://gobrush.nl/cdn/shop/files/Grey-color-5.jpg?v=1734444578&width=120" alt="Luxury Travel Case" class="w-full h-full object-cover" />
+        </div>
+        <div class="flex-1 min-w-0">
+          <div class="flex items-center gap-1.5">
+            <h4 class="font-bold text-xs sm:text-sm text-neutral-900 leading-tight">Luxury Travel Case</h4>
+            <span class="bg-neutral-900 text-white text-[9px] font-extrabold uppercase px-1.5 py-0.5 rounded">FREE GIFT</span>
+          </div>
+          <p class="text-[11px] text-neutral-500 mt-0.5">Protect &amp; travel in style</p>
+          <div class="mt-0.5 text-xs"><span class="font-bold text-neutral-900">€0,00</span> <span class="line-through text-neutral-400 ml-1">€15,95</span></div>
+        </div>
+      </li>
+    `;
+
+    // Gift 2 (Brush Heads if Buy 2+)
+    if (tier.unlockedGifts >= 2) {
+      itemsHTML += `
+        <li class="horizontal-product flex gap-4 py-3 border-b border-neutral-100 items-center bg-neutral-50/50 p-2 rounded-lg mt-1">
+          <div class="media media--adapt rounded-lg overflow-hidden flex-shrink-0" style="width: 55px; height: 55px;">
+            <img src="https://cdn.shopify.com/s/files/1/0810/6023/3561/files/Grey-color-4.jpg?v=1734444578&width=120" alt="2x Replacement Brush Heads" class="w-full h-full object-cover" />
+          </div>
+          <div class="flex-1 min-w-0">
+            <div class="flex items-center gap-1.5">
+              <h4 class="font-bold text-xs sm:text-sm text-neutral-900 leading-tight">2x Extra Brush Heads</h4>
+              <span class="bg-neutral-900 text-white text-[9px] font-extrabold uppercase px-1.5 py-0.5 rounded">FREE GIFT</span>
+            </div>
+            <p class="text-[11px] text-neutral-500 mt-0.5">Ultra-soft DuPont bristles</p>
+            <div class="mt-0.5 text-xs"><span class="font-bold text-neutral-900">€0,00</span> <span class="line-through text-neutral-400 ml-1">€19,95</span></div>
+          </div>
+        </li>
+      `;
+    }
+
+    // Gift 3 (Charging Dock if Buy 3)
+    if (tier.unlockedGifts >= 3) {
+      itemsHTML += `
+        <li class="horizontal-product flex gap-4 py-3 border-b border-neutral-100 items-center bg-neutral-50/50 p-2 rounded-lg mt-1">
+          <div class="media media--adapt rounded-lg overflow-hidden flex-shrink-0" style="width: 55px; height: 55px;">
+            <img src="https://cdn.shopify.com/s/files/1/0810/6023/3561/files/Grey-color-7.jpg?v=1734444578&width=120" alt="Magnetic Charging Dock" class="w-full h-full object-cover" />
+          </div>
+          <div class="flex-1 min-w-0">
+            <div class="flex items-center gap-1.5">
+              <h4 class="font-bold text-xs sm:text-sm text-neutral-900 leading-tight">Magnetic Charging Dock</h4>
+              <span class="bg-neutral-900 text-white text-[9px] font-extrabold uppercase px-1.5 py-0.5 rounded">FREE GIFT</span>
+            </div>
+            <p class="text-[11px] text-neutral-500 mt-0.5">Fast wireless induction dock</p>
+            <div class="mt-0.5 text-xs"><span class="font-bold text-neutral-900">€0,00</span> <span class="line-through text-neutral-400 ml-1">€24,95</span></div>
+          </div>
+        </li>
+      `;
+    }
+
+    itemsList.innerHTML = itemsHTML;
+  }
+
+  // Update Free Shipping Bar
+  const shippingBarText = cartDrawer.querySelector('.free-shipping-bar span');
+  if (shippingBarText) {
+    shippingBarText.innerHTML = '<span class="font-bold">🎉 Congratulations!</span> You unlocked <span class="font-bold">FREE Shipping!</span>';
+  }
+  const progressBar = cartDrawer.querySelector('.free-shipping-bar progress-bar');
+  if (progressBar) {
+    progressBar.style.setProperty('--progress', '100%');
+  }
+
+  // Update Subtotal Value
+  const subtotalVal = cartDrawer.querySelector('.totals__subtotal-value');
+  if (subtotalVal) {
+    subtotalVal.textContent = `${tier.priceDisplay} EUR`;
+  }
+
+  // PlusBase Checkout Redirection
+  const checkoutForm = cartDrawer.querySelector('.drawer__footer-buttons');
+  if (checkoutForm) {
+    checkoutForm.onsubmit = (e) => {
+      e.preventDefault();
+      const firstColor = choices[0] || 'Grey';
+      const variantId = (VARIANTS_DATA[firstColor] || VARIANTS_DATA['Grey']).variantId;
+      const checkoutUrl = `https://buudy.com/pages/add-to-cart?product_id=1000000664011633&variant_id=${variantId}&quantity=${tier.count}&source=gobrush`;
+      window.location.href = checkoutUrl;
+    };
+  }
+
+  // Open Drawer
+  cartDrawer.setAttribute('open', 'true');
+  cartDrawer.classList.add('active');
+  document.body.classList.add('overflow-hidden');
+}
+
+// Countdown timer ticker
+function initCountdownTimer() {
+  let duration = 14 * 60 + 59;
+  const timerElem = document.getElementById('bundle-countdown-timer');
+  const dateElem = document.getElementById('bundle-delivery-date');
+
+  // Set formatted future delivery date (3 days ahead)
+  if (dateElem) {
+    const deliveryDate = new Date();
+    deliveryDate.setDate(deliveryDate.getDate() + 3);
+    const options = { weekday: 'long', day: 'numeric', month: 'short' };
+    dateElem.textContent = deliveryDate.toLocaleDateString('en-GB', options);
+  }
+
+  if (timerElem) {
+    setInterval(() => {
+      if (duration <= 0) duration = 15 * 60;
+      const mins = Math.floor(duration / 60);
+      const secs = duration % 60;
+      timerElem.textContent = `${mins.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;
+      duration--;
+    }, 1000);
+  }
 }
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -2723,19 +3444,29 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-  // Setup Color Swatch Clicks
-  document.querySelectorAll('.swatches--variant a, .variant-picker a').forEach(a => {
-    a.addEventListener('click', (e) => {
-      e.preventDefault();
-      const colorName = (a.querySelector('label')?.getAttribute('title') || a.textContent || '').trim();
-      if (colorName && VARIANTS_DATA[colorName]) {
-        selectColorVariant(colorName);
-      }
-    });
-  });
+  // Initial Bundle Tier selection (pre-select Buy 2)
+  selectBundleTier('bundle-2');
 
-  // Set initial selected swatch (Grey)
-  selectColorVariant("Grey");
+  // Initialize countdown timer
+  initCountdownTimer();
+
+  // Main Buy CTA Click -> Open Cart Drawer
+  const mainBuyBtn = document.getElementById('hero-cta');
+  if (mainBuyBtn) {
+    mainBuyBtn.addEventListener('click', (e) => {
+      e.preventDefault();
+      openCartWithActiveBundle();
+    });
+  }
+
+  // Sticky Buy CTA Click -> Open Cart Drawer
+  const stickyBuyBtn = document.querySelector('.product-sticky-form button');
+  if (stickyBuyBtn) {
+    stickyBuyBtn.addEventListener('click', (e) => {
+      e.preventDefault();
+      openCartWithActiveBundle();
+    });
+  }
 
   // Thumbnail click smooth scrolling
   const allThumbnails = document.querySelectorAll('.product__thumbnails-list .product__thumbnail');
@@ -2752,7 +3483,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Sticky Buy Bar scroll trigger
   const stickyBar = document.querySelector('.product-sticky-form__card');
-  const mainBuyBtn = document.querySelector('.product-form__submit');
   if (stickyBar && mainBuyBtn) {
     const checkScroll = () => {
       const rect = mainBuyBtn.getBoundingClientRect();
@@ -2772,17 +3502,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Cart Drawer open/close
   const cartDrawer = document.getElementById('CartDrawer');
-  const openCartBtns = document.querySelectorAll('a[href="/cart"], button[aria-controls="CartDrawer"], .product-form__submit, [name="add"]');
+  const openCartBtns = document.querySelectorAll('a[href="/cart"], button[aria-controls="CartDrawer"], .cart-drawer-button');
   const closeCartBtns = document.querySelectorAll('.cart-drawer__close, #CartDrawer [is="drawer-close-button"], #CartDrawer .drawer__close, .drawer__overlay');
   
   openCartBtns.forEach(btn => {
     btn.addEventListener('click', (e) => {
       e.preventDefault();
-      if (cartDrawer) {
-        cartDrawer.setAttribute('open', 'true');
-        cartDrawer.classList.add('active');
-        document.body.classList.add('overflow-hidden');
-      }
+      openCartWithActiveBundle();
     });
   });
 
