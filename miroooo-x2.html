@@ -1165,6 +1165,73 @@ theme.variantStrings = {
     border-color: rgba(255, 255, 255, 0.3) !important;
     background: #1f1f1f !important;
   }
+  .gift-card-item {
+    background: #111111 !important;
+    border: 1.5px solid rgba(255, 255, 255, 0.15) !important;
+    border-radius: 14px !important;
+    padding: 18px 8px 12px !important;
+  }
+  .gift-card-item.is-unlocked {
+    border-color: rgba(255, 255, 255, 0.7) !important;
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.5) !important;
+  }
+  .gift-card-item.is-locked {
+    opacity: 0.45 !important;
+    filter: grayscale(0.85) !important;
+    border-color: rgba(255, 255, 255, 0.08) !important;
+  }
+  .gift-badge {
+    top: -10px !important;
+    left: 50% !important;
+    transform: translateX(-50%) !important;
+    font-size: 10px !important;
+    font-weight: 800 !important;
+    padding: 3px 10px !important;
+    border-radius: 9999px !important;
+  }
+  .gift-badge.badge-unlocked {
+    background: #22c55e !important;
+    color: #ffffff !important;
+  }
+  .gift-badge.badge-locked {
+    background: #374151 !important;
+    color: #9ca3af !important;
+  }
+  .gift-image-wrap {
+    width: 100% !important;
+    aspect-ratio: 1 !important;
+    border-radius: 10px !important;
+    overflow: hidden !important;
+    margin-top: 4px !important;
+    margin-bottom: 8px !important;
+    background: #181818 !important;
+  }
+  .gift-image-wrap img {
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: cover !important;
+    transition: transform 0.25s ease !important;
+  }
+  .gift-card-item:hover .gift-image-wrap img {
+    transform: scale(1.06) !important;
+  }
+  #hero-cta {
+    background: #ffffff !important;
+    color: #000000 !important;
+    border: none !important;
+    cursor: pointer !important;
+    box-shadow: 0 4px 14px rgba(255, 255, 255, 0.15) !important;
+    transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.25s cubic-bezier(0.4, 0, 0.2, 1), background-color 0.25s ease !important;
+  }
+  #hero-cta:hover {
+    background: #f4f4f5 !important;
+    transform: translateY(-2px) scale(1.01) !important;
+    box-shadow: 0 10px 25px rgba(255, 255, 255, 0.25), 0 4px 10px rgba(0, 0, 0, 0.5) !important;
+  }
+  #hero-cta:active {
+    transform: translateY(0) scale(0.99) !important;
+    box-shadow: 0 2px 8px rgba(255, 255, 255, 0.15) !important;
+  }
   /* Scrolling text banner */
   #shopify-section-template--24203751129433__scrolling_text_P3gRex {
     background: #000000 !important;
@@ -1290,6 +1357,55 @@ theme.variantStrings = {
     #shopify-section-template--24203751129433__image-with-text-1 .split-section-grid {
       flex-direction: row !important;
     }
+  }
+</style>
+
+
+<style id="miroooo-pure-marquee-animation">
+  @keyframes mirooooMarqueeScroll {
+    0% {
+      transform: translate3d(0, 0, 0);
+    }
+    100% {
+      transform: translate3d(-50%, 0, 0);
+    }
+  }
+  .miroooo-marquee-track {
+    display: flex !important;
+    width: max-content !important;
+    will-change: transform !important;
+    animation: mirooooMarqueeScroll 25s linear infinite !important;
+  }
+  .miroooo-marquee-track:hover {
+    animation-play-state: paused !important;
+  }
+</style>
+
+
+<style id="miroooo-hide-lower-rating">
+  /* Force hide any review rating below product title */
+  .vstar-star,
+  .product-icon-list,
+  .tt-rating-text,
+  div[data-position="afterEnd"],
+  .product__title ~ .vstar-star,
+  .product__title .vstar-star,
+  .product__title ~ .product-icon-list,
+  .product__title .product-icon-list,
+  .product__info .vstar-star,
+  .product__info .product-icon-list,
+  .product__info .tt-rating-text {
+    display: none !important;
+    visibility: hidden !important;
+    opacity: 0 !important;
+    height: 0 !important;
+    min-height: 0 !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    pointer-events: none !important;
+    position: absolute !important;
+    top: -9999px !important;
+    left: -9999px !important;
   }
 </style>
 
@@ -1747,9 +1863,9 @@ theme.variantStrings = {
       >
   <!-- 1. Green Stars Rating (Above Product Title) -->
   <div class="product__title">
-    <a href="#shopify-section-template--24203751129433__reviews" class="product__reviews-badge inline-flex items-center gap-2 mb-2 no-underline hover:opacity-80 transition-opacity cursor-pointer">
-      <div class="text-green-500 text-lg leading-none" style="color: #22c55e;" aria-hidden="true">★★★★★</div>
-      <span class="text-xs font-bold tracking-wide uppercase" style="color: rgba(255, 255, 255, 0.8);">4.8 · TRUSTED BY 40,000+ CUSTOMERS</span>
+    <a href="#shopify-section-template--24203751129433__reviews" class="product__reviews-badge inline-flex items-center gap-2 mb-2 no-underline hover:opacity-80 transition-opacity cursor-pointer" style="display: inline-flex; align-items: center; gap: 8px; margin-bottom: 8px; text-decoration: none;">
+      <div style="color: #22c55e; font-size: 20px; letter-spacing: 2px; line-height: 1; display: inline-flex;" aria-hidden="true">★★★★★</div>
+      <span style="color: rgba(255, 255, 255, 0.9); font-size: 13px; font-weight: 700; letter-spacing: 0.04em; text-transform: uppercase;">4.9 · TRUSTED BY 40,000+ CUSTOMERS</span>
     </a>
     <h1 class="heading leading-none product-title-sm mobile:product-title-sm col-span-full font-bold" id="main-product-title" style="color: #ffffff; font-size: clamp(1.8rem, 2.5vw, 2.4rem); font-weight: 700; margin: 0 0 8px 0;">
       Miroooo X2 Grey
@@ -1761,7 +1877,7 @@ theme.variantStrings = {
     <div class="flex flex-wrap items-baseline gap-2">
       <span class="text-2xl sm:text-3xl font-extrabold text-white" id="main-price-display" style="font-size: 1.85rem; font-weight: 800; color: #ffffff;">£139.00</span>
       <span class="text-base sm:text-lg text-neutral-400 line-through" id="main-compare-price-display" style="color: rgba(255, 255, 255, 0.5); text-decoration: line-through;">£318.00</span>
-      <span class="inline-block px-2.5 py-0.5 rounded-full text-xs font-bold uppercase tracking-wider" id="main-discount-badge" style="background: #ffffff; color: #000000; font-size: 11px; font-weight: 800; padding: 3px 10px; border-radius: 9999px;">Save £179.00</span>
+      <span class="inline-block px-2.5 py-0.5 rounded-full text-xs font-bold uppercase tracking-wider" id="main-discount-badge" style="background: #ffffff; color: #000000; font-size: 11px; font-weight: 800; padding: 3px 10px; border-radius: 9999px;">50% OFF</span>
     </div>
   </div>
 
@@ -1788,8 +1904,8 @@ theme.variantStrings = {
     <button
       type="button"
       id="hero-cta"
-      class="product-form__submit button button--primary w-full py-4 px-6 rounded-full font-bold text-base sm:text-lg tracking-wide transition-all duration-200 shadow-lg flex items-center justify-center gap-2 active:scale-[0.99]"
-      style="border-radius: 9999px; background: #ffffff; color: #000000; width: 100%; border: none; cursor: pointer; font-weight: 700; padding: 16px 24px; font-size: 1.05rem;"
+      class="product-form__submit button button--primary w-full py-4 px-6 rounded-full font-bold text-base sm:text-lg tracking-wide flex items-center justify-center gap-2"
+      style="border-radius: 9999px; width: 100%; font-weight: 700; padding: 16px 24px; font-size: 1.05rem;"
     >
       <span class="btn-text" id="main-cta-text" style="color: #000000; font-weight: 700;">Add To Cart + 2 Free Gifts</span>
     </button>
@@ -1880,7 +1996,7 @@ theme.variantStrings = {
               <span class="font-bold text-base sm:text-lg" style="color: #ffffff; font-weight: 700; font-size: 1.1rem;">£139.00</span>
               <span class="text-xs sm:text-sm line-through" style="color: rgba(255,255,255,0.45); font-size: 12px;">£318.00</span>
             </div>
-            <span class="tier-badge-pill mt-0.5" style="background: #ffffff; color: #000000; font-size: 10px; font-weight: 800; padding: 2px 8px; border-radius: 9999px; display: inline-block;">SAVE £179.00</span>
+            <span class="tier-badge-pill mt-0.5" style="background: #ffffff; color: #000000; font-size: 10px; font-weight: 800; padding: 2px 8px; border-radius: 9999px; display: inline-block;">50% OFF</span>
           </div>
         </div>
       </button>
@@ -1973,28 +2089,28 @@ theme.variantStrings = {
     </div>
     <div class="grid grid-cols-3 gap-2.5 sm:gap-3" id="gifts-grid" style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px;">
       <!-- Gift 1: Luxury Travel Case (Always Unlocked) -->
-      <div class="gift-card-item is-unlocked" id="gift-card-1" style="background: #111111; border: 1px solid rgba(255,255,255,0.15); border-radius: 12px; padding: 10px; display: flex; flex-direction: column; align-items: center; text-align: center; position: relative;">
-        <span class="gift-badge badge-unlocked" style="background: #22c55e; color: #ffffff; font-size: 9px; font-weight: 700; padding: 2px 6px; border-radius: 4px; position: absolute; top: 6px; right: 6px;">FREE <span style="text-decoration: line-through; opacity: 0.8; font-weight: normal; margin-left: 2px;">£15.95</span></span>
-        <div class="gift-image-wrap" style="width: 60px; height: 60px; display: flex; align-items: center; justify-content: center; margin: 8px 0;">
-          <img src="https://gobrush.nl/cdn/shop/files/Grey-color-5.jpg?v=1734444578" alt="Luxury Travel Case" style="max-width: 100%; max-height: 100%; object-fit: contain;" loading="lazy" />
+      <div class="gift-card-item is-unlocked" id="gift-card-1">
+        <span class="gift-badge badge-unlocked">FREE <span style="text-decoration: line-through; opacity: 0.8; font-weight: normal; margin-left: 2px;">£15.95</span></span>
+        <div class="gift-image-wrap">
+          <img src="https://gobrush.nl/cdn/shop/files/Grey-color-5.jpg?v=1734444578&width=300" alt="Luxury Travel Case" loading="lazy" />
         </div>
-        <span class="text-xs sm:text-sm font-bold leading-tight" style="color: #ffffff; font-size: 12px;">Travel Case</span>
+        <span class="text-xs sm:text-sm font-bold leading-tight" style="color: #ffffff;">Travel Case</span>
       </div>
       <!-- Gift 2: 2x Replacement Brush Heads -->
-      <div class="gift-card-item is-unlocked" id="gift-card-2" style="background: #111111; border: 1px solid rgba(255,255,255,0.15); border-radius: 12px; padding: 10px; display: flex; flex-direction: column; align-items: center; text-align: center; position: relative;">
-        <span class="gift-badge badge-unlocked" id="gift-badge-2" style="background: #22c55e; color: #ffffff; font-size: 9px; font-weight: 700; padding: 2px 6px; border-radius: 4px; position: absolute; top: 6px; right: 6px;">FREE <span style="text-decoration: line-through; opacity: 0.8; font-weight: normal; margin-left: 2px;">£19.95</span></span>
-        <div class="gift-image-wrap" style="width: 60px; height: 60px; display: flex; align-items: center; justify-content: center; margin: 8px 0;">
-          <img src="https://gobrush.nl/cdn/shop/files/Grey-color-4.jpg?v=1734444578" alt="2x Replacement Brush Heads" style="max-width: 100%; max-height: 100%; object-fit: contain;" loading="lazy" />
+      <div class="gift-card-item is-unlocked" id="gift-card-2">
+        <span class="gift-badge badge-unlocked" id="gift-badge-2">FREE <span style="text-decoration: line-through; opacity: 0.8; font-weight: normal; margin-left: 2px;">£19.95</span></span>
+        <div class="gift-image-wrap">
+          <img src="https://cdn.shopify.com/s/files/1/0810/6023/3561/files/Grey-color-4.jpg?v=1734444578&width=300" alt="2x Replacement Brush Heads" loading="lazy" />
         </div>
-        <span class="text-xs sm:text-sm font-bold leading-tight" style="color: #ffffff; font-size: 12px;">2x Brush Heads</span>
+        <span class="text-xs sm:text-sm font-bold leading-tight" style="color: #ffffff;">2x Brush Heads</span>
       </div>
       <!-- Gift 3: Magnetic Charging Dock -->
-      <div class="gift-card-item is-locked" id="gift-card-3" style="background: #0d0d0d; border: 1px dashed rgba(255,255,255,0.15); border-radius: 12px; padding: 10px; display: flex; flex-direction: column; align-items: center; text-align: center; position: relative; opacity: 0.75;">
-        <span class="gift-badge badge-locked" id="gift-badge-3" style="background: #333333; color: #ffffff; font-size: 8px; font-weight: 700; padding: 2px 5px; border-radius: 4px; position: absolute; top: 6px; right: 6px;">BUY 3 TO UNLOCK</span>
-        <div class="gift-image-wrap" style="width: 60px; height: 60px; display: flex; align-items: center; justify-content: center; margin: 8px 0;">
-          <img src="https://gobrush.nl/cdn/shop/files/Grey-color-7.jpg?v=1734444578" alt="Magnetic Charging Dock" style="max-width: 100%; max-height: 100%; object-fit: contain;" loading="lazy" />
+      <div class="gift-card-item is-locked" id="gift-card-3">
+        <span class="gift-badge badge-locked" id="gift-badge-3">BUY 3 TO UNLOCK</span>
+        <div class="gift-image-wrap">
+          <img src="https://cdn.shopify.com/s/files/1/0810/6023/3561/files/Grey-color-7.jpg?v=1734444578&width=300" alt="Magnetic Charging Dock" loading="lazy" />
         </div>
-        <span class="text-xs sm:text-sm font-bold leading-tight" style="color: #ffffff; font-size: 12px;">Charging Dock</span>
+        <span class="text-xs sm:text-sm font-bold leading-tight" style="color: #ffffff;">Charging Dock</span>
       </div>
     </div>
   </section>
@@ -2058,28 +2174,28 @@ theme.variantStrings = {
      1. MOVING MARQUEE BANNER (Directly below product details ends)
      ========================================================================= -->
 <div id="shopify-section-template--24203751129433__scrolling_text_P3gRex" class="shopify-section scrolling-text-section" style="background: #000000; border-top: 1px solid rgba(255,255,255,0.1); border-bottom: 1px solid rgba(255,255,255,0.1); padding: 22px 0; overflow: hidden; width: 100%;">
-  <div class="scrolling-text text-center flex items-center justify-center">
-    <div class="marquee flex flex-auto justify-around items-center" is="marquee-element" data-speed="1.2" data-direction="horizontal" style="gap: 40px;">
-      <div class="scrolling-text__item with-text flex items-center flex-auto body tracking-heading" style="font-family: 'Inter', sans-serif; font-size: clamp(1.1rem, 1.8vw, 1.5rem); font-weight: 600; color: #ffffff; text-transform: uppercase; letter-spacing: 0.05em; display: inline-flex; align-items: center; gap: 28px; white-space: nowrap;">
-        <span>Free shipping on all orders</span>
-        <span style="display: inline-block; width: 8px; height: 8px; border-radius: 50%; border: 1.5px solid #ffffff;"></span>
-        <span>90-day risk-free trial</span>
-        <span style="display: inline-block; width: 8px; height: 8px; border-radius: 50%; border: 1.5px solid #ffffff;"></span>
-        <span>Free shipping on all orders</span>
-        <span style="display: inline-block; width: 8px; height: 8px; border-radius: 50%; border: 1.5px solid #ffffff;"></span>
-        <span>90-day risk-free trial</span>
-        <span style="display: inline-block; width: 8px; height: 8px; border-radius: 50%; border: 1.5px solid #ffffff;"></span>
-      </div>
-      <div class="scrolling-text__item with-text flex items-center flex-auto body tracking-heading" style="font-family: 'Inter', sans-serif; font-size: clamp(1.1rem, 1.8vw, 1.5rem); font-weight: 600; color: #ffffff; text-transform: uppercase; letter-spacing: 0.05em; display: inline-flex; align-items: center; gap: 28px; white-space: nowrap;">
-        <span>Free shipping on all orders</span>
-        <span style="display: inline-block; width: 8px; height: 8px; border-radius: 50%; border: 1.5px solid #ffffff;"></span>
-        <span>90-day risk-free trial</span>
-        <span style="display: inline-block; width: 8px; height: 8px; border-radius: 50%; border: 1.5px solid #ffffff;"></span>
-        <span>Free shipping on all orders</span>
-        <span style="display: inline-block; width: 8px; height: 8px; border-radius: 50%; border: 1.5px solid #ffffff;"></span>
-        <span>90-day risk-free trial</span>
-        <span style="display: inline-block; width: 8px; height: 8px; border-radius: 50%; border: 1.5px solid #ffffff;"></span>
-      </div>
+  <div class="miroooo-marquee-track">
+    <!-- Group 1 -->
+    <div class="scrolling-text__item with-text flex items-center body tracking-heading" style="font-family: 'Inter', sans-serif; font-size: clamp(1.1rem, 1.8vw, 1.5rem); font-weight: 600; color: #ffffff; text-transform: uppercase; letter-spacing: 0.05em; display: inline-flex; align-items: center; gap: 28px; padding-right: 28px; white-space: nowrap; flex-shrink: 0;">
+      <span>Free shipping on all orders</span>
+      <span style="display: inline-block; width: 8px; height: 8px; border-radius: 50%; border: 1.5px solid #ffffff; flex-shrink: 0;"></span>
+      <span>90-day risk-free trial</span>
+      <span style="display: inline-block; width: 8px; height: 8px; border-radius: 50%; border: 1.5px solid #ffffff; flex-shrink: 0;"></span>
+      <span>Free shipping on all orders</span>
+      <span style="display: inline-block; width: 8px; height: 8px; border-radius: 50%; border: 1.5px solid #ffffff; flex-shrink: 0;"></span>
+      <span>90-day risk-free trial</span>
+      <span style="display: inline-block; width: 8px; height: 8px; border-radius: 50%; border: 1.5px solid #ffffff; flex-shrink: 0;"></span>
+    </div>
+    <!-- Group 2 (Identical duplicate for seamless continuous loop) -->
+    <div class="scrolling-text__item with-text flex items-center body tracking-heading" style="font-family: 'Inter', sans-serif; font-size: clamp(1.1rem, 1.8vw, 1.5rem); font-weight: 600; color: #ffffff; text-transform: uppercase; letter-spacing: 0.05em; display: inline-flex; align-items: center; gap: 28px; padding-right: 28px; white-space: nowrap; flex-shrink: 0;" aria-hidden="true">
+      <span>Free shipping on all orders</span>
+      <span style="display: inline-block; width: 8px; height: 8px; border-radius: 50%; border: 1.5px solid #ffffff; flex-shrink: 0;"></span>
+      <span>90-day risk-free trial</span>
+      <span style="display: inline-block; width: 8px; height: 8px; border-radius: 50%; border: 1.5px solid #ffffff; flex-shrink: 0;"></span>
+      <span>Free shipping on all orders</span>
+      <span style="display: inline-block; width: 8px; height: 8px; border-radius: 50%; border: 1.5px solid #ffffff; flex-shrink: 0;"></span>
+      <span>90-day risk-free trial</span>
+      <span style="display: inline-block; width: 8px; height: 8px; border-radius: 50%; border: 1.5px solid #ffffff; flex-shrink: 0;"></span>
     </div>
   </div>
 </div>
@@ -2300,9 +2416,9 @@ theme.variantStrings = {
      ========================================================================= -->
 <div id="x2-section-button-architecture" class="shopify-section" style="background: #000000; color: #ffffff; width: 100%; overflow: hidden; padding: clamp(2rem, 4vw, 4rem) 0; box-sizing: border-box;">
   <div style="max-width: 1320px; margin: 0 auto; padding: 0 clamp(16px, 4vw, 40px); box-sizing: border-box; display: flex; flex-direction: column; gap: clamp(2rem, 4vw, 3.5rem);">
-    <div style="position: relative; width: 100%; border-radius: 20px; overflow: hidden; background: #000000; box-shadow: 0 20px 50px rgba(0,0,0,0.8);">
+    <!--<div style="position: relative; width: 100%; border-radius: 20px; overflow: hidden; background: #000000; box-shadow: 0 20px 50px rgba(0,0,0,0.8);">
       <img src="assets_ref/x2/pure_black/x2_button_glow.jpg" alt="Miroooo X2 Integrated Pressure-Sensitive Button" style="width: 100%; height: auto; display: block; object-fit: contain;" />
-    </div>
+    </div>-->
     <div style="position: relative; width: 100%; border-radius: 20px; overflow: hidden; background: #000000; box-shadow: 0 20px 50px rgba(0,0,0,0.8);">
       <img src="assets_ref/x2/pure_black/x2_architecture.jpg" alt="Miroooo X2 Precision Architecture Breakdown" style="width: 100%; height: auto; display: block; object-fit: contain;" />
     </div>
@@ -2317,9 +2433,9 @@ theme.variantStrings = {
     <div style="position: relative; width: 100%; border-radius: 20px; overflow: hidden; background: #000000; box-shadow: 0 20px 50px rgba(0,0,0,0.8);">
       <img src="assets_ref/x2/pure_black/x2_sweep_vibration.jpg" alt="Miroooo X2 45° Wide-angle Sweep Vibration" style="width: 100%; height: auto; display: block; object-fit: contain;" />
     </div>
-    <div style="position: relative; width: 100%; border-radius: 20px; overflow: hidden; background: #000000; box-shadow: 0 20px 50px rgba(0,0,0,0.8);">
+    <!--<div style="position: relative; width: 100%; border-radius: 20px; overflow: hidden; background: #000000; box-shadow: 0 20px 50px rgba(0,0,0,0.8);">
       <img src="assets_ref/x2/pure_black/x2_storage.jpg" alt="Miroooo X2 Dual Storage System" style="width: 100%; height: auto; display: block; object-fit: contain;" />
-    </div>
+    </div>-->
   </div>
 </div>
 
@@ -2965,7 +3081,7 @@ const TIERS = {
     price: 79.00,
     priceDisplay: '£79.00',
     compareDisplay: '£159.00',
-    saveDisplay: 'Save £80.00 (50% OFF)',
+    saveDisplay: '50% OFF',
     ctaText: 'Add To Cart + 1 Free Gift',
     giftsValue: '£15.95',
     unlockedGifts: 1,
@@ -2981,7 +3097,7 @@ const TIERS = {
     price: 139.00,
     priceDisplay: '£139.00',
     compareDisplay: '£318.00',
-    saveDisplay: 'Save £179.00',
+    saveDisplay: '50% OFF',
     ctaText: 'Add To Cart + 2 Free Gifts',
     giftsValue: '£35.90',
     unlockedGifts: 2,
