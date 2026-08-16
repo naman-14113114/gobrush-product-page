@@ -686,13 +686,20 @@ first.parentNode.insertBefore(script, first);
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flickity/2.3.0/flickity.min.css">
 <style>
 @media screen and (max-width: 1023px) {
+  .product__media-list > .product__media-top-hero {
+    flex: 0 0 100% !important;
+    min-width: 100% !important;
+  }
   .product__media--video {
-    aspect-ratio: 16/9 !important;
-    max-height: calc(100vw * 9 / 16) !important;
+    flex: 0 0 100% !important;
+    min-width: 100% !important;
+    aspect-ratio: 1/1 !important;
     height: auto !important;
   }
   .product__media--video .video-wrapper {
+    width: 100% !important;
     height: 100% !important;
+    aspect-ratio: 1/1 !important;
   }
   .oral-hygiene-grid {
     grid-template-columns: 1fr !important;
@@ -733,10 +740,45 @@ first.parentNode.insertBefore(script, first);
   }
 }
 @media screen and (min-width: 1024px) {
-  .product__media--video {
-    aspect-ratio: 16/9;
-    width: 100% !important;
+  .product__media-list {
+    display: grid !important;
+    grid-template-columns: 1fr 1fr !important;
+    gap: 1.25rem !important;
+    align-items: stretch !important;
+  }
+  .product__media-top-hero {
     grid-column: 1 / -1 !important;
+    grid-row: 1 !important;
+    width: 100% !important;
+    aspect-ratio: 16 / 9 !important;
+    max-height: 520px !important;
+  }
+  .product__media-top-hero img {
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: cover !important;
+  }
+  .product__media--video {
+    grid-column: 2 !important;
+    grid-row: 2 / span 2 !important;
+    width: 100% !important;
+    height: 100% !important;
+    min-height: 100% !important;
+    display: flex !important;
+    aspect-ratio: auto !important;
+    margin-bottom: 0 !important;
+  }
+  .product__media--video .video-wrapper {
+    width: 100% !important;
+    height: 100% !important;
+    min-height: 100% !important;
+    aspect-ratio: auto !important;
+    display: flex !important;
+  }
+  .product__media--video video {
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: cover !important;
   }
   .oral-hygiene-grid {
     grid-template-columns: 1fr 1fr !important;
@@ -1736,8 +1778,18 @@ theme.variantStrings = {
           class="product__media-list flex gap-1 lg:grid lg:gap-4 xl:gap-5 grid-cols-2"
         >
 
-<div id="product-media-video-item" class="product__media product__media--video card col-span-2 w-full relative overflow-hidden" data-media-type="video" style="grid-column: 1 / -1; width: 100%; min-width: 100%; flex: 0 0 100%; scroll-snap-align: start; border-radius: var(--card-radius, 1rem); background: #000; box-shadow: 0 4px 20px rgba(0,0,0,0.06); margin-bottom: 4px; pointer-events: none;">
-  <div class="video-wrapper relative w-full overflow-hidden" style="position: relative; width: 100%; aspect-ratio: 16/9; max-height: 520px; display: flex; align-items: center; justify-content: center; background: #000; border-radius: inherit;">
+<div class="product__media product__media-top-hero card media media--square mobile:media--adapt_first flex w-full flex-auto relative overflow-hidden col-span-2"
+  data-media-type="image"
+  data-media-id="63670410641753" data-gang-default><img src="assets_ref/x2/gallery/miroooo-x2-sonic-electric-toothbrush-pink.png" alt="Miroooo X2" srcset="assets_ref/x2/gallery/miroooo-x2-sonic-electric-toothbrush-pink.png 200w, assets_ref/x2/gallery/miroooo-x2-sonic-electric-toothbrush-pink.png 300w, assets_ref/x2/gallery/miroooo-x2-sonic-electric-toothbrush-pink.png 400w, assets_ref/x2/gallery/miroooo-x2-sonic-electric-toothbrush-pink.png 500w, assets_ref/x2/gallery/miroooo-x2-sonic-electric-toothbrush-pink.png 600w, assets_ref/x2/gallery/miroooo-x2-sonic-electric-toothbrush-pink.png 700w, assets_ref/x2/gallery/miroooo-x2-sonic-electric-toothbrush-pink.png 800w, assets_ref/x2/gallery/miroooo-x2-sonic-electric-toothbrush-pink.png 1000w, assets_ref/x2/gallery/miroooo-x2-sonic-electric-toothbrush-pink.png 1200w, assets_ref/x2/gallery/miroooo-x2-sonic-electric-toothbrush-pink.png 1400w, assets_ref/x2/gallery/miroooo-x2-sonic-electric-toothbrush-pink.png 1600w, assets_ref/x2/gallery/miroooo-x2-sonic-electric-toothbrush-pink.png 1800w, assets_ref/x2/gallery/miroooo-x2-sonic-electric-toothbrush-pink.png 2000w, assets_ref/x2/gallery/miroooo-x2-sonic-electric-toothbrush-pink.png 2200w, assets_ref/x2/gallery/miroooo-x2-sonic-electric-toothbrush-pink.png 2400w, assets_ref/x2/gallery/miroooo-x2-sonic-electric-toothbrush-pink.png 2600w, assets_ref/x2/gallery/miroooo-x2-sonic-electric-toothbrush-pink.png 2800w, assets_ref/x2/gallery/miroooo-x2-sonic-electric-toothbrush-pink.png 3000w" width="3162" height="3162" loading="eager" fetchpriority="high" sizes="(max-width: 740px) calc(100vw - 40px), (max-width: 999px) calc(100vw - 64px), min(580px, 30vw)" class="w-full" is="lazy-image"><button type="button" class="absolute top-0 left-0 w-full h-full flex items-center justify-center" is="media-hover-button" aria-label="Open media 1 in modaal" tabindex="-1"><svg class="icon icon-zoom icon-xs lg:hidden" viewBox="0 0 24 24" stroke="currentColor" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path stroke-linecap="round" stroke-linejoin="round" d="M3 3V9M3 3H9M3 3L9 9M21 21V15M21 21H15M21 21L15 15"></path>
+    </svg></button></div>
+<div class="product__media card media media--square mobile:media--adapt_first flex w-full flex-auto relative overflow-hidden"
+  data-media-type="image"
+  data-media-id="63670410314073" data-gang-default><img src="assets_ref/x2/gallery/miroooo-x2-sonic-electric-toothbrush-silver-in-hand.png" alt="Miroooo X2" srcset="assets_ref/x2/gallery/miroooo-x2-sonic-electric-toothbrush-silver-in-hand.png 200w, assets_ref/x2/gallery/miroooo-x2-sonic-electric-toothbrush-silver-in-hand.png 300w, assets_ref/x2/gallery/miroooo-x2-sonic-electric-toothbrush-silver-in-hand.png 400w, assets_ref/x2/gallery/miroooo-x2-sonic-electric-toothbrush-silver-in-hand.png 500w, assets_ref/x2/gallery/miroooo-x2-sonic-electric-toothbrush-silver-in-hand.png 600w, assets_ref/x2/gallery/miroooo-x2-sonic-electric-toothbrush-silver-in-hand.png 700w, assets_ref/x2/gallery/miroooo-x2-sonic-electric-toothbrush-silver-in-hand.png 800w, assets_ref/x2/gallery/miroooo-x2-sonic-electric-toothbrush-silver-in-hand.png 1000w, assets_ref/x2/gallery/miroooo-x2-sonic-electric-toothbrush-silver-in-hand.png 1200w, assets_ref/x2/gallery/miroooo-x2-sonic-electric-toothbrush-silver-in-hand.png 1400w, assets_ref/x2/gallery/miroooo-x2-sonic-electric-toothbrush-silver-in-hand.png 1600w, assets_ref/x2/gallery/miroooo-x2-sonic-electric-toothbrush-silver-in-hand.png 1800w, assets_ref/x2/gallery/miroooo-x2-sonic-electric-toothbrush-silver-in-hand.png 2000w, assets_ref/x2/gallery/miroooo-x2-sonic-electric-toothbrush-silver-in-hand.png 2200w, assets_ref/x2/gallery/miroooo-x2-sonic-electric-toothbrush-silver-in-hand.png 2400w, assets_ref/x2/gallery/miroooo-x2-sonic-electric-toothbrush-silver-in-hand.png 2600w, assets_ref/x2/gallery/miroooo-x2-sonic-electric-toothbrush-silver-in-hand.png 2800w, assets_ref/x2/gallery/miroooo-x2-sonic-electric-toothbrush-silver-in-hand.png 3000w" width="3162" height="3162" loading="eager" fetchpriority="auto" sizes="(max-width: 740px) calc(100vw - 40px), (max-width: 999px) calc(100vw - 64px), min(580px, 30vw)" class="w-full" is="lazy-image"><button type="button" class="absolute top-0 left-0 w-full h-full flex items-center justify-center" is="media-hover-button" aria-label="Open media 2 in modaal" tabindex="-1"><svg class="icon icon-zoom icon-xs lg:hidden" viewBox="0 0 24 24" stroke="currentColor" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path stroke-linecap="round" stroke-linejoin="round" d="M3 3V9M3 3H9M3 3L9 9M21 21V15M21 21H15M21 21L15 15"></path>
+    </svg></button></div>
+<div id="product-media-video-item" class="product__media product__media--video card relative overflow-hidden" data-media-type="video" style="border-radius: var(--card-radius, 1rem); background: #000; box-shadow: 0 4px 20px rgba(0,0,0,0.06); pointer-events: none;">
+  <div class="video-wrapper relative w-full overflow-hidden" style="position: relative; width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; background: #000; border-radius: inherit;">
     <video
       id="gallery-featured-video"
       class="w-full h-full object-cover"
@@ -1753,16 +1805,6 @@ theme.variantStrings = {
     ></video>
   </div>
 </div>
-<div class="product__media card media media--square mobile:media--adapt_first flex w-full flex-auto relative overflow-hidden"
-  data-media-type="image"
-  data-media-id="63670410641753" data-gang-default><img src="assets_ref/x2/gallery/miroooo-x2-sonic-electric-toothbrush-pink.png" alt="Miroooo X2" srcset="assets_ref/x2/gallery/miroooo-x2-sonic-electric-toothbrush-pink.png 200w, assets_ref/x2/gallery/miroooo-x2-sonic-electric-toothbrush-pink.png 300w, assets_ref/x2/gallery/miroooo-x2-sonic-electric-toothbrush-pink.png 400w, assets_ref/x2/gallery/miroooo-x2-sonic-electric-toothbrush-pink.png 500w, assets_ref/x2/gallery/miroooo-x2-sonic-electric-toothbrush-pink.png 600w, assets_ref/x2/gallery/miroooo-x2-sonic-electric-toothbrush-pink.png 700w, assets_ref/x2/gallery/miroooo-x2-sonic-electric-toothbrush-pink.png 800w, assets_ref/x2/gallery/miroooo-x2-sonic-electric-toothbrush-pink.png 1000w, assets_ref/x2/gallery/miroooo-x2-sonic-electric-toothbrush-pink.png 1200w, assets_ref/x2/gallery/miroooo-x2-sonic-electric-toothbrush-pink.png 1400w, assets_ref/x2/gallery/miroooo-x2-sonic-electric-toothbrush-pink.png 1600w, assets_ref/x2/gallery/miroooo-x2-sonic-electric-toothbrush-pink.png 1800w, assets_ref/x2/gallery/miroooo-x2-sonic-electric-toothbrush-pink.png 2000w, assets_ref/x2/gallery/miroooo-x2-sonic-electric-toothbrush-pink.png 2200w, assets_ref/x2/gallery/miroooo-x2-sonic-electric-toothbrush-pink.png 2400w, assets_ref/x2/gallery/miroooo-x2-sonic-electric-toothbrush-pink.png 2600w, assets_ref/x2/gallery/miroooo-x2-sonic-electric-toothbrush-pink.png 2800w, assets_ref/x2/gallery/miroooo-x2-sonic-electric-toothbrush-pink.png 3000w" width="3162" height="3162" loading="eager" fetchpriority="high" sizes="(max-width: 740px) calc(100vw - 40px), (max-width: 999px) calc(100vw - 64px), min(580px, 30vw)" class="w-full" is="lazy-image"><button type="button" class="absolute top-0 left-0 w-full h-full flex items-center justify-center" is="media-hover-button" aria-label="Open media 1 in modaal" tabindex="-1"><svg class="icon icon-zoom icon-xs lg:hidden" viewBox="0 0 24 24" stroke="currentColor" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <path stroke-linecap="round" stroke-linejoin="round" d="M3 3V9M3 3H9M3 3L9 9M21 21V15M21 21H15M21 21L15 15"></path>
-    </svg></button></div>
-<div class="product__media card media media--square mobile:media--adapt_first flex w-full flex-auto relative overflow-hidden"
-  data-media-type="image"
-  data-media-id="63670410314073" data-gang-default><img src="assets_ref/x2/gallery/miroooo-x2-sonic-electric-toothbrush-silver-in-hand.png" alt="Miroooo X2" srcset="assets_ref/x2/gallery/miroooo-x2-sonic-electric-toothbrush-silver-in-hand.png 200w, assets_ref/x2/gallery/miroooo-x2-sonic-electric-toothbrush-silver-in-hand.png 300w, assets_ref/x2/gallery/miroooo-x2-sonic-electric-toothbrush-silver-in-hand.png 400w, assets_ref/x2/gallery/miroooo-x2-sonic-electric-toothbrush-silver-in-hand.png 500w, assets_ref/x2/gallery/miroooo-x2-sonic-electric-toothbrush-silver-in-hand.png 600w, assets_ref/x2/gallery/miroooo-x2-sonic-electric-toothbrush-silver-in-hand.png 700w, assets_ref/x2/gallery/miroooo-x2-sonic-electric-toothbrush-silver-in-hand.png 800w, assets_ref/x2/gallery/miroooo-x2-sonic-electric-toothbrush-silver-in-hand.png 1000w, assets_ref/x2/gallery/miroooo-x2-sonic-electric-toothbrush-silver-in-hand.png 1200w, assets_ref/x2/gallery/miroooo-x2-sonic-electric-toothbrush-silver-in-hand.png 1400w, assets_ref/x2/gallery/miroooo-x2-sonic-electric-toothbrush-silver-in-hand.png 1600w, assets_ref/x2/gallery/miroooo-x2-sonic-electric-toothbrush-silver-in-hand.png 1800w, assets_ref/x2/gallery/miroooo-x2-sonic-electric-toothbrush-silver-in-hand.png 2000w, assets_ref/x2/gallery/miroooo-x2-sonic-electric-toothbrush-silver-in-hand.png 2200w, assets_ref/x2/gallery/miroooo-x2-sonic-electric-toothbrush-silver-in-hand.png 2400w, assets_ref/x2/gallery/miroooo-x2-sonic-electric-toothbrush-silver-in-hand.png 2600w, assets_ref/x2/gallery/miroooo-x2-sonic-electric-toothbrush-silver-in-hand.png 2800w, assets_ref/x2/gallery/miroooo-x2-sonic-electric-toothbrush-silver-in-hand.png 3000w" width="3162" height="3162" loading="eager" fetchpriority="auto" sizes="(max-width: 740px) calc(100vw - 40px), (max-width: 999px) calc(100vw - 64px), min(580px, 30vw)" class="w-full" is="lazy-image"><button type="button" class="absolute top-0 left-0 w-full h-full flex items-center justify-center" is="media-hover-button" aria-label="Open media 2 in modaal" tabindex="-1"><svg class="icon icon-zoom icon-xs lg:hidden" viewBox="0 0 24 24" stroke="currentColor" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <path stroke-linecap="round" stroke-linejoin="round" d="M3 3V9M3 3H9M3 3L9 9M21 21V15M21 21H15M21 21L15 15"></path>
-    </svg></button></div>
 <div class="product__media card media media--square mobile:media--adapt_first flex w-full flex-auto relative overflow-hidden"
   data-media-type="image"
   data-media-id="63670410477913" data-gang-default><img src="assets_ref/x2/gallery/miroooo-x2-sonic-electric-toothbrush-grey-pedestal.png" alt="Miroooo X2" srcset="assets_ref/x2/gallery/miroooo-x2-sonic-electric-toothbrush-grey-pedestal.png 200w, assets_ref/x2/gallery/miroooo-x2-sonic-electric-toothbrush-grey-pedestal.png 300w, assets_ref/x2/gallery/miroooo-x2-sonic-electric-toothbrush-grey-pedestal.png 400w, assets_ref/x2/gallery/miroooo-x2-sonic-electric-toothbrush-grey-pedestal.png 500w, assets_ref/x2/gallery/miroooo-x2-sonic-electric-toothbrush-grey-pedestal.png 600w, assets_ref/x2/gallery/miroooo-x2-sonic-electric-toothbrush-grey-pedestal.png 700w, assets_ref/x2/gallery/miroooo-x2-sonic-electric-toothbrush-grey-pedestal.png 800w, assets_ref/x2/gallery/miroooo-x2-sonic-electric-toothbrush-grey-pedestal.png 1000w, assets_ref/x2/gallery/miroooo-x2-sonic-electric-toothbrush-grey-pedestal.png 1200w, assets_ref/x2/gallery/miroooo-x2-sonic-electric-toothbrush-grey-pedestal.png 1400w, assets_ref/x2/gallery/miroooo-x2-sonic-electric-toothbrush-grey-pedestal.png 1600w, assets_ref/x2/gallery/miroooo-x2-sonic-electric-toothbrush-grey-pedestal.png 1800w, assets_ref/x2/gallery/miroooo-x2-sonic-electric-toothbrush-grey-pedestal.png 2000w, assets_ref/x2/gallery/miroooo-x2-sonic-electric-toothbrush-grey-pedestal.png 2200w, assets_ref/x2/gallery/miroooo-x2-sonic-electric-toothbrush-grey-pedestal.png 2400w, assets_ref/x2/gallery/miroooo-x2-sonic-electric-toothbrush-grey-pedestal.png 2600w, assets_ref/x2/gallery/miroooo-x2-sonic-electric-toothbrush-grey-pedestal.png 2800w, assets_ref/x2/gallery/miroooo-x2-sonic-electric-toothbrush-grey-pedestal.png 3000w" width="3162" height="3162" loading="eager" fetchpriority="auto" sizes="(max-width: 740px) calc(100vw - 40px), (max-width: 999px) calc(100vw - 64px), min(580px, 30vw)" class="w-full" is="lazy-image"><button type="button" class="absolute top-0 left-0 w-full h-full flex items-center justify-center" is="media-hover-button" aria-label="Open media 3 in modaal" tabindex="-1"><svg class="icon icon-zoom icon-xs lg:hidden" viewBox="0 0 24 24" stroke="currentColor" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -1816,63 +1858,64 @@ theme.variantStrings = {
         </button>
       </div>
     </div><scroll-shadow class="product__thumbnails lg:hidden product__thumbnails--beside grid items-center relative w-full"><media-dots class="product__thumbnails-list scroll-area grid items-end justify-start gap-4 w-full" aria-controls="SliderGallery-template--24203751129433__main-product-9593510658393">
-<button id="thumb-video-item" aria-current="true" aria-label="Go to video" class="product__thumbnail media media--square relative overflow-hidden is-active" data-media-type="video" type="button" style="border-radius: 8px;">
-  <div style="width: 100%; height: 100%; background: #000; display: flex; align-items: center; justify-content: center; position: relative;">
-    <img id="thumb-video-img" alt="Video thumbnail" src="assets_ref/x2/gallery/miroooo-x2-sonic-electric-toothbrush-grey-studio.png" style="width: 100%; height: 100%; object-fit: cover; opacity: 0.6;" />
-    <svg style="position: absolute; width: 18px; height: 18px; fill: white; filter: drop-shadow(0 2px 4px rgba(0,0,0,0.5));" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
-  </div>
-</button><button type="button"
-  class="product__thumbnail media media--square relative overflow-hidden"
+<button type="button"
+  class="product__thumbnail media media--square relative overflow-hidden is-active"
   data-media-id="63670410641753"
-  aria-label="Ga naar item "
-  aria-current="false" data-gang-default><img src="assets_ref/x2/gallery/miroooo-x2-sonic-electric-toothbrush-pink.png" alt="Miroooo X2" srcset="assets_ref/x2/gallery/miroooo-x2-sonic-electric-toothbrush-pink.png 54w, assets_ref/x2/gallery/miroooo-x2-sonic-electric-toothbrush-pink.png 74w, assets_ref/x2/gallery/miroooo-x2-sonic-electric-toothbrush-pink.png 104w, assets_ref/x2/gallery/miroooo-x2-sonic-electric-toothbrush-pink.png 162w, assets_ref/x2/gallery/miroooo-x2-sonic-electric-toothbrush-pink.png 208w, assets_ref/x2/gallery/miroooo-x2-sonic-electric-toothbrush-pink.png 324w, assets_ref/x2/gallery/miroooo-x2-sonic-electric-toothbrush-pink.png 416w" width="416" height="416" loading="eager" sizes="(max-width: 1280px) 90px, 98px" is="lazy-image">
+  aria-label="Ga naar item 1"
+  aria-current="true" data-gang-default><img src="assets_ref/x2/gallery/miroooo-x2-sonic-electric-toothbrush-pink.png" alt="Miroooo X2" srcset="assets_ref/x2/gallery/miroooo-x2-sonic-electric-toothbrush-pink.png 54w, assets_ref/x2/gallery/miroooo-x2-sonic-electric-toothbrush-pink.png 74w, assets_ref/x2/gallery/miroooo-x2-sonic-electric-toothbrush-pink.png 104w, assets_ref/x2/gallery/miroooo-x2-sonic-electric-toothbrush-pink.png 162w, assets_ref/x2/gallery/miroooo-x2-sonic-electric-toothbrush-pink.png 208w, assets_ref/x2/gallery/miroooo-x2-sonic-electric-toothbrush-pink.png 324w, assets_ref/x2/gallery/miroooo-x2-sonic-electric-toothbrush-pink.png 416w" width="416" height="416" loading="eager" sizes="(max-width: 1280px) 90px, 98px" is="lazy-image">
 </button>
 <button type="button"
   class="product__thumbnail media media--square relative overflow-hidden"
   data-media-id="63670410314073"
-  aria-label="Ga naar item "
+  aria-label="Ga naar item 2"
   aria-current="false" data-gang-default><img src="assets_ref/x2/gallery/miroooo-x2-sonic-electric-toothbrush-silver-in-hand.png" alt="Miroooo X2" srcset="assets_ref/x2/gallery/miroooo-x2-sonic-electric-toothbrush-silver-in-hand.png 54w, assets_ref/x2/gallery/miroooo-x2-sonic-electric-toothbrush-silver-in-hand.png 74w, assets_ref/x2/gallery/miroooo-x2-sonic-electric-toothbrush-silver-in-hand.png 104w, assets_ref/x2/gallery/miroooo-x2-sonic-electric-toothbrush-silver-in-hand.png 162w, assets_ref/x2/gallery/miroooo-x2-sonic-electric-toothbrush-silver-in-hand.png 208w, assets_ref/x2/gallery/miroooo-x2-sonic-electric-toothbrush-silver-in-hand.png 324w, assets_ref/x2/gallery/miroooo-x2-sonic-electric-toothbrush-silver-in-hand.png 416w" width="416" height="416" loading="eager" sizes="(max-width: 1280px) 90px, 98px" is="lazy-image">
+</button>
+<button id="thumb-video-item" aria-current="false" aria-label="Go to video" class="product__thumbnail media media--square relative overflow-hidden" data-media-type="video" type="button" style="border-radius: 8px;">
+  <div style="width: 100%; height: 100%; background: #000; display: flex; align-items: center; justify-content: center; position: relative;">
+    <img id="thumb-video-img" alt="Video thumbnail" src="assets_ref/x2/gallery/miroooo-x2-sonic-electric-toothbrush-grey-studio.png" style="width: 100%; height: 100%; object-fit: cover; opacity: 0.6;" />
+    <svg style="position: absolute; width: 18px; height: 18px; fill: white; filter: drop-shadow(0 2px 4px rgba(0,0,0,0.5));" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+  </div>
 </button>
 <button type="button"
   class="product__thumbnail media media--square relative overflow-hidden"
   data-media-id="63670410477913"
-  aria-label="Ga naar item "
+  aria-label="Ga naar item 3"
   aria-current="false" data-gang-default><img src="assets_ref/x2/gallery/miroooo-x2-sonic-electric-toothbrush-grey-pedestal.png" alt="Miroooo X2" srcset="assets_ref/x2/gallery/miroooo-x2-sonic-electric-toothbrush-grey-pedestal.png 54w, assets_ref/x2/gallery/miroooo-x2-sonic-electric-toothbrush-grey-pedestal.png 74w, assets_ref/x2/gallery/miroooo-x2-sonic-electric-toothbrush-grey-pedestal.png 104w, assets_ref/x2/gallery/miroooo-x2-sonic-electric-toothbrush-grey-pedestal.png 162w, assets_ref/x2/gallery/miroooo-x2-sonic-electric-toothbrush-grey-pedestal.png 208w, assets_ref/x2/gallery/miroooo-x2-sonic-electric-toothbrush-grey-pedestal.png 324w, assets_ref/x2/gallery/miroooo-x2-sonic-electric-toothbrush-grey-pedestal.png 416w" width="416" height="416" loading="eager" sizes="(max-width: 1280px) 90px, 98px" is="lazy-image">
 </button>
 <button type="button"
   class="product__thumbnail media media--square relative overflow-hidden"
   data-media-id="63670410445145"
-  aria-label="Ga naar item "
+  aria-label="Ga naar item 4"
   aria-current="false" data-gang-default><img src="assets_ref/x2/gallery/miroooo-x2-sonic-electric-toothbrush-grey-studio.png" alt="Miroooo X2" srcset="assets_ref/x2/gallery/miroooo-x2-sonic-electric-toothbrush-grey-studio.png 54w, assets_ref/x2/gallery/miroooo-x2-sonic-electric-toothbrush-grey-studio.png 74w, assets_ref/x2/gallery/miroooo-x2-sonic-electric-toothbrush-grey-studio.png 104w, assets_ref/x2/gallery/miroooo-x2-sonic-electric-toothbrush-grey-studio.png 162w, assets_ref/x2/gallery/miroooo-x2-sonic-electric-toothbrush-grey-studio.png 208w, assets_ref/x2/gallery/miroooo-x2-sonic-electric-toothbrush-grey-studio.png 324w, assets_ref/x2/gallery/miroooo-x2-sonic-electric-toothbrush-grey-studio.png 416w" width="416" height="416" loading="eager" sizes="(max-width: 1280px) 90px, 98px" is="lazy-image">
 </button>
 <button type="button"
   class="product__thumbnail media media--square relative overflow-hidden"
   data-media-id="63670410576217"
-  aria-label="Ga naar item "
+  aria-label="Ga naar item 5"
   aria-current="false" data-gang-default><img src="assets_ref/x2/gallery/miroooo-x2-sonic-toothbrush-precision-bristle-head.png" alt="Miroooo X2" srcset="assets_ref/x2/gallery/miroooo-x2-sonic-toothbrush-precision-bristle-head.png 54w, assets_ref/x2/gallery/miroooo-x2-sonic-toothbrush-precision-bristle-head.png 74w, assets_ref/x2/gallery/miroooo-x2-sonic-toothbrush-precision-bristle-head.png 104w, assets_ref/x2/gallery/miroooo-x2-sonic-toothbrush-precision-bristle-head.png 162w, assets_ref/x2/gallery/miroooo-x2-sonic-toothbrush-precision-bristle-head.png 208w, assets_ref/x2/gallery/miroooo-x2-sonic-toothbrush-precision-bristle-head.png 324w, assets_ref/x2/gallery/miroooo-x2-sonic-toothbrush-precision-bristle-head.png 416w" width="416" height="416" loading="eager" sizes="(max-width: 1280px) 90px, 98px" is="lazy-image">
 </button>
 <button type="button"
   class="product__thumbnail media media--square relative overflow-hidden"
   data-media-id="63670410412377"
-  aria-label="Ga naar item "
+  aria-label="Ga naar item 6"
   aria-current="false" data-gang-default><img src="assets_ref/x2/gallery/miroooo-x2-sonic-toothbrush-usbc-fast-charging-port.jpg" alt="Miroooo X2" srcset="assets_ref/x2/gallery/miroooo-x2-sonic-toothbrush-usbc-fast-charging-port.jpg 54w, assets_ref/x2/gallery/miroooo-x2-sonic-toothbrush-usbc-fast-charging-port.jpg 74w, assets_ref/x2/gallery/miroooo-x2-sonic-toothbrush-usbc-fast-charging-port.jpg 104w, assets_ref/x2/gallery/miroooo-x2-sonic-toothbrush-usbc-fast-charging-port.jpg 162w, assets_ref/x2/gallery/miroooo-x2-sonic-toothbrush-usbc-fast-charging-port.jpg 208w, assets_ref/x2/gallery/miroooo-x2-sonic-toothbrush-usbc-fast-charging-port.jpg 324w, assets_ref/x2/gallery/miroooo-x2-sonic-toothbrush-usbc-fast-charging-port.jpg 416w" width="416" height="416" loading="eager" sizes="(max-width: 1280px) 90px, 98px" is="lazy-image">
 </button>
 <button type="button"
   class="product__thumbnail media media--square relative overflow-hidden"
   data-media-id="63670410543449"
-  aria-label="Ga naar item "
+  aria-label="Ga naar item 7"
   aria-current="false" data-gang-default><img src="assets_ref/x2/gallery/miroooo-x2-sonic-toothbrush-smart-pressure-sensor-ring.jpg" alt="Miroooo X2" srcset="assets_ref/x2/gallery/miroooo-x2-sonic-toothbrush-smart-pressure-sensor-ring.jpg 54w, assets_ref/x2/gallery/miroooo-x2-sonic-toothbrush-smart-pressure-sensor-ring.jpg 74w, assets_ref/x2/gallery/miroooo-x2-sonic-toothbrush-smart-pressure-sensor-ring.jpg 104w, assets_ref/x2/gallery/miroooo-x2-sonic-toothbrush-smart-pressure-sensor-ring.jpg 162w, assets_ref/x2/gallery/miroooo-x2-sonic-toothbrush-smart-pressure-sensor-ring.jpg 208w, assets_ref/x2/gallery/miroooo-x2-sonic-toothbrush-smart-pressure-sensor-ring.jpg 324w, assets_ref/x2/gallery/miroooo-x2-sonic-toothbrush-smart-pressure-sensor-ring.jpg 416w" width="416" height="416" loading="eager" sizes="(max-width: 1280px) 90px, 98px" is="lazy-image">
 </button>
 <button type="button"
   class="product__thumbnail media media--square relative overflow-hidden"
   data-media-id="63670410379609"
-  aria-label="Ga naar item "
+  aria-label="Ga naar item 8"
   aria-current="false" data-gang-default><img src="assets_ref/x2/gallery/miroooo-x2-sonic-toothbrush-portable-travel-cap.jpg" alt="Miroooo X2" srcset="assets_ref/x2/gallery/miroooo-x2-sonic-toothbrush-portable-travel-cap.jpg 54w, assets_ref/x2/gallery/miroooo-x2-sonic-toothbrush-portable-travel-cap.jpg 74w, assets_ref/x2/gallery/miroooo-x2-sonic-toothbrush-portable-travel-cap.jpg 104w, assets_ref/x2/gallery/miroooo-x2-sonic-toothbrush-portable-travel-cap.jpg 162w, assets_ref/x2/gallery/miroooo-x2-sonic-toothbrush-portable-travel-cap.jpg 208w, assets_ref/x2/gallery/miroooo-x2-sonic-toothbrush-portable-travel-cap.jpg 324w, assets_ref/x2/gallery/miroooo-x2-sonic-toothbrush-portable-travel-cap.jpg 416w" width="416" height="416" loading="eager" sizes="(max-width: 1280px) 90px, 98px" is="lazy-image">
 </button>
 <button type="button"
   class="product__thumbnail media media--square relative overflow-hidden"
   data-media-id="63670410379610"
-  aria-label="Ga naar item "
+  aria-label="Ga naar item 9"
   aria-current="false" data-gang-default><img src="assets_ref/x2/gallery/miroooo-x2-sonic-toothbrush-ventilated-travel-case.jpg" alt="Miroooo X2" srcset="assets_ref/x2/gallery/miroooo-x2-sonic-toothbrush-ventilated-travel-case.jpg 54w, assets_ref/x2/gallery/miroooo-x2-sonic-toothbrush-ventilated-travel-case.jpg 74w, assets_ref/x2/gallery/miroooo-x2-sonic-toothbrush-ventilated-travel-case.jpg 104w, assets_ref/x2/gallery/miroooo-x2-sonic-toothbrush-ventilated-travel-case.jpg 162w, assets_ref/x2/gallery/miroooo-x2-sonic-toothbrush-ventilated-travel-case.jpg 208w, assets_ref/x2/gallery/miroooo-x2-sonic-toothbrush-ventilated-travel-case.jpg 324w, assets_ref/x2/gallery/miroooo-x2-sonic-toothbrush-ventilated-travel-case.jpg 416w" width="416" height="416" loading="eager" sizes="(max-width: 1280px) 90px, 98px" is="lazy-image">
 </button>
 
