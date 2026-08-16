@@ -1,5 +1,3 @@
-:root { --miroooo-green: #22c55e; }
-
 .miroooo-skip {
   position: fixed;
   z-index: 99999;
@@ -15,26 +13,18 @@
 .miroooo-skip:focus { transform: translateY(0); }
 
 #shopify-section-sections--24203576967513__announcement-bar {
-  background: var(--miroooo-green) !important;
-  color: #041309 !important;
+  background: #e6e6e6 !important;
+  color: #111 !important;
 }
 
 #shopify-section-sections--24203576967513__announcement-bar .announcement-text {
-  color: #041309 !important;
-  font-weight: 750 !important;
-  letter-spacing: .045em !important;
+  color: #111 !important;
+  font-weight: 600 !important;
+  letter-spacing: .11em !important;
   text-transform: uppercase;
 }
 
 #shopify-section-sections--24203576967513__announcement-bar .highlighted-text svg { display: none !important; }
-
-#shopify-section-sections--24203576967513__header {
-  position: sticky;
-  z-index: 40;
-  top: 0;
-  background: rgba(0, 0, 0, .94) !important;
-  backdrop-filter: blur(18px);
-}
 
 #CartDrawer {
   z-index: 90 !important;
