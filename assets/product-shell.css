@@ -40,6 +40,29 @@
   z-index: 90 !important;
 }
 
+#CartDrawer .drawer__close {
+  display: none !important;
+}
+
+.miroooo-cart-close {
+  position: fixed;
+  z-index: 100;
+  top: 76px;
+  right: 16px;
+  width: 48px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid rgba(8, 9, 9, .12);
+  border-radius: 999px;
+  background: #fff;
+  color: #080909;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, .18);
+  font: 400 34px/1 Arial, sans-serif;
+  cursor: pointer;
+}
+
 #shopify-section-sections--24203576967513__header .header__logo-link span {
   letter-spacing: .34em !important;
 }
