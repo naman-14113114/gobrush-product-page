@@ -34,6 +34,29 @@ for (const file of newPages) {
   }
 }
 
+const homepage = await readFile(resolve(root, "index.html"), "utf8");
+for (const marker of ["gb-hero", "gb-benefits", "gb-range", "data-drag-scroll", "gb-story"]) {
+  if (!homepage.includes(marker)) errors.push(`index.html: missing redesigned homepage marker ${marker}`);
+}
+
+const sharedScript = await readFile(resolve(root, "assets/site.js"), "utf8");
+for (const marker of ["nav-link__flip", "mobile-panel__close", "service-strip", "data-drag-scroll"]) {
+  if (!sharedScript.includes(marker)) errors.push(`assets/site.js: missing shared theme behaviour ${marker}`);
+}
+
+const sharedStyles = await readFile(resolve(root, "assets/site.css"), "utf8");
+for (const marker of [".site-header--overlay", ".gb-hero", ".gb-product-tile", ".service-strip"]) {
+  if (!sharedStyles.includes(marker)) errors.push(`assets/site.css: missing shared theme style ${marker}`);
+}
+
+const productShellStyles = await readFile(resolve(root, "assets/product-shell.css"), "utf8");
+if (/position:\s*sticky[\s\S]{0,140}backdrop-filter:\s*blur\(18px\)/.test(productShellStyles)) {
+  errors.push("assets/product-shell.css: intrusive sticky blurred product header override remains");
+}
+if (/background:\s*var\(--miroooo-green\)/.test(productShellStyles)) {
+  errors.push("assets/product-shell.css: green announcement override remains");
+}
+
 for (const [file, route] of [["miroooo-x.html", "/products/miroooo-x"], ["miroooo-x2.html", "/products/miroooo-x2"]]) {
   const html = await readFile(resolve(root, file), "utf8");
   if (!/<html[^>]+lang="en-GB"/.test(html)) errors.push(`${file}: missing en-GB language`);
