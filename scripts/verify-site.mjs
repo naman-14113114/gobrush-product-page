@@ -45,10 +45,8 @@ for (const [file, route] of [["miroooo-x.html", "/products/miroooo-x"], ["mirooo
 }
 
 const config = JSON.parse(await readFile(resolve(root, "vercel.json"), "utf8"));
-const routes = new Set((config.rewrites || []).map((route) => route.source));
-for (const route of ["/products/miroooo-x", "/products/miroooo-x2"]) {
-  if (!routes.has(route)) errors.push(`vercel.json: missing product rewrite ${route}`);
-}
+if (config.cleanUrls !== true) errors.push("vercel.json: cleanUrls must remain enabled");
+if (!config.outputDirectory || config.outputDirectory !== "public") errors.push("vercel.json: outputDirectory must be public");
 
 const sitemap = await readFile(resolve(root, "sitemap.xml"), "utf8");
 for (const route of ["/shop", "/products/miroooo-x", "/products/miroooo-x2", "/delivery-returns", "/privacy", "/terms"]) {

@@ -18,6 +18,7 @@ if (verification.status !== 0) process.exit(verification.status || 1);
 
 await rm(output, { recursive: true, force: true });
 await mkdir(output, { recursive: true });
+await mkdir(resolve(output, "products"), { recursive: true });
 
 const rootEntries = await readdir(root, { withFileTypes: true });
 for (const entry of rootEntries) {
@@ -25,6 +26,9 @@ for (const entry of rootEntries) {
     await cp(resolve(root, entry.name), resolve(output, entry.name));
   }
 }
+
+await cp(resolve(root, "miroooo-x.html"), resolve(output, "products", "miroooo-x.html"));
+await cp(resolve(root, "miroooo-x2.html"), resolve(output, "products", "miroooo-x2.html"));
 
 for (const directory of ["assets", "assets_ref", "gallery_orig"]) {
   await cp(resolve(root, directory), resolve(output, directory), { recursive: true });

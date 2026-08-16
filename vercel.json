@@ -3,8 +3,6 @@
   "trailingSlash": false,
   "outputDirectory": "public",
   "rewrites": [
-    {"source":"/products/miroooo-x","destination":"/miroooo-x.html"},
-    {"source":"/products/miroooo-x2","destination":"/miroooo-x2.html"},
     {"source":"/policies/shipping-policy","destination":"/delivery-returns.html"},
     {"source":"/policies/refund-policy","destination":"/delivery-returns.html"},
     {"source":"/policies/privacy-policy","destination":"/privacy.html"},
