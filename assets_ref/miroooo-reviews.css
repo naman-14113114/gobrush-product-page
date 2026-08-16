@@ -604,19 +604,23 @@
 
 /* Review Card */
 .miroooo-review-card {
-  background: var(--miroooo-card-bg);
-  border: 1px solid var(--miroooo-card-border);
+  background: #e6e6e6 !important;
+  border: 1px solid rgba(0, 0, 0, 0.08);
   border-radius: var(--miroooo-radius-md);
   padding: 18px 16px;
   box-sizing: border-box;
   display: inline-block;
   width: 100%;
   break-inside: avoid;
+  -webkit-column-break-inside: avoid;
   page-break-inside: avoid;
-  margin-bottom: 20px;
+  margin-bottom: 18px;
   transition: var(--miroooo-transition);
   position: relative;
   overflow: hidden;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.25);
+  animation: mirooooCardFadeIn 0.4s cubic-bezier(0.16, 1, 0.3, 1) both;
+  will-change: transform, opacity;
 }
 
 @media (min-width: 768px) {
@@ -627,14 +631,14 @@
 }
 
 .miroooo-review-card:hover {
-  background: #151518;
-  border-color: var(--miroooo-card-border-hover);
+  background: #dedede !important;
+  border-color: rgba(34, 197, 94, 0.45);
   transform: translateY(-3px);
-  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.7), 0 0 20px rgba(212, 175, 55, 0.08);
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.35), 0 0 16px rgba(34, 197, 94, 0.12);
 }
 
 .miroooo-review-card.fade-in {
-  animation: mirooooFadeInUp 0.4s cubic-bezier(0.16, 1, 0.3, 1) both;
+  animation: mirooooCardFadeIn 0.4s cubic-bezier(0.16, 1, 0.3, 1) both;
 }
 
 /* Card Header (Stars + Date) */
@@ -650,25 +654,26 @@
   display: flex;
   align-items: center;
   gap: 2px;
-  color: var(--miroooo-gold);
+  color: #22c55e !important;
   font-size: 15px;
   line-height: 1;
 }
 
 .miroooo-card-date {
   font-size: 11px;
-  color: var(--miroooo-text-muted);
+  color: #666666 !important;
   white-space: nowrap;
 }
 
 /* Card Variant Badge */
-.miroooo-card-variant {
+.miroooo-card-variant,
+.miroooo-card-variant-tag {
   display: inline-block;
   font-size: 11px;
   font-weight: 600;
-  color: var(--miroooo-text-secondary);
-  background: rgba(255, 255, 255, 0.05);
-  border: 1px solid rgba(255, 255, 255, 0.06);
+  color: #444444 !important;
+  background: rgba(0, 0, 0, 0.06) !important;
+  border: 1px solid rgba(0, 0, 0, 0.1) !important;
   padding: 3px 8px;
   border-radius: 6px;
   margin-bottom: 12px;
@@ -678,8 +683,8 @@
 /* Card Title */
 .miroooo-card-title {
   font-size: 15px;
-  font-weight: 700;
-  color: #ffffff;
+  font-weight: 700 !important;
+  color: #111111 !important;
   line-height: 1.35;
   margin: 0 0 10px;
   letter-spacing: -0.01em;
@@ -691,19 +696,46 @@
   }
 }
 
-/* Card Body */
-.miroooo-card-body {
+/* Card Body & 4-Line Clamping */
+.miroooo-card-body,
+.miroooo-card-text {
   font-size: 13px;
-  line-height: 1.6;
-  color: #d1d5db;
-  margin: 0 0 16px;
+  line-height: 1.55 !important;
+  color: #222222 !important;
+  margin: 0 0 8px;
   word-break: break-word;
+  display: -webkit-box !important;
+  -webkit-line-clamp: 4 !important;
+  -webkit-box-orient: vertical !important;
+  overflow: hidden !important;
+  max-height: 96px !important;
 }
 
 @media (min-width: 768px) {
-  .miroooo-card-body {
+  .miroooo-card-body,
+  .miroooo-card-text {
     font-size: 13.5px;
   }
+}
+
+/* Read More Link Button */
+.miroooo-read-more-btn {
+  display: inline-block;
+  background: transparent;
+  border: none;
+  padding: 0;
+  margin: 0 0 14px;
+  font-size: 12px;
+  font-weight: 700;
+  color: #111111 !important;
+  text-decoration: underline;
+  cursor: pointer;
+  transition: color 0.15s ease;
+  line-height: 1.4;
+}
+
+.miroooo-read-more-btn:hover {
+  color: #16a34a !important;
 }
 
 /* Customer Photo Gallery on Card */
@@ -808,14 +840,14 @@
 
 /* Card Merchant Reply (For Edge-Case Reviews) */
 .miroooo-merchant-reply {
-  background: rgba(255, 255, 255, 0.03);
-  border-left: 3px solid var(--miroooo-gold);
+  background: rgba(0, 0, 0, 0.05);
+  border-left: 3px solid #16a34a;
   border-radius: 0 8px 8px 0;
   padding: 12px 14px;
   margin-bottom: 16px;
   font-size: 12px;
   line-height: 1.5;
-  color: #d1d5db;
+  color: #333333;
 }
 
 .miroooo-merchant-reply-header {
@@ -826,7 +858,7 @@
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.05em;
-  color: var(--miroooo-gold);
+  color: #111111;
   margin-bottom: 6px;
 }
 
@@ -839,7 +871,7 @@
 .miroooo-card-footer {
   margin-top: auto;
   padding-top: 14px;
-  border-top: 1px solid rgba(255, 255, 255, 0.06);
+  border-top: 1px solid rgba(0, 0, 0, 0.08) !important;
   display: flex;
   flex-direction: column;
   gap: 10px;
@@ -857,20 +889,23 @@
   align-items: center;
   gap: 8px;
   min-width: 0;
+  color: #111111 !important;
+  font-weight: 700 !important;
 }
 
+.miroooo-avatar,
 .miroooo-avatar-initials {
   width: 28px;
   height: 28px;
   border-radius: 50%;
-  background: linear-gradient(135deg, #27272a 0%, #18181b 100%);
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: #d0d0d0 !important;
+  border: 1px solid rgba(0, 0, 0, 0.1) !important;
   display: flex;
   align-items: center;
   justify-content: center;
   font-size: 11px;
   font-weight: 700;
-  color: var(--miroooo-gold);
+  color: #111111 !important;
   flex-shrink: 0;
 }
 
@@ -883,7 +918,7 @@
 .miroooo-author-name {
   font-size: 13px;
   font-weight: 700;
-  color: #ffffff;
+  color: #111111 !important;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -891,7 +926,7 @@
 
 .miroooo-author-country {
   font-size: 10px;
-  color: var(--miroooo-text-muted);
+  color: #666666 !important;
 }
 
 .miroooo-card-verified-badge {
@@ -902,9 +937,9 @@
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.05em;
-  color: #22c55e;
-  background: rgba(34, 197, 94, 0.1);
-  border: 1px solid rgba(34, 197, 94, 0.25);
+  color: #16a34a !important;
+  background: rgba(34, 197, 94, 0.12) !important;
+  border: 1px solid rgba(34, 197, 94, 0.3) !important;
   padding: 3px 7px;
   border-radius: 999px;
   flex-shrink: 0;
@@ -933,27 +968,27 @@
   display: inline-flex;
   align-items: center;
   gap: 6px;
-  background: rgba(255, 255, 255, 0.04);
-  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: rgba(0, 0, 0, 0.04) !important;
+  border: 1px solid rgba(0, 0, 0, 0.15) !important;
   border-radius: 999px;
   padding: 4px 10px;
   font-size: 11px;
   font-weight: 600;
-  color: var(--miroooo-text-secondary);
+  color: #555555 !important;
   cursor: pointer;
   transition: var(--miroooo-transition);
   outline: none;
 }
 
 .miroooo-helpful-btn:hover {
-  background: rgba(255, 255, 255, 0.08);
-  color: #ffffff;
+  background: rgba(0, 0, 0, 0.09) !important;
+  color: #111111 !important;
 }
 
 .miroooo-helpful-btn.voted {
-  background: rgba(34, 197, 94, 0.15);
-  border-color: rgba(34, 197, 94, 0.35);
-  color: #4ade80;
+  background: rgba(34, 197, 94, 0.15) !important;
+  border-color: rgba(34, 197, 94, 0.35) !important;
+  color: #16a34a !important;
 }
 
 .miroooo-helpful-btn svg {
@@ -1077,10 +1112,24 @@
 }
 
 @media (min-width: 800px) {
-  .miroooo-lightbox-dialog {
+  .miroooo-lightbox-dialog:not(.no-media) {
     flex-direction: row;
     height: 560px;
   }
+}
+
+.miroooo-lightbox-dialog.no-media {
+  max-width: 580px;
+  width: 100%;
+  height: auto;
+  min-height: auto;
+  flex-direction: column;
+}
+
+.miroooo-lightbox-dialog.no-media .miroooo-lightbox-sidebar {
+  padding: 32px 28px;
+  max-height: 85vh;
+  overflow-y: auto;
 }
 
 .miroooo-modal-close {
@@ -1546,6 +1595,17 @@
 }
 
 /* Animations */
+@keyframes mirooooCardFadeIn {
+  0% {
+    opacity: 0;
+    transform: translateY(22px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
 @keyframes mirooooFadeIn {
   from { opacity: 0; }
   to { opacity: 1; }

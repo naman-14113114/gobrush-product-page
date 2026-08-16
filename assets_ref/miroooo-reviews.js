@@ -1508,8 +1508,12 @@
       `;
     }
 
+    // Check if body exceeds 160 chars for "Read more" trigger
+    const isLongReview = review.body && review.body.length > 160;
+    const animDelay = ((index % 16) * 35) + 'ms';
+
     return `
-      <article class="miroooo-review-card fade-in" id="card-${review.id}">
+      <article class="miroooo-review-card fade-in" id="card-${review.id}" style="animation-delay: ${animDelay};">
         <!-- Top: Stars + Date -->
         <div class="miroooo-card-header">
           <div class="miroooo-card-stars" aria-label="${review.rating} out of 5 stars">${starsHTML}</div>
@@ -1517,7 +1521,7 @@
         </div>
 
         <!-- Selected Variant -->
-        ${review.variant ? `<div class="miroooo-card-variant">${review.variant}</div>` : ''}
+        ${review.variant ? `<div class="miroooo-card-variant miroooo-card-variant-tag">${review.variant}</div>` : ''}
 
         <!-- Customer Gallery -->
         ${galleryHTML}
@@ -1525,8 +1529,11 @@
         <!-- Title -->
         <h4 class="miroooo-card-title">${review.title}</h4>
 
-        <!-- Body -->
-        <p class="miroooo-card-body">${review.body}</p>
+        <!-- Body with 4-line clamping -->
+        <p class="miroooo-card-body miroooo-card-text">${review.body}</p>
+
+        <!-- Read More Button for long reviews -->
+        ${isLongReview ? `<button type="button" class="miroooo-read-more-btn" data-review-id="${review.id}">Read more</button>` : ''}
 
         <!-- Official Merchant Care Reply -->
         ${merchantReplyHTML}
@@ -1535,7 +1542,7 @@
         <div class="miroooo-card-footer">
           <div class="miroooo-card-author-row">
             <div class="miroooo-card-author">
-              <div class="miroooo-avatar-initials">${initials}</div>
+              <div class="miroooo-avatar miroooo-avatar-initials">${initials}</div>
               <div class="miroooo-author-info">
                 <span class="miroooo-author-name">${review.name}</span>
                 ${review.country ? `<span class="miroooo-author-country">${review.country}</span>` : ''}
@@ -1583,7 +1590,19 @@
       });
     });
 
-    // 2. Gallery Photo Lightbox Triggers
+    // 2. Read More Button Trigger (Full Review Modal Expansion)
+    const readMoreBtns = gridEl.querySelectorAll('.miroooo-read-more-btn');
+    readMoreBtns.forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        const reviewId = btn.getAttribute('data-review-id');
+        const review = currentList.find(r => r.id === reviewId);
+        if (!review) return;
+        openLightbox(review, 0);
+      });
+    });
+
+    // 3. Gallery Photo Lightbox Triggers
     const galleryContainers = gridEl.querySelectorAll('.miroooo-card-gallery');
     galleryContainers.forEach(container => {
       container.addEventListener('click', (e) => {
@@ -1603,7 +1622,7 @@
   }
 
   // ==========================================================================
-  // LIGHTBOX LOGIC
+  // LIGHTBOX / FULL REVIEW MODAL LOGIC
   // ==========================================================================
   function setupLightboxEvents() {
     const modal = document.getElementById('miroooo-lightbox-modal');
@@ -1677,6 +1696,8 @@
   function updateLightboxContent() {
     if (!activeLightboxReview) return;
 
+    const dialogEl = document.querySelector('.miroooo-lightbox-dialog');
+    const mediaContainer = document.querySelector('.miroooo-lightbox-media-container');
     const imgEl = document.getElementById('miroooo-lightbox-img');
     const starsEl = document.getElementById('miroooo-lightbox-stars');
     const dateEl = document.getElementById('miroooo-lightbox-date');
@@ -1690,7 +1711,21 @@
     const nextBtn = document.getElementById('miroooo-lightbox-next');
     const dotsContainer = document.getElementById('miroooo-lightbox-dots');
 
-    if (imgEl && activeLightboxReview.images.length > 0) {
+    const hasImages = activeLightboxReview.images && activeLightboxReview.images.length > 0;
+
+    if (dialogEl) {
+      if (hasImages) {
+        dialogEl.classList.remove('no-media');
+      } else {
+        dialogEl.classList.add('no-media');
+      }
+    }
+
+    if (mediaContainer) {
+      mediaContainer.style.display = hasImages ? 'flex' : 'none';
+    }
+
+    if (hasImages && imgEl) {
       imgEl.src = activeLightboxReview.images[activeLightboxImageIndex];
     }
 
@@ -1714,7 +1749,7 @@
     if (countSpan) countSpan.textContent = activeLightboxReview.helpful || 0;
 
     // Prev / Next Visibility
-    const hasMultiple = activeLightboxReview.images && activeLightboxReview.images.length > 1;
+    const hasMultiple = hasImages && activeLightboxReview.images.length > 1;
     if (prevBtn) prevBtn.style.display = hasMultiple ? 'flex' : 'none';
     if (nextBtn) nextBtn.style.display = hasMultiple ? 'flex' : 'none';
 
