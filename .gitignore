@@ -8,9 +8,10 @@ __pycache__/
 *.png
 !assets_ref/**/*.png
 *.txt
+!robots.txt
+!llms.txt
 scraped_page.html
 miroshine_page.html
-all_gobrush_products.json
 brush-one-grey.json
 full_page_analysis.json
 dutch_texts.json
@@ -25,3 +26,5 @@ extracted_*.html
 # System files
 .DS_Store
 Thumbs.db
+.vercel
+public/

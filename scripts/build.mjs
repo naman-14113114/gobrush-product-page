@@ -1,0 +1,33 @@
+import { cp, mkdir, readdir, rm } from "node:fs/promises";
+import { resolve } from "node:path";
+import { spawnSync } from "node:child_process";
+
+const root = resolve(import.meta.dirname, "..");
+const output = resolve(root, "public");
+
+if (!output.startsWith(`${root}\\`) && !output.startsWith(`${root}/`)) {
+  throw new Error("Refusing to build outside the repository.");
+}
+
+const verification = spawnSync(process.execPath, [resolve(root, "scripts/verify-site.mjs")], {
+  cwd: root,
+  encoding: "utf8",
+  stdio: "inherit"
+});
+if (verification.status !== 0) process.exit(verification.status || 1);
+
+await rm(output, { recursive: true, force: true });
+await mkdir(output, { recursive: true });
+
+const rootEntries = await readdir(root, { withFileTypes: true });
+for (const entry of rootEntries) {
+  if (entry.isFile() && /\.(html|xml|txt|svg|webmanifest)$/.test(entry.name)) {
+    await cp(resolve(root, entry.name), resolve(output, entry.name));
+  }
+}
+
+for (const directory of ["assets", "assets_ref", "gallery_orig"]) {
+  await cp(resolve(root, directory), resolve(output, directory), { recursive: true });
+}
+
+console.log("Miroooo static storefront built in public/.");

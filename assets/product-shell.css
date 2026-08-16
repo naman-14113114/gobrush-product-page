@@ -1,0 +1,81 @@
+:root { --miroooo-green: #22c55e; }
+
+.miroooo-skip {
+  position: fixed;
+  z-index: 99999;
+  top: 10px;
+  left: 10px;
+  padding: 10px 16px;
+  border-radius: 999px;
+  background: #fff;
+  color: #080909;
+  transform: translateY(-150%);
+}
+
+.miroooo-skip:focus { transform: translateY(0); }
+
+#shopify-section-sections--24203576967513__announcement-bar {
+  background: var(--miroooo-green) !important;
+  color: #041309 !important;
+}
+
+#shopify-section-sections--24203576967513__announcement-bar .announcement-text {
+  color: #041309 !important;
+  font-weight: 750 !important;
+  letter-spacing: .045em !important;
+  text-transform: uppercase;
+}
+
+#shopify-section-sections--24203576967513__announcement-bar .highlighted-text svg { display: none !important; }
+
+#shopify-section-sections--24203576967513__header {
+  position: sticky;
+  z-index: 40;
+  top: 0;
+  background: rgba(0, 0, 0, .94) !important;
+  backdrop-filter: blur(18px);
+}
+
+#CartDrawer {
+  z-index: 90 !important;
+}
+
+#shopify-section-sections--24203576967513__header .header__logo-link span {
+  letter-spacing: .34em !important;
+}
+
+.miroooo-product-footer {
+  padding: 72px max(20px, calc((100vw - 1240px) / 2)) 30px;
+  background: #080909;
+  color: #fff;
+  font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
+
+.miroooo-product-footer * { box-sizing: border-box; }
+
+.miroooo-product-footer__grid {
+  display: grid;
+  grid-template-columns: 1.45fr repeat(3, minmax(130px, .55fr));
+  gap: 54px;
+  padding-bottom: 70px;
+}
+
+.miroooo-product-footer__brand { max-width: 380px; }
+.miroooo-product-footer__logo { display: inline-block; margin-bottom: 28px; color: #fff; font-size: 22px; font-weight: 800; letter-spacing: .38em; }
+.miroooo-product-footer__brand p { margin: 0; color: rgba(255,255,255,.55); font-size: 14px; line-height: 1.6; }
+.miroooo-product-footer__column strong { display: block; margin-bottom: 16px; color: rgba(255,255,255,.46); font-size: 11px; letter-spacing: .13em; text-transform: uppercase; }
+.miroooo-product-footer__column a { min-height: 36px; display: flex; align-items: center; color: rgba(255,255,255,.75); font-size: 13px; text-decoration: none; }
+.miroooo-product-footer__column a:hover { color: #fff; }
+.miroooo-product-footer__bottom { min-height: 52px; display: flex; align-items: center; justify-content: space-between; gap: 24px; padding-top: 24px; border-top: 1px solid rgba(255,255,255,.12); color: rgba(255,255,255,.45); font-size: 11px; }
+.miroooo-product-footer__legal { display: flex; flex-wrap: wrap; gap: 22px; }
+
+@media (max-width: 800px) {
+  .miroooo-product-footer { padding-top: 54px; }
+  .miroooo-product-footer__grid { grid-template-columns: 1fr 1fr; gap: 38px 22px; padding-bottom: 48px; }
+  .miroooo-product-footer__brand { grid-column: 1 / -1; }
+  .miroooo-product-footer__bottom { align-items: flex-start; flex-direction: column; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .miroooo-skip { transition: none; }
+}
