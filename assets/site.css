@@ -1777,10 +1777,11 @@ body {
   display: block;
   aspect-ratio: 1 / 1;
   width: 100%;
-  background: #141517;
+  background: #ffffff;
   overflow: hidden;
   text-decoration: none;
   cursor: pointer;
+  border-radius: 19px 19px 0 0;
 }
 
 .gb-product-card__media-link {
@@ -1789,70 +1790,139 @@ body {
   height: 100%;
   position: relative;
   text-decoration: none;
-}
-
-/* Multi-Image Scrubbing Gallery */
-.gb-product-card__image-wrap {
-  position: relative;
-  width: 100%;
-  height: 100%;
-  aspect-ratio: 1 / 1;
   overflow: hidden;
-  background: #141517;
 }
 
-.gb-product-card__img {
-  position: absolute;
-  inset: 0;
+/* GoBrush Horizontal Slide Track */
+.gb-product-card__track {
+  display: flex;
+  width: 300%;
+  height: 100%;
+  transition: transform 0.45s cubic-bezier(0.25, 1, 0.5, 1);
+  will-change: transform;
+}
+
+.gb-product-card__slide {
+  width: 33.333333%;
+  height: 100%;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #ffffff;
+  overflow: hidden;
+}
+
+.gb-product-card__slide img {
   width: 100%;
   height: 100%;
   object-fit: cover;
   object-position: center;
   display: block;
-  opacity: 0;
-  transform: scale(1.02);
-  transition: opacity 0.3s ease, transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
-  will-change: opacity, transform;
+}
+
+/* Flickity Page Dots (o . .) */
+.flickity-page-dots {
+  position: absolute;
+  bottom: 12px;
+  left: 0;
+  right: 0;
+  z-index: 3;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
   pointer-events: none;
+  list-style: none;
+  padding: 0;
+  margin: 0;
 }
 
-.gb-product-card__img.is-active {
+.flickity-page-dots .dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #080909;
+  opacity: 0.3;
+  transition: opacity 0.25s ease, transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.flickity-page-dots .dot.is-selected {
   opacity: 1;
-  transform: scale(1);
-  z-index: 1;
+  transform: scale(1.35);
+  box-shadow: 0 0 0 1px #080909;
 }
 
-.gb-product-card:hover .gb-product-card__img.is-active {
-  transform: scale(1.04);
+/* Badges: Save 28% (Top-Left) and Rating (Top-Right) */
+.badge--onsale {
+  position: absolute;
+  top: 14px;
+  left: 14px;
+  z-index: 3;
+  background: #c0004a;
+  color: #ffffff;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  padding: 6px 14px;
+  border-radius: 9999px;
+  line-height: 1;
+  pointer-events: none;
+  box-shadow: 0 4px 12px rgba(192, 0, 74, 0.35);
 }
 
-/* GoBrush Quick-View Eye Button */
-.quick-view__button {
+.product-card__rating {
   position: absolute;
   top: 14px;
   right: 14px;
-  z-index: 4;
-  width: 36px;
-  height: 36px;
+  z-index: 2;
+  background: #ffffff;
+  color: #080909;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  padding: 5px 11px;
   border-radius: 9999px;
-  background: rgba(255, 255, 255, 0.14);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  border: 1px solid rgba(255, 255, 255, 0.18);
-  color: #ffffff;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  line-height: 1;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  pointer-events: none;
+  transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+.gb-product-card:hover .product-card__rating {
+  opacity: 0;
+  transform: scale(0.9);
+}
+
+/* GoBrush Eye Quick-View Button (Top-Right on Hover) */
+.quick-view__button {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  z-index: 4;
+  width: 38px;
+  height: 38px;
+  border-radius: 9999px;
+  background: #ffffff;
+  color: #080909;
+  border: 1px solid rgba(0, 0, 0, 0.06);
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.14);
   display: flex;
   align-items: center;
   justify-content: center;
   opacity: 0;
   transform: scale(0.85);
-  transition: opacity 0.3s ease, transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), background-color 0.2s ease, color 0.2s ease;
+  transition: opacity 0.25s ease, transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.2s ease;
   cursor: pointer;
   text-decoration: none;
 }
 
 .quick-view__button svg {
-  width: 18px;
-  height: 18px;
+  width: 19px;
+  height: 19px;
   stroke: currentColor;
   fill: none;
 }
@@ -1863,166 +1933,58 @@ body {
 }
 
 .quick-view__button:hover {
-  background: #ffffff;
-  color: #000000;
   transform: scale(1.1);
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.22);
 }
 
-/* GoBrush Active Dot Indicators */
-.gb-media-dots {
-  position: absolute;
-  bottom: 12px;
-  left: 0;
-  right: 0;
-  z-index: 3;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 5px;
-  pointer-events: none;
-  opacity: 0;
-  transition: opacity 0.3s ease;
-}
-
-.gb-product-card:hover .gb-media-dots {
-  opacity: 1;
-}
-
-.gb-media-dot {
-  width: 6px;
-  height: 6px;
-  border-radius: 9999px;
-  background: rgba(255, 255, 255, 0.35);
-  transition: width 0.25s cubic-bezier(0.16, 1, 0.3, 1), background-color 0.25s ease;
-}
-
-.gb-media-dot.is-active {
-  width: 16px;
-  background: #ffffff;
-}
-
-/* Badges (Discount Top-Left, Rating Top-Right) */
-.gb-product-card__badges {
-  position: absolute;
-  top: 14px;
-  left: 14px;
-  right: 14px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  z-index: 3;
-  pointer-events: none;
-}
-
-.gb-badge {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  font-family: 'Inter', -apple-system, sans-serif;
-  border-radius: 9999px;
-  line-height: 1;
-}
-
-.gb-badge--save {
-  background: #e11d48;
-  color: #ffffff;
-  font-size: 11px;
-  font-weight: 700;
-  letter-spacing: 0.02em;
-  padding: 6px 14px;
-  box-shadow: 0 4px 12px rgba(225, 29, 72, 0.35);
-}
-
-.gb-badge--rating {
-  background: rgba(255, 255, 255, 0.14);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  border: 1px solid rgba(255, 255, 255, 0.18);
-  color: #ffffff;
-  font-size: 11px;
-  font-weight: 600;
-  padding: 5px 10px;
-  letter-spacing: 0.02em;
-  gap: 4px;
-}
-
-/* Hover Quick Action Pill Button */
-.gb-product-card__quick-btn {
-  position: absolute;
-  bottom: 26px;
-  left: 16px;
-  right: 16px;
-  z-index: 3;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
-  height: 42px;
-  border-radius: 9999px;
-  background: rgba(255, 255, 255, 0.95);
-  color: #080909;
-  font-size: 13px;
-  font-weight: 600;
-  letter-spacing: 0.02em;
-  transform: translateY(16px);
-  opacity: 0;
-  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.3s ease, background-color 0.2s ease;
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35);
-  pointer-events: none;
-}
-
-.gb-product-card:hover .gb-product-card__quick-btn {
-  transform: translateY(0);
-  opacity: 1;
-}
-
-/* Color Swatches */
-.gb-swatches {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  margin-bottom: 6px;
-}
-
-.gb-swatch {
-  width: 12px;
-  height: 12px;
-  border-radius: 9999px;
-  border: 1px solid rgba(255, 255, 255, 0.25);
-  transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
-  display: inline-block;
-  cursor: pointer;
-}
-
-.gb-swatch.is-active,
-.gb-swatch:hover {
-  transform: scale(1.25);
-  border-color: #ffffff;
-  box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.35);
-}
-
-/* Card Meta */
+/* Card Meta (Centered GoBrush Style) */
 .gb-product-card__meta {
-  padding: 18px 22px 22px;
+  padding: 20px 20px 24px;
   display: flex;
+  flex-direction: column;
   align-items: center;
-  justify-content: space-between;
-  gap: 16px;
+  justify-content: center;
+  text-align: center;
+  gap: 6px;
   background: #0f1011;
 }
 
 .gb-product-card__name {
-  font-size: 16px;
-  font-weight: 700;
+  font-size: 16.5px;
+  font-weight: 600;
   color: #ffffff;
-  margin: 0 0 2px;
+  margin: 0;
+  letter-spacing: -0.01em;
 }
 
-.gb-product-card__finish {
-  font-size: 12.5px;
-  color: rgba(255, 255, 255, 0.6);
-  font-weight: 500;
+.gb-product-card__name a {
+  color: #ffffff;
+  text-decoration: none;
+  transition: opacity 0.2s ease;
+}
+
+.gb-product-card__name a:hover {
+  opacity: 0.8;
+}
+
+.gb-product-card__price-wrap {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+.gb-product-card__price {
+  font-size: 15px;
+  font-weight: 700;
+  color: #ffffff;
+}
+
+.gb-product-card__compare {
+  font-size: 13px;
+  color: #e11d48;
+  text-decoration: line-through;
+  opacity: 0.85;
 }
 
 .gb-product-card__price-wrap {

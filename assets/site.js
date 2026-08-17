@@ -135,23 +135,22 @@
     });
   };
 
-  // Exact GoBrush Multi-Image Scrubbing Hover on Product Cards
-  const initScrubGalleries = () => {
-    document.querySelectorAll("[data-scrub-gallery]").forEach((gallery) => {
-      if (gallery.dataset.scrubAttached) return;
-      gallery.dataset.scrubAttached = "true";
+  // Authentic GoBrush Flickity Horizontal Sliding Hover Track on Cards
+  const initSlideGalleries = () => {
+    document.querySelectorAll("[data-slide-gallery]").forEach((gallery) => {
+      if (gallery.dataset.slideAttached) return;
+      gallery.dataset.slideAttached = "true";
 
-      const images = gallery.querySelectorAll(".gb-product-card__img");
-      const dots = gallery.querySelectorAll(".gb-media-dot");
-      const count = images.length;
-      if (count <= 1) return;
+      const track = gallery.querySelector(".gb-product-card__track");
+      const slides = gallery.querySelectorAll(".gb-product-card__slide");
+      const dots = gallery.querySelectorAll(".flickity-page-dots .dot");
+      const count = slides.length;
+      if (!track || count <= 1) return;
 
-      const selectImage = (index) => {
-        images.forEach((img, i) => {
-          img.classList.toggle("is-active", i === index);
-        });
+      const selectSlide = (index) => {
+        track.style.transform = `translate3d(-${index * (100 / count)}%, 0, 0)`;
         dots.forEach((dot, i) => {
-          dot.classList.toggle("is-active", i === index);
+          dot.classList.toggle("is-selected", i === index);
         });
       };
 
@@ -159,11 +158,11 @@
         const rect = gallery.getBoundingClientRect();
         const mouseX = Math.max(0, Math.min(e.clientX - rect.left, rect.width));
         const index = Math.min(Math.floor((mouseX / rect.width) * count), count - 1);
-        selectImage(index);
+        selectSlide(index);
       });
 
       gallery.addEventListener("mouseleave", () => {
-        selectImage(0);
+        selectSlide(0);
       });
     });
   };
@@ -171,11 +170,11 @@
   if (document.readyState === "loading") {
     document.addEventListener("DOMContentLoaded", () => {
       initMagnet();
-      initScrubGalleries();
+      initSlideGalleries();
     });
   } else {
     initMagnet();
-    initScrubGalleries();
+    initSlideGalleries();
   }
 
   if (footerTarget) {
