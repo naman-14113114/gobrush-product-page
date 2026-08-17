@@ -202,7 +202,7 @@
 .header__buttons {
   display: flex !important;
   align-items: center !important;
-  gap: 8px !important;
+  gap: 6px !important;
 }
 
 .header__buttons a,
@@ -210,36 +210,38 @@
   position: relative !important;
   width: 44px !important;
   height: 44px !important;
-  border-radius: 50% !important;
+  border-radius: 9999px !important;
   display: inline-flex !important;
   align-items: center !important;
   justify-content: center !important;
   color: #ffffff !important;
   background: transparent !important;
   border: none !important;
+  outline: none !important;
   cursor: pointer !important;
   text-decoration: none !important;
-  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), background-color 0.2s ease !important;
   will-change: transform;
 }
 
 .header__buttons a svg,
 .header__buttons button svg {
-  color: #ffffff !important;
+  color: rgba(255, 255, 255, 0.85) !important;
   stroke: currentColor !important;
-  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1) !important;
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), color 0.2s ease, opacity 0.2s ease !important;
+  will-change: transform;
 }
 
 @media (hover: hover) {
   .header__buttons a:hover,
   .header__buttons button:hover {
-    background-color: rgba(255, 255, 255, 0.12) !important;
-    transform: scale(1.05) !important;
+    background: transparent !important;
   }
 
   .header__buttons a:hover svg,
   .header__buttons button:hover svg {
-    transform: scale(1.08) !important;
+    color: #ffffff !important;
+    opacity: 1 !important;
+    transform: scale(1.15) !important;
   }
 }
 

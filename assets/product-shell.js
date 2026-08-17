@@ -51,7 +51,7 @@
     duplicateSpan.textContent = item[1];
   });
 
-  // Magnet Mouse Cursor Follower Effect for Header Elements
+  // Authentic GoBrush Magnet Spring Hover Physics
   const initMagnetEffect = () => {
     const magnetTargets = document.querySelectorAll(
       '[is="magnet-link"], [is="magnet-button"], .header__menu > ul.with-block .menu__item, .header__buttons a, .header__buttons button'
@@ -61,15 +61,31 @@
       if (target.dataset.magnetAttached) return;
       target.dataset.magnetAttached = "true";
 
+      const icon = target.querySelector("svg");
+      const text = target.querySelector("[data-text]");
+
       target.addEventListener("mousemove", (e) => {
         const rect = target.getBoundingClientRect();
-        const x = e.clientX - rect.left - rect.width / 2;
-        const y = e.clientY - rect.top - rect.height / 2;
-        target.style.transform = `translate(${x * 0.22}px, ${y * 0.22}px)`;
+        const x = ((e.clientX - rect.left) / rect.width - 0.5) * 14;
+        const y = ((e.clientY - rect.top) / rect.height - 0.5) * 14;
+
+        if (icon) {
+          icon.style.transform = `translate(${x}px, ${y}px) scale(1.15)`;
+        } else if (text) {
+          text.style.transform = `translate(${x * 0.4}px, ${y * 0.4}px)`;
+        } else {
+          target.style.transform = `translate(${x * 0.3}px, ${y * 0.3}px)`;
+        }
       });
 
       target.addEventListener("mouseleave", () => {
-        target.style.transform = "translate(0px, 0px)";
+        if (icon) {
+          icon.style.transform = "";
+        }
+        if (text) {
+          text.style.transform = "";
+        }
+        target.style.transform = "";
       });
     });
   };

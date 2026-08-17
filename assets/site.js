@@ -2,9 +2,9 @@
   "use strict";
 
   const arrowIcon = '<svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.65"><path d="M5 12h14M13 6l6 6-6 6"/></svg>';
-  const accountIcon = '<svg class="icon icon-account" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" style="width: 21px; height: 21px;"><rect width="10.5" height="10.5" x="6.75" y="1.75" rx="5.25"></rect><path d="M12 15.5c1.5 0 4 .333 4.5.5.5.167 3.7.8 4.5 2 1 1.5 1 2 1 4m-10-6.5c-1.5 0-4 .333-4.5.5-.5.167-3.7.8-4.5 2-1 1.5-1 2-1 4"></path></svg>';
-  const bagIcon = '<svg class="icon icon-cart" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" style="width: 21px; height: 21px;"><path d="M1 1h.5v0c.226 0 .339 0 .44.007a3 3 0 0 1 2.62 1.976c.034.095.065.204.127.42l.17.597m0 0 1.817 6.358c.475 1.664.713 2.496 1.198 3.114a4 4 0 0 0 1.633 1.231c.727.297 1.592.297 3.322.297h2.285c1.75 0 2.626 0 3.359-.302a4 4 0 0 0 1.64-1.253c.484-.627.715-1.472 1.175-3.161l.06-.221c.563-2.061.844-3.092.605-3.906a3 3 0 0 0-1.308-1.713C19.92 4 18.853 4 16.716 4H4.857ZM12 20a2 2 0 1 1-4 0 2 2 0 0 1 4 0Zm8 0a2 2 0 1 1-4 0 2 2 0 0 1 4 0Z"></path></svg>';
-  const menuIcon = '<svg class="icon icon-hamburger" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" style="width: 21px; height: 21px;"><path d="M3 6H21M3 12H11M3 18H16"></path></svg>';
+  const accountIcon = '<svg class="icon icon-account" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><rect width="10.5" height="10.5" x="6.75" y="1.75" rx="5.25"></rect><path d="M12 15.5c1.5 0 4 .333 4.5.5.5.167 3.7.8 4.5 2 1 1.5 1 2 1 4m-10-6.5c-1.5 0-4 .333-4.5.5-.5.167-3.7.8-4.5 2-1 1.5-1 2-1 4"></path></svg>';
+  const bagIcon = '<svg class="icon icon-cart" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M1 1h.5v0c.226 0 .339 0 .44.007a3 3 0 0 1 2.62 1.976c.034.095.065.204.127.42l.17.597m0 0 1.817 6.358c.475 1.664.713 2.496 1.198 3.114a4 4 0 0 0 1.633 1.231c.727.297 1.592.297 3.322.297h2.285c1.75 0 2.626 0 3.359-.302a4 4 0 0 0 1.64-1.253c.484-.627.715-1.472 1.175-3.161l.06-.221c.563-2.061.844-3.092.605-3.906a3 3 0 0 0-1.308-1.713C19.92 4 18.853 4 16.716 4H4.857ZM12 20a2 2 0 1 1-4 0 2 2 0 0 1 4 0Zm8 0a2 2 0 1 1-4 0 2 2 0 0 1 4 0Z"></path></svg>';
+  const menuIcon = '<svg class="icon icon-hamburger" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M3 6H21M3 12H11M3 18H16"></path></svg>';
   const closeIcon = '<svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.55"><path d="m5 5 14 14M19 5 5 19"/></svg>';
   const supportIcon = '<svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M4 13a8 8 0 0 1 16 0v4a2 2 0 0 1-2 2h-2v-6h4M4 13h4v6H6a2 2 0 0 1-2-2v-4Z"/></svg>';
   const deliveryIcon = '<svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M3 6h12v11H3zM15 10h3l3 3v4h-6z"/><circle cx="7" cy="18" r="2"/><circle cx="18" cy="18" r="2"/></svg>';
@@ -19,7 +19,7 @@
   const flipLabel = (label) => `<span class="nav-link__flip"><span>${label}</span><span aria-hidden="true">${label}</span></span>`;
   const menuPill = (href, label, pages) => `
     <li>
-      <a href="${href}" class="menu__item nav-link text-sm-lg flex items-center font-medium z-2 relative cursor-pointer" is="magnet-link" data-magnet="0"${pages ? current(pages) : ""}>
+      <a href="${href}" class="menu__item nav-link" is="magnet-link"${pages ? current(pages) : ""}>
         <span class="btn-text" data-text="${label}">${label}</span>
         <span class="btn-text btn-duplicate">${label}</span>
       </a>
@@ -31,12 +31,12 @@
       <div class="announcement"><span>Free tracked UK delivery</span><span>90-day home trial</span></div>
       <header class="site-header${isOverlayHeader ? " site-header--overlay" : ""}">
         <div class="site-header__inner">
-          <div class="header__icons header__icons--start lg:hidden">
-            <button class="nav-toggle menu-drawer-button" type="button" aria-expanded="false" aria-controls="mobile-menu" aria-label="Open menu" is="magnet-button">${menuIcon}</button>
-          </div>
-          <div class="header__navigation hidden lg:flex">
-            <nav class="header__menu" aria-label="Main navigation">
-              <ul class="flex flex-wrap list-menu with-block">
+          <div class="site-header__left">
+            <button class="nav-toggle menu-drawer-button" type="button" aria-expanded="false" aria-controls="mobile-menu" aria-label="Open menu" is="magnet-button">
+              ${menuIcon}
+            </button>
+            <nav class="header__menu site-nav" aria-label="Main navigation">
+              <ul class="with-block">
                 ${menuPill("/shop", "Shop", ["shop"])}
                 ${menuPill("/products/miroooo-x2", "Bundles", ["bundles"])}
                 ${menuPill("/contact", "Contact", ["contact"])}
@@ -44,12 +44,20 @@
               </ul>
             </nav>
           </div>
-          <a class="site-logo header__logo-link" href="/" aria-label="Miroooo home"><span>MIROOOO</span></a>
-          <div class="site-actions header__icons header__icons--end">
-            <div class="header__buttons flex items-center gap-2">
-              <a class="account-link hidden lg:inline-flex" href="/order-tracking" aria-label="Track order" is="magnet-link"${current(["tracking"])}>${accountIcon}</a>
-              <a class="site-actions__bag cart-drawer-button" href="/cart" aria-label="View cart" is="magnet-link">${bagIcon}<span class="cart-count">0</span></a>
-              <button class="nav-toggle menu-drawer-button lg:hidden" type="button" aria-expanded="false" aria-controls="mobile-menu" aria-label="Open menu" is="magnet-button">${menuIcon}</button>
+          <div class="site-header__center">
+            <a class="site-logo header__logo-link" href="/" aria-label="Miroooo home">
+              <span>MIROOOO</span>
+            </a>
+          </div>
+          <div class="site-header__right site-actions header__icons header__icons--end">
+            <div class="header__buttons">
+              <a class="account-link" href="/order-tracking" aria-label="Track order" is="magnet-link"${current(["tracking"])}>
+                ${accountIcon}
+              </a>
+              <a class="site-actions__bag cart-drawer-button" href="/cart" aria-label="View cart" is="magnet-link">
+                ${bagIcon}
+                <span class="cart-count">0</span>
+              </a>
             </div>
           </div>
         </div>
@@ -89,7 +97,7 @@
     checkScroll();
   }
 
-  // Fluid Elastic Magnet Effect on all header elements
+  // Authentic GoBrush Magnet Spring Hover Physics
   const initMagnet = () => {
     const magnetTargets = document.querySelectorAll(
       '[is="magnet-link"], [is="magnet-button"], .header__menu > ul.with-block .menu__item, .header__buttons a, .header__buttons button'
@@ -98,15 +106,31 @@
       if (target.dataset.magnetAttached) return;
       target.dataset.magnetAttached = "true";
 
+      const icon = target.querySelector("svg");
+      const text = target.querySelector("[data-text]");
+
       target.addEventListener("mousemove", (e) => {
         const rect = target.getBoundingClientRect();
-        const x = e.clientX - rect.left - rect.width / 2;
-        const y = e.clientY - rect.top - rect.height / 2;
-        target.style.transform = `translate(${x * 0.22}px, ${y * 0.22}px)`;
+        const x = ((e.clientX - rect.left) / rect.width - 0.5) * 14;
+        const y = ((e.clientY - rect.top) / rect.height - 0.5) * 14;
+
+        if (icon) {
+          icon.style.transform = `translate(${x}px, ${y}px) scale(1.15)`;
+        } else if (text) {
+          text.style.transform = `translate(${x * 0.4}px, ${y * 0.4}px)`;
+        } else {
+          target.style.transform = `translate(${x * 0.3}px, ${y * 0.3}px)`;
+        }
       });
 
       target.addEventListener("mouseleave", () => {
-        target.style.transform = "translate(0px, 0px)";
+        if (icon) {
+          icon.style.transform = "";
+        }
+        if (text) {
+          text.style.transform = "";
+        }
+        target.style.transform = "";
       });
     });
   };
@@ -165,7 +189,7 @@
 
   function setMenu(open) {
     if (!mobilePanel) return;
-    toggleButtons.forEach(btn => {
+    toggleButtons.forEach((btn) => {
       btn.setAttribute("aria-expanded", String(open));
       btn.setAttribute("aria-label", open ? "Close menu" : "Open menu");
     });
@@ -174,7 +198,7 @@
     document.body.classList.toggle("nav-open", open);
   }
 
-  toggleButtons.forEach(btn => {
+  toggleButtons.forEach((btn) => {
     btn.addEventListener("click", () => setMenu(!mobilePanel?.classList.contains("is-open")));
   });
   mobileClose?.addEventListener("click", () => setMenu(false));

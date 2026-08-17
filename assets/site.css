@@ -2501,23 +2501,52 @@ body.is-ready [data-hero-reveal] {
    ========================================================= */
 
 /* Transparent Overlay Header on Home Page */
-body[data-page="home"] .site-header,
-.site-header--overlay,
-.header-layer--overlay .site-header {
+.header-layer--overlay,
+body[data-page="home"] [data-site-header] {
   position: absolute !important;
   top: 0 !important;
   left: 0 !important;
+  width: 100% !important;
+  z-index: 1000 !important;
+  pointer-events: auto !important;
+}
+
+body[data-page="home"] .announcement,
+.header-layer--overlay .announcement {
+  background: rgba(0, 0, 0, 0.42) !important;
+  color: #ffffff !important;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1) !important;
+  min-height: 36px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 24px !important;
+  font-size: 11px !important;
+  font-weight: 600 !important;
+  letter-spacing: 0.1em !important;
+  text-transform: uppercase !important;
+}
+
+body[data-page="home"] .site-header,
+.site-header--overlay {
+  position: relative !important;
+  top: auto !important;
+  left: auto !important;
   width: 100% !important;
   z-index: 1000 !important;
   background: transparent !important;
   border-bottom: 1px solid rgba(255, 255, 255, 0.14) !important;
   backdrop-filter: none !important;
   -webkit-backdrop-filter: none !important;
+  color: #ffffff !important;
 }
 
 body[data-page="home"] .site-header.is-scrolled,
 .site-header--overlay.is-scrolled {
   position: fixed !important;
+  top: 0 !important;
+  left: 0 !important;
+  width: 100% !important;
   background: rgba(8, 9, 9, 0.94) !important;
   backdrop-filter: blur(20px) !important;
   -webkit-backdrop-filter: blur(20px) !important;
@@ -2525,6 +2554,20 @@ body[data-page="home"] .site-header.is-scrolled,
 }
 
 /* Sticky Dark Header on All Other Pages */
+body:not([data-page="home"]) .announcement:not(.header-layer--overlay .announcement) {
+  background: #e6e6e6 !important;
+  color: #111111 !important;
+  font-weight: 600 !important;
+  font-size: 11px !important;
+  letter-spacing: 0.1em !important;
+  text-transform: uppercase !important;
+  min-height: 36px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 24px !important;
+}
+
 body:not([data-page="home"]) .site-header:not(.site-header--overlay) {
   position: sticky !important;
   top: 0 !important;
@@ -2533,26 +2576,60 @@ body:not([data-page="home"]) .site-header:not(.site-header--overlay) {
   backdrop-filter: blur(20px) !important;
   -webkit-backdrop-filter: blur(20px) !important;
   border-bottom: 1px solid rgba(255, 255, 255, 0.08) !important;
+  color: #ffffff !important;
+}
+
+/* 3-Column Header Inner Layout (Left, Center, Right) */
+.site-header__inner {
+  display: grid !important;
+  grid-template-columns: 1fr auto 1fr !important;
+  align-items: center !important;
+  width: min(100% - 48px, 1400px) !important;
+  margin-inline: auto !important;
+  min-height: 72px !important;
+  gap: 16px !important;
+}
+
+.site-header__left {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: flex-start !important;
+}
+
+.site-header__center {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+}
+
+.site-header__right {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: flex-end !important;
 }
 
 /* Desktop vs Mobile Controls (Hide Hamburger on Desktop) */
 @media screen and (min-width: 1024px) {
-  .header__icons--start,
+  .site-header__left .nav-toggle,
+  .site-header__left .menu-drawer-button,
+  .site-header .nav-toggle,
   .menu-drawer-button,
   .nav-toggle,
-  .site-header .nav-toggle,
-  .site-header__inner .nav-toggle {
+  .header__icons--start {
     display: none !important;
   }
 
+  .site-header__left .header__menu,
+  .site-header__left .site-nav,
   .header__navigation,
   .header__menu,
-  .site-nav,
-  .site-header__inner .header__navigation {
+  .site-nav {
     display: flex !important;
     align-items: center !important;
   }
 
+  .site-header__right .account-link,
+  .account-link,
   .header__buttons .account-link,
   .site-actions__track,
   .header__buttons a[href*="customer_authentication"],
@@ -2562,20 +2639,24 @@ body:not([data-page="home"]) .site-header:not(.site-header--overlay) {
 }
 
 @media screen and (max-width: 1023px) {
+  .site-header__left .header__menu,
+  .site-header__left .site-nav,
   .header__navigation,
   .header__menu,
-  .site-nav,
-  .site-header__inner .header__navigation {
+  .site-nav {
     display: none !important;
   }
 
-  .menu-drawer-button,
-  .nav-toggle,
+  .site-header__left .nav-toggle,
+  .site-header__left .menu-drawer-button,
   .site-header .nav-toggle,
-  .site-header__inner .nav-toggle {
+  .menu-drawer-button,
+  .nav-toggle {
     display: inline-flex !important;
   }
 
+  .site-header__right .account-link,
+  .account-link,
   .header__buttons .account-link,
   .site-actions__track,
   .header__buttons a[href*="customer_authentication"],
@@ -2599,6 +2680,8 @@ body:not([data-page="home"]) .site-header:not(.site-header--overlay) {
 .header__menu > ul.with-block > li {
   position: relative !important;
   display: inline-flex !important;
+  margin: 0 !important;
+  padding: 0 !important;
 }
 
 .site-header .menu__item,
@@ -2684,64 +2767,79 @@ body:not([data-page="home"]) .site-header:not(.site-header--overlay) {
   }
 }
 
-/* Header Buttons & Icon Styling */
+/* Authentic GoBrush Header Icon Buttons (Cart & Account) */
+.header__buttons,
+.site-actions .header__buttons {
+  display: flex !important;
+  align-items: center !important;
+  gap: 6px !important;
+}
+
 .site-header .header__buttons a,
 .site-header .header__buttons button,
-.site-actions a,
 .header__buttons a,
-.header__buttons button {
+.header__buttons button,
+.site-actions__bag,
+.account-link {
   position: relative !important;
   width: 44px !important;
   height: 44px !important;
-  border-radius: 50% !important;
+  border-radius: 9999px !important;
   display: inline-flex !important;
   align-items: center !important;
   justify-content: center !important;
   color: #ffffff !important;
   background: transparent !important;
   border: none !important;
+  outline: none !important;
   cursor: pointer !important;
   text-decoration: none !important;
-  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), background-color 0.2s ease !important;
   will-change: transform;
 }
 
+/* Icon SVG Spring Physics Hover (NO gray background box!) */
 .site-header .header__buttons a svg,
 .site-header .header__buttons button svg,
-.site-actions a svg,
 .header__buttons a svg,
-.header__buttons button svg {
-  color: #ffffff !important;
+.header__buttons button svg,
+.site-actions__bag svg,
+.account-link svg {
+  color: rgba(255, 255, 255, 0.85) !important;
   stroke: currentColor !important;
-  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1) !important;
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), color 0.2s ease, opacity 0.2s ease !important;
+  will-change: transform;
 }
 
 @media (hover: hover) {
   .site-header .header__buttons a:hover,
   .site-header .header__buttons button:hover,
-  .site-actions a:hover,
   .header__buttons a:hover,
-  .header__buttons button:hover {
-    background-color: rgba(255, 255, 255, 0.12) !important;
-    transform: scale(1.05) !important;
+  .header__buttons button:hover,
+  .site-actions__bag:hover,
+  .account-link:hover {
+    background: transparent !important;
   }
 
   .site-header .header__buttons a:hover svg,
   .site-header .header__buttons button:hover svg,
-  .site-actions a:hover svg,
   .header__buttons a:hover svg,
-  .header__buttons button:hover svg {
-    transform: scale(1.08) !important;
+  .header__buttons button:hover svg,
+  .site-actions__bag:hover svg,
+  .account-link:hover svg {
+    color: #ffffff !important;
+    opacity: 1 !important;
+    transform: scale(1.15) !important;
   }
 }
 
+/* Cart Badge Count */
 .cart-count {
   position: absolute !important;
-  top: -4px !important;
-  right: -4px !important;
+  top: 3px !important;
+  right: 3px !important;
   min-width: 17px !important;
   height: 17px !important;
-  border-radius: 50% !important;
+  border-radius: 999px !important;
   background: #ffffff !important;
   color: #000000 !important;
   font-size: 10px !important;
@@ -2750,5 +2848,33 @@ body:not([data-page="home"]) .site-header:not(.site-header--overlay) {
   align-items: center !important;
   justify-content: center !important;
   line-height: 1 !important;
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1) !important;
 }
+
+.cart-drawer-button:hover .cart-count,
+.site-actions__bag:hover .cart-count {
+  transform: scale(1.12) !important;
+}
+
+/* Logo */
+.site-logo,
+.header__logo-link {
+  display: inline-flex !important;
+  align-items: center !important;
+  text-decoration: none !important;
+  color: #ffffff !important;
+  font-size: 17px !important;
+  font-weight: 800 !important;
+  letter-spacing: 0.38em !important;
+  line-height: 1 !important;
+  text-transform: uppercase !important;
+  transition: opacity 0.2s ease, transform 0.3s cubic-bezier(0.16, 1, 0.3, 1) !important;
+}
+
+.site-logo:hover,
+.header__logo-link:hover {
+  opacity: 0.88 !important;
+  transform: scale(1.02) !important;
+}
+
 
