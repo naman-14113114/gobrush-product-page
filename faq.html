@@ -32,13 +32,13 @@
       background-color: #080909;
     }
 
-    /* Ambient Background Glows */
+    /* Ambient Background Glows (Neutral Monochrome) */
     .faq-ambient-glow {
       position: absolute;
       border-radius: 50%;
       pointer-events: none;
       z-index: 1;
-      opacity: 0.25;
+      opacity: 0.15;
     }
 
     .faq-ambient-glow--1 {
@@ -46,7 +46,7 @@
       left: -120px;
       width: 440px;
       height: 440px;
-      background: radial-gradient(circle, rgba(34, 197, 94, 0.45) 0%, rgba(34, 197, 94, 0) 70%);
+      background: radial-gradient(circle, rgba(255, 255, 255, 0.06) 0%, rgba(255, 255, 255, 0) 70%);
       filter: blur(80px);
     }
 
@@ -55,7 +55,7 @@
       right: -120px;
       width: 500px;
       height: 500px;
-      background: radial-gradient(circle, rgba(34, 197, 94, 0.35) 0%, rgba(34, 197, 94, 0) 70%);
+      background: radial-gradient(circle, rgba(255, 255, 255, 0.05) 0%, rgba(255, 255, 255, 0) 70%);
       filter: blur(90px);
     }
 
@@ -78,9 +78,9 @@
       gap: 8px;
       padding: 6px 18px;
       border-radius: 999px;
-      background: rgba(34, 197, 94, 0.08);
-      border: 1px solid rgba(34, 197, 94, 0.25);
-      color: #22c55e;
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid rgba(255, 255, 255, 0.14);
+      color: #ffffff;
       font-size: 12px;
       font-weight: 700;
       letter-spacing: 0.12em;
@@ -92,8 +92,8 @@
       width: 6px;
       height: 6px;
       border-radius: 50%;
-      background: #22c55e;
-      box-shadow: 0 0 8px #22c55e;
+      background: #ffffff;
+      box-shadow: 0 0 8px rgba(255, 255, 255, 0.6);
     }
 
     .faq-title {
@@ -109,7 +109,7 @@
       font-style: italic;
       font-family: "Playfair Display", Georgia, serif;
       font-weight: 400;
-      color: #22c55e;
+      color: #ffffff;
     }
 
     .faq-lead {
@@ -121,7 +121,7 @@
       font-weight: 350;
     }
 
-    /* FAQ Accordion List */
+    /* FAQ Accordion List (Matching Miroooo X Reviews Card Style) */
     .faq-accordion-list {
       display: flex;
       flex-direction: column;
@@ -129,26 +129,25 @@
     }
 
     .faq-card {
-      border-radius: 20px;
-      border: 1px solid rgba(255, 255, 255, 0.1);
-      background: rgba(20, 21, 21, 0.8);
-      backdrop-filter: blur(14px);
-      -webkit-backdrop-filter: blur(14px);
-      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-      box-shadow: 0 4px 24px rgba(0, 0, 0, 0.35);
+      border-radius: 22px;
+      border: 1px solid rgba(0, 0, 0, 0.08);
+      background: #e6e6e6;
+      transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+      box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.6);
       overflow: hidden;
     }
 
     .faq-card:hover {
-      border-color: rgba(255, 255, 255, 0.2);
-      box-shadow: 0 12px 36px -10px rgba(0, 0, 0, 0.5);
+      background: #dedede;
+      border-color: rgba(0, 0, 0, 0.16);
+      box-shadow: 0 16px 40px -10px rgba(0, 0, 0, 0.7);
       transform: translateY(-1px);
     }
 
     .faq-card.is-open {
-      border-color: rgba(34, 197, 94, 0.35);
-      background: rgba(22, 24, 24, 0.95);
-      box-shadow: 0 16px 44px -12px rgba(34, 197, 94, 0.14);
+      background: #e6e6e6;
+      border-color: rgba(0, 0, 0, 0.16);
+      box-shadow: 0 20px 50px -10px rgba(0, 0, 0, 0.75);
     }
 
     .faq-card__button {
@@ -162,32 +161,32 @@
       background: transparent;
       border: none;
       cursor: pointer;
-      color: inherit;
-      border-radius: 20px;
+      color: #111111;
+      border-radius: 22px;
       font: inherit;
       outline: none;
       user-select: none;
     }
 
     .faq-card__button:focus-visible {
-      outline: 2px solid #22c55e;
+      outline: 2px solid #111111;
       outline-offset: 2px;
     }
 
     .faq-card__question {
       font-size: clamp(17px, 2vw, 19px);
-      font-weight: 500;
-      color: #ffffff;
+      font-weight: 600;
+      color: #111111;
       line-height: 1.4;
       transition: color 0.25s ease;
     }
 
     .faq-card:hover .faq-card__question {
-      color: #ffffff;
+      color: #111111;
     }
 
     .faq-card.is-open .faq-card__question {
-      color: #ffffff;
+      color: #111111;
     }
 
     .faq-card__badge {
@@ -197,22 +196,31 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      background: rgba(255, 255, 255, 0.06);
-      color: rgba(255, 255, 255, 0.85);
+      background: rgba(0, 0, 0, 0.06);
+      color: #111111;
+      border: 1px solid rgba(0, 0, 0, 0.08);
       flex-shrink: 0;
       transition: all 0.35s cubic-bezier(0.25, 1, 0.5, 1);
     }
 
     .faq-card:hover .faq-card__badge {
-      background: rgba(255, 255, 255, 0.12);
-      color: #ffffff;
+      background: rgba(0, 0, 0, 0.12);
+      border-color: rgba(0, 0, 0, 0.16);
+      color: #111111;
     }
 
     .faq-card.is-open .faq-card__badge {
       transform: rotate(180deg);
-      background: #22c55e;
-      color: #080909;
-      box-shadow: 0 0 14px rgba(34, 197, 94, 0.45);
+      background: #111111;
+      color: #ffffff;
+      border-color: #111111;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.25);
+    }
+
+    .faq-card.is-open:hover .faq-card__badge {
+      background: #000000;
+      color: #ffffff;
+      border-color: #000000;
     }
 
     .faq-card__panel {
@@ -235,15 +243,15 @@
       height: 1px;
       width: calc(100% - 56px);
       margin: 0 28px 18px;
-      background: rgba(255, 255, 255, 0.08);
+      background: rgba(0, 0, 0, 0.08);
     }
 
     .faq-card__answer {
       padding: 0 28px 26px 28px;
       font-size: 15px;
       line-height: 1.75;
-      color: #a1a1aa;
-      font-weight: 350;
+      color: #222222;
+      font-weight: 400;
       transform: translateY(-6px);
       opacity: 0;
       transition: transform 0.35s ease 0.08s, opacity 0.35s ease 0.08s;
@@ -273,35 +281,34 @@
     }
 
     .faq-card__answer strong {
-      color: #ffffff;
-      font-weight: 600;
+      color: #111111;
+      font-weight: 700;
     }
 
     .faq-card__answer a {
-      color: #22c55e;
+      color: #111111;
       text-decoration: underline;
       text-underline-offset: 3px;
-      font-weight: 500;
-      transition: color 0.2s ease;
+      font-weight: 700;
+      transition: color 0.2s ease, opacity 0.2s ease;
     }
 
     .faq-card__answer a:hover {
-      color: #ffffff;
+      color: #000000;
+      opacity: 0.75;
     }
 
     /* Bottom Help Center Box */
     .faq-helpbox {
       margin-top: clamp(56px, 8vw, 80px);
       border-radius: 24px;
-      border: 1px solid rgba(255, 255, 255, 0.1);
-      background: rgba(18, 19, 19, 0.85);
-      backdrop-filter: blur(16px);
-      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid rgba(0, 0, 0, 0.08);
+      background: #e6e6e6;
       padding: clamp(36px, 5vw, 48px) clamp(24px, 4vw, 40px);
       text-align: center;
       max-width: 680px;
       margin-inline: auto;
-      box-shadow: 0 24px 60px -20px rgba(0, 0, 0, 0.6);
+      box-shadow: 0 24px 60px -20px rgba(0, 0, 0, 0.7);
       position: relative;
       z-index: 2;
     }
@@ -309,14 +316,14 @@
     .faq-helpbox__title {
       font-size: clamp(22px, 3vw, 26px);
       font-weight: 700;
-      color: #ffffff;
+      color: #111111;
       margin: 0 0 10px;
     }
 
     .faq-helpbox__subtitle {
-      color: #a1a1aa;
+      color: #333333;
       font-size: 15px;
-      font-weight: 350;
+      font-weight: 400;
       margin: 0 0 28px;
     }
 
@@ -356,34 +363,36 @@
     }
 
     .faq-action-btn--email {
-      background: #ffffff;
-      color: #080909;
-      box-shadow: 0 4px 14px rgba(255, 255, 255, 0.15);
+      background: #111111;
+      color: #ffffff;
+      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.2);
     }
 
     .faq-action-btn--email:hover {
-      background: #22c55e;
-      color: #080909;
-      box-shadow: 0 6px 20px rgba(34, 197, 94, 0.4);
+      background: #000000;
+      color: #ffffff;
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
       transform: translateY(-1px);
     }
 
     .faq-action-btn--ticket {
-      border: 1px solid rgba(255, 255, 255, 0.2);
-      color: #ffffff;
-      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid rgba(0, 0, 0, 0.14);
+      color: #111111;
+      background: #ffffff;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
     }
 
     .faq-action-btn--ticket:hover {
-      background: rgba(255, 255, 255, 0.1);
-      border-color: rgba(255, 255, 255, 0.4);
+      background: #f4f4f4;
+      border-color: #111111;
+      color: #111111;
       transform: translateY(-1px);
     }
 
     .faq-helpbox__social {
       margin-top: 32px;
       padding-top: 24px;
-      border-top: 1px solid rgba(255, 255, 255, 0.08);
+      border-top: 1px solid rgba(0, 0, 0, 0.08);
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -403,7 +412,7 @@
       font-weight: 600;
       text-transform: uppercase;
       letter-spacing: 0.1em;
-      color: #71717a;
+      color: #555555;
     }
 
     .faq-helpbox__social-links {
@@ -419,19 +428,19 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      background: rgba(255, 255, 255, 0.06);
-      color: #a1a1aa;
-      border: 1px solid rgba(255, 255, 255, 0.08);
+      background: rgba(0, 0, 0, 0.06);
+      color: #111111;
+      border: 1px solid rgba(0, 0, 0, 0.08);
       transition: all 0.25s ease;
       text-decoration: none;
     }
 
     .faq-social-link:hover {
-      background: #22c55e;
-      color: #080909;
-      border-color: #22c55e;
+      background: #111111;
+      color: #ffffff;
+      border-color: #111111;
       transform: translateY(-2px);
-      box-shadow: 0 4px 12px rgba(34, 197, 94, 0.3);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
     }
 
     /* Mobile Adaptations */
@@ -485,14 +494,6 @@
       },
       {
         "@type": "Question",
-        "name": "What is the difference between Miroooo X and Miroooo X2?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Miroooo X is our ultra-lightweight essential sonic toothbrush featuring 40,000 VPM motor, 3 brushing modes, and 60+ days of battery life. Miroooo X2 adds 45-degree Bass sweep guidance, smart pressure sensor halo ring, IPX7 waterproofing, and up to 90 days of battery life."
-        }
-      },
-      {
-        "@type": "Question",
         "name": "How do I place my order?",
         "acceptedAnswer": {
           "@type": "Answer",
@@ -528,7 +529,7 @@
         "name": "Is the toothbrush waterproof and can I use it in the shower?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Yes, Miroooo X2 features IPX7 immersion waterproofing, making it safe for shower use and tap rinsing. Ensure the base is dry before docking on the charger."
+          "text": "Yes! Both the Miroooo X and Miroooo X2 feature full IPX7 immersion waterproofing, allowing you to comfortably brush in the shower and safely rinse the entire device under running water. Always ensure the handle base and charging connection area are completely dry before docking the toothbrush onto the charging base."
         }
       },
       {
@@ -632,27 +633,6 @@
             </div>
           </div>
 
-          <!-- Item 3: Miroooo X vs X2 -->
-          <div class="faq-card" data-faq-card>
-            <button type="button" class="faq-card__button" aria-expanded="false" aria-controls="faq-answer-3" id="faq-trigger-3">
-              <span class="faq-card__question">What is the difference between Miroooo X and Miroooo X2?</span>
-              <span class="faq-card__badge" aria-hidden="true">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                  <polyline points="6 9 12 15 18 9"></polyline>
-                </svg>
-              </span>
-            </button>
-            <div class="faq-card__panel" id="faq-answer-3" role="region" aria-labelledby="faq-trigger-3">
-              <div class="faq-card__panel-inner">
-                <div class="faq-card__divider"></div>
-                <div class="faq-card__answer">
-                  <p><strong>Miroooo X</strong> is our sleek, lightweight (51g) acoustic sonic toothbrush engineered with an aerospace-grade aluminum chassis, 40,000 VPM motor, 3 daily modes (Standard, Whitening, Deep Clean), and 60+ days of battery life.</p>
-                  <p><strong>Miroooo X2 Flagship</strong> introduces an intelligent 45° Bass sweep guidance mechanism, a smart pressure sensor halo ring that alerts you to excessive brushing pressure, IPX7 immersion waterproofing, and up to 90 days of battery endurance from a high-density cobalt cell. Compare both models side by side on our <a href="/shop">Shop page</a>.</p>
-                </div>
-              </div>
-            </div>
-          </div>
-
           <!-- Item 4: Placing an Order -->
           <div class="faq-card" data-faq-card>
             <button type="button" class="faq-card__button" aria-expanded="false" aria-controls="faq-answer-4" id="faq-trigger-4">
@@ -750,7 +730,7 @@
               <div class="faq-card__panel-inner">
                 <div class="faq-card__divider"></div>
                 <div class="faq-card__answer">
-                  <p>Yes! The Miroooo X2 features full <strong>IPX7 immersion waterproofing</strong>, allowing you to comfortably brush in the shower and rinse the entire device under running water.</p>
+                  <p>Yes! Both the <strong>Miroooo X</strong> and <strong>Miroooo X2</strong> feature full <strong>IPX7 immersion waterproofing</strong>, allowing you to comfortably brush in the shower and safely rinse the entire device under running water.</p>
                   <p>Always ensure the handle base and charging connection area are completely dry before docking the toothbrush onto the charging base.</p>
                 </div>
               </div>

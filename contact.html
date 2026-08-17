@@ -295,14 +295,17 @@
               </div>
             </div>
 
-            <button class="button button--signal contact-form-submit" id="contact-submit-btn" type="submit">
-              <span class="btn-loader" id="btn-loader" aria-hidden="true" hidden>
-                <svg class="spin-animation" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10" stroke-opacity="0.25"/><path d="M12 2a10 10 0 0 1 10 10" stroke-linecap="round"/></svg>
+            <button class="button button--primary contact-form-submit" id="contact-submit-btn" type="submit" is="hover-button">
+              <span class="btn-fill" data-fill></span>
+              <span class="btn-text">
+                <span class="btn-loader" id="btn-loader" aria-hidden="true" hidden>
+                  <svg class="spin-animation" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10" stroke-opacity="0.25"/><path d="M12 2a10 10 0 0 1 10 10" stroke-linecap="round"/></svg>
+                </span>
+                <span class="btn-send-icon" id="btn-send-icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+                </span>
+                <span class="btn-text-content" id="btn-text-content">Send message</span>
               </span>
-              <span class="btn-send-icon" id="btn-send-icon" aria-hidden="true">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
-              </span>
-              <span class="btn-text-content" id="btn-text-content">Send message</span>
             </button>
           </form>
         </div>
