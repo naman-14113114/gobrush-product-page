@@ -2,10 +2,10 @@
   "use strict";
 
   const arrowIcon = '<svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.65"><path d="M5 12h14M13 6l6 6-6 6"/></svg>';
-  const accountIcon = '<svg class="icon icon-account" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><rect width="10.5" height="10.5" x="6.75" y="1.75" rx="5.25"></rect><path d="M12 15.5c1.5 0 4 .333 4.5.5.5.167 3.7.8 4.5 2 1 1.5 1 2 1 4m-10-6.5c-1.5 0-4 .333-4.5.5-.5.167-3.7.8-4.5 2-1 1.5-1 2-1 4"></path></svg>';
-  const bagIcon = '<svg class="icon icon-cart" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M1 1h.5v0c.226 0 .339 0 .44.007a3 3 0 0 1 2.62 1.976c.034.095.065.204.127.42l.17.597m0 0 1.817 6.358c.475 1.664.713 2.496 1.198 3.114a4 4 0 0 0 1.633 1.231c.727.297 1.592.297 3.322.297h2.285c1.75 0 2.626 0 3.359-.302a4 4 0 0 0 1.64-1.253c.484-.627.715-1.472 1.175-3.161l.06-.221c.563-2.061.844-3.092.605-3.906a3 3 0 0 0-1.308-1.713C19.92 4 18.853 4 16.716 4H4.857ZM12 20a2 2 0 1 1-4 0 2 2 0 0 1 4 0Zm8 0a2 2 0 1 1-4 0 2 2 0 0 1 4 0Z"></path></svg>';
-  const menuIcon = '<svg class="icon icon-hamburger" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M3 6H21M3 12H11M3 18H16"></path></svg>';
-  const closeIcon = '<svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.55"><path d="m5 5 14 14M19 5 5 19"/></svg>';
+  const accountIcon = '<svg class="icon icon-account icon-lg" viewBox="0 0 24 24" stroke="currentColor" fill="none" xmlns="http://www.w3.org/2000/svg"><rect width="10.5" height="10.5" x="6.75" y="1.75" rx="5.25"></rect><path stroke-linecap="round" d="M12 15.5c1.5 0 4 .333 4.5.5.5.167 3.7.8 4.5 2 1 1.5 1 2 1 4m-10-6.5c-1.5 0-4 .333-4.5.5-.5.167-3.7.8-4.5 2-1 1.5-1 2-1 4"></path></svg>';
+  const bagIcon = '<svg class="icon icon-cart icon-lg" viewBox="0 0 24 24" stroke="currentColor" fill="none" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" d="M1 1h.5v0c.226 0 .339 0 .44.007a3 3 0 0 1 2.62 1.976c.034.095.065.204.127.42l.17.597m0 0 1.817 6.358c.475 1.664.713 2.496 1.198 3.114a4 4 0 0 0 1.633 1.231c.727.297 1.592.297 3.322.297h2.285c1.75 0 2.626 0 3.359-.302a4 4 0 0 0 1.64-1.253c.484-.627.715-1.472 1.175-3.161l.06-.221c.563-2.061.844-3.092.605-3.906a3 3 0 0 0-1.308-1.713C19.92 4 18.853 4 16.716 4H4.857ZM12 20a2 2 0 1 1-4 0 2 2 0 0 1 4 0Zm8 0a2 2 0 1 1-4 0 2 2 0 0 1 4 0Z"></path></svg>';
+  const menuIcon = '<svg class="icon icon-hamburger icon-lg" viewBox="0 0 24 24" stroke="currentColor" fill="none" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" d="M3 6H21M3 12H11M3 18H16"></path></svg>';
+  const closeIcon = '<svg class="icon icon-close icon-sm" viewBox="0 0 20 20" stroke="currentColor" fill="none" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" d="M5 15L15 5M5 5L15 15"></path></svg>';
   const supportIcon = '<svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M4 13a8 8 0 0 1 16 0v4a2 2 0 0 1-2 2h-2v-6h4M4 13h4v6H6a2 2 0 0 1-2-2v-4Z"/></svg>';
   const deliveryIcon = '<svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M3 6h12v11H3zM15 10h3l3 3v4h-6z"/><circle cx="7" cy="18" r="2"/><circle cx="18" cy="18" r="2"/></svg>';
   const trialIcon = '<svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M12 3 4.5 6v5.5c0 4.7 3.1 7.9 7.5 9.5 4.4-1.6 7.5-4.8 7.5-9.5V6L12 3Z"/><path d="m9 12 2 2 4-4"/></svg>';
@@ -19,7 +19,7 @@
   const flipLabel = (label) => `<span class="nav-link__flip"><span>${label}</span><span aria-hidden="true">${label}</span></span>`;
   const menuPill = (href, label, pages) => `
     <li>
-      <a href="${href}" class="menu__item nav-link" is="magnet-link"${pages ? current(pages) : ""}>
+      <a href="${href}" class="menu__item nav-link text-sm-lg flex items-center font-medium z-2 relative cursor-pointer" is="magnet-link" data-magnet="0"${pages ? current(pages) : ""}>
         <span class="btn-text" data-text="${label}">${label}</span>
         <span class="btn-text btn-duplicate">${label}</span>
       </a>
@@ -32,11 +32,12 @@
       <header class="site-header${isOverlayHeader ? " site-header--overlay" : ""}">
         <div class="site-header__inner">
           <div class="site-header__left">
-            <button class="nav-toggle menu-drawer-button" type="button" aria-expanded="false" aria-controls="mobile-menu" aria-label="Open menu" is="magnet-button">
+            <button class="nav-toggle menu-drawer-button flex items-center justify-center lg:hidden" type="button" aria-expanded="false" aria-controls="mobile-menu" aria-label="Open menu" is="magnet-button">
+              <span class="sr-only">Navigation</span>
               ${menuIcon}
             </button>
-            <nav class="header__menu site-nav" aria-label="Main navigation">
-              <ul class="with-block">
+            <nav class="header__menu site-nav hidden lg:flex" role="navigation" aria-label="Main navigation">
+              <ul class="flex flex-wrap list-menu with-block">
                 ${menuPill("/shop", "Shop", ["shop"])}
                 ${menuPill("/products/miroooo-x2", "Bundles", ["bundles"])}
                 ${menuPill("/contact", "Contact", ["contact"])}
@@ -45,18 +46,20 @@
             </nav>
           </div>
           <div class="site-header__center">
-            <a class="site-logo header__logo-link" href="/" aria-label="Miroooo home">
+            <a class="site-logo header__logo-link flex items-center relative" href="/" aria-label="Miroooo home">
               <span>MIROOOO</span>
             </a>
           </div>
-          <div class="site-header__right site-actions header__icons header__icons--end">
-            <div class="header__buttons">
-              <a class="account-link" href="/order-tracking" aria-label="Track order" is="magnet-link"${current(["tracking"])}>
+          <div class="site-header__right site-actions header__icons header__icons--end flex justify-end z-2">
+            <div class="header__buttons flex items-center gap-1d5">
+              <a class="account-link hidden lg:flex items-center justify-center" href="/order-tracking" aria-label="Track order" is="magnet-link" rel="nofollow"${current(["tracking"])}>
+                <span class="sr-only">Account</span>
                 ${accountIcon}
               </a>
-              <a class="site-actions__bag cart-drawer-button" href="/cart" aria-label="View cart" is="magnet-link">
+              <a class="site-actions__bag cart-drawer-button flex items-center justify-center relative" href="/cart" aria-label="Cart" is="magnet-link" data-no-instant>
+                <span class="sr-only">Cart</span>
                 ${bagIcon}
-                <span class="cart-count">0</span>
+                <cart-count class="count absolute top-0 right-0 text-xs" aria-label="0 items" hidden>0</cart-count>
               </a>
             </div>
           </div>
@@ -82,7 +85,7 @@
       </nav>`;
   }
 
-  // Scroll listener for transparent overlay header on home page
+  // Scroll listener for sticky transition on scroll on transparent home page
   if (isOverlayHeader) {
     const headerEl = headerTarget?.querySelector(".site-header");
     const checkScroll = () => {

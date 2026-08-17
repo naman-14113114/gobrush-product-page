@@ -1631,6 +1631,70 @@ body {
   text-transform: uppercase;
 }
 
+/* Video Hero Section */
+.gb-video-hero {
+  position: relative;
+  min-height: max(720px, 100svh);
+  display: flex;
+  align-items: end;
+  overflow: hidden;
+  background: #000000;
+  color: #fff;
+}
+
+.gb-video-hero__media,
+.gb-video-hero__shade {
+  position: absolute;
+  inset: 0;
+}
+
+.gb-video-hero__media video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  display: block;
+}
+
+.gb-video-hero__shade {
+  background:
+    linear-gradient(90deg, rgba(7, 7, 7, .82) 0%, rgba(7, 7, 7, .48) 40%, rgba(7, 7, 7, .1) 75%),
+    linear-gradient(0deg, rgba(7, 7, 7, .75) 0%, transparent 50%),
+    linear-gradient(180deg, rgba(7, 7, 7, .65) 0%, transparent 35%);
+  pointer-events: none;
+}
+
+.gb-video-hero__content {
+  position: relative;
+  z-index: 2;
+  width: min(650px, calc(100% - 96px));
+  margin: 0 0 clamp(58px, 7vw, 94px) 48px;
+}
+
+.gb-video-hero__title {
+  max-width: 620px;
+  margin: 0 0 23px;
+  font-size: clamp(48px, 5.2vw, 76px);
+  font-weight: 550;
+  letter-spacing: -.06em;
+  line-height: .9;
+  text-transform: uppercase;
+}
+
+.gb-video-hero__copy {
+  max-width: 520px;
+  margin: 0 0 26px;
+  color: rgba(255, 255, 255, .82);
+  font-size: 14px;
+  line-height: 1.55;
+}
+
+.gb-video-hero__actions {
+  display: flex;
+  align-items: center;
+  gap: 26px;
+}
+
 .gb-hero {
   position: relative;
   min-height: max(720px, 100svh);
