@@ -38,6 +38,26 @@ body.nav-open {
   overflow: hidden;
 }
 
+/* Visually Hidden / Screen-Reader Only */
+.sr-only,
+.visually-hidden {
+  position: absolute !important;
+  width: 1px !important;
+  height: 1px !important;
+  padding: 0 !important;
+  margin: -1px !important;
+  overflow: hidden !important;
+  clip: rect(0, 0, 0, 0) !important;
+  white-space: nowrap !important;
+  border: 0 !important;
+}
+
+cart-count[hidden],
+.cart-count[hidden],
+[hidden] {
+  display: none !important;
+}
+
 img,
 video {
   display: block;
@@ -1760,63 +1780,134 @@ body {
   background: #141517;
   overflow: hidden;
   text-decoration: none;
+  cursor: pointer;
 }
 
-/* Dual Image Hover Swap */
+.gb-product-card__media-link {
+  display: block;
+  width: 100%;
+  height: 100%;
+  position: relative;
+  text-decoration: none;
+}
+
+/* Multi-Image Scrubbing Gallery */
 .gb-product-card__image-wrap {
   position: relative;
   width: 100%;
   height: 100%;
   aspect-ratio: 1 / 1;
   overflow: hidden;
-  display: flex;
-  align-items: center;
-  justify-content: center;
   background: #141517;
 }
 
 .gb-product-card__img {
+  position: absolute;
+  inset: 0;
   width: 100%;
   height: 100%;
   object-fit: cover;
   object-position: center;
   display: block;
-  will-change: transform, opacity;
+  opacity: 0;
+  transform: scale(1.02);
+  transition: opacity 0.3s ease, transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: opacity, transform;
+  pointer-events: none;
 }
 
-.gb-product-card__img--primary {
-  position: relative;
+.gb-product-card__img.is-active {
+  opacity: 1;
+  transform: scale(1);
   z-index: 1;
-  opacity: 1;
-  transform: scale(1);
-  transition: opacity 0.45s ease, transform 0.65s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-.gb-product-card__img--secondary {
-  position: absolute;
-  inset: 0;
-  z-index: 2;
-  opacity: 0;
+.gb-product-card:hover .gb-product-card__img.is-active {
   transform: scale(1.04);
-  transition: opacity 0.45s ease, transform 0.65s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-.gb-product-card:hover .gb-product-card__img--primary {
+/* GoBrush Quick-View Eye Button */
+.quick-view__button {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  z-index: 4;
+  width: 36px;
+  height: 36px;
+  border-radius: 9999px;
+  background: rgba(255, 255, 255, 0.14);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   opacity: 0;
-  transform: scale(1.06);
+  transform: scale(0.85);
+  transition: opacity 0.3s ease, transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), background-color 0.2s ease, color 0.2s ease;
+  cursor: pointer;
+  text-decoration: none;
 }
 
-.gb-product-card:hover .gb-product-card__img--secondary {
+.quick-view__button svg {
+  width: 18px;
+  height: 18px;
+  stroke: currentColor;
+  fill: none;
+}
+
+.gb-product-card:hover .quick-view__button {
   opacity: 1;
   transform: scale(1);
+}
+
+.quick-view__button:hover {
+  background: #ffffff;
+  color: #000000;
+  transform: scale(1.1);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
+}
+
+/* GoBrush Active Dot Indicators */
+.gb-media-dots {
+  position: absolute;
+  bottom: 12px;
+  left: 0;
+  right: 0;
+  z-index: 3;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.gb-product-card:hover .gb-media-dots {
+  opacity: 1;
+}
+
+.gb-media-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 9999px;
+  background: rgba(255, 255, 255, 0.35);
+  transition: width 0.25s cubic-bezier(0.16, 1, 0.3, 1), background-color 0.25s ease;
+}
+
+.gb-media-dot.is-active {
+  width: 16px;
+  background: #ffffff;
 }
 
 /* Badges (Discount Top-Left, Rating Top-Right) */
 .gb-product-card__badges {
   position: absolute;
-  top: 16px;
-  left: 16px;
-  right: 16px;
+  top: 14px;
+  left: 14px;
+  right: 14px;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -1844,21 +1935,22 @@ body {
 }
 
 .gb-badge--rating {
-  background: rgba(255, 255, 255, 0.12);
+  background: rgba(255, 255, 255, 0.14);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
-  border: 1px solid rgba(255, 255, 255, 0.15);
+  border: 1px solid rgba(255, 255, 255, 0.18);
   color: #ffffff;
   font-size: 11px;
   font-weight: 600;
-  padding: 6px 12px;
+  padding: 5px 10px;
   letter-spacing: 0.02em;
+  gap: 4px;
 }
 
 /* Hover Quick Action Pill Button */
 .gb-product-card__quick-btn {
   position: absolute;
-  bottom: 16px;
+  bottom: 26px;
   left: 16px;
   right: 16px;
   z-index: 3;
@@ -1866,14 +1958,14 @@ body {
   align-items: center;
   justify-content: center;
   gap: 8px;
-  height: 44px;
+  height: 42px;
   border-radius: 9999px;
   background: rgba(255, 255, 255, 0.95);
   color: #080909;
   font-size: 13px;
   font-weight: 600;
   letter-spacing: 0.02em;
-  transform: translateY(20px);
+  transform: translateY(16px);
   opacity: 0;
   transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.3s ease, background-color 0.2s ease;
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35);
@@ -1885,9 +1977,34 @@ body {
   opacity: 1;
 }
 
+/* Color Swatches */
+.gb-swatches {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: 6px;
+}
+
+.gb-swatch {
+  width: 12px;
+  height: 12px;
+  border-radius: 9999px;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+  display: inline-block;
+  cursor: pointer;
+}
+
+.gb-swatch.is-active,
+.gb-swatch:hover {
+  transform: scale(1.25);
+  border-color: #ffffff;
+  box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.35);
+}
+
 /* Card Meta */
 .gb-product-card__meta {
-  padding: 20px 22px 22px;
+  padding: 18px 22px 22px;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -1899,11 +2016,11 @@ body {
   font-size: 16px;
   font-weight: 700;
   color: #ffffff;
-  margin: 0 0 4px;
+  margin: 0 0 2px;
 }
 
 .gb-product-card__finish {
-  font-size: 13px;
+  font-size: 12.5px;
   color: rgba(255, 255, 255, 0.6);
   font-weight: 500;
 }

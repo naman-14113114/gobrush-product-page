@@ -53,11 +53,9 @@
           <div class="site-header__right site-actions header__icons header__icons--end flex justify-end z-2">
             <div class="header__buttons flex items-center gap-1d5">
               <a class="account-link hidden lg:flex items-center justify-center" href="/order-tracking" aria-label="Track order" is="magnet-link" rel="nofollow"${current(["tracking"])}>
-                <span class="sr-only">Account</span>
                 ${accountIcon}
               </a>
-              <a class="site-actions__bag cart-drawer-button flex items-center justify-center relative" href="/cart" aria-label="Cart" is="magnet-link" data-no-instant>
-                <span class="sr-only">Cart</span>
+              <a class="site-actions__bag cart-drawer-button flex items-center justify-center relative" href="/cart" aria-label="Cart" is="magnet-link" aria-controls="CartDrawer" aria-expanded="false" data-no-instant>
                 ${bagIcon}
                 <cart-count class="count absolute top-0 right-0 text-xs" aria-label="0 items" hidden>0</cart-count>
               </a>
@@ -137,10 +135,47 @@
     });
   };
 
+  // Exact GoBrush Multi-Image Scrubbing Hover on Product Cards
+  const initScrubGalleries = () => {
+    document.querySelectorAll("[data-scrub-gallery]").forEach((gallery) => {
+      if (gallery.dataset.scrubAttached) return;
+      gallery.dataset.scrubAttached = "true";
+
+      const images = gallery.querySelectorAll(".gb-product-card__img");
+      const dots = gallery.querySelectorAll(".gb-media-dot");
+      const count = images.length;
+      if (count <= 1) return;
+
+      const selectImage = (index) => {
+        images.forEach((img, i) => {
+          img.classList.toggle("is-active", i === index);
+        });
+        dots.forEach((dot, i) => {
+          dot.classList.toggle("is-active", i === index);
+        });
+      };
+
+      gallery.addEventListener("mousemove", (e) => {
+        const rect = gallery.getBoundingClientRect();
+        const mouseX = Math.max(0, Math.min(e.clientX - rect.left, rect.width));
+        const index = Math.min(Math.floor((mouseX / rect.width) * count), count - 1);
+        selectImage(index);
+      });
+
+      gallery.addEventListener("mouseleave", () => {
+        selectImage(0);
+      });
+    });
+  };
+
   if (document.readyState === "loading") {
-    document.addEventListener("DOMContentLoaded", initMagnet);
+    document.addEventListener("DOMContentLoaded", () => {
+      initMagnet();
+      initScrubGalleries();
+    });
   } else {
     initMagnet();
+    initScrubGalleries();
   }
 
   if (footerTarget) {
