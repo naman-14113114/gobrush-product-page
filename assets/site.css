@@ -4011,7 +4011,10 @@ body[data-page="contact"] .site-header {
   }
 
   .contact-hero-media-col {
+    order: -1;
     max-width: 540px;
+    margin: 0 auto;
+    width: 100%;
   }
 }
 

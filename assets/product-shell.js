@@ -121,15 +121,27 @@
 
   const footerGroup = document.querySelector("footer-group");
   if (footerGroup) {
-    footerGroup.innerHTML = `<footer class="miroooo-product-footer">
-      <div class="miroooo-product-footer__grid">
-        <div class="miroooo-product-footer__brand"><a class="miroooo-product-footer__logo" href="/">MIROOOO</a><p>Quietly precise electric toothbrushes, built to make better brushing feel uncomplicated.</p></div>
-        <div class="miroooo-product-footer__column"><strong>Shop</strong><a href="/products/miroooo-x">Miroooo X</a><a href="/products/miroooo-x2">Miroooo X2</a><a href="/shop">Compare models</a></div>
-        <div class="miroooo-product-footer__column"><strong>Support</strong><a href="/faq">FAQs</a><a href="/delivery-returns">Delivery &amp; returns</a><a href="/warranty">Warranty</a><a href="/order-tracking">Track order</a><a href="/contact">Contact</a></div>
-        <div class="miroooo-product-footer__column"><strong>About</strong><a href="/about">Our approach</a><a href="/privacy">Privacy</a><a href="/terms">Terms</a></div>
-      </div>
-      <div class="miroooo-product-footer__bottom"><span>© ${new Date().getFullYear()} Miroooo. All rights reserved.</span><div class="miroooo-product-footer__legal"><a href="/privacy">Privacy policy</a><a href="/terms">Terms of service</a></div></div>
-    </footer>`;
+    const supportIcon = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 14a8 8 0 0 1 16 0v4a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3"/><path d="M4 14v4a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2v-3a2 2 0 0 0-2-2H4"/></svg>`;
+    const deliveryIcon = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="1" y="5" width="15" height="13" rx="2"/><polygon points="16 8 20 8 23 11 23 18 16 18 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>`;
+    const trialIcon = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>`;
+    const warrantyIcon = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>`;
+
+    footerGroup.innerHTML = `
+      <aside class="service-strip" aria-label="Miroooo customer care">
+        <div class="service-strip__item">${supportIcon}<div><strong>Customer support</strong><span>Real help when you need it</span></div></div>
+        <div class="service-strip__item">${deliveryIcon}<div><strong>Tracked UK delivery</strong><span>Free with every brush</span></div></div>
+        <div class="service-strip__item">${trialIcon}<div><strong>90-day home trial</strong><span>Take time to decide</span></div></div>
+        <div class="service-strip__item">${warrantyIcon}<div><strong>Two-year warranty</strong><span>Made for daily use</span></div></div>
+      </aside>
+      <footer class="miroooo-product-footer">
+        <div class="miroooo-product-footer__grid">
+          <div class="miroooo-product-footer__brand"><a class="miroooo-product-footer__logo" href="/">MIROOOO</a><p>Quietly precise electric toothbrushes, built to make better brushing feel uncomplicated.</p></div>
+          <div class="miroooo-product-footer__column"><strong>Shop</strong><a href="/products/miroooo-x">Miroooo X</a><a href="/products/miroooo-x2">Miroooo X2</a><a href="/shop">Compare models</a></div>
+          <div class="miroooo-product-footer__column"><strong>Support</strong><a href="/faq">FAQs</a><a href="/delivery-returns">Delivery &amp; returns</a><a href="/warranty">Warranty</a><a href="/order-tracking">Track order</a><a href="/contact">Contact</a></div>
+          <div class="miroooo-product-footer__column"><strong>About</strong><a href="/about">Our approach</a><a href="/privacy">Privacy</a><a href="/terms">Terms</a></div>
+        </div>
+        <div class="miroooo-product-footer__bottom"><span>© ${new Date().getFullYear()} Miroooo. All rights reserved.</span><div class="miroooo-product-footer__legal"><a href="/privacy">Privacy policy</a><a href="/terms">Terms of service</a></div></div>
+      </footer>`;
   }
 
   const allowedAttribution = ["msclkid", "gclid", "utm_source", "utm_medium", "utm_campaign", "utm_term", "utm_content"];
