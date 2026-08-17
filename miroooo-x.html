@@ -678,68 +678,41 @@
   pointer-events: none;
 }
 
-/* Most Popular Badge (Juujo Exact Style) */
+/* Most Popular Badge (CloudAlign Scallop Seal Style) */
 .tier-popular-badge-wrap {
   position: absolute;
-  top: -14px;
-  right: -6px;
+  top: -16px;
+  right: -8px;
   z-index: 20;
   pointer-events: none;
 }
-.tier-popular-badge {
-  position: relative;
-  display: flex;
+.tier-popular-seal {
+  display: inline-flex;
   align-items: center;
   justify-content: center;
-  min-width: 68px;
-  border-radius: 9999px;
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  background: #18371f !important; /* Juujo luxury dark green */
-  padding: 3.5px 14px;
-  text-align: center;
-  font-size: 10px;
-  font-weight: 800;
-  line-height: 1.1;
-  color: #ffffff !important;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-  letter-spacing: -0.01em;
-}
-.tier-popular-diamond {
-  position: absolute;
-  top: 50%;
-  width: 4px;
-  height: 4px;
-  background: #ffffff;
-  opacity: 0.6;
-  transform: translateY(-50%) rotate(45deg);
-}
-.tier-popular-diamond.left {
-  left: 5px;
-}
-.tier-popular-diamond.right {
-  right: 5px;
+  filter: drop-shadow(0 3px 8px rgba(0, 0, 0, 0.25));
+  transition: transform 0.2s ease;
 }
 
-/* Best Value Badge (Juujo Exact Style) */
+/* Best Value Badge (CloudAlign Green Banner Style) */
 .tier-best-value-wrap {
   position: absolute;
-  top: 0;
-  right: 18px;
+  top: -11px;
+  right: 14px;
   z-index: 20;
   pointer-events: none;
 }
 .tier-best-value-ribbon {
-  border-radius: 0 0 6px 6px;
-  border: 1px solid #18371f;
-  border-top: none;
-  background: #18371f !important; /* Same luxury dark green as Most Popular */
-  padding: 4px 14px;
+  border-radius: 4px;
+  background: #22c55e !important; /* Exact green tick color */
+  padding: 3px 12px;
   font-size: 9.5px;
   font-weight: 900;
   text-transform: uppercase;
-  letter-spacing: 0.1em;
+  letter-spacing: 0.08em;
   color: #ffffff !important;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+  line-height: 1.2;
 }
 
 /* Standalone Color Swatches (Hero Section) */
@@ -1409,7 +1382,13 @@ theme.variantStrings = {
         data-update-url="true"
       ><div class="product__title">
   <a href="#shopify-section-template--24203751129433__reviews" class="product__reviews-badge inline-flex items-center gap-2 mb-2 no-underline hover:opacity-80 transition-opacity cursor-pointer" style="display: inline-flex; align-items: center; gap: 8px; margin-bottom: 8px; text-decoration: none;">
-    <div style="color: #22c55e; font-size: 20px; letter-spacing: 2px; line-height: 1; display: inline-flex;" aria-hidden="true">★★★★★</div>
+    <div style="display: inline-flex; align-items: center; gap: 3px;" aria-hidden="true">
+      <img src="/assets/star.png" alt="★" width="16" height="15" style="width: 16px; height: 15px; display: block; object-fit: contain;" />
+      <img src="/assets/star.png" alt="★" width="16" height="15" style="width: 16px; height: 15px; display: block; object-fit: contain;" />
+      <img src="/assets/star.png" alt="★" width="16" height="15" style="width: 16px; height: 15px; display: block; object-fit: contain;" />
+      <img src="/assets/star.png" alt="★" width="16" height="15" style="width: 16px; height: 15px; display: block; object-fit: contain;" />
+      <img src="/assets/star.png" alt="★" width="16" height="15" style="width: 16px; height: 15px; display: block; object-fit: contain;" />
+    </div>
     <span style="color: rgba(255, 255, 255, 0.9); font-size: 13px; font-weight: 700; letter-spacing: 0.04em; text-transform: uppercase;">4.9 · TRUSTED BY 40,000+ CUSTOMERS</span>
   </a>
   <h1 class="heading col-span-full font-bold" id="main-product-title" style="color: #ffffff; font-size: clamp(1.85rem, 2.8vw, 2.5rem); letter-spacing: -0.02em; line-height: 1.15; margin: 4px 0 8px 0;">
@@ -1513,10 +1492,13 @@ theme.variantStrings = {
   <!-- Tier 2: Buy 2 (Default, Most Popular) -->
   <div class="bundle-tier-card is-selected has-top-badge" data-tier="bundle-2" onclick="selectBundleTier('bundle-2')">
     <div class="tier-popular-badge-wrap">
-      <div class="tier-popular-badge">
-        <div class="tier-popular-diamond left"></div>
-        <div class="tier-popular-diamond right"></div>
-        Most<br>Popular
+      <div class="tier-popular-seal">
+        <svg width="76" height="48" viewBox="0 0 90 56" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M 85.0 28.0 Q 80.2 31.2 83.0 35.1 Q 76.8 37.3 77.4 41.5 Q 70.2 42.5 68.5 46.6 Q 61.2 46.3 57.4 49.9 Q 50.6 48.2 45.0 51.0 Q 39.4 48.2 32.6 49.9 Q 28.8 46.3 21.5 46.6 Q 19.8 42.5 12.6 41.5 Q 13.2 37.3 7.0 35.1 Q 9.8 31.2 5.0 28.0 Q 9.8 24.8 7.0 20.9 Q 13.2 18.7 12.6 14.5 Q 19.8 13.5 21.5 9.4 Q 28.8 9.7 32.6 6.1 Q 39.4 7.8 45.0 5.0 Q 50.6 7.8 57.4 6.1 Q 61.2 9.7 68.5 9.4 Q 70.2 13.5 77.4 14.5 Q 76.8 18.7 83.0 20.9 Q 80.2 24.8 85.0 28.0 Z" fill="#22c55e" />
+          <ellipse cx="45" cy="28" rx="34" ry="18.5" stroke="rgba(255, 255, 255, 0.45)" stroke-width="0.9" stroke-dasharray="2 1.5" fill="none" />
+          <text x="45" y="23" text-anchor="middle" fill="#ffffff" font-family="'Playfair Display', Georgia, serif" font-size="12.5" font-style="italic" font-weight="600" letter-spacing="0.3">Most</text>
+          <text x="45" y="37.5" text-anchor="middle" fill="#ffffff" font-family="'Inter', -apple-system, sans-serif" font-size="11" font-weight="800" letter-spacing="0.5">Popular</text>
+        </svg>
       </div>
     </div>
     <button type="button" class="tier-header-btn" aria-label="Select Buy 2 Tier">

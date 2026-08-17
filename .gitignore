@@ -6,6 +6,7 @@ __pycache__/
 
 # Temporary scraped and dumped files
 *.png
+!assets/**/*.png
 !assets_ref/**/*.png
 *.txt
 !robots.txt
