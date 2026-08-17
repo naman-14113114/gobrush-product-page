@@ -17,10 +17,11 @@
     item.innerHTML = "Free tracked UK delivery · 90-day home trial";
   });
 
+  // Synchronize Navigation links and duplicate text for roll-up animation
   const desktopLinks = document.querySelectorAll(".header__menu > ul > li > a");
   const desktopItems = [
     ["/shop", "Shop"],
-    ["/products/miroooo-x2", "Miroooo X2"],
+    ["/products/miroooo-x2", "Bundles"],
     ["/contact", "Contact"],
     ["/faq", "FAQ"]
   ];
@@ -28,14 +29,59 @@
     const item = desktopItems[index];
     if (!item) return;
     link.href = item[0];
-    link.querySelectorAll(".btn-text").forEach((text) => {
-      text.textContent = item[1];
-      text.dataset.text = item[1];
-    });
+    
+    // Ensure both default text and duplicate pill span exist
+    let defaultSpan = link.querySelector(".btn-text:not(.btn-duplicate)");
+    let duplicateSpan = link.querySelector(".btn-duplicate");
+    
+    if (!defaultSpan) {
+      defaultSpan = document.createElement("span");
+      defaultSpan.className = "btn-text";
+      defaultSpan.setAttribute("data-text", "");
+      link.prepend(defaultSpan);
+    }
+    defaultSpan.textContent = item[1];
+    defaultSpan.dataset.text = item[1];
+    
+    if (!duplicateSpan) {
+      duplicateSpan = document.createElement("span");
+      duplicateSpan.className = "btn-text btn-duplicate";
+      link.append(duplicateSpan);
+    }
+    duplicateSpan.textContent = item[1];
   });
 
+  // Magnet Mouse Cursor Follower Effect for Header Elements
+  const initMagnetEffect = () => {
+    const magnetTargets = document.querySelectorAll(
+      '[is="magnet-link"], [is="magnet-button"], .header__menu > ul.with-block .menu__item, .header__buttons a, .header__buttons button'
+    );
+    
+    magnetTargets.forEach((target) => {
+      if (target.dataset.magnetAttached) return;
+      target.dataset.magnetAttached = "true";
+
+      target.addEventListener("mousemove", (e) => {
+        const rect = target.getBoundingClientRect();
+        const x = e.clientX - rect.left - rect.width / 2;
+        const y = e.clientY - rect.top - rect.height / 2;
+        target.style.transform = `translate(${x * 0.22}px, ${y * 0.22}px)`;
+      });
+
+      target.addEventListener("mouseleave", () => {
+        target.style.transform = "translate(0px, 0px)";
+      });
+    });
+  };
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", initMagnetEffect);
+  } else {
+    initMagnetEffect();
+  }
+
   const mobileLinks = document.querySelectorAll("#MenuDrawer .drawer__menu-item");
-  const mobileItems = [["/shop", "Shop"], ["/products/miroooo-x2", "Miroooo X2"], ["/contact", "Contact"], ["/faq", "FAQ"]];
+  const mobileItems = [["/shop", "Shop"], ["/products/miroooo-x2", "Bundles"], ["/contact", "Contact"], ["/faq", "FAQ"]];
   mobileLinks.forEach((link, index) => {
     const item = mobileItems[index];
     if (!item) return;

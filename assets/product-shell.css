@@ -1,3 +1,7 @@
+/* =========================================================
+   AUTHENTIC GOBRUSH CONCEPT THEME HEADER STYLING & ANIMATION
+   ========================================================= */
+
 .miroooo-skip {
   position: fixed;
   z-index: 99999;
@@ -26,6 +30,187 @@
 
 #shopify-section-sections--24203576967513__announcement-bar .highlighted-text svg { display: none !important; }
 
+/* Sticky Transparent Blur Header */
+#shopify-section-sections--24203576967513__header {
+  position: sticky !important;
+  top: 0 !important;
+  z-index: 100 !important;
+  --section-padding-top: 14px;
+  --section-padding-bottom: 14px;
+  --color-background: 8 9 9;
+  --color-foreground: 255 255 255;
+  background: rgba(8, 9, 9, 0.94) !important;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08) !important;
+  backdrop-filter: blur(20px) !important;
+  -webkit-backdrop-filter: blur(20px) !important;
+}
+
+#shopify-section-sections--24203576967513__header header,
+#shopify-section-sections--24203576967513__header .header {
+  background: transparent !important;
+  color: #ffffff !important;
+}
+
+/* Header Navigation Menu List */
+.header__menu > ul.with-block {
+  display: flex !important;
+  align-items: center !important;
+  gap: 6px !important;
+  list-style: none !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+.header__menu > ul.with-block > li {
+  position: relative !important;
+  display: inline-flex !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+/* GoBrush Pill Navigation Item */
+.header__menu > ul.with-block .menu__item {
+  position: relative !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  overflow: hidden !important;
+  height: 40px !important;
+  padding: 0 20px !important;
+  border-radius: 9999px !important;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif !important;
+  font-size: 13.5px !important;
+  font-weight: 500 !important;
+  letter-spacing: 0.02em !important;
+  text-decoration: none !important;
+  cursor: pointer !important;
+  background: transparent !important;
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1) !important;
+  will-change: transform;
+}
+
+/* Default White Navigation Text */
+.header__menu > ul.with-block .menu__item > .btn-text:not(.btn-duplicate),
+.header__menu > ul.with-block .menu__item [data-text] {
+  position: relative !important;
+  z-index: 1 !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  color: rgba(255, 255, 255, 0.85) !important;
+  opacity: 1 !important;
+  transform: translateY(0%) scale(1) !important;
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.35s ease, color 0.2s ease !important;
+  pointer-events: none !important;
+  white-space: nowrap !important;
+}
+
+/* Authentic GoBrush Rising Pill Duplicate */
+.header__menu > ul.with-block .menu__item .btn-duplicate {
+  position: absolute !important;
+  inset: 0 !important;
+  width: 100% !important;
+  height: 100% !important;
+  border-radius: 9999px !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  background-color: #ffffff !important;
+  color: #000000 !important;
+  font-weight: 600 !important;
+  font-size: 13.5px !important;
+  letter-spacing: 0.02em !important;
+  z-index: 2 !important;
+  pointer-events: none !important;
+  opacity: 0 !important;
+  transform: translateY(100%) scale(0.65) !important;
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.35s ease !important;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.28) !important;
+  will-change: transform, opacity !important;
+  white-space: nowrap !important;
+}
+
+/* Hover Trigger States */
+@media screen and (pointer: fine) {
+  .header__menu > ul.with-block > li:hover .menu__item .btn-duplicate,
+  .header__menu > ul.with-block .menu__item:hover .btn-duplicate {
+    transform: translateY(0%) scale(1) !important;
+    opacity: 1 !important;
+  }
+
+  .header__menu > ul.with-block > li:hover .menu__item > .btn-text:not(.btn-duplicate),
+  .header__menu > ul.with-block .menu__item:hover > .btn-text:not(.btn-duplicate),
+  .header__menu > ul.with-block > li:hover .menu__item [data-text],
+  .header__menu > ul.with-block .menu__item:hover [data-text] {
+    transform: translateY(-15%) scale(0.6) !important;
+    opacity: 0 !important;
+  }
+}
+
+/* Header Buttons (Account, Cart, Menu Drawer) */
+.header__buttons {
+  display: flex !important;
+  align-items: center !important;
+  gap: 8px !important;
+}
+
+.header__buttons a,
+.header__buttons button {
+  position: relative !important;
+  width: 44px !important;
+  height: 44px !important;
+  border-radius: 50% !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  color: #ffffff !important;
+  background: transparent !important;
+  border: none !important;
+  cursor: pointer !important;
+  text-decoration: none !important;
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), background-color 0.2s ease !important;
+  will-change: transform;
+}
+
+.header__buttons a svg,
+.header__buttons button svg {
+  color: #ffffff !important;
+  stroke: currentColor !important;
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1) !important;
+}
+
+@media (hover: hover) {
+  .header__buttons a:hover,
+  .header__buttons button:hover {
+    background-color: rgba(255, 255, 255, 0.12) !important;
+    transform: scale(1.05) !important;
+  }
+
+  .header__buttons a:hover svg,
+  .header__buttons button:hover svg {
+    transform: scale(1.08) !important;
+  }
+}
+
+/* Header Logo */
+.header__logo-link {
+  display: inline-flex !important;
+  align-items: center !important;
+  text-decoration: none !important;
+  transition: opacity 0.2s ease, transform 0.3s cubic-bezier(0.16, 1, 0.3, 1) !important;
+}
+
+.header__logo-link:hover {
+  opacity: 0.88 !important;
+  transform: scale(1.02) !important;
+}
+
+#shopify-section-sections--24203576967513__header .header__logo-link span {
+  letter-spacing: .34em !important;
+  color: #ffffff !important;
+}
+
+/* Cart Drawer Close & Shell */
 #CartDrawer {
   z-index: 90 !important;
 }
@@ -53,10 +238,7 @@
   cursor: pointer;
 }
 
-#shopify-section-sections--24203576967513__header .header__logo-link span {
-  letter-spacing: .34em !important;
-}
-
+/* Footer Styling */
 .miroooo-product-footer {
   padding: 72px max(20px, calc((100vw - 1240px) / 2)) 30px;
   background: #080909;

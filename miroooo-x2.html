@@ -884,9 +884,19 @@ theme.variantStrings = {
   main, .main-page, .section {
     background-color: transparent !important;
   }
-  .header, .header__menu, .menu__item, .header__buttons svg {
+  .header, .header__menu, .header__buttons svg {
     color: #ffffff !important;
     stroke: #ffffff !important;
+  }
+  .menu__item {
+    color: #ffffff !important;
+  }
+  .menu__item > .btn-text:not(.btn-duplicate) {
+    color: #ffffff !important;
+  }
+  .menu__item .btn-duplicate {
+    color: #000000 !important;
+    background-color: #ffffff !important;
   }
   .header__cutout {
     display: none !important;
