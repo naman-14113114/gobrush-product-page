@@ -103,37 +103,36 @@
   // Authentic GoBrush Magnet Spring Hover Physics
   const initMagnet = () => {
     const magnetTargets = document.querySelectorAll(
-      '[is="magnet-link"], [is="magnet-button"], .header__menu > ul.with-block .menu__item, .header__buttons a, .header__buttons button'
+      '[is="magnet-link"], [is="magnet-button"]'
     );
     magnetTargets.forEach((target) => {
       if (target.dataset.magnetAttached) return;
       target.dataset.magnetAttached = "true";
 
-      const icon = target.querySelector("svg");
-      const text = target.querySelector("[data-text]");
+      const btnText = target.querySelector("[data-text]");
 
       target.addEventListener("mousemove", (e) => {
         const rect = target.getBoundingClientRect();
-        const x = ((e.clientX - rect.left) / rect.width - 0.5) * 14;
-        const y = ((e.clientY - rect.top) / rect.height - 0.5) * 14;
+        const x = ((e.clientX - rect.left) / rect.width - 0.5) * 10;
+        const y = ((e.clientY - rect.top) / rect.height - 0.5) * 10;
 
-        if (icon) {
-          icon.style.transform = `translate(${x}px, ${y}px) scale(1.15)`;
-        } else if (text) {
-          text.style.transform = `translate(${x * 0.4}px, ${y * 0.4}px)`;
+        if (btnText) {
+          btnText.style.transform = `translate3d(${x}px, ${y}px, 0px)`;
+          btnText.style.transition = "transform 0.08s ease-out";
         } else {
-          target.style.transform = `translate(${x * 0.3}px, ${y * 0.3}px)`;
+          target.style.transform = `translate3d(${x}px, ${y}px, 0px)`;
+          target.style.transition = "transform 0.08s ease-out";
         }
       });
 
       target.addEventListener("mouseleave", () => {
-        if (icon) {
-          icon.style.transform = "";
+        if (btnText) {
+          btnText.style.transform = "translate3d(0px, 0px, 0px)";
+          btnText.style.transition = "transform 0.5s cubic-bezier(0.16, 1, 0.3, 1)";
+        } else {
+          target.style.transform = "translate3d(0px, 0px, 0px)";
+          target.style.transition = "transform 0.5s cubic-bezier(0.16, 1, 0.3, 1)";
         }
-        if (text) {
-          text.style.transform = "";
-        }
-        target.style.transform = "";
       });
     });
   };

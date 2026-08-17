@@ -1754,9 +1754,7 @@ body {
 
 .gb-product-card__media {
   position: relative;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  display: block;
   aspect-ratio: 1 / 1;
   width: 100%;
   background: #141517;
@@ -1764,17 +1762,53 @@ body {
   text-decoration: none;
 }
 
-.gb-product-card__media img {
+/* Dual Image Hover Swap */
+.gb-product-card__image-wrap {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  aspect-ratio: 1 / 1;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #141517;
+}
+
+.gb-product-card__img {
   width: 100%;
   height: 100%;
   object-fit: cover;
   object-position: center;
-  transition: transform 0.65s cubic-bezier(0.16, 1, 0.3, 1);
-  will-change: transform;
+  display: block;
+  will-change: transform, opacity;
 }
 
-.gb-product-card:hover .gb-product-card__media img {
-  transform: scale(1.07);
+.gb-product-card__img--primary {
+  position: relative;
+  z-index: 1;
+  opacity: 1;
+  transform: scale(1);
+  transition: opacity 0.45s ease, transform 0.65s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.gb-product-card__img--secondary {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  opacity: 0;
+  transform: scale(1.04);
+  transition: opacity 0.45s ease, transform 0.65s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.gb-product-card:hover .gb-product-card__img--primary {
+  opacity: 0;
+  transform: scale(1.06);
+}
+
+.gb-product-card:hover .gb-product-card__img--secondary {
+  opacity: 1;
+  transform: scale(1);
 }
 
 /* Badges (Discount Top-Left, Rating Top-Right) */
@@ -3065,7 +3099,7 @@ body:not([data-page="home"]) .site-header:not(.site-header--overlay) {
 .site-actions .header__buttons {
   display: flex !important;
   align-items: center !important;
-  gap: 6px !important;
+  gap: 8px !important;
 }
 
 .site-header .header__buttons a,
@@ -3087,20 +3121,28 @@ body:not([data-page="home"]) .site-header:not(.site-header--overlay) {
   outline: none !important;
   cursor: pointer !important;
   text-decoration: none !important;
+  padding: 0 !important;
   will-change: transform;
 }
 
-/* Icon SVG Spring Physics Hover (NO gray background box!) */
+/* Icon SVGs */
 .site-header .header__buttons a svg,
 .site-header .header__buttons button svg,
 .header__buttons a svg,
 .header__buttons button svg,
 .site-actions__bag svg,
-.account-link svg {
-  color: rgba(255, 255, 255, 0.85) !important;
+.account-link svg,
+.icon-account,
+.icon-cart,
+.icon-hamburger {
+  width: 24px !important;
+  height: 24px !important;
+  color: #ffffff !important;
   stroke: currentColor !important;
-  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), color 0.2s ease, opacity 0.2s ease !important;
-  will-change: transform;
+  stroke-width: 1.5 !important;
+  fill: none !important;
+  display: block !important;
+  transition: opacity 0.2s ease !important;
 }
 
 @media (hover: hover) {
@@ -3119,9 +3161,7 @@ body:not([data-page="home"]) .site-header:not(.site-header--overlay) {
   .header__buttons button:hover svg,
   .site-actions__bag:hover svg,
   .account-link:hover svg {
-    color: #ffffff !important;
-    opacity: 1 !important;
-    transform: scale(1.15) !important;
+    opacity: 0.8 !important;
   }
 }
 
