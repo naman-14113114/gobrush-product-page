@@ -2130,7 +2130,7 @@ theme.variantStrings = {
       <!-- Function 1: STANDARD -->
       <div class="function-item" style="display: flex; flex-direction: column; align-items: center; text-align: center; gap: 1.25rem;">
         <div style="width: clamp(140px, 18vw, 220px); height: clamp(140px, 18vw, 220px); border-radius: 50%; overflow: hidden; background: #111111; display: flex; align-items: center; justify-content: center; box-shadow: 0 10px 30px rgba(0,0,0,0.6); border: 1px solid rgba(255,255,255,0.08); transition: transform 0.3s ease;">
-          <img src="https://e-assets.beeketing.net/10684/10684350/themes/17866902250f48175f95.png" alt="Standard Mode" style="width: 100%; height: 100%; object-fit: cover; display: block;" />
+          <img id="mode-img-standard" src="/assets_ref/x/G1.webp" alt="Standard Mode" style="width: 100%; height: 100%; object-fit: cover; display: block;" />
         </div>
         <div>
           <h3 style="font-family: 'GFS Didot', 'Playfair Display', Georgia, serif; font-size: clamp(1.1rem, 1.4vw, 1.35rem); font-weight: 600; color: #ffffff; letter-spacing: 0.08em; text-transform: uppercase; margin: 0 0 0.75rem 0;">
@@ -2145,7 +2145,7 @@ theme.variantStrings = {
       <!-- Function 2: WHITENING -->
       <div class="function-item" style="display: flex; flex-direction: column; align-items: center; text-align: center; gap: 1.25rem;">
         <div style="width: clamp(140px, 18vw, 220px); height: clamp(140px, 18vw, 220px); border-radius: 50%; overflow: hidden; background: #111111; display: flex; align-items: center; justify-content: center; box-shadow: 0 10px 30px rgba(0,0,0,0.6); border: 1px solid rgba(255,255,255,0.08); transition: transform 0.3s ease;">
-          <img src="https://e-assets.beeketing.net/10684/10684350/themes/17866902414eb46921b5.png" alt="Whitening Mode" style="width: 100%; height: 100%; object-fit: cover; display: block;" />
+          <img id="mode-img-whitening" src="/assets_ref/x/G2.webp" alt="Whitening Mode" style="width: 100%; height: 100%; object-fit: cover; display: block;" />
         </div>
         <div>
           <h3 style="font-family: 'GFS Didot', 'Playfair Display', Georgia, serif; font-size: clamp(1.1rem, 1.4vw, 1.35rem); font-weight: 600; color: #ffffff; letter-spacing: 0.08em; text-transform: uppercase; margin: 0 0 0.75rem 0;">
@@ -2160,7 +2160,7 @@ theme.variantStrings = {
       <!-- Function 3: DEEP CLEANSING -->
       <div class="function-item" style="display: flex; flex-direction: column; align-items: center; text-align: center; gap: 1.25rem;">
         <div style="width: clamp(140px, 18vw, 220px); height: clamp(140px, 18vw, 220px); border-radius: 50%; overflow: hidden; background: #111111; display: flex; align-items: center; justify-content: center; box-shadow: 0 10px 30px rgba(0,0,0,0.6); border: 1px solid rgba(255,255,255,0.08); transition: transform 0.3s ease;">
-          <img src="https://e-assets.beeketing.net/10684/10684350/themes/1786690254f165e32fdc.png" alt="Deep Cleansing Mode" style="width: 100%; height: 100%; object-fit: cover; display: block;" />
+          <img id="mode-img-deep-clean" src="/assets_ref/x/G3.webp" alt="Deep Cleansing Mode" style="width: 100%; height: 100%; object-fit: cover; display: block;" />
         </div>
         <div>
           <h3 style="font-family: 'GFS Didot', 'Playfair Display', Georgia, serif; font-size: clamp(1.1rem, 1.4vw, 1.35rem); font-weight: 600; color: #ffffff; letter-spacing: 0.08em; text-transform: uppercase; margin: 0 0 0.75rem 0;">
@@ -3604,7 +3604,12 @@ const VARIANTS_DATA = {
       "/assets_ref/x/gallery/Pink-8.webp",
       "/assets_ref/x/gallery/Silver-9.webp"
     ],
-    brushWithStyleImage: "/assets_ref/x/pink_brush_with_style.webp"
+    brushWithStyleImage: "/assets_ref/x/pink_brush_with_style.webp",
+    modeImages: {
+      standard: "/assets_ref/x/P1.webp",
+      whitening: "/assets_ref/x/P2.webp",
+      deepClean: "/assets_ref/x/P3.webp"
+    }
   },
   "Grey": {
     name: "Grey",
@@ -3623,7 +3628,12 @@ const VARIANTS_DATA = {
       "/assets_ref/x/gallery/Gray-8.webp",
       "/assets_ref/x/gallery/Silver-9.webp"
     ],
-    brushWithStyleImage: "/assets_ref/x/gray_brush_with_style.webp"
+    brushWithStyleImage: "/assets_ref/x/gray_brush_with_style.webp",
+    modeImages: {
+      standard: "/assets_ref/x/G1.webp",
+      whitening: "/assets_ref/x/G2.webp",
+      deepClean: "/assets_ref/x/G3.webp"
+    }
   },
   "Silver": {
     name: "Silver",
@@ -3642,7 +3652,12 @@ const VARIANTS_DATA = {
       "/assets_ref/x/gallery/Silver-8.webp",
       "/assets_ref/x/gallery/Silver-9.webp"
     ],
-    brushWithStyleImage: "/assets_ref/x/silver_brush_with_style.webp"
+    brushWithStyleImage: "/assets_ref/x/silver_brush_with_style.webp",
+    modeImages: {
+      standard: "/assets_ref/x/S1.webp",
+      whitening: "/assets_ref/x/S2.webp",
+      deepClean: "/assets_ref/x/S3.webp"
+    }
   }
 };
 // Aliases
@@ -3944,6 +3959,38 @@ function selectColorVariant(colorName) {
       styleHeroImg.src = data.brushWithStyleImage;
       styleHeroImg.style.opacity = '1';
     }, 120);
+  }
+
+  // 6. Update 3 Brush Functions Mode Images
+  if (data.modeImages) {
+    const stdImg = document.getElementById('mode-img-standard');
+    const whtImg = document.getElementById('mode-img-whitening');
+    const deepImg = document.getElementById('mode-img-deep-clean');
+    
+    if (stdImg && data.modeImages.standard) {
+      stdImg.style.transition = 'opacity 0.2s ease';
+      stdImg.style.opacity = '0';
+      setTimeout(() => {
+        stdImg.src = data.modeImages.standard;
+        stdImg.style.opacity = '1';
+      }, 120);
+    }
+    if (whtImg && data.modeImages.whitening) {
+      whtImg.style.transition = 'opacity 0.2s ease';
+      whtImg.style.opacity = '0';
+      setTimeout(() => {
+        whtImg.src = data.modeImages.whitening;
+        whtImg.style.opacity = '1';
+      }, 120);
+    }
+    if (deepImg && data.modeImages.deepClean) {
+      deepImg.style.transition = 'opacity 0.2s ease';
+      deepImg.style.opacity = '0';
+      setTimeout(() => {
+        deepImg.src = data.modeImages.deepClean;
+        deepImg.style.opacity = '1';
+      }, 120);
+    }
   }
 }
 
