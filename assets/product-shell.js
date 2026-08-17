@@ -137,10 +137,10 @@
         <div class="miroooo-product-footer__grid">
           <div class="miroooo-product-footer__brand"><a class="miroooo-product-footer__logo" href="/">MIROOOO</a><p>Quietly precise electric toothbrushes, built to make better brushing feel uncomplicated.</p></div>
           <div class="miroooo-product-footer__column"><strong>Shop</strong><a href="/products/miroooo-x">Miroooo X</a><a href="/products/miroooo-x2">Miroooo X2</a><a href="/shop">Compare models</a></div>
-          <div class="miroooo-product-footer__column"><strong>Support</strong><a href="/faq">FAQs</a><a href="/delivery-returns">Delivery &amp; returns</a><a href="/warranty">Warranty</a><a href="/order-tracking">Track order</a><a href="/contact">Contact</a></div>
-          <div class="miroooo-product-footer__column"><strong>About</strong><a href="/about">Our approach</a><a href="/privacy">Privacy</a><a href="/terms">Terms</a></div>
+          <div class="miroooo-product-footer__column"><strong>Support</strong><a href="/faq">FAQs</a><a href="/shipping-policy">Shipping policy</a><a href="/return-policy">Return policy</a><a href="/refund-policy">Refund policy</a><a href="/warranty">Warranty</a><a href="/order-tracking">Track order</a><a href="/contact">Contact</a></div>
+          <div class="miroooo-product-footer__column"><strong>About</strong><a href="/about">Our approach</a><a href="/privacy">Privacy</a><a href="/terms">Terms</a><a href="/cookies-policy">Cookies</a></div>
         </div>
-        <div class="miroooo-product-footer__bottom"><span>© ${new Date().getFullYear()} Miroooo. All rights reserved.</span><div class="miroooo-product-footer__legal"><a href="/privacy">Privacy policy</a><a href="/terms">Terms of service</a></div></div>
+        <div class="miroooo-product-footer__bottom"><span>© ${new Date().getFullYear()} Miroooo. All rights reserved.</span><div class="miroooo-product-footer__legal"><a href="/privacy">Privacy policy</a><a href="/terms">Terms of service</a><a href="/cookies-policy">Cookies policy</a></div></div>
       </footer>`;
   }
 

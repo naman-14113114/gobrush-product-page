@@ -12,4 +12,8 @@
   <url><loc>https://miroooo.co/order-tracking</loc><changefreq>monthly</changefreq><priority>0.5</priority></url>
   <url><loc>https://miroooo.co/privacy</loc><changefreq>yearly</changefreq><priority>0.2</priority></url>
   <url><loc>https://miroooo.co/terms</loc><changefreq>yearly</changefreq><priority>0.2</priority></url>
+  <url><loc>https://miroooo.co/return-policy</loc><changefreq>yearly</changefreq><priority>0.2</priority></url>
+  <url><loc>https://miroooo.co/shipping-policy</loc><changefreq>yearly</changefreq><priority>0.2</priority></url>
+  <url><loc>https://miroooo.co/refund-policy</loc><changefreq>yearly</changefreq><priority>0.2</priority></url>
+  <url><loc>https://miroooo.co/cookies-policy</loc><changefreq>yearly</changefreq><priority>0.2</priority></url>
 </urlset>

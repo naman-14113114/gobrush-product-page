@@ -52,7 +52,7 @@
           </div>
           <div class="site-header__right site-actions header__icons header__icons--end flex justify-end z-2">
             <div class="header__buttons flex items-center gap-1d5">
-              <a class="account-link hidden lg:flex items-center justify-center" href="/order-tracking" aria-label="Track order" is="magnet-link" rel="nofollow"${current(["tracking"])}>
+              <a class="account-link hidden lg:flex items-center justify-center" href="/order-tracking" aria-label="Track order" is="magnet-link" rel="nofollow"${current(["tracking", "order-tracking"])}>
                 ${accountIcon}
               </a>
               <a class="site-actions__bag cart-drawer-button flex items-center justify-center relative" href="/cart" aria-label="Cart" is="magnet-link" aria-controls="CartDrawer" aria-expanded="false" data-no-instant>
@@ -200,9 +200,11 @@
           <div class="site-footer__column">
             <strong>Help</strong>
             <a href="/faq">FAQs</a>
-            <a href="/delivery-returns">Delivery &amp; returns</a>
-            <a href="/warranty">Warranty</a>
             <a href="/order-tracking">Track order</a>
+            <a href="/shipping-policy">Shipping policy</a>
+            <a href="/return-policy">Return policy</a>
+            <a href="/refund-policy">Refund policy</a>
+            <a href="/warranty">Warranty</a>
           </div>
           <div class="site-footer__column">
             <strong>Miroooo</strong>
@@ -210,6 +212,7 @@
             <a href="/contact">Contact</a>
             <a href="/privacy">Privacy</a>
             <a href="/terms">Terms</a>
+            <a href="/cookies-policy">Cookies</a>
           </div>
         </div>
         <div class="site-footer__bottom">

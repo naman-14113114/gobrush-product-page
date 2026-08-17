@@ -5,7 +5,8 @@ const root = resolve(import.meta.dirname, "..");
 const required = [
   "index.html", "shop.html", "miroooo-x.html", "miroooo-x2.html", "about.html", "faq.html",
   "contact.html", "delivery-returns.html", "warranty.html", "order-tracking.html", "privacy.html",
-  "terms.html", "404.html", "assets/site.css", "assets/site.js", "vercel.json", "sitemap.xml",
+  "terms.html", "return-policy.html", "shipping-policy.html", "refund-policy.html", "cookies-policy.html",
+  "404.html", "assets/site.css", "assets/site.js", "vercel.json", "sitemap.xml",
   "robots.txt", "llms.txt"
 ];
 const errors = [];
@@ -14,10 +15,18 @@ for (const file of required) {
   try { await access(resolve(root, file)); } catch { errors.push(`Missing required file: ${file}`); }
 }
 
-const newPages = ["index.html", "shop.html", "about.html", "faq.html", "contact.html", "delivery-returns.html", "warranty.html", "order-tracking.html", "privacy.html", "terms.html", "404.html"];
+const newPages = [
+  "index.html", "shop.html", "about.html", "faq.html", "contact.html", "delivery-returns.html",
+  "warranty.html", "order-tracking.html", "privacy.html", "terms.html", "return-policy.html",
+  "shipping-policy.html", "refund-policy.html", "cookies-policy.html", "404.html"
+];
 const internalRoutes = new Set([
   "/", "/shop", "/products/miroooo-x", "/products/miroooo-x2", "/about", "/faq", "/contact",
-  "/delivery-returns", "/warranty", "/order-tracking", "/privacy", "/terms"
+  "/delivery-returns", "/warranty", "/order-tracking", "/privacy", "/terms", "/return-policy",
+  "/shipping-policy", "/refund-policy", "/cookies-policy", "/policies/privacy-policy",
+  "/policies/return-policy", "/policies/shipping-policy", "/policies/refund-policy",
+  "/policies/terms-of-service", "/policies/cookies-policy", "/pages/order-tracking",
+  "/pages/contact-us"
 ]);
 for (const file of newPages) {
   const html = await readFile(resolve(root, file), "utf8");

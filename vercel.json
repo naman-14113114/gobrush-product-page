@@ -3,10 +3,14 @@
   "trailingSlash": false,
   "outputDirectory": "public",
   "rewrites": [
-    {"source":"/policies/shipping-policy","destination":"/delivery-returns.html"},
-    {"source":"/policies/refund-policy","destination":"/delivery-returns.html"},
     {"source":"/policies/privacy-policy","destination":"/privacy.html"},
-    {"source":"/policies/terms-of-service","destination":"/terms.html"}
+    {"source":"/policies/return-policy","destination":"/return-policy.html"},
+    {"source":"/policies/shipping-policy","destination":"/shipping-policy.html"},
+    {"source":"/policies/refund-policy","destination":"/refund-policy.html"},
+    {"source":"/policies/terms-of-service","destination":"/terms.html"},
+    {"source":"/policies/cookies-policy","destination":"/cookies-policy.html"},
+    {"source":"/pages/order-tracking","destination":"/order-tracking.html"},
+    {"source":"/pages/contact-us","destination":"/contact.html"}
   ],
   "redirects": [
     {"source":"/miroooo-x","destination":"/products/miroooo-x","permanent":true},
