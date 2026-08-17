@@ -156,10 +156,13 @@
   });
 
   const closeCartDrawer = () => {
+    if (window.MirooooCart?.closeCart) {
+      window.MirooooCart.closeCart();
+    }
     const drawer = document.getElementById("CartDrawer");
     if (!drawer) return;
     drawer.removeAttribute("open");
-    drawer.classList.remove("active", "pointer-events-auto");
+    drawer.classList.remove("active", "pointer-events-auto", "is-open");
     drawer.classList.add("pointer-events-none");
     drawer.setAttribute("aria-hidden", "true");
     const inner = drawer.querySelector(".drawer__inner");
@@ -169,7 +172,7 @@
       overlay.classList.add("invisible", "opacity-0", "pointer-events-none");
       overlay.classList.remove("visible", "opacity-100", "pointer-events-auto");
     }
-    document.body.classList.remove("overflow-hidden");
+    document.body.classList.remove("overflow-hidden", "cart-drawer-open");
   };
 
   const cartDrawer = document.getElementById("CartDrawer");
@@ -184,15 +187,338 @@
   }
 
   document.addEventListener("click", (event) => {
-    const closeControl = event.target.closest?.("#CartDrawer .drawer__close, #CartDrawer overlay-element, #CartDrawer .miroooo-cart-close");
+    const closeControl = event.target.closest?.("#CartDrawer .drawer__close, #CartDrawer overlay-element, #CartDrawer .miroooo-cart-close, #CartDrawer .miroooo-cart-close-btn, #CartDrawer .miroooo-cart-backdrop");
     if (!closeControl) return;
     event.preventDefault();
     setTimeout(closeCartDrawer, 0);
   }, true);
-  document.querySelectorAll("#CartDrawer .drawer__close, #CartDrawer overlay-element, #CartDrawer .miroooo-cart-close").forEach((control) => {
+  document.querySelectorAll("#CartDrawer .drawer__close, #CartDrawer overlay-element, #CartDrawer .miroooo-cart-close, #CartDrawer .miroooo-cart-close-btn, #CartDrawer .miroooo-cart-backdrop").forEach((control) => {
     control.addEventListener("click", () => {
       setTimeout(closeCartDrawer, 0);
     }, true);
   });
 
+  // =========================================================
+  // MIROOOO LUXURY 1:1 PRODUCT GALLERY LIGHTBOX MODAL
+  // =========================================================
+  function initProductGalleryLightbox() {
+    const modal = document.getElementById("MirooooGalleryLightbox");
+    if (!modal) return;
+
+    const mediaBox = document.getElementById("MirooooGalleryLightboxMediaBox");
+    const closeBtn = document.getElementById("MirooooGalleryLightboxClose");
+    const prevBtn = document.getElementById("MirooooGalleryLightboxPrev");
+    const nextBtn = document.getElementById("MirooooGalleryLightboxNext");
+    const currentCountEl = document.getElementById("MirooooGalleryLightboxCurrent");
+    const totalCountEl = document.getElementById("MirooooGalleryLightboxTotal");
+    const backdrop = modal.querySelector(".miroooo-gallery-lightbox__backdrop");
+
+    let currentIndex = 0;
+    let isOpen = false;
+    let touchStartX = 0;
+    let touchStartY = 0;
+    let previousActiveElement = null;
+    let previousBodyOverflow = "";
+
+    function getGalleryMediaItems() {
+      const items = [];
+      const mediaNodes = document.querySelectorAll(".product__media-list .product__media");
+      mediaNodes.forEach((node) => {
+        const video = node.querySelector("video");
+        if (video || node.dataset.mediaType === "video" || node.classList.contains("product__media--video")) {
+          const src = video ? (video.getAttribute("src") || video.currentSrc || video.src) : "";
+          items.push({
+            type: "video",
+            src: src,
+            alt: "Miroooo Product Video"
+          });
+        } else {
+          const img = node.querySelector("img");
+          if (img) {
+            const src = img.getAttribute("src") || img.currentSrc || img.src;
+            const alt = img.getAttribute("alt") || "Miroooo Product View";
+            items.push({
+              type: "image",
+              src: src,
+              alt: alt
+            });
+          }
+        }
+      });
+      return items;
+    }
+
+    function preloadNextMedia(index, items) {
+      if (!items || !items.length) return;
+      const nextIdx = (index + 1) % items.length;
+      const nextItem = items[nextIdx];
+      if (!nextItem) return;
+      if (nextItem.type === "video") {
+        const v = document.createElement("video");
+        v.preload = "metadata";
+        v.src = nextItem.src;
+        v.load();
+      } else {
+        const im = new Image();
+        im.decoding = "async";
+        im.src = nextItem.src;
+      }
+    }
+
+    function renderMedia(index) {
+      const items = getGalleryMediaItems();
+      if (!items.length) return;
+
+      if (index < 0) index = items.length - 1;
+      if (index >= items.length) index = 0;
+      currentIndex = index;
+
+      if (currentCountEl) currentCountEl.textContent = String(currentIndex + 1);
+      if (totalCountEl) totalCountEl.textContent = String(items.length);
+      if (!mediaBox) return;
+
+      const item = items[currentIndex];
+      if (!item) return;
+
+      // Clean up existing video if any
+      const existingVideo = mediaBox.querySelector("video");
+      if (existingVideo) {
+        existingVideo.pause();
+        existingVideo.removeAttribute("src");
+        existingVideo.load();
+      }
+      mediaBox.innerHTML = "";
+
+      if (item.type === "video") {
+        const videoEl = document.createElement("video");
+        videoEl.className = "miroooo-gallery-lightbox__video";
+        videoEl.src = item.src;
+        videoEl.autoplay = true;
+        videoEl.loop = true;
+        videoEl.muted = true;
+        videoEl.playsInline = true;
+        videoEl.style.width = "100%";
+        videoEl.style.height = "100%";
+        videoEl.style.aspectRatio = "1 / 1";
+        videoEl.style.objectFit = "cover";
+        videoEl.style.display = "block";
+        videoEl.style.borderRadius = "25px";
+        videoEl.style.background = "#000000";
+        videoEl.setAttribute("playsinline", "");
+        videoEl.setAttribute("autoplay", "");
+        videoEl.setAttribute("loop", "");
+        videoEl.setAttribute("muted", "");
+        videoEl.setAttribute("controlslist", "nodownload nofullscreen noremoteplayback");
+        videoEl.setAttribute("disablepictureinpicture", "");
+        mediaBox.appendChild(videoEl);
+        videoEl.play().catch(() => {});
+      } else {
+        const imgEl = document.createElement("img");
+        imgEl.className = "miroooo-gallery-lightbox__img";
+        imgEl.src = item.src;
+        imgEl.alt = item.alt || "Expanded Product View";
+        imgEl.decoding = "async";
+        imgEl.loading = "eager";
+        imgEl.style.width = "100%";
+        imgEl.style.height = "100%";
+        imgEl.style.aspectRatio = "1 / 1";
+        imgEl.style.objectFit = "contain";
+        imgEl.style.display = "block";
+        imgEl.style.borderRadius = "25px";
+        imgEl.style.background = "#000000";
+        mediaBox.appendChild(imgEl);
+      }
+
+      preloadNextMedia(currentIndex, items);
+    }
+
+    function openLightbox(index) {
+      previousActiveElement = document.activeElement;
+      document.body.style.overflow = "hidden";
+      document.documentElement.style.overflow = "hidden";
+      document.body.classList.add("overflow-hidden");
+      isOpen = true;
+
+      renderMedia(typeof index === "number" ? index : 0);
+
+      modal.classList.add("is-open");
+      modal.setAttribute("aria-hidden", "false");
+
+      closeBtn?.focus();
+    }
+
+    function closeLightbox() {
+      if (!isOpen && !modal.classList.contains("is-open")) return;
+      isOpen = false;
+
+      modal.classList.remove("is-open");
+      modal.setAttribute("aria-hidden", "true");
+
+      document.body.style.overflow = "";
+      document.documentElement.style.overflow = "";
+      document.body.classList.remove("overflow-hidden");
+      document.documentElement.classList.remove("overflow-hidden");
+
+      if (mediaBox) {
+        const vid = mediaBox.querySelector("video");
+        if (vid) {
+          vid.pause();
+          vid.removeAttribute("src");
+          vid.load();
+        }
+        mediaBox.innerHTML = "";
+      }
+
+      if (previousActiveElement && typeof previousActiveElement.focus === "function") {
+        try {
+          previousActiveElement.focus();
+        } catch (err) {}
+      }
+    }
+
+    function goNext() {
+      const items = getGalleryMediaItems();
+      if (!items.length) return;
+      renderMedia((currentIndex + 1) % items.length);
+    }
+
+    function goPrev() {
+      const items = getGalleryMediaItems();
+      if (!items.length) return;
+      renderMedia((currentIndex - 1 + items.length) % items.length);
+    }
+
+    // Button controls
+    closeBtn?.addEventListener("click", (e) => {
+      e.preventDefault();
+      e.stopPropagation();
+      closeLightbox();
+    });
+
+    prevBtn?.addEventListener("click", (e) => {
+      e.preventDefault();
+      e.stopPropagation();
+      goPrev();
+    });
+
+    nextBtn?.addEventListener("click", (e) => {
+      e.preventDefault();
+      e.stopPropagation();
+      goNext();
+    });
+
+    backdrop?.addEventListener("click", (e) => {
+      e.preventDefault();
+      e.stopPropagation();
+      closeLightbox();
+    });
+
+    modal.addEventListener("click", (e) => {
+      if (
+        e.target === modal ||
+        e.target === backdrop ||
+        e.target.classList.contains("miroooo-gallery-lightbox__stage")
+      ) {
+        closeLightbox();
+      }
+    });
+
+    // Keyboard navigation
+    document.addEventListener("keydown", (e) => {
+      if (!isOpen) return;
+      if (e.key === "Escape") {
+        e.preventDefault();
+        closeLightbox();
+      } else if (e.key === "ArrowRight") {
+        e.preventDefault();
+        goNext();
+      } else if (e.key === "ArrowLeft") {
+        e.preventDefault();
+        goPrev();
+      } else if (e.key === "Tab") {
+        const focusables = modal.querySelectorAll("button:not([disabled])");
+        if (focusables.length) {
+          const first = focusables[0];
+          const last = focusables[focusables.length - 1];
+          if (e.shiftKey && document.activeElement === first) {
+            e.preventDefault();
+            last.focus();
+          } else if (!e.shiftKey && document.activeElement === last) {
+            e.preventDefault();
+            first.focus();
+          }
+        }
+      }
+    });
+
+    // Touch Swipe Navigation
+    modal.addEventListener(
+      "touchstart",
+      (e) => {
+        if (!isOpen) return;
+        touchStartX = e.changedTouches[0].screenX;
+        touchStartY = e.changedTouches[0].screenY;
+      },
+      { passive: true }
+    );
+
+    modal.addEventListener(
+      "touchend",
+      (e) => {
+        if (!isOpen) return;
+        const touchEndX = e.changedTouches[0].screenX;
+        const touchEndY = e.changedTouches[0].screenY;
+        const diffX = touchEndX - touchStartX;
+        const diffY = touchEndY - touchStartY;
+        if (Math.abs(diffX) > Math.abs(diffY) && Math.abs(diffX) > 40) {
+          if (diffX < 0) {
+            goNext();
+          } else {
+            goPrev();
+          }
+        }
+      },
+      { passive: true }
+    );
+
+    // Attach click listeners to all main gallery media items and thumbnails
+    const mainMediaItems = document.querySelectorAll(".product__media-list .product__media");
+    mainMediaItems.forEach((mediaEl, idx) => {
+      mediaEl.style.cursor = "zoom-in";
+      mediaEl.style.pointerEvents = "auto";
+      const vidWrap = mediaEl.querySelector(".video-wrapper");
+      if (vidWrap) vidWrap.style.pointerEvents = "auto";
+      const vid = mediaEl.querySelector("video");
+      if (vid) vid.style.pointerEvents = "auto";
+
+      mediaEl.addEventListener("click", (e) => {
+        e.preventDefault();
+        openLightbox(idx);
+      });
+    });
+
+    const thumbnails = document.querySelectorAll(".product__thumbnails-list .product__thumbnail");
+    thumbnails.forEach((thumb, idx) => {
+      thumb.style.cursor = "pointer";
+      thumb.addEventListener("click", (e) => {
+        thumbnails.forEach((t) => t.classList.remove("is-active"));
+        thumb.classList.add("is-active");
+        if (mainMediaItems[idx]) {
+          mainMediaItems[idx].scrollIntoView({ behavior: "smooth", block: "nearest", inline: "start" });
+        }
+        openLightbox(idx);
+      });
+    });
+
+    window.openMirooooLightbox = openLightbox;
+    window.closeMirooooLightbox = closeLightbox;
+  }
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", initProductGalleryLightbox);
+  } else {
+    initProductGalleryLightbox();
+  }
+
 })();
+

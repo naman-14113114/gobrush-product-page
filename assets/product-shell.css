@@ -52,6 +52,31 @@
 }
 
 /* =========================================================
+   PRODUCT INFO & PREVIEW STICKY OFFSET FIX
+   Prevents right-side product info from being cropped/tucked under header
+   ========================================================= */
+:root {
+  --header-height: 78px;
+}
+
+.product__info.sticky,
+.product__preview.sticky,
+.product__info {
+  top: calc(var(--header-height, 80px) + 24px) !important;
+  inset-block-start: calc(var(--header-height, 80px) + 24px) !important;
+}
+
+@media (max-width: 990px) {
+  .product__info.sticky,
+  .product__preview.sticky,
+  .product__info {
+    position: static !important;
+    top: auto !important;
+    inset-block-start: auto !important;
+  }
+}
+
+/* =========================================================
    DESKTOP vs MOBILE HEADER CONTROLS (Hide Hamburger on Desktop)
    ========================================================= */
 @media screen and (min-width: 1024px) {
@@ -416,3 +441,270 @@
 @media (prefers-reduced-motion: reduce) {
   .miroooo-skip { transition: none; }
 }
+
+/* =========================================================
+   MIROOOO LUXURY 1:1 PRODUCT GALLERY LIGHTBOX MODAL
+   ========================================================= */
+
+.product__media-list .product__media {
+  cursor: zoom-in !important;
+}
+
+.product__media-list .product__media--video,
+.product__media-list #product-media-video-item {
+  cursor: zoom-in !important;
+  pointer-events: auto !important;
+}
+
+.product__media-list #product-media-video-item .video-wrapper,
+.product__media-list #product-media-video-item video {
+  pointer-events: auto !important;
+  cursor: zoom-in !important;
+}
+
+.product__thumbnails-list .product__thumbnail {
+  cursor: pointer !important;
+}
+
+.miroooo-gallery-lightbox {
+  position: fixed !important;
+  inset: 0 !important;
+  width: 100vw !important;
+  height: 100vh !important;
+  height: 100dvh !important;
+  z-index: 99999999 !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  opacity: 0 !important;
+  visibility: hidden !important;
+  pointer-events: none !important;
+  transition: opacity 0.25s cubic-bezier(0.16, 1, 0.3, 1), visibility 0.25s ease !important;
+  user-select: none !important;
+  -webkit-user-select: none !important;
+  box-sizing: border-box !important;
+}
+
+.miroooo-gallery-lightbox.is-open {
+  opacity: 1 !important;
+  visibility: visible !important;
+  pointer-events: auto !important;
+}
+
+.miroooo-gallery-lightbox__backdrop {
+  position: absolute !important;
+  inset: 0 !important;
+  width: 100% !important;
+  height: 100% !important;
+  background: rgba(255, 255, 255, 0.78) !important;
+  backdrop-filter: blur(16px) !important;
+  -webkit-backdrop-filter: blur(16px) !important;
+  z-index: 1 !important;
+}
+
+.miroooo-gallery-lightbox__stage {
+  position: relative !important;
+  z-index: 2 !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  width: 100% !important;
+  height: 100% !important;
+  padding: 40px 80px !important;
+  box-sizing: border-box !important;
+  pointer-events: none !important;
+}
+
+@media (max-width: 768px) {
+  .miroooo-gallery-lightbox__stage {
+    padding: 20px 16px !important;
+  }
+}
+
+.miroooo-gallery-lightbox__media-box {
+  position: relative !important;
+  width: min(85vw, 80vh) !important;
+  height: min(85vw, 80vh) !important;
+  max-width: min(85vw, 80vh) !important;
+  max-height: min(85vw, 80vh) !important;
+  aspect-ratio: 1 / 1 !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  background: #000000 !important;
+  border-radius: 25px !important;
+  overflow: hidden !important;
+  box-shadow: 0 0 30px rgba(0, 0, 0, 0.35) !important;
+  pointer-events: auto !important;
+  transform: scale(0.94) !important;
+  opacity: 0 !important;
+  transition: transform 0.28s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.25s ease !important;
+  box-sizing: border-box !important;
+}
+
+.miroooo-gallery-lightbox.is-open .miroooo-gallery-lightbox__media-box {
+  transform: scale(1) !important;
+  opacity: 1 !important;
+}
+
+.miroooo-gallery-lightbox__media-box img,
+.miroooo-gallery-lightbox__media-box video,
+.miroooo-gallery-lightbox__img,
+.miroooo-gallery-lightbox__video {
+  width: 100% !important;
+  height: 100% !important;
+  max-width: 100% !important;
+  max-height: 100% !important;
+  aspect-ratio: 1 / 1 !important;
+  object-fit: contain !important;
+  border-radius: 25px !important;
+  display: block !important;
+  background: #000000 !important;
+  user-select: none !important;
+  -webkit-user-drag: none !important;
+  box-sizing: border-box !important;
+}
+
+.miroooo-gallery-lightbox__close {
+  position: absolute !important;
+  top: 24px !important;
+  right: 24px !important;
+  width: 46px !important;
+  height: 46px !important;
+  border-radius: 50% !important;
+  background: rgba(240, 240, 240, 0.95) !important;
+  color: #000000 !important;
+  border: 1px solid rgba(0, 0, 0, 0.12) !important;
+  cursor: pointer !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1), background 0.2s ease, box-shadow 0.2s ease !important;
+  z-index: 100001 !important;
+  padding: 0 !important;
+  outline: none !important;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12) !important;
+}
+
+.miroooo-gallery-lightbox__close:hover {
+  background: #ffffff !important;
+  transform: scale(1.08) !important;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.18) !important;
+}
+
+.miroooo-gallery-lightbox__close:active {
+  transform: scale(0.95) !important;
+}
+
+.miroooo-gallery-lightbox__close svg {
+  display: block !important;
+  stroke: #000000 !important;
+  width: 20px !important;
+  height: 20px !important;
+}
+
+.miroooo-gallery-lightbox__arrow {
+  position: absolute !important;
+  top: 50% !important;
+  transform: translateY(-50%) !important;
+  width: 50px !important;
+  height: 50px !important;
+  border-radius: 50% !important;
+  background: rgba(0, 0, 0, 0.1) !important;
+  backdrop-filter: blur(8px) !important;
+  -webkit-backdrop-filter: blur(8px) !important;
+  color: #000000 !important;
+  border: 1px solid rgba(0, 0, 0, 0.12) !important;
+  cursor: pointer !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  transition: background 0.2s ease, transform 0.2s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.2s ease, box-shadow 0.2s ease !important;
+  z-index: 100001 !important;
+  padding: 0 !important;
+  outline: none !important;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08) !important;
+}
+
+.miroooo-gallery-lightbox__prev {
+  left: 24px !important;
+}
+
+.miroooo-gallery-lightbox__next {
+  right: 24px !important;
+}
+
+.miroooo-gallery-lightbox__arrow:hover {
+  background: rgba(0, 0, 0, 0.2) !important;
+  border-color: rgba(0, 0, 0, 0.22) !important;
+  transform: translateY(-50%) scale(1.08) !important;
+}
+
+.miroooo-gallery-lightbox__arrow:active {
+  transform: translateY(-50%) scale(0.95) !important;
+}
+
+.miroooo-gallery-lightbox__arrow svg {
+  display: block !important;
+  stroke: #000000 !important;
+  width: 24px !important;
+  height: 24px !important;
+}
+
+.miroooo-gallery-lightbox__counter {
+  position: absolute !important;
+  bottom: 24px !important;
+  left: 50% !important;
+  transform: translateX(-50%) !important;
+  background: rgba(0, 0, 0, 0.08) !important;
+  backdrop-filter: blur(8px) !important;
+  -webkit-backdrop-filter: blur(8px) !important;
+  border: 1px solid rgba(0, 0, 0, 0.12) !important;
+  color: #111111 !important;
+  font-family: inherit !important;
+  font-size: 13px !important;
+  font-weight: 600 !important;
+  letter-spacing: 0.04em !important;
+  padding: 6px 16px !important;
+  border-radius: 9999px !important;
+  z-index: 100001 !important;
+  pointer-events: none !important;
+}
+
+@media (max-width: 768px) {
+  .miroooo-gallery-lightbox__close {
+    top: 16px !important;
+    right: 16px !important;
+    width: 42px !important;
+    height: 42px !important;
+  }
+  .miroooo-gallery-lightbox__arrow {
+    width: 44px !important;
+    height: 44px !important;
+  }
+  .miroooo-gallery-lightbox__prev {
+    left: 10px !important;
+  }
+  .miroooo-gallery-lightbox__next {
+    right: 10px !important;
+  }
+  .miroooo-gallery-lightbox__counter {
+    bottom: 16px !important;
+    font-size: 12px !important;
+    padding: 5px 14px !important;
+  }
+}
+
+/* =========================================================
+   PRODUCT SECTION HEADER CLEARANCE
+   ========================================================= */
+#shopify-section-template--24203751129433__main-product {
+  padding-top: calc(var(--header-height, 78px) + var(--topbar-height, 48px) + 24px) !important;
+}
+
+@media (max-width: 990px) {
+  #shopify-section-template--24203751129433__main-product {
+    padding-top: calc(var(--header-height, 70px) + var(--topbar-height, 40px) + 16px) !important;
+  }
+}
+

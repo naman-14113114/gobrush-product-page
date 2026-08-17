@@ -1,0 +1,1631 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Your Cart | Miroooo Sonic Electric Toothbrushes</title>
+  <meta name="description" content="Review your Miroooo cart, unlocked free gifts, and proceed to secure checkout with complimentary tracked UK delivery.">
+  <link rel="canonical" href="https://miroooo.co/cart">
+  <meta name="theme-color" content="#080909">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Miroooo">
+  <meta property="og:title" content="Your Cart | Miroooo Sonic Electric Toothbrushes">
+  <meta property="og:description" content="Review your cart, unlocked free gifts, and checkout securely with free tracked UK delivery.">
+  <meta property="og:url" content="https://miroooo.co/cart">
+  <meta property="og:image" content="https://miroooo.co/gallery_orig/Grey-color-8.jpg">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="manifest" href="/site.webmanifest">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/assets/site.css?v=3">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "CheckoutPage",
+    "name": "Miroooo Shopping Cart",
+    "url": "https://miroooo.co/cart",
+    "description": "Secure checkout and shopping cart for Miroooo sonic electric toothbrushes."
+  }
+  </script>
+
+  <style>
+    /* Cart Page Luxury Dark Aesthetic */
+    body[data-page="cart"] {
+      background-color: #080909;
+      color: #ffffff;
+      min-height: 100vh;
+    }
+
+    .cart-wrapper {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 24px 20px 60px;
+    }
+
+    @media (min-width: 768px) {
+      .cart-wrapper {
+        padding: 36px 24px 80px;
+      }
+    }
+
+    /* Urgency Delivery Banner */
+    .cart-banner {
+      background: #141515;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 20px;
+      padding: 16px 20px;
+      margin-bottom: 28px;
+      box-shadow: 0 18px 40px -32px rgba(0, 0, 0, 0.8);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 14px;
+      text-align: center;
+    }
+
+    @media (min-width: 768px) {
+      .cart-banner {
+        flex-direction: row;
+        justify-content: space-between;
+        text-align: left;
+        padding: 18px 24px;
+        border-radius: 24px;
+      }
+    }
+
+    .cart-banner__left {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .cart-banner__icon {
+      width: 44px;
+      height: 44px;
+      flex-shrink: 0;
+      border-radius: 50%;
+      background: rgba(197, 160, 89, 0.12);
+      color: #c5a059;
+      display: grid;
+      place-items: center;
+    }
+
+    .cart-banner__text {
+      font-size: 1.05rem;
+      line-height: 1.4;
+      color: rgba(255, 255, 255, 0.85);
+    }
+
+    .cart-banner__highlight {
+      color: #ffffff;
+      font-weight: 700;
+    }
+
+    .cart-banner__accent {
+      color: #e6c88b;
+      font-weight: 700;
+    }
+
+    .cart-banner__badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      border-radius: 9999px;
+      border: 1px solid rgba(197, 160, 89, 0.32);
+      background: rgba(197, 160, 89, 0.15);
+      color: #e6c88b;
+      font-size: 0.82rem;
+      font-weight: 600;
+      letter-spacing: 0.02em;
+      padding: 6px 16px;
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.15);
+      white-space: nowrap;
+    }
+
+    /* 2-Column Grid */
+    .cart-layout-grid {
+      display: grid;
+      gap: 28px;
+      align-items: start;
+    }
+
+    @media (min-width: 1024px) {
+      .cart-layout-grid {
+        grid-template-columns: 1fr 430px;
+        gap: 32px;
+      }
+    }
+
+    /* Cards */
+    .cart-card {
+      background: #141515;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 20px;
+      padding: 24px;
+      box-shadow: 0 12px 32px rgba(0, 0, 0, 0.35);
+    }
+
+    @media (max-width: 640px) {
+      .cart-card {
+        padding: 18px 16px;
+        border-radius: 16px;
+      }
+    }
+
+    /* Line Item */
+    .cart-item {
+      display: flex;
+      gap: 18px;
+      padding-bottom: 20px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    .cart-item:last-child {
+      border-bottom: none;
+      padding-bottom: 0;
+    }
+
+    .cart-item__media {
+      width: 84px;
+      height: 96px;
+      flex-shrink: 0;
+      border-radius: 12px;
+      overflow: hidden;
+      background: #1a1a1a;
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .cart-item__media img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .cart-item__content {
+      flex: 1;
+      min-width: 0;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .cart-item__header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 12px;
+    }
+
+    .cart-item__title {
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: #ffffff;
+      line-height: 1.3;
+      margin: 0;
+    }
+
+    .cart-item__subtitle {
+      font-size: 0.82rem;
+      color: rgba(255, 255, 255, 0.55);
+      margin: 4px 0 0;
+      line-height: 1.4;
+    }
+
+    .cart-item__bundle-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-top: 6px;
+    }
+
+    .cart-item__tag {
+      font-size: 0.72rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      padding: 2px 8px;
+      border-radius: 6px;
+      background: rgba(255, 255, 255, 0.08);
+      color: rgba(255, 255, 255, 0.8);
+    }
+
+    .cart-item__tag--gold {
+      background: rgba(197, 160, 89, 0.15);
+      color: #e6c88b;
+      border: 1px solid rgba(197, 160, 89, 0.3);
+    }
+
+    .cart-item__pricing {
+      text-align: right;
+      flex-shrink: 0;
+    }
+
+    .cart-item__price {
+      font-size: 1.15rem;
+      font-weight: 800;
+      color: #ffffff;
+      display: block;
+    }
+
+    .cart-item__compare {
+      font-size: 0.8rem;
+      color: rgba(255, 255, 255, 0.4);
+      text-decoration: line-through;
+      margin-top: 2px;
+      display: block;
+    }
+
+    .cart-item__actions {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      margin-top: 14px;
+    }
+
+    /* Stepper */
+    .cart-stepper {
+      display: inline-flex;
+      align-items: center;
+      border-radius: 9999px;
+      border: 1px solid rgba(255, 255, 255, 0.14);
+      background: #1c1c1c;
+      padding: 2px;
+    }
+
+    .cart-stepper__btn {
+      width: 32px;
+      height: 32px;
+      display: grid;
+      place-items: center;
+      border-radius: 50%;
+      background: transparent;
+      border: none;
+      color: #ffffff;
+      cursor: pointer;
+      transition: background-color 0.15s ease, color 0.15s ease;
+    }
+
+    .cart-stepper__btn:hover {
+      background: rgba(255, 255, 255, 0.12);
+      color: #ffffff;
+    }
+
+    .cart-stepper__btn:active {
+      transform: scale(0.92);
+    }
+
+    .cart-stepper__btn:disabled {
+      opacity: 0.35;
+      cursor: not-allowed;
+    }
+
+    .cart-stepper__count {
+      min-width: 34px;
+      text-align: center;
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: #ffffff;
+      font-family: inherit;
+    }
+
+    .cart-remove-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: transparent;
+      border: none;
+      font-size: 0.82rem;
+      color: rgba(255, 255, 255, 0.45);
+      cursor: pointer;
+      padding: 6px 10px;
+      border-radius: 8px;
+      transition: color 0.2s ease, background-color 0.2s ease;
+    }
+
+    .cart-remove-btn:hover {
+      color: #ff5c5c;
+      background: rgba(255, 92, 92, 0.08);
+    }
+
+    /* Free Gifts Panel */
+    .gifts-panel {
+      margin-bottom: 20px;
+    }
+
+    .gifts-panel__header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      margin-bottom: 16px;
+    }
+
+    .gifts-panel__title {
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: #ffffff;
+      margin: 0;
+      letter-spacing: 0.02em;
+      text-transform: uppercase;
+    }
+
+    .gifts-panel__subtitle {
+      font-size: 0.8rem;
+      color: rgba(255, 255, 255, 0.55);
+      margin: 2px 0 0;
+    }
+
+    .gifts-panel__badge {
+      display: inline-flex;
+      align-items: center;
+      padding: 4px 12px;
+      border-radius: 9999px;
+      background: rgba(197, 160, 89, 0.15);
+      color: #e6c88b;
+      font-size: 0.8rem;
+      font-weight: 700;
+      border: 1px solid rgba(197, 160, 89, 0.3);
+    }
+
+    /* Gift Stepper Progress Line */
+    .gifts-progress {
+      position: relative;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 8px;
+      margin: 20px 0 24px;
+      padding: 0 8px;
+    }
+
+    .gifts-progress__track-bg {
+      position: absolute;
+      top: 14px;
+      left: 24px;
+      right: 24px;
+      height: 2px;
+      background: rgba(255, 255, 255, 0.12);
+      z-index: 1;
+    }
+
+    .gifts-progress__track-fill {
+      position: absolute;
+      top: 14px;
+      left: 24px;
+      height: 2px;
+      background: #c5a059;
+      z-index: 2;
+      transition: width 0.35s ease;
+    }
+
+    .gifts-progress__step {
+      position: relative;
+      z-index: 3;
+      text-align: center;
+    }
+
+    .gifts-progress__node {
+      width: 28px;
+      height: 28px;
+      margin: 0 auto;
+      border-radius: 50%;
+      background: #1c1c1c;
+      border: 2px solid rgba(255, 255, 255, 0.2);
+      color: rgba(255, 255, 255, 0.4);
+      display: grid;
+      place-items: center;
+      font-size: 0.75rem;
+      font-weight: 700;
+      transition: all 0.3s ease;
+      box-shadow: 0 0 0 4px #141515;
+    }
+
+    .gifts-progress__step.is-unlocked .gifts-progress__node {
+      background: #c5a059;
+      border-color: #c5a059;
+      color: #080909;
+    }
+
+    .gifts-progress__label {
+      margin-top: 8px;
+      font-size: 0.68rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: rgba(255, 255, 255, 0.5);
+      line-height: 1.2;
+    }
+
+    .gifts-progress__step.is-unlocked .gifts-progress__label {
+      color: #ffffff;
+    }
+
+    /* Gift Items List */
+    .gifts-list {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .gift-item-row {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 10px 12px;
+      border-radius: 14px;
+      background: #1a1b1b;
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      transition: opacity 0.25s ease, border-color 0.25s ease;
+    }
+
+    .gift-item-row.is-locked {
+      opacity: 0.45;
+      filter: grayscale(0.8);
+    }
+
+    .gift-item-row__media {
+      width: 48px;
+      height: 48px;
+      flex-shrink: 0;
+      border-radius: 10px;
+      background: #222;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .gift-item-row__media img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .gift-item-row__info {
+      flex: 1;
+      min-width: 0;
+    }
+
+    .gift-item-row__title {
+      font-size: 0.88rem;
+      font-weight: 700;
+      color: #ffffff;
+      margin: 0;
+      line-height: 1.3;
+    }
+
+    .gift-item-row__sub {
+      font-size: 0.75rem;
+      color: rgba(255, 255, 255, 0.5);
+      margin: 2px 0 0;
+    }
+
+    .gift-item-row__price {
+      text-align: right;
+      flex-shrink: 0;
+    }
+
+    .gift-item-row__free {
+      font-size: 0.85rem;
+      font-weight: 800;
+      color: #e6c88b;
+      display: block;
+    }
+
+    .gift-item-row__comp {
+      font-size: 0.72rem;
+      color: rgba(255, 255, 255, 0.4);
+      text-decoration: line-through;
+    }
+
+    /* Summary Card */
+    .summary-card {
+      margin-bottom: 20px;
+    }
+
+    .summary-card__discount-btn {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: transparent;
+      border: none;
+      padding: 4px 0 12px;
+      color: rgba(255, 255, 255, 0.85);
+      font-size: 0.88rem;
+      cursor: pointer;
+      transition: color 0.2s ease;
+    }
+
+    .summary-card__discount-btn:hover {
+      color: #ffffff;
+    }
+
+    .summary-card__discount-details {
+      padding: 8px 12px 14px;
+      margin-bottom: 12px;
+      border-radius: 10px;
+      background: rgba(34, 197, 94, 0.08);
+      border: 1px solid rgba(34, 197, 94, 0.2);
+      font-size: 0.82rem;
+      color: rgba(255, 255, 255, 0.8);
+      display: none;
+    }
+
+    .summary-card__discount-details.is-open {
+      display: block;
+    }
+
+    .summary-card__discount-row {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 4px;
+    }
+
+    .summary-card__discount-row:last-child {
+      margin-bottom: 0;
+    }
+
+    .summary-card__subtotal-wrap {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding-top: 14px;
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+      margin-bottom: 20px;
+    }
+
+    .summary-card__subtotal-label {
+      font-size: 0.85rem;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      color: rgba(255, 255, 255, 0.7);
+      display: block;
+    }
+
+    .summary-card__subtotal-sub {
+      font-size: 0.75rem;
+      color: rgba(255, 255, 255, 0.45);
+      display: block;
+      margin-top: 2px;
+    }
+
+    .summary-card__subtotal-val {
+      font-size: 2.1rem;
+      font-weight: 800;
+      color: #ffffff;
+      line-height: 1;
+    }
+
+    /* Checkout CTA Button Matching Miroooo Add to Cart */
+    .cart-checkout-btn {
+      position: relative !important;
+      overflow: hidden !important;
+      isolation: isolate !important;
+      display: flex !important;
+      align-items: center !important;
+      justify-content: center !important;
+      width: 100% !important;
+      min-height: 54px !important;
+      padding: 14px 28px !important;
+      border-radius: 9999px !important;
+      background: #ffffff !important;
+      color: #000000 !important;
+      border: 2px solid #ffffff !important;
+      font-weight: 700 !important;
+      font-size: 1.05rem !important;
+      cursor: pointer !important;
+      text-decoration: none !important;
+      box-shadow: 0 4px 24px rgba(255, 255, 255, 0.18) !important;
+      transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease !important;
+      margin-top: 8px;
+    }
+
+    .cart-checkout-btn::after {
+      content: '' !important;
+      position: absolute !important;
+      top: 0 !important;
+      left: 0 !important;
+      width: 100% !important;
+      height: 100% !important;
+      background: linear-gradient(90deg, transparent calc(50% - 70px), rgba(0, 0, 0, 0.16) 50%, transparent calc(50% + 35px)) !important;
+      transform: skewX(-30deg) translateX(-150%) !important;
+      animation: proxy-bundle-shine 4s infinite ease-in-out !important;
+      z-index: 3 !important;
+      pointer-events: none !important;
+    }
+
+    .cart-checkout-btn .btn-fill {
+      position: absolute !important;
+      inset: 0 !important;
+      width: 100% !important;
+      height: 100% !important;
+      background: #000000 !important;
+      transform: translateY(100%) !important;
+      transition: transform 0.38s cubic-bezier(0.16, 1, 0.3, 1) !important;
+      border-radius: 9999px !important;
+      z-index: 1 !important;
+      pointer-events: none !important;
+    }
+
+    .cart-checkout-btn:hover .btn-fill,
+    .cart-checkout-btn:focus-visible .btn-fill {
+      transform: translateY(0) !important;
+    }
+
+    .cart-checkout-btn .btn-text {
+      position: relative !important;
+      z-index: 2 !important;
+      display: inline-flex !important;
+      align-items: center !important;
+      justify-content: center !important;
+      gap: 10px !important;
+      color: #000000 !important;
+      transition: color 0.3s cubic-bezier(0.16, 1, 0.3, 1) !important;
+      pointer-events: none !important;
+    }
+
+    .cart-checkout-btn:hover .btn-text,
+    .cart-checkout-btn:focus-visible .btn-text {
+      color: #ffffff !important;
+    }
+
+    .cart-checkout-btn:hover {
+      background: #000000 !important;
+      border-color: #ffffff !important;
+      transform: scale(1.01) !important;
+      box-shadow: 0 6px 28px rgba(255, 255, 255, 0.25) !important;
+    }
+
+    .cart-checkout-btn:active {
+      transform: scale(0.99) !important;
+    }
+
+    /* Gift Message Accordion */
+    .gift-msg-card {
+      margin-bottom: 20px;
+    }
+
+    .gift-msg-toggle {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: transparent;
+      border: none;
+      padding: 0;
+      color: #ffffff;
+      cursor: pointer;
+      text-align: left;
+    }
+
+    .gift-msg-toggle__left {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .gift-msg-toggle__icon {
+      width: 38px;
+      height: 38px;
+      border-radius: 50%;
+      background: rgba(197, 160, 89, 0.12);
+      color: #c5a059;
+      display: grid;
+      place-items: center;
+      flex-shrink: 0;
+    }
+
+    .gift-msg-toggle__title {
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: #ffffff;
+      display: block;
+    }
+
+    .gift-msg-toggle__sub {
+      font-size: 0.78rem;
+      color: rgba(255, 255, 255, 0.5);
+      display: block;
+      margin-top: 1px;
+    }
+
+    .gift-msg-toggle__right {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .gift-msg-toggle__counter {
+      font-size: 0.75rem;
+      color: #e6c88b;
+      font-weight: 600;
+    }
+
+    .gift-msg-toggle__chevron {
+      color: #c5a059;
+      transition: transform 0.3s ease;
+    }
+
+    .gift-msg-toggle[aria-expanded="true"] .gift-msg-toggle__chevron {
+      transform: rotate(180deg);
+    }
+
+    .gift-msg-panel {
+      display: none;
+      margin-top: 16px;
+      padding-top: 16px;
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    .gift-msg-panel.is-open {
+      display: block;
+    }
+
+    .gift-msg-textarea {
+      width: 100%;
+      min-height: 90px;
+      resize: vertical;
+      border-radius: 12px;
+      border: 1px solid rgba(255, 255, 255, 0.14);
+      background: #0d0e0e;
+      padding: 12px 14px;
+      font-size: 0.88rem;
+      color: #ffffff;
+      font-family: inherit;
+      outline: none;
+      transition: border-color 0.2s ease;
+    }
+
+    .gift-msg-textarea:focus {
+      border-color: #c5a059;
+    }
+
+    .gift-msg-save-btn {
+      margin-top: 10px;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: transparent;
+      border: none;
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: #e6c88b;
+      cursor: pointer;
+      padding: 6px 0;
+      transition: color 0.2s ease;
+    }
+
+    .gift-msg-save-btn:hover {
+      color: #ffffff;
+    }
+
+    /* Trust Strip */
+    .cart-trust-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 12px;
+      padding: 16px 20px;
+      background: #141515;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 16px;
+    }
+
+    @media (min-width: 640px) {
+      .cart-trust-grid {
+        grid-template-columns: repeat(4, 1fr);
+      }
+    }
+
+    .cart-trust-item {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.78rem;
+      font-weight: 600;
+      color: rgba(255, 255, 255, 0.75);
+    }
+
+    .cart-trust-item svg {
+      width: 18px;
+      height: 18px;
+      flex-shrink: 0;
+      color: #c5a059;
+    }
+
+    /* Empty Cart State */
+    .cart-empty-view {
+      padding: 80px 20px 100px;
+      text-align: center;
+      max-width: 580px;
+      margin: 0 auto;
+    }
+
+    .cart-empty-icon {
+      width: 64px;
+      height: 64px;
+      margin: 0 auto 20px;
+      color: #c5a059;
+      opacity: 0.9;
+    }
+
+    .cart-empty-title {
+      font-size: 2rem;
+      font-weight: 800;
+      color: #ffffff;
+      margin: 0 0 12px;
+    }
+
+    .cart-empty-desc {
+      font-size: 1rem;
+      line-height: 1.6;
+      color: rgba(255, 255, 255, 0.6);
+      margin: 0 0 32px;
+    }
+
+    .cart-empty-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 50px;
+      padding: 0 32px;
+      border-radius: 9999px;
+      background: #ffffff;
+      color: #000000;
+      font-weight: 700;
+      text-decoration: none;
+      border: 2px solid #ffffff;
+      box-shadow: 0 4px 18px rgba(255, 255, 255, 0.15);
+      transition: transform 0.2s ease, border-color 0.2s ease;
+    }
+
+    .cart-empty-btn:hover {
+      background: #000000;
+      color: #ffffff;
+      border-color: #ffffff;
+    }
+  </style>
+</head>
+<body data-page="cart">
+  <a class="skip-link" href="#main">Skip to cart contents</a>
+  <div data-site-header></div>
+
+  <main id="main">
+    <div class="cart-wrapper">
+
+      <!-- 1. URGENCY & DELIVERY BANNER -->
+      <section class="cart-banner" aria-label="Delivery timeline and shipping guarantee">
+        <div class="cart-banner__left">
+          <div class="cart-banner__icon" aria-hidden="true">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="1" y="3" width="15" height="13" rx="1"></rect>
+              <polygon points="16 8 20 8 23 11 23 16 16 16 16 8"></polygon>
+              <circle cx="5.5" cy="18.5" r="2.5"></circle>
+              <circle cx="18.5" cy="18.5" r="2.5"></circle>
+            </svg>
+          </div>
+          <div class="cart-banner__text">
+            Order in next <span class="cart-banner__highlight" id="delivery-timer">09m : 45s</span> and receive it by <span class="cart-banner__accent" id="delivery-date">Thursday 20 August</span>
+          </div>
+        </div>
+        <div class="cart-banner__badge">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="20 6 9 17 4 12"></polyline>
+          </svg>
+          <span>Free tracked UK delivery</span>
+        </div>
+      </section>
+
+      <!-- 2. POPULATED CART VIEW -->
+      <div id="cart-active-view" class="cart-layout-grid">
+        
+        <!-- Left Column: Line items -->
+        <div class="cart-left-col">
+          <div class="cart-card">
+            <div id="cart-items-list">
+              <!-- Dynamically rendered cart line items -->
+            </div>
+          </div>
+        </div>
+
+        <!-- Right Column: Sidebar (Summary, Free Gifts, Gift Message) -->
+        <aside class="cart-right-col">
+          
+          <!-- Free Rewards Panel -->
+          <div class="cart-card gifts-panel" id="gifts-panel-card">
+            <div class="gifts-panel__header">
+              <div>
+                <h3 class="gifts-panel__title">Free Rewards</h3>
+                <p class="gifts-panel__subtitle" id="gifts-unlocked-count">2/3 gifts unlocked</p>
+              </div>
+              <span class="gifts-panel__badge" id="gifts-total-value">£35.90 value</span>
+            </div>
+
+            <!-- Progress Step Bar -->
+            <div class="gifts-progress" aria-hidden="true">
+              <div class="gifts-progress__track-bg"></div>
+              <div class="gifts-progress__track-fill" id="gifts-track-fill" style="width: 66%;"></div>
+              
+              <div class="gifts-progress__step is-unlocked" id="step-gift-1">
+                <div class="gifts-progress__node">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                </div>
+                <div class="gifts-progress__label">Travel Case</div>
+              </div>
+
+              <div class="gifts-progress__step is-unlocked" id="step-gift-2">
+                <div class="gifts-progress__node">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                </div>
+                <div class="gifts-progress__label">2x Heads</div>
+              </div>
+
+              <div class="gifts-progress__step" id="step-gift-3">
+                <div class="gifts-progress__node">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                </div>
+                <div class="gifts-progress__label">Dock</div>
+              </div>
+            </div>
+
+            <!-- Gift Item Cards List -->
+            <div class="gifts-list" id="gifts-rendered-list">
+              <!-- Rendered dynamically -->
+            </div>
+          </div>
+
+          <!-- Order Summary Card -->
+          <div class="cart-card summary-card">
+            
+            <!-- Discount Accordion Dropdown -->
+            <button type="button" class="summary-card__discount-btn" id="discount-toggle-btn" aria-expanded="false">
+              <span class="flex items-center gap-1.5 font-semibold">
+                <span>Total savings unlocked</span>
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" id="discount-chevron" style="transition: transform 0.2s;"><polyline points="6 9 12 15 18 9"></polyline></svg>
+              </span>
+              <span class="font-extrabold text-emerald-400" id="summary-savings-val">-£163.90</span>
+            </button>
+
+            <div class="summary-card__discount-details" id="discount-details-panel">
+              <div class="summary-card__discount-row">
+                <span>Bundle Discount</span>
+                <span class="font-semibold" id="discount-bundle-val">-£128.00</span>
+              </div>
+              <div class="summary-card__discount-row">
+                <span>Complimentary Gifts Value</span>
+                <span class="font-semibold" id="discount-gifts-val">-£35.90</span>
+              </div>
+              <div class="summary-card__discount-row">
+                <span>Tracked UK Shipping</span>
+                <span class="font-semibold text-emerald-400">FREE</span>
+              </div>
+            </div>
+
+            <!-- Subtotal & Taxes -->
+            <div class="summary-card__subtotal-wrap">
+              <div>
+                <span class="summary-card__subtotal-label">Subtotal</span>
+                <span class="summary-card__subtotal-sub">Includes all taxes & delivery.</span>
+              </div>
+              <div class="text-right">
+                <span class="summary-card__subtotal-val" id="summary-total-price">£110.00</span>
+              </div>
+            </div>
+
+            <!-- Secure Checkout CTA Button -->
+            <button
+              type="button"
+              id="cart-checkout-btn"
+              class="button button--primary cart-checkout-btn"
+              is="hover-button"
+              aria-label="Proceed to secure checkout"
+            >
+              <span class="btn-fill" data-fill></span>
+              <span class="btn-text">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+                  <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+                </svg>
+                <span id="checkout-btn-title">Proceed to Checkout</span>
+                <span id="checkout-btn-subtotal">· £110.00</span>
+              </span>
+            </button>
+          </div>
+
+          <!-- Gift Message Accordion -->
+          <div class="cart-card gift-msg-card">
+            <button
+              type="button"
+              class="gift-msg-toggle"
+              id="gift-msg-toggle-btn"
+              aria-expanded="false"
+              aria-controls="gift-message-panel"
+            >
+              <div class="gift-msg-toggle__left">
+                <div class="gift-msg-toggle__icon" aria-hidden="true">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <polyline points="20 12 20 22 4 22 4 12"></polyline>
+                    <rect x="2" y="7" width="20" height="5"></rect>
+                    <line x1="12" y1="22" x2="12" y2="7"></line>
+                    <path d="M12 7H7.5a2.5 2.5 0 0 1 0-5C11 2 12 7 12 7z"></path>
+                    <path d="M12 7h4.5a2.5 2.5 0 0 0 0-5C13 2 12 7 12 7z"></path>
+                  </svg>
+                </div>
+                <div>
+                  <span class="gift-msg-toggle__title">Add Gift Message</span>
+                  <span class="gift-msg-toggle__sub">Price hidden on packing slip.</span>
+                </div>
+              </div>
+              <div class="gift-msg-toggle__right">
+                <span class="gift-msg-toggle__counter" id="gift-msg-counter">0/300</span>
+                <svg class="gift-msg-toggle__chevron" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <polyline points="6 9 12 15 18 9"></polyline>
+                </svg>
+              </div>
+            </button>
+
+            <div class="gift-msg-panel" id="gift-message-panel">
+              <textarea
+                class="gift-msg-textarea"
+                id="gift-message-input"
+                maxlength="300"
+                placeholder="Write your warm wish..."
+              ></textarea>
+              <button type="button" class="gift-msg-save-btn" id="gift-msg-save-btn">
+                <span id="gift-msg-save-text">Save gift message</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- Trust Badges Strip -->
+          <div class="cart-trust-grid" aria-label="Customer trust and security guarantee">
+            <div class="cart-trust-item">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="3" width="15" height="13" rx="1"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
+              <span>Tracked Delivery</span>
+            </div>
+            <div class="cart-trust-item">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+              <span>2-Year Warranty</span>
+            </div>
+            <div class="cart-trust-item">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+              <span>90-Day Trial</span>
+            </div>
+            <div class="cart-trust-item">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+              <span>256-Bit SSL</span>
+            </div>
+          </div>
+
+        </aside>
+      </div>
+
+      <!-- 3. EMPTY CART VIEW (Shown when items = 0) -->
+      <section id="cart-empty-view" class="cart-empty-view" style="display: none;" aria-live="polite">
+        <svg class="cart-empty-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"></path>
+          <line x1="3" y1="6" x2="21" y2="6"></line>
+          <path d="M16 10a4 4 0 0 1-8 0"></path>
+        </svg>
+        <h1 class="cart-empty-title">Your cart is empty.</h1>
+        <p class="cart-empty-desc">
+          Add the Miroooo X or Miroooo X2 to unlock current bundle offers, complimentary travel gifts, and free tracked UK delivery.
+        </p>
+        <a href="/shop" class="button button--primary cart-empty-btn" is="hover-button">
+          <span class="btn-fill" data-fill></span>
+          <span class="btn-text">Shop Miroooo</span>
+        </a>
+      </section>
+
+    </div>
+  </main>
+
+  <div data-site-footer></div>
+  <script src="/assets/site.js?v=3" defer></script>
+
+  <script>
+    (function() {
+      "use strict";
+
+      // 1. DYNAMIC COUNTDOWN TIMER (10 minutes countdown, looping)
+      function initCountdownTimer() {
+        const timerEl = document.getElementById("delivery-timer");
+        if (!timerEl) return;
+
+        let totalSeconds = 10 * 60 - 15; // 09m : 45s
+        
+        function updateDisplay() {
+          const minutes = Math.floor(totalSeconds / 60);
+          const seconds = totalSeconds % 60;
+          timerEl.textContent = `${String(minutes).padStart(2, "0")}m : ${String(seconds).padStart(2, "0")}s`;
+        }
+
+        updateDisplay();
+        setInterval(function() {
+          totalSeconds = totalSeconds <= 0 ? 10 * 60 - 1 : totalSeconds - 1;
+          updateDisplay();
+        }, 1000);
+      }
+
+      // 2. DYNAMIC ESTIMATED UK DELIVERY DATE (Today + 3 days)
+      function initDeliveryDate() {
+        const dateEl = document.getElementById("delivery-date");
+        if (!dateEl) return;
+
+        const date = new Date();
+        date.setDate(date.getDate() + 3);
+
+        const weekday = date.toLocaleString("en-GB", { weekday: "long" });
+        const day = date.getDate();
+        const month = date.toLocaleString("en-GB", { month: "long" });
+
+        dateEl.textContent = `${weekday} ${day} ${month}`;
+      }
+
+      // 3. CART DATA MODEL & DEFAULTS
+      const PRODUCTS_CONFIG = {
+        "miroooo-x": {
+          id: "miroooo-x",
+          name: "Miroooo X",
+          slug: "miroooo-x",
+          productId: "1000000664011633",
+          source: "miroooo",
+          subtitle: "Sonic Electric Toothbrush",
+          image: "/gallery_orig/Grey-color-8.jpg",
+          variants: {
+            "Grey": { variantId: "1000020348812113", image: "/gallery_orig/Grey-color-8.jpg" },
+            "Pink": { variantId: "1000020348812111", image: "/assets_ref/x/gallery/Pink-1.webp" },
+            "Silver": { variantId: "1000020348812112", image: "/assets_ref/x/gallery/Silver-1.webp" }
+          },
+          tiers: {
+            1: { price: 59, compareAt: 119, label: "Single", gifts: 1 },
+            2: { price: 110, compareAt: 238, label: "Buy 2", gifts: 2 },
+            3: { price: 147, compareAt: 357, label: "Buy 3", gifts: 3 }
+          }
+        },
+        "miroooo-x2": {
+          id: "miroooo-x2",
+          name: "Miroooo X2",
+          slug: "miroooo-x2",
+          productId: "1000000664011618",
+          source: "miroooo-x2",
+          subtitle: "Precision Guided Sonic Toothbrush",
+          image: "/assets_ref/x2/gallery/miroooo-x2-sonic-electric-toothbrush-upright-grip.webp",
+          variants: {
+            "Grey": { variantId: "1000020348810048", image: "/assets_ref/x2/gallery/miroooo-x2-sonic-electric-toothbrush-upright-grip.webp" },
+            "Pink": { variantId: "1000020348810062", image: "/assets_ref/x2/gallery/miroooo-x2-sonic-electric-toothbrush-upright-grip.webp" },
+            "Silver": { variantId: "1000020348810046", image: "/assets_ref/x2/gallery/miroooo-x2-sonic-electric-toothbrush-upright-grip.webp" }
+          },
+          tiers: {
+            1: { price: 79, compareAt: 159, label: "Single", gifts: 1 },
+            2: { price: 148, compareAt: 318, label: "Buy 2", gifts: 2 },
+            3: { price: 198, compareAt: 477, label: "Buy 3", gifts: 3 }
+          }
+        }
+      };
+
+      const ALL_GIFTS = [
+        {
+          id: "travel-case",
+          name: "Luxury Travel Case",
+          sub: "Protect & travel in style",
+          price: 15.95,
+          image: "/gallery_orig/Grey-color-5.jpg",
+          minQuantity: 1
+        },
+        {
+          id: "brush-heads",
+          name: "2x Extra Brush Heads",
+          sub: "Ultra-soft DuPont bristles",
+          price: 19.95,
+          image: "/gallery_orig/Grey-color-4.jpg",
+          minQuantity: 2
+        },
+        {
+          id: "charging-dock",
+          name: "Magnetic Charging Dock",
+          sub: "Fast wireless induction dock",
+          price: 24.95,
+          image: "/gallery_orig/Grey-color-7.jpg",
+          minQuantity: 3
+        }
+      ];
+
+      // Read Cart State from LocalStorage or query params or default
+      function getInitialCart() {
+        // Check if explicitly cleared by user
+        if (localStorage.getItem("miroooo_cart_empty") === "true") {
+          return null;
+        }
+
+        const stored = localStorage.getItem("miroooo_cart");
+        if (stored) {
+          try {
+            const parsed = JSON.parse(stored);
+            if (parsed && parsed.quantity > 0) return parsed;
+          } catch (e) {}
+        }
+
+        // Check URL parameters (e.g. from direct product add)
+        const params = new URLSearchParams(window.location.search);
+        const prodParam = params.get("product");
+        if (prodParam && PRODUCTS_CONFIG[prodParam]) {
+          const qty = Math.max(1, parseInt(params.get("quantity") || params.get("count") || "1", 10));
+          const colors = (params.get("colors") || params.get("color") || "Grey").split(",");
+          return {
+            productId: prodParam,
+            quantity: Math.min(qty, 3),
+            colors: colors
+          };
+        }
+
+        // Default initial cart: Miroooo X Buy 2 Bundle (Grey + Pink)
+        return {
+          productId: "miroooo-x",
+          quantity: 2,
+          colors: ["Grey", "Pink"]
+        };
+      }
+
+      let cartState = getInitialCart();
+
+      // Helper to save state
+      function saveCartState(state) {
+        if (!state || state.quantity <= 0) {
+          localStorage.removeItem("miroooo_cart");
+          localStorage.setItem("miroooo_cart_empty", "true");
+        } else {
+          localStorage.setItem("miroooo_cart", JSON.stringify(state));
+          localStorage.removeItem("miroooo_cart_empty");
+        }
+      }
+
+      // Calculate totals
+      function calculateTotals(state) {
+        if (!state || state.quantity <= 0) {
+          return {
+            itemCount: 0,
+            subtotal: 0,
+            compareAt: 0,
+            savings: 0,
+            unlockedGiftsCount: 0,
+            giftsValue: 0,
+            totalSavings: 0
+          };
+        }
+
+        const product = PRODUCTS_CONFIG[state.productId] || PRODUCTS_CONFIG["miroooo-x"];
+        const tier = product.tiers[state.quantity] || product.tiers[1];
+        const subtotal = tier.price;
+        const compareAt = tier.compareAt;
+        const savings = compareAt - subtotal;
+
+        let giftsValue = 0;
+        let unlockedGiftsCount = 0;
+        ALL_GIFTS.forEach(g => {
+          if (state.quantity >= g.minQuantity) {
+            giftsValue += g.price;
+            unlockedGiftsCount++;
+          }
+        });
+
+        return {
+          itemCount: state.quantity,
+          subtotal: subtotal,
+          compareAt: compareAt,
+          savings: savings,
+          unlockedGiftsCount: unlockedGiftsCount,
+          giftsValue: giftsValue,
+          totalSavings: savings + giftsValue
+        };
+      }
+
+      // 4. RENDER CART UI
+      function renderCart() {
+        const activeView = document.getElementById("cart-active-view");
+        const emptyView = document.getElementById("cart-empty-view");
+
+        if (!cartState || cartState.quantity <= 0) {
+          if (activeView) activeView.style.display = "none";
+          if (emptyView) emptyView.style.display = "block";
+          
+          // Update header count if present
+          document.querySelectorAll("cart-count").forEach(el => {
+            el.hidden = true;
+            el.textContent = "0";
+          });
+          return;
+        }
+
+        if (activeView) activeView.style.display = "grid";
+        if (emptyView) emptyView.style.display = "none";
+
+        const product = PRODUCTS_CONFIG[cartState.productId] || PRODUCTS_CONFIG["miroooo-x"];
+        const totals = calculateTotals(cartState);
+
+        // Update header count
+        document.querySelectorAll("cart-count").forEach(el => {
+          el.hidden = false;
+          el.textContent = String(totals.itemCount);
+        });
+
+        // 4A. Render Line Items
+        const itemsList = document.getElementById("cart-items-list");
+        if (itemsList) {
+          const colorsText = cartState.colors && cartState.colors.length > 0
+            ? cartState.colors.join(" + ")
+            : "Grey";
+          
+          const title = cartState.quantity > 1 
+            ? `${product.name} (Buy ${cartState.quantity} - ${colorsText})` 
+            : `${product.name} - ${colorsText}`;
+
+          const unitPrice = (totals.subtotal / cartState.quantity).toFixed(2);
+          
+          itemsList.innerHTML = `
+            <div class="cart-item">
+              <div class="cart-item__media">
+                <img src="${product.image}" alt="${product.name}" />
+              </div>
+              <div class="cart-item__content">
+                <div>
+                  <div class="cart-item__header">
+                    <div>
+                      <h2 class="cart-item__title">${title}</h2>
+                      <p class="cart-item__subtitle">${product.subtitle}</p>
+                      <div class="cart-item__bundle-tags">
+                        <span class="cart-item__tag cart-item__tag--gold">Includes ${totals.unlockedGiftsCount} Free Gift${totals.unlockedGiftsCount > 1 ? "s" : ""}</span>
+                        <span class="cart-item__tag">50% OFF</span>
+                      </div>
+                    </div>
+                    <div class="cart-item__pricing">
+                      <span class="cart-item__price">£${totals.subtotal.toFixed(2)}</span>
+                      <s class="cart-item__compare">£${totals.compareAt.toFixed(2)}</s>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="cart-item__actions">
+                  <div class="cart-stepper" aria-label="Quantity Stepper">
+                    <button type="button" class="cart-stepper__btn" id="stepper-minus" aria-label="Decrease quantity">
+                      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+                    </button>
+                    <span class="cart-stepper__count" id="stepper-count">${cartState.quantity}</span>
+                    <button type="button" class="cart-stepper__btn" id="stepper-plus" aria-label="Increase quantity" ${cartState.quantity >= 3 ? "disabled" : ""}>
+                      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+                    </button>
+                  </div>
+
+                  <button type="button" class="cart-remove-btn" id="item-remove-btn" aria-label="Remove item from cart">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></svg>
+                    <span>Remove</span>
+                  </button>
+                </div>
+              </div>
+            </div>
+          `;
+
+          // Attach Stepper & Remove Handlers
+          document.getElementById("stepper-minus")?.addEventListener("click", () => {
+            if (cartState.quantity > 1) {
+              cartState.quantity--;
+              cartState.colors = cartState.colors.slice(0, cartState.quantity);
+              saveCartState(cartState);
+              renderCart();
+            } else {
+              // Decreasing past 1 removes item
+              cartState = null;
+              saveCartState(null);
+              renderCart();
+            }
+          });
+
+          document.getElementById("stepper-plus")?.addEventListener("click", () => {
+            if (cartState.quantity < 3) {
+              cartState.quantity++;
+              if (cartState.quantity === 2 && cartState.colors.length < 2) cartState.colors.push("Pink");
+              if (cartState.quantity === 3 && cartState.colors.length < 3) cartState.colors.push("Silver");
+              saveCartState(cartState);
+              renderCart();
+            }
+          });
+
+          document.getElementById("item-remove-btn")?.addEventListener("click", () => {
+            cartState = null;
+            saveCartState(null);
+            renderCart();
+          });
+        }
+
+        // 4B. Render Free Gifts Panel
+        const giftsCountEl = document.getElementById("gifts-unlocked-count");
+        const giftsTotalValEl = document.getElementById("gifts-total-value");
+        const trackFill = document.getElementById("gifts-track-fill");
+
+        if (giftsCountEl) giftsCountEl.textContent = `${totals.unlockedGiftsCount}/3 gifts unlocked`;
+        if (giftsTotalValEl) giftsTotalValEl.textContent = `£${totals.giftsValue.toFixed(2)} value`;
+
+        const progressPercent = totals.unlockedGiftsCount === 1 ? 33 : totals.unlockedGiftsCount === 2 ? 66 : 100;
+        if (trackFill) trackFill.style.width = `${progressPercent}%`;
+
+        // Update step states
+        ALL_GIFTS.forEach((g, idx) => {
+          const stepEl = document.getElementById(`step-gift-${idx + 1}`);
+          if (stepEl) {
+            stepEl.classList.toggle("is-unlocked", cartState.quantity >= g.minQuantity);
+          }
+        });
+
+        // Render gift items list
+        const giftsListEl = document.getElementById("gifts-rendered-list");
+        if (giftsListEl) {
+          giftsListEl.innerHTML = ALL_GIFTS.map(g => {
+            const isUnlocked = cartState.quantity >= g.minQuantity;
+            return `
+              <div class="gift-item-row ${isUnlocked ? "is-unlocked" : "is-locked"}">
+                <div class="gift-item-row__media">
+                  <img src="${g.image}" alt="${g.name}" />
+                </div>
+                <div class="gift-item-row__info">
+                  <p class="gift-item-row__title">${g.name}</p>
+                  <p class="gift-item-row__sub">${isUnlocked ? g.sub : `Buy ${g.minQuantity} to unlock`}</p>
+                </div>
+                <div class="gift-item-row__price">
+                  <span class="gift-item-row__free">${isUnlocked ? "FREE" : "LOCKED"}</span>
+                  <span class="gift-item-row__comp">£${g.price.toFixed(2)}</span>
+                </div>
+              </div>
+            `;
+          }).join("");
+        }
+
+        // 4C. Render Summary
+        const summarySavingsEl = document.getElementById("summary-savings-val");
+        const bundleSavingsEl = document.getElementById("discount-bundle-val");
+        const giftsSavingsEl = document.getElementById("discount-gifts-val");
+        const summaryTotalEl = document.getElementById("summary-total-price");
+        const checkoutBtnPrice = document.getElementById("checkout-btn-subtotal");
+
+        if (summarySavingsEl) summarySavingsEl.textContent = `-£${totals.totalSavings.toFixed(2)}`;
+        if (bundleSavingsEl) bundleSavingsEl.textContent = `-£${totals.savings.toFixed(2)}`;
+        if (giftsSavingsEl) giftsSavingsEl.textContent = `-£${totals.giftsValue.toFixed(2)}`;
+        if (summaryTotalEl) summaryTotalEl.textContent = `£${totals.subtotal.toFixed(2)}`;
+        if (checkoutBtnPrice) checkoutBtnPrice.textContent = `· £${totals.subtotal.toFixed(2)}`;
+      }
+
+      // 5. CHECKOUT REDIRECTION (PlusBase Buudy checkout link)
+      function initCheckoutAction() {
+        const checkoutBtn = document.getElementById("cart-checkout-btn");
+        if (!checkoutBtn) return;
+
+        checkoutBtn.addEventListener("click", function(e) {
+          e.preventDefault();
+          if (!cartState || cartState.quantity <= 0) return;
+
+          const product = PRODUCTS_CONFIG[cartState.productId] || PRODUCTS_CONFIG["miroooo-x"];
+          const firstColor = (cartState.colors && cartState.colors[0]) || "Grey";
+          const variantObj = product.variants[firstColor] || product.variants["Grey"];
+          const variantId = variantObj.variantId;
+
+          // Build base PlusBase checkout redirect
+          const url = new URL("https://buudy.com/pages/add-to-cart");
+          url.searchParams.set("product_id", product.productId);
+          url.searchParams.set("variant_id", variantId);
+          url.searchParams.set("quantity", String(cartState.quantity));
+          url.searchParams.set("qty", String(cartState.quantity));
+          url.searchParams.set("product_quantity", String(cartState.quantity));
+          url.searchParams.set("gift_variant_id", "1000020384558655");
+          url.searchParams.set("gift_product_id", "1000000665008955");
+          url.searchParams.set("gift_quantity", String(cartState.quantity));
+          url.searchParams.set("gift", "miroooo-luxury-gifts");
+          url.searchParams.set("redirect", "checkout");
+          url.searchParams.set("source", product.source);
+
+          // Preserve UTM and ad attribution parameters
+          const allowedAttribution = [
+            "msclkid", "gclid", "fbclid", "utm_source", "utm_medium", "utm_campaign", "utm_term", "utm_content"
+          ];
+
+          let attribution = {};
+          try {
+            attribution = JSON.parse(sessionStorage.getItem("miroooo_attribution") || "{}");
+          } catch (_) {}
+
+          const currentParams = new URLSearchParams(window.location.search);
+          allowedAttribution.forEach(key => {
+            const val = currentParams.get(key) || attribution[key];
+            if (val) url.searchParams.set(key, val);
+          });
+
+          // Redirect to checkout
+          window.location.href = url.toString();
+        });
+      }
+
+      // 6. DISCOUNT DROPDOWN TOGGLE
+      function initDiscountToggle() {
+        const toggleBtn = document.getElementById("discount-toggle-btn");
+        const panel = document.getElementById("discount-details-panel");
+        const chevron = document.getElementById("discount-chevron");
+
+        if (!toggleBtn || !panel) return;
+
+        toggleBtn.addEventListener("click", function() {
+          const isOpen = panel.classList.contains("is-open");
+          panel.classList.toggle("is-open", !isOpen);
+          toggleBtn.setAttribute("aria-expanded", String(!isOpen));
+          if (chevron) {
+            chevron.style.transform = isOpen ? "rotate(0deg)" : "rotate(180deg)";
+          }
+        });
+      }
+
+      // 7. GIFT MESSAGE ACCORDION & STORAGE
+      function initGiftMessage() {
+        const toggleBtn = document.getElementById("gift-msg-toggle-btn");
+        const panel = document.getElementById("gift-message-panel");
+        const textarea = document.getElementById("gift-message-input");
+        const counter = document.getElementById("gift-msg-counter");
+        const saveBtn = document.getElementById("gift-msg-save-btn");
+        const saveText = document.getElementById("gift-msg-save-text");
+
+        if (!toggleBtn || !panel || !textarea) return;
+
+        // Restore saved message
+        const savedMsg = localStorage.getItem("miroooo_gift_message") || "";
+        if (savedMsg) {
+          textarea.value = savedMsg;
+          if (counter) counter.textContent = `${savedMsg.length}/300`;
+          panel.classList.add("is-open");
+          toggleBtn.setAttribute("aria-expanded", "true");
+        }
+
+        toggleBtn.addEventListener("click", function() {
+          const isOpen = panel.classList.contains("is-open");
+          panel.classList.toggle("is-open", !isOpen);
+          toggleBtn.setAttribute("aria-expanded", String(!isOpen));
+        });
+
+        textarea.addEventListener("input", function() {
+          if (counter) counter.textContent = `${textarea.value.length}/300`;
+          if (saveText) saveText.textContent = "Save gift message";
+        });
+
+        saveBtn?.addEventListener("click", function() {
+          localStorage.setItem("miroooo_gift_message", textarea.value.trim());
+          if (saveText) {
+            saveText.innerHTML = `
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="display:inline-block;vertical-align:middle;margin-right:4px;"><polyline points="20 6 9 17 4 12"></polyline></svg>
+              <span>Gift message saved</span>
+            `;
+          }
+        });
+      }
+
+      // DOM Ready initialization
+      function init() {
+        initCountdownTimer();
+        initDeliveryDate();
+        renderCart();
+        initCheckoutAction();
+        initDiscountToggle();
+        initGiftMessage();
+      }
+
+      if (document.readyState === "loading") {
+        document.addEventListener("DOMContentLoaded", init);
+      } else {
+        init();
+      }
+    })();
+  </script>
+</body>
+</html>

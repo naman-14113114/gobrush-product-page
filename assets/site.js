@@ -349,4 +349,700 @@
     message.classList.add("is-visible");
     message.focus();
   });
+
+  // =========================================================================
+  // MIROOOO UNIVERSAL CART & PLUSBASE CHECKOUT REDIRECTION ENGINE
+  // =========================================================================
+  const CART_STORAGE_KEY = "miroooo_cart_v1";
+  const ATTRIBUTION_STORAGE_KEY = "miroooo_attribution";
+
+  const X_VARIANTS = {
+    "Grey": "1000020348812113",
+    "Gray": "1000020348812113",
+    "Pink": "1000020348812111",
+    "Rose Gold": "1000020348812111",
+    "Silver": "1000020348812112"
+  };
+
+  const X2_VARIANTS = {
+    "Grey": "1000020348810048",
+    "Gray": "1000020348810048",
+    "Pink": "1000020348810062",
+    "Rose Gold": "1000020348810062",
+    "Silver": "1000020348810046"
+  };
+
+  const GIFTS_DATABASE = {
+    case: {
+      id: "travel-case",
+      name: "Luxury Travel Case",
+      subtitle: "Protect & travel in style",
+      value: "£15.95",
+      valueNum: 15.95,
+      image: "https://cdn.shopify.com/s/files/1/0810/6023/3561/files/Grey-color-5.jpg?v=1734444578&width=120"
+    },
+    heads: {
+      id: "brush-heads",
+      name: "2x Extra DuPont Brush Heads",
+      subtitle: "Ultra-soft DuPont bristles",
+      value: "£19.95",
+      valueNum: 19.95,
+      image: "https://cdn.shopify.com/s/files/1/0810/6023/3561/files/Grey-color-4.jpg?v=1734444578&width=120"
+    },
+    dock: {
+      id: "charging-dock",
+      name: "Magnetic Charging Dock",
+      subtitle: "Fast wireless induction dock",
+      value: "£24.95",
+      valueNum: 24.95,
+      image: "https://cdn.shopify.com/s/files/1/0810/6023/3561/files/Grey-color-7.jpg?v=1734444578&width=120"
+    }
+  };
+
+  function readCapturedAttribution() {
+    const currentParams = new URLSearchParams(window.location.search);
+    const captured = {};
+    const allowed = ["utm_source", "utm_medium", "utm_campaign", "utm_term", "utm_content", "msclkid", "gclid", "fbclid", "source"];
+
+    allowed.forEach((key) => {
+      const val = currentParams.get(key);
+      if (val) captured[key] = val;
+    });
+
+    try {
+      const stored = JSON.parse(sessionStorage.getItem(ATTRIBUTION_STORAGE_KEY) || localStorage.getItem(ATTRIBUTION_STORAGE_KEY) || "{}");
+      return { ...stored, ...captured };
+    } catch (_) {
+      return captured;
+    }
+  }
+
+  function buildPlusbaseCheckoutUrl(item, extraParams = {}) {
+    const isX2 = item?.productHandle === "miroooo-x2" || (item?.title && item.title.includes("X2"));
+    const productId = isX2 ? "1000000664011618" : "1000000664011633";
+    const source = isX2 ? "miroooo-x2" : "miroooo";
+    const productHandle = isX2 ? "miroooo-x2" : "miroooo-x";
+
+    const variants = isX2 ? X2_VARIANTS : X_VARIANTS;
+    const firstChoice = item?.choices?.[0] || item?.color || "Grey";
+    const variantId = item?.variantId || variants[firstChoice] || (isX2 ? "1000020348810048" : "1000020348812113");
+
+    const bundleCount = item?.bundleCount || item?.count || item?.itemCount || (item?.tierId === "bundle-3" ? 3 : item?.tierId === "bundle-2" ? 2 : 1);
+    const quantity = Math.max(1, (item?.quantity || 1) * bundleCount);
+
+    const giftQuantity = Math.max(1, quantity);
+    const giftVariantId = "1000020384558655";
+    const giftProductId = "1000000665008955";
+
+    const url = new URL("https://buudy.com/pages/add-to-cart");
+    const params = {
+      product_id: productId,
+      variant_id: variantId,
+      quantity: String(quantity),
+      qty: String(quantity),
+      product_quantity: String(quantity),
+      gift_variant_id: giftVariantId,
+      gift_product_id: giftProductId,
+      gift_quantity: String(giftQuantity),
+      gift: "travel-case",
+      redirect: "checkout",
+      product_handle: productHandle,
+      source: source,
+      utm_source: "miroooo_direct",
+      utm_medium: "store_cart_checkout",
+      utm_campaign: source
+    };
+
+    const attribution = readCapturedAttribution();
+    Object.assign(params, attribution, extraParams);
+
+    Object.entries(params).forEach(([k, v]) => {
+      if (v != null && v !== "") {
+        url.searchParams.set(k, String(v));
+      }
+    });
+
+    return url.toString();
+  }
+
+  const MirooooCart = {
+    timerInterval: null,
+    timerSeconds: 585, // 09m : 45s
+
+    getCart() {
+      try {
+        if (localStorage.getItem("miroooo_cart_empty") === "true") {
+          return { items: [], promoCode: "AUTO", promoApplied: true };
+        }
+
+        const storedStandard = localStorage.getItem("miroooo_cart");
+        if (storedStandard) {
+          const parsed = JSON.parse(storedStandard);
+          if (parsed && parsed.quantity > 0) {
+            const isX2 = parsed.productId === "miroooo-x2";
+            const productHandle = isX2 ? "miroooo-x2" : "miroooo-x";
+            const title = isX2 ? "Miroooo X2" : "Miroooo X";
+            const colors = Array.isArray(parsed.colors) && parsed.colors.length > 0 ? parsed.colors : ["Grey"];
+
+            let unitPrice = 59;
+            let comparePrice = 119;
+            if (isX2) {
+              if (parsed.quantity === 1) { unitPrice = 79; comparePrice = 159; }
+              else if (parsed.quantity === 2) { unitPrice = 148; comparePrice = 318; }
+              else if (parsed.quantity === 3) { unitPrice = 198; comparePrice = 477; }
+            } else {
+              if (parsed.quantity === 1) { unitPrice = 59; comparePrice = 119; }
+              else if (parsed.quantity === 2) { unitPrice = 110; comparePrice = 238; }
+              else if (parsed.quantity === 3) { unitPrice = 147; comparePrice = 357; }
+            }
+
+            const image = isX2
+              ? "/assets_ref/x2/gallery/miroooo-x2-sonic-electric-toothbrush-upright-grip.webp"
+              : "/gallery_orig/Grey-color-8.jpg";
+
+            return {
+              items: [
+                {
+                  id: `${parsed.productId}-${parsed.quantity}`,
+                  productId: isX2 ? "1000000664011618" : "1000000664011633",
+                  productHandle: productHandle,
+                  title: parsed.quantity > 1 ? `${title} (Buy ${parsed.quantity})` : title,
+                  quantity: 1,
+                  bundleCount: parsed.quantity,
+                  choices: colors,
+                  color: colors[0] || "Grey",
+                  unitPrice: unitPrice,
+                  comparePrice: comparePrice,
+                  image: image,
+                  unlockedGifts: parsed.quantity
+                }
+              ],
+              promoCode: "AUTO",
+              promoApplied: true
+            };
+          }
+        }
+
+        const stored = localStorage.getItem(CART_STORAGE_KEY);
+        if (stored) {
+          const parsed = JSON.parse(stored);
+          if (Array.isArray(parsed.items)) return parsed;
+        }
+      } catch (_) {}
+      return { items: [], promoCode: "AUTO", promoApplied: true };
+    },
+
+    saveCart(cart) {
+      try {
+        localStorage.setItem(CART_STORAGE_KEY, JSON.stringify(cart));
+        if (cart && Array.isArray(cart.items) && cart.items.length > 0) {
+          const item = cart.items[0];
+          const isX2 = item.productHandle === "miroooo-x2" || item.productId === "1000000664011618";
+          localStorage.setItem("miroooo_cart", JSON.stringify({
+            productId: isX2 ? "miroooo-x2" : "miroooo-x",
+            quantity: item.bundleCount || item.quantity || 1,
+            colors: item.choices || [item.color || "Grey"]
+          }));
+          localStorage.removeItem("miroooo_cart_empty");
+        } else {
+          localStorage.removeItem("miroooo_cart");
+          localStorage.setItem("miroooo_cart_empty", "true");
+        }
+      } catch (_) {}
+      this.updateHeaderBadges(cart);
+      document.dispatchEvent(new CustomEvent("miroooo:cart-updated", { detail: cart }));
+    },
+
+    updateHeaderBadges(cartState) {
+      const cart = cartState || this.getCart();
+      const totalCount = cart.items.reduce((sum, item) => sum + (item.bundleCount || item.quantity || 1), 0);
+      document.querySelectorAll("cart-count, .cart-count, .site-actions__bag .count, .cart-drawer-button .count").forEach((el) => {
+        el.textContent = String(totalCount);
+        if (totalCount > 0) {
+          el.removeAttribute("hidden");
+        } else {
+          el.setAttribute("hidden", "true");
+        }
+      });
+    },
+
+    addItem(newItem) {
+      const cart = this.getCart();
+      const existingIndex = cart.items.findIndex(
+        (i) => i.id === newItem.id || (i.productId === newItem.productId && i.tierId === newItem.tierId && JSON.stringify(i.choices) === JSON.stringify(newItem.choices))
+      );
+
+      if (existingIndex > -1) {
+        cart.items[existingIndex].quantity = (cart.items[existingIndex].quantity || 1) + (newItem.quantity || 1);
+      } else {
+        cart.items.push(newItem);
+      }
+
+      this.saveCart(cart);
+      this.renderCartDrawer();
+      this.openCart();
+    },
+
+    updateQuantity(itemId, quantity) {
+      const cart = this.getCart();
+      const index = cart.items.findIndex((i) => i.id === itemId);
+      if (index > -1) {
+        if (quantity <= 0) {
+          this.clearCart();
+        } else {
+          const item = cart.items[index];
+          const isX2 = item.productHandle === "miroooo-x2" || item.productId === "1000000664011618";
+          const newQty = Math.min(3, Math.max(1, quantity));
+          let colors = item.choices || ["Grey"];
+          if (newQty === 2 && colors.length < 2) colors = ["Grey", "Pink"];
+          if (newQty === 3 && colors.length < 3) colors = ["Grey", "Pink", "Silver"];
+          colors = colors.slice(0, newQty);
+
+          try {
+            localStorage.setItem("miroooo_cart", JSON.stringify({
+              productId: isX2 ? "miroooo-x2" : "miroooo-x",
+              quantity: newQty,
+              colors: colors
+            }));
+            localStorage.removeItem("miroooo_cart_empty");
+          } catch (_) {}
+
+          this.updateHeaderBadges();
+          this.renderCartDrawer();
+        }
+      }
+    },
+
+    removeItem(itemId) {
+      this.clearCart();
+    },
+
+    clearCart() {
+      try {
+        localStorage.removeItem("miroooo_cart");
+        localStorage.setItem("miroooo_cart_empty", "true");
+        localStorage.removeItem(CART_STORAGE_KEY);
+      } catch (_) {}
+      this.updateHeaderBadges();
+      this.renderCartDrawer();
+    },
+
+    ensureCartDrawer() {
+      let drawer = document.getElementById("CartDrawer");
+      if (!drawer) {
+        drawer = document.createElement("div");
+        drawer.id = "CartDrawer";
+        drawer.className = "miroooo-cart-drawer";
+        drawer.setAttribute("aria-hidden", "true");
+        document.body.appendChild(drawer);
+      }
+
+      if (!drawer.querySelector(".miroooo-cart-panel")) {
+        drawer.innerHTML = `
+          <div class="miroooo-cart-backdrop" aria-label="Close cart overlay"></div>
+          <aside class="miroooo-cart-panel" aria-label="Shopping cart" role="dialog" aria-modal="true">
+            <div class="miroooo-cart-header">
+              <div class="miroooo-cart-header-title-wrap">
+                <p class="miroooo-cart-kicker">CART</p>
+                <h2 class="miroooo-cart-title">
+                  Shopping Bag
+                  <span class="miroooo-cart-count-badge" id="cart-item-count-badge">0 items</span>
+                </h2>
+              </div>
+              <button type="button" class="miroooo-cart-close-btn" aria-label="Close cart">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <line x1="18" y1="6" x2="6" y2="18"></line>
+                  <line x1="6" y1="6" x2="18" y2="18"></line>
+                </svg>
+              </button>
+            </div>
+            <div class="miroooo-cart-body" id="cart-drawer-body">
+              <div class="miroooo-cart-delivery-box" id="cart-delivery-box">
+                <div class="miroooo-delivery-header">
+                  <div class="miroooo-delivery-icon-title">
+                    <span class="miroooo-delivery-pulse"></span>
+                    <span class="miroooo-delivery-badge">Free Tracked UK Delivery</span>
+                  </div>
+                  <span class="miroooo-delivery-status">Unlocked</span>
+                </div>
+                <div class="miroooo-delivery-timer-text">
+                  Order in next <strong class="miroooo-timer-highlight" id="cart-countdown-timer">09m : 45s</strong> for Free Tracked UK Delivery
+                </div>
+                <div class="miroooo-delivery-progress-track">
+                  <div class="miroooo-delivery-progress-bar" style="width: 100%;"></div>
+                </div>
+              </div>
+              <div class="miroooo-cart-items" id="cart-items-list"></div>
+              <div class="miroooo-cart-gifts-panel" id="cart-gifts-panel"></div>
+              <div class="miroooo-cart-promo-box" id="cart-promo-box">
+                <div class="miroooo-promo-header">
+                  <div class="miroooo-promo-info">
+                    <span class="miroooo-promo-label">Promo Code</span>
+                    <p class="miroooo-promo-desc" id="cart-promo-desc">Applied automatically for offers and free tracked shipping.</p>
+                  </div>
+                  <span class="miroooo-promo-badge">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                    AUTO
+                  </span>
+                </div>
+              </div>
+            </div>
+            <div class="miroooo-cart-footer" id="cart-drawer-footer">
+              <div class="miroooo-cart-discount-row" id="cart-discount-toggle">
+                <div class="miroooo-discount-btn">
+                  <span class="miroooo-discount-label">
+                    Total discount
+                    <svg class="miroooo-chevron-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                  </span>
+                  <span class="miroooo-discount-amount" id="cart-discount-val">-£0.00</span>
+                </div>
+                <div class="miroooo-discount-details" id="cart-discount-details">
+                  <div class="miroooo-discount-detail-item" id="cart-bundle-discount-row">
+                    <span>Bundle Special Offer</span>
+                    <span id="cart-bundle-discount-val">-£0.00</span>
+                  </div>
+                  <div class="miroooo-discount-detail-item" id="cart-gift-discount-row">
+                    <span>Unlocked Free Gifts</span>
+                    <span id="cart-gift-discount-val">-£0.00</span>
+                  </div>
+                </div>
+              </div>
+              <div class="miroooo-cart-totals">
+                <div class="miroooo-totals-line">
+                  <span class="miroooo-totals-label">Subtotal</span>
+                  <span class="miroooo-totals-value" id="cart-subtotal-val">£0.00</span>
+                </div>
+                <div class="miroooo-totals-line">
+                  <span class="miroooo-totals-label">Tracked Shipping</span>
+                  <span class="miroooo-totals-free">FREE</span>
+                </div>
+                <div class="miroooo-totals-main">
+                  <div>
+                    <span class="miroooo-total-title">Total</span>
+                    <span class="miroooo-tax-note">Includes all taxes & duties</span>
+                  </div>
+                  <div class="miroooo-total-price" id="cart-total-val">£0.00 GBP</div>
+                </div>
+              </div>
+              <div class="miroooo-checkout-btn-wrap">
+                <button type="button" id="cart-drawer-checkout-btn" class="miroooo-checkout-btn" is="hover-button">
+                  <span class="btn-fill"></span>
+                  <span class="btn-text">
+                    <svg class="miroooo-lock-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+                      <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+                    </svg>
+                    <span id="cart-checkout-btn-text">Checkout Securely</span>
+                  </span>
+                </button>
+              </div>
+              <div class="miroooo-cart-trust-badges">
+                <span>🔒 256-Bit SSL Encryption</span>
+                <span>·</span>
+                <span>90-Day Trial</span>
+                <span>·</span>
+                <span>2-Year Warranty</span>
+              </div>
+            </div>
+          </aside>
+        `;
+
+        drawer.querySelector(".miroooo-cart-backdrop")?.addEventListener("click", () => this.closeCart());
+        drawer.querySelector(".miroooo-cart-close-btn")?.addEventListener("click", () => this.closeCart());
+        
+        const discountToggle = drawer.querySelector("#cart-discount-toggle");
+        discountToggle?.addEventListener("click", () => {
+          discountToggle.classList.toggle("is-open");
+        });
+
+        const checkoutBtn = drawer.querySelector("#cart-drawer-checkout-btn");
+        checkoutBtn?.addEventListener("click", (e) => {
+          e.preventDefault();
+          this.checkout();
+        });
+      }
+    },
+
+    renderCartDrawer() {
+      this.ensureCartDrawer();
+      const cart = this.getCart();
+      const items = cart.items || [];
+      const hasItems = items.length > 0;
+
+      // Header item count
+      const totalItemCount = items.reduce((sum, item) => sum + (item.bundleCount || item.quantity || 1), 0);
+      const countBadge = document.getElementById("cart-item-count-badge");
+      if (countBadge) {
+        countBadge.textContent = `${totalItemCount} item${totalItemCount === 1 ? "" : "s"}`;
+      }
+
+      // Delivery Box & Promo Box & Footer visibility
+      const deliveryBox = document.getElementById("cart-delivery-box");
+      const promoBox = document.getElementById("cart-promo-box");
+      const giftsPanel = document.getElementById("cart-gifts-panel");
+      const footer = document.getElementById("cart-drawer-footer");
+      const itemsList = document.getElementById("cart-items-list");
+
+      if (!hasItems) {
+        if (deliveryBox) deliveryBox.style.display = "none";
+        if (promoBox) promoBox.style.display = "none";
+        if (giftsPanel) giftsPanel.style.display = "none";
+        if (footer) footer.style.display = "none";
+
+        if (itemsList) {
+          itemsList.innerHTML = `
+            <div class="miroooo-cart-empty">
+              <svg class="miroooo-empty-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path>
+                <line x1="3" y1="6" x2="21" y2="6"></line>
+                <path d="M16 10a4 4 0 0 1-8 0"></path>
+              </svg>
+              <h3 class="miroooo-empty-title">Your shopping bag is empty.</h3>
+              <p class="miroooo-empty-text">Add the Miroooo X or Miroooo X2 to unlock current offers and free shipping.</p>
+              <a href="/shop" class="miroooo-empty-shop-btn" onclick="window.MirooooCart.closeCart()">
+                Shop Miroooo
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+              </a>
+            </div>
+          `;
+        }
+        return;
+      }
+
+      if (deliveryBox) deliveryBox.style.display = "flex";
+      if (promoBox) promoBox.style.display = "block";
+      if (giftsPanel) giftsPanel.style.display = "flex";
+      if (footer) footer.style.display = "flex";
+
+      // Render Line Items
+      if (itemsList) {
+        let itemsHtml = "";
+        items.forEach((item) => {
+          const colorsLabel = item.choices && item.choices.length > 0 ? `Colors: ${item.choices.join(" + ")}` : (item.color ? `Color: ${item.color}` : "");
+          const unitPriceDisplay = `£${Number(item.unitPrice).toFixed(2)}`;
+          const comparePriceDisplay = item.comparePrice ? `£${Number(item.comparePrice).toFixed(2)}` : "";
+
+          itemsHtml += `
+            <div class="miroooo-cart-item" data-item-id="${item.id}">
+              <div class="miroooo-cart-item-thumb">
+                <img src="${item.image}" alt="${item.title}" loading="lazy" />
+              </div>
+              <div class="miroooo-cart-item-content">
+                <div class="miroooo-cart-item-top">
+                  <div>
+                    <h4 class="miroooo-cart-item-title">${item.title}</h4>
+                    ${colorsLabel ? `<p class="miroooo-cart-item-colors">${colorsLabel}</p>` : ""}
+                  </div>
+                  <div class="miroooo-cart-item-pricing">
+                    <span class="miroooo-cart-item-price">${unitPriceDisplay}</span>
+                    ${comparePriceDisplay ? `<span class="miroooo-cart-item-compare">${comparePriceDisplay}</span>` : ""}
+                  </div>
+                </div>
+                <div class="miroooo-cart-item-bottom">
+                  <div class="miroooo-cart-stepper">
+                    <button type="button" class="miroooo-stepper-btn" aria-label="Decrease quantity" onclick="window.MirooooCart.updateQuantity('${item.id}', ${(item.bundleCount || item.quantity || 1) - 1})">
+                      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+                    </button>
+                    <span class="miroooo-stepper-val">${item.bundleCount || item.quantity || 1}</span>
+                    <button type="button" class="miroooo-stepper-btn" aria-label="Increase quantity" onclick="window.MirooooCart.updateQuantity('${item.id}', ${(item.bundleCount || item.quantity || 1) + 1})">
+                      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+                    </button>
+                  </div>
+                  <button type="button" class="miroooo-cart-remove-btn" aria-label="Remove item" onclick="window.MirooooCart.removeItem('${item.id}')">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <polyline points="3 6 5 6 21 6"></polyline>
+                      <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
+                    </svg>
+                    Remove
+                  </button>
+                </div>
+              </div>
+            </div>
+          `;
+        });
+        itemsList.innerHTML = itemsHtml;
+      }
+
+      // Calculate totals & unlocked gifts
+      let subtotal = 0;
+      let compareTotal = 0;
+      let maxUnlockedGifts = 1;
+
+      items.forEach((item) => {
+        const qty = item.quantity || 1;
+        subtotal += Number(item.unitPrice || 0) * qty;
+        compareTotal += Number(item.comparePrice || item.unitPrice * 2) * qty;
+        const itemGifts = item.unlockedGifts || (item.bundleCount === 3 ? 3 : item.bundleCount === 2 ? 2 : 1);
+        if (itemGifts > maxUnlockedGifts) maxUnlockedGifts = itemGifts;
+      });
+
+      // Gifts rendering
+      const unlockedGiftsList = [GIFTS_DATABASE.case];
+      if (maxUnlockedGifts >= 2) unlockedGiftsList.push(GIFTS_DATABASE.heads);
+      if (maxUnlockedGifts >= 3) unlockedGiftsList.push(GIFTS_DATABASE.dock);
+
+      const totalGiftValueNum = unlockedGiftsList.reduce((sum, g) => sum + g.valueNum, 0);
+      const bundleSavings = Math.max(0, compareTotal - subtotal);
+      const totalDiscountNum = bundleSavings + totalGiftValueNum;
+
+      if (giftsPanel) {
+        let giftsHtml = `
+          <div class="miroooo-gifts-header">
+            <div class="miroooo-gifts-title-wrap">
+              <span class="miroooo-gifts-kicker">Free Rewards</span>
+              <h4 class="miroooo-gifts-title">${unlockedGiftsList.length}/${unlockedGiftsList.length} gifts unlocked</h4>
+            </div>
+            <span class="miroooo-gifts-value-badge">£${totalGiftValueNum.toFixed(2)} value</span>
+          </div>
+          <div class="miroooo-gifts-list">
+        `;
+
+        unlockedGiftsList.forEach((gift) => {
+          giftsHtml += `
+            <div class="miroooo-gift-row">
+              <div class="miroooo-gift-thumb">
+                <img src="${gift.image}" alt="${gift.name}" loading="lazy" />
+              </div>
+              <div class="miroooo-gift-info">
+                <div class="miroooo-gift-name">
+                  <span>${gift.name}</span>
+                  <span class="miroooo-gift-tag">FREE GIFT</span>
+                </div>
+                <p class="miroooo-gift-desc">${gift.subtitle}</p>
+              </div>
+              <div class="miroooo-gift-price">
+                <span class="miroooo-gift-free">£0.00</span>
+                <span class="miroooo-gift-original">${gift.value}</span>
+              </div>
+            </div>
+          `;
+        });
+        giftsHtml += "</div>";
+        giftsPanel.innerHTML = giftsHtml;
+      }
+
+      // Update Summary Values
+      const subtotalValEl = document.getElementById("cart-subtotal-val");
+      const totalValEl = document.getElementById("cart-total-val");
+      const discountValEl = document.getElementById("cart-discount-val");
+      const bundleDiscountValEl = document.getElementById("cart-bundle-discount-val");
+      const giftDiscountValEl = document.getElementById("cart-gift-discount-val");
+
+      if (subtotalValEl) subtotalValEl.textContent = `£${subtotal.toFixed(2)}`;
+      if (totalValEl) totalValEl.textContent = `£${subtotal.toFixed(2)} GBP`;
+      if (discountValEl) discountValEl.textContent = `-£${totalDiscountNum.toFixed(2)}`;
+      if (bundleDiscountValEl) bundleDiscountValEl.textContent = `-£${bundleSavings.toFixed(2)}`;
+      if (giftDiscountValEl) giftDiscountValEl.textContent = `-£${totalGiftValueNum.toFixed(2)}`;
+    },
+
+    startTimer() {
+      if (this.timerInterval) return;
+      const updateTimerDisplay = () => {
+        const mins = Math.floor(this.timerSeconds / 60);
+        const secs = this.timerSeconds % 60;
+        const formatted = `${String(mins).padStart(2, "0")}m : ${String(secs).padStart(2, "0")}s`;
+        const timerEl = document.getElementById("cart-countdown-timer");
+        if (timerEl) timerEl.textContent = formatted;
+
+        if (this.timerSeconds <= 0) {
+          this.timerSeconds = 585;
+        } else {
+          this.timerSeconds -= 1;
+        }
+      };
+
+      updateTimerDisplay();
+      this.timerInterval = setInterval(updateTimerDisplay, 1000);
+    },
+
+    openCart() {
+      this.ensureCartDrawer();
+      this.renderCartDrawer();
+      const drawer = document.getElementById("CartDrawer");
+      if (drawer) {
+        drawer.classList.add("is-open", "active");
+        drawer.setAttribute("aria-hidden", "false");
+        drawer.removeAttribute("hidden");
+        document.body.classList.add("overflow-hidden", "cart-drawer-open");
+      }
+      this.startTimer();
+    },
+
+    closeCart() {
+      const drawer = document.getElementById("CartDrawer");
+      if (drawer) {
+        drawer.classList.remove("is-open", "active");
+        drawer.setAttribute("aria-hidden", "true");
+        drawer.removeAttribute("open");
+        const inner = drawer.querySelector(".drawer__inner");
+        if (inner) inner.style.transform = "translateX(100%)";
+        const overlay = drawer.querySelector("overlay-element");
+        if (overlay) {
+          overlay.classList.add("invisible", "opacity-0", "pointer-events-none");
+          overlay.classList.remove("visible", "opacity-100", "pointer-events-auto");
+        }
+        document.body.classList.remove("overflow-hidden", "cart-drawer-open");
+      }
+    },
+
+    checkout() {
+      const cart = this.getCart();
+      const items = cart.items || [];
+      if (items.length === 0) return;
+
+      const checkoutBtn = document.getElementById("cart-drawer-checkout-btn");
+      const btnText = document.getElementById("cart-checkout-btn-text");
+      if (checkoutBtn) {
+        checkoutBtn.disabled = true;
+        if (btnText) btnText.textContent = "Redirecting to checkout...";
+      }
+
+      const primaryItem = items[0];
+      const checkoutUrl = buildPlusbaseCheckoutUrl(primaryItem);
+      window.location.assign(checkoutUrl);
+    }
+  };
+
+  window.MirooooCart = MirooooCart;
+
+  function updateDeliveryDates() {
+    const deliveryDate = new Date();
+    deliveryDate.setDate(deliveryDate.getDate() + 3);
+    const options = { weekday: "long", day: "numeric", month: "long" };
+    const formattedDate = deliveryDate.toLocaleDateString("en-GB", options);
+    document.querySelectorAll(".miroooo-dynamic-date").forEach((el) => {
+      el.textContent = formattedDate;
+    });
+  }
+
+  // Initialize cart state, header badges, and dynamic delivery date
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", () => {
+      MirooooCart.updateHeaderBadges();
+      MirooooCart.ensureCartDrawer();
+      updateDeliveryDates();
+    });
+  } else {
+    MirooooCart.updateHeaderBadges();
+    MirooooCart.ensureCartDrawer();
+    updateDeliveryDates();
+  }
+
+  // Intercept cart open clicks ONLY on header cart icon / drawer triggers
+  document.addEventListener("click", (e) => {
+    const headerCartTrigger = e.target.closest(
+      '.site-header a[href="/cart"], .site-header .cart-drawer-button, .site-header .site-actions__bag, .header__icons a[href="/cart"], .header__icons .cart-drawer-button, [data-drawer-trigger], .header-cart-icon'
+    );
+    if (headerCartTrigger && !headerCartTrigger.closest("#CartDrawer") && !headerCartTrigger.closest("#hero-cta") && !headerCartTrigger.closest("#sticky-bar-cta-btn")) {
+      e.preventDefault();
+      MirooooCart.openCart();
+    }
+  });
+
+  // Close on Escape key
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape") {
+      MirooooCart.closeCart();
+    }
+  });
 })();

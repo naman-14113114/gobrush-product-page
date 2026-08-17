@@ -968,23 +968,6 @@ theme.variantStrings = {
   .gift-card-item:hover .gift-image-wrap img {
     transform: scale(1.06) !important;
   }
-  #hero-cta {
-    background: #ffffff !important;
-    color: #000000 !important;
-    border: none !important;
-    cursor: pointer !important;
-    box-shadow: 0 4px 14px rgba(255, 255, 255, 0.15) !important;
-    transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.25s cubic-bezier(0.4, 0, 0.2, 1), background-color 0.25s ease !important;
-  }
-  #hero-cta:hover {
-    background: #f4f4f5 !important;
-    transform: translateY(-2px) scale(1.01) !important;
-    box-shadow: 0 10px 25px rgba(255, 255, 255, 0.25), 0 4px 10px rgba(0, 0, 0, 0.5) !important;
-  }
-  #hero-cta:active {
-    transform: translateY(0) scale(0.99) !important;
-    box-shadow: 0 2px 8px rgba(255, 255, 255, 0.15) !important;
-  }
   /* Scrolling text banner */
   #shopify-section-template--24203751129433__scrolling_text_P3gRex {
     background: #000000 !important;
@@ -1161,7 +1144,26 @@ theme.variantStrings = {
     left: -9999px !important;
   }
 </style>
-
+  <style id="miroooo-product-sticky-fix">
+    :root {
+      --header-height: 78px;
+    }
+    .product__info.sticky,
+    .product__preview.sticky,
+    .product__info {
+      top: calc(var(--header-height, 80px) + 24px) !important;
+      inset-block-start: calc(var(--header-height, 80px) + 24px) !important;
+    }
+    @media (max-width: 990px) {
+      .product__info.sticky,
+      .product__preview.sticky,
+      .product__info {
+        position: static !important;
+        top: auto !important;
+        inset-block-start: auto !important;
+      }
+    }
+  </style>
   <link rel="stylesheet" href="/assets/product-shell.css?v=6">
 </head>
 
@@ -1219,6 +1221,31 @@ theme.variantStrings = {
     --color-transparent: 0 0 0;
     background: #000000 !important;
     color: #ffffff !important;
+  }
+  @media (max-width: 990px) {
+    #MenuDrawer,
+    #MenuDrawer .drawer__inner,
+    #MenuDrawer .drawer__content,
+    #MenuDrawer .drawer__footer {
+      background: #e6e6e6 !important;
+      background-color: #e6e6e6 !important;
+      color: #111111 !important;
+    }
+    #MenuDrawer .drawer__menu-item,
+    #MenuDrawer .drawer__menu a,
+    #MenuDrawer .drawer__title,
+    #MenuDrawer .drawer__close {
+      color: #111111 !important;
+    }
+    #MenuDrawer .drawer__footer-bottom a.button--primary {
+      background: #111111 !important;
+      color: #ffffff !important;
+    }
+  }
+  @media (min-width: 991px) {
+    #MenuDrawer {
+      display: none !important;
+    }
   }
 </style><menu-drawer id="MenuDrawer" class="menu-drawer drawer drawer--start z-30 fixed bottom-0 left-0 h-full w-full pointer-events-none"
   data-section-id="sections--24203576967513__header"
@@ -1462,8 +1489,8 @@ theme.variantStrings = {
   data-media-id="63670410314073" data-gang-default><img src="/assets_ref/x2/gallery/miroooo-x2-sonic-electric-toothbrush-silver-in-hand.webp" alt="Miroooo X2 Silver In Hand" srcset="/assets_ref/x2/gallery/miroooo-x2-sonic-electric-toothbrush-silver-in-hand.webp 200w, assets_ref/x2/gallery/miroooo-x2-sonic-electric-toothbrush-silver-in-hand.webp 300w, assets_ref/x2/gallery/miroooo-x2-sonic-electric-toothbrush-silver-in-hand.webp 400w, assets_ref/x2/gallery/miroooo-x2-sonic-electric-toothbrush-silver-in-hand.webp 500w, assets_ref/x2/gallery/miroooo-x2-sonic-electric-toothbrush-silver-in-hand.webp 600w, assets_ref/x2/gallery/miroooo-x2-sonic-electric-toothbrush-silver-in-hand.webp 700w, assets_ref/x2/gallery/miroooo-x2-sonic-electric-toothbrush-silver-in-hand.webp 800w, assets_ref/x2/gallery/miroooo-x2-sonic-electric-toothbrush-silver-in-hand.webp 1000w, assets_ref/x2/gallery/miroooo-x2-sonic-electric-toothbrush-silver-in-hand.webp 1200w, assets_ref/x2/gallery/miroooo-x2-sonic-electric-toothbrush-silver-in-hand.webp 1400w, assets_ref/x2/gallery/miroooo-x2-sonic-electric-toothbrush-silver-in-hand.webp 1600w, assets_ref/x2/gallery/miroooo-x2-sonic-electric-toothbrush-silver-in-hand.webp 1800w, assets_ref/x2/gallery/miroooo-x2-sonic-electric-toothbrush-silver-in-hand.webp 2000w, assets_ref/x2/gallery/miroooo-x2-sonic-electric-toothbrush-silver-in-hand.webp 2200w, assets_ref/x2/gallery/miroooo-x2-sonic-electric-toothbrush-silver-in-hand.webp 2400w, assets_ref/x2/gallery/miroooo-x2-sonic-electric-toothbrush-silver-in-hand.webp 2600w, assets_ref/x2/gallery/miroooo-x2-sonic-electric-toothbrush-silver-in-hand.webp 2800w, assets_ref/x2/gallery/miroooo-x2-sonic-electric-toothbrush-silver-in-hand.webp 3000w" width="3162" height="3162" loading="eager" fetchpriority="auto" sizes="(max-width: 740px) calc(100vw - 40px), (max-width: 999px) calc(100vw - 64px), min(580px, 30vw)" class="w-full" is="lazy-image"><button type="button" class="absolute top-0 left-0 w-full h-full flex items-center justify-center" is="media-hover-button" aria-label="Open media 2 in modal" tabindex="-1"><svg class="icon icon-zoom icon-xs lg:hidden" viewBox="0 0 24 24" stroke="currentColor" fill="none" xmlns="http://www.w3.org/2000/svg">
       <path stroke-linecap="round" stroke-linejoin="round" d="M3 3V9M3 3H9M3 3L9 9M21 21V15M21 21H15M21 21L15 15"></path>
     </svg></button></div>
-<div id="product-media-video-item" class="product__media product__media--video card relative overflow-hidden" data-media-type="video" style="border-radius: var(--card-radius, 1rem); background: #000; box-shadow: 0 4px 20px rgba(0,0,0,0.06); pointer-events: none;">
-  <div class="video-wrapper relative w-full overflow-hidden" style="position: relative; width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; background: #000; border-radius: inherit;">
+<div id="product-media-video-item" class="product__media product__media--video card relative overflow-hidden" data-media-type="video" style="border-radius: var(--card-radius, 1rem); background: #000; box-shadow: 0 4px 20px rgba(0,0,0,0.06); pointer-events: auto; cursor: zoom-in;">
+  <div class="video-wrapper relative w-full overflow-hidden" style="position: relative; width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; background: #000; border-radius: inherit; pointer-events: auto; cursor: zoom-in;">
     <video
       id="gallery-featured-video"
       class="w-full h-full object-cover"
@@ -1475,7 +1502,7 @@ theme.variantStrings = {
       disablepictureinpicture
       controlslist="nodownload nofullscreen noremoteplayback"
       preload="auto"
-      style="width: 100%; height: 100%; object-fit: cover; display: block; border-radius: inherit; pointer-events: none;"
+      style="width: 100%; height: 100%; object-fit: cover; display: block; border-radius: inherit; pointer-events: auto; cursor: zoom-in;"
     ></video>
   </div>
 </div>
@@ -1678,19 +1705,33 @@ theme.variantStrings = {
     </ul>
   </div>
 
+  <!-- Free Delivery Row -->
+  <div class="miroooo-delivery-row flex items-center justify-center gap-2 py-2 mb-3 text-sm font-semibold text-neutral-200" style="display: flex; align-items: center; justify-content: center; gap: 8px; padding: 8px 0; margin-bottom: 12px; font-size: 0.875rem; font-weight: 600; color: #ffffff;">
+    <svg class="miroooo-delivery-truck-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="width: 18px; height: 18px; flex-shrink: 0; color: #ffffff;">
+      <path d="M14 18V6a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2v11a1 1 0 0 0 1 1h2"/>
+      <path d="M15 18H9"/>
+      <path d="M19 18h2a1 1 0 0 0 1-1v-3.65a1 1 0 0 0-.22-.624l-3.48-4.35A1 1 0 0 0 17.52 8H14"/>
+      <circle cx="6.5" cy="18.5" r="2.5"/>
+      <circle cx="16.5" cy="18.5" r="2.5"/>
+    </svg>
+    <span class="delivery-highlight" style="font-weight: 700; color: #ffffff; letter-spacing: 0.02em;">FREE DELIVERY</span>
+    <span class="delivery-sep" style="color: rgba(255, 255, 255, 0.5);">—</span>
+    <span class="delivery-arrival" style="color: rgba(255, 255, 255, 0.9);">Arrives by <span class="miroooo-dynamic-date" style="font-weight: 600; color: #ffffff;">Friday 21 August</span></span>
+  </div>
+
   <!-- 4. Add To Cart Main Button (Moved Above Bundle) -->
   <div class="main-cta-wrapper my-4" style="margin: 18px 0 14px 0; --color-button-text: 0 0 0; --color-button-background: 255 255 255; --color-button-border: 255 255 255; --buttons-radius: 9999px; --buttons-border-width: 2px; --buttons-border-opacity: 1.0; --border-opacity: 1.0; --buttons-shadow-horizontal-offset: 0px; --buttons-shadow-vertical-offset: 0px; --buttons-shadow-opacity: 0;">
-    <style>
-      #hero-cta:hover .btn-text { color: #ffffff !important; }
-    </style>
     <button
       type="button"
       id="hero-cta"
       class="button button--primary"
-      style="width: 100%; font-size: 1.05rem;"
+      style="width: 100%; font-size: 1.05rem; transform: none !important;"
       is="hover-button">
       <span class="btn-fill" data-fill></span>
-      <span class="btn-text" id="main-cta-text">Add To Cart + 2 Free Gifts</span>
+      <span class="btn-text">
+        <svg class="icon-cart-bag" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+        <span id="main-cta-text">Add To Cart + 2 Free Gifts</span>
+      </span>
     </button>
   </div>
 
@@ -1707,14 +1748,6 @@ theme.variantStrings = {
     <div class="flex flex-col items-center gap-1.5" style="display: flex; flex-direction: column; align-items: center; gap: 6px;">
       <svg style="width: 24px; height: 24px; color: #ffffff;" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="1.7"><rect x="1" y="3" width="15" height="13" rx="1"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
       <span class="text-[11px] font-bold uppercase tracking-tight leading-tight" style="color: #ffffff; font-size: 11px;">Free Tracked<br/>Shipping</span>
-    </div>
-  </div>
-
-  <!-- 6. Delivery estimate -->
-  <div class="bundle-shipping-estimate flex items-center justify-center gap-2 p-2.5 rounded-lg border border-neutral-200 bg-neutral-50 text-xs sm:text-sm text-neutral-800 mb-4" style="background: #111111; border: 1px solid rgba(255,255,255,0.12); color: #ffffff; padding: 10px; border-radius: 8px; margin-bottom: 16px; display: flex; align-items: center; justify-content: center; gap: 8px; font-size: 12px;">
-    <svg style="width: 16px; height: 16px; flex-shrink: 0;" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-    <div>
-      Orders are processed in 1–3 business days. Tracked UK transit is usually 3–10 business days.
     </div>
   </div>
 
@@ -1935,35 +1968,245 @@ theme.variantStrings = {
     </div>
   </details>
 </div>
-    </div><product-sticky-form
-        class="product-sticky-form w-full fixed z-20 bottom-0 right-0 pointer-events-none"
-        id="ProductStickyForm-template--24203751129433__main-product-9593510658393"
-        form="ProductForm-template--24203751129433__main-product-9593510658393"
-      >
-        <div class="product-sticky-form__card grid gap-4 opacity-0 invisible pointer-events-auto"><div class="product-sticky-form__variant grid items-center gap-4"><div class="hidden md:block media media--adapt relative overflow-hidden" data-widths="80,160" data-sticky-product-media><img src="https://cdn.shopify.com/s/files/1/0810/6023/3561/files/Grey-color-8.jpg?v=1734444578" alt="Miroooo X2" srcset="https://cdn.shopify.com/s/files/1/0810/6023/3561/files/Grey-color-8.jpg?v=1734444578 80w, https://cdn.shopify.com/s/files/1/0810/6023/3561/files/Grey-color-8.jpg?v=1734444578 160w" width="3162" height="3162" loading="lazy" sizes="80px" is="lazy-image"></div><div class="grid gap-2">
-              <div class="grid gap-1">
-                <p class="text-base font-medium leading-tight">Miroooo X2</p><div class="text-xs text-opacity leading-tight" data-sticky-product-options>Grey</div></div>
-              <div id="StickyPrice-template--24203751129433__main-product-9593510658393"><div class="price price--on-sale flex flex-wrap items-center gap-2 lg:gap-1d5"
-><span class="sr-only">Sale price</span><span class="price__regular whitespace-nowrap">£79</span><span class="sr-only">Regular price</span>
-    <span class="price__sale inline-flex items-center h-auto relative">£159</span></div>
-</div>
-            </div><button
-              type="submit"
-              name="add"
-              form="ProductForm-template--24203751129433__main-product-9593510658393"
-              class="button button--primary"
-              is="hover-button"
-              style="background: #ffffff !important; color: #000000 !important;">
-              <span class="btn-fill" data-fill></span>
-              <span class="btn-text"><svg class="icon icon-cart icon-sm md:hidden" viewBox="0 0 24 24" stroke="currentColor" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path stroke-linecap="round" stroke-linejoin="round" d="M1 1h.5v0c.226 0 .339 0 .44.007a3 3 0 0 1 2.62 1.976c.034.095.065.204.127.42l.17.597m0 0 1.817 6.358c.475 1.664.713 2.496 1.198 3.114a4 4 0 0 0 1.633 1.231c.727.297 1.592.297 3.322.297h2.285c1.75 0 2.626 0 3.359-.302a4 4 0 0 0 1.64-1.253c.484-.627.715-1.472 1.175-3.161l.06-.221c.563-2.061.844-3.092.605-3.906a3 3 0 0 0-1.308-1.713C19.92 4 18.853 4 16.716 4H4.857ZM12 20a2 2 0 1 1-4 0 2 2 0 0 1 4 0Zm8 0a2 2 0 1 1-4 0 2 2 0 0 1 4 0Z"></path>
-        </svg><span class="hidden md:block" data-sold-out="Sold out">Add to cart</span>
-              </span>
-            </button>
+    </div>
+    <!-- MUUHU-INSPIRED FLOATING PILL STICKY ADD TO CART -->
+    <style>
+      .miroooo-sticky-cart-wrap {
+        position: fixed !important;
+        bottom: 14px !important;
+        left: 12px !important;
+        right: 12px !important;
+        z-index: 40 !important;
+        pointer-events: none !important;
+        transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.3s ease !important;
+        transform: translateY(calc(100% + 2rem)) !important;
+        opacity: 0 !important;
+        display: flex !important;
+        justify-content: center !important;
+      }
+      body.overflow-hidden .miroooo-sticky-cart-wrap,
+      body.cart-drawer-open .miroooo-sticky-cart-wrap,
+      body.nav-open .miroooo-sticky-cart-wrap {
+        opacity: 0 !important;
+        pointer-events: none !important;
+        transform: translateY(calc(100% + 2rem)) !important;
+      }
+      .miroooo-sticky-cart-wrap.is-visible {
+        transform: translateY(0) !important;
+        opacity: 1 !important;
+      }
+      .miroooo-sticky-pill {
+        pointer-events: auto !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: space-between !important;
+        gap: 16px !important;
+        width: 100% !important;
+        max-width: 850px !important;
+        min-height: 72px !important;
+        padding: 8px 12px 8px 16px !important;
+        border-radius: 9999px !important;
+        background: rgba(14, 15, 15, 0.94) !important;
+        backdrop-filter: blur(20px) !important;
+        -webkit-backdrop-filter: blur(20px) !important;
+        border: 1px solid rgba(255, 255, 255, 0.16) !important;
+        box-shadow: 0 20px 45px rgba(0, 0, 0, 0.85), 0 0 0 1px rgba(255, 255, 255, 0.08) !important;
+        box-sizing: border-box !important;
+      }
+      .miroooo-sticky-left {
+        display: flex !important;
+        align-items: center !important;
+        gap: 14px !important;
+        min-width: 0 !important;
+      }
+      .miroooo-sticky-img-wrap {
+        width: 54px !important;
+        height: 54px !important;
+        border-radius: 50% !important;
+        overflow: hidden !important;
+        flex-shrink: 0 !important;
+        border: 1.5px solid rgba(255, 255, 255, 0.2) !important;
+        background: #1c1c1c !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+      }
+      .miroooo-sticky-img-wrap img {
+        width: 100% !important;
+        height: 100% !important;
+        object-fit: cover !important;
+        display: block !important;
+      }
+      .miroooo-sticky-info {
+        min-width: 0 !important;
+        display: flex !important;
+        flex-direction: column !important;
+        justify-content: center !important;
+      }
+      .miroooo-sticky-title {
+        font-size: 0.98rem !important;
+        font-weight: 700 !important;
+        color: #ffffff !important;
+        margin: 0 !important;
+        line-height: 1.25 !important;
+        overflow: hidden !important;
+        text-overflow: ellipsis !important;
+        white-space: nowrap !important;
+      }
+      .miroooo-sticky-sub {
+        font-size: 0.84rem !important;
+        color: rgba(255, 255, 255, 0.7) !important;
+        margin: 3px 0 0 0 !important;
+        line-height: 1.2 !important;
+        display: flex !important;
+        align-items: center !important;
+        gap: 6px !important;
+        overflow: hidden !important;
+        text-overflow: ellipsis !important;
+        white-space: nowrap !important;
+      }
+      .miroooo-sticky-bullet {
+        opacity: 0.4 !important;
+      }
+      .miroooo-sticky-gifts-tag {
+        color: #22c55e !important;
+        font-weight: 600 !important;
+      }
+      .miroooo-sticky-btn {
+        position: relative !important;
+        overflow: hidden !important;
+        isolation: isolate !important;
+        display: inline-flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        min-height: 48px !important;
+        padding: 0 28px !important;
+        border-radius: 9999px !important;
+        background: #ffffff !important;
+        color: #000000 !important;
+        font-weight: 700 !important;
+        font-size: 0.95rem !important;
+        border: 2px solid #ffffff !important;
+        cursor: pointer !important;
+        flex-shrink: 0 !important;
+        white-space: nowrap !important;
+        box-shadow: 0 4px 16px rgba(255, 255, 255, 0.15) !important;
+        text-decoration: none !important;
+        font-family: inherit !important;
+        transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease !important;
+      }
+      .miroooo-sticky-btn .btn-fill {
+        position: absolute !important;
+        inset: 0 !important;
+        width: 100% !important;
+        height: 100% !important;
+        background: #000000 !important;
+        background-color: #000000 !important;
+        transform: translateY(100%) !important;
+        transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1) !important;
+        border-radius: 9999px !important;
+        z-index: 1 !important;
+        pointer-events: none !important;
+      }
+      .miroooo-sticky-btn:hover .btn-fill {
+        transform: translateY(0%) !important;
+      }
+      .miroooo-sticky-btn::after {
+        content: '' !important;
+        position: absolute !important;
+        top: 0 !important;
+        left: 0 !important;
+        width: 100% !important;
+        height: 100% !important;
+        background: linear-gradient(90deg, transparent calc(50% - 70px), rgba(0, 0, 0, 0.16) 50%, transparent calc(50% + 35px)) !important;
+        transform: skewX(-30deg) translateX(-150%) !important;
+        animation: proxy-bundle-shine 4s infinite ease-in-out !important;
+        z-index: 2 !important;
+        pointer-events: none !important;
+      }
+      .miroooo-sticky-btn:hover::after {
+        background: linear-gradient(90deg, transparent calc(50% - 70px), rgba(255, 255, 255, 0.3) 50%, transparent calc(50% + 35px)) !important;
+      }
+      .miroooo-sticky-btn .btn-text {
+        position: relative !important;
+        z-index: 3 !important;
+        display: inline-flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        gap: 8px !important;
+        color: #000000 !important;
+        transition: color 0.25s cubic-bezier(0.16, 1, 0.3, 1) !important;
+        pointer-events: none !important;
+      }
+      .miroooo-sticky-btn:hover .btn-text {
+        color: #ffffff !important;
+      }
+      .miroooo-sticky-btn:hover {
+        background: #000000 !important;
+        border-color: #ffffff !important;
+        transform: scale(1.01) !important;
+        box-shadow: 0 8px 30px rgba(255, 255, 255, 0.18) !important;
+      }
+      .miroooo-sticky-btn:active {
+        transform: scale(0.98) !important;
+      }
+      .miroooo-sticky-bag-icon {
+        flex-shrink: 0 !important;
+        transition: color 0.25s ease !important;
+      }
+      @media (max-width: 640px) {
+        .miroooo-sticky-cart-wrap {
+          bottom: 8px !important;
+          left: 8px !important;
+          right: 8px !important;
+        }
+        .miroooo-sticky-pill {
+          min-height: 52px !important;
+          padding: 6px 8px !important;
+          border-radius: 9999px !important;
+        }
+        .miroooo-sticky-left {
+          display: none !important;
+        }
+        .miroooo-sticky-btn {
+          width: 100% !important;
+          min-height: 44px !important;
+          padding: 0 16px !important;
+          font-size: 0.9rem !important;
+        }
+      }
+    </style>
+    <div class="miroooo-sticky-cart-wrap" id="miroooo-sticky-cart" aria-hidden="true">
+      <div class="miroooo-sticky-pill">
+        <div class="miroooo-sticky-left">
+          <div class="miroooo-sticky-img-wrap">
+            <img id="sticky-bar-img" src="https://cdn.shopify.com/s/files/1/0810/6023/3561/files/Grey-color-8.jpg?v=1734444578" alt="Miroooo X2" width="54" height="54" loading="eager">
           </div>
-          <div class="product-form__error-message alert alert--error text-sm font-medium leading-tight" role="alert" hidden></div>
+          <div class="miroooo-sticky-info">
+            <p class="miroooo-sticky-title" id="sticky-bar-title">Miroooo X2 - Grey</p>
+            <p class="miroooo-sticky-sub" id="sticky-bar-subtitle">
+              <span id="sticky-bar-price" style="font-weight: 700; color: #ffffff;">£79</span>
+              <span class="miroooo-sticky-bullet">·</span>
+              <span id="sticky-bar-gifts" class="miroooo-sticky-gifts-tag">+ 1 Free Gift</span>
+            </p>
+          </div>
         </div>
-      </product-sticky-form></div><script type="application/ld+json">{"@context":"https://schema.org","@type":"Product","name":"Miroooo X2","brand":{"@type":"Brand","name":"Miroooo"},"description":"A guided sonic electric toothbrush with pressure feedback, IPX7 water resistance and up to 90 days of battery life.","url":"https://miroooo.co/products/miroooo-x2","image":"https://miroooo.co/assets_ref/x2/gallery/miroooo-x2-sonic-toothbrush-ipx7-waterproof.webp","offers":{"@type":"AggregateOffer","priceCurrency":"GBP","lowPrice":"79.00","highPrice":"79.00","offerCount":"3"}}</script>
+        <button
+          type="button"
+          id="sticky-bar-cta-btn"
+          class="button button--primary miroooo-sticky-btn"
+          is="hover-button"
+          aria-label="Add to cart"
+        >
+          <span class="btn-fill" data-fill></span>
+          <span class="btn-text">
+            <svg class="icon-cart-bag miroooo-sticky-bag-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+            <span id="sticky-bar-cta-text">Add to cart + 1 Free Gift</span>
+          </span>
+        </button>
+      </div>
+    </div>
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"Product","name":"Miroooo X2","brand":{"@type":"Brand","name":"Miroooo"},"description":"A guided sonic electric toothbrush with pressure feedback, IPX7 water resistance and up to 90 days of battery life.","url":"https://miroooo.co/products/miroooo-x2","image":"https://miroooo.co/assets_ref/x2/gallery/miroooo-x2-sonic-toothbrush-ipx7-waterproof.webp","offers":{"@type":"AggregateOffer","priceCurrency":"GBP","lowPrice":"79.00","highPrice":"79.00","offerCount":"3"}}</script>
 </div>
 
 
@@ -4857,6 +5100,60 @@ theme.variantStrings = {
 <!-- END sections: footer-group --></footer-group>
   </div>
 
+  <!-- Miroooo Luxury 1:1 Product Gallery Lightbox Modal -->
+  <div
+    id="MirooooGalleryLightbox"
+    class="miroooo-gallery-lightbox"
+    role="dialog"
+    aria-modal="true"
+    aria-label="Expanded Product Gallery"
+    aria-hidden="true"
+  >
+    <div class="miroooo-gallery-lightbox__backdrop" aria-hidden="true"></div>
+
+    <button
+      type="button"
+      class="miroooo-gallery-lightbox__close"
+      id="MirooooGalleryLightboxClose"
+      aria-label="Close product gallery"
+    >
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+        <line x1="18" y1="6" x2="6" y2="18"></line>
+        <line x1="6" y1="6" x2="18" y2="18"></line>
+      </svg>
+    </button>
+
+    <button
+      type="button"
+      class="miroooo-gallery-lightbox__arrow miroooo-gallery-lightbox__prev"
+      id="MirooooGalleryLightboxPrev"
+      aria-label="Previous product media"
+    >
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+        <polyline points="15 18 9 12 15 6"></polyline>
+      </svg>
+    </button>
+
+    <div class="miroooo-gallery-lightbox__stage">
+      <div class="miroooo-gallery-lightbox__media-box" id="MirooooGalleryLightboxMediaBox"></div>
+    </div>
+
+    <button
+      type="button"
+      class="miroooo-gallery-lightbox__arrow miroooo-gallery-lightbox__next"
+      id="MirooooGalleryLightboxNext"
+      aria-label="Next product media"
+    >
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+        <polyline points="9 18 15 12 9 6"></polyline>
+      </svg>
+    </button>
+
+    <div class="miroooo-gallery-lightbox__counter" id="MirooooGalleryLightboxCounter" aria-live="polite">
+      <span id="MirooooGalleryLightboxCurrent">1</span> / <span id="MirooooGalleryLightboxTotal">10</span>
+    </div>
+  </div>
+
   <ul hidden>  </ul><script src="https://cdn.shopify.com/s/files/1/0810/6023/3561/shop/t/6/assets/instant-page.js?v=99963444960178710701733490075" type="module" fetchpriority="low" defer="defer"></script>
   <!-- Obsolete Trustoo Review widget removed - Replaced by Miroooo X2 Pure Dark Reviews Component -->
   <script src="https://cdn.shopify.com/storefront/standard-actions.js" type="module" data-source-attribution="shopify.standard_actions"></script>
@@ -5106,35 +5403,40 @@ function updateStickyBar() {
   const firstColor = choices[0] || 'Grey';
   const colorData = VARIANTS_DATA[firstColor] || VARIANTS_DATA['Grey'];
 
-  // Sticky Title & Options
-  const stickyTitle = document.querySelector('.product-sticky-form__variant p, .product-sticky-form h3');
+  // 1. Sticky Title
+  const stickyTitle = document.getElementById('sticky-bar-title');
   if (stickyTitle) {
-    stickyTitle.textContent = `${tier.label} - Miroooo X2 (${choices.join(' + ')})`;
+    if (activeTierId === 'single') {
+      stickyTitle.textContent = `Miroooo X2 - ${firstColor}`;
+    } else {
+      stickyTitle.textContent = `${tier.label} - Miroooo X2 (${choices.join(' + ')})`;
+    }
   }
 
-  const stickyOptions = document.querySelector('[data-sticky-product-options]');
-  if (stickyOptions) {
-    stickyOptions.textContent = `${tier.label} · ${choices.join(', ')} · ${tier.unlockedGifts} Free Gifts`;
+  // 2. Sticky Price
+  const stickyPrice = document.getElementById('sticky-bar-price');
+  if (stickyPrice) {
+    stickyPrice.textContent = tier.priceDisplay;
   }
 
-  // Sticky Price
-  const stickyPrice = document.querySelector('#StickyPrice-template--24203751129433__main-product-9593510658393 .price__regular');
-  if (stickyPrice) stickyPrice.textContent = tier.priceDisplay;
+  // 3. Sticky Gifts
+  const stickyGifts = document.getElementById('sticky-bar-gifts');
+  if (stickyGifts) {
+    const giftsCount = tier.unlockedGifts || 1;
+    stickyGifts.textContent = `+ ${giftsCount} Free Gift${giftsCount > 1 ? 's' : ''}`;
+  }
 
-  const stickyCompare = document.querySelector('#StickyPrice-template--24203751129433__main-product-9593510658393 .price__sale');
-  if (stickyCompare) stickyCompare.textContent = tier.compareDisplay;
-
-  // Sticky CTA Button Text
-  const stickyCtaText = document.querySelector('.product-sticky-form button span.hidden, .product-sticky-form button .btn-text');
+  // 4. Sticky CTA Button Text
+  const stickyCtaText = document.getElementById('sticky-bar-cta-text');
   if (stickyCtaText) {
-    const textSpan = stickyCtaText.querySelector('span') || stickyCtaText;
-    textSpan.textContent = tier.ctaText;
+    stickyCtaText.textContent = tier.ctaText;
   }
 
-  // Sticky Thumbnail
-  const stickyImg = document.querySelector('[data-sticky-product-media] img, .product-sticky-form img');
+  // 5. Sticky Thumbnail
+  const stickyImg = document.getElementById('sticky-bar-img');
   if (stickyImg && (colorData.images[1] || colorData.images[0])) {
     stickyImg.src = (colorData.images[1] || colorData.images[0]) + '';
+    stickyImg.alt = `Miroooo X2 - ${firstColor}`;
   }
 }
 
@@ -5205,9 +5507,40 @@ function closeProductCart(event) {
   return false;
 }
 
-function openCartWithActiveBundle() {
-  const tier = TIERS[activeTierId];
-  const choices = choicesState[activeTierId] || ['Grey'];
+function handleAddToCartAndRedirect() {
+  const tier = TIERS[activeTierId] || TIERS['bundle-2'];
+  const choices = (choicesState[activeTierId] && choicesState[activeTierId].length > 0)
+    ? choicesState[activeTierId].slice(0, tier.count)
+    : ['Grey', 'Pink'];
+
+  try {
+    localStorage.setItem('miroooo_cart', JSON.stringify({
+      productId: 'miroooo-x2',
+      quantity: tier.count,
+      colors: choices
+    }));
+    localStorage.removeItem('miroooo_cart_empty');
+  } catch (e) {}
+
+  const targetCartUrl = window.location.pathname.endsWith('.html') ? '/cart.html' : '/cart';
+  window.location.href = targetCartUrl;
+}
+
+function openProductCartDrawer() {
+  let savedCart = null;
+  try {
+    const stored = localStorage.getItem('miroooo_cart');
+    if (stored && localStorage.getItem('miroooo_cart_empty') !== 'true') {
+      savedCart = JSON.parse(stored);
+    }
+  } catch (e) {}
+
+  const tierId = savedCart ? (savedCart.quantity === 3 ? 'bundle-3' : savedCart.quantity === 2 ? 'bundle-2' : 'single') : activeTierId;
+  const tier = TIERS[tierId] || TIERS[activeTierId] || TIERS['bundle-2'];
+  const choices = (savedCart && Array.isArray(savedCart.colors) && savedCart.colors.length > 0)
+    ? savedCart.colors.slice(0, tier.count)
+    : ((choicesState[tierId] && choicesState[tierId].length > 0) ? choicesState[tierId].slice(0, tier.count) : ['Grey', 'Pink']);
+
   const cartDrawer = document.getElementById('CartDrawer');
   if (!cartDrawer) return;
   cartDrawer.removeAttribute('hidden');
@@ -5225,8 +5558,8 @@ function openCartWithActiveBundle() {
   }
 
   const emptySection = cartDrawer.querySelector('.drawer__scrollable.text-center');
-  const scrollableSection = cartDrawer.querySelector('.drawer__scrollable.hidden');
-  const footerSection = cartDrawer.querySelector('.drawer__footer.hidden');
+  const scrollableSection = cartDrawer.querySelector('.drawer__scrollable.hidden, .drawer__scrollable:not(.text-center)');
+  const footerSection = cartDrawer.querySelector('.drawer__footer');
   const headerSection = cartDrawer.querySelector('.drawer__header');
   const contentSection = cartDrawer.querySelector('.drawer__content');
   const panelSection = cartDrawer.querySelector('.drawer__panel');
@@ -5260,7 +5593,7 @@ function openCartWithActiveBundle() {
     let itemsHTML = '';
 
     // Add Toothbrushes
-    choices.forEach((color, idx) => {
+    choices.forEach((color) => {
       const colorData = VARIANTS_DATA[color] || VARIANTS_DATA['Grey'];
       const unitPriceDisplay = tier.count > 1 ? `£${Math.round(tier.price / tier.count)}.00` : tier.priceDisplay;
       itemsHTML += `
@@ -5367,8 +5700,11 @@ function openCartWithActiveBundle() {
   // Open Drawer
   cartDrawer.setAttribute('open', 'true');
   cartDrawer.classList.add('active');
-  document.body.classList.add('overflow-hidden');
+  document.body.classList.add('overflow-hidden', 'cart-drawer-open');
 }
+
+// Alias for backwards compatibility
+const openCartWithActiveBundle = openProductCartDrawer;
 
 document.addEventListener('DOMContentLoaded', () => {
   // Magnet button effect
@@ -5387,26 +5723,37 @@ document.addEventListener('DOMContentLoaded', () => {
   // Initial Bundle Tier selection (pre-select Buy 2)
   selectBundleTier('bundle-2');
 
+  // Dynamic Delivery Date calculation
+  const updateDeliveryDate = () => {
+    const deliveryDate = new Date();
+    deliveryDate.setDate(deliveryDate.getDate() + 3);
+    const options = { weekday: 'long', day: 'numeric', month: 'long' };
+    const formatted = deliveryDate.toLocaleDateString('en-GB', options);
+    document.querySelectorAll('.miroooo-dynamic-date').forEach(el => {
+      el.textContent = formatted;
+    });
+  };
+  updateDeliveryDate();
 
-  // Main Buy CTA Click -> Open Cart Drawer
+  // Main Buy CTA Click -> Save to localStorage and Redirect directly to /cart
   const mainBuyBtn = document.getElementById('hero-cta');
   if (mainBuyBtn) {
     mainBuyBtn.addEventListener('click', (e) => {
       e.preventDefault();
-      openCartWithActiveBundle();
+      handleAddToCartAndRedirect();
     });
   }
 
-  // Sticky Buy CTA Click -> Open Cart Drawer
-  const stickyBuyBtn = document.querySelector('.product-sticky-form button');
+  // Sticky Buy CTA Click -> Save to localStorage and Redirect directly to /cart
+  const stickyBuyBtn = document.getElementById('sticky-bar-cta-btn');
   if (stickyBuyBtn) {
     stickyBuyBtn.addEventListener('click', (e) => {
       e.preventDefault();
-      openCartWithActiveBundle();
+      handleAddToCartAndRedirect();
     });
   }
 
-  // Thumbnail click smooth scrolling
+  // Thumbnail & Media click -> smooth scroll & open luxury Lightbox modal
   const allThumbnails = document.querySelectorAll('.product__thumbnails-list .product__thumbnail');
   const allMediaItems = document.querySelectorAll('.product__media-list .product__media');
   allThumbnails.forEach((thumb, idx) => {
@@ -5416,38 +5763,53 @@ document.addEventListener('DOMContentLoaded', () => {
       if (allMediaItems[idx]) {
         allMediaItems[idx].scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'start' });
       }
+      if (typeof window.openMirooooLightbox === 'function') {
+        window.openMirooooLightbox(idx);
+      }
     });
   });
 
-  // Sticky Buy Bar scroll trigger
-  const stickyBar = document.querySelector('.product-sticky-form__card');
-  if (stickyBar && mainBuyBtn) {
-    const checkScroll = () => {
-      const rect = mainBuyBtn.getBoundingClientRect();
-      if (rect.bottom < 0) {
-        stickyBar.classList.remove('opacity-0', 'invisible');
-        stickyBar.classList.add('opacity-100', 'visible');
-        stickyBar.style.transform = 'translateY(0)';
-      } else {
-        stickyBar.classList.add('opacity-0', 'invisible');
-        stickyBar.classList.remove('opacity-100', 'visible');
-        stickyBar.style.transform = 'translateY(100%)';
+  allMediaItems.forEach((mediaItem, idx) => {
+    mediaItem.style.cursor = 'zoom-in';
+    mediaItem.addEventListener('click', (e) => {
+      e.preventDefault();
+      if (typeof window.openMirooooLightbox === 'function') {
+        window.openMirooooLightbox(idx);
       }
+    });
+  });
+
+  // Sticky Buy Bar scroll trigger (Muuhu style)
+  const stickyCartWrap = document.getElementById('miroooo-sticky-cart');
+  if (stickyCartWrap && mainBuyBtn) {
+    let frame = 0;
+    const checkScroll = () => {
+      window.cancelAnimationFrame(frame);
+      frame = window.requestAnimationFrame(() => {
+        const rect = mainBuyBtn.getBoundingClientRect();
+        if (rect.bottom < 0) {
+          stickyCartWrap.classList.add('is-visible');
+          stickyCartWrap.setAttribute('aria-hidden', 'false');
+        } else {
+          stickyCartWrap.classList.remove('is-visible');
+          stickyCartWrap.setAttribute('aria-hidden', 'true');
+        }
+      });
     };
     window.addEventListener('scroll', checkScroll, { passive: true });
+    window.addEventListener('resize', checkScroll);
     checkScroll();
   }
 
-  // Cart Drawer open/close
-  const cartDrawer = document.getElementById('CartDrawer');
-  const openCartBtns = [...document.querySelectorAll('a[href="/cart"], button[aria-controls="CartDrawer"], .cart-drawer-button')]
+  // Cart Drawer open/close - ONLY from header cart icon or [data-drawer-trigger]
+  const openCartBtns = [...document.querySelectorAll('.site-header a[href="/cart"], .header__icons a[href="/cart"], [data-drawer-trigger], .header-cart-icon')]
     .filter((btn) => !btn.closest('#CartDrawer'));
-  const closeCartBtns = document.querySelectorAll('.cart-drawer__close, #CartDrawer [is="drawer-close-button"], #CartDrawer .drawer__close, #CartDrawer overlay-element, .drawer__overlay');
+  const closeCartBtns = document.querySelectorAll('.cart-drawer__close, #CartDrawer [is="drawer-close-button"], #CartDrawer .drawer__close, #CartDrawer overlay-element, .drawer__overlay, #CartDrawer .miroooo-cart-close, #CartDrawer .miroooo-cart-close-btn');
 
   openCartBtns.forEach(btn => {
     btn.addEventListener('click', (e) => {
       e.preventDefault();
-      openCartWithActiveBundle();
+      openProductCartDrawer();
     });
   });
 

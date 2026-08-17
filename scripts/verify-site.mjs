@@ -3,7 +3,7 @@ import { resolve } from "node:path";
 
 const root = resolve(import.meta.dirname, "..");
 const required = [
-  "index.html", "shop.html", "miroooo-x.html", "miroooo-x2.html", "about.html", "faq.html",
+  "index.html", "shop.html", "miroooo-x.html", "miroooo-x2.html", "cart.html", "about.html", "faq.html",
   "contact.html", "delivery-returns.html", "warranty.html", "order-tracking.html", "privacy.html",
   "terms.html", "return-policy.html", "shipping-policy.html", "refund-policy.html", "cookies-policy.html",
   "404.html", "assets/site.css", "assets/site.js", "vercel.json", "sitemap.xml",
@@ -16,12 +16,12 @@ for (const file of required) {
 }
 
 const newPages = [
-  "index.html", "shop.html", "about.html", "faq.html", "contact.html", "delivery-returns.html",
+  "index.html", "shop.html", "cart.html", "about.html", "faq.html", "contact.html", "delivery-returns.html",
   "warranty.html", "order-tracking.html", "privacy.html", "terms.html", "return-policy.html",
   "shipping-policy.html", "refund-policy.html", "cookies-policy.html", "404.html"
 ];
 const internalRoutes = new Set([
-  "/", "/shop", "/products/miroooo-x", "/products/miroooo-x2", "/about", "/faq", "/contact",
+  "/", "/shop", "/products/miroooo-x", "/products/miroooo-x2", "/cart", "/about", "/faq", "/contact",
   "/delivery-returns", "/warranty", "/order-tracking", "/privacy", "/terms", "/return-policy",
   "/shipping-policy", "/refund-policy", "/cookies-policy", "/policies/privacy-policy",
   "/policies/return-policy", "/policies/shipping-policy", "/policies/refund-policy",
@@ -81,7 +81,7 @@ if (config.cleanUrls !== true) errors.push("vercel.json: cleanUrls must remain e
 if (!config.outputDirectory || config.outputDirectory !== "public") errors.push("vercel.json: outputDirectory must be public");
 
 const sitemap = await readFile(resolve(root, "sitemap.xml"), "utf8");
-for (const route of ["/shop", "/products/miroooo-x", "/products/miroooo-x2", "/delivery-returns", "/privacy", "/terms"]) {
+for (const route of ["/shop", "/products/miroooo-x", "/products/miroooo-x2", "/delivery-returns", "/privacy", "/terms", "/cart"]) {
   if (!sitemap.includes(`https://miroooo.co${route}`)) errors.push(`sitemap.xml: missing ${route}`);
 }
 
