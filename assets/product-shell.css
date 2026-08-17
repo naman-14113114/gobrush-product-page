@@ -30,7 +30,7 @@
 
 #shopify-section-sections--24203576967513__announcement-bar .highlighted-text svg { display: none !important; }
 
-/* Sticky Transparent Blur Header */
+/* Sticky Dark Header for Product Pages */
 #shopify-section-sections--24203576967513__header {
   position: sticky !important;
   top: 0 !important;
@@ -49,6 +49,57 @@
 #shopify-section-sections--24203576967513__header .header {
   background: transparent !important;
   color: #ffffff !important;
+}
+
+/* =========================================================
+   DESKTOP vs MOBILE HEADER CONTROLS (Hide Hamburger on Desktop)
+   ========================================================= */
+@media screen and (min-width: 1024px) {
+  .header__icons--start,
+  .menu-drawer-button,
+  .nav-toggle,
+  #shopify-section-sections--24203576967513__header .header__icons--start,
+  #shopify-section-sections--24203576967513__header .menu-drawer-button {
+    display: none !important;
+  }
+
+  .header__navigation,
+  .header__menu,
+  .site-nav,
+  #shopify-section-sections--24203576967513__header .header__navigation,
+  #shopify-section-sections--24203576967513__header .header__menu {
+    display: flex !important;
+    align-items: center !important;
+  }
+
+  .header__buttons .account-link,
+  .site-actions__track,
+  .header__buttons a[href*="customer_authentication"],
+  .header__buttons a[href="/order-tracking"] {
+    display: inline-flex !important;
+  }
+}
+
+@media screen and (max-width: 1023px) {
+  .header__navigation,
+  .site-nav,
+  #shopify-section-sections--24203576967513__header .header__navigation,
+  #shopify-section-sections--24203576967513__header .header__menu {
+    display: none !important;
+  }
+
+  .menu-drawer-button,
+  .nav-toggle,
+  #shopify-section-sections--24203576967513__header .menu-drawer-button {
+    display: inline-flex !important;
+  }
+
+  .header__buttons .account-link,
+  .site-actions__track,
+  .header__buttons a[href*="customer_authentication"],
+  .header__buttons a[href="/order-tracking"] {
+    display: none !important;
+  }
 }
 
 /* Header Navigation Menu List */

@@ -2,8 +2,9 @@
   "use strict";
 
   const arrowIcon = '<svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.65"><path d="M5 12h14M13 6l6 6-6 6"/></svg>';
-  const bagIcon = '<svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.55"><path d="M5.5 8.5h13l-1 12h-11l-1-12Z"/><path d="M9 9V6.5a3 3 0 0 1 6 0V9"/></svg>';
-  const menuIcon = '<svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.55"><path d="M3 8h18M3 16h18"/></svg>';
+  const accountIcon = '<svg class="icon icon-account" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" style="width: 21px; height: 21px;"><rect width="10.5" height="10.5" x="6.75" y="1.75" rx="5.25"></rect><path d="M12 15.5c1.5 0 4 .333 4.5.5.5.167 3.7.8 4.5 2 1 1.5 1 2 1 4m-10-6.5c-1.5 0-4 .333-4.5.5-.5.167-3.7.8-4.5 2-1 1.5-1 2-1 4"></path></svg>';
+  const bagIcon = '<svg class="icon icon-cart" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" style="width: 21px; height: 21px;"><path d="M1 1h.5v0c.226 0 .339 0 .44.007a3 3 0 0 1 2.62 1.976c.034.095.065.204.127.42l.17.597m0 0 1.817 6.358c.475 1.664.713 2.496 1.198 3.114a4 4 0 0 0 1.633 1.231c.727.297 1.592.297 3.322.297h2.285c1.75 0 2.626 0 3.359-.302a4 4 0 0 0 1.64-1.253c.484-.627.715-1.472 1.175-3.161l.06-.221c.563-2.061.844-3.092.605-3.906a3 3 0 0 0-1.308-1.713C19.92 4 18.853 4 16.716 4H4.857ZM12 20a2 2 0 1 1-4 0 2 2 0 0 1 4 0Zm8 0a2 2 0 1 1-4 0 2 2 0 0 1 4 0Z"></path></svg>';
+  const menuIcon = '<svg class="icon icon-hamburger" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" style="width: 21px; height: 21px;"><path d="M3 6H21M3 12H11M3 18H16"></path></svg>';
   const closeIcon = '<svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.55"><path d="m5 5 14 14M19 5 5 19"/></svg>';
   const supportIcon = '<svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M4 13a8 8 0 0 1 16 0v4a2 2 0 0 1-2 2h-2v-6h4M4 13h4v6H6a2 2 0 0 1-2-2v-4Z"/></svg>';
   const deliveryIcon = '<svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M3 6h12v11H3zM15 10h3l3 3v4h-6z"/><circle cx="7" cy="18" r="2"/><circle cx="18" cy="18" r="2"/></svg>';
@@ -13,9 +14,16 @@
   const headerTarget = document.querySelector("[data-site-header]");
   const footerTarget = document.querySelector("[data-site-footer]");
   const currentPage = document.body.dataset.page || "";
-  const isOverlayHeader = Boolean(headerTarget?.hasAttribute("data-overlay-header"));
+  const isOverlayHeader = Boolean(headerTarget?.hasAttribute("data-overlay-header") || currentPage === "home");
   const current = (pages) => pages.includes(currentPage) ? ' aria-current="page"' : "";
   const flipLabel = (label) => `<span class="nav-link__flip"><span>${label}</span><span aria-hidden="true">${label}</span></span>`;
+  const menuPill = (href, label, pages) => `
+    <li>
+      <a href="${href}" class="menu__item nav-link text-sm-lg flex items-center font-medium z-2 relative cursor-pointer" is="magnet-link" data-magnet="0"${pages ? current(pages) : ""}>
+        <span class="btn-text" data-text="${label}">${label}</span>
+        <span class="btn-text btn-duplicate">${label}</span>
+      </a>
+    </li>`;
 
   if (headerTarget) {
     headerTarget.classList.toggle("header-layer--overlay", isOverlayHeader);
@@ -23,38 +31,90 @@
       <div class="announcement"><span>Free tracked UK delivery</span><span>90-day home trial</span></div>
       <header class="site-header${isOverlayHeader ? " site-header--overlay" : ""}">
         <div class="site-header__inner">
-          <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="mobile-menu" aria-label="Open menu">${menuIcon}</button>
-          <nav class="site-nav" aria-label="Main navigation">
-            <a class="nav-link" href="/shop"${current(["shop"])}>${flipLabel("Shop")}</a>
-            <a class="nav-link" href="/products/miroooo-x2" data-product-link>${flipLabel("Miroooo X2")}</a>
-            <a class="nav-link" href="/contact"${current(["contact"])}>${flipLabel("Contact")}</a>
-            <a class="nav-link" href="/faq"${current(["faq"])}>${flipLabel("FAQ")}</a>
-          </nav>
-          <a class="site-logo" href="/" aria-label="Miroooo home">MIROOOO</a>
-          <div class="site-actions">
-            <a class="nav-link site-actions__track" href="/order-tracking"${current(["tracking"])}>${flipLabel("Track order")}</a>
-            <a class="site-actions__bag" href="/shop" aria-label="Shop Miroooo">${bagIcon}<span>0</span></a>
+          <div class="header__icons header__icons--start lg:hidden">
+            <button class="nav-toggle menu-drawer-button" type="button" aria-expanded="false" aria-controls="mobile-menu" aria-label="Open menu" is="magnet-button">${menuIcon}</button>
+          </div>
+          <div class="header__navigation hidden lg:flex">
+            <nav class="header__menu" aria-label="Main navigation">
+              <ul class="flex flex-wrap list-menu with-block">
+                ${menuPill("/shop", "Shop", ["shop"])}
+                ${menuPill("/products/miroooo-x2", "Bundles", ["bundles"])}
+                ${menuPill("/contact", "Contact", ["contact"])}
+                ${menuPill("/faq", "FAQ", ["faq"])}
+              </ul>
+            </nav>
+          </div>
+          <a class="site-logo header__logo-link" href="/" aria-label="Miroooo home"><span>MIROOOO</span></a>
+          <div class="site-actions header__icons header__icons--end">
+            <div class="header__buttons flex items-center gap-2">
+              <a class="account-link hidden lg:inline-flex" href="/order-tracking" aria-label="Track order" is="magnet-link"${current(["tracking"])}>${accountIcon}</a>
+              <a class="site-actions__bag cart-drawer-button" href="/cart" aria-label="View cart" is="magnet-link">${bagIcon}<span class="cart-count">0</span></a>
+              <button class="nav-toggle menu-drawer-button lg:hidden" type="button" aria-expanded="false" aria-controls="mobile-menu" aria-label="Open menu" is="magnet-button">${menuIcon}</button>
+            </div>
           </div>
         </div>
       </header>
-      <nav class="mobile-panel" id="mobile-menu" aria-label="Mobile navigation" aria-hidden="true">
+      <nav class="mobile-panel menu-drawer" id="mobile-menu" aria-label="Mobile navigation" aria-hidden="true">
         <div class="mobile-panel__top">
           <span>Menu</span>
-          <button class="mobile-panel__close" type="button" aria-label="Close menu">${closeIcon}</button>
+          <button class="mobile-panel__close button button--close" type="button" aria-label="Close menu">${closeIcon}</button>
         </div>
         <div class="mobile-panel__links">
-          <a href="/shop"><span>Shop</span>${arrowIcon}</a>
-          <a href="/products/miroooo-x2" data-product-link><span>Miroooo X2</span>${arrowIcon}</a>
-          <a href="/about"><span>Our approach</span>${arrowIcon}</a>
-          <a href="/faq"><span>FAQs</span>${arrowIcon}</a>
-          <a href="/order-tracking"><span>Track order</span>${arrowIcon}</a>
-          <a href="/contact"><span>Contact</span>${arrowIcon}</a>
+          <a class="drawer__menu-item" href="/shop"><span>Shop</span>${arrowIcon}</a>
+          <a class="drawer__menu-item" href="/products/miroooo-x2" data-product-link><span>Miroooo X2 (Bundles)</span>${arrowIcon}</a>
+          <a class="drawer__menu-item" href="/about"><span>Our approach</span>${arrowIcon}</a>
+          <a class="drawer__menu-item" href="/faq"><span>FAQs</span>${arrowIcon}</a>
+          <a class="drawer__menu-item" href="/order-tracking"><span>Track order</span>${arrowIcon}</a>
+          <a class="drawer__menu-item" href="/contact"><span>Contact</span>${arrowIcon}</a>
         </div>
         <div class="mobile-panel__bottom">
           <p>Precision without the noise.</p>
           <span>support@miroooo.co</span>
         </div>
       </nav>`;
+  }
+
+  // Scroll listener for transparent overlay header on home page
+  if (isOverlayHeader) {
+    const headerEl = headerTarget?.querySelector(".site-header");
+    const checkScroll = () => {
+      if (!headerEl) return;
+      if (window.scrollY > 40) {
+        headerEl.classList.add("is-scrolled");
+      } else {
+        headerEl.classList.remove("is-scrolled");
+      }
+    };
+    window.addEventListener("scroll", checkScroll, { passive: true });
+    checkScroll();
+  }
+
+  // Fluid Elastic Magnet Effect on all header elements
+  const initMagnet = () => {
+    const magnetTargets = document.querySelectorAll(
+      '[is="magnet-link"], [is="magnet-button"], .header__menu > ul.with-block .menu__item, .header__buttons a, .header__buttons button'
+    );
+    magnetTargets.forEach((target) => {
+      if (target.dataset.magnetAttached) return;
+      target.dataset.magnetAttached = "true";
+
+      target.addEventListener("mousemove", (e) => {
+        const rect = target.getBoundingClientRect();
+        const x = e.clientX - rect.left - rect.width / 2;
+        const y = e.clientY - rect.top - rect.height / 2;
+        target.style.transform = `translate(${x * 0.22}px, ${y * 0.22}px)`;
+      });
+
+      target.addEventListener("mouseleave", () => {
+        target.style.transform = "translate(0px, 0px)";
+      });
+    });
+  };
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", initMagnet);
+  } else {
+    initMagnet();
   }
 
   if (footerTarget) {
@@ -99,28 +159,31 @@
       </footer>`;
   }
 
-  const toggle = document.querySelector(".nav-toggle");
+  const toggleButtons = document.querySelectorAll(".nav-toggle, .menu-drawer-button");
   const mobilePanel = document.querySelector(".mobile-panel");
   const mobileClose = document.querySelector(".mobile-panel__close");
 
   function setMenu(open) {
-    if (!toggle || !mobilePanel) return;
-    toggle.setAttribute("aria-expanded", String(open));
-    toggle.setAttribute("aria-label", open ? "Close menu" : "Open menu");
-    toggle.innerHTML = open ? closeIcon : menuIcon;
+    if (!mobilePanel) return;
+    toggleButtons.forEach(btn => {
+      btn.setAttribute("aria-expanded", String(open));
+      btn.setAttribute("aria-label", open ? "Close menu" : "Open menu");
+    });
     mobilePanel.classList.toggle("is-open", open);
     mobilePanel.setAttribute("aria-hidden", String(!open));
     document.body.classList.toggle("nav-open", open);
   }
 
-  toggle?.addEventListener("click", () => setMenu(toggle.getAttribute("aria-expanded") !== "true"));
+  toggleButtons.forEach(btn => {
+    btn.addEventListener("click", () => setMenu(!mobilePanel?.classList.contains("is-open")));
+  });
   mobileClose?.addEventListener("click", () => setMenu(false));
   mobilePanel?.querySelectorAll("a").forEach((link) => link.addEventListener("click", () => setMenu(false)));
   document.addEventListener("keydown", (event) => {
     if (event.key === "Escape") setMenu(false);
   });
   window.addEventListener("resize", () => {
-    if (window.innerWidth > 900) setMenu(false);
+    if (window.innerWidth >= 1024) setMenu(false);
   });
 
   document.querySelectorAll("[data-current-year]").forEach((node) => {
