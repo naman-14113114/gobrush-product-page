@@ -2060,13 +2060,14 @@ theme.variantStrings = {
 
       </div>
 
-      <!-- Center Hero Toothbrush Image (Seamless #e6e6e6 Background) -->
+      <!-- Center Hero Toothbrush Image (Seamless Background) -->
       <div class="style-col-center" style="display: flex; justify-content: center; align-items: center; position: relative; width: 100%;">
         <div style="max-width: 340px; width: 100%; position: relative; display: flex; justify-content: center;">
           <img
-            src="https://e-assets.beeketing.net/10684/10684350/themes/1786698100cbcfdd856d.png"
+            id="brush-with-style-img"
+            src="/assets_ref/x/gray_brush_with_style.webp"
             alt="Miroooo X Sonic Toothbrush"
-            style="max-height: 600px; width: 100%; object-fit: contain; background: #e6e6e6; display: block;"
+            style="max-height: 600px; width: 100%; object-fit: contain; background: #e6e6e6; display: block; transition: opacity 0.2s ease;"
           />
         </div>
       </div>
@@ -3602,7 +3603,8 @@ const VARIANTS_DATA = {
       "/assets_ref/x/gallery/Pink-7.webp",
       "/assets_ref/x/gallery/Pink-8.webp",
       "/assets_ref/x/gallery/Silver-9.webp"
-    ]
+    ],
+    brushWithStyleImage: "/assets_ref/x/pink_brush_with_style.webp"
   },
   "Grey": {
     name: "Grey",
@@ -3620,7 +3622,8 @@ const VARIANTS_DATA = {
       "/assets_ref/x/gallery/Gray-7.webp",
       "/assets_ref/x/gallery/Gray-8.webp",
       "/assets_ref/x/gallery/Silver-9.webp"
-    ]
+    ],
+    brushWithStyleImage: "/assets_ref/x/gray_brush_with_style.webp"
   },
   "Silver": {
     name: "Silver",
@@ -3638,7 +3641,8 @@ const VARIANTS_DATA = {
       "/assets_ref/x/gallery/Silver-7.webp",
       "/assets_ref/x/gallery/Silver-8.webp",
       "/assets_ref/x/gallery/Silver-9.webp"
-    ]
+    ],
+    brushWithStyleImage: "/assets_ref/x/silver_brush_with_style.webp"
   }
 };
 // Aliases
@@ -3929,6 +3933,17 @@ function selectColorVariant(colorName) {
   const videoThumbImg = document.getElementById('thumb-video-img');
   if (videoThumbImg && data.images[0]) {
     videoThumbImg.src = data.images[0];
+  }
+
+  // 5. Update Brush with Style & Precision Hero Toothbrush Image
+  const styleHeroImg = document.getElementById('brush-with-style-img');
+  if (styleHeroImg && data.brushWithStyleImage) {
+    styleHeroImg.style.transition = 'opacity 0.2s ease';
+    styleHeroImg.style.opacity = '0';
+    setTimeout(() => {
+      styleHeroImg.src = data.brushWithStyleImage;
+      styleHeroImg.style.opacity = '1';
+    }, 120);
   }
 }
 
