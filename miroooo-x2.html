@@ -1513,12 +1513,28 @@ theme.variantStrings = {
     padding-bottom: 0px !important;
     margin-bottom: 0px !important;
   }
-  .product__info.sticky, .product__preview.sticky {
-    top: 24px !important;
-    inset-block-start: 24px !important;
+  @media screen and (min-width: 1024px) {
+    .featured-product.product {
+      align-items: flex-start !important;
+    }
+    .product__gallery,
+    media-gallery.product__gallery {
+      position: sticky !important;
+      top: 24px !important;
+      inset-block-start: 24px !important;
+      align-self: flex-start !important;
+      z-index: 10;
+    }
+    .product__info {
+      position: relative !important;
+      top: auto !important;
+      inset-block-start: auto !important;
+    }
   }
-  @media (max-width: 990px) {
-    .product__info.sticky, .product__preview.sticky {
+  @media (max-width: 1023px) {
+    .product__gallery,
+    media-gallery.product__gallery,
+    .product__info {
       position: static !important;
       top: auto !important;
       inset-block-start: auto !important;

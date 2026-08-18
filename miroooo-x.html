@@ -1372,12 +1372,28 @@ theme.variantStrings = {
     padding-bottom: 0px !important;
     margin-bottom: 0px !important;
   }
-  .product__info.sticky, .product__preview.sticky {
-    top: 24px !important;
-    inset-block-start: 24px !important;
+  @media screen and (min-width: 1024px) {
+    .featured-product.product {
+      align-items: flex-start !important;
+    }
+    .product__gallery,
+    media-gallery.product__gallery {
+      position: sticky !important;
+      top: 24px !important;
+      inset-block-start: 24px !important;
+      align-self: flex-start !important;
+      z-index: 10;
+    }
+    .product__info {
+      position: relative !important;
+      top: auto !important;
+      inset-block-start: auto !important;
+    }
   }
-  @media (max-width: 990px) {
-    .product__info.sticky, .product__preview.sticky {
+  @media (max-width: 1023px) {
+    .product__gallery,
+    media-gallery.product__gallery,
+    .product__info {
       position: static !important;
       top: auto !important;
       inset-block-start: auto !important;
@@ -1889,33 +1905,246 @@ theme.variantStrings = {
     </div>
   </div>
 </section>
-<details class="product__accordion details" is="accordion-details" style="border-top: 1px solid rgba(255, 255, 255, 0.12); color: #ffffff;">
-                <summary class="details__summary flex items-center justify-between gap-2 cursor-pointer" style="color: #ffffff;">
-                  <div class="flex items-center gap-2d5"><svg class="icon icon-box icon-md" viewBox="0 0 20 20" stroke="currentColor" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <path d="M6.24986 7.91666L13.7499 3.33333M9.99996 10.4167L17.5 5.83333M9.99996 10.4167L2.49996 5.83333M9.99996 10.4167V18.75M1.66663 8.55104V11.4489C1.66663 12.44 1.66663 12.9355 1.80881 13.3807C1.93464 13.7747 2.14059 14.1385 2.41371 14.4491C2.72235 14.8001 3.14725 15.055 3.99705 15.5649L7.53038 17.6849C8.42828 18.2237 8.87723 18.493 9.35649 18.5983C9.78042 18.6914 10.2195 18.6914 10.6434 18.5983C11.1227 18.493 11.5716 18.2237 12.4695 17.6849L16.0029 15.5649C16.8527 15.055 17.2776 14.8001 17.5862 14.4491C17.8593 14.1385 18.0653 13.7747 18.1911 13.3807C18.3333 12.9355 18.3333 12.44 18.3333 11.4489V8.55104C18.3333 7.56002 18.3333 7.0645 18.1911 6.61926C18.0653 6.22525 17.8593 5.86151 17.5862 5.5509C17.2776 5.19989 16.8527 4.94495 16.0029 4.43508L12.4695 2.31508C11.5716 1.77634 11.1227 1.50697 10.6434 1.40172C10.2195 1.30863 9.78042 1.30863 9.35649 1.40172C8.87723 1.50697 8.42828 1.77634 7.53038 2.31508L3.99705 4.43508C3.14725 4.94495 2.72235 5.19989 2.41371 5.5509C2.14059 5.86151 1.93464 6.22525 1.80881 6.61926C1.66663 7.0645 1.66663 7.56002 1.66663 8.55104Z" stroke-linecap="round" stroke-linejoin="round"/>
-    </svg><span class="text-sm-base font-medium leading-none">Package contents</span>
-                  </div><svg class="icon icon-plus-alt icon-xs flex-auto" viewBox="0 0 14 14" stroke="currentColor" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <path stroke-linecap="round" stroke-linejoin="round" d="M7 1V13M13 7H1"></path>
-    </svg></summary>
-                <div class="details__content rte text-sm text-opacity" style="color: rgba(255, 255, 255, 0.75);">
-                  <ul><li>1x Miroooo X sonic toothbrush in selected colour</li><li>2x Replacement brush heads</li><li>1x Travel case</li><li>1x Magnetic charging dock with USB-C cable (power adapter not included)</li><li>1x Luxury gift packaging box</li></ul>
-                  <div style="margin-top: 14px; border-radius: 12px; overflow: hidden; background: #000000;">
-                    <img src="/assets_ref/x/miroooo-x-package-box.webp" alt="Miroooo X Package Contents &amp; Gift Box" style="width: 100%; height: auto; display: block; border-radius: 12px;" loading="lazy" />
+<style>
+  .product__accordion summary .icon-chevron {
+    transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .product__accordion[open] summary .icon-chevron,
+  .product__accordion.active summary .icon-chevron {
+    transform: rotate(180deg);
+  }
+</style>
+
+<details class="product__accordion details" is="accordion-details" style="border-top: 1px solid rgba(255, 255, 255, 0.12); padding: 14px 0; color: #ffffff;">
+                <summary class="details__summary flex items-center justify-between gap-2 cursor-pointer" style="color: #ffffff; list-style: none; outline: none;">
+                  <div class="flex items-center gap-2d5" style="display: flex; align-items: center; gap: 10px;">
+                    <svg class="icon icon-md" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="width: 20px; height: 20px; flex-shrink: 0;">
+                      <path d="M12 2L14.4 9.6L22 12L14.4 14.4L12 22L9.6 14.4L2 12L9.6 9.6L12 2Z"></path>
+                    </svg>
+                    <span class="text-sm-base font-medium leading-none" style="color: #ffffff; font-size: 15px; font-weight: 600;">Why Miroooo X?</span>
+                  </div>
+                  <svg class="icon icon-chevron" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width: 16px; height: 16px; flex-shrink: 0;">
+                    <polyline points="6 9 12 15 18 9"></polyline>
+                  </svg>
+                </summary>
+                <div class="details__content text-sm" style="margin-top: 12px; color: rgba(255, 255, 255, 0.78); line-height: 1.7; font-size: 13.5px;">
+                  <p style="margin: 0 0 10px 0;">
+                    Traditional electric toothbrushes are often bulky, noisy, and constantly run out of battery right when you need them. We engineered the <strong>Miroooo X</strong> to redefine daily oral care through sleek minimalist design, aerospace metallurgy, and clinical-grade sonic performance.
+                  </p>
+                  <p style="margin: 0 0 10px 0;">
+                    Powered by a high-efficiency magnetic levitation motor delivering <strong>40,000 micro-vibrations per minute</strong>, the Miroooo X creates micro-bubble fluid dynamics that penetrate deep into interdental gaps, lifting away up to 10x more plaque and surface stains than manual brushing without harmful enamel abrasiveness.
+                  </p>
+                  <p style="margin: 0;">
+                    Crafted from a seamless <strong>aerospace-grade CNC aluminum unibody</strong> weighing an ultra-light 88g, it houses an advanced 800mAh high-density battery providing <strong>up to 60 days of daily brushing</strong> on a single charge. Combined with whisper-quiet dampening (&lt;50 dB) and IPX7 complete waterproof protection, it delivers an uncompromising luxury oral care experience.
+                  </p>
+                </div>
+              </details>
+
+              <details class="product__accordion details" is="accordion-details" style="border-top: 1px solid rgba(255, 255, 255, 0.12); padding: 14px 0; color: #ffffff;">
+                <summary class="details__summary flex items-center justify-between gap-2 cursor-pointer" style="color: #ffffff; list-style: none; outline: none;">
+                  <div class="flex items-center gap-2d5" style="display: flex; align-items: center; gap: 10px;">
+                    <svg class="icon icon-md" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="width: 20px; height: 20px; flex-shrink: 0;">
+                      <line x1="4" y1="21" x2="4" y2="14"></line>
+                      <line x1="4" y1="10" x2="4" y2="3"></line>
+                      <line x1="12" y1="21" x2="12" y2="12"></line>
+                      <line x1="12" y1="8" x2="12" y2="3"></line>
+                      <line x1="20" y1="21" x2="20" y2="16"></line>
+                      <line x1="20" y1="12" x2="20" y2="3"></line>
+                      <line x1="1" y1="14" x2="7" y2="14"></line>
+                      <line x1="9" y1="8" x2="15" y2="8"></line>
+                      <line x1="17" y1="16" x2="23" y2="16"></line>
+                    </svg>
+                    <span class="text-sm-base font-medium leading-none" style="color: #ffffff; font-size: 15px; font-weight: 600;">Specifications</span>
+                  </div>
+                  <svg class="icon icon-chevron" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width: 16px; height: 16px; flex-shrink: 0;">
+                    <polyline points="6 9 12 15 18 9"></polyline>
+                  </svg>
+                </summary>
+                <div class="details__content text-sm" style="margin-top: 12px; color: rgba(255, 255, 255, 0.85); font-size: 13.5px; line-height: 1.6;">
+                  <dl style="display: flex; flex-direction: column; gap: 0; margin: 0; padding: 0;">
+                    
+                    <!-- Spec 1: Sonic Motor -->
+                    <div style="display: flex; justify-content: space-between; align-items: center; padding: 9px 0; border-bottom: 1px solid rgba(255, 255, 255, 0.08); margin: 0;">
+                      <dt style="display: flex; align-items: center; gap: 10px; margin: 0;">
+                        <span style="color: #ffffff; display: flex; align-items: center; justify-content: center; width: 18px; height: 18px; flex-shrink: 0; margin: 0;">
+                          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"></circle><path d="M12 7v5l3 3"></path></svg>
+                        </span>
+                        <span style="color: rgba(255, 255, 255, 0.72); font-size: 13.5px; font-weight: 500; margin: 0;">Sonic Motor</span>
+                      </dt>
+                      <dd style="color: #ffffff; font-size: 13.5px; font-weight: 600; text-align: right; margin: 0;">40,000 VPM Maglev Motor</dd>
+                    </div>
+
+                    <!-- Spec 2: Battery Endurance -->
+                    <div style="display: flex; justify-content: space-between; align-items: center; padding: 9px 0; border-bottom: 1px solid rgba(255, 255, 255, 0.08); margin: 0;">
+                      <dt style="display: flex; align-items: center; gap: 10px; margin: 0;">
+                        <span style="color: #ffffff; display: flex; align-items: center; justify-content: center; width: 18px; height: 18px; flex-shrink: 0; margin: 0;">
+                          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="16" height="10" rx="2" ry="2"></rect><line x1="22" y1="11" x2="22" y2="13"></line></svg>
+                        </span>
+                        <span style="color: rgba(255, 255, 255, 0.72); font-size: 13.5px; font-weight: 500; margin: 0;">Battery Life</span>
+                      </dt>
+                      <dd style="color: #ffffff; font-size: 13.5px; font-weight: 600; text-align: right; margin: 0;">Up to 60 Days (800mAh)</dd>
+                    </div>
+
+                    <!-- Spec 3: Fast Charging -->
+                    <div style="display: flex; justify-content: space-between; align-items: center; padding: 9px 0; border-bottom: 1px solid rgba(255, 255, 255, 0.08); margin: 0;">
+                      <dt style="display: flex; align-items: center; gap: 10px; margin: 0;">
+                        <span style="color: #ffffff; display: flex; align-items: center; justify-content: center; width: 18px; height: 18px; flex-shrink: 0; margin: 0;">
+                          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg>
+                        </span>
+                        <span style="color: rgba(255, 255, 255, 0.72); font-size: 13.5px; font-weight: 500; margin: 0;">Charging Base</span>
+                      </dt>
+                      <dd style="color: #ffffff; font-size: 13.5px; font-weight: 600; text-align: right; margin: 0;">Magnetic USB-C Dock (~3h)</dd>
+                    </div>
+
+                    <!-- Spec 4: Waterproof Level -->
+                    <div style="display: flex; justify-content: space-between; align-items: center; padding: 9px 0; border-bottom: 1px solid rgba(255, 255, 255, 0.08); margin: 0;">
+                      <dt style="display: flex; align-items: center; gap: 10px; margin: 0;">
+                        <span style="color: #ffffff; display: flex; align-items: center; justify-content: center; width: 18px; height: 18px; flex-shrink: 0; margin: 0;">
+                          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z"></path></svg>
+                        </span>
+                        <span style="color: rgba(255, 255, 255, 0.72); font-size: 13.5px; font-weight: 500; margin: 0;">Waterproof Rating</span>
+                      </dt>
+                      <dd style="color: #ffffff; font-size: 13.5px; font-weight: 600; text-align: right; margin: 0;">IPX7 Full Submersible</dd>
+                    </div>
+
+                    <!-- Spec 5: Brushing Modes -->
+                    <div style="display: flex; justify-content: space-between; align-items: center; padding: 9px 0; border-bottom: 1px solid rgba(255, 255, 255, 0.08); margin: 0;">
+                      <dt style="display: flex; align-items: center; gap: 10px; margin: 0;">
+                        <span style="color: #ffffff; display: flex; align-items: center; justify-content: center; width: 18px; height: 18px; flex-shrink: 0; margin: 0;">
+                          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"></circle><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path></svg>
+                        </span>
+                        <span style="color: rgba(255, 255, 255, 0.72); font-size: 13.5px; font-weight: 500; margin: 0;">Cleaning Modes</span>
+                      </dt>
+                      <dd style="color: #ffffff; font-size: 13.5px; font-weight: 600; text-align: right; margin: 0;">3 Modes: Clean, Soft &amp; White</dd>
+                    </div>
+
+                    <!-- Spec 6: Smart Pacer -->
+                    <div style="display: flex; justify-content: space-between; align-items: center; padding: 9px 0; border-bottom: 1px solid rgba(255, 255, 255, 0.08); margin: 0;">
+                      <dt style="display: flex; align-items: center; gap: 10px; margin: 0;">
+                        <span style="color: #ffffff; display: flex; align-items: center; justify-content: center; width: 18px; height: 18px; flex-shrink: 0; margin: 0;">
+                          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+                        </span>
+                        <span style="color: rgba(255, 255, 255, 0.72); font-size: 13.5px; font-weight: 500; margin: 0;">Smart Timer</span>
+                      </dt>
+                      <dd style="color: #ffffff; font-size: 13.5px; font-weight: 600; text-align: right; margin: 0;">2-Min Timer + 30s Quad-Pacer</dd>
+                    </div>
+
+                    <!-- Spec 7: Bristle Filaments -->
+                    <div style="display: flex; justify-content: space-between; align-items: center; padding: 9px 0; border-bottom: 1px solid rgba(255, 255, 255, 0.08); margin: 0;">
+                      <dt style="display: flex; align-items: center; gap: 10px; margin: 0;">
+                        <span style="color: #ffffff; display: flex; align-items: center; justify-content: center; width: 18px; height: 18px; flex-shrink: 0; margin: 0;">
+                          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path></svg>
+                        </span>
+                        <span style="color: rgba(255, 255, 255, 0.72); font-size: 13.5px; font-weight: 500; margin: 0;">Bristle Filaments</span>
+                      </dt>
+                      <dd style="color: #ffffff; font-size: 13.5px; font-weight: 600; text-align: right; margin: 0;">DuPont™ Tynex® 3D End-Rounded</dd>
+                    </div>
+
+                    <!-- Spec 8: Chassis Body -->
+                    <div style="display: flex; justify-content: space-between; align-items: center; padding: 9px 0; border-bottom: 1px solid rgba(255, 255, 255, 0.08); margin: 0;">
+                      <dt style="display: flex; align-items: center; gap: 10px; margin: 0;">
+                        <span style="color: #ffffff; display: flex; align-items: center; justify-content: center; width: 18px; height: 18px; flex-shrink: 0; margin: 0;">
+                          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><line x1="9" y1="3" x2="9" y2="21"></line></svg>
+                        </span>
+                        <span style="color: rgba(255, 255, 255, 0.72); font-size: 13.5px; font-weight: 500; margin: 0;">Chassis Body</span>
+                      </dt>
+                      <dd style="color: #ffffff; font-size: 13.5px; font-weight: 600; text-align: right; margin: 0;">CNC Anodized Aluminum</dd>
+                    </div>
+
+                    <!-- Spec 9: Total Weight -->
+                    <div style="display: flex; justify-content: space-between; align-items: center; padding: 9px 0; border-bottom: 1px solid rgba(255, 255, 255, 0.08); margin: 0;">
+                      <dt style="display: flex; align-items: center; gap: 10px; margin: 0;">
+                        <span style="color: #ffffff; display: flex; align-items: center; justify-content: center; width: 18px; height: 18px; flex-shrink: 0; margin: 0;">
+                          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12.01" y2="16"></line></svg>
+                        </span>
+                        <span style="color: rgba(255, 255, 255, 0.72); font-size: 13.5px; font-weight: 500; margin: 0;">Weight</span>
+                      </dt>
+                      <dd style="color: #ffffff; font-size: 13.5px; font-weight: 600; text-align: right; margin: 0;">Ultra-Lightweight 51g Handle</dd>
+                    </div>
+
+                    <!-- Spec 10: Acoustic Noise -->
+                    <div style="display: flex; justify-content: space-between; align-items: center; padding: 9px 0; margin: 0;">
+                      <dt style="display: flex; align-items: center; gap: 10px; margin: 0;">
+                        <span style="color: #ffffff; display: flex; align-items: center; justify-content: center; width: 18px; height: 18px; flex-shrink: 0; margin: 0;">
+                          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon><path d="M15.54 8.46a5 5 0 0 1 0 7.07"></path></svg>
+                        </span>
+                        <span style="color: rgba(255, 255, 255, 0.72); font-size: 13.5px; font-weight: 500; margin: 0;">Acoustic Noise</span>
+                      </dt>
+                      <dd style="color: #ffffff; font-size: 13.5px; font-weight: 600; text-align: right; margin: 0;">Whisper-Quiet (&lt;50 dB)</dd>
+                    </div>
+
+                  </dl>
+                </div>
+              </details>
+
+              <details class="product__accordion details" is="accordion-details" style="border-top: 1px solid rgba(255, 255, 255, 0.12); padding: 14px 0; color: #ffffff;">
+                <summary class="details__summary flex items-center justify-between gap-2 cursor-pointer" style="color: #ffffff; list-style: none; outline: none;">
+                  <div class="flex items-center gap-2d5" style="display: flex; align-items: center; gap: 10px;">
+                    <svg class="icon icon-md" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="width: 20px; height: 20px; flex-shrink: 0;">
+                      <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path>
+                      <polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline>
+                      <line x1="12" y1="22.08" x2="12" y2="12"></line>
+                    </svg>
+                    <span class="text-sm-base font-medium leading-none" style="color: #ffffff; font-size: 15px; font-weight: 600;">What's inside box</span>
+                  </div>
+                  <svg class="icon icon-chevron" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width: 16px; height: 16px; flex-shrink: 0;">
+                    <polyline points="6 9 12 15 18 9"></polyline>
+                  </svg>
+                </summary>
+                <div class="details__content text-sm" style="margin-top: 12px; color: rgba(255, 255, 255, 0.78); line-height: 1.65; font-size: 13.5px;">
+                  <ul style="margin: 0; padding-left: 18px; display: flex; flex-direction: column; gap: 6px;">
+                    <li style="margin: 0;">1x Miroooo X sonic toothbrush in selected colour</li>
+                    <li style="margin: 0;">2x Replacement brush heads</li>
+                    <li style="margin: 0;">1x Travel case</li>
+                    <li style="margin: 0;">1x Magnetic charging dock with USB-C cable (power adapter not included)</li>
+                    <li style="margin: 0;">1x Luxury gift packaging box</li>
+                  </ul>
+                  <div style="margin-top: 14px; border-radius: 12px; overflow: hidden; background: #000000; border: 1px solid rgba(255,255,255,0.08);">
+                    <img src="/assets_ref/x/miroooo-x-package-box.webp" alt="Miroooo X Package Contents &amp; Gift Box" style="width: 100%; height: auto; display: block; border-radius: 12px; margin: 0;" loading="lazy" />
                   </div>
                 </div>
-              </details><details class="product__accordion details" is="accordion-details" style="border-top: 1px solid rgba(255, 255, 255, 0.12); color: #ffffff;">
-                <summary class="details__summary flex items-center justify-between gap-2 cursor-pointer" style="color: #ffffff;">
-                  <div class="flex items-center gap-2d5"><svg class="icon icon-tag icon-md" viewBox="0 0 20 20" stroke="currentColor" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <path d="M2.5 8.39256C2.5 9.16362 2.5 9.54915 2.56885 9.91541C2.67113 10.4596 2.88529 10.9766 3.19775 11.4337C3.40805 11.7414 3.68066 12.014 4.22589 12.5592L6.66667 15C7.91326 16.2466 8.53656 16.8699 9.22498 17.1722C10.25 17.6223 11.4167 17.6223 12.4417 17.1722C13.1301 16.8699 13.7534 16.2466 15 15V15C16.2466 13.7534 16.8699 13.1301 17.1722 12.4417C17.6223 11.4167 17.6223 10.25 17.1722 9.22498C16.8699 8.53656 16.2466 7.91327 15 6.66667L12.5592 4.22589C12.014 3.68066 11.7414 3.40805 11.4337 3.19775C10.9766 2.88529 10.4596 2.67113 9.91541 2.56885C9.54915 2.5 9.16362 2.5 8.39256 2.5V2.5C6.6296 2.5 5.74812 2.5 5.04756 2.77301C4.0045 3.1795 3.1795 4.0045 2.77301 5.04756C2.5 5.74812 2.5 6.6296 2.5 8.39256V8.39256Z" stroke-linecap="round" stroke-linejoin="round"/>
-      <path d="M10 8.33333C10 9.25381 9.25381 10 8.33333 10C7.41286 10 6.66667 9.25381 6.66667 8.33333C6.66667 7.41286 7.41286 6.66667 8.33333 6.66667C9.25381 6.66667 10 7.41286 10 8.33333Z" stroke-linecap="round" stroke-linejoin="round"/>
-    </svg><span class="text-sm-base font-medium leading-none">Why Miroooo X?</span>
-                  </div><svg class="icon icon-plus-alt icon-xs flex-auto" viewBox="0 0 14 14" stroke="currentColor" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <path stroke-linecap="round" stroke-linejoin="round" d="M7 1V13M13 7H1"></path>
-    </svg></summary>
-                <div class="details__content rte text-sm text-opacity" style="color: rgba(255, 255, 255, 0.75);">
-                  <p>Is your toothbrush always out of battery right when you need it? We know that frustration all too well. That's why we engineered the Miroooo X: a toothbrush that is not only compact and powerful, but also features a high-density battery lasting up to 8 weeks on a single charge.</p>
+              </details>
 
-
+              <details class="product__accordion details" is="accordion-details" style="border-top: 1px solid rgba(255, 255, 255, 0.12); border-bottom: 1px solid rgba(255, 255, 255, 0.12); padding: 14px 0; color: #ffffff;">
+                <summary class="details__summary flex items-center justify-between gap-2 cursor-pointer" style="color: #ffffff; list-style: none; outline: none;">
+                  <div class="flex items-center gap-2d5" style="display: flex; align-items: center; gap: 10px;">
+                    <svg class="icon icon-md" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="width: 20px; height: 20px; flex-shrink: 0;">
+                      <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+                      <polyline points="9 12 11 14 15 10"></polyline>
+                    </svg>
+                    <span class="text-sm-base font-medium leading-none" style="color: #ffffff; font-size: 15px; font-weight: 600;">Certifications</span>
+                  </div>
+                  <svg class="icon icon-chevron" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width: 16px; height: 16px; flex-shrink: 0;">
+                    <polyline points="6 9 12 15 18 9"></polyline>
+                  </svg>
+                </summary>
+                <div class="details__content text-sm" style="margin-top: 12px; color: rgba(255, 255, 255, 0.85); font-size: 13.5px; line-height: 1.6;">
+                  <ul style="list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 0;">
+                    <li style="display: flex; align-items: center; gap: 10px; padding: 8px 0; border-bottom: 1px solid rgba(255, 255, 255, 0.08); font-size: 13.5px; color: #ffffff; margin: 0;">
+                      <span style="color: #ffffff; font-weight: 700; font-size: 15px; line-height: 1; min-width: 16px; display: inline-flex; align-items: center; justify-content: center; flex-shrink: 0; margin: 0;">✓</span>
+                      <span style="margin: 0;"><strong>CE Certified</strong> — European Health &amp; Safety Standard</span>
+                    </li>
+                    <li style="display: flex; align-items: center; gap: 10px; padding: 8px 0; border-bottom: 1px solid rgba(255, 255, 255, 0.08); font-size: 13.5px; color: #ffffff; margin: 0;">
+                      <span style="color: #ffffff; font-weight: 700; font-size: 15px; line-height: 1; min-width: 16px; display: inline-flex; align-items: center; justify-content: center; flex-shrink: 0; margin: 0;">✓</span>
+                      <span style="margin: 0;"><strong>RoHS Compliant</strong> — 100% Free of Toxic Heavy Metals</span>
+                    </li>
+                    <li style="display: flex; align-items: center; gap: 10px; padding: 8px 0; border-bottom: 1px solid rgba(255, 255, 255, 0.08); font-size: 13.5px; color: #ffffff; margin: 0;">
+                      <span style="color: #ffffff; font-weight: 700; font-size: 15px; line-height: 1; min-width: 16px; display: inline-flex; align-items: center; justify-content: center; flex-shrink: 0; margin: 0;">✓</span>
+                      <span style="margin: 0;"><strong>IPX7 Waterproof</strong> — Certified Submersible Immersion Safe</span>
+                    </li>
+                    <li style="display: flex; align-items: center; gap: 10px; padding: 8px 0; border-bottom: 1px solid rgba(255, 255, 255, 0.08); font-size: 13.5px; color: #ffffff; margin: 0;">
+                      <span style="color: #ffffff; font-weight: 700; font-size: 15px; line-height: 1; min-width: 16px; display: inline-flex; align-items: center; justify-content: center; flex-shrink: 0; margin: 0;">✓</span>
+                      <span style="margin: 0;"><strong>EMC Compliant</strong> — Zero Electromagnetic Interference</span>
+                    </li>
+                    <li style="display: flex; align-items: center; gap: 10px; padding: 8px 0; border-bottom: 1px solid rgba(255, 255, 255, 0.08); font-size: 13.5px; color: #ffffff; margin: 0;">
+                      <span style="color: #ffffff; font-weight: 700; font-size: 15px; line-height: 1; min-width: 16px; display: inline-flex; align-items: center; justify-content: center; flex-shrink: 0; margin: 0;">✓</span>
+                      <span style="margin: 0;"><strong>SGS Tested</strong> — Laboratory Verified Durability &amp; Safety</span>
+                    </li>
+                    <li style="display: flex; align-items: center; gap: 10px; padding: 8px 0; font-size: 13.5px; color: #ffffff; margin: 0;">
+                      <span style="color: #ffffff; font-weight: 700; font-size: 15px; line-height: 1; min-width: 16px; display: inline-flex; align-items: center; justify-content: center; flex-shrink: 0; margin: 0;">✓</span>
+                      <span style="margin: 0;"><strong>DuPont Food-Contact Material Compliant</strong> — BPA-Free Food-Safe Filaments</span>
+                    </li>
+                  </ul>
                 </div>
               </details></product-info>
     </div>
