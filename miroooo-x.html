@@ -812,20 +812,28 @@
 
 /* Standalone Color Swatches (Hero Section) */
 .standalone-swatch-btn {
-  width: 32px;
-  height: 32px;
-  border-radius: 50%;
-  border: 2px solid transparent;
-  cursor: pointer;
-  padding: 0;
-  outline: none;
-  transition: transform 0.15s ease, box-shadow 0.15s ease;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
+  width: 32px !important;
+  height: 32px !important;
+  border-radius: 50% !important;
+  border: none !important;
+  cursor: pointer !important;
+  padding: 0 !important;
+  outline: none !important;
+  position: relative !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  transition: transform 0.18s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.18s cubic-bezier(0.16, 1, 0.3, 1) !important;
+  overflow: visible !important;
+  background-clip: padding-box !important;
+}
+.standalone-swatch-btn::before,
+.standalone-swatch-btn::after {
+  display: none !important;
+  content: none !important;
 }
 .standalone-swatch-btn:hover {
-  transform: scale(1.12);
+  transform: scale(1.12) !important;
 }
 
 .tier-expanded-panel {
@@ -851,21 +859,27 @@
   gap: 8px;
 }
 .color-swatch-btn {
-  width: 28px;
-  height: 28px;
-  border-radius: 50%;
-  border: 1.5px solid rgba(0, 0, 0, 0.2);
-  position: relative;
-  cursor: pointer;
-  transition: transform 0.15s ease, box-shadow 0.15s ease;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 0;
-  outline: none;
+  width: 28px !important;
+  height: 28px !important;
+  border-radius: 50% !important;
+  border: 1px solid rgba(0, 0, 0, 0.18) !important;
+  position: relative !important;
+  cursor: pointer !important;
+  transition: transform 0.18s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.18s cubic-bezier(0.16, 1, 0.3, 1) !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  padding: 0 !important;
+  outline: none !important;
+  overflow: visible !important;
+}
+.color-swatch-btn::before,
+.color-swatch-btn::after {
+  display: none !important;
+  content: none !important;
 }
 .color-swatch-btn:hover {
-  transform: scale(1.12);
+  transform: scale(1.12) !important;
 }
 
 /* Metallic Color Swatches (Silver, Pink, Grey) */
@@ -874,7 +888,7 @@
 .color-swatch-btn.swatch-silver,
 .color-swatch-btn[data-color="Silver"] {
   background: linear-gradient(135deg, #f0f2f5 0%, #cbd2da 25%, #ffffff 50%, #9aa1aa 75%, #d5dadf 100%) !important;
-  box-shadow: inset 0 1px 2px rgba(255, 255, 255, 0.9), inset 0 -1px 2px rgba(0, 0, 0, 0.25), 0 2px 5px rgba(0, 0, 0, 0.3) !important;
+  box-shadow: inset 0 1px 2px rgba(255, 255, 255, 0.9), inset 0 -1px 2px rgba(0, 0, 0, 0.25), 0 2px 5px rgba(0, 0, 0, 0.2) !important;
 }
 
 .standalone-swatch-btn[data-color="Pink"],
@@ -882,7 +896,7 @@
 .color-swatch-btn.swatch-pink,
 .color-swatch-btn[data-color="Pink"] {
   background: linear-gradient(135deg, #fedbdf 0%, #e8a2af 25%, #fff0f2 50%, #c47685 75%, #e8aab5 100%) !important;
-  box-shadow: inset 0 1px 2px rgba(255, 255, 255, 0.9), inset 0 -1px 2px rgba(0, 0, 0, 0.25), 0 2px 5px rgba(0, 0, 0, 0.3) !important;
+  box-shadow: inset 0 1px 2px rgba(255, 255, 255, 0.9), inset 0 -1px 2px rgba(0, 0, 0, 0.25), 0 2px 5px rgba(0, 0, 0, 0.2) !important;
 }
 
 .standalone-swatch-btn[data-color="Grey"],
@@ -890,14 +904,20 @@
 .color-swatch-btn.swatch-grey,
 .color-swatch-btn[data-color="Grey"] {
   background: linear-gradient(135deg, #8c919a 0%, #565a62 25%, #a1a6b0 50%, #3a3d43 75%, #6a6f78 100%) !important;
-  box-shadow: inset 0 1px 2px rgba(255, 255, 255, 0.5), inset 0 -1px 2px rgba(0, 0, 0, 0.4), 0 2px 5px rgba(0, 0, 0, 0.4) !important;
+  box-shadow: inset 0 1px 2px rgba(255, 255, 255, 0.5), inset 0 -1px 2px rgba(0, 0, 0, 0.4), 0 2px 5px rgba(0, 0, 0, 0.25) !important;
 }
 
-/* Active Selection Ring */
-.standalone-swatch-btn.is-active,
+/* Standalone Active Selection Ring: White Outer Circle */
+.standalone-swatch-btn.is-active {
+  box-shadow: 0 0 0 2px #000000, 0 0 0 4px #ffffff, 0 4px 10px rgba(0, 0, 0, 0.5) !important;
+  transform: scale(1.08) !important;
+}
+
+/* Bundle Active Selection Ring: Single Black Outer Circle */
 .color-swatch-btn.is-active {
-  box-shadow: 0 0 0 2px #000000, 0 0 0 4px #ffffff, 0 4px 10px rgba(0,0,0,0.5) !important;
-  transform: scale(1.08);
+  border-color: transparent !important;
+  box-shadow: 0 0 0 2px #ffffff, 0 0 0 4px #000000 !important;
+  transform: scale(1.08) !important;
 }
 
 /* Free Gifts 3-Tier Grid (Dark Theme) */
@@ -1022,13 +1042,17 @@ theme.variantStrings = {
 </mouse-cursor>
 <!-- BEGIN sections: header-group -->
 <div id="shopify-section-sections--24203576967513__announcement-bar" class="shopify-section shopify-section-group-header-group topbar-section"><style>
-    :root {--topbar-height: var(--sp-12);}
+    :root {--topbar-height: auto;}
 
     @media screen and (min-width: 1536px) {
-      :root {--topbar-height: var(--sp-14);}
+      :root {--topbar-height: auto;}
     }
 
-    #shopify-section-sections--24203576967513__announcement-bar {
+    #shopify-section-sections--24203576967513__announcement-bar,
+    .topbar-section {
+      height: auto !important;
+      min-height: 0 !important;
+      max-height: none !important;
       --gradient-background: #e6e6e6;
       --color-background: 230 230 230;
       --color-foreground: 17 17 17;
@@ -1036,28 +1060,38 @@ theme.variantStrings = {
       background: #e6e6e6 !important;
       color: #111111 !important;
       border-bottom: 1px solid rgba(0, 0, 0, 0.08) !important;
+      padding: 4px 0 !important;
+      overflow: hidden !important;
     }
     #shopify-section-sections--24203576967513__announcement-bar .topbar,
     #shopify-section-sections--24203576967513__announcement-bar .announcement-bar,
     #shopify-section-sections--24203576967513__announcement-bar .announcement-text,
     #shopify-section-sections--24203576967513__announcement-bar .highlighted-text {
       color: #111111 !important;
+      height: auto !important;
+      min-height: 0 !important;
+      padding: 0 !important;
     }
     #shopify-section-sections--24203576967513__announcement-bar svg {
       stroke: #111111 !important;
       color: #111111 !important;
     }
-  </style><div class="topbar topbar--center topbar--only page-width page-width--full section relative grid py-0 h-full w-full items-center"><div class="announcement-bar h-full flex justify-center lg:justify-center without-nav relative">
-        <announcement-bar id="Slider-sections--24203576967513__announcement-bar" class="announcement__slides" autoplay autoplay-speed="5"><div class="announcement__slide flex h-full" ><div class="announcement__content flex items-center gap-2"><span class="announcement-icon"><svg class="icon icon-heart icon-xs stroke-1" viewBox="0 0 16 16" stroke="currentColor" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <path d="M7.99992 14C8.66659 14 14.6666 10.6668 14.6666 6.00029C14.6666 3.66704 12.6666 2.02937 10.6666 2.00043C9.66659 1.98596 8.66659 2.33377 7.99992 3.33373C7.33325 2.33377 6.31595 2.00043 5.33325 2.00043C3.33325 2.00043 1.33325 3.66704 1.33325 6.00029C1.33325 10.6668 7.33326 14 7.99992 14Z" stroke-linecap="round" stroke-linejoin="round"/>
-    </svg></span><p class="announcement-text leading-tight md:hidden">Free <em class="highlighted-text inline-block not-italic relative" is="highlighted-text" data-style="scribble">tracked UK delivery!<svg class="icon icon-circle" viewBox="0 0 800 350" stroke="currentColor" fill="none" role="presentation" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
-      <path transform="matrix(0.9791300296783447,0,0,0.9791300296783447,400,179)" stroke-linejoin="miter" stroke-miterlimit="4" stroke-width="20" pathLength="1" d=" M253,-161 C253,-161 -284.78900146484375,-201.4600067138672 -376,-21 C-469,163 67.62300109863281,174.2100067138672 256,121 C564,34 250.82899475097656,-141.6929931640625 19.10700035095215,-116.93599700927734"/>
-    </svg></em></p>
-                  <p class="announcement-text leading-tight hidden md:block">Free <em class="highlighted-text inline-block not-italic relative" is="highlighted-text" data-style="scribble">tracked UK delivery<svg class="icon icon-circle" viewBox="0 0 800 350" stroke="currentColor" fill="none" role="presentation" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
-      <path transform="matrix(0.9791300296783447,0,0,0.9791300296783447,400,179)" stroke-linejoin="miter" stroke-miterlimit="4" stroke-width="20" pathLength="1" d=" M253,-161 C253,-161 -284.78900146484375,-201.4600067138672 -376,-21 C-469,163 67.62300109863281,174.2100067138672 256,121 C564,34 250.82899475097656,-141.6929931640625 19.10700035095215,-116.93599700927734"/>
-    </svg></em>!</p></div></div></announcement-bar></div></div>
+  </style><div class="topbar topbar--center topbar--only section relative flex py-0 w-full items-center" style="overflow: hidden; height: auto; min-height: 0; padding: 0;"><div class="announcement-bar flex items-center overflow-hidden relative" style="overflow: hidden; width: 100%; height: auto; min-height: 0; padding: 0;">
+        <div class="miroooo-announcement-ticker">
+          <div class="miroooo-ticker-item"><span>Free Shipping on all orders</span> <span class="miroooo-ticker-dot" aria-hidden="true"></span></div>
+          <div class="miroooo-ticker-item"><span>50% OFF Today + 3 Free Gifts</span> <span class="miroooo-ticker-dot" aria-hidden="true"></span></div>
+          <div class="miroooo-ticker-item"><span>Ultra Lightweight</span> <span class="miroooo-ticker-dot" aria-hidden="true"></span></div>
+          <div class="miroooo-ticker-item"><span>4.9 Stars from 40,000+ Customers</span> <span class="miroooo-ticker-dot" aria-hidden="true"></span></div>
+          <div class="miroooo-ticker-item"><span>90-Day Risk-Free Home Trial</span> <span class="miroooo-ticker-dot" aria-hidden="true"></span></div>
+          <div class="miroooo-ticker-item"><span>Free Shipping on all orders</span> <span class="miroooo-ticker-dot" aria-hidden="true"></span></div>
+          <div class="miroooo-ticker-item"><span>50% OFF Today + 3 Free Gifts</span> <span class="miroooo-ticker-dot" aria-hidden="true"></span></div>
+          <div class="miroooo-ticker-item"><span>Ultra Lightweight</span> <span class="miroooo-ticker-dot" aria-hidden="true"></span></div>
+          <div class="miroooo-ticker-item"><span>4.9 Stars from 40,000+ Customers</span> <span class="miroooo-ticker-dot" aria-hidden="true"></span></div>
+          <div class="miroooo-ticker-item"><span>90-Day Risk-Free Home Trial</span> <span class="miroooo-ticker-dot" aria-hidden="true"></span></div>
+        </div></div></div>
 </div><div id="shopify-section-sections--24203576967513__header" class="shopify-section shopify-section-group-header-group header-section"><style>
   #shopify-section-sections--24203576967513__header {
+    position: relative !important;
     --section-padding-top: 18px;
     --section-padding-bottom: 16px;
     --color-background: 0 0 0;
@@ -1069,8 +1103,10 @@ theme.variantStrings = {
   }
   #shopify-section-sections--24203576967513__header header,
   #shopify-section-sections--24203576967513__header .header {
+    position: relative !important;
     background: #000000 !important;
     color: #ffffff !important;
+    top: auto !important;
   }
   #shopify-section-sections--24203576967513__header .header__logo-link,
   #shopify-section-sections--24203576967513__header .header__logo-link span {
@@ -1138,11 +1174,11 @@ theme.variantStrings = {
       <nav class="relative grow overflow-hidden" role="navigation">
         <ul class="drawer__scrollable drawer__menu relative w-full h-full" role="list" data-parent><li><a class="drawer__menu-item block heading text-2xl leading-none tracking-tight" href="/shop">Shop</a></li><li><a class="drawer__menu-item block heading text-2xl leading-none tracking-tight" href="/products/miroooo-x2">Bundles</a></li><li><a class="drawer__menu-item block heading text-2xl leading-none tracking-tight" href="/contact">Contact</a></li><li><a class="drawer__menu-item block heading text-2xl leading-none tracking-tight" href="/faq">FAQ</a></li></ul>
       </nav>
-      <div class="drawer__footer grid w-full"><div class="drawer__footer-bottom flex items-center justify-between gap-6"><a href="https://miroooo.co/customer_authentication/redirect?locale=nl&region_country=NL" class="button button--primary icon-with-text" is="hover-link" rel="nofollow">
+      <div class="drawer__footer grid w-full"><div class="drawer__footer-bottom flex items-center justify-between gap-6"><a href="/order-tracking" class="button button--primary icon-with-text" style="background-color: #000000 !important; border: 1.5px solid #000000 !important; color: #ffffff !important;" is="hover-link" rel="nofollow" aria-label="Account">
               <span class="btn-fill" data-fill></span>
-              <span class="btn-text"><svg class="icon icon-account-alt icon-xs" viewBox="0 0 16 17" stroke="currentColor" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <rect width="6.5" height="6.5" x="4.75" y="1.917" rx="3.25"></rect>
-      <path stroke-linecap="round" d="M8 10.834c1 0 2.667.222 3 .333.333.11 2.467.533 3 1.333.667 1 .667 1.334.667 2.667M8 10.834c-1 0-2.667.222-3 .333-.333.11-2.467.533-3 1.333-.667 1-.667 1.334-.667 2.667"></path>
+              <span class="btn-text"><svg class="icon icon-account-alt icon-xs" viewBox="0 0 16 17" stroke="#ffffff" fill="none" style="stroke: #ffffff !important; color: #ffffff !important;" xmlns="http://www.w3.org/2000/svg">
+      <rect width="6.5" height="6.5" x="4.75" y="1.917" rx="3.25" stroke="#ffffff"></rect>
+      <path stroke-linecap="round" stroke="#ffffff" d="M8 10.834c1 0 2.667.222 3 .333.333.11 2.467.533 3 1.333.667 1 .667 1.334.667 2.667M8 10.834c-1 0-2.667.222-3 .333-.333.11-2.467.533-3 1.333-.667 1-.667 1.334-.667 2.667"></path>
     </svg></span>
             </a></div>
       </div>
@@ -1175,18 +1211,15 @@ theme.variantStrings = {
       <span style="font-family: 'Inter', -apple-system, sans-serif; font-size: clamp(1.3rem, 2vw, 1.6rem); font-weight: 800; letter-spacing: 0.2em; text-transform: uppercase; color: #ffffff;">MIROOOO</span>
     </a>
   </div><div class="header__icons header__icons--end flex justify-end z-2">
-  <div class="header__buttons flex items-center gap-1d5"><a href="https://miroooo.co/customer_authentication/redirect?locale=nl&region_country=NL" class="hidden lg:flex items-center justify-center" is="magnet-link" rel="nofollow">
-        <span class="sr-only"></span><svg class="icon icon-account icon-lg" viewBox="0 0 24 24" stroke="currentColor" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <div class="header__buttons flex items-center gap-1d5"><a href="/order-tracking" class="account-link flex items-center justify-center" is="magnet-link" rel="nofollow" aria-label="Account">
+        <span class="sr-only">Account</span><svg class="icon icon-account icon-lg" viewBox="0 0 24 24" stroke="currentColor" fill="none" xmlns="http://www.w3.org/2000/svg">
       <rect width="10.5" height="10.5" x="6.75" y="1.75" rx="5.25"></rect>
       <path stroke-linecap="round" d="M12 15.5c1.5 0 4 .333 4.5.5.5.167 3.7.8 4.5 2 1 1.5 1 2 1 4m-10-6.5c-1.5 0-4 .333-4.5.5-.5.167-3.7.8-4.5 2-1 1.5-1 2-1 4"></path>
-    </svg></a><a href="/cart" class="cart-drawer-button flex items-center justify-center relative" is="magnet-link" aria-controls="CartDrawer" aria-expanded="false" data-no-instant>
+    </svg></a><a href="/cart" class="cart-drawer-button flex items-center justify-center relative" is="magnet-link" aria-controls="CartDrawer" aria-expanded="false" data-no-instant aria-label="Cart">
         <span class="sr-only">Cart</span><svg class="icon icon-cart icon-lg" viewBox="0 0 24 24" stroke="currentColor" fill="none" xmlns="http://www.w3.org/2000/svg">
           <path stroke-linecap="round" stroke-linejoin="round" d="M1 1h.5v0c.226 0 .339 0 .44.007a3 3 0 0 1 2.62 1.976c.034.095.065.204.127.42l.17.597m0 0 1.817 6.358c.475 1.664.713 2.496 1.198 3.114a4 4 0 0 0 1.633 1.231c.727.297 1.592.297 3.322.297h2.285c1.75 0 2.626 0 3.359-.302a4 4 0 0 0 1.64-1.253c.484-.627.715-1.472 1.175-3.161l.06-.221c.563-2.061.844-3.092.605-3.906a3 3 0 0 0-1.308-1.713C19.92 4 18.853 4 16.716 4H4.857ZM12 20a2 2 0 1 1-4 0 2 2 0 0 1 4 0Zm8 0a2 2 0 1 1-4 0 2 2 0 0 1 4 0Z"></path>
         </svg><cart-count class="count absolute top-0 right-0 text-xs" aria-label="0 items" hidden>0</cart-count>
-      </a><button class="menu-drawer-button lg:hidden flex items-center justify-center" type="button" is="magnet-button" aria-controls="MenuDrawer" aria-expanded="false">
-        <span class="sr-only">Navigation</span><svg class="icon icon-hamburger icon-lg" viewBox="0 0 24 24" stroke="currentColor" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <path stroke-linecap="round" d="M3 6H21M3 12H11M3 18H16"></path>
-    </svg></button></div>
+      </a></div>
 </div>
 <span class="header__cutout cutout opacity-0 absolute left-0 top-100 w-full pointer-events-none"></span></header><span class="overlay opacity-0 z-1 fixed left-0 w-full pointer-events-none"></span><script>
   if (Shopify.designMode) {

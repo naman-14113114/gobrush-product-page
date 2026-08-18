@@ -28,7 +28,20 @@
   if (headerTarget) {
     headerTarget.classList.toggle("header-layer--overlay", isOverlayHeader);
     headerTarget.innerHTML = `
-      <div class="announcement"><span>Free tracked UK delivery</span><span>90-day home trial</span></div>
+      <div class="announcement" style="overflow: hidden; padding: 3px 0; min-height: 22px;">
+        <div class="miroooo-announcement-ticker">
+          <div class="miroooo-ticker-item"><span>Free Shipping on all orders</span> <span class="miroooo-ticker-dot" aria-hidden="true"></span></div>
+          <div class="miroooo-ticker-item"><span>50% OFF Today + 3 Free Gifts</span> <span class="miroooo-ticker-dot" aria-hidden="true"></span></div>
+          <div class="miroooo-ticker-item"><span>Ultra Lightweight</span> <span class="miroooo-ticker-dot" aria-hidden="true"></span></div>
+          <div class="miroooo-ticker-item"><span>4.9 Stars from 40,000+ Customers</span> <span class="miroooo-ticker-dot" aria-hidden="true"></span></div>
+          <div class="miroooo-ticker-item"><span>90-Day Risk-Free Home Trial</span> <span class="miroooo-ticker-dot" aria-hidden="true"></span></div>
+          <div class="miroooo-ticker-item"><span>Free Shipping on all orders</span> <span class="miroooo-ticker-dot" aria-hidden="true"></span></div>
+          <div class="miroooo-ticker-item"><span>50% OFF Today + 3 Free Gifts</span> <span class="miroooo-ticker-dot" aria-hidden="true"></span></div>
+          <div class="miroooo-ticker-item"><span>Ultra Lightweight</span> <span class="miroooo-ticker-dot" aria-hidden="true"></span></div>
+          <div class="miroooo-ticker-item"><span>4.9 Stars from 40,000+ Customers</span> <span class="miroooo-ticker-dot" aria-hidden="true"></span></div>
+          <div class="miroooo-ticker-item"><span>90-Day Risk-Free Home Trial</span> <span class="miroooo-ticker-dot" aria-hidden="true"></span></div>
+        </div>
+      </div>
       <header class="site-header${isOverlayHeader ? " site-header--overlay" : ""}">
         <div class="site-header__inner">
           <div class="site-header__left">
@@ -52,7 +65,7 @@
           </div>
           <div class="site-header__right site-actions header__icons header__icons--end flex justify-end z-2">
             <div class="header__buttons flex items-center gap-1d5">
-              <a class="account-link hidden lg:flex items-center justify-center" href="/order-tracking" aria-label="Track order" is="magnet-link" rel="nofollow"${current(["tracking", "order-tracking"])}>
+              <a class="account-link flex items-center justify-center" href="/order-tracking" aria-label="Track order" is="magnet-link" rel="nofollow"${current(["tracking", "order-tracking"])}>
                 ${accountIcon}
               </a>
               <a class="site-actions__bag cart-drawer-button flex items-center justify-center relative" href="/cart" aria-label="Cart" is="magnet-link" aria-controls="CartDrawer" aria-expanded="false" data-no-instant>

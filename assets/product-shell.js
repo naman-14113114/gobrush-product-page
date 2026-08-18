@@ -297,14 +297,6 @@
         videoEl.loop = true;
         videoEl.muted = true;
         videoEl.playsInline = true;
-        videoEl.style.maxWidth = "90vw";
-        videoEl.style.maxHeight = "85vh";
-        videoEl.style.width = "auto";
-        videoEl.style.height = "auto";
-        videoEl.style.objectFit = "contain";
-        videoEl.style.display = "block";
-        videoEl.style.borderRadius = "25px";
-        videoEl.style.boxShadow = "0 0 30px rgba(0, 0, 0, 0.5)";
         videoEl.setAttribute("playsinline", "");
         videoEl.setAttribute("autoplay", "");
         videoEl.setAttribute("loop", "");
@@ -320,14 +312,6 @@
         imgEl.alt = item.alt || "Expanded Product View";
         imgEl.decoding = "async";
         imgEl.loading = "eager";
-        imgEl.style.maxWidth = "90vw";
-        imgEl.style.maxHeight = "85vh";
-        imgEl.style.width = "auto";
-        imgEl.style.height = "auto";
-        imgEl.style.objectFit = "contain";
-        imgEl.style.display = "block";
-        imgEl.style.borderRadius = "25px";
-        imgEl.style.boxShadow = "0 0 30px rgba(0, 0, 0, 0.5)";
         mediaBox.appendChild(imgEl);
       }
 

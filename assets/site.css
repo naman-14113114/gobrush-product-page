@@ -5814,13 +5814,68 @@ body.nav-open .miroooo-sticky-cart-wrap {
   margin-top: 14px !important;
 }
 
+/* Standalone Swatches (Hero Section) */
+.standalone-swatch-btn {
+  width: 32px !important;
+  height: 32px !important;
+  border-radius: 50% !important;
+  border: none !important;
+  cursor: pointer !important;
+  padding: 0 !important;
+  outline: none !important;
+  position: relative !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  transition: transform 0.18s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.18s cubic-bezier(0.16, 1, 0.3, 1) !important;
+  overflow: visible !important;
+  background-clip: padding-box !important;
+}
+
+.standalone-swatch-btn::before,
+.standalone-swatch-btn::after {
+  display: none !important;
+  content: none !important;
+}
+
+.standalone-swatch-btn:hover {
+  transform: scale(1.12) !important;
+}
+
+/* Bundle Color Swatches */
+.color-swatch-btn {
+  width: 28px !important;
+  height: 28px !important;
+  border-radius: 50% !important;
+  border: 1px solid rgba(0, 0, 0, 0.18) !important;
+  position: relative !important;
+  cursor: pointer !important;
+  padding: 0 !important;
+  outline: none !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  transition: transform 0.18s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.18s cubic-bezier(0.16, 1, 0.3, 1) !important;
+  overflow: visible !important;
+}
+
+.color-swatch-btn::before,
+.color-swatch-btn::after {
+  display: none !important;
+  content: none !important;
+}
+
+.color-swatch-btn:hover {
+  transform: scale(1.12) !important;
+}
+
 /* Metallic Color Swatches (Silver, Pink, Grey) */
 .standalone-swatch-btn[data-color="Silver"],
 .standalone-swatch-btn.swatch-silver,
 .color-swatch-btn.swatch-silver,
 .color-swatch-btn[data-color="Silver"] {
   background: linear-gradient(135deg, #f0f2f5 0%, #cbd2da 25%, #ffffff 50%, #9aa1aa 75%, #d5dadf 100%) !important;
-  box-shadow: inset 0 1px 2px rgba(255, 255, 255, 0.9), inset 0 -1px 2px rgba(0, 0, 0, 0.25), 0 2px 5px rgba(0, 0, 0, 0.3) !important;
+  box-shadow: inset 0 1px 2px rgba(255, 255, 255, 0.9), inset 0 -1px 2px rgba(0, 0, 0, 0.25), 0 2px 5px rgba(0, 0, 0, 0.2) !important;
 }
 
 .standalone-swatch-btn[data-color="Pink"],
@@ -5828,7 +5883,7 @@ body.nav-open .miroooo-sticky-cart-wrap {
 .color-swatch-btn.swatch-pink,
 .color-swatch-btn[data-color="Pink"] {
   background: linear-gradient(135deg, #fedbdf 0%, #e8a2af 25%, #fff0f2 50%, #c47685 75%, #e8aab5 100%) !important;
-  box-shadow: inset 0 1px 2px rgba(255, 255, 255, 0.9), inset 0 -1px 2px rgba(0, 0, 0, 0.25), 0 2px 5px rgba(0, 0, 0, 0.3) !important;
+  box-shadow: inset 0 1px 2px rgba(255, 255, 255, 0.9), inset 0 -1px 2px rgba(0, 0, 0, 0.25), 0 2px 5px rgba(0, 0, 0, 0.2) !important;
 }
 
 .standalone-swatch-btn[data-color="Grey"],
@@ -5836,13 +5891,112 @@ body.nav-open .miroooo-sticky-cart-wrap {
 .color-swatch-btn.swatch-grey,
 .color-swatch-btn[data-color="Grey"] {
   background: linear-gradient(135deg, #8c919a 0%, #565a62 25%, #a1a6b0 50%, #3a3d43 75%, #6a6f78 100%) !important;
-  box-shadow: inset 0 1px 2px rgba(255, 255, 255, 0.5), inset 0 -1px 2px rgba(0, 0, 0, 0.4), 0 2px 5px rgba(0, 0, 0, 0.4) !important;
+  box-shadow: inset 0 1px 2px rgba(255, 255, 255, 0.5), inset 0 -1px 2px rgba(0, 0, 0, 0.4), 0 2px 5px rgba(0, 0, 0, 0.25) !important;
 }
 
-/* Active Selection Ring */
-.standalone-swatch-btn.is-active,
-.color-swatch-btn.is-active {
-  box-shadow: 0 0 0 2px #000000, 0 0 0 4px #ffffff, 0 4px 10px rgba(0,0,0,0.5) !important;
-  transform: scale(1.08);
+/* Standalone Active Selection Ring: White Outer Circle */
+.standalone-swatch-btn.is-active {
+  box-shadow: 0 0 0 2px #000000, 0 0 0 4px #ffffff, 0 4px 10px rgba(0, 0, 0, 0.5) !important;
+  transform: scale(1.08) !important;
 }
+
+/* Bundle Active Selection Ring: Single Black Outer Circle */
+.color-swatch-btn.is-active {
+  border-color: transparent !important;
+  box-shadow: 0 0 0 2px #ffffff, 0 0 0 4px #000000 !important;
+  transform: scale(1.08) !important;
+}
+
+/* =========================================================
+   GLOBAL CONTINUOUS LOOPING ANNOUNCEMENT BAR (Sleek Compact Height)
+   ========================================================= */
+.announcement,
+body[data-page="home"] .announcement,
+.header-layer--overlay .announcement,
+body:not([data-page="home"]) .announcement:not(.header-layer--overlay .announcement),
+#shopify-section-sections--24203576967513__announcement-bar,
+.topbar-section {
+  width: 100% !important;
+  max-width: 100% !important;
+  height: auto !important;
+  min-height: 0 !important;
+  max-height: none !important;
+  background: #e6e6e6 !important;
+  color: #111111 !important;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.08) !important;
+  overflow: hidden !important;
+  padding: 4px 0 !important;
+  margin: 0 !important;
+  line-height: 1 !important;
+  position: relative !important;
+  display: block !important;
+  box-sizing: border-box !important;
+}
+
+.announcement .topbar,
+.announcement .announcement-bar,
+#shopify-section-sections--24203576967513__announcement-bar .topbar,
+#shopify-section-sections--24203576967513__announcement-bar .announcement-bar,
+.topbar-section .topbar,
+.topbar-section .announcement-bar {
+  width: 100% !important;
+  max-width: 100% !important;
+  height: auto !important;
+  min-height: 0 !important;
+  max-height: none !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  display: block !important;
+  overflow: hidden !important;
+}
+
+.miroooo-announcement-ticker {
+  display: flex !important;
+  align-items: center !important;
+  width: max-content !important;
+  will-change: transform !important;
+  animation: mirooooTickerScroll 28s linear infinite !important;
+  line-height: 1 !important;
+}
+
+.miroooo-announcement-ticker:hover {
+  animation-play-state: paused !important;
+}
+
+.miroooo-ticker-item {
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 20px !important;
+  padding-right: 20px !important;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif !important;
+  font-size: 11px !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.12em !important;
+  text-transform: uppercase !important;
+  color: #111111 !important;
+  white-space: nowrap !important;
+  line-height: 1 !important;
+}
+
+.miroooo-ticker-dot {
+  width: 7px !important;
+  height: 7px !important;
+  background: transparent !important;
+  background-color: transparent !important;
+  border: 1.5px solid #111111 !important;
+  border-radius: 50% !important;
+  display: inline-block !important;
+  flex-shrink: 0 !important;
+  box-sizing: border-box !important;
+}
+
+.miroooo-ticker-sep {
+  display: none !important;
+}
+
+@keyframes mirooooTickerScroll {
+  0% { transform: translate3d(0, 0, 0); }
+  100% { transform: translate3d(-50%, 0, 0); }
+}
+
 
