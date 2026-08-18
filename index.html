@@ -20,6 +20,124 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="/assets/site.css?v=3">
+  <style>
+    .gb-video-feature-section {
+      background: #000000;
+      color: #ffffff;
+      padding: clamp(60px, 8vw, 110px) 20px;
+      position: relative;
+      overflow: hidden;
+      box-sizing: border-box;
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+    }
+    .gb-video-feature-container {
+      max-width: 1280px;
+      margin: 0 auto;
+      width: 100%;
+    }
+    .gb-video-feature-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: clamp(32px, 5vw, 64px);
+      align-items: center;
+    }
+    .gb-video-feature-box {
+      width: 100%;
+      aspect-ratio: 1 / 1;
+      border-radius: 24px;
+      overflow: hidden;
+      background: #0d0d0d;
+      box-shadow: 0 20px 50px rgba(0,0,0,0.8), 0 0 0 1px rgba(255,255,255,0.08);
+      position: relative;
+    }
+    .gb-video-feature-player {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      pointer-events: none;
+    }
+    .gb-video-feature-heading {
+      font-size: clamp(26px, 3.5vw, 42px);
+      font-weight: 700;
+      color: #ffffff;
+      line-height: 1.22;
+      margin: 0 0 18px 0;
+      letter-spacing: -0.02em;
+    }
+    .gb-video-feature-divider {
+      width: 64px;
+      height: 2px;
+      background: rgba(255,255,255,0.3);
+      margin-bottom: 28px;
+    }
+    .gb-video-feature-list {
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+      margin-bottom: 34px;
+    }
+    .gb-video-feature-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 16px;
+    }
+    .gb-video-feature-bullet {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: #ffffff;
+      margin-top: 7px;
+      flex-shrink: 0;
+      box-shadow: 0 0 10px rgba(255,255,255,0.8);
+    }
+    .gb-video-feature-text h3 {
+      font-size: clamp(16.5px, 1.8vw, 19px);
+      font-weight: 600;
+      color: #ffffff;
+      margin: 0 0 5px 0;
+      line-height: 1.35;
+    }
+    .gb-video-feature-text p {
+      font-size: clamp(14px, 1.4vw, 15px);
+      color: rgba(255,255,255,0.72);
+      line-height: 1.6;
+      margin: 0;
+    }
+    .gb-video-feature-action {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+    @media (min-width: 1024px) {
+      .gb-video-feature-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+      .gb-video-feature-media {
+        order: 1;
+      }
+      .gb-video-feature-content {
+        order: 2;
+        padding-left: clamp(16px, 3vw, 36px);
+      }
+    }
+    @media (min-width: 1024px) {
+      .gb-story .gb-story__content {
+        order: 1;
+      }
+      .gb-story .gb-story__media {
+        order: 2;
+      }
+    }
+    @media (max-width: 1023px) {
+      .gb-story .gb-story__media {
+        order: 1;
+      }
+      .gb-story .gb-story__content {
+        order: 2;
+      }
+    }
+  </style>
   <script type="application/ld+json">
   {"@context":"https://schema.org","@graph":[{"@type":"Organization","@id":"https://miroooo.co/#organization","name":"Miroooo","url":"https://miroooo.co/","email":"support@miroooo.co"},{"@type":"WebSite","@id":"https://miroooo.co/#website","url":"https://miroooo.co/","name":"Miroooo","publisher":{"@id":"https://miroooo.co/#organization"},"inLanguage":"en-GB"}]}
   </script>
@@ -74,8 +192,8 @@
         <!-- Card 1: Pink -->
         <article class="gb-product-card reveal">
           <div class="gb-product-card__media" data-slide-gallery>
-            <a class="gb-product-card__media-link" href="/products/miroooo-x" data-product-link aria-label="View Miroooo X in Pink">
-              <span class="badge badge--onsale">Save 28%</span>
+            <a class="gb-product-card__media-link" href="/products/miroooo-x?color=Pink" data-product-link aria-label="View Miroooo X in Pink">
+              <span class="badge badge--onsale">Save 50%</span>
               <div class="product-card__rating">
                 <svg class="icon icon-star icon-xs" viewBox="0 0 16 16" fill="#f59e0b" width="11" height="11"><path d="M8 0L9.88914 5.81283H16L11.056 9.40604L12.9452 15.2177L8 11.6245L3.05603 15.2177L4.94397 9.40484L0 5.81163H6.11086L8 0Z"/></svg>
                 <span>4.8</span>
@@ -97,15 +215,15 @@
                 <span class="dot"></span>
               </div>
             </a>
-            <a href="/products/miroooo-x" class="quick-view__button" aria-label="Quick view Pink finish" data-product-link>
+            <a href="/products/miroooo-x?color=Pink" class="quick-view__button" aria-label="Quick view Pink finish" data-product-link>
               <svg class="icon icon-eye" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M18.3334 10C18.3334 12.0833 15.8334 16.6667 10 16.6667C4.16669 16.6667 1.66669 12.0833 1.66669 10C1.66669 7.91668 4.16669 3.33334 10 3.33334C15.8334 3.33334 18.3334 7.91668 18.3334 10Z" stroke-linecap="round"/><path d="M12.5 10C12.5 11.3807 11.3807 12.5 10 12.5C8.61931 12.5 7.50002 11.3807 7.50002 10C7.50002 8.6193 8.61931 7.50001 10 7.50001C11.3807 7.50001 12.5 8.6193 12.5 10Z" stroke-linecap="round"/></svg>
             </a>
           </div>
           <div class="gb-product-card__meta">
-            <h3 class="gb-product-card__name"><a href="/products/miroooo-x">Miroooo X Pink</a></h3>
+            <h3 class="gb-product-card__name"><a href="/products/miroooo-x?color=Pink">Miroooo X Pink</a></h3>
             <div class="gb-product-card__price-wrap">
-              <strong class="gb-product-card__price">£89.00</strong>
-              <span class="gb-product-card__compare">£123.75</span>
+              <strong class="gb-product-card__price">£59.00</strong>
+              <span class="gb-product-card__compare">£119.00</span>
             </div>
           </div>
         </article>
@@ -113,8 +231,8 @@
         <!-- Card 2: Grey -->
         <article class="gb-product-card reveal">
           <div class="gb-product-card__media" data-slide-gallery>
-            <a class="gb-product-card__media-link" href="/products/miroooo-x" data-product-link aria-label="View Miroooo X in Grey">
-              <span class="badge badge--onsale">Save 28%</span>
+            <a class="gb-product-card__media-link" href="/products/miroooo-x?color=Grey" data-product-link aria-label="View Miroooo X in Grey">
+              <span class="badge badge--onsale">Save 50%</span>
               <div class="product-card__rating">
                 <svg class="icon icon-star icon-xs" viewBox="0 0 16 16" fill="#f59e0b" width="11" height="11"><path d="M8 0L9.88914 5.81283H16L11.056 9.40604L12.9452 15.2177L8 11.6245L3.05603 15.2177L4.94397 9.40484L0 5.81163H6.11086L8 0Z"/></svg>
                 <span>4.5</span>
@@ -136,15 +254,15 @@
                 <span class="dot"></span>
               </div>
             </a>
-            <a href="/products/miroooo-x" class="quick-view__button" aria-label="Quick view Grey finish" data-product-link>
+            <a href="/products/miroooo-x?color=Grey" class="quick-view__button" aria-label="Quick view Grey finish" data-product-link>
               <svg class="icon icon-eye" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M18.3334 10C18.3334 12.0833 15.8334 16.6667 10 16.6667C4.16669 16.6667 1.66669 12.0833 1.66669 10C1.66669 7.91668 4.16669 3.33334 10 3.33334C15.8334 3.33334 18.3334 7.91668 18.3334 10Z" stroke-linecap="round"/><path d="M12.5 10C12.5 11.3807 11.3807 12.5 10 12.5C8.61931 12.5 7.50002 11.3807 7.50002 10C7.50002 8.6193 8.61931 7.50001 10 7.50001C11.3807 7.50001 12.5 8.6193 12.5 10Z" stroke-linecap="round"/></svg>
             </a>
           </div>
           <div class="gb-product-card__meta">
-            <h3 class="gb-product-card__name"><a href="/products/miroooo-x">Miroooo X Grey</a></h3>
+            <h3 class="gb-product-card__name"><a href="/products/miroooo-x?color=Grey">Miroooo X Grey</a></h3>
             <div class="gb-product-card__price-wrap">
-              <strong class="gb-product-card__price">£89.00</strong>
-              <span class="gb-product-card__compare">£123.75</span>
+              <strong class="gb-product-card__price">£59.00</strong>
+              <span class="gb-product-card__compare">£119.00</span>
             </div>
           </div>
         </article>
@@ -152,8 +270,8 @@
         <!-- Card 3: Silver -->
         <article class="gb-product-card reveal">
           <div class="gb-product-card__media" data-slide-gallery>
-            <a class="gb-product-card__media-link" href="/products/miroooo-x" data-product-link aria-label="View Miroooo X in Silver">
-              <span class="badge badge--onsale">Save 28%</span>
+            <a class="gb-product-card__media-link" href="/products/miroooo-x?color=Silver" data-product-link aria-label="View Miroooo X in Silver">
+              <span class="badge badge--onsale">Save 50%</span>
               <div class="product-card__rating">
                 <svg class="icon icon-star icon-xs" viewBox="0 0 16 16" fill="#f59e0b" width="11" height="11"><path d="M8 0L9.88914 5.81283H16L11.056 9.40604L12.9452 15.2177L8 11.6245L3.05603 15.2177L4.94397 9.40484L0 5.81163H6.11086L8 0Z"/></svg>
                 <span>4.4</span>
@@ -175,15 +293,15 @@
                 <span class="dot"></span>
               </div>
             </a>
-            <a href="/products/miroooo-x" class="quick-view__button" aria-label="Quick view Silver finish" data-product-link>
-              <svg class="icon icon-eye" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M18.3334 10C18.3334 12.0833 15.8334 16.6667 10 16.6667C4.16669 16.6667 1.66669 12.0833 1.66669 10C1.66669 7.91668 4.16669 3.33334 10 3.33334C15.8334 3.33334 18.3334 7.91668 18.3334 10Z" stroke-linecap="round"/><path d="M12.5 10C12.5 11.3807 11.3807 12.5 10 12.5C8.61931 12.5 7.50002 11.3807 7.50002 10C7.50002 8.6193 8.61931 7.50001 10 7.50001C11.3807 7.50001 12.5 8.6193 12.5 10Z" stroke-linecap="round"/></svg>
+            <a href="/products/miroooo-x?color=Silver" class="quick-view__button" aria-label="Quick view Silver finish" data-product-link>
+              <svg class="icon icon-eye" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M18.3334 10C18.3334 12.0833 15.8334 16.6667 10 16.6667C4.16669 16.6667 1.66669 12.0833 1.66669 10C1.66669 7.91668 4.16669 3.33334 10 3.33334C15.8334 3.33334 18.3334 7.91668 18.3334 10Z" stroke-linecap="round"/><path d="M12.5 10C12.5 11.3807 11.3807 12.5 10 12.5C8.61931 12.5 7.50002 11.3807 7.50002 10C7.50002 8.6193 8.61931 7.50001 10 7.50001C11.3807 7.50001 12.5 8.6193 12.5 8.6193Z" stroke-linecap="round"/></svg>
             </a>
           </div>
           <div class="gb-product-card__meta">
-            <h3 class="gb-product-card__name"><a href="/products/miroooo-x">Miroooo X Silver</a></h3>
+            <h3 class="gb-product-card__name"><a href="/products/miroooo-x?color=Silver">Miroooo X Silver</a></h3>
             <div class="gb-product-card__price-wrap">
-              <strong class="gb-product-card__price">£89.00</strong>
-              <span class="gb-product-card__compare">£123.75</span>
+              <strong class="gb-product-card__price">£59.00</strong>
+              <span class="gb-product-card__compare">£119.00</span>
             </div>
           </div>
         </article>
@@ -213,207 +331,84 @@
           <li>Two-year warranty</li>
         </ul>
       </div>
-      <a class="gb-scroll-cue" href="#x2-range" aria-label="Continue to Miroooo X2 showcase"><span></span></a>
+      <a class="gb-scroll-cue" href="#ritual-features" aria-label="Continue to ritual showcase"><span></span></a>
     </section>
 
-    <!-- Miroooo X2 Bundle & Finish Showcase Section -->
-    <section class="gb-product-showcase section--dark" id="x2-range" aria-labelledby="x2-showcase-title">
-      <div class="gb-product-showcase__header reveal">
-        <div>
-          <p class="gb-kicker">Miroooo X2 Bundles &amp; Finishes</p>
-          <h2 id="x2-showcase-title">Sonic Cleaning, Packaged For Every Routine</h2>
+    <!-- Luxury 2-Column Video & Features Section -->
+    <section class="gb-video-feature-section section--dark" id="ritual-features" aria-labelledby="ritual-title">
+      <div class="gb-video-feature-container">
+        <div class="gb-video-feature-grid">
+          <!-- Video Column: 1:1 Aspect Ratio -->
+          <div class="gb-video-feature-media reveal">
+            <div class="gb-video-feature-box">
+              <video
+                class="gb-video-feature-player"
+                src="/assets_ref/x/miroooo-feature-video.mp4"
+                autoplay
+                loop
+                muted
+                playsinline
+                disablepictureinpicture
+                controlslist="nodownload nofullscreen noremoteplayback"
+                preload="auto"
+              ></video>
+            </div>
+          </div>
+
+          <!-- Text Column: 3 Points + Heading + CTA Button -->
+          <div class="gb-video-feature-content reveal">
+            <p class="gb-kicker">The Miroooo Standard</p>
+            <h2 id="ritual-title" class="gb-video-feature-heading">
+              Engineered For The Modern Ritual
+            </h2>
+            <div class="gb-video-feature-divider"></div>
+
+            <div class="gb-video-feature-list">
+              <!-- Point 1 -->
+              <div class="gb-video-feature-item">
+                <div class="gb-video-feature-bullet"></div>
+                <div class="gb-video-feature-text">
+                  <h3>60+ / 90 Days Battery Life</h3>
+                  <p>Extended battery intervals for Miroooo X and X2, eliminating bulky charging stands and daily clutter around your sink.</p>
+                </div>
+              </div>
+
+              <!-- Point 2 -->
+              <div class="gb-video-feature-item">
+                <div class="gb-video-feature-bullet"></div>
+                <div class="gb-video-feature-text">
+                  <h3>Guidance That Earns Its Place</h3>
+                  <p>Intelligent quad-pacer timing and smart pressure feedback support your oral routine without taking it over.</p>
+                </div>
+              </div>
+
+              <!-- Point 3 -->
+              <div class="gb-video-feature-item">
+                <div class="gb-video-feature-bullet"></div>
+                <div class="gb-video-feature-text">
+                  <h3>Ready To Travel</h3>
+                  <p>Compact magnetic charging base and luxury protective cases allow both models to move cleanly and effortlessly with you.</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="gb-video-feature-action">
+              <a class="gb-button gb-button--light" href="/products/miroooo-x" data-product-link>Shop Miroooo X <span aria-hidden="true">↗</span></a>
+            </div>
+          </div>
         </div>
-        <a class="gb-text-link gb-text-link--light" href="/products/miroooo-x2" data-product-link>View all X2 bundles <span aria-hidden="true">→</span></a>
-      </div>
-      <div class="gb-product-grid" data-drag-scroll tabindex="0" aria-label="Miroooo X2 Bundles">
-        <!-- Card 1: Single Set -->
-        <article class="gb-product-card reveal">
-          <div class="gb-product-card__media" data-slide-gallery>
-            <a class="gb-product-card__media-link" href="/products/miroooo-x2" data-product-link aria-label="View Miroooo X2 Single Set">
-              <span class="badge badge--onsale">Save 30%</span>
-              <div class="product-card__rating">
-                <svg class="icon icon-star icon-xs" viewBox="0 0 16 16" fill="#f59e0b" width="11" height="11"><path d="M8 0L9.88914 5.81283H16L11.056 9.40604L12.9452 15.2177L8 11.6245L3.05603 15.2177L4.94397 9.40484L0 5.81163H6.11086L8 0Z"/></svg>
-                <span>4.9</span>
-              </div>
-              <div class="gb-product-card__track">
-                <div class="gb-product-card__slide">
-                  <img src="/assets_ref/x2/gallery/miroooo-x2-sonic-electric-toothbrush-upright-grip.webp" alt="Miroooo X2 Single Set - Upright Studio" width="700" height="700" loading="lazy">
-                </div>
-                <div class="gb-product-card__slide">
-                  <img src="/assets_ref/x2/gallery/miroooo-x2-sonic-electric-toothbrush-silver-in-hand.webp" alt="Miroooo X2 Single Set - In Hand" width="700" height="700" loading="lazy">
-                </div>
-                <div class="gb-product-card__slide">
-                  <img src="/assets_ref/x2/gallery/miroooo-x2-sonic-toothbrush-ventilated-travel-case.webp" alt="Miroooo X2 Single Set - Travel Case" width="700" height="700" loading="lazy">
-                </div>
-              </div>
-              <div class="flickity-page-dots" aria-hidden="true">
-                <span class="dot is-selected"></span>
-                <span class="dot"></span>
-                <span class="dot"></span>
-              </div>
-            </a>
-            <a href="/products/miroooo-x2" class="quick-view__button" aria-label="Quick view Miroooo X2 Single Set" data-product-link>
-              <svg class="icon icon-eye" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M18.3334 10C18.3334 12.0833 15.8334 16.6667 10 16.6667C4.16669 16.6667 1.66669 12.0833 1.66669 10C1.66669 7.91668 4.16669 3.33334 10 3.33334C15.8334 3.33334 18.3334 7.91668 18.3334 10Z" stroke-linecap="round"/><path d="M12.5 10C12.5 11.3807 11.3807 12.5 10 12.5C8.61931 12.5 7.50002 11.3807 7.50002 10C7.50002 8.6193 8.61931 7.50001 10 7.50001C11.3807 7.50001 12.5 8.6193 12.5 10Z" stroke-linecap="round"/></svg>
-            </a>
-          </div>
-          <div class="gb-product-card__meta">
-            <h3 class="gb-product-card__name"><a href="/products/miroooo-x2" data-product-link>Miroooo X2 Single Set</a></h3>
-            <div class="gb-product-card__price-wrap">
-              <strong class="gb-product-card__price">£69.00</strong>
-              <span class="gb-product-card__compare">£99.00</span>
-            </div>
-          </div>
-        </article>
-
-        <!-- Card 2: Duo Bundle -->
-        <article class="gb-product-card reveal">
-          <div class="gb-product-card__media" data-slide-gallery>
-            <a class="gb-product-card__media-link" href="/products/miroooo-x2" data-product-link aria-label="View Miroooo X2 Duo Bundle">
-              <span class="badge badge--onsale">Save 40%</span>
-              <div class="product-card__rating">
-                <svg class="icon icon-star icon-xs" viewBox="0 0 16 16" fill="#f59e0b" width="11" height="11"><path d="M8 0L9.88914 5.81283H16L11.056 9.40604L12.9452 15.2177L8 11.6245L3.05603 15.2177L4.94397 9.40484L0 5.81163H6.11086L8 0Z"/></svg>
-                <span>5.0</span>
-              </div>
-              <div class="gb-product-card__track">
-                <div class="gb-product-card__slide">
-                  <img src="/assets_ref/x2/gallery/miroooo-x2-sonic-toothbrush-complete-set-packaging.webp" alt="Miroooo X2 Duo Bundle - Complete Set" width="700" height="700" loading="lazy">
-                </div>
-                <div class="gb-product-card__slide">
-                  <img src="/assets_ref/x2/clean/clean_hand_holding.jpg" alt="Miroooo X2 Duo Bundle - In Hand Lifestyle" width="700" height="700" loading="lazy">
-                </div>
-                <div class="gb-product-card__slide">
-                  <img src="/assets_ref/x2/clean/clean_storage_rack.jpg" alt="Miroooo X2 Duo Bundle - Magnetic Wall Dock" width="700" height="700" loading="lazy">
-                </div>
-              </div>
-              <div class="flickity-page-dots" aria-hidden="true">
-                <span class="dot is-selected"></span>
-                <span class="dot"></span>
-                <span class="dot"></span>
-              </div>
-            </a>
-            <a href="/products/miroooo-x2" class="quick-view__button" aria-label="Quick view Miroooo X2 Duo Bundle" data-product-link>
-              <svg class="icon icon-eye" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M18.3334 10C18.3334 12.0833 15.8334 16.6667 10 16.6667C4.16669 16.6667 1.66669 12.0833 1.66669 10C1.66669 7.91668 4.16669 3.33334 10 3.33334C15.8334 3.33334 18.3334 7.91668 18.3334 10Z" stroke-linecap="round"/><path d="M12.5 10C12.5 11.3807 11.3807 12.5 10 12.5C8.61931 12.5 7.50002 11.3807 7.50002 10C7.50002 8.6193 8.61931 7.50001 10 7.50001C11.3807 7.50001 12.5 8.6193 12.5 10Z" stroke-linecap="round"/></svg>
-            </a>
-          </div>
-          <div class="gb-product-card__meta">
-            <h3 class="gb-product-card__name"><a href="/products/miroooo-x2" data-product-link>Miroooo X2 Duo Bundle</a></h3>
-            <div class="gb-product-card__price-wrap">
-              <strong class="gb-product-card__price">£119.00</strong>
-              <span class="gb-product-card__compare">£198.00</span>
-            </div>
-          </div>
-        </article>
-
-        <!-- Card 3: Family Trio Pack -->
-        <article class="gb-product-card reveal">
-          <div class="gb-product-card__media" data-slide-gallery>
-            <a class="gb-product-card__media-link" href="/products/miroooo-x2" data-product-link aria-label="View Miroooo X2 Family Trio Bundle">
-              <span class="badge badge--onsale">Save 46%</span>
-              <div class="product-card__rating">
-                <svg class="icon icon-star icon-xs" viewBox="0 0 16 16" fill="#f59e0b" width="11" height="11"><path d="M8 0L9.88914 5.81283H16L11.056 9.40604L12.9452 15.2177L8 11.6245L3.05603 15.2177L4.94397 9.40484L0 5.81163H6.11086L8 0Z"/></svg>
-                <span>4.9</span>
-              </div>
-              <div class="gb-product-card__track">
-                <div class="gb-product-card__slide">
-                  <img src="/assets_ref/x2/clean/clean_portable_box.jpg" alt="Miroooo X2 Family Trio - Premium Cases" width="700" height="700" loading="lazy">
-                </div>
-                <div class="gb-product-card__slide">
-                  <img src="/assets_ref/x2/gallery/miroooo-x2-sonic-toothbrush-smart-pressure-sensor-ring.jpg" alt="Miroooo X2 Family Trio - Smart Sensor Ring" width="700" height="700" loading="lazy">
-                </div>
-                <div class="gb-product-card__slide">
-                  <img src="/assets_ref/x2/gallery/miroooo-x2-sonic-toothbrush-ipx7-waterproof.webp" alt="Miroooo X2 Family Trio - Waterproof & Docking" width="700" height="700" loading="lazy">
-                </div>
-              </div>
-              <div class="flickity-page-dots" aria-hidden="true">
-                <span class="dot is-selected"></span>
-                <span class="dot"></span>
-                <span class="dot"></span>
-              </div>
-            </a>
-            <a href="/products/miroooo-x2" class="quick-view__button" aria-label="Quick view Miroooo X2 Family Trio" data-product-link>
-              <svg class="icon icon-eye" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M18.3334 10C18.3334 12.0833 15.8334 16.6667 10 16.6667C4.16669 16.6667 1.66669 12.0833 1.66669 10C1.66669 7.91668 4.16669 3.33334 10 3.33334C15.8334 3.33334 18.3334 7.91668 18.3334 10Z" stroke-linecap="round"/><path d="M12.5 10C12.5 11.3807 11.3807 12.5 10 12.5C8.61931 12.5 7.50002 11.3807 7.50002 10C7.50002 8.6193 8.61931 7.50001 10 7.50001C11.3807 7.50001 12.5 8.6193 12.5 10Z" stroke-linecap="round"/></svg>
-            </a>
-          </div>
-          <div class="gb-product-card__meta">
-            <h3 class="gb-product-card__name"><a href="/products/miroooo-x2" data-product-link>Miroooo X2 Family Trio</a></h3>
-            <div class="gb-product-card__price-wrap">
-              <strong class="gb-product-card__price">£159.00</strong>
-              <span class="gb-product-card__compare">£297.00</span>
-            </div>
-          </div>
-        </article>
-      </div>
-    </section>
-
-    <section class="gb-benefits" id="benefits" aria-label="Why Miroooo">
-      <article class="gb-benefit reveal">
-        <p class="gb-benefit__index">01</p>
-        <h2>60+ / 90 days</h2>
-        <p>Long battery intervals for X and X2, with less clutter around the sink.</p>
-      </article>
-      <article class="gb-benefit reveal">
-        <p class="gb-benefit__index">02</p>
-        <h2>Guidance that earns its place</h2>
-        <p>Clear timing and pressure feedback support the routine without taking it over.</p>
-      </article>
-      <article class="gb-benefit reveal">
-        <p class="gb-benefit__index">03</p>
-        <h2>Ready to travel</h2>
-        <p>Compact charging and protective cases help both models move cleanly with you.</p>
-      </article>
-    </section>
-
-    <section class="gb-range section--dark" aria-labelledby="range-title">
-      <div class="gb-range__heading reveal">
-        <div>
-          <p class="gb-kicker">The Miroooo range</p>
-          <h2 id="range-title">Choose your finish.</h2>
-        </div>
-        <a class="gb-text-link gb-text-link--light" href="/shop">Shop all <span aria-hidden="true">→</span></a>
-      </div>
-      <div class="gb-range__track" data-drag-scroll tabindex="0" aria-label="Miroooo product range">
-        <article class="gb-product-tile reveal">
-          <a class="gb-product-tile__media" href="/products/miroooo-x" data-product-link aria-label="View Miroooo X in Grey">
-            <img src="/gallery_orig/Grey-color-8.jpg" alt="Miroooo X sonic electric toothbrush in Grey" width="900" height="900" loading="lazy">
-            <span class="gb-product-tile__open" aria-hidden="true">↗</span>
-          </a>
-          <div class="gb-product-tile__meta">
-            <div><p>Miroooo X</p><span>Grey</span></div>
-            <strong>£59</strong>
-          </div>
-        </article>
-        <article class="gb-product-tile reveal">
-          <a class="gb-product-tile__media" href="/products/miroooo-x2" data-product-link aria-label="View Miroooo X2 in Silver">
-            <img src="/assets_ref/x2/gallery/miroooo-x2-sonic-electric-toothbrush-upright-grip.webp" alt="Miroooo X2 sonic electric toothbrush in Silver" width="900" height="900" loading="lazy">
-            <span class="gb-product-tile__open" aria-hidden="true">↗</span>
-          </a>
-          <div class="gb-product-tile__meta">
-            <div><p>Miroooo X2</p><span>Silver</span></div>
-            <strong>£79</strong>
-          </div>
-        </article>
-        <article class="gb-product-tile reveal">
-          <a class="gb-product-tile__media" href="/products/miroooo-x2" data-product-link aria-label="Explore the complete Miroooo X2 set">
-            <img src="/assets_ref/x2/gallery/miroooo-x2-sonic-toothbrush-complete-set-packaging.webp" alt="Miroooo X2 complete set with packaging and accessories" width="900" height="900" loading="lazy">
-            <span class="gb-product-tile__open" aria-hidden="true">↗</span>
-          </a>
-          <div class="gb-product-tile__meta">
-            <div><p>Miroooo X2 set</p><span>Everything included</span></div>
-            <strong>£79</strong>
-          </div>
-        </article>
       </div>
     </section>
 
     <section class="gb-story" aria-labelledby="story-title">
-      <div class="gb-story__media reveal">
-        <img src="/assets_ref/x2/gallery/miroooo-x2-sonic-toothbrush-complete-set-packaging.webp" alt="Miroooo X2 toothbrush, travel case and accessories" width="1000" height="1000" loading="lazy">
-      </div>
+      <a class="gb-story__media reveal" href="/products/miroooo-x2" style="display:block;">
+        <img src="/assets_ref/x2/gallery/miroooo-x2-sonic-toothbrush-complete-set-packaging.webp" alt="Miroooo X2 toothbrush, travel case and accessories" width="1000" height="1000" loading="lazy" style="transition:none !important;transform:none !important;">
+      </a>
       <div class="gb-story__content reveal">
         <p class="gb-kicker">Made for real routines</p>
         <h2 id="story-title">Designed for the ritual.</h2>
         <p>The best daily objects are the ones you do not have to think about. Miroooo brings together considered materials, useful feedback and travel-ready details in a form that feels calm on your counter.</p>
-        <a class="gb-button gb-button--dark" href="/about">Our approach <span aria-hidden="true">↗</span></a>
+        <a class="gb-button gb-button--dark" href="/products/miroooo-x2">Shop Now <span aria-hidden="true">↗</span></a>
       </div>
     </section>
   </main>

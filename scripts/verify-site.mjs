@@ -44,7 +44,7 @@ for (const file of newPages) {
 }
 
 const homepage = await readFile(resolve(root, "index.html"), "utf8");
-for (const marker of ["gb-hero", "gb-benefits", "gb-range", "data-drag-scroll", "gb-story"]) {
+for (const marker of ["gb-hero", "gb-video-feature-section", "gb-story"]) {
   if (!homepage.includes(marker)) errors.push(`index.html: missing redesigned homepage marker ${marker}`);
 }
 
