@@ -1015,17 +1015,82 @@
     });
   }
 
-  // Initialize cart state, header badges, and dynamic delivery date
+  // Animated Lottie Icons Initializer (Moving Truck & Animated Cart)
+  function initMirooooLottieIcons() {
+    const truckEls = document.querySelectorAll("[data-lottie-truck], .miroooo-lottie-truck");
+    const cartEls = document.querySelectorAll("[data-lottie-cart], .miroooo-lottie-cart");
+
+    if (truckEls.length === 0 && cartEls.length === 0) return;
+
+    function renderLotties() {
+      if (typeof window.lottie === "undefined") return;
+
+      truckEls.forEach((el) => {
+        if (el.dataset.lottieLoaded === "true") return;
+        el.dataset.lottieLoaded = "true";
+        el.innerHTML = "";
+        try {
+          window.lottie.loadAnimation({
+            container: el,
+            renderer: "svg",
+            loop: true,
+            autoplay: true,
+            path: "/assets/lottie-truck.json"
+          });
+        } catch (err) {
+          console.warn("Lottie truck animation load error:", err);
+        }
+      });
+
+      cartEls.forEach((el) => {
+        if (el.dataset.lottieLoaded === "true") return;
+        el.dataset.lottieLoaded = "true";
+        el.innerHTML = "";
+        try {
+          window.lottie.loadAnimation({
+            container: el,
+            renderer: "svg",
+            loop: true,
+            autoplay: true,
+            path: "/assets/lottie-cart.json"
+          });
+        } catch (err) {
+          console.warn("Lottie cart animation load error:", err);
+        }
+      });
+    }
+
+    if (typeof window.lottie !== "undefined") {
+      renderLotties();
+    } else {
+      let script = document.querySelector('script[src*="lottie.min.js"]');
+      if (!script) {
+        script = document.createElement("script");
+        script.src = "/assets/lottie.min.js";
+        script.async = true;
+        script.onload = renderLotties;
+        document.head.appendChild(script);
+      } else {
+        script.addEventListener("load", renderLotties);
+      }
+    }
+  }
+
+  window.initMirooooLottieIcons = initMirooooLottieIcons;
+
+  // Initialize cart state, header badges, dynamic delivery date, and lottie animations
   if (document.readyState === "loading") {
     document.addEventListener("DOMContentLoaded", () => {
       MirooooCart.updateHeaderBadges();
       MirooooCart.ensureCartDrawer();
       updateDeliveryDates();
+      initMirooooLottieIcons();
     });
   } else {
     MirooooCart.updateHeaderBadges();
     MirooooCart.ensureCartDrawer();
     updateDeliveryDates();
+    initMirooooLottieIcons();
   }
 
   // Intercept cart open clicks ONLY on header cart icon / drawer triggers
@@ -1034,6 +1099,7 @@
       '.site-header a[href="/cart"], .site-header .cart-drawer-button, .site-header .site-actions__bag, .header__icons a[href="/cart"], .header__icons .cart-drawer-button, [data-drawer-trigger], .header-cart-icon'
     );
     if (headerCartTrigger && !headerCartTrigger.closest("#CartDrawer") && !headerCartTrigger.closest("#hero-cta") && !headerCartTrigger.closest("#sticky-bar-cta-btn")) {
+      if (document.body.dataset.page === "cart") return;
       e.preventDefault();
       MirooooCart.openCart();
     }

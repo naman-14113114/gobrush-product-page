@@ -297,13 +297,14 @@
         videoEl.loop = true;
         videoEl.muted = true;
         videoEl.playsInline = true;
-        videoEl.style.width = "100%";
-        videoEl.style.height = "100%";
-        videoEl.style.aspectRatio = "1 / 1";
-        videoEl.style.objectFit = "cover";
+        videoEl.style.maxWidth = "90vw";
+        videoEl.style.maxHeight = "85vh";
+        videoEl.style.width = "auto";
+        videoEl.style.height = "auto";
+        videoEl.style.objectFit = "contain";
         videoEl.style.display = "block";
         videoEl.style.borderRadius = "25px";
-        videoEl.style.background = "#000000";
+        videoEl.style.boxShadow = "0 0 30px rgba(0, 0, 0, 0.5)";
         videoEl.setAttribute("playsinline", "");
         videoEl.setAttribute("autoplay", "");
         videoEl.setAttribute("loop", "");
@@ -319,13 +320,14 @@
         imgEl.alt = item.alt || "Expanded Product View";
         imgEl.decoding = "async";
         imgEl.loading = "eager";
-        imgEl.style.width = "100%";
-        imgEl.style.height = "100%";
-        imgEl.style.aspectRatio = "1 / 1";
+        imgEl.style.maxWidth = "90vw";
+        imgEl.style.maxHeight = "85vh";
+        imgEl.style.width = "auto";
+        imgEl.style.height = "auto";
         imgEl.style.objectFit = "contain";
         imgEl.style.display = "block";
         imgEl.style.borderRadius = "25px";
-        imgEl.style.background = "#000000";
+        imgEl.style.boxShadow = "0 0 30px rgba(0, 0, 0, 0.5)";
         mediaBox.appendChild(imgEl);
       }
 
@@ -337,6 +339,7 @@
       document.body.style.overflow = "hidden";
       document.documentElement.style.overflow = "hidden";
       document.body.classList.add("overflow-hidden");
+      document.documentElement.classList.add("overflow-hidden");
       isOpen = true;
 
       renderMedia(typeof index === "number" ? index : 0);
@@ -518,6 +521,75 @@
     document.addEventListener("DOMContentLoaded", initProductGalleryLightbox);
   } else {
     initProductGalleryLightbox();
+  }
+
+  // Animated Lottie Icons Initializer (Moving Truck & Animated Cart)
+  function initMirooooLottieIcons() {
+    const truckEls = document.querySelectorAll("[data-lottie-truck], .miroooo-lottie-truck");
+    const cartEls = document.querySelectorAll("[data-lottie-cart], .miroooo-lottie-cart");
+
+    if (truckEls.length === 0 && cartEls.length === 0) return;
+
+    function renderLotties() {
+      if (typeof window.lottie === "undefined") return;
+
+      truckEls.forEach((el) => {
+        if (el.dataset.lottieLoaded === "true") return;
+        el.dataset.lottieLoaded = "true";
+        el.innerHTML = "";
+        try {
+          window.lottie.loadAnimation({
+            container: el,
+            renderer: "svg",
+            loop: true,
+            autoplay: true,
+            path: "/assets/lottie-truck.json"
+          });
+        } catch (err) {
+          console.warn("Lottie truck animation load error:", err);
+        }
+      });
+
+      cartEls.forEach((el) => {
+        if (el.dataset.lottieLoaded === "true") return;
+        el.dataset.lottieLoaded = "true";
+        el.innerHTML = "";
+        try {
+          window.lottie.loadAnimation({
+            container: el,
+            renderer: "svg",
+            loop: true,
+            autoplay: true,
+            path: "/assets/lottie-cart.json"
+          });
+        } catch (err) {
+          console.warn("Lottie cart animation load error:", err);
+        }
+      });
+    }
+
+    if (typeof window.lottie !== "undefined") {
+      renderLotties();
+    } else {
+      let script = document.querySelector('script[src*="lottie.min.js"]');
+      if (!script) {
+        script = document.createElement("script");
+        script.src = "/assets/lottie.min.js";
+        script.async = true;
+        script.onload = renderLotties;
+        document.head.appendChild(script);
+      } else {
+        script.addEventListener("load", renderLotties);
+      }
+    }
+  }
+
+  window.initMirooooLottieIcons = initMirooooLottieIcons;
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", initMirooooLottieIcons);
+  } else {
+    initMirooooLottieIcons();
   }
 
 })();
