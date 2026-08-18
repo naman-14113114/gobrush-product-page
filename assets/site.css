@@ -4184,8 +4184,10 @@ body.nav-open .miroooo-sticky-cart-wrap {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 38px;
-  height: 18px;
+  width: 34px !important;
+  height: 26px !important;
+  max-width: 34px !important;
+  max-height: 26px !important;
   flex-shrink: 0;
   overflow: visible;
   vertical-align: middle;
@@ -4194,7 +4196,7 @@ body.nav-open .miroooo-sticky-cart-wrap {
 .miroooo-lottie-truck svg {
   width: 100% !important;
   height: 100% !important;
-  display: block;
+  display: block !important;
   overflow: visible !important;
 }
 
@@ -4214,10 +4216,16 @@ body.nav-open .miroooo-sticky-cart-wrap {
   display: block;
 }
 
-.miroooo-sticky-btn .miroooo-lottie-cart svg path {
-  stroke: currentColor !important;
+.miroooo-lottie-cart svg path,
+.miroooo-sticky-btn .miroooo-lottie-cart svg path,
+#sticky-bar-cta-btn .miroooo-lottie-cart svg path,
+#hero-cta .miroooo-lottie-cart svg path {
+  stroke: #000000 !important;
+  transition: stroke 0.25s cubic-bezier(0.16, 1, 0.3, 1) !important;
 }
 
+#hero-cta:hover .miroooo-lottie-cart svg path,
+#sticky-bar-cta-btn:hover .miroooo-lottie-cart svg path,
 .miroooo-sticky-btn:hover .miroooo-lottie-cart svg path {
   stroke: #ffffff !important;
 }
@@ -4336,6 +4344,7 @@ body.nav-open .miroooo-sticky-cart-wrap {
 }
 
 #hero-cta,
+#sticky-bar-cta-btn,
 .proxy-bundle-btn,
 .miroooo-sticky-btn {
   position: relative !important;
@@ -4349,6 +4358,7 @@ body.nav-open .miroooo-sticky-cart-wrap {
 }
 
 #hero-cta::after,
+#sticky-bar-cta-btn::after,
 .proxy-bundle-btn::after,
 .miroooo-sticky-btn::after {
   content: '' !important;
@@ -4365,6 +4375,7 @@ body.nav-open .miroooo-sticky-cart-wrap {
 }
 
 #hero-cta:hover::after,
+#sticky-bar-cta-btn:hover::after,
 .proxy-bundle-btn:hover::after,
 .miroooo-sticky-btn:hover::after {
   background: linear-gradient(90deg, transparent calc(50% - 70px), rgba(255, 255, 255, 0.3) 50%, transparent calc(50% + 35px)) !important;
@@ -4390,9 +4401,10 @@ body.nav-open .miroooo-sticky-cart-wrap {
   transition: transform 0.2s ease, background-color 0.35s ease, border-color 0.2s ease, box-shadow 0.2s ease !important;
 }
 
-.miroooo-sticky-btn .btn-fill,
 #hero-cta .btn-fill,
-.proxy-bundle-btn .btn-fill {
+#sticky-bar-cta-btn .btn-fill,
+.proxy-bundle-btn .btn-fill,
+.miroooo-sticky-btn .btn-fill {
   position: absolute !important;
   inset: 0 !important;
   width: 100% !important;
@@ -4407,14 +4419,16 @@ body.nav-open .miroooo-sticky-cart-wrap {
 }
 
 #hero-cta:hover .btn-fill,
+#sticky-bar-cta-btn:hover .btn-fill,
 .proxy-bundle-btn:hover .btn-fill,
 .miroooo-sticky-btn:hover .btn-fill {
   transform: translateY(0%) !important;
 }
 
-.miroooo-sticky-btn .btn-text,
 #hero-cta .btn-text,
-.proxy-bundle-btn .btn-text {
+#sticky-bar-cta-btn .btn-text,
+.proxy-bundle-btn .btn-text,
+.miroooo-sticky-btn .btn-text {
   position: relative !important;
   z-index: 3 !important;
   display: inline-flex !important;
@@ -4426,13 +4440,15 @@ body.nav-open .miroooo-sticky-cart-wrap {
   pointer-events: none !important;
 }
 
-.miroooo-sticky-btn:hover .btn-text,
 #hero-cta:hover .btn-text,
-.proxy-bundle-btn:hover .btn-text {
+#sticky-bar-cta-btn:hover .btn-text,
+.proxy-bundle-btn:hover .btn-text,
+.miroooo-sticky-btn:hover .btn-text {
   color: #ffffff !important;
 }
 
 #hero-cta:hover,
+#sticky-bar-cta-btn:hover,
 .miroooo-sticky-btn:hover {
   background: #000000 !important;
   background-color: #000000 !important;
@@ -4442,6 +4458,7 @@ body.nav-open .miroooo-sticky-cart-wrap {
 }
 
 #hero-cta:active,
+#sticky-bar-cta-btn:active,
 .miroooo-sticky-btn:active {
   transform: scale(0.98) !important;
 }
@@ -5611,9 +5628,9 @@ body.nav-open .miroooo-sticky-cart-wrap {
 .miroooo-delivery-row [data-lottie-truck],
 .cart-top-banner [data-lottie-truck],
 .cart-delivery-banner [data-lottie-truck] {
-  width: 26px !important;
+  width: 34px !important;
   height: 26px !important;
-  max-width: 26px !important;
+  max-width: 34px !important;
   max-height: 26px !important;
   flex-shrink: 0 !important;
   display: inline-flex !important;
@@ -5672,4 +5689,10 @@ body.nav-open .miroooo-sticky-cart-wrap {
   width: auto !important;
   max-width: fit-content !important;
   min-width: fit-content !important;
+}
+
+/* Bundle 2 Most Popular Spacing Fix */
+.bundle-tier-card[data-tier="bundle-2"] .tier-header-btn .text-right,
+.bundle-tier-card.has-top-badge:has(.tier-popular-badge-wrap) .tier-header-btn .text-right {
+  margin-top: 14px !important;
 }

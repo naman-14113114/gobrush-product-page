@@ -724,9 +724,9 @@
    ========================================================= */
 .miroooo-lottie-truck,
 .miroooo-delivery-row [data-lottie-truck] {
-  width: 26px !important;
+  width: 34px !important;
   height: 26px !important;
-  max-width: 26px !important;
+  max-width: 34px !important;
   max-height: 26px !important;
   flex-shrink: 0 !important;
   display: inline-flex !important;
@@ -767,6 +767,146 @@
   max-width: 20px !important;
   max-height: 20px !important;
   display: block !important;
+}
+
+.miroooo-lottie-cart svg path,
+.miroooo-sticky-btn .miroooo-lottie-cart svg path,
+#sticky-bar-cta-btn .miroooo-lottie-cart svg path,
+#hero-cta .miroooo-lottie-cart svg path {
+  stroke: #000000 !important;
+  transition: stroke 0.25s cubic-bezier(0.16, 1, 0.3, 1) !important;
+}
+
+#hero-cta:hover .miroooo-lottie-cart svg path,
+#sticky-bar-cta-btn:hover .miroooo-lottie-cart svg path,
+.miroooo-sticky-btn:hover .miroooo-lottie-cart svg path {
+  stroke: #ffffff !important;
+}
+
+#hero-cta,
+#sticky-bar-cta-btn,
+.proxy-bundle-btn,
+.miroooo-sticky-btn {
+  position: relative !important;
+  overflow: hidden !important;
+  isolation: isolate !important;
+  background: #ffffff !important;
+  background-color: #ffffff !important;
+  color: #000000 !important;
+  border: 2px solid #ffffff !important;
+  cursor: pointer !important;
+}
+
+#hero-cta::after,
+#sticky-bar-cta-btn::after,
+.proxy-bundle-btn::after,
+.miroooo-sticky-btn::after {
+  content: '' !important;
+  position: absolute !important;
+  top: 0 !important;
+  left: 0 !important;
+  width: 100% !important;
+  height: 100% !important;
+  background: linear-gradient(90deg, transparent calc(50% - 70px), rgba(0, 0, 0, 0.16) 50%, transparent calc(50% + 35px)) !important;
+  transform: skewX(-30deg) translateX(-150%) !important;
+  animation: proxy-bundle-shine 4s infinite ease-in-out !important;
+  z-index: 2 !important;
+  pointer-events: none !important;
+}
+
+#hero-cta:hover::after,
+#sticky-bar-cta-btn:hover::after,
+.proxy-bundle-btn:hover::after,
+.miroooo-sticky-btn:hover::after {
+  background: linear-gradient(90deg, transparent calc(50% - 70px), rgba(255, 255, 255, 0.3) 50%, transparent calc(50% + 35px)) !important;
+}
+
+.miroooo-sticky-btn,
+#sticky-bar-cta-btn {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  width: auto !important;
+  max-width: max-content !important;
+  min-height: 48px !important;
+  padding: 0 28px !important;
+  border-radius: 9999px !important;
+  font-weight: 700 !important;
+  font-size: 0.95rem !important;
+  flex: 0 0 auto !important;
+  white-space: nowrap !important;
+  box-shadow: 0 4px 16px rgba(255, 255, 255, 0.15) !important;
+  text-decoration: none !important;
+  font-family: inherit !important;
+  transition: transform 0.2s ease, background-color 0.35s ease, border-color 0.2s ease, box-shadow 0.2s ease !important;
+}
+
+#hero-cta .btn-fill,
+#sticky-bar-cta-btn .btn-fill,
+.proxy-bundle-btn .btn-fill,
+.miroooo-sticky-btn .btn-fill {
+  position: absolute !important;
+  inset: 0 !important;
+  width: 100% !important;
+  height: 100% !important;
+  background: #000000 !important;
+  background-color: #000000 !important;
+  transform: translateY(100%) !important;
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1) !important;
+  border-radius: 9999px !important;
+  z-index: 1 !important;
+  pointer-events: none !important;
+}
+
+#hero-cta:hover .btn-fill,
+#sticky-bar-cta-btn:hover .btn-fill,
+.proxy-bundle-btn:hover .btn-fill,
+.miroooo-sticky-btn:hover .btn-fill {
+  transform: translateY(0%) !important;
+}
+
+#hero-cta .btn-text,
+#sticky-bar-cta-btn .btn-text,
+.proxy-bundle-btn .btn-text,
+.miroooo-sticky-btn .btn-text {
+  position: relative !important;
+  z-index: 3 !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 8px !important;
+  color: #000000 !important;
+  transition: color 0.25s cubic-bezier(0.16, 1, 0.3, 1) !important;
+  pointer-events: none !important;
+}
+
+#hero-cta:hover .btn-text,
+#sticky-bar-cta-btn:hover .btn-text,
+.proxy-bundle-btn:hover .btn-text,
+.miroooo-sticky-btn:hover .btn-text {
+  color: #ffffff !important;
+}
+
+#hero-cta:hover,
+#sticky-bar-cta-btn:hover,
+.miroooo-sticky-btn:hover {
+  background: #000000 !important;
+  background-color: #000000 !important;
+  border-color: #ffffff !important;
+  transform: scale(1.01) !important;
+  box-shadow: 0 8px 30px rgba(255, 255, 255, 0.18) !important;
+}
+
+#hero-cta:active,
+#sticky-bar-cta-btn:active,
+.miroooo-sticky-btn:active {
+  transform: scale(0.98) !important;
+}
+
+/* Bundle 2 Most Popular Spacing Fix */
+.bundle-tier-card[data-tier="bundle-2"] .tier-header-btn .text-right,
+.bundle-tier-card.has-top-badge:has(.tier-popular-badge-wrap) .tier-header-btn .text-right {
+  margin-top: 14px !important;
 }
 
 

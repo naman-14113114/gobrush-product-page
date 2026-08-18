@@ -628,6 +628,10 @@
 .bundle-tier-card.has-top-badge .tier-header-btn {
   padding-top: 16px;
 }
+.bundle-tier-card[data-tier="bundle-2"] .tier-header-btn .text-right,
+.bundle-tier-card.has-top-badge:has(.tier-popular-badge-wrap) .tier-header-btn .text-right {
+  margin-top: 14px !important;
+}
 .tier-radio {
   margin-top: 2px;
   width: 20px;
@@ -1822,7 +1826,7 @@ theme.variantStrings = {
             </div>
             <p class="text-xs sm:text-sm mt-0.5" style="color: rgba(255,255,255,0.75);">Includes 2 Miroooo X2 sets &amp; <strong>2 FREE Gifts</strong> (£35.90 Value)</p>
           </div>
-          <div class="text-right">
+          <div class="text-right" style="margin-top: 14px;">
             <div class="flex items-baseline gap-1.5 justify-end">
               <span class="font-bold text-base sm:text-lg text-white">£79</span>
               <span class="text-xs sm:text-sm line-through" style="color: rgba(255,255,255,0.45);">£159</span>
@@ -2095,7 +2099,8 @@ theme.variantStrings = {
           transform: scale(1) translateY(0) rotate(0deg);
         }
       }
-      .miroooo-sticky-btn {
+      .miroooo-sticky-btn,
+      #sticky-bar-cta-btn {
         position: relative !important;
         overflow: hidden !important;
         isolation: isolate !important;
@@ -2119,7 +2124,8 @@ theme.variantStrings = {
         font-family: inherit !important;
         transition: transform 0.2s ease, background-color 0.35s ease, border-color 0.2s ease, box-shadow 0.2s ease !important;
       }
-      .miroooo-sticky-btn .btn-fill {
+      .miroooo-sticky-btn .btn-fill,
+      #sticky-bar-cta-btn .btn-fill {
         position: absolute !important;
         inset: 0 !important;
         width: 100% !important;
@@ -2132,10 +2138,12 @@ theme.variantStrings = {
         z-index: 1 !important;
         pointer-events: none !important;
       }
-      .miroooo-sticky-btn:hover .btn-fill {
+      .miroooo-sticky-btn:hover .btn-fill,
+      #sticky-bar-cta-btn:hover .btn-fill {
         transform: translateY(0%) !important;
       }
-      .miroooo-sticky-btn::after {
+      .miroooo-sticky-btn::after,
+      #sticky-bar-cta-btn::after {
         content: '' !important;
         position: absolute !important;
         top: 0 !important;
@@ -2148,10 +2156,12 @@ theme.variantStrings = {
         z-index: 2 !important;
         pointer-events: none !important;
       }
-      .miroooo-sticky-btn:hover::after {
+      .miroooo-sticky-btn:hover::after,
+      #sticky-bar-cta-btn:hover::after {
         background: linear-gradient(90deg, transparent calc(50% - 70px), rgba(255, 255, 255, 0.3) 50%, transparent calc(50% + 35px)) !important;
       }
-      .miroooo-sticky-btn .btn-text {
+      .miroooo-sticky-btn .btn-text,
+      #sticky-bar-cta-btn .btn-text {
         position: relative !important;
         z-index: 3 !important;
         display: inline-flex !important;
@@ -2162,17 +2172,29 @@ theme.variantStrings = {
         transition: color 0.25s cubic-bezier(0.16, 1, 0.3, 1) !important;
         pointer-events: none !important;
       }
-      .miroooo-sticky-btn:hover .btn-text {
+      .miroooo-sticky-btn:hover .btn-text,
+      #sticky-bar-cta-btn:hover .btn-text {
         color: #ffffff !important;
       }
-      .miroooo-sticky-btn:hover {
+      .miroooo-sticky-btn .miroooo-lottie-cart svg path,
+      #sticky-bar-cta-btn .miroooo-lottie-cart svg path {
+        stroke: #000000 !important;
+        transition: stroke 0.25s cubic-bezier(0.16, 1, 0.3, 1) !important;
+      }
+      .miroooo-sticky-btn:hover .miroooo-lottie-cart svg path,
+      #sticky-bar-cta-btn:hover .miroooo-lottie-cart svg path {
+        stroke: #ffffff !important;
+      }
+      .miroooo-sticky-btn:hover,
+      #sticky-bar-cta-btn:hover {
         background: #000000 !important;
         background-color: #000000 !important;
         border-color: #ffffff !important;
         transform: scale(1.01) !important;
         box-shadow: 0 8px 30px rgba(255, 255, 255, 0.18) !important;
       }
-      .miroooo-sticky-btn:active {
+      .miroooo-sticky-btn:active,
+      #sticky-bar-cta-btn:active {
         transform: scale(0.98) !important;
       }
       .miroooo-sticky-bag-icon {
@@ -2186,7 +2208,8 @@ theme.variantStrings = {
         transform-origin: center bottom !important;
         transition: color 0.25s ease, transform 0.25s ease !important;
       }
-      .miroooo-sticky-btn:hover .miroooo-sticky-bag-icon {
+      .miroooo-sticky-btn:hover .miroooo-sticky-bag-icon,
+      #sticky-bar-cta-btn:hover .miroooo-sticky-bag-icon {
         animation: miroooo-cart-bounce 1.6s ease-in-out infinite !important;
       }
       @media (max-width: 640px) {
