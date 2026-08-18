@@ -325,6 +325,8 @@
 
     scroller.addEventListener("pointerdown", (event) => {
       if (event.pointerType === "touch") return;
+      // Don't capture pointer when clicking inside a link – let <a> navigate
+      if (event.target.closest("a")) return;
       pointerDown = true;
       moved = false;
       pointerStart = event.clientX;
