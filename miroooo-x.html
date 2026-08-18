@@ -827,10 +827,6 @@
 .standalone-swatch-btn:hover {
   transform: scale(1.12);
 }
-.standalone-swatch-btn.is-active {
-  box-shadow: 0 0 0 2px #000000, 0 0 0 4px #ffffff !important;
-  border-color: #000000 !important;
-}
 
 .tier-expanded-panel {
   border-top: 1px solid rgba(0, 0, 0, 0.08);
@@ -871,13 +867,38 @@
 .color-swatch-btn:hover {
   transform: scale(1.12);
 }
-.color-swatch-btn.is-active {
-  box-shadow: 0 0 0 2px #000000, 0 0 0 4px #e6e6e6;
-  border-color: transparent;
+
+/* Metallic Color Swatches (Silver, Pink, Grey) */
+.standalone-swatch-btn[data-color="Silver"],
+.standalone-swatch-btn.swatch-silver,
+.color-swatch-btn.swatch-silver,
+.color-swatch-btn[data-color="Silver"] {
+  background: linear-gradient(135deg, #f0f2f5 0%, #cbd2da 25%, #ffffff 50%, #9aa1aa 75%, #d5dadf 100%) !important;
+  box-shadow: inset 0 1px 2px rgba(255, 255, 255, 0.9), inset 0 -1px 2px rgba(0, 0, 0, 0.25), 0 2px 5px rgba(0, 0, 0, 0.3) !important;
 }
-.color-swatch-btn.swatch-grey { background-color: #737373; }
-.color-swatch-btn.swatch-pink { background-color: #f2a7b3; }
-.color-swatch-btn.swatch-silver { background-color: #e5e5e5; }
+
+.standalone-swatch-btn[data-color="Pink"],
+.standalone-swatch-btn.swatch-pink,
+.color-swatch-btn.swatch-pink,
+.color-swatch-btn[data-color="Pink"] {
+  background: linear-gradient(135deg, #fedbdf 0%, #e8a2af 25%, #fff0f2 50%, #c47685 75%, #e8aab5 100%) !important;
+  box-shadow: inset 0 1px 2px rgba(255, 255, 255, 0.9), inset 0 -1px 2px rgba(0, 0, 0, 0.25), 0 2px 5px rgba(0, 0, 0, 0.3) !important;
+}
+
+.standalone-swatch-btn[data-color="Grey"],
+.standalone-swatch-btn.swatch-grey,
+.color-swatch-btn.swatch-grey,
+.color-swatch-btn[data-color="Grey"] {
+  background: linear-gradient(135deg, #8c919a 0%, #565a62 25%, #a1a6b0 50%, #3a3d43 75%, #6a6f78 100%) !important;
+  box-shadow: inset 0 1px 2px rgba(255, 255, 255, 0.5), inset 0 -1px 2px rgba(0, 0, 0, 0.4), 0 2px 5px rgba(0, 0, 0, 0.4) !important;
+}
+
+/* Active Selection Ring */
+.standalone-swatch-btn.is-active,
+.color-swatch-btn.is-active {
+  box-shadow: 0 0 0 2px #000000, 0 0 0 4px #ffffff, 0 4px 10px rgba(0,0,0,0.5) !important;
+  transform: scale(1.08);
+}
 
 /* Free Gifts 3-Tier Grid (Dark Theme) */
 .gift-card-item {
@@ -1149,12 +1170,11 @@ theme.variantStrings = {
           <span class="btn-text" data-text>FAQ</span><span class="btn-text btn-duplicate">FAQ</span></a>
       </li></ul>
 </nav>
-  </div><div class="header__logo flex justify-center z-2" itemscope itemtype="http://schema.org/Organization"><a
-      href="/"
-      itemprop="url"
-      class="header__logo-link flex items-center relative"
-      style="text-decoration: none;"
-    ><span style="font-family: 'Inter', -apple-system, sans-serif; font-size: clamp(1.3rem, 2vw, 1.6rem); font-weight: 800; letter-spacing: 0.2em; text-transform: uppercase; color: #ffffff;">MIROOOO</span></a></div><div class="header__icons header__icons--end flex justify-end z-2">
+  </div><div class="header__logo flex justify-center z-2" itemscope itemtype="http://schema.org/Organization">
+    <a href="/" itemprop="url" class="header__logo-link flex items-center relative" style="text-decoration: none;">
+      <span style="font-family: 'Inter', -apple-system, sans-serif; font-size: clamp(1.3rem, 2vw, 1.6rem); font-weight: 800; letter-spacing: 0.2em; text-transform: uppercase; color: #ffffff;">MIROOOO</span>
+    </a>
+  </div><div class="header__icons header__icons--end flex justify-end z-2">
   <div class="header__buttons flex items-center gap-1d5"><a href="https://miroooo.co/customer_authentication/redirect?locale=nl&region_country=NL" class="hidden lg:flex items-center justify-center" is="magnet-link" rel="nofollow">
         <span class="sr-only"></span><svg class="icon icon-account icon-lg" viewBox="0 0 24 24" stroke="currentColor" fill="none" xmlns="http://www.w3.org/2000/svg">
       <rect width="10.5" height="10.5" x="6.75" y="1.75" rx="5.25"></rect>
@@ -1310,12 +1330,25 @@ theme.variantStrings = {
   #shopify-section-template--24203751129433__main-product {
     --section-padding-top: 16px;
     --section-padding-bottom: 0px;
+    padding-top: 16px !important;
+    margin-top: 0px !important;
     padding-bottom: 0px !important;
     margin-bottom: 0px !important;
   }
   #shopify-section-template--24203751129433__main-product .section {
     padding-bottom: 0px !important;
     margin-bottom: 0px !important;
+  }
+  .product__info.sticky, .product__preview.sticky {
+    top: 24px !important;
+    inset-block-start: 24px !important;
+  }
+  @media (max-width: 990px) {
+    .product__info.sticky, .product__preview.sticky {
+      position: static !important;
+      top: auto !important;
+      inset-block-start: auto !important;
+    }
   }
 
   @media screen and (min-width: 1024px) {
@@ -1522,7 +1555,7 @@ theme.variantStrings = {
     </div>
     <span style="color: rgba(255, 255, 255, 0.9); font-size: 13px; font-weight: 700; letter-spacing: 0.04em; text-transform: uppercase;">4.9 · TRUSTED BY 40,000+ CUSTOMERS</span>
   </a>
-  <h1 class="heading col-span-full font-bold" id="main-product-title" style="color: #ffffff; font-size: clamp(1.85rem, 2.8vw, 2.5rem); letter-spacing: -0.02em; line-height: 1.15; margin: 4px 0 8px 0;">
+  <h1 class="heading leading-none product-title-sm mobile:product-title-sm col-span-full font-bold" id="main-product-title" style="font-size: 23px; font-weight: 700; line-height: 1.1; letter-spacing: -0.03em; margin: 4px 0 8px 0; color: #ffffff;">
     Miroooo X - Grey
   </h1>
 </div>
@@ -1538,20 +1571,20 @@ theme.variantStrings = {
 <div class="product__features-list my-4" style="margin: 16px 0;">
   <ul style="list-style: none; padding: 0; margin: 0; color: rgba(255, 255, 255, 0.9); display: flex; flex-direction: column; gap: 8px; font-size: 0.95rem;">
     <li style="display: flex; align-items: center; gap: 8px;">
-      <span style="color: #22c55e; font-weight: 800; font-size: 16px; line-height: 1;">✓</span>
-      <span><strong>60+ Days</strong> Battery</span>
+      <span style="color: #ffffff; font-weight: 700; font-size: 15px; line-height: 1;">✓</span>
+      <span><strong>Ultra Lightweight</strong> at only 51g for effortless daily handling.</span>
     </li>
     <li style="display: flex; align-items: center; gap: 8px;">
-      <span style="color: #22c55e; font-weight: 800; font-size: 16px; line-height: 1;">✓</span>
-      <span><strong>Free</strong> Travel Case</span>
+      <span style="color: #ffffff; font-weight: 700; font-size: 15px; line-height: 1;">✓</span>
+      <span>Brushes up to <strong>60 days</strong> on a single charge.</span>
     </li>
     <li style="display: flex; align-items: center; gap: 8px;">
-      <span style="color: #22c55e; font-weight: 800; font-size: 16px; line-height: 1;">✓</span>
-      <span>Lightweight ( 51 grams )</span>
+      <span style="color: #ffffff; font-weight: 700; font-size: 15px; line-height: 1;">✓</span>
+      <span>Includes luxury <strong>Travel Case</strong> worth £15.95.</span>
     </li>
     <li style="display: flex; align-items: center; gap: 8px;">
-      <span style="color: #22c55e; font-weight: 800; font-size: 16px; line-height: 1;">✓</span>
-      <span>Elevates Your Routine</span>
+      <span style="color: #ffffff; font-weight: 700; font-size: 15px; line-height: 1;">✓</span>
+      <span><strong>Whisper Quiet</strong> sonic motor operating below 50 dB.</span>
     </li>
   </ul>
 </div>
@@ -1564,11 +1597,11 @@ theme.variantStrings = {
   </div>
   <div style="display: flex; align-items: center; gap: 12px;" id="standalone-swatches-group">
     <!-- Silver Swatch -->
-    <button type="button" class="standalone-swatch-btn" data-color="Silver" onclick="selectStandaloneColor('Silver')" title="Silver" aria-label="Silver" style="background-color: #e5e5e5;"></button>
+    <button type="button" class="standalone-swatch-btn" data-color="Silver" onclick="selectStandaloneColor('Silver')" title="Silver" aria-label="Silver"></button>
     <!-- Pink Swatch -->
-    <button type="button" class="standalone-swatch-btn" data-color="Pink" onclick="selectStandaloneColor('Pink')" title="Pink" aria-label="Pink" style="background-color: #f2a7b3;"></button>
+    <button type="button" class="standalone-swatch-btn" data-color="Pink" onclick="selectStandaloneColor('Pink')" title="Pink" aria-label="Pink"></button>
     <!-- Grey Swatch (Active by default) -->
-    <button type="button" class="standalone-swatch-btn is-active" data-color="Grey" onclick="selectStandaloneColor('Grey')" title="Grey" aria-label="Grey" style="background-color: #737373;"></button>
+    <button type="button" class="standalone-swatch-btn is-active" data-color="Grey" onclick="selectStandaloneColor('Grey')" title="Grey" aria-label="Grey"></button>
   </div>
   <div style="display: flex; align-items: center; gap: 8px; margin-top: 12px; font-size: 13px; color: rgba(255, 255, 255, 0.85); font-weight: 500;">
     <span style="width: 8px; height: 8px; border-radius: 50%; background: #22c55e; display: inline-block;"></span>
@@ -1737,24 +1770,27 @@ theme.variantStrings = {
   </div>
 </div>
 
-<!-- Free Delivery Row -->
-<div class="miroooo-delivery-row flex items-center justify-center gap-2 py-2 mb-3 text-sm font-semibold text-neutral-200" style="display: flex; align-items: center; justify-content: center; gap: 8px; padding: 8px 0; margin-bottom: 12px; font-size: 0.875rem; font-weight: 600; color: #ffffff;">
-  <div class="miroooo-lottie-truck" data-lottie-truck aria-hidden="true">
-    <svg class="miroooo-delivery-truck-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="width: 18px; height: 18px; flex-shrink: 0; color: #ffffff;">
-      <path d="M14 18V6a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2v11a1 1 0 0 0 1 1h2"/>
-      <path d="M15 18H9"/>
-      <path d="M19 18h2a1 1 0 0 0 1-1v-3.65a1 1 0 0 0-.22-.624l-3.48-4.35A1 1 0 0 0 17.52 8H14"/>
-      <circle cx="6.5" cy="18.5" r="2.5"/>
-      <circle cx="16.5" cy="18.5" r="2.5"/>
-    </svg>
+<!-- Delivery Countdown Timer Box -->
+<div class="delivery-timer-box rounded-xl p-3.5 my-4 flex items-center gap-3 text-sm" style="background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 255, 255, 0.1); color: rgba(255, 255, 255, 0.85); margin: 16px 0;">
+  <div class="w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0" style="background: rgba(255, 255, 255, 0.1); color: #ffffff; width: 32px; height: 32px; border-radius: 9999px; display: inline-flex; align-items: center; justify-content: center;">
+    <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width: 16px; height: 16px;"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
   </div>
-  <span class="delivery-highlight" style="font-weight: 700; color: #ffffff; letter-spacing: 0.02em;">FREE DELIVERY</span>
-  <span class="delivery-sep" style="color: rgba(255, 255, 255, 0.5);">—</span>
-  <span class="delivery-arrival" style="color: rgba(255, 255, 255, 0.9);">Arrives by <span class="miroooo-dynamic-date" style="font-weight: 600; color: #ffffff;">Friday 21 August</span></span>
+  <div class="flex-1 text-xs sm:text-sm leading-snug" style="font-size: 13px; line-height: 1.4;">
+    Order within <strong class="font-mono font-bold" id="bundle-countdown-timer" style="color: #ffffff; font-weight: 700; font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;">14:38</strong> to receive it by <strong class="font-bold" id="bundle-delivery-date" style="color: #ffffff; font-weight: 700;">Friday 21 Aug</strong>
+  </div>
 </div>
 
 <!-- Add To Cart Main Button -->
 <div class="main-cta-wrapper my-4" style="margin: 18px 0 14px 0; --color-button-text: 0 0 0; --color-button-background: 255 255 255; --color-button-border: 255 255 255; --buttons-radius: 9999px; --buttons-border-width: 2px; --buttons-border-opacity: 1.0; --border-opacity: 1.0; --buttons-shadow-horizontal-offset: 0px; --buttons-shadow-vertical-offset: 0px; --buttons-shadow-opacity: 0;">
+  <style>
+    #hero-cta {
+      transform: none !important;
+    }
+    #hero-cta:hover, #hero-cta:focus, #hero-cta:active {
+      transform: none !important;
+    }
+    #hero-cta:hover .btn-text { color: #ffffff !important; }
+  </style>
   <button
     type="button"
     id="hero-cta"
@@ -2822,8 +2858,8 @@ theme.variantStrings = {
       border-bottom: 1px solid rgba(255, 255, 255, 0.08);
       box-sizing: border-box;
       position: sticky;
-      top: 78px;
-      z-index: 10;
+      top: 0px !important;
+      z-index: 25 !important;
       background: #080909;
       border-top-left-radius: 15px;
       border-top-right-radius: 15px;
@@ -2831,7 +2867,7 @@ theme.variantStrings = {
     }
     @media (max-width: 768px) {
       .miroooo-comp-cell--head {
-        top: 60px;
+        top: 0px !important;
       }
     }
     .miroooo-comp-col--features .miroooo-comp-cell--head {
@@ -2851,7 +2887,7 @@ theme.variantStrings = {
       border-top-right-radius: 17px;
       border-bottom: 2px solid #e2e8f0;
       padding: 14px 10px 10px 10px;
-      z-index: 15;
+      z-index: 25 !important;
       box-shadow: 0 6px 16px rgba(0, 0, 0, 0.12);
     }
 
@@ -4190,15 +4226,7 @@ function selectBundleTier(tierId) {
     }
   });
 
-  // 3. Update Main Price Displays
-  const priceDisplay = document.getElementById('main-price-display');
-  if (priceDisplay) priceDisplay.textContent = tier.priceDisplay;
-
-  const compareDisplay = document.getElementById('main-compare-price-display');
-  if (compareDisplay) compareDisplay.textContent = tier.compareDisplay;
-
-  const discountBadge = document.getElementById('main-discount-badge');
-  if (discountBadge) discountBadge.textContent = tier.saveDisplay;
+  // 3. Top Hero Price Block remains static (£59 / £119 / 50% OFF)
 
   // 4. Update Main CTA Button Text
   const mainCtaText = document.getElementById('main-cta-text');
@@ -4644,17 +4672,41 @@ document.addEventListener('DOMContentLoaded', () => {
   selectBundleTier('bundle-2');
   selectStandaloneColor('Grey');
 
-  // Dynamic Delivery Date calculation
-  const updateDeliveryDate = () => {
-    const deliveryDate = new Date();
-    deliveryDate.setDate(deliveryDate.getDate() + 3);
-    const options = { weekday: 'long', day: 'numeric', month: 'long' };
-    const formatted = deliveryDate.toLocaleDateString('en-GB', options);
-    document.querySelectorAll('.miroooo-dynamic-date').forEach(el => {
-      el.textContent = formatted;
-    });
+  // Live Delivery Countdown Timer & Dynamic Delivery Date calculation
+  const initDeliveryCountdown = () => {
+    const updateDeliveryDate = () => {
+      const deliveryDate = new Date();
+      deliveryDate.setDate(deliveryDate.getDate() + 3);
+      const options = { weekday: 'long', day: 'numeric', month: 'short' };
+      const formatted = deliveryDate.toLocaleDateString('en-GB', options).replace(',', '');
+      const deliveryDateEl = document.getElementById('bundle-delivery-date');
+      if (deliveryDateEl) {
+        deliveryDateEl.textContent = formatted;
+      }
+      document.querySelectorAll('.miroooo-dynamic-date').forEach(el => {
+        el.textContent = formatted;
+      });
+    };
+    updateDeliveryDate();
+
+    const timerEl = document.getElementById('bundle-countdown-timer');
+    if (timerEl) {
+      let totalSeconds = 14 * 60 + 38;
+      const updateTimer = () => {
+        const mins = Math.floor(totalSeconds / 60);
+        const secs = totalSeconds % 60;
+        timerEl.textContent = `${String(mins).padStart(2, '0')}:${String(secs).padStart(2, '0')}`;
+        if (totalSeconds > 0) {
+          totalSeconds -= 1;
+        } else {
+          totalSeconds = 14 * 60 + 38;
+        }
+      };
+      updateTimer();
+      setInterval(updateTimer, 1000);
+    }
   };
-  updateDeliveryDate();
+  initDeliveryCountdown();
 
   // Main Buy CTA Click -> Save to localStorage and Redirect directly to /cart
   const mainBuyBtn = document.getElementById('hero-cta');

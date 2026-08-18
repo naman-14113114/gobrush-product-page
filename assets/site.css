@@ -287,50 +287,105 @@ p {
 }
 
 .button {
-  min-height: 50px;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 10px;
-  padding: 13px 22px;
-  border: 1px solid transparent;
-  border-radius: 999px;
-  background: var(--ink);
-  color: #fff;
-  font-size: 14px;
-  font-weight: 750;
-  cursor: pointer;
-  transition: transform 180ms ease, background-color 180ms ease, border-color 180ms ease;
+  min-height: 48px;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 8px !important;
+  padding: 0 28px !important;
+  border: 2px solid #ffffff !important;
+  border-radius: 9999px !important;
+  background-color: #ffffff !important;
+  background: #ffffff !important;
+  color: #000000 !important;
+  font-size: 0.95rem !important;
+  font-weight: 700 !important;
+  cursor: pointer !important;
+  overflow: hidden !important;
+  position: relative !important;
+  transform: none !important;
+  text-decoration: none !important;
+  isolation: isolate !important;
+  box-sizing: border-box !important;
+  transition: border-color 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s cubic-bezier(0.16, 1, 0.3, 1) !important;
 }
 
-.button:hover {
-  transform: translateY(-2px);
-  background: #252727;
+.button:hover,
+.button:focus,
+.button:focus-visible,
+.button:active {
+  transform: none !important;
+  background-color: #ffffff !important;
+  background: #ffffff !important;
+  border-color: #ffffff !important;
 }
 
-.button--light {
-  background: #fff;
-  color: var(--ink);
+.button .btn-fill {
+  position: absolute !important;
+  border-radius: 50% !important;
+  width: 150% !important;
+  height: 200% !important;
+  inset-block-start: -50% !important;
+  top: -50% !important;
+  inset-inline-start: -25% !important;
+  left: -25% !important;
+  background-color: #000000 !important;
+  background: #000000 !important;
+  pointer-events: none !important;
+  z-index: 1 !important;
+  transform: translate3d(0, 76%, 0) !important;
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1) !important;
 }
 
-.button--light:hover {
-  background: var(--silver);
+.button:hover .btn-fill,
+.button:focus-visible .btn-fill {
+  transform: translate3d(0, 0%, 0) !important;
 }
 
-.button--outline {
-  border-color: var(--line);
-  background: transparent;
-  color: var(--ink);
+.button .btn-text {
+  position: relative !important;
+  z-index: 2 !important;
+  color: #000000 !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 8px !important;
+  transition: color 0.4s cubic-bezier(0.16, 1, 0.3, 1) !important;
+  pointer-events: none !important;
 }
 
-.button--outline:hover {
-  border-color: var(--ink);
-  background: transparent;
+.button .btn-text svg,
+.button .btn-text .icon {
+  color: #000000 !important;
+  stroke: #000000 !important;
+  transition: color 0.4s cubic-bezier(0.16, 1, 0.3, 1), stroke 0.4s cubic-bezier(0.16, 1, 0.3, 1), fill 0.4s cubic-bezier(0.16, 1, 0.3, 1) !important;
 }
 
-.button--signal {
-  background: var(--signal);
-  color: #06140a;
+.button .btn-text svg path,
+.button .btn-text .icon path {
+  stroke: #000000 !important;
+  transition: stroke 0.4s cubic-bezier(0.16, 1, 0.3, 1), fill 0.4s cubic-bezier(0.16, 1, 0.3, 1) !important;
+}
+
+.button:hover .btn-text,
+.button:focus-visible .btn-text {
+  color: #ffffff !important;
+}
+
+.button:hover .btn-text svg,
+.button:hover .btn-text .icon,
+.button:focus-visible .btn-text svg,
+.button:focus-visible .btn-text .icon {
+  color: #ffffff !important;
+  stroke: #ffffff !important;
+  fill: none !important;
+}
+
+.button:hover .btn-text svg path,
+.button:hover .btn-text .icon path,
+.button:focus-visible .btn-text svg path,
+.button:focus-visible .btn-text .icon path {
+  stroke: #ffffff !important;
 }
 
 .button svg {
@@ -3108,7 +3163,7 @@ body:not([data-page="home"]) .site-header:not(.site-header--overlay) {
   padding: 0 20px !important;
   border-radius: 9999px !important;
   font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif !important;
-  font-size: 13.5px !important;
+  font-size: 16px !important;
   font-weight: 500 !important;
   letter-spacing: 0.02em !important;
   text-decoration: none !important;
@@ -3147,8 +3202,8 @@ body:not([data-page="home"]) .site-header:not(.site-header--overlay) {
   justify-content: center !important;
   background-color: #ffffff !important;
   color: #000000 !important;
-  font-weight: 600 !important;
-  font-size: 13.5px !important;
+  font-weight: 500 !important;
+  font-size: 16px !important;
   letter-spacing: 0.02em !important;
   z-index: 2 !important;
   pointer-events: none !important;
@@ -4354,6 +4409,7 @@ body.nav-open .miroooo-sticky-cart-wrap {
   background-color: #ffffff !important;
   color: #000000 !important;
   border: 2px solid #ffffff !important;
+  border-radius: 9999px !important;
   cursor: pointer !important;
 }
 
@@ -4447,7 +4503,16 @@ body.nav-open .miroooo-sticky-cart-wrap {
   color: #ffffff !important;
 }
 
+#hero-cta {
+  transform: none !important;
+}
+
 #hero-cta:hover,
+#hero-cta:focus,
+#hero-cta:active {
+  transform: none !important;
+}
+
 #sticky-bar-cta-btn:hover,
 .miroooo-sticky-btn:hover {
   background: #000000 !important;
@@ -4457,7 +4522,6 @@ body.nav-open .miroooo-sticky-cart-wrap {
   box-shadow: 0 8px 30px rgba(255, 255, 255, 0.18) !important;
 }
 
-#hero-cta:active,
 #sticky-bar-cta-btn:active,
 .miroooo-sticky-btn:active {
   transform: scale(0.98) !important;
@@ -5345,28 +5409,29 @@ body.nav-open .miroooo-sticky-cart-wrap {
 }
 
 /* =========================================================
-   PRODUCT INFO & PREVIEW STICKY OFFSET FIX
-   Prevents right-side product info from being cropped/tucked under header
+   PRODUCT INFO & PREVIEW STICKY OFFSET FIX & HEADER CLEARANCE
    ========================================================= */
 #shopify-section-template--24203751129433__main-product {
-  padding-top: calc(var(--header-height, 78px) + var(--topbar-height, 48px) + 24px) !important;
+  padding-top: 16px !important;
+  margin-top: 0px !important;
+  padding-bottom: 0px !important;
+  margin-bottom: 0px !important;
 }
 
 .product__info.sticky,
-.product__preview.sticky,
-.product__info {
-  top: calc(var(--header-height, 80px) + 24px) !important;
-  inset-block-start: calc(var(--header-height, 80px) + 24px) !important;
+.product__preview.sticky {
+  top: 24px !important;
+  inset-block-start: 24px !important;
 }
 
 @media (max-width: 990px) {
   #shopify-section-template--24203751129433__main-product {
-    padding-top: calc(var(--header-height, 70px) + var(--topbar-height, 40px) + 16px) !important;
+    padding-top: 16px !important;
+    margin-top: 0px !important;
   }
 
   .product__info.sticky,
-  .product__preview.sticky,
-  .product__info {
+  .product__preview.sticky {
     position: static !important;
     top: auto !important;
     inset-block-start: auto !important;
@@ -5696,3 +5761,36 @@ body.nav-open .miroooo-sticky-cart-wrap {
 .bundle-tier-card.has-top-badge:has(.tier-popular-badge-wrap) .tier-header-btn .text-right {
   margin-top: 14px !important;
 }
+
+/* Metallic Color Swatches (Silver, Pink, Grey) */
+.standalone-swatch-btn[data-color="Silver"],
+.standalone-swatch-btn.swatch-silver,
+.color-swatch-btn.swatch-silver,
+.color-swatch-btn[data-color="Silver"] {
+  background: linear-gradient(135deg, #f0f2f5 0%, #cbd2da 25%, #ffffff 50%, #9aa1aa 75%, #d5dadf 100%) !important;
+  box-shadow: inset 0 1px 2px rgba(255, 255, 255, 0.9), inset 0 -1px 2px rgba(0, 0, 0, 0.25), 0 2px 5px rgba(0, 0, 0, 0.3) !important;
+}
+
+.standalone-swatch-btn[data-color="Pink"],
+.standalone-swatch-btn.swatch-pink,
+.color-swatch-btn.swatch-pink,
+.color-swatch-btn[data-color="Pink"] {
+  background: linear-gradient(135deg, #fedbdf 0%, #e8a2af 25%, #fff0f2 50%, #c47685 75%, #e8aab5 100%) !important;
+  box-shadow: inset 0 1px 2px rgba(255, 255, 255, 0.9), inset 0 -1px 2px rgba(0, 0, 0, 0.25), 0 2px 5px rgba(0, 0, 0, 0.3) !important;
+}
+
+.standalone-swatch-btn[data-color="Grey"],
+.standalone-swatch-btn.swatch-grey,
+.color-swatch-btn.swatch-grey,
+.color-swatch-btn[data-color="Grey"] {
+  background: linear-gradient(135deg, #8c919a 0%, #565a62 25%, #a1a6b0 50%, #3a3d43 75%, #6a6f78 100%) !important;
+  box-shadow: inset 0 1px 2px rgba(255, 255, 255, 0.5), inset 0 -1px 2px rgba(0, 0, 0, 0.4), 0 2px 5px rgba(0, 0, 0, 0.4) !important;
+}
+
+/* Active Selection Ring */
+.standalone-swatch-btn.is-active,
+.color-swatch-btn.is-active {
+  box-shadow: 0 0 0 2px #000000, 0 0 0 4px #ffffff, 0 4px 10px rgba(0,0,0,0.5) !important;
+  transform: scale(1.08);
+}
+
