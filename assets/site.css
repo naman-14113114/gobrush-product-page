@@ -4401,7 +4401,9 @@ body.nav-open .miroooo-sticky-cart-wrap {
 #hero-cta,
 #sticky-bar-cta-btn,
 .proxy-bundle-btn,
-.miroooo-sticky-btn {
+.miroooo-sticky-btn,
+.button,
+.button--primary {
   position: relative !important;
   overflow: hidden !important;
   isolation: isolate !important;
@@ -4411,6 +4413,8 @@ body.nav-open .miroooo-sticky-cart-wrap {
   border: 2px solid #ffffff !important;
   border-radius: 9999px !important;
   cursor: pointer !important;
+  transform: none !important;
+  transition: border-color 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s cubic-bezier(0.16, 1, 0.3, 1) !important;
 }
 
 #hero-cta::after,
@@ -4454,77 +4458,125 @@ body.nav-open .miroooo-sticky-cart-wrap {
   box-shadow: 0 4px 16px rgba(255, 255, 255, 0.15) !important;
   text-decoration: none !important;
   font-family: inherit !important;
-  transition: transform 0.2s ease, background-color 0.35s ease, border-color 0.2s ease, box-shadow 0.2s ease !important;
 }
 
 #hero-cta .btn-fill,
 #sticky-bar-cta-btn .btn-fill,
 .proxy-bundle-btn .btn-fill,
-.miroooo-sticky-btn .btn-fill {
+.miroooo-sticky-btn .btn-fill,
+.button .btn-fill {
   position: absolute !important;
-  inset: 0 !important;
-  width: 100% !important;
-  height: 100% !important;
-  background: #000000 !important;
+  border-radius: 50% !important;
+  width: 150% !important;
+  height: 200% !important;
+  inset-block-start: -50% !important;
+  top: -50% !important;
+  inset-inline-start: -25% !important;
+  left: -25% !important;
   background-color: #000000 !important;
-  transform: translateY(100%) !important;
-  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1) !important;
-  border-radius: 9999px !important;
-  z-index: 1 !important;
+  background: #000000 !important;
   pointer-events: none !important;
+  z-index: 1 !important;
+  transform: translate3d(0, 76%, 0) !important;
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1) !important;
 }
 
 #hero-cta:hover .btn-fill,
+#hero-cta:focus-visible .btn-fill,
 #sticky-bar-cta-btn:hover .btn-fill,
+#sticky-bar-cta-btn:focus-visible .btn-fill,
 .proxy-bundle-btn:hover .btn-fill,
-.miroooo-sticky-btn:hover .btn-fill {
-  transform: translateY(0%) !important;
+.proxy-bundle-btn:focus-visible .btn-fill,
+.miroooo-sticky-btn:hover .btn-fill,
+.miroooo-sticky-btn:focus-visible .btn-fill,
+.button:hover .btn-fill,
+.button:focus-visible .btn-fill {
+  transform: translate3d(0, 0%, 0) !important;
 }
 
 #hero-cta .btn-text,
 #sticky-bar-cta-btn .btn-text,
 .proxy-bundle-btn .btn-text,
-.miroooo-sticky-btn .btn-text {
+.miroooo-sticky-btn .btn-text,
+.button .btn-text {
   position: relative !important;
-  z-index: 3 !important;
+  z-index: 2 !important;
   display: inline-flex !important;
   align-items: center !important;
   justify-content: center !important;
   gap: 8px !important;
   color: #000000 !important;
-  transition: color 0.25s cubic-bezier(0.16, 1, 0.3, 1) !important;
+  transition: color 0.4s cubic-bezier(0.16, 1, 0.3, 1) !important;
   pointer-events: none !important;
 }
 
 #hero-cta:hover .btn-text,
+#hero-cta:focus-visible .btn-text,
 #sticky-bar-cta-btn:hover .btn-text,
+#sticky-bar-cta-btn:focus-visible .btn-text,
 .proxy-bundle-btn:hover .btn-text,
-.miroooo-sticky-btn:hover .btn-text {
+.proxy-bundle-btn:focus-visible .btn-text,
+.miroooo-sticky-btn:hover .btn-text,
+.miroooo-sticky-btn:focus-visible .btn-text,
+.button:hover .btn-text,
+.button:focus-visible .btn-text {
   color: #ffffff !important;
 }
 
-#hero-cta {
-  transform: none !important;
+#hero-cta .btn-text svg,
+#sticky-bar-cta-btn .btn-text svg,
+.proxy-bundle-btn .btn-text svg,
+.miroooo-sticky-btn .btn-text svg,
+.button .btn-text svg,
+#hero-cta .btn-text .icon,
+#sticky-bar-cta-btn .btn-text .icon,
+.proxy-bundle-btn .btn-text .icon,
+.miroooo-sticky-btn .btn-text .icon,
+.button .btn-text .icon {
+  color: #000000 !important;
+  stroke: #000000 !important;
+  transition: color 0.4s cubic-bezier(0.16, 1, 0.3, 1), stroke 0.4s cubic-bezier(0.16, 1, 0.3, 1), fill 0.4s cubic-bezier(0.16, 1, 0.3, 1) !important;
 }
 
+#hero-cta:hover .btn-text svg,
+#sticky-bar-cta-btn:hover .btn-text svg,
+.proxy-bundle-btn:hover .btn-text svg,
+.miroooo-sticky-btn:hover .btn-text svg,
+.button:hover .btn-text svg,
+#hero-cta:hover .btn-text .icon,
+#sticky-bar-cta-btn:hover .btn-text .icon,
+.proxy-bundle-btn:hover .btn-text .icon,
+.miroooo-sticky-btn:hover .btn-text .icon,
+.button:hover .btn-text .icon {
+  color: #ffffff !important;
+  stroke: #ffffff !important;
+  fill: none !important;
+}
+
+#hero-cta:hover .btn-text svg path,
+#sticky-bar-cta-btn:hover .btn-text svg path,
+.proxy-bundle-btn:hover .btn-text svg path,
+.miroooo-sticky-btn:hover .btn-text svg path,
+.button:hover .btn-text svg path {
+  stroke: #ffffff !important;
+}
+
+#hero-cta,
 #hero-cta:hover,
 #hero-cta:focus,
-#hero-cta:active {
-  transform: none !important;
-}
-
+#hero-cta:active,
+#sticky-bar-cta-btn,
 #sticky-bar-cta-btn:hover,
-.miroooo-sticky-btn:hover {
-  background: #000000 !important;
-  background-color: #000000 !important;
-  border-color: #ffffff !important;
-  transform: scale(1.01) !important;
-  box-shadow: 0 8px 30px rgba(255, 255, 255, 0.18) !important;
-}
-
+#sticky-bar-cta-btn:focus,
 #sticky-bar-cta-btn:active,
+.miroooo-sticky-btn,
+.miroooo-sticky-btn:hover,
+.miroooo-sticky-btn:focus,
 .miroooo-sticky-btn:active {
-  transform: scale(0.98) !important;
+  transform: none !important;
+  background-color: #ffffff !important;
+  background: #ffffff !important;
+  border-color: #ffffff !important;
 }
 
 .icon-cart-bag,

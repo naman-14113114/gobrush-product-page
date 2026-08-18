@@ -584,14 +584,16 @@
       padding: 14px 28px !important;
       border-radius: 9999px !important;
       background: #ffffff !important;
+      background-color: #ffffff !important;
       color: #000000 !important;
       border: 2px solid #ffffff !important;
       font-weight: 700 !important;
       font-size: 1.05rem !important;
       cursor: pointer !important;
       text-decoration: none !important;
+      transform: none !important;
       box-shadow: 0 4px 24px rgba(255, 255, 255, 0.15) !important;
-      transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease !important;
+      transition: border-color 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s cubic-bezier(0.16, 1, 0.3, 1) !important;
     }
 
     .cart-checkout-cta-btn::after {
@@ -610,20 +612,24 @@
 
     .cart-checkout-cta-btn .btn-fill {
       position: absolute !important;
-      inset: 0 !important;
-      width: 100% !important;
-      height: 100% !important;
+      border-radius: 50% !important;
+      width: 150% !important;
+      height: 200% !important;
+      inset-block-start: -50% !important;
+      top: -50% !important;
+      inset-inline-start: -25% !important;
+      left: -25% !important;
+      background-color: #000000 !important;
       background: #000000 !important;
-      transform: translateY(100%) !important;
-      transition: transform 0.38s cubic-bezier(0.16, 1, 0.3, 1) !important;
-      border-radius: 9999px !important;
-      z-index: 1 !important;
       pointer-events: none !important;
+      z-index: 1 !important;
+      transform: translate3d(0, 76%, 0) !important;
+      transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1) !important;
     }
 
     .cart-checkout-cta-btn:hover .btn-fill,
     .cart-checkout-cta-btn:focus-visible .btn-fill {
-      transform: translateY(0) !important;
+      transform: translate3d(0, 0%, 0) !important;
     }
 
     .cart-checkout-cta-btn .btn-text {
@@ -634,7 +640,7 @@
       justify-content: center !important;
       gap: 10px !important;
       color: #000000 !important;
-      transition: color 0.3s cubic-bezier(0.16, 1, 0.3, 1) !important;
+      transition: color 0.4s cubic-bezier(0.16, 1, 0.3, 1) !important;
       pointer-events: none !important;
     }
 
@@ -643,15 +649,27 @@
       color: #ffffff !important;
     }
 
-    .cart-checkout-cta-btn:hover {
-      background: #000000 !important;
-      border-color: #ffffff !important;
-      transform: scale(1.01) !important;
-      box-shadow: 0 6px 28px rgba(255, 255, 255, 0.22) !important;
+    .cart-checkout-cta-btn .btn-text svg {
+      color: #000000 !important;
+      stroke: #000000 !important;
+      transition: color 0.4s cubic-bezier(0.16, 1, 0.3, 1), stroke 0.4s cubic-bezier(0.16, 1, 0.3, 1) !important;
     }
 
+    .cart-checkout-cta-btn:hover .btn-text svg,
+    .cart-checkout-cta-btn:focus-visible .btn-text svg {
+      color: #ffffff !important;
+      stroke: #ffffff !important;
+      fill: none !important;
+    }
+
+    .cart-checkout-cta-btn,
+    .cart-checkout-cta-btn:hover,
+    .cart-checkout-cta-btn:focus,
     .cart-checkout-cta-btn:active {
-      transform: scale(0.99) !important;
+      transform: none !important;
+      background-color: #ffffff !important;
+      background: #ffffff !important;
+      border-color: #ffffff !important;
     }
 
     /* Free Rewards Progress Card */

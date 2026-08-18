@@ -2161,25 +2161,29 @@ theme.variantStrings = {
         box-shadow: 0 4px 16px rgba(255, 255, 255, 0.15) !important;
         text-decoration: none !important;
         font-family: inherit !important;
-        transition: transform 0.2s ease, background-color 0.35s ease, border-color 0.2s ease, box-shadow 0.2s ease !important;
       }
       .miroooo-sticky-btn .btn-fill,
       #sticky-bar-cta-btn .btn-fill {
         position: absolute !important;
-        inset: 0 !important;
-        width: 100% !important;
-        height: 100% !important;
-        background: #000000 !important;
+        border-radius: 50% !important;
+        width: 150% !important;
+        height: 200% !important;
+        inset-block-start: -50% !important;
+        top: -50% !important;
+        inset-inline-start: -25% !important;
+        left: -25% !important;
         background-color: #000000 !important;
-        transform: translateY(100%) !important;
-        transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1) !important;
-        border-radius: 9999px !important;
-        z-index: 1 !important;
+        background: #000000 !important;
         pointer-events: none !important;
+        z-index: 1 !important;
+        transform: translate3d(0, 76%, 0) !important;
+        transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1) !important;
       }
       .miroooo-sticky-btn:hover .btn-fill,
-      #sticky-bar-cta-btn:hover .btn-fill {
-        transform: translateY(0%) !important;
+      .miroooo-sticky-btn:focus-visible .btn-fill,
+      #sticky-bar-cta-btn:hover .btn-fill,
+      #sticky-bar-cta-btn:focus-visible .btn-fill {
+        transform: translate3d(0, 0%, 0) !important;
       }
       .miroooo-sticky-btn::after,
       #sticky-bar-cta-btn::after {
@@ -2202,39 +2206,44 @@ theme.variantStrings = {
       .miroooo-sticky-btn .btn-text,
       #sticky-bar-cta-btn .btn-text {
         position: relative !important;
-        z-index: 3 !important;
+        z-index: 2 !important;
         display: inline-flex !important;
         align-items: center !important;
         justify-content: center !important;
         gap: 8px !important;
         color: #000000 !important;
-        transition: color 0.25s cubic-bezier(0.16, 1, 0.3, 1) !important;
+        transition: color 0.4s cubic-bezier(0.16, 1, 0.3, 1) !important;
         pointer-events: none !important;
       }
       .miroooo-sticky-btn:hover .btn-text,
-      #sticky-bar-cta-btn:hover .btn-text {
+      .miroooo-sticky-btn:focus-visible .btn-text,
+      #sticky-bar-cta-btn:hover .btn-text,
+      #sticky-bar-cta-btn:focus-visible .btn-text {
         color: #ffffff !important;
       }
       .miroooo-sticky-btn .miroooo-lottie-cart svg path,
       #sticky-bar-cta-btn .miroooo-lottie-cart svg path {
         stroke: #000000 !important;
-        transition: stroke 0.25s cubic-bezier(0.16, 1, 0.3, 1) !important;
+        transition: stroke 0.4s cubic-bezier(0.16, 1, 0.3, 1) !important;
       }
       .miroooo-sticky-btn:hover .miroooo-lottie-cart svg path,
-      #sticky-bar-cta-btn:hover .miroooo-lottie-cart svg path {
+      .miroooo-sticky-btn:focus-visible .miroooo-lottie-cart svg path,
+      #sticky-bar-cta-btn:hover .miroooo-lottie-cart svg path,
+      #sticky-bar-cta-btn:focus-visible .miroooo-lottie-cart svg path {
         stroke: #ffffff !important;
       }
+      .miroooo-sticky-btn,
       .miroooo-sticky-btn:hover,
-      #sticky-bar-cta-btn:hover {
-        background: #000000 !important;
-        background-color: #000000 !important;
-        border-color: #ffffff !important;
-        transform: scale(1.01) !important;
-        box-shadow: 0 8px 30px rgba(255, 255, 255, 0.18) !important;
-      }
+      .miroooo-sticky-btn:focus,
       .miroooo-sticky-btn:active,
+      #sticky-bar-cta-btn,
+      #sticky-bar-cta-btn:hover,
+      #sticky-bar-cta-btn:focus,
       #sticky-bar-cta-btn:active {
-        transform: scale(0.98) !important;
+        transform: none !important;
+        background-color: #ffffff !important;
+        background: #ffffff !important;
+        border-color: #ffffff !important;
       }
       .miroooo-sticky-bag-icon {
         flex-shrink: 0 !important;
