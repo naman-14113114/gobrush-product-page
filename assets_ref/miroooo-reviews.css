@@ -576,31 +576,26 @@ div.miroooo-progress-bar {
 }
 
 /* ==========================================================================
-   3. REVIEW MASONRY GRID & CARDS
+   3. REVIEW HORIZONTAL GRID & CARDS (Row-by-row: Newest to Oldest)
    ========================================================================== */
 .miroooo-reviews-grid {
-  column-count: 1;
-  column-gap: 14px;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 16px;
+  align-items: stretch;
 }
 
 @media (min-width: 640px) {
   .miroooo-reviews-grid {
-    column-count: 2;
-    column-gap: 16px;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
   }
 }
 
 @media (min-width: 900px) {
   .miroooo-reviews-grid {
-    column-count: 3;
-    column-gap: 18px;
-  }
-}
-
-@media (min-width: 1200px) {
-  .miroooo-reviews-grid {
-    column-count: 4;
-    column-gap: 20px;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 18px;
   }
 }
 
@@ -611,12 +606,11 @@ div.miroooo-progress-bar {
   border-radius: var(--miroooo-radius-md);
   padding: 18px 16px;
   box-sizing: border-box;
-  display: inline-block;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
   width: 100%;
-  break-inside: avoid;
-  -webkit-column-break-inside: avoid;
-  page-break-inside: avoid;
-  margin-bottom: 18px;
+  margin-bottom: 0;
   transition: var(--miroooo-transition);
   position: relative;
   overflow: hidden;
@@ -1114,7 +1108,7 @@ div.miroooo-progress-bar {
 }
 
 /* ==========================================================================
-   5. LIGHTBOX MODAL
+   5. LIGHTBOX / REVIEW MODAL DIALOG (1:1 Aspect Ratio Matching Review Cards)
    ========================================================================== */
 .miroooo-modal-backdrop {
   position: fixed !important;
@@ -1149,16 +1143,20 @@ div.miroooo-progress-bar {
   pointer-events: auto !important;
 }
 
+/* 1:1 Aspect Ratio Square Card matching outside .miroooo-review-card */
 .miroooo-lightbox-dialog {
   position: relative !important;
-  background: #111113 !important;
-  border: 1px solid rgba(255, 255, 255, 0.12) !important;
-  border-radius: var(--miroooo-radius-lg, 20px) !important;
-  max-width: 960px !important;
-  width: 100% !important;
+  background: #e6e6e6 !important;
+  border: 1px solid rgba(0, 0, 0, 0.08) !important;
+  border-radius: 20px !important;
+  max-width: 500px !important;
+  width: min(90vw, 500px) !important;
+  aspect-ratio: 1 / 1 !important;
+  height: auto !important;
   max-height: 90vh !important;
+  min-height: auto !important;
   overflow: hidden !important;
-  box-shadow: 0 25px 70px rgba(0, 0, 0, 0.35), 0 0 0 1px rgba(255, 255, 255, 0.08) !important;
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.3), 0 4px 16px rgba(0, 0, 0, 0.12) !important;
   display: flex !important;
   flex-direction: column !important;
   transform: scale(0.95) !important;
@@ -1167,6 +1165,7 @@ div.miroooo-progress-bar {
   user-select: auto !important;
   -webkit-user-select: auto !important;
   pointer-events: auto !important;
+  box-sizing: border-box !important;
 }
 
 .miroooo-modal-backdrop.is-open .miroooo-lightbox-dialog,
@@ -1175,68 +1174,116 @@ div.miroooo-progress-bar {
   opacity: 1 !important;
 }
 
-@media (min-width: 800px) {
-  .miroooo-lightbox-dialog:not(.no-media) {
-    flex-direction: row;
-    height: 560px;
+/* NO MEDIA STATE: Clean 1:1 Square Card with NO empty image row */
+.miroooo-lightbox-dialog.no-media,
+.miroooo-lightbox-dialog:not(.has-media) {
+  max-width: 500px !important;
+  width: min(90vw, 500px) !important;
+  aspect-ratio: 1 / 1 !important;
+  height: auto !important;
+  min-height: auto !important;
+  flex-direction: column !important;
+}
+
+.miroooo-lightbox-dialog.no-media .miroooo-lightbox-media-container,
+.miroooo-lightbox-dialog:not(.has-media) .miroooo-lightbox-media-container {
+  display: none !important;
+  width: 0 !important;
+  height: 0 !important;
+  min-height: 0 !important;
+  max-height: 0 !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  border: none !important;
+  visibility: hidden !important;
+}
+
+/* HAS MEDIA STATE: Image is placed on the LEFT WALL of the card */
+.miroooo-lightbox-dialog.has-media {
+  flex-direction: row !important;
+  max-width: 780px !important;
+  width: min(92vw, 780px) !important;
+  aspect-ratio: auto !important;
+  height: auto !important;
+  max-height: 85vh !important;
+  min-height: 440px !important;
+}
+
+.miroooo-lightbox-dialog.has-media .miroooo-lightbox-media-container {
+  display: flex !important;
+  width: 44% !important;
+  flex: 0 0 44% !important;
+  height: 100% !important;
+  min-height: 100% !important;
+  max-height: none !important;
+  background: #dcdcdc !important;
+  position: relative !important;
+  align-items: center !important;
+  justify-content: center !important;
+  overflow: hidden !important;
+  border-right: 1px solid rgba(0, 0, 0, 0.08) !important;
+  border-bottom: none !important;
+  margin: 0 !important;
+}
+
+.miroooo-lightbox-dialog.has-media .miroooo-lightbox-img {
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: cover !important;
+  display: block !important;
+}
+
+.miroooo-lightbox-dialog.has-media .miroooo-lightbox-sidebar {
+  width: 56% !important;
+  flex: 1 1 56% !important;
+}
+
+@media (max-width: 640px) {
+  .miroooo-lightbox-dialog.has-media {
+    flex-direction: column !important;
+    max-height: 90vh !important;
+  }
+  .miroooo-lightbox-dialog.has-media .miroooo-lightbox-media-container {
+    width: 100% !important;
+    height: 180px !important;
+    flex: 0 0 180px !important;
+    border-right: none !important;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.08) !important;
+  }
+  .miroooo-lightbox-dialog.has-media .miroooo-lightbox-sidebar {
+    width: 100% !important;
+    flex: 1 1 auto !important;
   }
 }
 
-.miroooo-lightbox-dialog.no-media {
-  max-width: 580px;
-  width: 100%;
-  height: auto;
-  min-height: auto;
-  flex-direction: column;
-}
-
-.miroooo-lightbox-dialog.no-media .miroooo-lightbox-sidebar {
-  padding: 32px 28px;
-  max-height: 85vh;
-  overflow-y: auto;
-}
-
+/* Clean circular close button placed at top-right */
 .miroooo-modal-close {
-  position: absolute;
-  top: 14px;
-  right: 14px;
-  z-index: 50;
-  width: 36px;
-  height: 36px;
-  border-radius: 50%;
-  background: rgba(0, 0, 0, 0.6);
-  border: 1px solid rgba(255, 255, 255, 0.15);
-  color: #ffffff;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  font-size: 16px;
-  transition: var(--miroooo-transition);
+  position: absolute !important;
+  top: 14px !important;
+  right: 14px !important;
+  z-index: 50 !important;
+  width: 32px !important;
+  height: 32px !important;
+  border-radius: 50% !important;
+  background: rgba(0, 0, 0, 0.07) !important;
+  border: 1px solid rgba(0, 0, 0, 0.12) !important;
+  color: #111111 !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  cursor: pointer !important;
+  font-size: 14px !important;
+  font-weight: 700 !important;
+  line-height: 1 !important;
+  transition: var(--miroooo-transition) !important;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08) !important;
 }
 
 .miroooo-modal-close:hover {
-  background: #ffffff;
-  color: #000000;
-  transform: scale(1.08);
-}
-
-.miroooo-lightbox-media-container {
-  flex: 1.2;
-  background: #000000;
-  position: relative;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  min-height: 260px;
-  overflow: hidden;
-}
-
-.miroooo-lightbox-img {
-  max-width: 100%;
-  max-height: 100%;
-  object-fit: contain;
-  display: block;
+  background: #111111 !important;
+  color: #ffffff !important;
+  transform: scale(1.08) !important;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2) !important;
 }
 
 .miroooo-lightbox-nav,
@@ -1244,118 +1291,225 @@ div.miroooo-progress-bar {
   display: none !important;
 }
 
+/* Modal Inner Sidebar Content Container */
 .miroooo-lightbox-sidebar {
-  flex: 1;
-  padding: 28px 24px;
-  display: flex;
-  flex-direction: column;
-  overflow-y: auto;
-  box-sizing: border-box;
+  flex: 1 1 auto !important;
+  padding: 24px 24px 20px !important;
+  display: flex !important;
+  flex-direction: column !important;
+  overflow: hidden !important;
+  box-sizing: border-box !important;
+  height: 100% !important;
+  min-height: 0 !important;
 }
 
+/* Top Verified Badge */
 .miroooo-modal-badge-verified {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  font-size: 11px;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.06em;
-  color: var(--miroooo-green);
-  margin-bottom: 14px;
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 4px !important;
+  font-size: 10px !important;
+  font-weight: 700 !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.05em !important;
+  color: #16a34a !important;
+  background: rgba(34, 197, 94, 0.12) !important;
+  border: 1px solid rgba(34, 197, 94, 0.3) !important;
+  padding: 3px 8px !important;
+  border-radius: 999px !important;
+  margin-bottom: 10px !important;
+  align-self: flex-start !important;
+  flex-shrink: 0 !important;
 }
 
 .miroooo-modal-badge-verified svg {
-  width: 14px;
-  height: 14px;
+  width: 11px !important;
+  height: 11px !important;
+  flex-shrink: 0 !important;
 }
 
+/* Header Row: Stars + Date */
 .miroooo-modal-header-row {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin-bottom: 10px;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  margin-bottom: 8px !important;
+  flex-shrink: 0 !important;
 }
 
 .miroooo-modal-stars {
-  font-size: 18px;
-  color: var(--miroooo-gold);
-  letter-spacing: 2px;
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 3px !important;
+  line-height: 1 !important;
 }
 
 .miroooo-modal-date {
-  font-size: 12px;
-  color: var(--miroooo-text-muted);
+  font-size: 11px !important;
+  color: #666666 !important;
+  white-space: nowrap !important;
 }
 
+/* Variant Tag */
 .miroooo-modal-variant {
-  font-size: 12px;
-  font-weight: 600;
-  color: var(--miroooo-text-secondary);
-  background: rgba(255, 255, 255, 0.05);
-  border-radius: 6px;
-  padding: 3px 8px;
-  align-self: flex-start;
-  margin-bottom: 14px;
+  display: inline-block !important;
+  font-size: 11px !important;
+  font-weight: 600 !important;
+  color: #444444 !important;
+  background: rgba(0, 0, 0, 0.06) !important;
+  border: 1px solid rgba(0, 0, 0, 0.1) !important;
+  border-radius: 6px !important;
+  padding: 3px 8px !important;
+  align-self: flex-start !important;
+  margin-bottom: 10px !important;
+  flex-shrink: 0 !important;
 }
 
+/* Modal Title */
 .miroooo-modal-title {
-  font-size: 18px;
-  font-weight: 700;
-  color: #ffffff;
-  line-height: 1.35;
-  margin: 0 0 12px;
+  font-size: 16px !important;
+  font-weight: 700 !important;
+  color: #111111 !important;
+  line-height: 1.35 !important;
+  margin: 0 0 8px 0 !important;
+  letter-spacing: -0.01em !important;
+  flex-shrink: 0 !important;
 }
 
+/* Modal Body with subtle smooth scrolling for long text */
 .miroooo-modal-body {
-  font-size: 14px;
-  line-height: 1.65;
-  color: #d1d5db;
-  margin: 0 0 20px;
+  font-size: 13.5px !important;
+  line-height: 1.55 !important;
+  color: #222222 !important;
+  margin: 0 0 12px 0 !important;
+  flex: 1 1 auto !important;
+  min-height: 0 !important;
+  overflow-y: auto !important;
+  scrollbar-width: thin !important;
+  scrollbar-color: rgba(0, 0, 0, 0.25) transparent !important;
+  padding-right: 6px !important;
+  word-break: break-word !important;
 }
 
+.miroooo-modal-body::-webkit-scrollbar {
+  width: 4px;
+}
+
+.miroooo-modal-body::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.miroooo-modal-body::-webkit-scrollbar-thumb {
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: 999px;
+}
+
+.miroooo-modal-body::-webkit-scrollbar-thumb:hover {
+  background: rgba(0, 0, 0, 0.35);
+}
+
+/* Modal Footer */
 .miroooo-modal-footer {
-  margin-top: auto;
-  padding-top: 18px;
-  border-top: 1px solid rgba(255, 255, 255, 0.08);
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
+  margin-top: auto !important;
+  padding-top: 12px !important;
+  border-top: 1px solid rgba(0, 0, 0, 0.08) !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  gap: 8px !important;
+  flex-shrink: 0 !important;
 }
 
 .miroooo-modal-author {
-  display: flex;
-  align-items: center;
-  gap: 10px;
+  display: flex !important;
+  align-items: center !important;
+  gap: 8px !important;
+  min-width: 0 !important;
+}
+
+.miroooo-avatar-initials#miroooo-lightbox-avatar,
+.miroooo-modal-author .miroooo-avatar-initials {
+  width: 28px !important;
+  height: 28px !important;
+  border-radius: 50% !important;
+  background: #d0d0d0 !important;
+  border: 1px solid rgba(0, 0, 0, 0.1) !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  font-size: 11px !important;
+  font-weight: 700 !important;
+  color: #111111 !important;
+  flex-shrink: 0 !important;
 }
 
 .miroooo-modal-name {
-  font-size: 14px;
-  font-weight: 700;
-  color: #ffffff;
+  font-size: 13px !important;
+  font-weight: 700 !important;
+  color: #111111 !important;
+  white-space: nowrap !important;
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
 }
 
 .miroooo-modal-verified-tag {
-  font-size: 11px;
-  color: var(--miroooo-green);
-  font-weight: 600;
+  font-size: 10px !important;
+  color: #16a34a !important;
+  font-weight: 600 !important;
 }
 
 .miroooo-modal-helpful-btn {
-  background: rgba(255, 255, 255, 0.05);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  border-radius: 999px;
-  padding: 6px 14px;
-  font-size: 12px;
-  font-weight: 600;
-  color: var(--miroooo-text-secondary);
-  cursor: pointer;
-  transition: var(--miroooo-transition);
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 5px !important;
+  background: rgba(0, 0, 0, 0.04) !important;
+  border: 1px solid rgba(0, 0, 0, 0.15) !important;
+  border-radius: 999px !important;
+  padding: 4px 10px !important;
+  font-size: 11px !important;
+  font-weight: 600 !important;
+  color: #555555 !important;
+  cursor: pointer !important;
+  transition: var(--miroooo-transition) !important;
+  outline: none !important;
+  flex-shrink: 0 !important;
 }
 
 .miroooo-modal-helpful-btn:hover {
-  background: rgba(255, 255, 255, 0.1);
-  color: #ffffff;
+  background: rgba(0, 0, 0, 0.09) !important;
+  color: #111111 !important;
+}
+
+.miroooo-modal-helpful-btn.voted {
+  background: rgba(34, 197, 94, 0.15) !important;
+  border-color: rgba(34, 197, 94, 0.35) !important;
+  color: #16a34a !important;
+}
+
+@media (max-width: 480px) {
+  .miroooo-lightbox-dialog {
+    border-radius: 16px !important;
+  }
+  .miroooo-lightbox-sidebar,
+  .miroooo-lightbox-dialog.no-media .miroooo-lightbox-sidebar {
+    padding: 16px 14px 12px !important;
+  }
+  .miroooo-modal-title {
+    font-size: 14px !important;
+    margin-bottom: 6px !important;
+  }
+  .miroooo-modal-body {
+    font-size: 12.5px !important;
+    line-height: 1.45 !important;
+    margin-bottom: 8px !important;
+  }
+  .miroooo-modal-close {
+    top: 10px !important;
+    right: 10px !important;
+    width: 26px !important;
+    height: 26px !important;
+    font-size: 12px !important;
+  }
 }
 
 /* ==========================================================================

@@ -21,6 +21,27 @@
     }
   };
 
+  // UK Date Formatter
+  const UK_MONTHS = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+
+  function formatUKDate(dateStr) {
+    if (!dateStr) return '';
+    const match = String(dateStr).match(/^(\d{4})-(\d{2})-(\d{2})/);
+    if (match) {
+      const yyyy = match[1];
+      const monthIndex = parseInt(match[2], 10) - 1;
+      const dd = parseInt(match[3], 10);
+      if (UK_MONTHS[monthIndex]) {
+        return `${dd} ${UK_MONTHS[monthIndex]} ${yyyy}`;
+      }
+    }
+    const d = new Date(dateStr);
+    if (!isNaN(d.getTime())) {
+      return `${d.getDate()} ${UK_MONTHS[d.getMonth()]} ${d.getFullYear()}`;
+    }
+    return dateStr;
+  }
+
   // Top Curated Flagship Reviews
   const CURATED_REVIEWS = [
     {
@@ -46,7 +67,7 @@
       displayDate: '1 week ago',
       variant: 'Color: Silver',
       title: 'My dental hygienist noticed the plaque reduction in 3 weeks',
-      body: 'Just came back from my routine dental checkup. For the first time ever, my hygienist had almost no tartar to scrape off the back of my lower incisors. The 40,000 vibrations per minute genuinely sweep plaque away without being aggressive on my receding gums. The Sensitive mode is gentle yet thorough.',
+      body: 'Just came back from my routine dental checkup. For the first time ever, my hygienist had almost no tartar to scrape off the back of my lower incisors. The 32,000 vibrations per minute genuinely sweep plaque away without being aggressive on my receding gums. The Sensitive mode is gentle yet thorough.',
       images: [],
       helpful: 39,
       verified: true
@@ -88,7 +109,7 @@
       displayDate: '3 weeks ago',
       variant: 'Color: Silver',
       title: 'Optimal acoustic amplitude with 3D curved DuPont bristles',
-      body: 'As a practicing dentist, I look closely at the mechanical frequency and bristle profile of sonic devices. The 40,000 VPM oscillation speed creates strong hydrodynamic fluid turbulence between interdental gaps where standard bristles cannot physically reach. The 3D curved DuPont filaments cushion the cervical margin while lifting biofilm.',
+      body: 'As a practicing dentist, I look closely at the mechanical frequency and bristle profile of sonic devices. The 32,000 VPM oscillation speed creates strong hydrodynamic fluid turbulence between interdental gaps where standard bristles cannot physically reach. The 3D curved DuPont filaments cushion the cervical margin while lifting biofilm.',
       images: [],
       helpful: 84,
       verified: true
@@ -200,7 +221,7 @@
       displayDate: 'Dec 24, 2025',
       variant: 'Color: Grey',
       title: 'Incredible brushing power, wish single pack included 4 heads',
-      body: 'The brushing performance, 40,000 VPM motor, and battery longevity are 10 out of 10. The only minor wish is that the single unit bundle came with 4 heads standard instead of 2. The magnetic wall mount is super convenient and keeps our sink spotless.',
+      body: 'The brushing performance, 32,000 VPM motor, and battery longevity are 10 out of 10. The only minor wish is that the single unit bundle came with 4 heads standard instead of 2. The magnetic wall mount is super convenient and keeps our sink spotless.',
       images: [],
       helpful: 29,
       verified: true
@@ -299,7 +320,7 @@
       displayDate: 'Nov 24, 2025',
       variant: 'Color: Grey',
       title: 'Good brush, high vibration intensity takes adjustment',
-      body: 'The toothbrush is extremely well manufactured and the 60-day battery is accurate. However, the 40,000 VPM motor is quite powerful even on Daily Clean mode. I recommend starting on Sensitive mode for the first week until your gums acclimate.',
+      body: 'The toothbrush is extremely well manufactured and the 60-day battery is accurate. However, the 32,000 VPM motor is quite powerful even on Daily Clean mode. I recommend starting on Sensitive mode for the first week until your gums acclimate.',
       images: [],
       helpful: 15,
       verified: true
@@ -397,7 +418,7 @@
       displayDate: 'Sep 29, 2024',
       variant: 'Color: Silver',
       title: 'Cleans so much better than my old bulky electric brush',
-      body: 'Delighted with this! The brush cleans so much better than my old heavy electric toothbrush. I think it is because of the slim, compact head and 40,000 VPM oscillation speed.',
+      body: 'Delighted with this! The brush cleans so much better than my old heavy electric toothbrush. I think it is because of the slim, compact head and 32,000 VPM oscillation speed.',
       images: [],
       helpful: 25,
       verified: true
@@ -884,7 +905,7 @@
   // 5-Star Phrasing Matrices (Combinatorially massive, 0% repetition)
   const FIVE_STAR_TITLES = [
     '60-day battery is completely real — haven\'t charged it in weeks',
-    '40,000 VPM acoustic cleaning leaves teeth squeaky clean',
+    '32,000 VPM acoustic cleaning leaves teeth squeaky clean',
     'Dental hygienist was amazed at my plaque reduction',
     'Sensitive mode completely calmed my inflamed gums',
     'Magnetic wall dock is an absolute design triumph',
@@ -951,7 +972,7 @@
   ];
 
   const FIVE_STAR_FEATURES = [
-    'The 40,000 vibrations per minute maglev motor creates powerful hydrodynamic micro-bubbles that flush out biofilm between tight teeth.',
+    'The 32,000 vibrations per minute maglev motor creates powerful hydrodynamic micro-bubbles that flush out biofilm between tight teeth.',
     'The 60-day lithium cell is genuinely extraordinary — a single USB-C charge via the magnetic base lasts for two solid months.',
     'The 3 calibrated modes (Standard Clean, Whitening, Sensitive) make it effortless to switch between deep plaque removal and gentle gum care.',
     'The 3D curved DuPont filaments are rounded at the microscopic level, allowing them to glide smoothly over enamel without scratching.',
@@ -998,7 +1019,7 @@
   ];
 
   const FOUR_STAR_BODIES = [
-    'The 40,000 VPM motor and DuPont bristles clean exceptionally well — my teeth feel just like they do after a hygienist scale and polish. The battery longevity is genuine as I have only charged it once since getting it. My only small suggestion is that the single unit bundle should include four replacement heads instead of two.',
+    'The 32,000 VPM motor and DuPont bristles clean exceptionally well — my teeth feel just like they do after a hygienist scale and polish. The battery longevity is genuine as I have only charged it once since getting it. My only small suggestion is that the single unit bundle should include four replacement heads instead of two.',
     'If you are transitioning from a manual toothbrush or a slow oscillating brush, the high-frequency sonic vibration feels very ticklish on the lips for the first 48 hours. Start on Sensitive mode! By day 3 I was fully accustomed to it and now I could never go back.',
     'The Miroooo X device itself is 10 out of 10. Sleek Grey finish, whisper-quiet motor, and the magnetic dock holds solid on the wall. The USB cable that connects to the dock was a little short for my bathroom layout, but any standard USB-C cable works fine.',
     'My teeth have never looked cleaner or felt smoother. The Whitening mode lifted coffee stains within three weeks without irritating my gums. The only reason for 4 stars instead of 5 is that I would like to order replacement heads in mixed color packs for family members.',
@@ -1016,7 +1037,7 @@
   ];
 
   const THREE_STAR_BODIES = [
-    'The toothbrush is undeniably well manufactured and the 60-day battery claim appears accurate. However, the 40,000 VPM motor is quite intense even on the lowest mode. I recommend starting strictly on Sensitive mode for the first full week until your gums and teeth acclimate.',
+    'The toothbrush is undeniably well manufactured and the 60-day battery claim appears accurate. However, the 32,000 VPM motor is quite intense even on the lowest mode. I recommend starting strictly on Sensitive mode for the first full week until your gums and teeth acclimate.',
     'The Miroooo X hardware is very high quality — whisper quiet, completely waterproof, and the travel case is great. Delivery to Europe took 6 business days rather than the estimated 3-4 days. Customer support was polite and provided tracking when asked.',
     'Cleaning performance is good and the magnetic dock is a very clean solution. The satin finish is beautiful, though if you have soapy hands in the shower you need to maintain a firm grip. Plaque removal is noticeably better than my old manual brush.',
     'A good sonic toothbrush with great battery longevity. Make sure your bathroom tile is completely clean and smooth before applying the 3M magnetic wall plate so it adheres securely.'
@@ -1033,7 +1054,7 @@
   const TWO_STAR_BODIES = [
     'The toothbrush and travel case inside were pristine and work exactly as described. However, the outer postal box was slightly squashed by Royal Mail during transit. For a luxury product, transit outer cartons should be heavier duty.',
     'The package comes with the magnetic charging dock and USB-C cable, but you have to supply your own USB wall plug or use your phone adapter. Works fine once plugged in, but would have preferred a dedicated wall plug included.',
-    'I found the 40,000 vibrations per minute too intense for my highly sensitive front teeth during the first few days. Sensitive mode helped, but it took nearly two weeks of gradual use to become comfortable with sonic brushing.'
+    'I found the 32,000 vibrations per minute too intense for my highly sensitive front teeth during the first few days. Sensitive mode helped, but it took nearly two weeks of gradual use to become comfortable with sonic brushing.'
   ];
 
   const TWO_STAR_REPLIES = [
@@ -1112,20 +1133,7 @@
       const mm = String(dateObj.getMonth() + 1).padStart(2, '0');
       const dd = String(dateObj.getDate()).padStart(2, '0');
       const isoDate = `${yyyy}-${mm}-${dd}`;
-
-      let displayDate = '';
-      if (daysAgo <= 6) {
-        displayDate = `${daysAgo} days ago`;
-      } else if (daysAgo <= 27) {
-        const weeks = Math.floor(daysAgo / 7);
-        displayDate = `${weeks} week${weeks > 1 ? 's' : ''} ago`;
-      } else if (daysAgo <= 89) {
-        const months = Math.floor(daysAgo / 30);
-        displayDate = `${months} month${months > 1 ? 's' : ''} ago`;
-      } else {
-        const monthNames = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
-        displayDate = `${monthNames[dateObj.getMonth()]} ${dateObj.getDate()}, ${yyyy}`;
-      }
+      const displayDate = `${dateObj.getDate()} ${UK_MONTHS[dateObj.getMonth()]} ${yyyy}`;
 
       return { isoDate, displayDate, daysAgo };
     }
@@ -1829,7 +1837,7 @@
         <!-- Top: Stars + Date -->
         <div class="miroooo-card-header">
           <div class="miroooo-card-stars" aria-label="${review.rating} out of 5 stars">${starsHTML}</div>
-          <span class="miroooo-card-date">${review.displayDate || review.date}</span>
+          <span class="miroooo-card-date">${formatUKDate(review.date || review.displayDate)}</span>
         </div>
 
         <!-- Selected Variant -->
@@ -2026,22 +2034,34 @@
     if (dialogEl) {
       if (hasImages) {
         dialogEl.classList.remove('no-media');
+        dialogEl.classList.add('has-media');
       } else {
         dialogEl.classList.add('no-media');
+        dialogEl.classList.remove('has-media');
       }
     }
 
     if (mediaContainer) {
-      mediaContainer.style.display = hasImages ? 'flex' : 'none';
+      if (hasImages) {
+        mediaContainer.style.setProperty('display', 'flex', 'important');
+      } else {
+        mediaContainer.style.setProperty('display', 'none', 'important');
+      }
     }
 
-    if (hasImages && imgEl) {
-      const idx = activeLightboxImageIndex < activeLightboxReview.images.length ? activeLightboxImageIndex : 0;
-      imgEl.src = activeLightboxReview.images[idx];
+    if (imgEl) {
+      if (hasImages) {
+        const idx = activeLightboxImageIndex < activeLightboxReview.images.length ? activeLightboxImageIndex : 0;
+        imgEl.src = activeLightboxReview.images[idx];
+        imgEl.alt = `Photo from ${activeLightboxReview.name}`;
+      } else {
+        imgEl.removeAttribute('src');
+        imgEl.alt = '';
+      }
     }
 
     if (starsEl) starsEl.innerHTML = getTrustpilotStarsHTML(activeLightboxReview.rating);
-    if (dateEl) dateEl.textContent = activeLightboxReview.displayDate || activeLightboxReview.date;
+    if (dateEl) dateEl.textContent = formatUKDate(activeLightboxReview.date || activeLightboxReview.displayDate);
     if (variantEl) {
       variantEl.textContent = activeLightboxReview.variant || 'Standard Edition';
       variantEl.style.display = activeLightboxReview.variant ? 'inline-block' : 'none';
