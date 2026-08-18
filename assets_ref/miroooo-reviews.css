@@ -146,12 +146,9 @@
 }
 
 .miroooo-score-stars {
-  display: flex;
+  display: inline-flex;
   align-items: center;
   gap: 4px;
-  font-size: 22px;
-  color: var(--miroooo-gold);
-  line-height: 1;
   margin-bottom: 12px;
 }
 
@@ -174,9 +171,9 @@
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 0.06em;
-  color: var(--miroooo-green);
-  background: var(--miroooo-green-soft);
-  border: 1px solid rgba(34, 197, 94, 0.25);
+  color: #00b67a;
+  background: rgba(0, 182, 122, 0.12);
+  border: 1px solid rgba(0, 182, 122, 0.3);
   padding: 4px 10px;
   border-radius: 999px;
 }
@@ -216,7 +213,7 @@
 }
 
 .miroooo-breakdown-row.active {
-  background: rgba(34, 197, 94, 0.15);
+  background: rgba(0, 182, 122, 0.15);
   color: #ffffff;
 }
 
@@ -230,23 +227,28 @@
 }
 
 .miroooo-row-label .star-char {
-  color: var(--miroooo-gold);
+  color: #00b67a !important;
 }
 
 .miroooo-progress-track {
-  height: 8px;
-  background: rgba(255, 255, 255, 0.08);
-  border-radius: 999px;
-  overflow: hidden;
-  position: relative;
+  height: 8px !important;
+  background: rgba(255, 255, 255, 0.12) !important;
+  border-radius: 999px !important;
+  overflow: hidden !important;
+  position: relative !important;
+  width: 100% !important;
 }
 
 .miroooo-progress-bar,
-.miroooo-progress-fill {
-  height: 100%;
-  background: var(--miroooo-gold-gradient);
-  border-radius: 999px;
-  transition: width 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+.miroooo-progress-fill,
+div.miroooo-progress-bar {
+  display: block !important;
+  height: 100% !important;
+  background: #00b67a !important;
+  background-color: #00b67a !important;
+  border-radius: 999px !important;
+  transition: width 1.3s cubic-bezier(0.16, 1, 0.3, 1) !important;
+  will-change: width !important;
 }
 
 .miroooo-row-percent {
@@ -651,12 +653,43 @@
 }
 
 .miroooo-card-stars {
-  display: flex;
+  display: inline-flex;
   align-items: center;
-  gap: 2px;
-  color: #22c55e !important;
-  font-size: 15px;
+  gap: 2.5px;
   line-height: 1;
+}
+
+/* Star Images (Identical to above product title, transparent background) */
+.miroooo-stars-row {
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 3px !important;
+  line-height: 1 !important;
+}
+
+.miroooo-star-img {
+  width: 16px !important;
+  height: 15px !important;
+  display: inline-block !important;
+  object-fit: contain !important;
+  vertical-align: middle !important;
+  flex-shrink: 0 !important;
+  background: transparent !important;
+}
+
+.miroooo-star-img.is-empty {
+  opacity: 0.22 !important;
+  filter: grayscale(1) !important;
+}
+
+.miroooo-score-stars .miroooo-star-img {
+  width: 22px !important;
+  height: 21px !important;
+}
+
+.miroooo-card-stars .miroooo-star-img {
+  width: 16px !important;
+  height: 15px !important;
 }
 
 .miroooo-card-date {
@@ -1444,7 +1477,7 @@
 
 .miroooo-star-btn.active,
 .miroooo-star-btn.hover {
-  color: var(--miroooo-gold);
+  color: #00b67a;
 }
 
 .miroooo-star-btn:hover {
@@ -1454,7 +1487,7 @@
 .miroooo-rating-text {
   font-size: 13px;
   font-weight: 600;
-  color: var(--miroooo-gold);
+  color: #00b67a;
   margin-left: 8px;
 }
 
