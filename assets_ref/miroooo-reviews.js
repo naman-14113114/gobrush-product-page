@@ -165,30 +165,30 @@
     },
     {
       id: 'rev-11',
-      name: 'Soren Nielsen',
-      country: 'Copenhagen, DK',
+      name: 'Jeremy Thorne',
+      country: 'Bristol, UK',
       rating: 5,
-      date: '2026-01-03',
-      displayDate: '1 month ago',
-      variant: 'Color: Silver',
-      title: 'Replaced my old Sonicare flagship. This is leagues ahead',
-      body: 'I had used Sonicare 9900 series for 4 years. The Miroooo X is lighter, holds charge 4x longer (60 days vs 14 days), operates much quieter, and the replacement heads are far more reasonably priced. Truly outstanding hardware.',
+      date: '2025-08-10',
+      displayDate: 'Aug 10, 2025',
+      variant: 'Color: Grey',
+      title: 'Noticeably brighter teeth that stay clean longer',
+      body: 'Love the new sonic toothbrush. It really makes a difference in the cleanliness of my teeth — they are much brighter and feel healthier than they have been before. I also noticed that they seem to stay cleaner for longer throughout the day.',
       images: [],
-      helpful: 49,
+      helpful: 34,
       verified: true
     },
     {
       id: 'rev-12',
-      name: 'Rachel Cooper',
-      country: 'Dublin, IE',
+      name: 'Marisa Vance',
+      country: 'London, UK',
       rating: 5,
-      date: '2025-12-28',
-      displayDate: 'Dec 28, 2025',
+      date: '2025-08-09',
+      displayDate: 'Aug 9, 2025',
       variant: 'Color: Silver',
-      title: 'Unboxing experience and minimalist aesthetic are top tier',
-      body: 'From the magnetic packaging to the precision-machined handle, everything feels ultra-premium. The USB-C magnetic dock charges quickly and the clean silver design looks stunning in our newly renovated bathroom.',
+      title: 'Lightweight, powerful, and no grime buildup around base',
+      body: 'This has been the best toothbrush. First of all, it is lightweight and powerful, and I love the ease of switching modes. Gunk does not collect in between the toothbrush head and the handle, and best of all, on top of having noticeably whiter teeth, it has been over 3 weeks on still a single charge.',
       images: [],
-      helpful: 22,
+      helpful: 42,
       verified: true
     },
     {
@@ -320,142 +320,142 @@
     },
     {
       id: 'rev-21',
-      name: 'Antoine Dupont',
-      country: 'Lyon, FR',
+      name: 'Bernadine Mitchell',
+      country: 'Oxford, UK',
       rating: 5,
-      date: '2025-11-14',
-      displayDate: 'Nov 14, 2025',
-      variant: 'Color: Grey',
-      title: 'Zero manual pressure needed — acoustic waves do all the work',
-      body: 'I always pressed too hard with manual toothbrushes and wore down my enamel. Miroooo X micro-vibrations clean deeply by gently gliding over the teeth surface. The ergonomic handle is lightweight and balanced.',
-      images: [],
-      helpful: 33,
-      verified: true
-    },
-    {
-      id: 'rev-22',
-      name: 'Matteo Rossi',
-      country: 'Milan, IT',
-      rating: 5,
-      date: '2025-11-10',
-      displayDate: 'Nov 10, 2025',
-      variant: 'Color: Grey',
-      title: 'Best oral care upgrade of the year. 3 modes are well-calibrated',
-      body: 'I use Daily Clean mode in the morning for quick fresh breath and Whitening mode at night. The transition between modes with a single click is intuitive and the LED indicator ring is crisp and subtle.',
+      date: '2025-10-06',
+      displayDate: 'Oct 6, 2025',
+      variant: 'Color: Pink',
+      title: 'Enjoying the gentle yet thorough sonic clean',
+      body: 'I am thoroughly enjoying my new sonic toothbrush. The DuPont bristles are soft on sensitive areas yet lift daily plaque effortlessly. Leaves my mouth feeling completely refreshed every morning.',
       images: [],
       helpful: 27,
       verified: true
     },
     {
-      id: 'rev-23',
-      name: 'Emma Watson-Taylor',
-      country: 'Bristol, UK',
+      id: 'rev-22',
+      name: 'Ryan Sterling',
+      country: 'Leeds, UK',
       rating: 5,
-      date: '2025-11-05',
-      displayDate: 'Nov 5, 2025',
-      variant: 'Color: Pink',
-      title: 'Metallic satin finish looks stunning on bathroom marble',
-      body: 'I was worried the Pink finish might look like cheap plastic, but it is a genuine metallic anodized finish. Looks gorgeous next to our bathroom fixtures and the magnetic dock keeps it upright and secure.',
+      date: '2025-08-05',
+      displayDate: 'Aug 5, 2025',
+      variant: 'Color: Grey',
+      title: 'Clean teeth and no more bleeding gums',
+      body: 'Really happy with my Miroooo sonic brush. Squeaky clean teeth and no more bleeding gums when brushing. What more could you ask for?',
       images: [],
-      helpful: 36,
+      helpful: 31,
+      verified: true
+    },
+    {
+      id: 'rev-23',
+      name: 'Tom Sinclair',
+      country: 'Bath, UK',
+      rating: 5,
+      date: '2025-08-01',
+      displayDate: 'Aug 1, 2025',
+      variant: 'Color: Silver',
+      title: 'Lightweight and sleek aesthetic on the bathroom counter',
+      body: 'I love the aesthetics of the brush. It is so light, balanced, and sleek in the hand. The magnetic dock keeps everything super neat. Simply love it!',
+      images: [],
+      helpful: 29,
       verified: true
     },
     {
       id: 'rev-24',
-      name: 'Lucas van Dijk',
-      country: 'Rotterdam, NL',
+      name: 'Alistair Campbell',
+      country: 'Edinburgh, UK',
       rating: 5,
-      date: '2025-11-01',
-      displayDate: 'Nov 1, 2025',
-      variant: 'Color: Silver',
-      title: 'USB-C charging means one cable for all my travel gear',
-      body: 'No proprietary charging docks needed when backpacking or traveling for work. Plugs straight into any USB-C cable or power bank. Battery lasts so long I rarely even need to pack the cord.',
-      images: [],
-      helpful: 44,
-      verified: true
-    },
-    {
-      id: 'rev-25',
-      name: 'Charlotte Davies',
-      country: 'Cardiff, UK',
-      rating: 5,
-      date: '2025-10-27',
-      displayDate: 'Oct 27, 2025',
+      date: '2026-01-03',
+      displayDate: 'Jan 3, 2026',
       variant: 'Color: Grey',
-      title: 'My sensitive teeth have completely settled down',
-      body: 'Cold water used to trigger sharp toothaches before. Since using Sensitive mode on Miroooo X with potassium toothpaste for a month, the gentle 40,000 VPM oscillation cleaned without irritating the roots.',
-      images: [],
-      helpful: 25,
-      verified: true
-    },
-    {
-      id: 'rev-26',
-      name: 'Frederik Holm',
-      country: 'Aarhus, DK',
-      rating: 5,
-      date: '2025-10-22',
-      displayDate: 'Oct 22, 2025',
-      variant: 'Color: Silver',
-      title: 'Magnetic wall mount holds firmly without tile drilling',
-      body: 'The 3M adhesive mount backing sticks solid to bathroom mirror and ceramic tiles. The magnetic grip is strong enough that the brush never drops, yet removes effortlessly with one hand.',
-      images: [],
-      helpful: 30,
-      verified: true
-    },
-    {
-      id: 'rev-27',
-      name: 'Isabella Silva',
-      country: 'Lisbon, PT',
-      rating: 5,
-      date: '2025-10-18',
-      displayDate: 'Oct 18, 2025',
-      variant: 'Color: Grey',
-      title: 'Remarkable build density. Feels solid and perfectly balanced',
-      body: 'Unlike flimsy drugstore electric toothbrushes, the Miroooo X has a reassuring weight and textured grip. The motor maintains constant acoustic torque even when pressed gently against back molars.',
-      images: [],
-      helpful: 21,
-      verified: true
-    },
-    {
-      id: 'rev-28',
-      name: 'Arthur Pendelton',
-      country: 'Oxford, UK',
-      rating: 5,
-      date: '2025-10-14',
-      displayDate: 'Oct 14, 2025',
-      variant: 'Color: Silver',
-      title: 'DuPont bristles don\'t splay after 2 months of daily use',
-      body: 'Standard nylon bristles usually flatten and splay within 4 weeks. These high-density DuPont 3D curved bristles look brand new after 60+ days of twice-daily brushing. Very impressed with the durability.',
+      title: 'Great lightweight toothbrush with exceptional battery life',
+      body: 'Great lightweight sonic toothbrush with exceptional battery life. The acoustic motor runs smooth and quiet, and the magnetic charging base is completely hassle-free.',
       images: [],
       helpful: 38,
       verified: true
     },
     {
-      id: 'rev-29',
-      name: 'Mia Larsson',
-      country: 'Gothenburg, SE',
+      id: 'rev-25',
+      name: 'Lajla K.',
+      country: 'Birmingham, UK',
       rating: 5,
-      date: '2025-10-10',
-      displayDate: 'Oct 10, 2025',
+      date: '2024-11-24',
+      displayDate: 'Nov 24, 2024',
       variant: 'Color: Grey',
-      title: 'Brushing experience is silky smooth — highly recommend',
-      body: 'The sonic frequency creates micro-bubbles that wash between tooth gaps effortlessly. The sleek dark aesthetic matches modern bathrooms and the travel case is super compact.',
+      title: 'Remarkably sleek design and fantastic brushing power',
+      body: 'Not only remarkably sleek and handsome on the countertop, but also a truly fantastic sonic toothbrush. Customer service was top tier too — in short, an absolute recommendation!',
+      images: [],
+      helpful: 36,
+      verified: true
+    },
+    {
+      id: 'rev-26',
+      name: 'Marthijn W.',
+      country: 'Cambridge, UK',
+      rating: 5,
+      date: '2024-09-29',
+      displayDate: 'Sep 29, 2024',
+      variant: 'Color: Silver',
+      title: 'Cleans so much better than my old bulky electric brush',
+      body: 'Delighted with this! The brush cleans so much better than my old heavy electric toothbrush. I think it is because of the slim, compact head and 40,000 VPM oscillation speed.',
+      images: [],
+      helpful: 25,
+      verified: true
+    },
+    {
+      id: 'rev-27',
+      name: 'Fred v. V.',
+      country: 'York, UK',
+      rating: 5,
+      date: '2024-09-23',
+      displayDate: 'Sep 23, 2024',
+      variant: 'Color: Grey',
+      title: 'Top tier sonic toothbrush — leaves teeth squeaky clean',
+      body: 'Top tier sonic toothbrush. Delivers an effortless, scale-and-polish clean every single morning and evening. Highly satisfied.',
       images: [],
       helpful: 20,
       verified: true
     },
     {
-      id: 'rev-30',
-      name: 'Benjamin Koch',
-      country: 'Vienna, AT',
+      id: 'rev-28',
+      name: 'Shelly Pennington',
+      country: 'London, UK',
       rating: 5,
-      date: '2025-10-06',
-      displayDate: 'Oct 6, 2025',
-      variant: 'Color: Silver',
-      title: 'Morning coffee breath eliminated completely',
-      body: 'The high-speed sonic action cleans the tongue and posterior molars thoroughly. Teeth feel slick all day until dinner time without that afternoon fuzzy plaque buildup.',
+      date: '2024-09-22',
+      displayDate: 'Sep 22, 2024',
+      variant: 'Color: Pink',
+      title: 'Thoughtful ergonomic design and exceptional customer support',
+      body: 'An incredibly thoughtful, friendly and responsive team. Ordered the brush for my mother who struggles with manual brushing. The ultra-lightweight 51g handle and long battery life make daily oral care effortless for her.',
       images: [],
-      helpful: 26,
+      helpful: 47,
+      verified: true
+    },
+    {
+      id: 'rev-29',
+      name: 'Marga B.',
+      country: 'Glasgow, UK',
+      rating: 5,
+      date: '2024-09-22',
+      displayDate: 'Sep 22, 2024',
+      variant: 'Color: Grey',
+      title: 'Fast replacement and brilliant customer service',
+      body: 'Had a small query after my first month of use and the support team resolved it immediately with utmost care. Brushing performance is top tier and my teeth feel amazing.',
+      images: [],
+      helpful: 28,
+      verified: true
+    },
+    {
+      id: 'rev-30',
+      name: 'Aynsca MacDonald',
+      country: 'Inverness, UK',
+      rating: 5,
+      date: '2024-09-07',
+      displayDate: 'Sep 7, 2024',
+      variant: 'Color: Silver',
+      title: 'Ordered two units for my son and myself — highly recommended',
+      body: 'Ordered two toothbrushes for my teenage son and myself. Delivery was very fast. Took a couple of days to adjust to sonic vibration, but it is a lovely, lightweight brush with 3 great modes. I recommend it to everyone.',
+      images: [],
+      helpful: 33,
       verified: true
     },
     {
@@ -474,58 +474,58 @@
     },
     {
       id: 'rev-32',
-      name: 'Daniel Evans',
-      country: 'Newcastle, UK',
+      name: 'Vince Crawford',
+      country: 'London, UK',
       rating: 5,
-      date: '2025-09-28',
-      displayDate: 'Sep 28, 2025',
+      date: '2024-08-16',
+      displayDate: 'Aug 16, 2024',
       variant: 'Color: Grey',
-      title: 'Bought one for myself, then ordered 2 more for my family',
-      body: 'After testing the Miroooo X for 2 weeks, I bought two more in Grey and Pink for my wife and teenage son. All three are mounted on the magnetic wall strip side by side. Super tidy bathroom!',
+      title: 'Ideal for business travel with slim profile and hard case',
+      body: 'Very elegant design and excellent brushing performance. Together with the ventilated travel case, this toothbrush is ideal for travel. I regularly travel abroad for work, so having a sonic brush that has the slim profile of a manual brush without bulky charging stands is perfect!',
       images: [],
-      helpful: 45,
+      helpful: 39,
       verified: true
     },
     {
       id: 'rev-33',
-      name: 'Elena Garcia',
-      country: 'Barcelona, ES',
+      name: 'Sylke Jansen',
+      country: 'Brighton, UK',
       rating: 5,
-      date: '2025-09-24',
-      displayDate: 'Sep 24, 2025',
-      variant: 'Color: Grey',
-      title: 'Gentle on dental implants and crowns',
-      body: 'I have two porcelain crowns and was worried sonic vibration might loosen them. The Sensitive mode cleans around the crown margins with precision fluid action and zero jarring impact.',
+      date: '2024-08-14',
+      displayDate: 'Aug 14, 2024',
+      variant: 'Color: Silver',
+      title: 'Premium acoustic build quality and extraordinary battery life',
+      body: 'The sonic acoustic cleaning performs remarkably well. Battery life lasts far longer than expected. I was initially hesitant about build quality, but after several weeks of use it clearly sits in the luxury tier and cleans deep into gum margins.',
       images: [],
-      helpful: 32,
+      helpful: 41,
       verified: true
     },
     {
       id: 'rev-34',
-      name: 'Lukas Fischer',
-      country: 'Hamburg, DE',
+      name: 'Owen Davies',
+      country: 'Cardiff, UK',
       rating: 5,
-      date: '2025-09-20',
-      displayDate: 'Sep 20, 2025',
-      variant: 'Color: Silver',
-      title: 'True 40,000 vibrations per minute. Deep clean every time',
-      body: 'You can see the acoustic cavitation when you place the bristles in water. The dynamic micro-bubbles clean deeply into gum pockets where dental floss struggles.',
+      date: '2024-08-14',
+      displayDate: 'Aug 14, 2024',
+      variant: 'Color: Grey',
+      title: 'Compact design and lasts weeks longer than other brushes',
+      body: 'Works really well! Extremely pleased with the battery longevity and compact ergonomic design. Far superior to drugstore electric toothbrushes that run flat after just a week and a half.',
       images: [],
-      helpful: 40,
+      helpful: 26,
       verified: true
     },
     {
       id: 'rev-35',
-      name: 'Camilla Jensen',
-      country: 'Odense, DK',
+      name: 'Marga Bennett',
+      country: 'Norwich, UK',
       rating: 5,
-      date: '2025-09-16',
-      displayDate: 'Sep 16, 2025',
+      date: '2024-08-04',
+      displayDate: 'Aug 4, 2024',
       variant: 'Color: Silver',
-      title: 'Best travel sonic brush hands down',
-      body: 'Took this on a 3-week camping trip through Norway without bringing a single charger. Used it twice every single day and the battery indicator was still solid green when I returned home.',
+      title: 'Balanced in hand and cleans smoothly without gum irritation',
+      body: 'Next day delivery! Wonderful toothbrush, feels balanced in the hand and brushes smoothly — neither too harsh nor too soft. Gums feel healthy and teeth look visibly polished.',
       images: [],
-      helpful: 29,
+      helpful: 23,
       verified: true
     },
     {
@@ -540,6 +540,272 @@
       body: 'The brush itself is top tier. Appreciate that replacement heads can be ordered easily. The acoustic motor sound is very discreet compared to loud mechanical brushes.',
       images: [],
       helpful: 15,
+      verified: true
+    },
+    {
+      id: 'rev-37',
+      name: 'Arianne Fraser',
+      country: 'Aberdeen, UK',
+      rating: 5,
+      date: '2024-07-24',
+      displayDate: 'Jul 24, 2024',
+      variant: 'Color: Pink',
+      title: 'Barely ever needs charging and looks lovely on the bathroom vanity',
+      body: 'Excellent service with prompt, clear communication. Great toothbrush, handy to hold, and you barely ever have to recharge it. Looks lovely mounted on the bathroom mirror too.',
+      images: [],
+      helpful: 30,
+      verified: true
+    },
+    {
+      id: 'rev-38',
+      name: 'Roos V.',
+      country: 'Southampton, UK',
+      rating: 5,
+      date: '2024-07-20',
+      displayDate: 'Jul 20, 2024',
+      variant: 'Color: Grey',
+      title: 'Brilliant sonic brush and compact travel case',
+      body: 'Brilliant sonic toothbrush, and the slim travel case is so handy for packing. The acoustic hum is very discreet and the 2-minute auto timer keeps me on track.',
+      images: [],
+      helpful: 19,
+      verified: true
+    },
+    {
+      id: 'rev-39',
+      name: 'Karin B.',
+      country: 'Exeter, UK',
+      rating: 5,
+      date: '2024-07-11',
+      displayDate: 'Jul 11, 2024',
+      variant: 'Color: Silver',
+      title: 'Sleek aesthetic and thorough hydrodynamic cleaning',
+      body: 'Takes a couple of days to get used to the sonic tickle, but it looks sleek and cleans thoroughly between tight teeth. Very courteous and efficient support team when ordering extra brush heads.',
+      images: [],
+      helpful: 22,
+      verified: true
+    },
+    {
+      id: 'rev-40',
+      name: 'Maaike T.',
+      country: 'Bristol, UK',
+      rating: 5,
+      date: '2024-06-25',
+      displayDate: 'Jun 25, 2024',
+      variant: 'Color: Grey',
+      title: 'Rapid delivery and thrilled with the brushing results',
+      body: 'Ordered and arrived the very next day. Impressed with the rapid delivery! Absolutely thrilled with how smooth and polished my teeth feel after every brushing session.',
+      images: [],
+      helpful: 24,
+      verified: true
+    },
+    {
+      id: 'rev-41',
+      name: 'Hannah Edwards',
+      country: 'Chester, UK',
+      rating: 5,
+      date: '2024-06-25',
+      displayDate: 'Jun 25, 2024',
+      variant: 'Color: Pink',
+      title: 'Teeth feel glassy-smooth and pink metallic finish is gorgeous',
+      body: 'Recently bought the Pink variant. My teeth always feel clean and glassy-smooth, and the metallic satin finish matches my bathroom tiles beautifully — a gorgeous addition to my morning routine!',
+      images: [],
+      helpful: 35,
+      verified: true
+    },
+    {
+      id: 'rev-42',
+      name: 'Senne V.',
+      country: 'Newcastle, UK',
+      rating: 5,
+      date: '2024-06-21',
+      displayDate: 'Jun 21, 2024',
+      variant: 'Color: Grey',
+      title: 'Upgraded from a manual brush — night and day difference',
+      body: 'Upgraded from a manual toothbrush to this sonic brush and it is a massive step up. The micro-vibrations lift plaque without aggressive brushing pressure. Night and day difference!',
+      images: [],
+      helpful: 29,
+      verified: true
+    },
+    {
+      id: 'rev-43',
+      name: 'Nvard Hovhannisyan',
+      country: 'Sheffield, UK',
+      rating: 5,
+      date: '2024-06-20',
+      displayDate: 'Jun 20, 2024',
+      variant: 'Color: Silver',
+      title: 'Gifted the Silver to my partner — ordering a second one',
+      body: 'Bought the Silver toothbrush as a gift for my partner, and he loves it! I am definitely getting the Pink one for myself now. Delivery was swift and on time.',
+      images: [],
+      helpful: 32,
+      verified: true
+    },
+    {
+      id: 'rev-44',
+      name: 'Edith Blackwood',
+      country: 'Nottingham, UK',
+      rating: 5,
+      date: '2024-06-20',
+      displayDate: 'Jun 20, 2024',
+      variant: 'Color: Grey',
+      title: 'Two months of daily brushing without a single recharge',
+      body: 'So pleased with this! I have been using the brush for nearly two months and still haven\'t needed to plug it in to recharge. The magnetic dock holds securely on tile. Absolutely wonderful device.',
+      images: [],
+      helpful: 44,
+      verified: true
+    },
+    {
+      id: 'rev-45',
+      name: 'Lyan v. H.',
+      country: 'Liverpool, UK',
+      rating: 5,
+      date: '2024-05-29',
+      displayDate: 'May 29, 2024',
+      variant: 'Color: Silver',
+      title: 'Arrived just in time for holiday travel',
+      body: 'Purchased specifically for my travels, and thankfully the order arrived rapidly just before my holiday. Packed it in the travel case without bringing any charger and it worked flawlessly for 3 weeks.',
+      images: [],
+      helpful: 27,
+      verified: true
+    },
+    {
+      id: 'rev-46',
+      name: 'Marwan v. H.',
+      country: 'Manchester, UK',
+      rating: 5,
+      date: '2024-05-08',
+      displayDate: 'May 8, 2024',
+      variant: 'Color: Grey',
+      title: 'Switched from Oral-B — much gentler and cleaner feel',
+      body: 'I had always used Oral-B oscillating brushes and decided it was time to try sonic acoustic cleaning. After the first few days, I am thoroughly impressed. Much gentler on my enamel, excellent results, and neatly packaged.',
+      images: [],
+      helpful: 38,
+      verified: true
+    },
+    {
+      id: 'rev-47',
+      name: 'Noah v. D.',
+      country: 'Leeds, UK',
+      rating: 5,
+      date: '2024-04-13',
+      displayDate: 'Apr 13, 2024',
+      variant: 'Color: Grey',
+      title: 'Super fast dispatch and great build quality',
+      body: 'The toothbrush arrived the very next day after ordering. Super quick fulfillment and great quality device. The 3 modes switch smoothly with single button clicks.',
+      images: [],
+      helpful: 21,
+      verified: true
+    },
+    {
+      id: 'rev-48',
+      name: 'Tess Morrison',
+      country: 'Belfast, UK',
+      rating: 5,
+      date: '2024-03-18',
+      displayDate: 'Mar 18, 2024',
+      variant: 'Color: Pink',
+      title: 'Immediate relief for sensitive gums',
+      body: 'I often struggle with sensitive gums and receding margins. After using Sensitive mode on this sonic brush for a few weeks, I noticed an immediate difference. Zero irritation and much healthier gums.',
+      images: [],
+      helpful: 37,
+      verified: true
+    },
+    {
+      id: 'rev-49',
+      name: 'Jasper Vance',
+      country: 'London, UK',
+      rating: 5,
+      date: '2024-03-11',
+      displayDate: 'Mar 11, 2024',
+      variant: 'Color: Silver',
+      title: 'Top tier hardware and outstanding customer service',
+      body: 'The quality of the toothbrush is top tier. The acoustic levitation motor runs smooth without rattling. Service is outstanding and delivery was prompt. More than satisfied.',
+      images: [],
+      helpful: 30,
+      verified: true
+    },
+    {
+      id: 'rev-50',
+      name: 'Mila Brennan',
+      country: 'Edinburgh, UK',
+      rating: 5,
+      date: '2024-02-25',
+      displayDate: 'Feb 25, 2024',
+      variant: 'Color: Grey',
+      title: 'Switched from another brand and couldn\'t be happier',
+      body: 'After a disappointing experience with another major brand, I made the switch and couldn\'t be happier. It is lighter, quieter, and holds battery 4x longer. A new lifetime customer!',
+      images: [],
+      helpful: 35,
+      verified: true
+    },
+    {
+      id: 'rev-51',
+      name: 'Thijs d. B.',
+      country: 'Oxford, UK',
+      rating: 5,
+      date: '2024-02-23',
+      displayDate: 'Feb 23, 2024',
+      variant: 'Color: Silver',
+      title: 'Superb build quality and well-calibrated brushing modes',
+      body: 'Delivered very quickly! The build quality is superb and I love the different calibrated mode settings. Clean, minimalist design that looks great on the counter. Highly recommend.',
+      images: [],
+      helpful: 28,
+      verified: true
+    },
+    {
+      id: 'rev-52',
+      name: 'Eva de Jong',
+      country: 'Cardiff, UK',
+      rating: 5,
+      date: '2024-02-12',
+      displayDate: 'Feb 12, 2024',
+      variant: 'Color: Pink',
+      title: 'First-class live customer support and fast resolution',
+      body: 'When I had a question about replacement heads, live customer support assisted me immediately and kindly. The toothbrush itself is immaculate and Whitening mode lifted coffee stains within weeks.',
+      images: [],
+      helpful: 26,
+      verified: true
+    },
+    {
+      id: 'rev-53',
+      name: 'Sophie Marshall',
+      country: 'Bath, UK',
+      rating: 5,
+      date: '2024-02-09',
+      displayDate: 'Feb 9, 2024',
+      variant: 'Color: Grey',
+      title: 'Long battery endurance eliminates charging hassle',
+      body: 'Just received my new toothbrush and I am very impressed. The long battery endurance means I can brush for weeks without ever having to worry about charging cables or cluttered bathroom sinks.',
+      images: [],
+      helpful: 33,
+      verified: true
+    },
+    {
+      id: 'rev-54',
+      name: 'Sander White',
+      country: 'York, UK',
+      rating: 5,
+      date: '2024-01-27',
+      displayDate: 'Jan 27, 2024',
+      variant: 'Color: Silver',
+      title: 'Remarkably smooth teeth without irritating gums',
+      body: 'My teeth feel remarkably smooth after brushing, completely gentle on gums with zero irritation. The 30-second quad pacer ensures an even 2-minute clean every time.',
+      images: [],
+      helpful: 29,
+      verified: true
+    },
+    {
+      id: 'rev-55',
+      name: 'Anna Walker',
+      country: 'Newcastle, UK',
+      rating: 5,
+      date: '2024-01-01',
+      displayDate: 'Jan 1, 2024',
+      variant: 'Color: Grey',
+      title: 'Morning rush made easy — no more dead batteries',
+      body: 'In the morning I am always rushing. My old toothbrush needed charging every week which was a constant nuisance. With this 60-day battery, that problem is finally solved for good.',
+      images: [],
+      helpful: 40,
       verified: true
     }
   ];
@@ -1652,6 +1918,7 @@
     const galleryContainers = gridEl.querySelectorAll('.miroooo-card-gallery');
     galleryContainers.forEach(container => {
       container.addEventListener('click', (e) => {
+        e.stopPropagation();
         const reviewId = container.getAttribute('data-review-id');
         const review = currentList.find(r => r.id === reviewId);
         if (!review || !review.images || review.images.length === 0) return;
@@ -1665,18 +1932,38 @@
         openLightbox(review, imgIndex);
       });
     });
+
+    // 4. Whole Review Card Click (Opens modal on card click)
+    const cards = gridEl.querySelectorAll('.miroooo-review-card');
+    cards.forEach(card => {
+      card.addEventListener('click', (e) => {
+        if (
+          e.target.closest('.miroooo-helpful-btn') ||
+          e.target.closest('.miroooo-read-more-btn') ||
+          e.target.closest('.miroooo-card-gallery') ||
+          e.target.closest('button') ||
+          e.target.closest('a')
+        ) {
+          return;
+        }
+        const reviewId = card.id ? card.id.replace('card-', '') : null;
+        if (!reviewId) return;
+        const review = currentList.find(r => r.id === reviewId);
+        if (review) {
+          openLightbox(review, 0);
+        }
+      });
+    });
   }
 
   // ==========================================================================
-  // LIGHTBOX / FULL REVIEW MODAL LOGIC
+  // LIGHTBOX / FULL REVIEW MODAL LOGIC (No internal nav, smooth frosted blur)
   // ==========================================================================
   function setupLightboxEvents() {
     const modal = document.getElementById('miroooo-lightbox-modal');
     if (!modal) return;
 
     const closeBtn = document.getElementById('miroooo-lightbox-close');
-    const prevBtn = document.getElementById('miroooo-lightbox-prev');
-    const nextBtn = document.getElementById('miroooo-lightbox-next');
     const helpfulBtn = document.getElementById('miroooo-lightbox-helpful-btn');
 
     if (closeBtn) closeBtn.addEventListener('click', closeLightbox);
@@ -1684,22 +1971,6 @@
     modal.addEventListener('click', (e) => {
       if (e.target === modal) closeLightbox();
     });
-
-    if (prevBtn) {
-      prevBtn.addEventListener('click', () => {
-        if (!activeLightboxReview || !activeLightboxReview.images.length) return;
-        activeLightboxImageIndex = (activeLightboxImageIndex - 1 + activeLightboxReview.images.length) % activeLightboxReview.images.length;
-        updateLightboxContent();
-      });
-    }
-
-    if (nextBtn) {
-      nextBtn.addEventListener('click', () => {
-        if (!activeLightboxReview || !activeLightboxReview.images.length) return;
-        activeLightboxImageIndex = (activeLightboxImageIndex + 1) % activeLightboxReview.images.length;
-        updateLightboxContent();
-      });
-    }
 
     if (helpfulBtn) {
       helpfulBtn.addEventListener('click', () => {
@@ -1713,16 +1984,8 @@
     }
 
     document.addEventListener('keydown', (e) => {
-      if (modal.style.display !== 'flex') return;
+      if (!modal.classList.contains('is-open')) return;
       if (e.key === 'Escape') closeLightbox();
-      if (e.key === 'ArrowLeft' && activeLightboxReview && activeLightboxReview.images.length > 1) {
-        activeLightboxImageIndex = (activeLightboxImageIndex - 1 + activeLightboxReview.images.length) % activeLightboxReview.images.length;
-        updateLightboxContent();
-      }
-      if (e.key === 'ArrowRight' && activeLightboxReview && activeLightboxReview.images.length > 1) {
-        activeLightboxImageIndex = (activeLightboxImageIndex + 1) % activeLightboxReview.images.length;
-        updateLightboxContent();
-      }
     });
   }
 
@@ -1733,10 +1996,14 @@
     const modal = document.getElementById('miroooo-lightbox-modal');
     if (!modal) return;
 
-    modal.style.display = 'flex';
-    document.body.style.overflow = 'hidden';
-
     updateLightboxContent();
+
+    modal.style.display = 'flex';
+    void modal.offsetHeight; // Force reflow for smooth CSS transition
+    modal.classList.add('is-open');
+    modal.setAttribute('aria-hidden', 'false');
+    document.body.style.overflow = 'hidden';
+    document.documentElement.style.overflow = 'hidden';
   }
 
   function updateLightboxContent() {
@@ -1753,9 +2020,6 @@
     const nameEl = document.getElementById('miroooo-lightbox-name');
     const avatarEl = document.getElementById('miroooo-lightbox-avatar');
     const countSpan = document.getElementById('miroooo-lightbox-helpful-count');
-    const prevBtn = document.getElementById('miroooo-lightbox-prev');
-    const nextBtn = document.getElementById('miroooo-lightbox-next');
-    const dotsContainer = document.getElementById('miroooo-lightbox-dots');
 
     const hasImages = activeLightboxReview.images && activeLightboxReview.images.length > 0;
 
@@ -1772,7 +2036,8 @@
     }
 
     if (hasImages && imgEl) {
-      imgEl.src = activeLightboxReview.images[activeLightboxImageIndex];
+      const idx = activeLightboxImageIndex < activeLightboxReview.images.length ? activeLightboxImageIndex : 0;
+      imgEl.src = activeLightboxReview.images[idx];
     }
 
     if (starsEl) starsEl.innerHTML = getTrustpilotStarsHTML(activeLightboxReview.rating);
@@ -1793,28 +2058,20 @@
         .toUpperCase();
     }
     if (countSpan) countSpan.textContent = activeLightboxReview.helpful || 0;
-
-    // Prev / Next Visibility
-    const hasMultiple = hasImages && activeLightboxReview.images.length > 1;
-    if (prevBtn) prevBtn.style.display = hasMultiple ? 'flex' : 'none';
-    if (nextBtn) nextBtn.style.display = hasMultiple ? 'flex' : 'none';
-
-    // Dots
-    if (dotsContainer) {
-      if (hasMultiple) {
-        dotsContainer.innerHTML = activeLightboxReview.images
-          .map((_, i) => `<span class="miroooo-lightbox-dot ${i === activeLightboxImageIndex ? 'active' : ''}"></span>`)
-          .join('');
-      } else {
-        dotsContainer.innerHTML = '';
-      }
-    }
   }
 
   function closeLightbox() {
     const modal = document.getElementById('miroooo-lightbox-modal');
-    if (modal) modal.style.display = 'none';
+    if (!modal) return;
+    modal.classList.remove('is-open');
+    modal.setAttribute('aria-hidden', 'true');
     document.body.style.overflow = '';
+    document.documentElement.style.overflow = '';
+    setTimeout(() => {
+      if (!modal.classList.contains('is-open')) {
+        modal.style.display = 'none';
+      }
+    }, 250);
     activeLightboxReview = null;
   }
 
@@ -1955,13 +2212,25 @@
     if (successBox) successBox.style.display = 'none';
 
     modal.style.display = 'flex';
+    void modal.offsetHeight; // Force reflow for smooth CSS transition
+    modal.classList.add('is-open');
+    modal.setAttribute('aria-hidden', 'false');
     document.body.style.overflow = 'hidden';
+    document.documentElement.style.overflow = 'hidden';
   }
 
   function closeWriteModal() {
     const modal = document.getElementById('miroooo-write-modal');
-    if (modal) modal.style.display = 'none';
+    if (!modal) return;
+    modal.classList.remove('is-open');
+    modal.setAttribute('aria-hidden', 'true');
     document.body.style.overflow = '';
+    document.documentElement.style.overflow = '';
+    setTimeout(() => {
+      if (!modal.classList.contains('is-open')) {
+        modal.style.display = 'none';
+      }
+    }, 250);
   }
 
   // Initialize on DOM Ready

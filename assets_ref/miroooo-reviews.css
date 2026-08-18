@@ -1117,31 +1117,62 @@ div.miroooo-progress-bar {
    5. LIGHTBOX MODAL
    ========================================================================== */
 .miroooo-modal-backdrop {
-  position: fixed;
-  inset: 0;
-  z-index: 999999;
-  background: rgba(0, 0, 0, 0.88);
-  backdrop-filter: blur(12px);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 16px;
-  box-sizing: border-box;
-  animation: mirooooFadeIn 0.25s ease;
+  position: fixed !important;
+  inset: 0 !important;
+  top: 0 !important;
+  left: 0 !important;
+  right: 0 !important;
+  bottom: 0 !important;
+  width: 100vw !important;
+  height: 100vh !important;
+  height: 100dvh !important;
+  z-index: 999999999 !important;
+  background: rgba(255, 255, 255, 0.75) !important;
+  backdrop-filter: blur(16px) !important;
+  -webkit-backdrop-filter: blur(16px) !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  padding: 16px !important;
+  box-sizing: border-box !important;
+  opacity: 0 !important;
+  visibility: hidden !important;
+  pointer-events: none !important;
+  transition: opacity 0.25s cubic-bezier(0.16, 1, 0.3, 1), visibility 0.25s ease !important;
+  user-select: none !important;
+  -webkit-user-select: none !important;
+}
+
+.miroooo-modal-backdrop.is-open {
+  opacity: 1 !important;
+  visibility: visible !important;
+  pointer-events: auto !important;
 }
 
 .miroooo-lightbox-dialog {
-  position: relative;
-  background: #111113;
-  border: 1px solid rgba(255, 255, 255, 0.12);
-  border-radius: var(--miroooo-radius-lg);
-  max-width: 960px;
-  width: 100%;
-  max-height: 90vh;
-  overflow: hidden;
-  box-shadow: 0 30px 90px rgba(0, 0, 0, 0.9);
-  display: flex;
-  flex-direction: column;
+  position: relative !important;
+  background: #111113 !important;
+  border: 1px solid rgba(255, 255, 255, 0.12) !important;
+  border-radius: var(--miroooo-radius-lg, 20px) !important;
+  max-width: 960px !important;
+  width: 100% !important;
+  max-height: 90vh !important;
+  overflow: hidden !important;
+  box-shadow: 0 25px 70px rgba(0, 0, 0, 0.35), 0 0 0 1px rgba(255, 255, 255, 0.08) !important;
+  display: flex !important;
+  flex-direction: column !important;
+  transform: scale(0.95) !important;
+  opacity: 0 !important;
+  transition: transform 0.28s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.25s ease !important;
+  user-select: auto !important;
+  -webkit-user-select: auto !important;
+  pointer-events: auto !important;
+}
+
+.miroooo-modal-backdrop.is-open .miroooo-lightbox-dialog,
+.miroooo-modal-backdrop.is-open .miroooo-write-dialog {
+  transform: scale(1) !important;
+  opacity: 1 !important;
 }
 
 @media (min-width: 800px) {
@@ -1208,57 +1239,9 @@ div.miroooo-progress-bar {
   display: block;
 }
 
-.miroooo-lightbox-nav {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  background: rgba(0, 0, 0, 0.7);
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  color: #ffffff;
-  font-size: 20px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  transition: var(--miroooo-transition);
-  outline: none;
-}
-
-.miroooo-lightbox-nav:hover {
-  background: var(--miroooo-gold);
-  color: #000000;
-}
-
-.miroooo-lightbox-nav.prev {
-  left: 12px;
-}
-
-.miroooo-lightbox-nav.next {
-  right: 12px;
-}
-
+.miroooo-lightbox-nav,
 .miroooo-lightbox-dots {
-  position: absolute;
-  bottom: 12px;
-  display: flex;
-  gap: 6px;
-}
-
-.miroooo-lightbox-dot {
-  width: 7px;
-  height: 7px;
-  border-radius: 50%;
-  background: rgba(255, 255, 255, 0.3);
-  transition: var(--miroooo-transition);
-}
-
-.miroooo-lightbox-dot.active {
-  background: var(--miroooo-gold);
-  width: 18px;
-  border-radius: 4px;
+  display: none !important;
 }
 
 .miroooo-lightbox-sidebar {
