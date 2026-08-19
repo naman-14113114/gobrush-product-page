@@ -95,6 +95,57 @@
     initMagnetEffect();
   }
 
+  // Mobile Menu Drawer Handler & Close Logic
+  const closeMenuDrawer = () => {
+    const drawer = document.getElementById("MenuDrawer");
+    if (!drawer) return;
+    if (typeof drawer.hide === "function") {
+      try {
+        drawer.hide();
+      } catch (_) {
+        drawer.removeAttribute("open");
+        drawer.removeAttribute("active");
+        drawer.hidden = true;
+      }
+    } else {
+      drawer.removeAttribute("open");
+      drawer.removeAttribute("active");
+      drawer.hidden = true;
+    }
+    document.querySelectorAll('[aria-controls="MenuDrawer"]').forEach((btn) => {
+      btn.setAttribute("aria-expanded", "false");
+    });
+  };
+
+  document.addEventListener("click", (event) => {
+    const menuCloseBtn = event.target.closest?.("#MenuDrawer .drawer__close, #MenuDrawer [aria-label='Close'], #MenuDrawer .button--close");
+    if (menuCloseBtn) {
+      event.preventDefault();
+      event.stopPropagation();
+      event.stopImmediatePropagation();
+      closeMenuDrawer();
+      return;
+    }
+
+    const drawer = document.getElementById("MenuDrawer");
+    if (drawer && (drawer.hasAttribute("open") || drawer.hasAttribute("active") || !drawer.hidden)) {
+      const isInsideInner = event.target.closest?.("#MenuDrawer .drawer__inner");
+      const isMenuToggle = event.target.closest?.('.menu-drawer-button, [aria-controls="MenuDrawer"]');
+      if (!isInsideInner && !isMenuToggle && event.target.closest?.("#MenuDrawer")) {
+        event.preventDefault();
+        event.stopPropagation();
+        event.stopImmediatePropagation();
+        closeMenuDrawer();
+      }
+    }
+  }, true);
+
+  document.addEventListener("keydown", (event) => {
+    if (event.key === "Escape") {
+      closeMenuDrawer();
+    }
+  });
+
   const mobileLinks = document.querySelectorAll("#MenuDrawer .drawer__menu-item");
   const mobileItems = [["/shop", "Shop"], ["/products/miroooo-x2", "Bundles"], ["/contact", "Contact"], ["/faq", "FAQ"]];
   mobileLinks.forEach((link, index) => {
@@ -102,6 +153,7 @@
     if (!item) return;
     link.href = item[0];
     link.textContent = item[1];
+    link.addEventListener("click", closeMenuDrawer);
   });
 
   document.querySelectorAll('a[href*="customer_authentication"]').forEach((link) => {
