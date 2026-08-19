@@ -1736,8 +1736,18 @@
           allCheckoutBtns.forEach(btn => {
             btn.disabled = true;
             btn.classList.add("is-loading");
-            const btnText = btn.querySelector("span:not(.cart-checkout-spinner)");
-            if (btnText) btnText.textContent = "Securing checkout...";
+            let loader = btn.querySelector(".miroooo-button-click-loader");
+            if (!loader) {
+              loader = document.createElement("span");
+              loader.setAttribute("aria-hidden", "true");
+              loader.className = "miroooo-button-click-loader buudy-button-click-loader miroooo-button-click-loader--dark-dots";
+              loader.innerHTML = `
+                <span class="miroooo-button-click-loader-dots buudy-button-click-loader-dots">
+                  <span></span><span></span><span></span><span></span><span></span>
+                </span>
+              `;
+              btn.appendChild(loader);
+            }
           });
 
           const product = PRODUCTS_CONFIG[cartState.productId] || PRODUCTS_CONFIG["miroooo-x"];

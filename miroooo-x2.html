@@ -4258,7 +4258,17 @@ function openProductCartDrawer() {
       const submitBtn = checkoutForm.querySelector('button[type="submit"]');
       if (submitBtn) {
         submitBtn.disabled = true;
-        submitBtn.textContent = 'Securing checkout...';
+        let loader = submitBtn.querySelector('.miroooo-button-click-loader');
+        if (!loader) {
+          loader = document.createElement('span');
+          loader.className = 'miroooo-button-click-loader buudy-button-click-loader miroooo-button-click-loader--light-dots';
+          loader.innerHTML = `
+            <span class="miroooo-button-click-loader-dots buudy-button-click-loader-dots">
+              <span></span><span></span><span></span><span></span><span></span>
+            </span>
+          `;
+          submitBtn.appendChild(loader);
+        }
       }
       const productId = '1000000664011618';
       const count = tier.count || 1;

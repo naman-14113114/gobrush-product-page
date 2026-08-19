@@ -1170,6 +1170,64 @@
     }
   });
 
+  // Global Button Click Loader (Exact from muuhu-store)
+  document.addEventListener("click", (e) => {
+    const btn = e.target.closest("button, a.gb-button, a.btn, .btn, .cart-checkout-cta-btn, .product-form__submit, #hero-cta, #sticky-bar-cta-btn, .miroooo-sticky-btn, .miroooo-checkout-btn, .proxy-bundle-btn, [is='magnet-button'], [is='hover-button'], .cart-stepper-btn, .cart-remove-button");
+    if (!btn || btn.disabled) return;
+
+    // Detect background brightness to choose white vs black dots
+    const compStyle = window.getComputedStyle(btn);
+    const bg = compStyle.backgroundColor;
+    let isLightBg = false;
+
+    if (bg && bg.startsWith("rgb")) {
+      const rgb = bg.match(/\d+/g);
+      if (rgb && rgb.length >= 3) {
+        const brightness = (parseInt(rgb[0]) * 299 + parseInt(rgb[1]) * 587 + parseInt(rgb[2]) * 114) / 1000;
+        if (brightness > 160) {
+          isLightBg = true;
+        }
+      }
+    }
+    if (
+      btn.classList.contains("cart-checkout-cta-btn") ||
+      btn.classList.contains("btn--white") ||
+      btn.classList.contains("gb-button--light") ||
+      btn.id === "main-checkout-btn" ||
+      btn.id === "sticky-checkout-btn"
+    ) {
+      isLightBg = true;
+    }
+
+    // Ensure relative positioning
+    if (compStyle.position === "static") {
+      btn.style.position = "relative";
+    }
+
+    let loader = btn.querySelector(".miroooo-button-click-loader");
+    if (!loader) {
+      loader = document.createElement("span");
+      loader.setAttribute("aria-hidden", "true");
+      loader.className = `miroooo-button-click-loader buudy-button-click-loader ${isLightBg ? "miroooo-button-click-loader--dark-dots" : "miroooo-button-click-loader--light-dots"}`;
+      loader.innerHTML = `
+        <span class="miroooo-button-click-loader-dots buudy-button-click-loader-dots">
+          <span></span><span></span><span></span><span></span><span></span>
+        </span>
+      `;
+      btn.appendChild(loader);
+    } else {
+      loader.className = `miroooo-button-click-loader buudy-button-click-loader ${isLightBg ? "miroooo-button-click-loader--dark-dots" : "miroooo-button-click-loader--light-dots"}`;
+      loader.style.display = "flex";
+    }
+
+    // Auto-remove after 900ms if not submitting/redirecting
+    setTimeout(() => {
+      if (loader && loader.parentNode && !btn.disabled) {
+        loader.remove();
+      }
+    }, 900);
+  });
+
   // Close on Escape key
   document.addEventListener("keydown", (e) => {
     if (e.key === "Escape") {
