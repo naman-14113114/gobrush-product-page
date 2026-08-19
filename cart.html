@@ -1722,37 +1722,44 @@
         }
       }
 
-      // 7. CHECKOUT REDIRECTION (PlusBase Buudy checkout bridge)
+      // 7. CHECKOUT REDIRECTION (Direct PlusBase Checkout Handshake)
       function initCheckoutAction() {
         const checkoutBtn = document.getElementById("main-checkout-btn");
-        if (!checkoutBtn) return;
+        const stickyBtn = document.getElementById("sticky-checkout-btn");
+        if (!checkoutBtn && !stickyBtn) return;
 
-        checkoutBtn.addEventListener("click", function(e) {
-          e.preventDefault();
+        async function handleCheckout(e) {
+          if (e) e.preventDefault();
           if (!cartState || cartState.quantity <= 0) return;
 
+          const allCheckoutBtns = [checkoutBtn, stickyBtn].filter(Boolean);
+          allCheckoutBtns.forEach(btn => {
+            btn.disabled = true;
+            btn.classList.add("is-loading");
+            const btnText = btn.querySelector("span:not(.cart-checkout-spinner)");
+            if (btnText) btnText.textContent = "Securing checkout...";
+          });
+
           const product = PRODUCTS_CONFIG[cartState.productId] || PRODUCTS_CONFIG["miroooo-x"];
-          const firstColor = (cartState.colors && cartState.colors[0]) || "Grey";
-          const variantObj = product.variants[firstColor] || product.variants["Grey"];
-          const variantId = variantObj.variantId;
+          const productId = product.productId;
+          const selectedColors = (cartState.colors && cartState.colors.length > 0)
+            ? cartState.colors.slice(0, cartState.quantity)
+            : ["Grey"];
 
-          const url = new URL("https://buudy.com/pages/add-to-cart");
-          url.searchParams.set("product_id", product.productId);
-          url.searchParams.set("variant_id", variantId);
-          url.searchParams.set("quantity", String(cartState.quantity));
-          url.searchParams.set("qty", String(cartState.quantity));
-          url.searchParams.set("product_quantity", String(cartState.quantity));
-          url.searchParams.set("gift_variant_id", "1000020384558655");
-          url.searchParams.set("gift_product_id", "1000000665008955");
-          url.searchParams.set("gift_quantity", String(cartState.quantity));
-          url.searchParams.set("gift", "travel-case");
-          url.searchParams.set("redirect", "checkout");
-          url.searchParams.set("source", product.source);
-
-          if (appliedPromoCode) {
-            url.searchParams.set("discount", appliedPromoCode);
-            url.searchParams.set("coupon", appliedPromoCode);
+          // If fewer colors selected than quantity, fill remaining with first choice or Grey
+          while (selectedColors.length < cartState.quantity) {
+            selectedColors.push(selectedColors[0] || "Grey");
           }
+
+          const items = selectedColors.map(color => {
+            const variantObj = product.variants[color] || product.variants["Grey"] || product.variants["Gray"] || product.variants["Pink"] || product.variants["Silver"];
+            const vId = variantObj ? variantObj.variantId : (cartState.productId === "miroooo-x2" ? "1000020348810048" : "1000020348812113");
+            return {
+              productId: productId,
+              variantId: vId,
+              quantity: 1
+            };
+          });
 
           // Preserve UTM / Ad attribution
           const allowed = ["utm_source", "utm_medium", "utm_campaign", "utm_term", "utm_content", "msclkid", "gclid", "fbclid", "source"];
@@ -1764,11 +1771,88 @@
           const currentParams = new URLSearchParams(window.location.search);
           allowed.forEach(key => {
             const val = currentParams.get(key) || attribution[key];
-            if (val) url.searchParams.set(key, val);
+            if (val) attribution[key] = val;
           });
 
-          window.location.href = url.toString();
-        });
+          try {
+            // Step 1: Call Vercel Serverless Function
+            let checkoutUrl = "";
+            try {
+              const prepRes = await fetch("/api/checkout/prepare", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({
+                  items: items,
+                  discountCode: appliedPromoCode,
+                  attribution: attribution
+                })
+              });
+              if (prepRes.ok) {
+                const prepData = await prepRes.json();
+                if (prepData && prepData.checkoutUrl) {
+                  checkoutUrl = prepData.checkoutUrl;
+                }
+              }
+            } catch (err) {
+              console.warn("Server prepare fallback, using direct client API", err);
+            }
+
+            // Step 2: Direct Client Fallback if API route unavailable
+            if (!checkoutUrl) {
+              const createRes = await fetch("https://miroooo.onshopbase.com/api/checkout/next/cart.json", {
+                method: "POST",
+                headers: { "Accept": "application/json" }
+              });
+              const createJson = await createRes.json();
+              const cartToken = createJson?.result?.token;
+              const checkoutToken = createJson?.result?.checkout_token;
+
+              if (!cartToken || !checkoutToken) {
+                throw new Error("Could not initialize PlusBase checkout session");
+              }
+
+              const properties = [];
+              allowed.forEach(key => {
+                if (attribution[key]) {
+                  properties.push({ name: `_blfm_${key}`, value: String(attribution[key]).slice(0, 500) });
+                }
+              });
+
+              for (const itm of items) {
+                await fetch(`https://miroooo.onshopbase.com/api/checkout/next/cart.json?cart_token=${encodeURIComponent(cartToken)}`, {
+                  method: "PUT",
+                  headers: {
+                    "Accept": "application/json",
+                    "Content-Type": "application/json"
+                  },
+                  body: JSON.stringify({
+                    cartItem: {
+                      product_id: Number(itm.productId),
+                      variant_id: Number(itm.variantId),
+                      qty: Number(itm.quantity) || 1,
+                      properties: properties,
+                      metadata: { image_preview_id: "" }
+                    },
+                    from: "add-to-cart"
+                  })
+                });
+              }
+
+              checkoutUrl = `https://miroooo.us/checkouts/${checkoutToken}`;
+              if (appliedPromoCode) {
+                checkoutUrl += `?discount=${encodeURIComponent(appliedPromoCode)}`;
+              }
+            }
+
+            window.location.href = checkoutUrl;
+          } catch (error) {
+            console.error("Checkout redirection failed:", error);
+            window.location.href = "https://miroooo.us/checkouts";
+          }
+        }
+
+        if (checkoutBtn) checkoutBtn.addEventListener("click", handleCheckout);
+        if (stickyBtn) stickyBtn.addEventListener("click", handleCheckout);
       }
 
       // 8. PROMO CODE HANDLING

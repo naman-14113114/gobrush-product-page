@@ -432,52 +432,102 @@
     }
   }
 
-  function buildPlusbaseCheckoutUrl(item, extraParams = {}) {
+  async function createPlusbaseCheckoutSession(item, extraParams = {}) {
     const isX2 = item?.productHandle === "miroooo-x2" || (item?.title && item.title.includes("X2"));
     const productId = isX2 ? "1000000664011618" : "1000000664011633";
-    const source = isX2 ? "miroooo-x2" : "miroooo";
-    const productHandle = isX2 ? "miroooo-x2" : "miroooo-x";
-
     const variants = isX2 ? X2_VARIANTS : X_VARIANTS;
-    const firstChoice = item?.choices?.[0] || item?.color || "Grey";
-    const variantId = item?.variantId || variants[firstChoice] || (isX2 ? "1000020348810048" : "1000020348812113");
 
     const bundleCount = item?.bundleCount || item?.count || item?.itemCount || (item?.tierId === "bundle-3" ? 3 : item?.tierId === "bundle-2" ? 2 : 1);
-    const quantity = Math.max(1, (item?.quantity || 1) * bundleCount);
+    const selectedColors = Array.isArray(item?.choices) && item.choices.length > 0
+      ? item.choices.slice(0, bundleCount)
+      : [item?.color || "Grey"];
 
-    const giftQuantity = Math.max(1, quantity);
-    const giftVariantId = "1000020384558655";
-    const giftProductId = "1000000665008955";
+    while (selectedColors.length < bundleCount) {
+      selectedColors.push(selectedColors[0] || "Grey");
+    }
 
-    const url = new URL("https://buudy.com/pages/add-to-cart");
-    const params = {
-      product_id: productId,
-      variant_id: variantId,
-      quantity: String(quantity),
-      qty: String(quantity),
-      product_quantity: String(quantity),
-      gift_variant_id: giftVariantId,
-      gift_product_id: giftProductId,
-      gift_quantity: String(giftQuantity),
-      gift: "travel-case",
-      redirect: "checkout",
-      product_handle: productHandle,
-      source: source,
-      utm_source: "miroooo_direct",
-      utm_medium: "store_cart_checkout",
-      utm_campaign: source
-    };
-
-    const attribution = readCapturedAttribution();
-    Object.assign(params, attribution, extraParams);
-
-    Object.entries(params).forEach(([k, v]) => {
-      if (v != null && v !== "") {
-        url.searchParams.set(k, String(v));
-      }
+    const items = selectedColors.map((color) => {
+      const vId = variants[color] || variants["Grey"] || variants["Gray"] || variants["Pink"] || variants["Silver"] || (isX2 ? "1000020348810048" : "1000020348812113");
+      return {
+        productId: productId,
+        variantId: vId,
+        quantity: 1,
+      };
     });
 
-    return url.toString();
+    const attribution = readCapturedAttribution();
+    Object.assign(attribution, extraParams);
+
+    // 1. Serverless prepare route
+    try {
+      const response = await fetch("/api/checkout/prepare", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          items: items,
+          discountCode: extraParams.discount || localStorage.getItem("miroooo_promo_code") || "",
+          attribution: attribution,
+        }),
+      });
+      if (response.ok) {
+        const data = await response.json();
+        if (data?.checkoutUrl) return data.checkoutUrl;
+      }
+    } catch (err) {
+      console.warn("Server prepare fallback", err);
+    }
+
+    // 2. Direct client-side PlusBase session creation
+    try {
+      const createRes = await fetch("https://miroooo.onshopbase.com/api/checkout/next/cart.json", {
+        method: "POST",
+        headers: { "Accept": "application/json" }
+      });
+      const createJson = await createRes.json();
+      const cartToken = createJson?.result?.token;
+      const checkoutToken = createJson?.result?.checkout_token;
+
+      if (cartToken && checkoutToken) {
+        const allowed = ["utm_source", "utm_medium", "utm_campaign", "utm_term", "utm_content", "msclkid", "gclid", "fbclid", "source"];
+        const properties = [];
+        allowed.forEach(key => {
+          if (attribution[key]) {
+            properties.push({ name: `_blfm_${key}`, value: String(attribution[key]).slice(0, 500) });
+          }
+        });
+
+        for (const itm of items) {
+          await fetch(`https://miroooo.onshopbase.com/api/checkout/next/cart.json?cart_token=${encodeURIComponent(cartToken)}`, {
+            method: "PUT",
+            headers: {
+              "Accept": "application/json",
+              "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+              cartItem: {
+                product_id: Number(itm.productId),
+                variant_id: Number(itm.variantId),
+                qty: Number(itm.quantity) || 1,
+                properties: properties,
+                metadata: { image_preview_id: "" }
+              },
+              from: "add-to-cart"
+            })
+          });
+        }
+
+        let target = `https://miroooo.us/checkouts/${checkoutToken}`;
+        const discount = extraParams.discount || localStorage.getItem("miroooo_promo_code") || "";
+        if (discount) {
+          target += `?discount=${encodeURIComponent(discount)}`;
+        }
+        return target;
+      }
+    } catch (directErr) {
+      console.error("Direct PlusBase session creation failed", directErr);
+    }
+
+    return "https://miroooo.us/checkouts";
   }
 
   const MirooooCart = {
@@ -1000,7 +1050,7 @@
       }
     },
 
-    checkout() {
+    async checkout() {
       const cart = this.getCart();
       const items = cart.items || [];
       if (items.length === 0) return;
@@ -1009,11 +1059,11 @@
       const btnText = document.getElementById("cart-checkout-btn-text");
       if (checkoutBtn) {
         checkoutBtn.disabled = true;
-        if (btnText) btnText.textContent = "Redirecting to checkout...";
+        if (btnText) btnText.textContent = "Securing checkout...";
       }
 
       const primaryItem = items[0];
-      const checkoutUrl = buildPlusbaseCheckoutUrl(primaryItem);
+      const checkoutUrl = await createPlusbaseCheckoutSession(primaryItem);
       window.location.assign(checkoutUrl);
     }
   };

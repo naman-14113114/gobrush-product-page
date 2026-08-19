@@ -5287,15 +5287,108 @@ function openProductCartDrawer() {
     subtotalVal.textContent = `${tier.priceDisplay} GBP`;
   }
 
-  // PlusBase Checkout Redirection
+  // PlusBase Direct Checkout Redirection
   const checkoutForm = cartDrawer.querySelector('.drawer__footer-buttons');
   if (checkoutForm) {
-    checkoutForm.onsubmit = (e) => {
+    checkoutForm.onsubmit = async (e) => {
       e.preventDefault();
-      const firstColor = choices[0] || 'Grey';
-      const variantId = (VARIANTS_DATA[firstColor] || VARIANTS_DATA['Grey']).variantId;
-      const checkoutUrl = `https://miroooo.us/pages/add-to-cart?product_id=1000000664011633&variant_id=${variantId}&quantity=${tier.count}&source=miroooo`;
-      window.location.href = checkoutUrl;
+      const submitBtn = checkoutForm.querySelector('button[type="submit"]');
+      if (submitBtn) {
+        submitBtn.disabled = true;
+        submitBtn.textContent = 'Securing checkout...';
+      }
+      const productId = '1000000664011633';
+      const count = tier.count || 1;
+      const selectedColors = Array.isArray(choices) && choices.length > 0 ? choices.slice(0, count) : ['Grey'];
+      while (selectedColors.length < count) {
+        selectedColors.push(selectedColors[0] || 'Grey');
+      }
+
+      const items = selectedColors.map(color => {
+        const variantObj = VARIANTS_DATA[color] || VARIANTS_DATA['Grey'] || VARIANTS_DATA['Gray'] || VARIANTS_DATA['Pink'] || VARIANTS_DATA['Silver'];
+        return {
+          productId: productId,
+          variantId: variantObj ? variantObj.variantId : '1000020348812113',
+          quantity: 1
+        };
+      });
+
+      // Preserve UTMs
+      const allowed = ['utm_source', 'utm_medium', 'utm_campaign', 'utm_term', 'utm_content', 'msclkid', 'gclid', 'fbclid', 'source'];
+      let attribution = {};
+      try {
+        attribution = JSON.parse(sessionStorage.getItem('miroooo_attribution') || localStorage.getItem('miroooo_attribution') || '{}');
+      } catch (_) {}
+      const query = new URLSearchParams(window.location.search);
+      allowed.forEach(k => {
+        const val = query.get(k) || attribution[k];
+        if (val) attribution[k] = val;
+      });
+
+      try {
+        const prepRes = await fetch('/api/checkout/prepare', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            items: items,
+            discountCode: localStorage.getItem('miroooo_promo_code') || '',
+            attribution: attribution
+          })
+        });
+        if (prepRes.ok) {
+          const data = await prepRes.json();
+          if (data && data.checkoutUrl) {
+            window.location.href = data.checkoutUrl;
+            return;
+          }
+        }
+      } catch (err) {
+        console.warn('Server prepare fallback', err);
+      }
+
+      // Direct client fallback
+      try {
+        const createRes = await fetch('https://miroooo.onshopbase.com/api/checkout/next/cart.json', {
+          method: 'POST',
+          headers: { 'Accept': 'application/json' }
+        });
+        const createJson = await createRes.json();
+        const cartToken = createJson?.result?.token;
+        const checkoutToken = createJson?.result?.checkout_token;
+
+        if (cartToken && checkoutToken) {
+          const properties = [];
+          allowed.forEach(key => {
+            if (attribution[key]) {
+              properties.push({ name: `_blfm_${key}`, value: String(attribution[key]).slice(0, 500) });
+            }
+          });
+
+          for (const itm of items) {
+            await fetch(`https://miroooo.onshopbase.com/api/checkout/next/cart.json?cart_token=${encodeURIComponent(cartToken)}`, {
+              method: 'PUT',
+              headers: { 'Accept': 'application/json', 'Content-Type': 'application/json' },
+              body: JSON.stringify({
+                cartItem: {
+                  product_id: Number(itm.productId),
+                  variant_id: Number(itm.variantId),
+                  qty: Number(itm.quantity) || 1,
+                  properties: properties,
+                  metadata: { image_preview_id: '' }
+                },
+                from: 'add-to-cart'
+              })
+            });
+          }
+
+          window.location.href = `https://miroooo.us/checkouts/${checkoutToken}`;
+          return;
+        }
+      } catch (directErr) {
+        console.error('Direct PlusBase checkout failed', directErr);
+      }
+
+      window.location.href = 'https://miroooo.us/checkouts';
     };
   }
 

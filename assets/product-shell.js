@@ -197,13 +197,15 @@
 
   const allowedAttribution = ["msclkid", "gclid", "utm_source", "utm_medium", "utm_campaign", "utm_term", "utm_content"];
   const query = new URLSearchParams(location.search);
-  document.querySelectorAll('a[href*="buudy.com/pages/add-to-cart"]').forEach((link) => {
-    const target = new URL(link.href);
-    allowedAttribution.forEach((key) => {
-      const value = query.get(key);
-      if (value) target.searchParams.set(key, value);
-    });
-    link.href = target.toString();
+  document.querySelectorAll('a[href*="/checkouts"], a[href*="cart"]').forEach((link) => {
+    try {
+      const target = new URL(link.href, window.location.origin);
+      allowedAttribution.forEach((key) => {
+        const value = query.get(key);
+        if (value) target.searchParams.set(key, value);
+      });
+      link.href = target.toString();
+    } catch (_) {}
   });
 
   const closeCartDrawer = () => {
