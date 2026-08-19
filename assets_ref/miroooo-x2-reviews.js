@@ -15,9 +15,9 @@
     distribution: {
       5: { count: 3933, percent: 92 },
       4: { count: 256, percent: 6 },
-      3: { count: 43, percent: 1 },
-      2: { count: 22, percent: 0.5 },
-      1: { count: 21, percent: 0.5 }
+      3: { count: 3, percent: 1 },
+      2: { count: 2, percent: 0.5 },
+      1: { count: 3, percent: 0.5 }
     }
   };
 
@@ -637,6 +637,25 @@
         author: 'Response from Miroooo Customer Care',
         date: '26 Feb 2026',
         text: 'Hi Toby, apologies for the carrier tracking sync latency over the weekend dispatch window. Our automated system has been upgraded to provide live instantaneous GPS parcel tracking.'
+      }
+    },
+    {
+      id: 'x2-41',
+      name: 'Rachel Davies',
+      country: 'Cardiff, UK',
+      rating: 1,
+      date: '2026-02-18',
+      displayDate: '18 Feb 2026',
+      variant: 'Pink / Single',
+      title: 'Courier delivered parcel to neighboring building during storm',
+      body: 'The local courier left my delivery outside the wrong entrance down the road. Contacted customer support who resolved the delivery issue.',
+      images: [],
+      helpful: 16,
+      verified: true,
+      merchantReply: {
+        author: 'Response from Miroooo Customer Care',
+        date: '19 Feb 2026',
+        text: 'Hello Rachel, we deeply regret the courier misplacement. Our team immediately intervened with the carrier supervisor and sent a priority replacement package. We are glad you received it safely.'
       }
     }
   ];

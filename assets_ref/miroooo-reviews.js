@@ -15,9 +15,9 @@
     distribution: {
       5: { count: 3933, percent: 92 },
       4: { count: 256, percent: 6 },
-      3: { count: 43, percent: 1 },
-      2: { count: 22, percent: 0.5 },
-      1: { count: 21, percent: 0.5 }
+      3: { count: 3, percent: 1 },
+      2: { count: 2, percent: 0.5 },
+      1: { count: 3, percent: 0.5 }
     }
   };
 
@@ -293,6 +293,44 @@
       }
     },
     {
+      id: 'rev-17b',
+      name: 'Toby Armstrong',
+      country: 'Newcastle, UK',
+      rating: 1,
+      date: '2026-06-11',
+      displayDate: 'Jun 11, 2026',
+      variant: 'Color: Grey',
+      title: 'Courier delivered parcel to neighboring porch during storm',
+      body: 'The local delivery driver left the parcel outside down the road in the rain. Contacted customer support who resolved the delivery issue promptly.',
+      images: [],
+      helpful: 16,
+      verified: true,
+      merchantReply: {
+        author: 'Miroooo Customer Care',
+        date: 'Jun 12, 2026',
+        text: 'Hello Toby, we deeply regret the courier misplacement. Our team immediately intervened with the carrier supervisor and dispatched a priority replacement parcel. We are glad you received it safely.'
+      }
+    },
+    {
+      id: 'rev-17c',
+      name: 'Rachel Davies',
+      country: 'Cardiff, UK',
+      rating: 1,
+      date: '2026-06-09',
+      displayDate: 'Jun 9, 2026',
+      variant: 'Color: Pink',
+      title: 'Missing secondary travel cap in bundle — replacement sent immediately',
+      body: 'Received the brush and magnetic dock, but the extra hygienic travel cap was missing from the box upon opening.',
+      images: [],
+      helpful: 14,
+      verified: true,
+      merchantReply: {
+        author: 'Miroooo Customer Care',
+        date: 'Jun 10, 2026',
+        text: 'Hi Rachel, our apologies for the missing accessory in fulfillment. We dispatched a complimentary replacement accessory multi-pack via Royal Mail 24 on the same afternoon.'
+      }
+    },
+    {
       id: 'rev-18',
       name: 'Lars Lindgren',
       country: 'Oslo, NO',
@@ -323,7 +361,12 @@
       body: 'The toothbrush is extremely well manufactured and the 60-day battery is accurate. However, the 32,000 VPM motor is quite powerful even on Daily Clean mode. I recommend starting on Sensitive mode for the first week until your gums acclimate.',
       images: [],
       helpful: 15,
-      verified: true
+      verified: true,
+      merchantReply: {
+        author: 'Miroooo Customer Care',
+        date: 'Jun 3, 2026',
+        text: 'Hi Markus, thank you for the helpful review! For users new to acoustic levitation sonic motors, starting on Mode 1 (Sensitive) allows the oral tissue to gently acclimate before transitioning to Daily Clean or Whitening mode.'
+      }
     },
     {
       id: 'rev-20',
@@ -337,7 +380,31 @@
       body: 'The Miroooo X device itself is 5 stars—whisper quiet, waterproof, and sleek. Took 6 business days for international shipping to arrive in Madrid instead of the promised 3-4 days. Customer support was polite and tracked the parcel.',
       images: [],
       helpful: 11,
-      verified: true
+      verified: true,
+      merchantReply: {
+        author: 'Miroooo Support Care',
+        date: 'May 28, 2026',
+        text: 'Hello Valerie, thank you for loving the brush! We apologize for the international customs transit delay to Spain and have since integrated express courier routing for all mainland European shipments.'
+      }
+    },
+    {
+      id: 'rev-20b',
+      name: 'Simon Clarke',
+      country: 'Leeds, UK',
+      rating: 3,
+      date: '2026-05-20',
+      displayDate: 'May 20, 2026',
+      variant: 'Color: Grey',
+      title: 'Carrier tracking took 48 hours to activate on portal',
+      body: 'The brush is lightweight and cleans brilliantly. The dispatch tracking link took two days to scan on the carrier portal which caused slight confusion initially.',
+      images: [],
+      helpful: 9,
+      verified: true,
+      merchantReply: {
+        author: 'Miroooo Customer Care',
+        date: 'May 21, 2026',
+        text: 'Hi Simon, thank you for the feedback. Our automated logistics pipeline has been updated with real-time GPS tracking sync so dispatch scans reflect immediately.'
+      }
     },
     {
       id: 'rev-21',
@@ -1105,18 +1172,18 @@
     const dataset = CURATED_REVIEWS.slice(); // 36 curated reviews
 
     // Calculate remaining reviews per star rating to reach exact target counts
-    const curated5 = dataset.filter(r => r.rating === 5).length; // 26
-    const curated4 = dataset.filter(r => r.rating === 4).length; // 5
-    const curated3 = dataset.filter(r => r.rating === 3).length; // 2
-    const curated2 = dataset.filter(r => r.rating === 2).length; // 2
-    const curated1 = dataset.filter(r => r.rating === 1).length; // 1
+    const curated5 = dataset.filter(r => r.rating === 5).length;
+    const curated4 = dataset.filter(r => r.rating === 4).length;
+    const curated3 = dataset.filter(r => r.rating === 3).length;
+    const curated2 = dataset.filter(r => r.rating === 2).length;
+    const curated1 = dataset.filter(r => r.rating === 1).length;
 
     const remainingCounts = {
-      5: REVIEWS_SUMMARY.distribution[5].count - curated5, // 3933 - 26 = 3907
-      4: REVIEWS_SUMMARY.distribution[4].count - curated4, // 256 - 5 = 251
-      3: REVIEWS_SUMMARY.distribution[3].count - curated3, // 43 - 2 = 41
-      2: REVIEWS_SUMMARY.distribution[2].count - curated2, // 22 - 2 = 20
-      1: REVIEWS_SUMMARY.distribution[1].count - curated1  // 21 - 1 = 20
+      5: Math.max(0, REVIEWS_SUMMARY.distribution[5].count - curated5),
+      4: Math.max(0, REVIEWS_SUMMARY.distribution[4].count - curated4),
+      3: 0, // Curated only (3 reviews total, matching X2)
+      2: 0, // Curated only (2 reviews total, matching X2)
+      1: 0  // Curated only (3 reviews total, matching X2)
     };
 
     // Reference anchor date: Aug 21, 2026 (shifted by +190 days)
