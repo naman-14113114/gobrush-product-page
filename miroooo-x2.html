@@ -3808,8 +3808,8 @@ const TIERS = {
     giftsValue: '£15.95',
     unlockedGifts: 1,
     variants: {
-      'Grey': '1000020348810062',
-      'Pink': '1000020348810048',
+      'Grey': '1000020348810048',
+      'Pink': '1000020348810062',
       'Silver': '1000020348810046'
     }
   },
@@ -3824,8 +3824,8 @@ const TIERS = {
     giftsValue: '£35.90',
     unlockedGifts: 2,
     variants: {
-      'Grey': '1000020348810062',
-      'Pink': '1000020348810048',
+      'Grey': '1000020348810048',
+      'Pink': '1000020348810062',
       'Silver': '1000020348810046'
     }
   },
@@ -3840,8 +3840,8 @@ const TIERS = {
     giftsValue: '£60.85',
     unlockedGifts: 3,
     variants: {
-      'Grey': '1000020348810062',
-      'Pink': '1000020348810048',
+      'Grey': '1000020348810048',
+      'Pink': '1000020348810062',
       'Silver': '1000020348810046'
     }
   }
@@ -4257,7 +4257,7 @@ function openProductCartDrawer() {
       e.preventDefault();
       const firstColor = choices[0] || 'Grey';
       const variantId = (VARIANTS_DATA[firstColor] || VARIANTS_DATA['Grey']).variantId;
-      const checkoutUrl = `https://buudy.com/pages/add-to-cart?product_id=1000000664011618&variant_id=${variantId}&quantity=${tier.count}&source=miroooo-x2`;
+      const checkoutUrl = `https://miroooo.us/pages/add-to-cart?product_id=1000000664011618&variant_id=${variantId}&quantity=${tier.count}&source=miroooo-x2`;
       window.location.href = checkoutUrl;
     };
   }
