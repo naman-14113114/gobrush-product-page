@@ -11,10 +11,7 @@
   const trialIcon = '<svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M12 3 4.5 6v5.5c0 4.7 3.1 7.9 7.5 9.5 4.4-1.6 7.5-4.8 7.5-9.5V6L12 3Z"/><path d="m9 12 2 2 4-4"/></svg>';
   const warrantyIcon = '<svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>';
 
-  const headerTarget = document.querySelector("[data-site-header]");
-  const footerTarget = document.querySelector("[data-site-footer]");
   const currentPage = document.body.dataset.page || "";
-  const isOverlayHeader = Boolean(headerTarget?.hasAttribute("data-overlay-header") || currentPage === "home");
   const current = (pages) => pages.includes(currentPage) ? ' aria-current="page"' : "";
   const flipLabel = (label) => `<span class="nav-link__flip"><span>${label}</span><span aria-hidden="true">${label}</span></span>`;
   const menuPill = (href, label, pages) => `
@@ -25,10 +22,15 @@
       </a>
     </li>`;
 
-  if (headerTarget) {
+  function renderGlobalHeader() {
+    const headerTarget = document.querySelector("[data-site-header]");
+    if (!headerTarget) return;
+
+    const isOverlayHeader = Boolean(headerTarget.hasAttribute("data-overlay-header") || currentPage === "home");
     headerTarget.classList.toggle("header-layer--overlay", isOverlayHeader);
+
     headerTarget.innerHTML = `
-      <div class="announcement" style="overflow: hidden; padding: 3px 0; min-height: 22px;">
+      <div class="announcement" style="overflow: hidden; padding: 4px 0; min-height: 24px; background: #e6e6e6; border-bottom: 1px solid rgba(0, 0, 0, 0.08);">
         <div class="miroooo-announcement-ticker">
           <div class="miroooo-ticker-item"><span>Free Shipping on all orders</span> <span class="miroooo-ticker-dot" aria-hidden="true"></span></div>
           <div class="miroooo-ticker-item"><span>50% OFF Today + 3 Free Gifts</span> <span class="miroooo-ticker-dot" aria-hidden="true"></span></div>
@@ -42,74 +44,259 @@
           <div class="miroooo-ticker-item"><span>90-Day Risk-Free Home Trial</span> <span class="miroooo-ticker-dot" aria-hidden="true"></span></div>
         </div>
       </div>
-      <header class="site-header${isOverlayHeader ? " site-header--overlay" : ""}">
-        <div class="site-header__inner">
-          <div class="site-header__left">
-            <button class="nav-toggle menu-drawer-button flex items-center justify-center lg:hidden" type="button" aria-expanded="false" aria-controls="mobile-menu" aria-label="Open menu" is="magnet-button">
-              <span class="sr-only">Navigation</span>
-              ${menuIcon}
+      <menu-drawer id="MenuDrawer" class="menu-drawer drawer drawer--start z-30 fixed bottom-0 left-0 h-full w-full pointer-events-none" hidden>
+        <overlay-element class="overlay fixed-modal invisible opacity-0 fixed bottom-0 left-0 w-full h-screen pointer-events-none" aria-controls="MenuDrawer" aria-expanded="false"></overlay-element>
+        <div class="drawer__inner z-10 absolute top-0 flex flex-col w-full h-full overflow-hidden">
+          <gesture-element class="drawer__header flex items-center justify-between relative">
+            <span class="drawer__title heading lg:text-3xl text-2xl leading-none tracking-tight"></span>
+            <button class="button button--secondary button--close drawer__close mobile-panel__close flex items-center justify-center" type="button" is="hover-button" aria-controls="MenuDrawer" aria-expanded="false" aria-label="Close">
+              <span class="btn-fill" data-fill></span>
+              <span class="btn-text">
+                <svg class="icon icon-close icon-sm" viewBox="0 0 20 20" stroke="#ffffff" fill="none" stroke-width="2" xmlns="http://www.w3.org/2000/svg">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M5 15L15 5M5 5L15 15"></path>
+                </svg>
+              </span>
             </button>
-            <nav class="header__menu site-nav hidden lg:flex" role="navigation" aria-label="Main navigation">
-              <ul class="flex flex-wrap list-menu with-block">
-                ${menuPill("/shop", "Shop", ["shop"])}
-                ${menuPill("/products/miroooo-x2", "Bundles", ["bundles"])}
-                ${menuPill("/contact", "Contact", ["contact"])}
-                ${menuPill("/faq", "FAQ", ["faq"])}
+          </gesture-element>
+          <div class="drawer__content opacity-0 invisible flex flex-col h-full grow shrink">
+            <nav class="relative grow overflow-hidden" role="navigation" aria-label="Mobile navigation">
+              <ul class="drawer__scrollable drawer__menu relative w-full h-full" role="list" data-parent>
+                <li><a class="drawer__menu-item block heading text-2xl leading-none tracking-tight" href="/shop">Shop</a></li>
+                <li><a class="drawer__menu-item block heading text-2xl leading-none tracking-tight" href="/products/miroooo-x2">Bundles</a></li>
+                <li><a class="drawer__menu-item block heading text-2xl leading-none tracking-tight" href="/contact">Contact</a></li>
+                <li><a class="drawer__menu-item block heading text-2xl leading-none tracking-tight" href="/faq">FAQ</a></li>
               </ul>
             </nav>
+            <div class="drawer__footer grid w-full">
+              <div class="drawer__footer-bottom flex items-center justify-between gap-6">
+                <a href="/order-tracking" class="button button--primary icon-with-text" style="background-color: #000000 !important; border: 1.5px solid #000000 !important; color: #ffffff !important;" is="hover-link" rel="nofollow" aria-label="Account">
+                  <span class="btn-fill" data-fill></span>
+                  <span class="btn-text">
+                    <svg class="icon icon-account-alt icon-xs" viewBox="0 0 16 17" stroke="#ffffff" fill="none" style="stroke: #ffffff !important; color: #ffffff !important;" xmlns="http://www.w3.org/2000/svg">
+                      <rect width="6.5" height="6.5" x="4.75" y="1.917" rx="3.25" stroke="#ffffff"></rect>
+                      <path stroke-linecap="round" stroke="#ffffff" d="M8 10.834c1 0 2.667.222 3 .333.333.11 2.467.533 3 1.333.667 1 .667 1.334.667 2.667M8 10.834c-1 0-2.667.222-3 .333-.333.11-2.467.533-3 1.333-.667 1-.667 1.334-.667 2.667"></path>
+                    </svg>
+                  </span>
+                </a>
+              </div>
+            </div>
           </div>
-          <div class="site-header__center">
-            <a class="site-logo header__logo-link flex items-center relative" href="/" aria-label="Miroooo home">
-              <span>MIROOOO</span>
+        </div>
+      </menu-drawer>
+      <header class="site-header${isOverlayHeader ? " site-header--overlay" : ""}" is="custom-header">
+        <div class="site-header__inner">
+          <div class="site-header__left flex items-center justify-start">
+            <div class="header__icons header__icons--start lg:hidden flex items-center justify-start">
+              <div class="header__buttons flex items-center gap-1d5">
+                <button class="nav-toggle menu-drawer-button flex items-center justify-center lg:hidden" type="button" aria-expanded="false" aria-controls="MenuDrawer" aria-label="Open menu" is="magnet-button">
+                  <span class="sr-only">Navigation</span>
+                  ${menuIcon}
+                </button>
+              </div>
+            </div>
+            <div class="header__navigation hidden lg:flex lg:gap-5 lg:justify-start">
+              <nav class="header__menu site-nav hidden lg:flex" role="navigation" aria-label="Primary">
+                <ul class="flex flex-wrap list-menu with-block">
+                  ${menuPill("/shop", "Shop", ["shop"])}
+                  ${menuPill("/products/miroooo-x2", "Bundles", ["bundles"])}
+                  ${menuPill("/contact", "Contact", ["contact"])}
+                  ${menuPill("/faq", "FAQ", ["faq"])}
+                </ul>
+              </nav>
+            </div>
+          </div>
+          <div class="site-header__center header__logo flex justify-center z-2" itemscope itemtype="http://schema.org/Organization">
+            <a class="site-logo header__logo-link flex items-center relative" href="/" itemprop="url" style="text-decoration: none;" aria-label="Miroooo home">
+              <span style="font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif; font-size: clamp(1.3rem, 2vw, 1.6rem); font-weight: 800; letter-spacing: 0.2em; text-transform: uppercase; color: #ffffff;">MIROOOO</span>
             </a>
           </div>
           <div class="site-header__right site-actions header__icons header__icons--end flex justify-end z-2">
             <div class="header__buttons flex items-center gap-1d5">
-              <a class="account-link flex items-center justify-center" href="/order-tracking" aria-label="Track order" is="magnet-link" rel="nofollow"${current(["tracking", "order-tracking"])}>
+              <a class="account-link flex items-center justify-center" href="/order-tracking" aria-label="Account" is="magnet-link" rel="nofollow"${current(["tracking", "order-tracking"])}>
+                <span class="sr-only">Account</span>
                 ${accountIcon}
               </a>
               <a class="site-actions__bag cart-drawer-button flex items-center justify-center relative" href="/cart" aria-label="Cart" is="magnet-link" aria-controls="CartDrawer" aria-expanded="false" data-no-instant>
+                <span class="sr-only">Cart</span>
                 ${bagIcon}
                 <cart-count class="count absolute top-0 right-0 text-xs" aria-label="0 items" hidden>0</cart-count>
               </a>
             </div>
           </div>
         </div>
-      </header>
-      <nav class="mobile-panel menu-drawer" id="mobile-menu" aria-label="Mobile navigation" aria-hidden="true">
-        <div class="mobile-panel__top">
-          <span>Menu</span>
-          <button class="mobile-panel__close button button--close" type="button" aria-label="Close menu">${closeIcon}</button>
-        </div>
-        <div class="mobile-panel__links">
-          <a class="drawer__menu-item" href="/shop"><span>Shop</span>${arrowIcon}</a>
-          <a class="drawer__menu-item" href="/products/miroooo-x2" data-product-link><span>Miroooo X2 (Bundles)</span>${arrowIcon}</a>
-          <a class="drawer__menu-item" href="/about"><span>Our approach</span>${arrowIcon}</a>
-          <a class="drawer__menu-item" href="/faq"><span>FAQs</span>${arrowIcon}</a>
-          <a class="drawer__menu-item" href="/order-tracking"><span>Track order</span>${arrowIcon}</a>
-          <a class="drawer__menu-item" href="/contact"><span>Contact</span>${arrowIcon}</a>
-        </div>
-        <div class="mobile-panel__bottom">
-          <p>Precision without the noise.</p>
-          <span>support@miroooo.co</span>
-        </div>
-      </nav>`;
+      </header>`;
+
+    if (isOverlayHeader) {
+      const headerEl = headerTarget.querySelector(".site-header");
+      const checkScroll = () => {
+        if (!headerEl) return;
+        if (window.scrollY > 40) {
+          headerEl.classList.add("is-scrolled");
+        } else {
+          headerEl.classList.remove("is-scrolled");
+        }
+      };
+      window.addEventListener("scroll", checkScroll, { passive: true });
+      checkScroll();
+    }
   }
 
-  // Scroll listener for sticky transition on scroll on transparent home page
-  if (isOverlayHeader) {
-    const headerEl = headerTarget?.querySelector(".site-header");
-    const checkScroll = () => {
-      if (!headerEl) return;
-      if (window.scrollY > 40) {
-        headerEl.classList.add("is-scrolled");
-      } else {
-        headerEl.classList.remove("is-scrolled");
-      }
-    };
-    window.addEventListener("scroll", checkScroll, { passive: true });
-    checkScroll();
+  function renderGlobalFooter() {
+    const footerTarget = document.querySelector("[data-site-footer]");
+    if (!footerTarget) return;
+
+    footerTarget.innerHTML = `
+      <aside class="service-strip" aria-label="Miroooo customer care">
+        <div class="service-strip__item">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#090909" stroke-width="1.6" style="width: 27px; height: 27px; flex: 0 0 auto;"><path d="M4 14a8 8 0 0 1 16 0v4a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3"/><path d="M4 14v4a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2v-3a2 2 0 0 0-2-2H4"/></svg>
+          <div><strong style="display: block; margin-bottom: 4px; font-size: 12px; font-weight: 600; color: #090909; letter-spacing: normal; text-transform: none;">Customer support</strong><span style="display: block; color: #686966; font-size: 10px; letter-spacing: normal; text-transform: none;">Real help when you need it</span></div>
+        </div>
+        <div class="service-strip__item">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#090909" stroke-width="1.6" style="width: 27px; height: 27px; flex: 0 0 auto;"><rect x="1" y="5" width="15" height="13" rx="2"/><polygon points="16 8 20 8 23 11 23 18 16 18 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
+          <div><strong style="display: block; margin-bottom: 4px; font-size: 12px; font-weight: 600; color: #090909; letter-spacing: normal; text-transform: none;">Tracked UK delivery</strong><span style="display: block; color: #686966; font-size: 10px; letter-spacing: normal; text-transform: none;">Free with every brush</span></div>
+        </div>
+        <div class="service-strip__item">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#090909" stroke-width="1.6" style="width: 27px; height: 27px; flex: 0 0 auto;"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          <div><strong style="display: block; margin-bottom: 4px; font-size: 12px; font-weight: 600; color: #090909; letter-spacing: normal; text-transform: none;">90-day home trial</strong><span style="display: block; color: #686966; font-size: 10px; letter-spacing: normal; text-transform: none;">Take time to decide</span></div>
+        </div>
+        <div class="service-strip__item">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#090909" stroke-width="1.6" style="width: 27px; height: 27px; flex: 0 0 auto;"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+          <div><strong style="display: block; margin-bottom: 4px; font-size: 12px; font-weight: 600; color: #090909; letter-spacing: normal; text-transform: none;">Two-year warranty</strong><span style="display: block; color: #686966; font-size: 10px; letter-spacing: normal; text-transform: none;">Made for daily use</span></div>
+        </div>
+      </aside>
+      <footer class="site-footer">
+        <div class="site-footer__main">
+          <div class="site-footer__brand">
+            <a class="site-footer__logo" href="/" aria-label="Miroooo home">MIROOOO</a>
+            <p>Quietly precise sonic care, designed around the everyday ritual.</p>
+            <div style="margin-top: 14px;">
+              <a href="mailto:support@miroooo.co" class="link inline-block leading-tight text-left" style="color: rgba(255,255,255,0.7); font-size: 12px; text-decoration: none;">
+                <span>support@miroooo.co</span>
+              </a>
+            </div>
+          </div>
+          <div class="site-footer__column">
+            <strong>Shop</strong>
+            <a href="/products/miroooo-x" data-product-link>Miroooo X</a>
+            <a href="/products/miroooo-x2" data-product-link>Miroooo X2</a>
+            <a href="/shop">Compare models</a>
+          </div>
+          <div class="site-footer__column">
+            <strong>Support</strong>
+            <a href="/faq">FAQs</a>
+            <a href="/order-tracking">Track order</a>
+            <a href="/delivery-returns">Returns &amp; Warranty</a>
+            <a href="/warranty">Warranty</a>
+            <a href="/contact">Contact</a>
+          </div>
+          <div class="site-footer__column">
+            <strong>About</strong>
+            <a href="/about">Our approach</a>
+            <a href="/privacy">Privacy Policy</a>
+            <a href="/terms">Terms &amp; Conditions</a>
+            <a href="/cookies-policy">Cookies Policy</a>
+          </div>
+        </div>
+        <div class="site-footer__bottom footer-copyright page-width page-width--full w-full flex flex-col items-center justify-between gap-4 lg:gap-0 lg:flex-row relative">
+          <div class="rte credits text-center">
+            &copy;&nbsp;<span data-current-year>2026</span>&nbsp;Miroooo.&nbsp;All rights reserved.
+            <ul class="flex flex-wrap gap-3 justify-center lg:justify-start" style="margin-top: 6px; list-style: none; padding: 0;">
+              <li><small><a href="/privacy" class="block reversed-link">Privacy Policy</a></small></li>
+              <li><small><a href="/terms" class="block reversed-link">Terms &amp; Conditions</a></small></li>
+              <li><small><a href="/cookies-policy" class="block reversed-link">Cookies Policy</a></small></li>
+              <li><small><a href="/shipping-policy" class="block reversed-link">Shipping Policy</a></small></li>
+              <li><small><a href="/refund-policy" class="block reversed-link">Refund Policy</a></small></li>
+            </ul>
+          </div>
+          <ul class="payment-icons flex flex-wrap justify-center gap-2 xl:gap-3" style="list-style: none; margin: 0; padding: 0;">
+            <li><svg xmlns="http://www.w3.org/2000/svg" role="img" viewBox="0 0 38 24" width="38" height="24" fill="none" aria-labelledby="pi-american_express"><title id="pi-american_express">American Express</title><rect x=".5" y=".5" width="37" height="23" rx="2.5" stroke="#000" stroke-opacity=".07" fill="none"/><path d="M35 0H3C1.3 0 0 1.3 0 3V21C0 22.7 1.4 24 3 24H35C36.7 24 38 22.7 38 21V3C38 1.3 36.6 0 35 0Z" fill="#0071CE"/><path d="M25.8662 6.33203V3H31L31.8662 5.5332L32.7334 3H37V14.2002H36.7998L34.8672 16.2656L36.7998 18.3594H37V21.2666H33.5996L31.9336 19.3994L30.2002 21.2666H19.4668V12.666H16L20.2666 3H24.4004L25.8662 6.33203ZM20.5996 20.2656H27V18.5322H22.666V17.3994H26.8662V15.666H22.666V14.5322H27V12.7988H20.5996V20.2656ZM30.5332 16.5322L27 20.2656H29.5996L31.8662 17.8662L34.0664 20.2656H36.7324L33.1992 16.4658L36.7324 12.7988H34.1328L31.8662 15.1992L29.7324 12.7988H27L30.5332 16.5322ZM17.666 11.7324H19.9326L20.5332 10.1992H23.999L24.666 11.7324H26.999L23.666 4.19922H20.999L17.666 11.7324ZM33.5996 4.19922L31.9326 8.86621L30.1992 4.19922H27V11.666H29.0664V6.39941L31 11.666H32.7998L34.7324 6.39941V11.666H36.7324V4.13281L33.5996 4.19922ZM23.2656 8.46582H21.2656L22.2656 5.99902L23.2656 8.46582Z" fill="white"/></svg></li>
+            <li><svg xmlns="http://www.w3.org/2000/svg" role="img" viewBox="0 0 165.521 105.965" width="38" height="24" aria-labelledby="pi-apple_pay"><title id="pi-apple_pay">Apple Pay</title><path fill="#000" d="M150.698 0H14.823c-.566 0-1.133 0-1.698.003-.477.004-.953.009-1.43.022-1.039.028-2.087.09-3.113.274a10.51 10.51 0 0 0-2.958.975 9.932 9.932 0 0 0-4.35 4.35 10.463 10.463 0 0 0-.975 2.96C.113 9.611.052 10.658.024 11.696a70.22 70.22 0 0 0-.022 1.43C0 13.69 0 14.256 0 14.823v76.318c0 .567 0 1.132.002 1.699.003.476.009.953.022 1.43.028 1.036.09 2.084.275 3.11a10.46 10.46 0 0 0 .974 2.96 9.897 9.897 0 0 0 1.83 2.52 9.874 9.874 0 0 0 2.52 1.83c.947.483 1.917.79 2.96.977 1.025.183 2.073.245 3.112.273.477.011.953.017 1.43.02.565.004 1.132.004 1.698.004h135.875c.565 0 1.132 0 1.697-.004.476-.002.952-.009 1.431-.02 1.037-.028 2.085-.09 3.113-.273a10.478 10.478 0 0 0 2.958-.977 9.955 9.955 0 0 0 4.35-4.35c.483-.947.789-1.917.974-2.96.186-1.026.246-2.074.274-3.11.013-.477.02-.954.022-1.43.004-.567.004-1.132.004-1.699V14.824c0-.567 0-1.133-.004-1.699a63.067 63.067 0 0 0-.022-1.429c-.028-1.038-.088-2.085-.274-3.112a10.4 10.4 0 0 0-.974-2.96 9.94 9.94 0 0 0-4.35-4.35A10.52 10.52 0 0 0 156.939.3c-1.028-.185-2.076-.246-3.113-.274a71.417 71.417 0 0 0-1.431-.022C151.83 0 151.263 0 150.698 0z"/><path fill="#FFF" d="M150.698 3.532l1.672.003c.452.003.905.008 1.36.02.793.022 1.719.065 2.583.22.75.135 1.38.34 1.984.648a6.392 6.392 0 0 1 2.804 2.807c.306.6.51 1.226.645 1.983.154.854.197 1.783.218 2.58.013.45.019.9.02 1.36.005.557.005 1.113.005 1.671v76.318c0 .558 0 1.114-.004 1.682-.002.45-.008.9-.02 1.35-.022.796-.065 1.725-.221 2.589a6.855 6.855 0 0 1-.645 1.975 6.397 6.397 0 0 1-2.808 2.807c-.6.306-1.228.511-1.971.645-.881.157-1.847.2-2.574.22-.457.01-.912.017-1.379.019-.555.004-1.113.004-1.669.004H14.801c-.55 0-1.1 0-1.66-.004a74.993 74.993 0 0 1-1.35-.018c-.744-.02-1.71-.064-2.584-.22a6.938 6.938 0 0 1-1.986-.65 6.337 6.337 0 0 1-1.622-1.18 6.355 6.355 0 0 1-1.178-1.623 6.935 6.935 0 0 1-.646-1.985c-.156-.863-.2-1.788-.22-2.578a66.088 66.088 0 0 1-.02-1.355l-.003-1.327V14.474l.002-1.325a66.7 66.7 0 0 1 .02-1.357c.022-.792.065-1.717.222-2.587a6.924 6.924 0 0 1 .646-1.981c.304-.598.7-1.144 1.18-1.623a6.386 6.386 0 0 1 1.624-1.18 6.96 6.96 0 0 1 1.98-.646c.865-.155 1.792-.198 2.586-.22.452-.012.905-.017 1.354-.02l1.677-.003h135.875"/><g><g><path fill="#000" d="M43.508 35.77c1.404-1.755 2.356-4.112 2.105-6.52-2.054.102-4.56 1.355-6.012 3.112-1.303 1.504-2.456 3.959-2.156 6.266 2.306.2 4.61-1.152 6.063-2.858"/><path fill="#000" d="M45.587 39.079c-3.35-.2-6.196 1.9-7.795 1.9-1.6 0-4.049-1.8-6.698-1.751-3.447.05-6.645 2-8.395 5.1-3.598 6.2-.95 15.4 2.55 20.45 1.699 2.5 3.747 5.25 6.445 5.151 2.55-.1 3.549-1.65 6.647-1.65 3.097 0 3.997 1.65 6.696 1.6 2.798-.05 4.548-2.5 6.247-5 1.95-2.85 2.747-5.6 2.797-5.75-.05-.05-5.396-2.101-5.446-8.251-.05-5.15 4.198-7.6 4.398-7.751-2.399-3.548-6.147-3.948-7.447-4.048"/></g><g><path fill="#000" d="M78.973 32.11c7.278 0 12.347 5.017 12.347 12.321 0 7.33-5.173 12.373-12.529 12.373h-8.058V69.62h-5.822V32.11h14.062zm-8.24 19.807h6.68c5.07 0 7.954-2.729 7.954-7.46 0-4.73-2.885-7.434-7.928-7.434h-6.706v14.894z"/><path fill="#000" d="M92.764 61.847c0-4.809 3.665-7.564 10.423-7.98l7.252-.442v-2.08c0-3.04-2.001-4.704-5.562-4.704-2.938 0-5.07 1.507-5.51 3.82h-5.252c.157-4.86 4.731-8.395 10.918-8.395 6.654 0 10.995 3.483 10.995 8.89v18.663h-5.38v-4.497h-.13c-1.534 2.937-4.914 4.782-8.579 4.782-5.406 0-9.175-3.222-9.175-8.057zm17.675-2.417v-2.106l-6.472.416c-3.64.234-5.536 1.585-5.536 3.95 0 2.288 1.975 3.77 5.068 3.77 3.95 0 6.94-2.522 6.94-6.03z"/><path fill="#000" d="M120.975 79.652v-4.496c.364.051 1.247.103 1.715.103 2.573 0 4.029-1.09 4.913-3.899l.52-1.663-9.852-27.293h6.082l6.863 22.146h.13l6.862-22.146h5.927l-10.216 28.67c-2.34 6.577-5.017 8.735-10.683 8.735-.442 0-1.872-.052-2.261-.157z"/></g></g></svg></li>
+            <li><svg xmlns="http://www.w3.org/2000/svg" role="img" viewBox="0 0 38 24" width="38" height="24" aria-labelledby="pi-google_pay"><title id="pi-google_pay">Google Pay</title><path d="M35 0H3C1.3 0 0 1.3 0 3v18c0 1.7 1.4 3 3 3h32c1.7 0 3-1.3 3-3V3c0-1.7-1.4-3-3-3z" fill="#000" opacity=".07"/><path d="M35 1c1.1 0 2 .9 2 2v18c0 1.1-.9 2-2 2H3c-1.1 0-2-.9-2-2V3c0-1.1.9-2 2-2h32" fill="#FFF"/><path d="M18.093 11.976v3.2h-1.018v-7.9h2.691a2.447 2.447 0 0 1 1.747.692 2.28 2.28 0 0 1 .11 3.224l-.11.116c-.47.447-1.098.69-1.747.674l-1.673-.006zm0-3.732v2.788h1.698c.377.012.741-.135 1.005-.404a1.391 1.391 0 0 0-1.005-2.354l-1.698-.03zm6.484 1.348c.65-.03 1.286.188 1.778.613.445.43.682 1.03.65 1.649v3.334h-.969v-.766h-.049a1.93 1.93 0 0 1-1.673.931 2.17 2.17 0 0 1-1.496-.533 1.667 1.667 0 0 1-.613-1.324 1.606 1.606 0 0 1 .613-1.336 2.746 2.746 0 0 1 1.698-.515c.517-.02 1.03.093 1.49.331v-.208a1.134 1.134 0 0 0-.417-.901 1.416 1.416 0 0 0-.98-.368 1.545 1.545 0 0 0-1.319.717l-.895-.564a2.488 2.488 0 0 1 2.182-1.06zM23.29 13.52a.79.79 0 0 0 .337.662c.223.176.5.269.785.263.429-.001.84-.17 1.146-.472.305-.286.478-.685.478-1.103a2.047 2.047 0 0 0-1.324-.374 1.716 1.716 0 0 0-1.03.294.883.883 0 0 0-.392.73zm9.286-3.75l-3.39 7.79h-1.048l1.281-2.728-2.224-5.062h1.103l1.612 3.885 1.569-3.885h1.097z" fill="#5F6368"/><path d="M13.986 11.284c0-.308-.024-.616-.073-.92h-4.29v1.747h2.451a2.096 2.096 0 0 1-.9 1.373v1.134h1.464a4.433 4.433 0 0 0 1.348-3.334z" fill="#4285F4"/><path d="M9.629 15.721a4.352 4.352 0 0 0 3.01-1.097l-1.466-1.14a2.752 2.752 0 0 1-4.094-1.44H5.577v1.17a4.53 4.53 0 0 0 4.052 2.507z" fill="#34A853"/><path d="M7.079 12.05a2.709 2.709 0 0 1 0-1.735v-1.17H5.577a4.505 4.505 0 0 0 0 4.075l1.502-1.17z" fill="#FBBC04"/><path d="M9.629 8.44a2.452 2.452 0 0 1 1.74.68l1.3-1.293a4.37 4.37 0 0 0-3.065-1.183 4.53 4.53 0 0 0-4.027 2.5l1.502 1.171a2.715 2.715 0 0 1 2.55-1.875z" fill="#EA4335"/></svg></li>
+            <li><svg viewBox="0 0 38 24" xmlns="http://www.w3.org/2000/svg" width="38" height="24" role="img" aria-labelledby="pi-maestro"><title id="pi-maestro">Maestro</title><path opacity=".07" d="M35 0H3C1.3 0 0 1.3 0 3v18c0 1.7 1.4 3 3 3h32c1.7 0 3-1.3 3-3V3c0-1.7-1.4-3-3-3z"/><path fill="#fff" d="M35 1c1.1 0 2 .9 2 2v18c0 1.1-.9 2-2 2H3c-1.1 0-2-.9-2-2V3c0-1.1.9-2 2-2h32"/><circle fill="#EB001B" cx="15" cy="12" r="7"/><circle fill="#00A2E5" cx="23" cy="12" r="7"/><path fill="#7375CF" d="M22 12c0-2.4-1.2-4.5-3-5.7-1.8 1.3-3 3.4-3 5.7s1.2 4.5 3 5.7c1.8-1.2 3-3.3 3-5.7z"/></svg></li>
+            <li><svg xmlns="http://www.w3.org/2000/svg" role="img" viewBox="0 0 38 24" width="38" height="24" fill="none" aria-labelledby="pi-master"><title id="pi-master">Mastercard</title><rect x=".5" y=".5" width="37" height="23" rx="2.5" stroke="#000" stroke-opacity=".07" fill="none"/><path d="M35 0H3C1.3 0 0 1.3 0 3V21C0 22.7 1.4 24 3 24H35C36.7 24 38 22.7 38 21V3C38 1.3 36.6 0 35 0Z" fill="#1C1C1C"/><path d="M35 1C36.1 1 37 1.9 37 3V21C37 22.1 36.1 23 35 23H3C1.9 23 1 22.1 1 21V3C1 1.9 1.9 1 3 1H35Z" fill="#232323"/><path d="M14.6364 19.2727C18.8538 19.2727 22.2727 15.8538 22.2727 11.6364C22.2727 7.41892 18.8538 4 14.6364 4C10.4189 4 7 7.41892 7 11.6364C7 15.8538 10.4189 19.2727 14.6364 19.2727Z" fill="#EB001B"/><path d="M23.3637 19.2727C27.5811 19.2727 31 15.8538 31 11.6364C31 7.41892 27.5811 4 23.3637 4C19.1462 4 15.7273 7.41892 15.7273 11.6364C15.7273 15.8538 19.1462 19.2727 23.3637 19.2727Z" fill="#F79E1B"/><path d="M22.2727 11.6362C22.2727 9.01797 20.9637 6.72706 19 5.41797C17.0364 6.83615 15.7273 9.12706 15.7273 11.6362C15.7273 14.1452 17.0364 16.5452 19 17.8543C20.9637 16.5452 22.2727 14.2543 22.2727 11.6362Z" fill="#FF5F00"/></svg></li>
+            <li><svg xmlns="http://www.w3.org/2000/svg" role="img" viewBox="0 0 38 24" width="38" height="24" aria-labelledby="pi-paypal"><title id="pi-paypal">PayPal</title><path opacity=".07" d="M35 0H3C1.3 0 0 1.3 0 3v18c0 1.7 1.4 3 3 3h32c1.7 0 3-1.3 3-3V3c0-1.7-1.4-3-3-3z"/><path fill="#fff" d="M35 1c1.1 0 2 .9 2 2v18c0 1.1-.9 2-2 2H3c-1.1 0-2-.9-2-2V3c0-1.1.9-2 2-2h32"/><path fill="#003087" d="M23.9 8.3c.2-1 0-1.7-.6-2.3-.6-.7-1.7-1-3.1-1h-4.1c-.3 0-.5.2-.6.5L14 15.6c0 .2.1.4.3.4H17l.4-3.4 1.8-2.2 4.7-2.1z"/><path fill="#3086C8" d="M23.9 8.3l-.2.2c-.5 2.8-2.2 3.8-4.6 3.8H18c-.3 0-.5.2-.6.5l-.6 3.9-.2 1c0 .2.1.4.3.4H19c.3 0 .5-.2.5-.4v-.1l.4-2.4v-.1c0-.2.3-.4.5-.4h.3c2.1 0 3.7-.8 4.1-3.2.2-1 .1-1.8-.4-2.4-.1-.5-.3-.7-.5-.8z"/><path fill="#012169" d="M23.3 8.1c-.1-.1-.2-.1-.3-.1-.1 0-.2 0-.3-.1-.3-.1-.7-.1-1.1-.1h-3c-.1 0-.2 0-.2.1-.2.1-.3.2-.3.4l-.7 4.4v.1c0-.3.3-.5.6-.5h1.3c2.5 0 4.1-1 4.6-3.8v-.2c-.1-.1-.3-.2-.5-.2h-.1z"/></svg></li>
+            <li><svg xmlns="http://www.w3.org/2000/svg" role="img" viewBox="0 0 38 24" width="38" height="24" fill="none" aria-labelledby="pi-visa"><title id="pi-visa">Visa</title><rect x=".5" y=".5" width="37" height="23" rx="2.5" stroke="#000" stroke-opacity=".07" fill="none"/><path d="M35 0H3C1.3 0 0 1.3 0 3V21C0 22.7 1.4 24 3 24H35C36.7 24 38 22.7 38 21V3C38 1.3 36.6 0 35 0Z" fill="#142FBD"/><path d="M35 1C36.1 1 37 1.9 37 3V21C37 22.1 36.1 23 35 23H3C1.9 23 1 22.1 1 21V3C1 1.9 1.9 1 3 1H35Z" fill="#1532CB"/><path d="M29.5944 10.2167H29.2778C28.8556 11.2722 28.5389 11.8 28.2222 13.3833H30.2278C29.9111 11.8 29.9111 11.0611 29.5944 10.2167V10.2167ZM32.6556 16.4444H30.8611C30.7556 16.4444 30.7556 16.4444 30.65 16.3389L30.4389 15.3889L30.3333 15.1778H27.8C27.6944 15.1778 27.5889 15.1778 27.5889 15.3889L27.2722 16.3389C27.2722 16.4444 27.1667 16.4444 27.1667 16.4444H24.95L25.1611 15.9167L28.2222 8.73889C28.2222 8.21111 28.5389 8 29.0667 8H30.65C30.7556 8 30.8611 8 30.8611 8.21111L32.3389 15.0722C32.4444 15.4944 32.55 15.8111 32.55 16.2333C32.6556 16.3389 32.6556 16.3389 32.6556 16.4444V16.4444ZM18.5111 16.1278L18.9333 14.2278C19.0389 14.2278 19.1444 14.3333 19.1444 14.3333C19.8833 14.65 20.6222 14.8611 21.3611 14.7556C21.5722 14.7556 21.8889 14.65 22.1 14.5444C22.6278 14.3333 22.6278 13.8056 22.2056 13.3833C21.9944 13.1722 21.6778 13.0667 21.3611 12.8556C20.9389 12.6444 20.5167 12.4333 20.2 12.1167C18.9333 11.0611 19.3556 9.58333 20.0944 8.84444C20.7278 8.42222 21.0444 8 21.8889 8C23.1556 8 24.5278 8 25.1611 8.21111H25.2667C25.1611 8.84444 25.0556 9.37222 24.8444 10.0056C24.3167 9.79444 23.7889 9.58333 23.2611 9.58333C22.9444 9.58333 22.6278 9.58333 22.3111 9.68889C22.1 9.68889 21.9944 9.79444 21.8889 9.9C21.6778 10.1111 21.6778 10.4278 21.8889 10.6389L22.4167 11.0611C22.8389 11.2722 23.2611 11.4833 23.5778 11.6944C24.1056 12.0111 24.6333 12.5389 24.7389 13.1722C24.95 14.1222 24.6333 14.9667 23.7889 15.6C23.2611 16.0222 23.05 16.2333 22.3111 16.2333C20.8333 16.2333 19.6722 16.3389 18.7222 16.0222C18.6167 16.2333 18.6167 16.2333 18.5111 16.1278V16.1278ZM14.8167 16.4444C14.9222 15.7056 14.9222 15.7056 15.0278 15.3889C15.5556 13.0667 16.0833 10.6389 16.5056 8.31667C16.6111 8.10556 16.6111 8 16.8222 8H18.7222C18.5111 9.26667 18.3 10.2167 17.9833 11.3778C17.6667 12.9611 17.35 14.5444 16.9278 16.1278C16.9278 16.3389 16.8222 16.3389 16.6111 16.3389L14.8167 16.4444ZM5 8.21111C5 8.10556 5.21111 8 5.31667 8H8.90556C9.43333 8 9.85556 8.31667 9.96111 8.84444L10.9111 13.4889C10.9111 13.5944 10.9111 13.5944 11.0167 13.7C11.0167 13.5944 11.1222 13.5944 11.1222 13.5944L13.3389 8.21111C13.2333 8.10556 13.3389 8 13.4444 8H15.6611C15.6611 8.10556 15.6611 8.10556 15.5556 8.21111L12.2833 15.9167C12.1778 16.1278 12.1778 16.2333 12.0722 16.3389C11.9667 16.4444 11.7556 16.3389 11.5444 16.3389H9.96111C9.85556 16.3389 9.75 16.3389 9.75 16.1278L8.06111 9.58333C7.85 9.37222 7.53333 9.05556 7.11111 8.95C6.47778 8.63333 5.31667 8.42222 5.10556 8.42222L5 8.21111Z" fill="white"/></svg></li>
+          </ul>
+        </div>
+      </footer>`;
   }
+
+  // Mobile Menu Drawer Handler
+  function initMobileMenuDrawer() {
+    const menuDrawer = document.getElementById("MenuDrawer");
+    if (!menuDrawer) return;
+
+    const overlay = menuDrawer.querySelector(".overlay, overlay-element");
+    const closeBtn = menuDrawer.querySelector(".drawer__close, button.drawer__close, .mobile-panel__close");
+    const openBtns = document.querySelectorAll('[aria-controls="MenuDrawer"], .menu-drawer-button, .nav-toggle');
+
+    function openDrawer() {
+      menuDrawer.removeAttribute("hidden");
+      requestAnimationFrame(() => {
+        menuDrawer.setAttribute("active", "");
+        menuDrawer.setAttribute("open", "");
+        document.body.classList.add("nav-open", "has-modal-open");
+        openBtns.forEach((btn) => btn.setAttribute("aria-expanded", "true"));
+      });
+    }
+
+    function closeDrawer() {
+      menuDrawer.removeAttribute("active");
+      menuDrawer.removeAttribute("open");
+      document.body.classList.remove("nav-open", "has-modal-open");
+      openBtns.forEach((btn) => btn.setAttribute("aria-expanded", "false"));
+      setTimeout(() => {
+        if (!menuDrawer.hasAttribute("active")) {
+          menuDrawer.setAttribute("hidden", "");
+        }
+      }, 550);
+    }
+
+    openBtns.forEach((btn) => {
+      btn.addEventListener("click", (e) => {
+        e.preventDefault();
+        const isOpen = menuDrawer.hasAttribute("active");
+        if (isOpen) {
+          closeDrawer();
+        } else {
+          openDrawer();
+        }
+      });
+    });
+
+    closeBtn?.addEventListener("click", (e) => {
+      e.preventDefault();
+      closeDrawer();
+    });
+
+    overlay?.addEventListener("click", (e) => {
+      e.preventDefault();
+      closeDrawer();
+    });
+
+    menuDrawer.querySelectorAll("a").forEach((link) => {
+      link.addEventListener("click", () => {
+        closeDrawer();
+      });
+    });
+
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "Escape" && menuDrawer.hasAttribute("active")) {
+        closeDrawer();
+      }
+    });
+
+    window.addEventListener("resize", () => {
+      if (window.innerWidth >= 991 && menuDrawer.hasAttribute("active")) {
+        closeDrawer();
+      }
+    });
+  }
+
+  // Render components immediately
+  renderGlobalHeader();
+  renderGlobalFooter();
+  initMobileMenuDrawer();
 
   // Authentic GoBrush Magnet Spring Hover Physics
   const initMagnet = () => {
@@ -182,6 +369,9 @@
 
   if (document.readyState === "loading") {
     document.addEventListener("DOMContentLoaded", () => {
+      renderGlobalHeader();
+      renderGlobalFooter();
+      initMobileMenuDrawer();
       initMagnet();
       initSlideGalleries();
     });
@@ -189,78 +379,6 @@
     initMagnet();
     initSlideGalleries();
   }
-
-  if (footerTarget) {
-    footerTarget.innerHTML = `
-      <aside class="service-strip" aria-label="Miroooo customer care">
-        <div class="service-strip__item">${supportIcon}<div><strong>Customer support</strong><span>Real help when you need it</span></div></div>
-        <div class="service-strip__item">${deliveryIcon}<div><strong>Tracked UK delivery</strong><span>Free with every brush</span></div></div>
-        <div class="service-strip__item">${trialIcon}<div><strong>90-day home trial</strong><span>Take time to decide</span></div></div>
-        <div class="service-strip__item">${warrantyIcon}<div><strong>Two-year warranty</strong><span>Made for daily use</span></div></div>
-      </aside>
-      <footer class="site-footer">
-        <div class="site-footer__main">
-          <div class="site-footer__brand">
-            <a class="site-footer__logo" href="/" aria-label="Miroooo home">MIROOOO</a>
-            <p>Quietly precise sonic care, designed around the everyday ritual.</p>
-          </div>
-          <div class="site-footer__column">
-            <strong>Shop</strong>
-            <a href="/products/miroooo-x" data-product-link>Miroooo X</a>
-            <a href="/products/miroooo-x2" data-product-link>Miroooo X2</a>
-            <a href="/shop">Compare models</a>
-          </div>
-          <div class="site-footer__column">
-            <strong>Help</strong>
-            <a href="/faq">FAQs</a>
-            <a href="/order-tracking">Track order</a>
-            <a href="/shipping-policy">Shipping policy</a>
-            <a href="/return-policy">Return policy</a>
-            <a href="/refund-policy">Refund policy</a>
-            <a href="/warranty">Warranty</a>
-          </div>
-          <div class="site-footer__column">
-            <strong>Miroooo</strong>
-            <a href="/about">Our approach</a>
-            <a href="/contact">Contact</a>
-            <a href="/privacy">Privacy</a>
-            <a href="/terms">Terms</a>
-            <a href="/cookies-policy">Cookies</a>
-          </div>
-        </div>
-        <div class="site-footer__bottom">
-          <span>© <span data-current-year></span> Miroooo</span>
-          <span>United Kingdom · GBP</span>
-        </div>
-      </footer>`;
-  }
-
-  const toggleButtons = document.querySelectorAll(".nav-toggle, .menu-drawer-button");
-  const mobilePanel = document.querySelector(".mobile-panel");
-  const mobileClose = document.querySelector(".mobile-panel__close");
-
-  function setMenu(open) {
-    if (!mobilePanel) return;
-    toggleButtons.forEach((btn) => {
-      btn.setAttribute("aria-expanded", String(open));
-      btn.setAttribute("aria-label", open ? "Close menu" : "Open menu");
-    });
-    mobilePanel.classList.toggle("is-open", open);
-    mobilePanel.setAttribute("aria-hidden", String(!open));
-    document.body.classList.toggle("nav-open", open);
-  }
-
-  toggleButtons.forEach((btn) => {
-    btn.addEventListener("click", () => setMenu(!mobilePanel?.classList.contains("is-open")));
-  });
-  mobileClose?.addEventListener("click", () => setMenu(false));
-  mobilePanel?.querySelectorAll("a").forEach((link) => link.addEventListener("click", () => setMenu(false)));
-  document.addEventListener("keydown", (event) => {
-    if (event.key === "Escape") setMenu(false);
-  });
-  window.addEventListener("resize", () => {
-    if (window.innerWidth >= 1024) setMenu(false);
-  });
 
   document.querySelectorAll("[data-current-year]").forEach((node) => {
     node.textContent = new Date().getFullYear();

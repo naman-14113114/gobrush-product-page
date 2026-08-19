@@ -1613,114 +1613,294 @@ body {
   color: currentColor;
 }
 
+/* ==========================================================================
+   MIROOOO GLOBAL MOBILE MENU DRAWER (#MenuDrawer) - Bottom Sheet Experience
+   ========================================================================== */
+#MenuDrawer,
+menu-drawer#MenuDrawer,
+.menu-drawer#MenuDrawer,
 .mobile-panel {
-  position: fixed;
-  z-index: 3000;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: auto;
-  width: 82%;
-  max-width: 320px;
-  min-height: 100dvh;
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  padding: 0 24px 30px;
-  background: #e6e6e6;
-  color: #111111;
-  opacity: 1;
-  pointer-events: none;
-  visibility: hidden;
-  transform: translateX(-100%);
-  transition: transform .35s cubic-bezier(0.16, 1, 0.3, 1), visibility 0s linear .35s;
-  box-shadow: 10px 0 35px rgba(0, 0, 0, 0.28);
-  border-radius: 0 16px 16px 0;
+  position: fixed !important;
+  inset: 0 !important;
+  width: 100% !important;
+  height: 100% !important;
+  z-index: 3000 !important;
+  pointer-events: none !important;
+  background: transparent !important;
+  background-color: transparent !important;
+  box-shadow: none !important;
+  border-radius: 0 !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  transform: none !important;
 }
 
-.mobile-panel.is-open {
-  pointer-events: auto;
-  visibility: visible;
-  transform: translateX(0);
-  transition-delay: 0s;
+#MenuDrawer[hidden] {
+  display: none !important;
 }
 
-.mobile-panel__top {
-  min-height: 70px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  border-bottom: 1px solid rgba(0, 0, 0, .08);
-  color: rgba(0, 0, 0, .55);
-  font-size: 10px;
-  letter-spacing: .14em;
-  text-transform: uppercase;
+#MenuDrawer .overlay,
+#MenuDrawer overlay-element,
+#MenuDrawer .fixed-modal,
+#MenuDrawer overlay-element.overlay {
+  position: fixed !important;
+  inset: 0 !important;
+  width: 100% !important;
+  height: 100vh !important;
+  height: 100dvh !important;
+  background: rgba(0, 0, 0, 0.7) !important;
+  background-color: rgba(0, 0, 0, 0.7) !important;
+  background-image: none !important;
+  opacity: 0 !important;
+  visibility: hidden !important;
+  pointer-events: none !important;
+  transition: opacity 0.5s cubic-bezier(0.25, 1, 0.5, 1), visibility 0.5s cubic-bezier(0.25, 1, 0.5, 1) !important;
+  z-index: 1 !important;
 }
 
-.mobile-panel__close {
-  width: 36px;
-  height: 36px;
+#MenuDrawer[active] > .overlay,
+#MenuDrawer[active] > overlay-element,
+#MenuDrawer[open] > .overlay,
+#MenuDrawer[open] > overlay-element,
+html.js #MenuDrawer[active] > .overlay,
+html.js #MenuDrawer[active] > overlay-element {
+  opacity: 1 !important;
+  visibility: visible !important;
+  display: block !important;
+  pointer-events: auto !important;
+  cursor: pointer !important;
+}
+
+#MenuDrawer .drawer__inner,
+html.js #MenuDrawer .drawer__inner {
+  position: absolute !important;
+  top: 60px !important;
+  bottom: 0 !important;
+  left: 0 !important;
+  right: 0 !important;
+  width: 100% !important;
+  max-width: 100% !important;
+  height: calc(100% - 60px) !important;
+  border-radius: 20px 20px 0 0 !important;
+  background: #f5f5f7 !important;
+  background-color: #f5f5f7 !important;
+  color: #000000 !important;
+  box-shadow: 0 -4px 30px rgba(0, 0, 0, 0.25) !important;
+  transform: translate3d(0, 100%, 0) !important;
+  transition: transform 0.55s cubic-bezier(0.25, 1, 0.5, 1) !important;
+  z-index: 10 !important;
+  pointer-events: auto !important;
+  inset-block-start: 60px !important;
+  inset-block-end: 0 !important;
+  overflow: hidden !important;
+  will-change: transform;
+  display: flex !important;
+  flex-direction: column !important;
+}
+
+#MenuDrawer[active],
+#MenuDrawer[open],
+html.js #MenuDrawer[active],
+html.js #MenuDrawer[open] {
+  display: block !important;
+  visibility: visible !important;
+  pointer-events: auto !important;
+}
+
+#MenuDrawer[active] .drawer__inner,
+#MenuDrawer[active] > .drawer__inner,
+#MenuDrawer[open] .drawer__inner,
+#MenuDrawer[open] > .drawer__inner,
+html.js #MenuDrawer[active] .drawer__inner,
+html.js #MenuDrawer[active] > .drawer__inner {
+  transform: translate3d(0, 0, 0) !important;
+}
+
+#MenuDrawer .drawer__header,
+html.js #MenuDrawer .drawer__header {
   display: flex !important;
   visibility: visible !important;
   opacity: 1 !important;
-  align-items: center;
-  justify-content: center;
-  border: 1px solid rgba(0, 0, 0, 0.12);
-  border-radius: 50%;
-  background: rgba(0, 0, 0, 0.06);
-  color: #111111;
-  cursor: pointer;
-  padding: 0;
-  transition: background-color 0.2s ease, transform 0.2s ease;
+  position: relative !important;
+  min-height: 48px !important;
+  padding: 24px 20px 12px !important;
+  border-bottom: none !important;
+  background: transparent !important;
+  align-items: center !important;
+  justify-content: space-between !important;
 }
 
+#MenuDrawer .drawer__header:before,
+html.js #MenuDrawer .drawer__header:before {
+  content: "" !important;
+  display: block !important;
+  width: 44px !important;
+  height: 5px !important;
+  border-radius: 9999px !important;
+  background: rgba(0, 0, 0, 0.2) !important;
+  position: absolute !important;
+  top: 12px !important;
+  left: 50% !important;
+  transform: translateX(-50%) !important;
+}
+
+#MenuDrawer .drawer__close,
+html.js #MenuDrawer .drawer__close,
+#MenuDrawer button.drawer__close,
+html.js #MenuDrawer button.drawer__close,
+.mobile-panel__close {
+  display: flex !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+  clip: auto !important;
+  position: absolute !important;
+  top: 14px !important;
+  right: 16px !important;
+  width: 36px !important;
+  height: 36px !important;
+  border-radius: 50% !important;
+  background: #000000 !important;
+  border: none !important;
+  color: #ffffff !important;
+  align-items: center !important;
+  justify-content: center !important;
+  cursor: pointer !important;
+  z-index: 50 !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  transition: background-color 0.2s ease, transform 0.2s ease !important;
+}
+
+#MenuDrawer .drawer__close:hover,
+#MenuDrawer .drawer__close:active,
 .mobile-panel__close:hover,
 .mobile-panel__close:active {
-  background: rgba(0, 0, 0, 0.12);
-  transform: scale(1.05);
+  background: #262626 !important;
+  transform: scale(1.05) !important;
 }
 
+#MenuDrawer .drawer__close svg,
+#MenuDrawer .drawer__close .icon,
 .mobile-panel__close svg {
-  width: 20px;
-  height: 20px;
-  stroke: #111111;
-  stroke-width: 2px;
-  color: #111111;
+  width: 18px !important;
+  height: 18px !important;
+  stroke: #ffffff !important;
+  color: #ffffff !important;
+  stroke-width: 2.2px !important;
+  fill: none !important;
+  display: block !important;
 }
 
-.mobile-panel__links {
-  padding-top: 20px;
+#MenuDrawer .drawer__close svg path,
+.mobile-panel__close svg path {
+  stroke: #ffffff !important;
+  stroke-width: 2.2px !important;
 }
 
-.mobile-panel .mobile-panel__links a {
-  min-height: 62px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  border-bottom: 1px solid rgba(0, 0, 0, .1);
-  font-size: clamp(25px, 8vw, 38px);
-  font-weight: 500;
-  letter-spacing: -.045em;
-  line-height: 1;
-  color: #111111;
+#MenuDrawer .drawer__content,
+html.js #MenuDrawer .drawer__content {
+  display: flex !important;
+  flex-direction: column !important;
+  flex-grow: 1 !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+  background: transparent !important;
+  padding: 8px 0 !important;
 }
 
-.mobile-panel__links svg {
-  width: 19px;
-  height: 19px;
+#MenuDrawer[active] .drawer__content,
+#MenuDrawer[open] .drawer__content {
+  opacity: 1 !important;
+  visibility: visible !important;
 }
 
-.mobile-panel__bottom {
-  margin-top: auto;
-  padding-top: 28px;
-  color: rgba(0, 0, 0, .55);
-  font-size: 11px;
+#MenuDrawer .drawer__menu {
+  padding: 8px 24px !important;
+  list-style: none !important;
+  margin: 0 !important;
 }
 
-.mobile-panel__bottom p {
-  margin: 0 0 6px;
-  color: #111111;
-  font-size: 14px;
+#MenuDrawer .drawer__menu li {
+  padding: 0 !important;
+  margin: 0 !important;
+  list-style: none !important;
+}
+
+#MenuDrawer .drawer__menu-item,
+#MenuDrawer .drawer__menu a {
+  color: #000000 !important;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif !important;
+  font-size: 26px !important;
+  font-weight: 600 !important;
+  line-height: 1.25 !important;
+  letter-spacing: -0.03em !important;
+  padding: 10px 0 !important;
+  display: block !important;
+  text-decoration: none !important;
+  border-bottom: none !important;
+  transition: opacity 0.2s ease !important;
+}
+
+#MenuDrawer .drawer__menu-item:hover,
+#MenuDrawer .drawer__menu a:hover {
+  opacity: 0.7 !important;
+}
+
+#MenuDrawer .drawer__footer {
+  background: transparent !important;
+  border-top: none !important;
+  padding: 16px 24px 32px !important;
+  margin-top: auto !important;
+}
+
+#MenuDrawer .drawer__footer-bottom {
+  padding: 0 !important;
+  display: flex !important;
+  align-items: center !important;
+  background: transparent !important;
+}
+
+#MenuDrawer .drawer__footer-bottom a.button--primary,
+#MenuDrawer .drawer__footer-bottom a {
+  background: #000000 !important;
+  background-color: #000000 !important;
+  color: #ffffff !important;
+  border: 1.5px solid #000000 !important;
+  border-radius: 60px !important;
+  padding: 10px 20px !important;
+  width: 56px !important;
+  height: 36px !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15) !important;
+  text-decoration: none !important;
+}
+
+#MenuDrawer .drawer__footer-bottom a svg {
+  stroke: #ffffff !important;
+  color: #ffffff !important;
+  width: 16px !important;
+  height: 17px !important;
+  fill: none !important;
+}
+
+#MenuDrawer .drawer__footer-bottom a svg,
+#MenuDrawer .drawer__footer-bottom a svg path,
+#MenuDrawer .drawer__footer-bottom a svg rect,
+#MenuDrawer .drawer__footer-bottom a .icon {
+  color: #ffffff !important;
+  stroke: #ffffff !important;
+  fill: none !important;
+  display: block !important;
+}
+
+@media (min-width: 991px) {
+  #MenuDrawer,
+  menu-drawer#MenuDrawer,
+  .menu-drawer#MenuDrawer {
+    display: none !important;
+  }
 }
 
 .gb-kicker {
@@ -3007,20 +3187,22 @@ body[data-page="home"] [data-site-header] {
   pointer-events: auto !important;
 }
 
+.announcement,
 body[data-page="home"] .announcement,
-.header-layer--overlay .announcement {
-  background: rgba(0, 0, 0, 0.42) !important;
-  color: #ffffff !important;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.1) !important;
-  min-height: 36px !important;
-  display: flex !important;
-  align-items: center !important;
-  justify-content: center !important;
-  gap: 24px !important;
+.header-layer--overlay .announcement,
+body:not([data-page="home"]) .announcement {
+  background: #e6e6e6 !important;
+  color: #111111 !important;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.08) !important;
+  min-height: 24px !important;
+  padding: 4px 0 !important;
+  overflow: hidden !important;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif !important;
   font-size: 11px !important;
-  font-weight: 600 !important;
-  letter-spacing: 0.1em !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.12em !important;
   text-transform: uppercase !important;
+  display: block !important;
 }
 
 body[data-page="home"] .site-header,
@@ -3050,20 +3232,6 @@ body[data-page="home"] .site-header.is-scrolled,
 }
 
 /* Sticky Dark Header on All Other Pages */
-body:not([data-page="home"]) .announcement:not(.header-layer--overlay .announcement) {
-  background: #e6e6e6 !important;
-  color: #111111 !important;
-  font-weight: 600 !important;
-  font-size: 11px !important;
-  letter-spacing: 0.1em !important;
-  text-transform: uppercase !important;
-  min-height: 36px !important;
-  display: flex !important;
-  align-items: center !important;
-  justify-content: center !important;
-  gap: 24px !important;
-}
-
 body:not([data-page="home"]) .site-header:not(.site-header--overlay) {
   position: sticky !important;
   top: 0 !important;
