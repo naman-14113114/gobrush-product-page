@@ -202,11 +202,14 @@
   .header__navigation,
   .header__menu,
   .site-nav,
+  .header__navigation--right,
+  .site-nav--right,
   #shopify-section-sections--24203576967513__header .header__navigation,
-  #shopify-section-sections--24203576967513__header .header__menu {
+  #shopify-section-sections--24203576967513__header .header__menu,
+  #shopify-section-sections--24203576967513__header .header__navigation--right,
+  #shopify-section-sections--24203576967513__header .site-nav--right {
     display: flex !important;
     align-items: center !important;
-    justify-content: flex-start !important;
   }
 
   .header__buttons .account-link,
@@ -228,8 +231,12 @@
 
   .header__navigation,
   .site-nav,
+  .header__navigation--right,
+  .site-nav--right,
   #shopify-section-sections--24203576967513__header .header__navigation,
-  #shopify-section-sections--24203576967513__header .header__menu {
+  #shopify-section-sections--24203576967513__header .header__menu,
+  #shopify-section-sections--24203576967513__header .header__navigation--right,
+  #shopify-section-sections--24203576967513__header .site-nav--right {
     display: none !important;
   }
 
@@ -622,6 +629,190 @@
   }
 }
 
+/* ==========================================================================
+   MIROOOO Pure Dark Luxury Header Dropdown Menu
+   ========================================================================== */
+.header__dropdown {
+  position: relative !important;
+  display: inline-flex !important;
+  align-items: center !important;
+}
+
+.header__dropdown-toggle {
+  border: none !important;
+  background: transparent !important;
+  color: inherit !important;
+  outline: none !important;
+}
+
+.dropdown-chevron {
+  width: 10px !important;
+  height: 6px !important;
+  margin-left: 7px !important;
+  display: inline-block !important;
+  vertical-align: middle !important;
+  transition: transform 0.28s cubic-bezier(0.16, 1, 0.3, 1) !important;
+  flex-shrink: 0 !important;
+}
+
+.header__dropdown:hover .dropdown-chevron,
+.header__dropdown:focus-within .dropdown-chevron,
+.header__dropdown.is-open .dropdown-chevron,
+.header__dropdown-toggle[aria-expanded="true"] .dropdown-chevron {
+  transform: rotate(180deg) !important;
+}
+
+.dropdown-menu {
+  position: absolute !important;
+  top: calc(100% + 8px) !important;
+  left: 0 !important;
+  min-width: 180px !important;
+  background: #111111 !important;
+  background-color: #111111 !important;
+  border: 1px solid rgba(255, 255, 255, 0.12) !important;
+  backdrop-filter: blur(20px) !important;
+  -webkit-backdrop-filter: blur(20px) !important;
+  border-radius: 12px !important;
+  padding: 6px !important;
+  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.85) !important;
+  z-index: 1000 !important;
+  display: flex !important;
+  flex-direction: column !important;
+  opacity: 0 !important;
+  visibility: hidden !important;
+  pointer-events: none !important;
+  transform: translateY(8px) scale(0.98) !important;
+  transition: opacity 0.22s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 0.22s cubic-bezier(0.16, 1, 0.3, 1),
+              visibility 0.22s ease !important;
+  box-sizing: border-box !important;
+}
+
+.dropdown-menu::before {
+  content: "" !important;
+  position: absolute !important;
+  top: -12px !important;
+  left: 0 !important;
+  right: 0 !important;
+  height: 12px !important;
+  display: block !important;
+}
+
+.header__dropdown:hover .dropdown-menu,
+.header__dropdown:focus-within .dropdown-menu,
+.header__dropdown.is-open .dropdown-menu,
+.header__dropdown-toggle[aria-expanded="true"] + .dropdown-menu {
+  opacity: 1 !important;
+  visibility: visible !important;
+  pointer-events: auto !important;
+  transform: translateY(0) scale(1) !important;
+}
+
+.dropdown-item {
+  display: flex !important;
+  align-items: center !important;
+  padding: 10px 16px !important;
+  margin: 2px 0 !important;
+  border-radius: 8px !important;
+  text-decoration: none !important;
+  background: transparent !important;
+  transition: background-color 0.18s ease, transform 0.18s ease !important;
+  cursor: pointer !important;
+}
+
+.dropdown-item:hover,
+.dropdown-item:focus {
+  background-color: rgba(255, 255, 255, 0.08) !important;
+  transform: translateX(2px) !important;
+}
+
+.dropdown-item__title {
+  color: #ffffff !important;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif !important;
+  font-size: 14px !important;
+  font-weight: 500 !important;
+  line-height: 1.3 !important;
+  letter-spacing: -0.01em !important;
+  display: block !important;
+  text-align: left !important;
+}
+
+.dropdown-item__subtitle {
+  color: rgba(255, 255, 255, 0.6) !important;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif !important;
+  font-size: 11.5px !important;
+  font-weight: 400 !important;
+  line-height: 1.35 !important;
+  margin-top: 2px !important;
+  display: block !important;
+  text-align: left !important;
+}
+
+/* Mobile Drawer Submenu & Group Styles */
+#MenuDrawer .drawer__menu-item--group {
+  padding: 4px 0 10px 0 !important;
+}
+
+#MenuDrawer .drawer__group-label {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif !important;
+  font-size: 12px !important;
+  font-weight: 700 !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.12em !important;
+  color: rgba(0, 0, 0, 0.45) !important;
+  padding: 6px 0 8px 0 !important;
+  display: block !important;
+}
+
+#MenuDrawer .drawer__submenu {
+  list-style: none !important;
+  padding: 0 !important;
+  margin: 0 0 12px 0 !important;
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 8px !important;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.08) !important;
+  padding-bottom: 14px !important;
+}
+
+#MenuDrawer .drawer__submenu li {
+  padding: 0 !important;
+  margin: 0 !important;
+}
+
+#MenuDrawer .drawer__submenu-item {
+  display: flex !important;
+  flex-direction: column !important;
+  padding: 10px 14px !important;
+  background: rgba(0, 0, 0, 0.04) !important;
+  border-radius: 12px !important;
+  text-decoration: none !important;
+  transition: background-color 0.2s ease, transform 0.2s ease !important;
+}
+
+#MenuDrawer .drawer__submenu-item:hover,
+#MenuDrawer .drawer__submenu-item:active {
+  background: rgba(0, 0, 0, 0.08) !important;
+  opacity: 1 !important;
+}
+
+#MenuDrawer .drawer__submenu-title {
+  color: #000000 !important;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif !important;
+  font-size: 18px !important;
+  font-weight: 600 !important;
+  line-height: 1.25 !important;
+}
+
+#MenuDrawer .drawer__submenu-subtitle {
+  color: rgba(0, 0, 0, 0.55) !important;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif !important;
+  font-size: 12px !important;
+  font-weight: 400 !important;
+  line-height: 1.3 !important;
+  margin-top: 2px !important;
+}
+
 /* Header Buttons (Account, Cart, Menu Drawer) */
 .header__buttons {
   display: flex !important;
@@ -747,6 +938,7 @@
   border-right: 0;
 }
 
+.service-strip__icon,
 .service-strip__item svg {
   width: 27px;
   height: 27px;
@@ -804,37 +996,63 @@
   }
 }
 
-/* Footer Styling */
+/* Footer Styling - 4-Column Muuhu Layout with Sticky CTA Padding */
 .miroooo-product-footer {
-  padding: 72px max(20px, calc((100vw - 1240px) / 2)) 30px;
-  background: #080909;
-  color: #fff;
-  font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  padding: 72px max(20px, calc((100vw - 1240px) / 2)) 130px !important;
+  background: #080909 !important;
+  color: #fff !important;
+  font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif !important;
+  border-top: 1px solid rgba(255, 255, 255, 0.08) !important;
 }
 
 .miroooo-product-footer * { box-sizing: border-box; }
 
 .miroooo-product-footer__grid {
   display: grid;
-  grid-template-columns: 1.45fr repeat(3, minmax(130px, .55fr));
-  gap: 54px;
-  padding-bottom: 70px;
+  grid-template-columns: 1.4fr 1fr 1fr 1.25fr;
+  gap: 48px 36px;
+  padding-bottom: 56px;
 }
 
-.miroooo-product-footer__brand { max-width: 380px; }
-.miroooo-product-footer__logo { display: inline-block; margin-bottom: 28px; color: #fff; font-size: 22px; font-weight: 800; letter-spacing: .38em; }
-.miroooo-product-footer__brand p { margin: 0; color: rgba(255,255,255,.55); font-size: 14px; line-height: 1.6; }
-.miroooo-product-footer__column strong { display: block; margin-bottom: 16px; color: rgba(255,255,255,.46); font-size: 11px; letter-spacing: .13em; text-transform: uppercase; }
-.miroooo-product-footer__column a { min-height: 36px; display: flex; align-items: center; color: rgba(255,255,255,.75); font-size: 13px; text-decoration: none; }
-.miroooo-product-footer__column a:hover { color: #fff; }
-.miroooo-product-footer__bottom { min-height: 52px; display: flex; align-items: center; justify-content: space-between; gap: 24px; padding-top: 24px; border-top: 1px solid rgba(255,255,255,.12); color: rgba(255,255,255,.45); font-size: 11px; }
-.miroooo-product-footer__legal { display: flex; flex-wrap: wrap; gap: 22px; }
+.miroooo-product-footer__brand { max-width: 340px; }
+.miroooo-product-footer__logo { display: inline-block; margin-bottom: 18px; color: #fff; font-size: 22px; font-weight: 800; letter-spacing: .38em; text-decoration: none; }
+.miroooo-product-footer__tagline { margin: 0 0 16px 0; color: rgba(255,255,255,.65); font-size: 13.5px; line-height: 1.6; }
+.miroooo-product-footer__address { margin: 0; color: rgba(255,255,255,.45); font-size: 12.5px; line-height: 1.55; font-style: normal; }
 
-@media (max-width: 800px) {
-  .miroooo-product-footer { padding-top: 54px; }
-  .miroooo-product-footer__grid { grid-template-columns: 1fr 1fr; gap: 38px 22px; padding-bottom: 48px; }
-  .miroooo-product-footer__brand { grid-column: 1 / -1; }
-  .miroooo-product-footer__bottom { align-items: flex-start; flex-direction: column; }
+.miroooo-product-footer__column strong { display: block; margin-bottom: 18px; color: #ffffff; font-size: 11.5px; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; }
+.miroooo-product-footer__column a { min-height: auto !important; display: inline-block; padding: 2.5px 0; color: rgba(255,255,255,.72); font-size: 13px; line-height: 1.35; text-decoration: none; transition: color .2s ease; }
+.miroooo-product-footer__column a:hover { color: #ffffff; }
+
+.miroooo-footer-contact-block { margin-bottom: 12px; }
+.miroooo-footer-contact-block:last-child { margin-bottom: 0; }
+.miroooo-footer-label { display: block; color: rgba(255,255,255,.45); font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: .1em; margin-bottom: 4px; }
+.miroooo-footer-value { margin: 0; color: rgba(255,255,255,.8); font-size: 13px; line-height: 1.5; }
+.miroooo-footer-email { min-height: auto; display: inline-block; padding: 2px 0; color: rgba(255,255,255,.9) !important; font-size: 13px; font-weight: 500; text-decoration: none; transition: color .2s ease; }
+.miroooo-footer-email:hover { color: #ffffff !important; text-decoration: underline; }
+
+.miroooo-product-footer__socials { display: flex; align-items: center; gap: 10px; margin-top: 4px; }
+.miroooo-product-footer__social-link { display: inline-flex; align-items: center; justify-content: center; width: 38px; height: 38px; border-radius: 50%; background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.14); color: rgba(255,255,255,0.9); text-decoration: none; transition: all .2s ease; }
+.miroooo-product-footer__social-link:hover { background: rgba(255,255,255,0.15); border-color: rgba(255,255,255,0.3); color: #fff; transform: translateY(-2px); }
+
+.miroooo-product-footer__bottom { min-height: 52px; display: flex; align-items: center; justify-content: space-between; gap: 24px; padding-top: 28px; border-top: 1px solid rgba(255,255,255,.12); color: rgba(255,255,255,.5); font-size: 11px; }
+.miroooo-product-footer__copyright { font-weight: 600; text-transform: uppercase; letter-spacing: .08em; color: rgba(255,255,255,.6); }
+.miroooo-product-footer__payments { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; list-style: none; margin: 0; padding: 0; }
+.miroooo-product-footer__payments li { display: inline-flex; align-items: center; }
+
+#shopify-section-sections--24203576869209__footer-copyright,
+.footer-copyright {
+  padding-bottom: 130px !important;
+}
+
+@media (max-width: 1024px) {
+  .miroooo-product-footer__grid { grid-template-columns: 1fr 1fr; gap: 40px 24px; padding-bottom: 48px; }
+  .miroooo-product-footer__brand { grid-column: 1 / -1; max-width: 100%; }
+}
+
+@media (max-width: 640px) {
+  .miroooo-product-footer { padding-top: 48px; padding-bottom: 130px !important; }
+  .miroooo-product-footer__grid { grid-template-columns: 1fr; gap: 32px; padding-bottom: 40px; }
+  .miroooo-product-footer__bottom { align-items: center; flex-direction: column; text-align: center; gap: 18px; }
 }
 
 @media (prefers-reduced-motion: reduce) {

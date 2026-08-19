@@ -10,7 +10,9 @@
     {"source":"/policies/terms-of-service","destination":"/terms.html"},
     {"source":"/policies/cookies-policy","destination":"/cookies-policy.html"},
     {"source":"/pages/order-tracking","destination":"/order-tracking.html"},
-    {"source":"/pages/contact-us","destination":"/contact.html"}
+    {"source":"/pages/contact-us","destination":"/contact.html"},
+    {"source":"/about","destination":"/about-us.html"},
+    {"source":"/about-us","destination":"/about-us.html"}
   ],
   "redirects": [
     {"source":"/miroooo-x","destination":"/products/miroooo-x","permanent":true},
