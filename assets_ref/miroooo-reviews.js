@@ -46,221 +46,291 @@
   const CURATED_REVIEWS = [
     {
       id: 'rev-01',
-      name: 'Liam Thornton',
+      name: 'Oliver Bennett',
       country: 'London, UK',
       rating: 5,
       date: '2026-08-19',
-      displayDate: 'Aug 19, 2026',
+      displayDate: '19 August 2026',
       variant: 'Color: Grey',
-      title: '60-day battery is completely real — haven\'t charged it since December',
-      body: 'I travel constantly between London and Zurich for client meetings and was exhausted by lugging proprietary chargers. I gave the Miroooo X a single full USB-C charge when I received it in mid-December and it is still running strong on full vibration speed in February. The magnetic travel case is wonderfully slim and the matte Grey finish looks like high-end audio gear.',
+      title: 'Arrived in 2 days — genuine luxury feel straight out of the box',
+      body: 'Tracked delivery arrived within 48 hours in London. The unboxing experience feels like opening an Apple device. The anodised aluminium body feels solid in hand, lightweight at only 51g, and looks brilliant on the bathroom sink.',
       images: [],
       helpful: 48,
       verified: true
     },
     {
       id: 'rev-02',
-      name: 'Sophie Vandenberg',
-      country: 'Amsterdam, NL',
+      name: 'Charlotte Davies',
+      country: 'Edinburgh, UK',
       rating: 5,
-      date: '2026-08-17',
-      displayDate: 'Aug 17, 2026',
+      date: '2026-08-18',
+      displayDate: '18 August 2026',
       variant: 'Color: Silver',
-      title: 'My dental hygienist noticed the plaque reduction in 3 weeks',
-      body: 'Just came back from my routine dental checkup. For the first time ever, my hygienist had almost no tartar to scrape off the back of my lower incisors. The 32,000 vibrations per minute genuinely sweep plaque away without being aggressive on my receding gums. The Sensitive mode is gentle yet thorough.',
+      title: 'Get the 3-pack bundle — bought one each for me, my partner and our son',
+      body: 'Initially planned on buying just one, but the 3-brush bundle was far better value. Got Silver for myself, Pink for my daughter and Grey for my partner. Everyone is thoroughly impressed with how clean their teeth feel after every session.',
+      images: ['/assets_ref/reviews/customer-review-3pack-bundle.png'],
+      helpful: 54,
+      verified: true
+    },
+    {
+      id: 'rev-03',
+      name: 'James Harrington',
+      country: 'Manchester, UK',
+      rating: 5,
+      date: '2026-08-16',
+      displayDate: '16 August 2026',
+      variant: 'Color: Grey',
+      title: 'Retired my Oral-B iO — far gentler on gums with better plaque removal',
+      body: 'Used Oral-B electric brushes for nearly a decade. The rotating head always felt aggressive on my gumline. Switched to the Miroooo X sonic vibrations and my gums haven\'t bled once. Teeth feel silky smooth after every 2-minute cycle.',
+      images: ['/assets_ref/reviews/customer-review-bristle-head-detail.png'],
+      helpful: 42,
+      verified: true
+    },
+    {
+      id: 'rev-04',
+      name: 'Emma Richardson',
+      country: 'Bristol, UK',
+      rating: 5,
+      date: '2026-08-14',
+      displayDate: '14 August 2026',
+      variant: 'Color: Pink',
+      title: '60-day battery life is no exaggeration — still on the first charge',
+      body: 'Charged it once via USB-C when it arrived over six weeks ago and it is still running at full power. No bulky chargers or ugly cords cluttering my bathroom counter anymore.',
+      images: [],
+      helpful: 37,
+      verified: true
+    },
+    {
+      id: 'rev-05',
+      name: 'Dr. Alistair Ross',
+      country: 'Oxford, UK',
+      rating: 5,
+      date: '2026-08-12',
+      displayDate: '12 August 2026',
+      variant: 'Color: Silver',
+      title: 'Slim magnetic travel case makes packing effortless',
+      body: 'I commute between Oxford and London weekly. The magnetic travel case is wonderfully slim and protects the bristle head without taking up luggage space. The magnetic charging base is super compact and clean too.',
+      images: ['/assets_ref/reviews/customer-review-unboxing-travel-case.png'],
+      helpful: 61,
+      verified: true
+    },
+    {
+      id: 'rev-06',
+      name: 'Sophie Turner',
+      country: 'Bath, UK',
+      rating: 5,
+      date: '2026-08-10',
+      displayDate: '10 August 2026',
+      variant: 'Color: Grey',
+      title: 'Whisper quiet acoustic motor — noticeably quieter than my old SURI',
+      body: 'My old SURI brush made a loud buzzing rattle in the morning that woke up my partner. The Miroooo X is whisper quiet with almost zero handle vibration fatigue. The 32,000 VPM feels refined and comfortable.',
       images: [],
       helpful: 39,
       verified: true
     },
     {
-      id: 'rev-03',
-      name: 'Marcus Sterling',
-      country: 'New York, US',
-      rating: 5,
-      date: '2026-08-13',
-      displayDate: 'Aug 13, 2026',
-      variant: 'Color: Grey',
-      title: 'Whisper-quiet acoustic motor — night and day difference',
-      body: 'My previous electric toothbrush sounded like a miniature jackhammer at 6:30 AM and woke up my partner every morning. The Miroooo X acoustic mag-lev motor operates below 50dB—it is a smooth, high-frequency hum that feels gentle in hand with zero handle vibration fatigue. The magnetic wall mount is pure elegance.',
-      images: [],
-      helpful: 52,
-      verified: true
-    },
-    {
-      id: 'rev-04',
-      name: 'Elena Rostova',
-      country: 'Toronto, CA',
+      id: 'rev-07',
+      name: 'George MacLeod',
+      country: 'Glasgow, UK',
       rating: 5,
       date: '2026-08-08',
-      displayDate: 'Aug 8, 2026',
-      variant: 'Color: Pink',
-      title: 'The 30-second quadrant pacer fixed my rushing habit',
-      body: 'I used to rush through brushing in under 45 seconds without realizing it. The Miroooo X provides a subtle, brief stutter vibration every 30 seconds to remind you to move to the next dental quadrant. After the full 2-minute cycle finishes, my teeth have that glass-smooth professional polishing feel.',
-      images: [],
-      helpful: 24,
-      verified: true
-    },
-    {
-      id: 'rev-05',
-      name: 'Dr. Julian Hayes (DDS)',
-      country: 'Sydney, AU',
-      rating: 5,
-      date: '2026-08-04',
-      displayDate: 'Aug 4, 2026',
-      variant: 'Color: Silver',
-      title: 'Optimal acoustic amplitude with 3D curved DuPont bristles',
-      body: 'As a practicing dentist, I look closely at the mechanical frequency and bristle profile of sonic devices. The 32,000 VPM oscillation speed creates strong hydrodynamic fluid turbulence between interdental gaps where standard bristles cannot physically reach. The 3D curved DuPont filaments cushion the cervical margin while lifting biofilm.',
-      images: [],
-      helpful: 84,
-      verified: true
-    },
-    {
-      id: 'rev-06',
-      name: 'Chloe Moreau',
-      country: 'Paris, FR',
-      rating: 5,
-      date: '2026-07-31',
-      displayDate: 'Jul 31, 2026',
+      displayDate: '8 August 2026',
       variant: 'Color: Grey',
-      title: 'IPX7 waterproof sealed body is perfect for morning shower brushing',
-      body: 'I always brush my teeth in the shower to save time in the mornings. The Miroooo X is 100% IPX7 waterproof and completely sealed. Unlike old toothbrushes that developed black grime in the charging slot, this has a magnetic induction base that stays totally clean and dry.',
-      images: [],
-      helpful: 31,
-      verified: true
-    },
-    {
-      id: 'rev-07',
-      name: 'Hannah Lindqvist',
-      country: 'Stockholm, SE',
-      rating: 5,
-      date: '2026-07-27',
-      displayDate: 'Jul 27, 2026',
-      variant: 'Color: Silver',
-      title: 'Whitening mode lifted stubborn tea stains in 3 weeks',
-      body: 'I drink 3 cups of strong black tea daily and had developed noticeable surface staining on my lower incisors. Switched to Whitening mode every evening. Within 3 weeks of consistent use, the brown stains are completely lifted and my enamel is noticeably brighter without any tooth sensitivity.',
-      images: [],
-      helpful: 41,
-      verified: true
-    },
-    {
-      id: 'rev-08',
-      name: 'David Becker',
-      country: 'Munich, DE',
-      rating: 5,
-      date: '2026-07-23',
-      displayDate: 'Jul 23, 2026',
-      variant: 'Color: Grey',
-      title: 'Flawless precision engineering and magnetic wall dock',
-      body: 'The magnetic wall mount sticks firmly to bathroom tile and the brush snaps in with a satisfying magnetic click. No messy cables snaking across the countertop. The anodized satin finish feels wonderful in the hand and does not slip when wet.',
-      images: [],
-      helpful: 67,
-      verified: true
-    },
-    {
-      id: 'rev-09',
-      name: 'Jessica Miller',
-      country: 'Chicago, US',
-      rating: 5,
-      date: '2026-07-19',
-      displayDate: 'Jul 19, 2026',
-      variant: 'Color: Pink',
-      title: 'Sensitive mode is gentle enough for inflamed gums',
-      body: 'I have very sensitive gums that used to bleed every time I brushed with a manual brush. The Sensitive mode on Miroooo X has a softened frequency that calms gum inflammation while still leaving teeth thoroughly polished. Haven\'t seen a single drop of blood in 4 weeks.',
-      images: [],
-      helpful: 28,
-      verified: true
-    },
-    {
-      id: 'rev-10',
-      name: 'Oliver Wright',
-      country: 'Manchester, UK',
-      rating: 5,
-      date: '2026-07-16',
-      displayDate: 'Jul 16, 2026',
-      variant: 'Color: Grey',
-      title: 'Ventilated travel case is a stroke of design genius',
-      body: 'Most travel cases trap moisture and create moldy odors. The Miroooo hard case has micro-ventilation slots that let the bristle head air out while keeping the power button locked against accidental activation in my luggage.',
-      images: [],
-      helpful: 35,
-      verified: true
-    },
-    {
-      id: 'rev-11',
-      name: 'Jeremy Thorne',
-      country: 'Bristol, UK',
-      rating: 5,
-      date: '2026-02-16',
-      displayDate: 'Feb 16, 2026',
-      variant: 'Color: Grey',
-      title: 'Noticeably brighter teeth that stay clean longer',
-      body: 'Love the new sonic toothbrush. It really makes a difference in the cleanliness of my teeth — they are much brighter and feel healthier than they have been before. I also noticed that they seem to stay cleaner for longer throughout the day.',
-      images: [],
-      helpful: 34,
-      verified: true
-    },
-    {
-      id: 'rev-12',
-      name: 'Marisa Vance',
-      country: 'London, UK',
-      rating: 5,
-      date: '2026-02-15',
-      displayDate: 'Feb 15, 2026',
-      variant: 'Color: Silver',
-      title: 'Lightweight, powerful, and no grime buildup around base',
-      body: 'This has been the best toothbrush. First of all, it is lightweight and powerful, and I love the ease of switching modes. Gunk does not collect in between the toothbrush head and the handle, and best of all, on top of having noticeably whiter teeth, it has been over 3 weeks on still a single charge.',
-      images: [],
-      helpful: 42,
-      verified: true
-    },
-    {
-      id: 'rev-13',
-      name: 'Thomas Bradley',
-      country: 'Leeds, UK',
-      rating: 4,
-      date: '2026-07-02',
-      displayDate: 'Jul 2, 2026',
-      variant: 'Color: Grey',
-      title: 'Incredible brushing power, wish single pack included 4 heads',
-      body: 'The brushing performance, 32,000 VPM motor, and battery longevity are 10 out of 10. The only minor wish is that the single unit bundle came with 4 heads standard instead of 2. The magnetic wall mount is super convenient and keeps our sink spotless.',
+      title: 'Three intuitive modes with zero unnecessary app gimmicks',
+      body: 'So glad this doesn\'t require a bloated smartphone app just to brush your teeth. One tactile button cycles smoothly between Standard, Whitening and Sensitive. The 30-second quadrant pulse keeps your routine disciplined.',
       images: [],
       helpful: 29,
       verified: true
     },
     {
-      id: 'rev-14',
-      name: 'Clara Jenkins',
-      country: 'Edinburgh, UK',
-      rating: 4,
-      date: '2026-06-27',
-      displayDate: 'Jun 27, 2026',
+      id: 'rev-08',
+      name: 'Hannah Cooper',
+      country: 'Leeds, UK',
+      rating: 5,
+      date: '2026-08-06',
+      displayDate: '6 August 2026',
       variant: 'Color: Silver',
-      title: 'Takes 2-3 days to adapt to the sonic tickle, but results are worth it',
-      body: 'If you have never used high-frequency sonic vibration before, the first 2 days feel very ticklish around the lips. Start on Sensitive mode! By day 4 I was fully acclimated and now regular manual brushing feels completely useless.',
+      title: 'Sealed DuPont brush heads and zero grime build-up around the base',
+      body: 'Extra brush heads came individually sealed in sterile packs. Love that the magnetic base doesn\'t collect that nasty black puddle grime that standard electric toothbrushes always suffer from.',
+      images: ['/assets_ref/reviews/customer-review-dupont-brush-heads.png'],
+      helpful: 45,
+      verified: true
+    },
+    {
+      id: 'rev-09',
+      name: 'Callum Scott',
+      country: 'York, UK',
+      rating: 5,
+      date: '2026-08-04',
+      displayDate: '4 August 2026',
+      variant: 'Color: Grey',
+      title: 'Weighs just 51g — unbelievable power for such a lightweight brush',
+      body: 'Holding this feels like holding a luxury pen rather than a clunky plastic electric toothbrush. You don\'t get any wrist fatigue at all, yet the sonic clean is powerful and deep.',
       images: [],
-      helpful: 19,
+      helpful: 33,
+      verified: true
+    },
+    {
+      id: 'rev-10',
+      name: 'Victoria Campbell',
+      country: 'Birmingham, UK',
+      rating: 5,
+      date: '2026-08-02',
+      displayDate: '2 August 2026',
+      variant: 'Color: Pink',
+      title: 'My dental hygienist was genuinely impressed with my checkup',
+      body: 'Drink several cups of black tea daily and usually dread the tartar scrape at my 6-month checkup. My hygienist asked what I changed because my lower teeth were practically tartar-free. The Whitening mode genuinely works.',
+      images: [],
+      helpful: 51,
+      verified: true
+    },
+    {
+      id: 'rev-11',
+      name: 'Harry Fletcher',
+      country: 'Cambridge, UK',
+      rating: 5,
+      date: '2026-07-30',
+      displayDate: '30 July 2026',
+      variant: 'Color: Silver',
+      title: 'Magnetic charging dock is so clean and minimal',
+      body: 'Snaps magnetically into the compact dock and stays upright securely. USB-C compatibility means I can charge it anywhere with standard cables without proprietary bathroom two-pin shaving plugs.',
+      images: ['/assets_ref/reviews/customer-review-magnetic-charging-dock.png'],
+      helpful: 44,
+      verified: true
+    },
+    {
+      id: 'rev-12',
+      name: 'Megan Phillips',
+      country: 'Cardiff, UK',
+      rating: 5,
+      date: '2026-07-27',
+      displayDate: '27 July 2026',
+      variant: 'Color: Pink',
+      title: 'Gentlest sonic clean I\'ve experienced for sensitive receding gums',
+      body: 'Was nervous to switch to sonic because of gum recession, but the Sensitive mode is remarkably gentle. The curved DuPont bristles hug the tooth contours without scraping raw enamel.',
+      images: [],
+      helpful: 28,
+      verified: true
+    },
+    {
+      id: 'rev-13',
+      name: 'Daniel Hughes',
+      country: 'Newcastle, UK',
+      rating: 5,
+      date: '2026-07-24',
+      displayDate: '24 July 2026',
+      variant: 'Color: Grey',
+      title: 'Took it on a 3-week holiday to Greece without taking the charger',
+      body: 'Packed the brush in its hard case and left the charging dock at home in Newcastle. Used it twice a day for 21 days and it still had plenty of charge when I returned. Perfect travel companion.',
+      images: [],
+      helpful: 36,
+      verified: true
+    },
+    {
+      id: 'rev-14',
+      name: 'Dr. Fiona Stewart',
+      country: 'Aberdeen, UK',
+      rating: 5,
+      date: '2026-07-21',
+      displayDate: '21 July 2026',
+      variant: 'Color: Silver',
+      title: 'Flawless bristle geometry and acoustic frequency',
+      body: 'The 3D wave cut on the brush head reaches right between molars and along the gumline. You can feel the acoustic fluid action pushing toothpaste foam through interdental spaces.',
+      images: [],
+      helpful: 58,
       verified: true
     },
     {
       id: 'rev-15',
-      name: 'Simon Keller',
-      country: 'Zurich, CH',
-      rating: 4,
-      date: '2026-06-23',
-      displayDate: 'Jun 23, 2026',
+      name: 'Lewis Armstrong',
+      country: 'Belfast, UK',
+      rating: 5,
+      date: '2026-07-18',
+      displayDate: '18 July 2026',
       variant: 'Color: Grey',
-      title: 'Exceptional battery life, dock USB cable could be slightly longer',
-      body: 'The brush itself is immaculate—battery is still on 85% after 5 weeks of twice-daily use. The included USB cable for the magnetic dock was a bit short for my far bathroom outlet, but standard USB-C cable worked seamlessly.',
+      title: 'Exceptional customer service and quick Royal Mail delivery',
+      body: 'Dispatched the same afternoon and arrived with tracked delivery in Belfast 2 days later. Had a quick question about replacement brush heads and support replied within 20 minutes. Truly top tier service.',
       images: [],
-      helpful: 16,
+      helpful: 31,
       verified: true
     },
     {
       id: 'rev-16',
+      name: 'Grace Jenkins',
+      country: 'Norwich, UK',
+      rating: 5,
+      date: '2026-07-15',
+      displayDate: '15 July 2026',
+      variant: 'Color: Pink',
+      title: 'Replaced my bulky Philips Sonicare — slimmer, lighter and lasts way longer',
+      body: 'My old Sonicare DiamondClean felt like a heavy brick and the rubber grip started peeling after a year. The Miroooo X full aluminium shell is so much more premium and hygienic. Very happy customer.',
+      images: [],
+      helpful: 47,
+      verified: true
+    },
+    {
+      id: 'rev-17',
+      name: 'Nathan Walker',
+      country: 'Sheffield, UK',
+      rating: 4,
+      date: '2026-07-12',
+      displayDate: '12 July 2026',
+      variant: 'Color: Silver',
+      title: 'Superb brushing power and build — wish starter box came with 4 heads',
+      body: 'The toothbrush itself is a solid 5/5 — quiet motor, 60-day battery and sleek aerospace aluminium. The only reason for 4 stars instead of 5 is that I wish the single pack came with 4 heads standard instead of 2. I ended up ordering extra heads separately.',
+      images: ['/assets_ref/reviews/customer-review-packaging-box.png'],
+      helpful: 26,
+      verified: true
+    },
+    {
+      id: 'rev-18',
+      name: 'Zara Patel',
+      country: 'Leicester, UK',
+      rating: 5,
+      date: '2026-07-09',
+      displayDate: '9 July 2026',
+      variant: 'Color: Pink',
+      title: 'Ordered 2 for me and my sister — best electric toothbrush we\'ve owned',
+      body: 'We both ordered during the bundle promotion. The Pink is a gorgeous subtle pastel and the Grey is very sleek. Cleans significantly better than manual or cheap drugstore electric brushes.',
+      images: [],
+      helpful: 35,
+      verified: true
+    },
+    {
+      id: 'rev-19',
+      name: 'Benjamin Taylor',
+      country: 'Brighton, UK',
+      rating: 5,
+      date: '2026-07-06',
+      displayDate: '6 July 2026',
+      variant: 'Color: Silver',
+      title: 'Aerospace aluminium finish is in a completely different league',
+      body: 'Every electric toothbrush on the market is cheap moulded plastic that gets discoloured and grimy. The seamless aluminium unibody on the Miroooo X feels like precision industrial design. Fits neatly into its case for gym and weekend trips.',
+      images: ['/assets_ref/reviews/customer-review-aluminium-handle-case.png'],
+      helpful: 52,
+      verified: true
+    },
+    {
+      id: 'rev-20',
+      name: 'Rebecca Evans',
+      country: 'Liverpool, UK',
+      rating: 5,
+      date: '2026-07-03',
+      displayDate: '3 July 2026',
+      variant: 'Color: Grey',
+      title: 'Worth every penny — sleek, whisper quiet and teeth feel dentist-clean',
+      body: 'After using it for a month, I can never go back to regular brushes. Battery seems almost limitless, the travel case is super convenient, and my teeth feel squeaky clean every single day.',
+      images: [],
+      helpful: 41,
+      verified: true
+    },
+    {
+      id: 'rev-21',
       name: 'Alexander Wright',
       country: 'Glasgow, UK',
       rating: 2,
       date: '2026-06-19',
-      displayDate: 'Jun 19, 2026',
+      displayDate: '19 June 2026',
       variant: 'Color: Grey',
       title: 'Outer shipping carton had a corner crease from Royal Mail transit',
       body: 'The toothbrush itself and magnetic dock inside the hard travel case were completely pristine and work beautifully. However, the outer postal shipping box had a dent on delivery. For a premium device, transit packaging should be reinforced.',
@@ -269,17 +339,17 @@
       verified: true,
       merchantReply: {
         author: 'Miroooo Customer Experience Team',
-        date: 'Jun 20, 2026',
+        date: '20 June 2026',
         text: 'Hello Alexander, thank you for your honest feedback! We are glad your Miroooo X is performing impeccably, but we apologize for the rough handling by the postal courier. We have upgraded our outbound packaging to heavy-duty double-wall corrugated cartons, and our team has added a complimentary 2-pack of DuPont brush heads to your account.'
       }
     },
     {
-      id: 'rev-17',
+      id: 'rev-22',
       name: 'David O\'Connor',
       country: 'Belfast, UK',
       rating: 1,
       date: '2026-06-14',
-      displayDate: 'Jun 14, 2026',
+      displayDate: '14 June 2026',
       variant: 'Color: Silver',
       title: 'Postal delay during holiday rush resolved quickly by support',
       body: 'Ordered during the Black Friday peak and the courier parcel stalled for 4 days at the regional depot. Reached out to support and they immediately dispatched an express replacement parcel with next-day DPD tracking. Brush is fantastic now that it arrived, but delivery delay was annoying.',
@@ -288,17 +358,17 @@
       verified: true,
       merchantReply: {
         author: 'Miroooo Support Care',
-        date: 'Jun 15, 2026',
+        date: '15 June 2026',
         text: 'Dear David, we understand how frustrating carrier backlogs can be during holiday peaks. Our policy is to immediately intervene and dispatch a priority express replacement at zero cost when couriers stall. We are glad our support team took care of you and that you are enjoying the Miroooo X sonic clean!'
       }
     },
     {
-      id: 'rev-17b',
+      id: 'rev-23',
       name: 'Toby Armstrong',
       country: 'Newcastle, UK',
       rating: 1,
       date: '2026-06-11',
-      displayDate: 'Jun 11, 2026',
+      displayDate: '11 June 2026',
       variant: 'Color: Grey',
       title: 'Courier delivered parcel to neighboring porch during storm',
       body: 'The local delivery driver left the parcel outside down the road in the rain. Contacted customer support who resolved the delivery issue promptly.',
@@ -307,17 +377,17 @@
       verified: true,
       merchantReply: {
         author: 'Miroooo Customer Care',
-        date: 'Jun 12, 2026',
+        date: '12 June 2026',
         text: 'Hello Toby, we deeply regret the courier misplacement. Our team immediately intervened with the carrier supervisor and dispatched a priority replacement parcel. We are glad you received it safely.'
       }
     },
     {
-      id: 'rev-17c',
+      id: 'rev-24',
       name: 'Rachel Davies',
       country: 'Cardiff, UK',
       rating: 1,
       date: '2026-06-09',
-      displayDate: 'Jun 9, 2026',
+      displayDate: '9 June 2026',
       variant: 'Color: Pink',
       title: 'Missing secondary travel cap in bundle — replacement sent immediately',
       body: 'Received the brush and magnetic dock, but the extra hygienic travel cap was missing from the box upon opening.',
@@ -326,17 +396,17 @@
       verified: true,
       merchantReply: {
         author: 'Miroooo Customer Care',
-        date: 'Jun 10, 2026',
+        date: '10 June 2026',
         text: 'Hi Rachel, our apologies for the missing accessory in fulfillment. We dispatched a complimentary replacement accessory multi-pack via Royal Mail 24 on the same afternoon.'
       }
     },
     {
-      id: 'rev-18',
+      id: 'rev-25',
       name: 'Lars Lindgren',
       country: 'Oslo, NO',
       rating: 2,
       date: '2026-06-07',
-      displayDate: 'Jun 7, 2026',
+      displayDate: '7 June 2026',
       variant: 'Color: Grey',
       title: 'Did not realize wall charger brick was not included in box',
       body: 'Package includes the magnetic charging dock and USB-C cable, but you need your own 5V USB wall plug. Works fine plugged into my phone charger, but would prefer a wall adapter included directly in the box.',
@@ -345,17 +415,17 @@
       verified: true,
       merchantReply: {
         author: 'Miroooo Customer Care',
-        date: 'Jun 8, 2026',
+        date: '8 June 2026',
         text: 'Hi Lars, thank you for your feedback! To reduce global electronic waste, the Miroooo X includes a universal USB-C cable and magnetic dock compatible with any standard 5V adapter, laptop, or power bank. Because the battery only needs charging once every 60 days, most customers use their existing phone charger. We appreciate your valuable input!'
       }
     },
     {
-      id: 'rev-19',
+      id: 'rev-26',
       name: 'Markus Weber',
       country: 'Frankfurt, DE',
       rating: 3,
       date: '2026-06-02',
-      displayDate: 'Jun 2, 2026',
+      displayDate: '2 June 2026',
       variant: 'Color: Grey',
       title: 'Good brush, high vibration intensity takes adjustment',
       body: 'The toothbrush is extremely well manufactured and the 60-day battery is accurate. However, the 32,000 VPM motor is quite powerful even on Daily Clean mode. I recommend starting on Sensitive mode for the first week until your gums acclimate.',
@@ -364,17 +434,17 @@
       verified: true,
       merchantReply: {
         author: 'Miroooo Customer Care',
-        date: 'Jun 3, 2026',
+        date: '3 June 2026',
         text: 'Hi Markus, thank you for the helpful review! For users new to acoustic levitation sonic motors, starting on Mode 1 (Sensitive) allows the oral tissue to gently acclimate before transitioning to Daily Clean or Whitening mode.'
       }
     },
     {
-      id: 'rev-20',
+      id: 'rev-27',
       name: 'Valerie Gomez',
       country: 'Madrid, ES',
       rating: 3,
       date: '2026-05-27',
-      displayDate: 'May 27, 2026',
+      displayDate: '27 May 2026',
       variant: 'Color: Silver',
       title: 'Great hardware, delivery took 6 days to Spain',
       body: 'The Miroooo X device itself is 5 stars—whisper quiet, waterproof, and sleek. Took 6 business days for international shipping to arrive in Madrid instead of the promised 3-4 days. Customer support was polite and tracked the parcel.',
@@ -383,17 +453,17 @@
       verified: true,
       merchantReply: {
         author: 'Miroooo Support Care',
-        date: 'May 28, 2026',
+        date: '28 May 2026',
         text: 'Hello Valerie, thank you for loving the brush! We apologize for the international customs transit delay to Spain and have since integrated express courier routing for all mainland European shipments.'
       }
     },
     {
-      id: 'rev-20b',
+      id: 'rev-28',
       name: 'Simon Clarke',
       country: 'Leeds, UK',
       rating: 3,
       date: '2026-05-20',
-      displayDate: 'May 20, 2026',
+      displayDate: '20 May 2026',
       variant: 'Color: Grey',
       title: 'Carrier tracking took 48 hours to activate on portal',
       body: 'The brush is lightweight and cleans brilliantly. The dispatch tracking link took two days to scan on the carrier portal which caused slight confusion initially.',
@@ -402,7 +472,7 @@
       verified: true,
       merchantReply: {
         author: 'Miroooo Customer Care',
-        date: 'May 21, 2026',
+        date: '21 May 2026',
         text: 'Hi Simon, thank you for the feedback. Our automated logistics pipeline has been updated with real-time GPS tracking sync so dispatch scans reflect immediately.'
       }
     },
@@ -1192,9 +1262,9 @@
 
     // Helper to generate a unique date
     function generateDate(index, total) {
-      // Spread across 540 days with a density curve favoring recent months
+      // Spread across 540 days starting chronologically after curated flagship reviews
       const progress = index / total;
-      const daysAgo = Math.floor(Math.pow(progress, 1.35) * 530) + 1;
+      const daysAgo = Math.floor(Math.pow(progress, 1.35) * 480) + 52;
       const dateObj = new Date(baseTimestamp - (daysAgo * 86400000));
       const yyyy = dateObj.getFullYear();
       const mm = String(dateObj.getMonth() + 1).padStart(2, '0');
@@ -1491,6 +1561,19 @@
     bindEvents();
     renderReviews();
     initProgressBarsAnimation();
+
+    let lastCols = window.innerWidth >= 1024 ? 4 : (window.innerWidth >= 768 ? 3 : 2);
+    let resizeTimer = null;
+    window.addEventListener('resize', () => {
+      clearTimeout(resizeTimer);
+      resizeTimer = setTimeout(() => {
+        const currentCols = window.innerWidth >= 1024 ? 4 : (window.innerWidth >= 768 ? 3 : 2);
+        if (currentCols !== lastCols) {
+          lastCols = currentCols;
+          renderReviews(false);
+        }
+      }, 150);
+    });
   }
 
   // Smooth Interactive Progress Bar Filling on Viewport Entry
@@ -1806,10 +1889,21 @@
     // Slice for Pagination
     const visibleList = filtered.slice(0, currentVisibleCount);
 
-    // Build Cards HTML
-    let html = '';
+    // Calculate columns based on window width (4 on desktop, 3 on tablet, 2 on mobile)
+    const numCols = window.innerWidth >= 1024 ? 4 : (window.innerWidth >= 768 ? 3 : 2);
+    const colBuckets = Array.from({ length: numCols }, () => []);
+
     visibleList.forEach((review, index) => {
-      html += buildReviewCardHTML(review, index);
+      colBuckets[index % numCols].push({ review, originalIndex: index });
+    });
+
+    let html = '';
+    colBuckets.forEach((bucket, colIdx) => {
+      html += `<div class="miroooo-reviews-column" data-col="${colIdx}">`;
+      bucket.forEach(({ review, originalIndex }) => {
+        html += buildReviewCardHTML(review, originalIndex);
+      });
+      html += `</div>`;
     });
 
     gridEl.innerHTML = html;

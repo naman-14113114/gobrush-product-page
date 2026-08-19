@@ -1029,10 +1029,21 @@
     // Slice for Pagination
     const visibleList = filtered.slice(0, currentVisibleCount);
 
-    // Build Cards HTML
-    let html = '';
+    // Calculate columns based on window width (4 on desktop, 3 on tablet, 2 on mobile)
+    const numCols = window.innerWidth >= 1024 ? 4 : (window.innerWidth >= 768 ? 3 : 2);
+    const colBuckets = Array.from({ length: numCols }, () => []);
+
     visibleList.forEach((review, index) => {
-      html += buildReviewCardHTML(review, index);
+      colBuckets[index % numCols].push({ review, originalIndex: index });
+    });
+
+    let html = '';
+    colBuckets.forEach((bucket, colIdx) => {
+      html += `<div class="miroooo-reviews-column" data-col="${colIdx}">`;
+      bucket.forEach(({ review, originalIndex }) => {
+        html += buildReviewCardHTML(review, originalIndex);
+      });
+      html += `</div>`;
     });
 
     gridEl.innerHTML = html;
@@ -1500,6 +1511,19 @@
     setupLightboxEvents();
     setupWriteModalEvents();
     initProgressBarsAnimation();
+
+    let lastCols = window.innerWidth >= 1024 ? 4 : (window.innerWidth >= 768 ? 3 : 2);
+    let resizeTimer = null;
+    window.addEventListener('resize', () => {
+      clearTimeout(resizeTimer);
+      resizeTimer = setTimeout(() => {
+        const currentCols = window.innerWidth >= 1024 ? 4 : (window.innerWidth >= 768 ? 3 : 2);
+        if (currentCols !== lastCols) {
+          lastCols = currentCols;
+          renderReviews(false);
+        }
+      }, 150);
+    });
   }
 
   if (document.readyState === 'loading') {

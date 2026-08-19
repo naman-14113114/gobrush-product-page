@@ -576,52 +576,62 @@ div.miroooo-progress-bar {
 }
 
 /* ==========================================================================
-   3. REVIEW MASONRY GRID & CARDS (Zero White Space, Natural Height Flow)
+   REVIEW MASONRY / GRID LAYOUT
    ========================================================================== */
 .miroooo-reviews-grid {
-  column-count: 2;
-  column-gap: 10px;
-  display: block;
-  width: 100%;
-  box-sizing: border-box;
+  display: flex !important;
+  flex-direction: row !important;
+  align-items: flex-start !important;
+  gap: 10px !important;
+  width: 100% !important;
+  box-sizing: border-box !important;
 }
 
 @media (min-width: 640px) {
   .miroooo-reviews-grid {
-    column-count: 2;
-    column-gap: 14px;
+    gap: 14px !important;
   }
 }
 
 @media (min-width: 768px) {
   .miroooo-reviews-grid {
-    column-count: 3;
-    column-gap: 16px;
+    gap: 16px !important;
   }
 }
 
 @media (min-width: 1024px) {
   .miroooo-reviews-grid {
-    column-count: 4;
-    column-gap: 16px;
+    gap: 16px !important;
   }
 }
 
-/* Review Card (Original Clean #e6e6e6 Theme with Natural Height) */
+.miroooo-reviews-column {
+  flex: 1 1 0% !important;
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 16px !important;
+  min-width: 0 !important;
+  box-sizing: border-box !important;
+}
+
+@media (max-width: 639px) {
+  .miroooo-reviews-column {
+    gap: 10px !important;
+  }
+}
+
+/* Review Card (Natural Height, Zero Empty White Space) */
 .miroooo-review-card {
   background: #e6e6e6 !important;
   border: 1px solid rgba(0, 0, 0, 0.08) !important;
   border-radius: var(--miroooo-radius-md, 14px);
   padding: 16px 14px;
   box-sizing: border-box;
-  display: inline-block;
+  display: flex;
+  flex-direction: column;
   width: 100%;
   min-width: 0;
-  margin-bottom: 16px;
-  break-inside: avoid !important;
-  -webkit-column-break-inside: avoid !important;
-  page-break-inside: avoid !important;
-  vertical-align: top;
+  margin-bottom: 0 !important;
   height: auto !important;
   transition: var(--miroooo-transition);
   position: relative;
@@ -917,7 +927,7 @@ div.miroooo-progress-bar {
 
 /* Card Footer (Author + Helpful - Attached Directly with Natural Spacing) */
 .miroooo-card-footer {
-  margin-top: 14px;
+  margin-top: 14px !important;
   padding-top: 12px;
   border-top: 1px solid rgba(0, 0, 0, 0.08) !important;
   display: flex;
@@ -1063,14 +1073,18 @@ div.miroooo-progress-bar {
    ========================================================================== */
 @media (max-width: 639px) {
   .miroooo-reviews-grid {
-    column-count: 2 !important;
-    column-gap: 10px !important;
-    display: block !important;
+    display: flex !important;
+    flex-direction: row !important;
+    gap: 10px !important;
+  }
+  .miroooo-reviews-column {
+    gap: 10px !important;
   }
   .miroooo-review-card {
     padding: 12px 10px !important;
     border-radius: 12px !important;
-    margin-bottom: 10px !important;
+    margin-bottom: 0 !important;
+    height: auto !important;
   }
   .miroooo-card-header {
     margin-bottom: 8px !important;
