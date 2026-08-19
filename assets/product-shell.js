@@ -116,7 +116,6 @@
       btn.setAttribute("aria-expanded", "false");
     });
   };
-
   document.addEventListener("click", (event) => {
     const menuCloseBtn = event.target.closest?.("#MenuDrawer .drawer__close, #MenuDrawer [aria-label='Close'], #MenuDrawer .button--close");
     if (menuCloseBtn) {
