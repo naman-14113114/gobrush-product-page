@@ -2948,7 +2948,502 @@ theme.variantStrings = {
     </div>
 
   </div>
-</div><div id="shopify-section-template--24203751129433__help-drawer" class="shopify-section" style="display: contents;"><style>#shopify-block-content-1 {--color-background: 255 251 235;--color-foreground: 180 83 9;
+</div>
+
+<!-- How Miroooo beats the competition Section -->
+<div id="shopify-section-template--miroooo-competition-reasons" class="shopify-section" style="background: #000000; color: #ffffff; width: 100%; overflow: hidden; border-top: 1px solid rgba(255,255,255,0.08); position: relative;">
+  <style>
+    .miroooo-reasons {
+      background-color: #000000;
+      padding: clamp(3.5rem, 5.5vw, 5.5rem) 0;
+      overflow: hidden;
+      font-family: inherit;
+      width: 100%;
+      position: relative;
+    }
+
+    .miroooo-reasons__header {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 0 clamp(20px, 4vw, 48px) clamp(24px, 3vw, 36px);
+      position: relative;
+    }
+
+    .miroooo-reasons__title {
+      font-family: var(--font-heading-family, 'Inter', -apple-system, sans-serif);
+      font-size: clamp(1.75rem, 3.2vw, 2.75rem);
+      font-weight: 400;
+      letter-spacing: -0.03em;
+      color: #ffffff;
+      margin: 0;
+      line-height: 1.15;
+      max-width: 680px;
+    }
+
+    .miroooo-reasons__nav {
+      display: flex;
+      gap: 10px;
+      align-items: center;
+      flex-shrink: 0;
+      padding-bottom: 4px;
+    }
+
+    .miroooo-reasons__nav-btn {
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      border: 1px solid rgba(255, 255, 255, 0.22);
+      background: rgba(255, 255, 255, 0.04);
+      backdrop-filter: blur(8px);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background 0.25s ease, border-color 0.25s ease, transform 0.2s ease;
+      flex-shrink: 0;
+      outline: none;
+    }
+
+    .miroooo-reasons__nav-btn:hover {
+      background: #ffffff;
+      border-color: #ffffff;
+      transform: scale(1.04);
+    }
+
+    .miroooo-reasons__nav-btn svg {
+      width: 16px;
+      height: 16px;
+      stroke: #ffffff;
+      fill: none;
+      stroke-width: 2;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      transition: stroke 0.25s ease;
+    }
+
+    .miroooo-reasons__nav-btn:hover svg {
+      stroke: #000000;
+    }
+
+    .miroooo-reasons__track-wrapper {
+      overflow: hidden;
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 0 clamp(20px, 4vw, 48px);
+      cursor: grab;
+      user-select: none;
+      -webkit-user-select: none;
+      position: relative;
+    }
+
+    .miroooo-reasons__track-wrapper.is-dragging {
+      cursor: grabbing;
+    }
+
+    .miroooo-reasons__track {
+      display: flex;
+      gap: 20px;
+      will-change: transform;
+    }
+
+    .miroooo-reasons__card {
+      flex: 0 0 calc((100% - 60px) / 4);
+      min-width: 0;
+      box-sizing: border-box;
+    }
+
+    .miroooo-reasons__card-image-wrap {
+      position: relative;
+      overflow: hidden;
+      border-radius: 14px;
+      aspect-ratio: 3 / 4;
+      background: #0d0d0d;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+    }
+
+    .miroooo-reasons__card-image-wrap img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      pointer-events: none;
+      transition: transform 0.65s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    }
+
+    .miroooo-reasons__card:hover .miroooo-reasons__card-image-wrap img {
+      transform: scale(1.05);
+    }
+
+    .miroooo-reasons__card-body {
+      padding: 16px 4px 0 4px;
+    }
+
+    .miroooo-reasons__card-label {
+      font-size: 16px;
+      font-weight: 600;
+      color: #ffffff;
+      margin: 0 0 6px;
+      letter-spacing: -0.01em;
+      line-height: 1.35;
+      font-family: inherit;
+    }
+
+    .miroooo-reasons__card-desc {
+      font-size: 13.5px;
+      font-weight: 400;
+      color: rgba(255, 255, 255, 0.65);
+      margin: 0;
+      line-height: 1.55;
+      letter-spacing: 0.005em;
+      font-family: inherit;
+    }
+
+    .miroooo-reasons__mobile-next {
+      display: none;
+    }
+
+    @media (max-width: 1024px) and (min-width: 768px) {
+      .miroooo-reasons__card {
+        flex: 0 0 calc((100% - 20px) / 2.3);
+      }
+    }
+
+    @media (max-width: 767px) {
+      .miroooo-reasons {
+        padding: clamp(2.75rem, 6vw, 3.5rem) 0;
+      }
+      .miroooo-reasons__header {
+        padding: 0 20px 20px;
+      }
+      .miroooo-reasons__track-wrapper {
+        padding: 0 20px;
+      }
+      .miroooo-reasons__card {
+        flex: 0 0 calc(82% - 10px);
+      }
+      .miroooo-reasons__track {
+        gap: 14px;
+      }
+      .miroooo-reasons__nav {
+        display: none;
+      }
+      .miroooo-reasons__mobile-next {
+        display: flex;
+        position: absolute;
+        right: 8px;
+        top: 0;
+        bottom: 0;
+        width: 48px;
+        align-items: center;
+        justify-content: center;
+        z-index: 10;
+        pointer-events: none;
+      }
+      .miroooo-reasons__mobile-next-btn {
+        width: 38px;
+        height: 38px;
+        border-radius: 50%;
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        background: rgba(18, 18, 18, 0.85);
+        backdrop-filter: blur(10px);
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        pointer-events: all;
+        box-shadow: 0 4px 16px rgba(0,0,0,0.6);
+        transition: background 0.2s ease, border-color 0.2s ease, transform 0.2s ease;
+      }
+      .miroooo-reasons__mobile-next-btn:active {
+        transform: scale(0.95);
+        background: #ffffff;
+      }
+      .miroooo-reasons__mobile-next-btn svg {
+        width: 14px;
+        height: 14px;
+        stroke: #ffffff;
+        fill: none;
+        stroke-width: 2;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+      }
+      .miroooo-reasons__mobile-next-btn:active svg {
+        stroke: #000000;
+      }
+    }
+  </style>
+
+  <div class="miroooo-reasons" id="miroooo-reasons-root">
+    <div class="miroooo-reasons__header">
+      <h2 class="miroooo-reasons__title">How Miroooo beats the competition.</h2>
+      <div class="miroooo-reasons__nav">
+        <button class="miroooo-reasons__nav-btn" id="miroooo-reasons-prev" aria-label="Previous card">
+          <svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"></polyline></svg>
+        </button>
+        <button class="miroooo-reasons__nav-btn" id="miroooo-reasons-next" aria-label="Next card">
+          <svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"></polyline></svg>
+        </button>
+      </div>
+    </div>
+
+    <div class="miroooo-reasons__track-wrapper" id="miroooo-reasons-track-wrapper">
+      <div class="miroooo-reasons__track" id="miroooo-reasons-track">
+
+        <!-- Card 1: 60+ Days Battery -->
+        <div class="miroooo-reasons__card">
+          <div class="miroooo-reasons__card-image-wrap">
+            <img src="/assets_ref/x/competition/1-battery.png" alt="Miroooo X 60+ Days Battery Life" loading="lazy">
+          </div>
+          <div class="miroooo-reasons__card-body">
+            <p class="miroooo-reasons__card-label">1. 60+ Days Battery.</p>
+            <p class="miroooo-reasons__card-desc">Forget about weekly charging hassles and messy cords. A single full charge keeps you going for over 2 months.</p>
+          </div>
+        </div>
+
+        <!-- Card 2: Aerospace Aluminium -->
+        <div class="miroooo-reasons__card">
+          <div class="miroooo-reasons__card-image-wrap">
+            <img src="/assets_ref/x/competition/2-aluminum.png" alt="Aerospace Aluminium Design" loading="lazy">
+          </div>
+          <div class="miroooo-reasons__card-body">
+            <p class="miroooo-reasons__card-label">2. Aerospace Aluminium.</p>
+            <p class="miroooo-reasons__card-desc">Engineered from aerospace-grade aluminium, it delivers an ultra-premium feel in hand while weighing a mere 51 grams.</p>
+          </div>
+        </div>
+
+        <!-- Card 3: Slim Travel Case -->
+        <div class="miroooo-reasons__card">
+          <div class="miroooo-reasons__card-image-wrap">
+            <img src="/assets_ref/x/competition/3-travel-case.png" alt="Protective Travel Case Included" loading="lazy">
+          </div>
+          <div class="miroooo-reasons__card-body">
+            <p class="miroooo-reasons__card-label">3. Slim Travel Case.</p>
+            <p class="miroooo-reasons__card-desc">Every Miroooo X includes a custom protective travel case. Say goodbye to soggy washbags and unhygienic bristle contact.</p>
+          </div>
+        </div>
+
+        <!-- Card 4: 40,000 VPM Sonic Power -->
+        <div class="miroooo-reasons__card">
+          <div class="miroooo-reasons__card-image-wrap">
+            <img src="/assets_ref/x/competition/4-sonic-tech.png" alt="40,000 VPM Sonic Power" loading="lazy">
+          </div>
+          <div class="miroooo-reasons__card-body">
+            <p class="miroooo-reasons__card-label">4. 40,000 VPM Sonic Power.</p>
+            <p class="miroooo-reasons__card-desc">Delivers 40,000 micro-vibrations per minute, driving micro-bubbles deep between teeth while remaining gentle on gums.</p>
+          </div>
+        </div>
+
+        <!-- Card 5: Magnetic Wall Mount -->
+        <div class="miroooo-reasons__card">
+          <div class="miroooo-reasons__card-image-wrap">
+            <img src="/assets_ref/x/competition/5-wall-holder.png" alt="Hygienic Wall Mount" loading="lazy">
+          </div>
+          <div class="miroooo-reasons__card-body">
+            <p class="miroooo-reasons__card-label">5. Magnetic Wall Mount.</p>
+            <p class="miroooo-reasons__card-desc">Free up valuable counter space and keep your brush dry, hygienic, and neatly docked on your mirror or tile.</p>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="miroooo-reasons__mobile-next">
+        <button class="miroooo-reasons__mobile-next-btn" id="miroooo-reasons-mobile-next" aria-label="Next card">
+          <svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"></polyline></svg>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+  (function() {
+    function initCompSlider() {
+      var track     = document.getElementById('miroooo-reasons-track');
+      var wrapper   = document.getElementById('miroooo-reasons-track-wrapper');
+      var prevBtn   = document.getElementById('miroooo-reasons-prev');
+      var nextBtn   = document.getElementById('miroooo-reasons-next');
+      var mobileBtn = document.getElementById('miroooo-reasons-mobile-next');
+
+      if (!track || !wrapper) return;
+
+      var current = 0;
+      var busy = false;
+
+      // Extract only the original cards (excluding any existing clones)
+      var originals = Array.from(track.querySelectorAll('.miroooo-reasons__card:not(.ms-clone)'));
+      var N = originals.length;
+      if (N === 0) return;
+
+      function getGap() {
+        return window.innerWidth <= 767 ? 14 : 20;
+      }
+
+      function getVis() {
+        if (window.innerWidth <= 767) return 1;
+        if (window.innerWidth <= 1024) return 2;
+        return 4;
+      }
+
+      function cardW() {
+        var c = track.querySelector('.miroooo-reasons__card:not(.ms-clone)');
+        return c ? c.offsetWidth + getGap() : 0;
+      }
+
+      function rebuild() {
+        track.querySelectorAll('.ms-clone').forEach(function(el) { el.remove(); });
+        var vis = getVis();
+        for (var i = N - 1; i >= N - vis; i--) {
+          var cl = originals[i].cloneNode(true);
+          cl.classList.add('ms-clone');
+          track.insertBefore(cl, track.firstChild);
+        }
+        for (var j = 0; j < vis; j++) {
+          var cl2 = originals[j].cloneNode(true);
+          cl2.classList.add('ms-clone');
+          track.appendChild(cl2);
+        }
+      }
+
+      function jump(idx) {
+        track.style.transition = 'none';
+        track.style.transform = 'translateX(' + (-(getVis() + idx) * cardW()) + 'px)';
+        track.getBoundingClientRect();
+        current = idx;
+      }
+
+      function slideTo(idx) {
+        track.style.transition = 'transform 0.45s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
+        track.style.transform = 'translateX(' + (-(getVis() + idx) * cardW()) + 'px)';
+        current = idx;
+      }
+
+      function goNext() {
+        if (busy) return;
+        busy = true;
+        slideTo(current + 1);
+      }
+
+      function goPrev() {
+        if (busy) return;
+        busy = true;
+        slideTo(current - 1);
+      }
+
+      track.addEventListener('transitionend', function() {
+        if (current >= N) {
+          jump(current - N);
+        } else if (current < 0) {
+          jump(current + N);
+        }
+        busy = false;
+      });
+
+      if (nextBtn) {
+        nextBtn.onclick = function(e) { e.preventDefault(); goNext(); };
+      }
+      if (prevBtn) {
+        prevBtn.onclick = function(e) { e.preventDefault(); goPrev(); };
+      }
+      if (mobileBtn) {
+        mobileBtn.onclick = function(e) { e.preventDefault(); goNext(); };
+      }
+
+      var dragStartX = 0;
+      var dragStartT = 0;
+      var dragging = false;
+      var hasMoved = false;
+
+      function currentTranslateX() {
+        var st = window.getComputedStyle(track);
+        var mx = st.transform || st.webkitTransform;
+        if (!mx || mx === 'none') return 0;
+        var parts = mx.split(',');
+        return parseFloat(parts[4] || 0);
+      }
+
+      function onDragStart(x) {
+        if (busy) return;
+        dragging = true;
+        hasMoved = false;
+        dragStartX = x;
+        dragStartT = currentTranslateX();
+        track.style.transition = 'none';
+        wrapper.classList.add('is-dragging');
+      }
+
+      function onDragMove(x) {
+        if (!dragging) return;
+        var diff = x - dragStartX;
+        if (Math.abs(diff) > 4) hasMoved = true;
+        track.style.transform = 'translateX(' + (dragStartT + diff) + 'px)';
+      }
+
+      function onDragEnd(x) {
+        if (!dragging) return;
+        dragging = false;
+        wrapper.classList.remove('is-dragging');
+        var diff = x - dragStartX;
+        var threshold = cardW() * 0.18;
+        if (diff < -threshold) {
+          goNext();
+        } else if (diff > threshold) {
+          goPrev();
+        } else {
+          track.style.transition = 'transform 0.3s ease';
+          track.style.transform = 'translateX(' + (-(getVis() + current) * cardW()) + 'px)';
+        }
+      }
+
+      wrapper.addEventListener('mousedown', function(e) { onDragStart(e.clientX); });
+      window.addEventListener('mousemove', function(e) { onDragMove(e.clientX); });
+      window.addEventListener('mouseup', function(e) { onDragEnd(e.clientX); });
+
+      wrapper.addEventListener('touchstart', function(e) {
+        if (e.touches && e.touches[0]) onDragStart(e.touches[0].clientX);
+      }, { passive: true });
+
+      wrapper.addEventListener('touchmove', function(e) {
+        if (e.touches && e.touches[0]) onDragMove(e.touches[0].clientX);
+      }, { passive: true });
+
+      wrapper.addEventListener('touchend', function(e) {
+        if (e.changedTouches && e.changedTouches[0]) onDragEnd(e.changedTouches[0].clientX);
+      });
+
+      wrapper.addEventListener('click', function(e) {
+        if (hasMoved) {
+          e.preventDefault();
+          e.stopPropagation();
+        }
+      }, true);
+
+      function init() {
+        busy = false;
+        rebuild();
+        jump(0);
+      }
+
+      init();
+
+      var resizeTimer;
+      window.addEventListener('resize', function() {
+        clearTimeout(resizeTimer);
+        resizeTimer = setTimeout(init, 150);
+      });
+    }
+
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', initCompSlider);
+    } else {
+      initCompSlider();
+    }
+  })();
+  </script>
+</div>
+<div id="shopify-section-template--24203751129433__help-drawer" class="shopify-section" style="display: contents;"><style>#shopify-block-content-1 {--color-background: 255 251 235;--color-foreground: 180 83 9;
   --color-border: var(--color-foreground)/ 0.1;
   --color-border-dark: var(--color-foreground)/ 0.4;
   --color-border-light: var(--color-foreground)/ 0.06;--color-highlight: 255 221 191;}#shopify-block-content-2 {--color-background: 240 249 255;--color-foreground: 3 105 161;
