@@ -1609,19 +1609,6 @@ theme.variantStrings = {
     .featured-product.product {
       align-items: flex-start !important;
     }
-    .product__gallery,
-    media-gallery.product__gallery {
-      position: sticky !important;
-      top: 24px !important;
-      inset-block-start: 24px !important;
-      align-self: flex-start !important;
-      z-index: 10;
-    }
-    .product__info {
-      position: relative !important;
-      top: auto !important;
-      inset-block-start: auto !important;
-    }
   }
   @media (max-width: 1023px) {
     .product__gallery,
@@ -1629,6 +1616,7 @@ theme.variantStrings = {
     .product__info {
       position: static !important;
       top: auto !important;
+      bottom: auto !important;
       inset-block-start: auto !important;
     }
   }
@@ -1640,7 +1628,36 @@ theme.variantStrings = {
       #SliderGallery-template--24203751129433__main-product-9593510658393 .mobile\:media--adapt_first>:is(img, svg, video-media) {
         aspect-ratio: 1.0;
       }
-    }</style><div class="section section--padding section--rounded relative">
+    }
+    .miroooo-gallery-load-more-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      background: #111111;
+      color: #ffffff;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      border-radius: 9999px;
+      padding: 12px 28px;
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4);
+      user-select: none;
+    }
+    .miroooo-gallery-load-more-btn:hover {
+      background: #1c1c1c;
+      border-color: rgba(255, 255, 255, 0.4);
+      transform: translateY(-1px);
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.6);
+    }
+    .miroooo-gallery-load-more-btn:active {
+      transform: translateY(0);
+    }
+  </style><div class="section section--padding section--rounded relative">
   <div class="page-width relative">
     <div class="featured-product product product--columns flex flex-col items-start lg:grid gap-5 w-full relative"><media-gallery
   class="product__gallery product__gallery--full_width block w-full relative
@@ -1714,6 +1731,26 @@ theme.variantStrings = {
   data-media-id="63670410379609" data-gang-default><img src="/assets_ref/x/gallery/Silver-9.webp" alt="Miroooo X - Grey" width="1000" height="1000" loading="lazy" fetchpriority="auto" class="w-full" is="lazy-image"><button type="button" class="absolute top-0 left-0 w-full h-full flex items-center justify-center" is="media-hover-button" aria-label="Open media 8 in modal" tabindex="-1"><svg class="icon icon-zoom icon-xs lg:hidden" viewBox="0 0 24 24" stroke="currentColor" fill="none" xmlns="http://www.w3.org/2000/svg">
       <path stroke-linecap="round" stroke-linejoin="round" d="M3 3V9M3 3H9M3 3L9 9M21 21V15M21 21H15M21 21L15 15"></path>
     </svg></button></div>
+<div class="product__media card media media--square mobile:media--adapt_first flex w-full flex-auto relative overflow-hidden hidden"
+  data-media-type="image"
+  data-media-id="63670410379610" data-gang-default style="display: none;"><img src="/assets_ref/x/gallery/Miroooo_x_Silver-9.webp" alt="Miroooo X - Silver" width="1000" height="1000" loading="lazy" fetchpriority="auto" class="w-full" is="lazy-image"><button type="button" class="absolute top-0 left-0 w-full h-full flex items-center justify-center" is="media-hover-button" aria-label="Open media 9 in modal" tabindex="-1"><svg class="icon icon-zoom icon-xs lg:hidden" viewBox="0 0 24 24" stroke="currentColor" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path stroke-linecap="round" stroke-linejoin="round" d="M3 3V9M3 3H9M3 3L9 9M21 21V15M21 21H15M21 21L15 15"></path>
+    </svg></button></div>
+<div class="product__media card media media--square mobile:media--adapt_first flex w-full flex-auto relative overflow-hidden hidden"
+  data-media-type="image"
+  data-media-id="63670410379611" data-gang-default style="display: none;"><img src="/assets_ref/x/gallery/Miroooo_x_Silver-10.webp" alt="Miroooo X - Silver" width="1000" height="1000" loading="lazy" fetchpriority="auto" class="w-full" is="lazy-image"><button type="button" class="absolute top-0 left-0 w-full h-full flex items-center justify-center" is="media-hover-button" aria-label="Open media 10 in modal" tabindex="-1"><svg class="icon icon-zoom icon-xs lg:hidden" viewBox="0 0 24 24" stroke="currentColor" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path stroke-linecap="round" stroke-linejoin="round" d="M3 3V9M3 3H9M3 3L9 9M21 21V15M21 21H15M21 21L15 15"></path>
+    </svg></button></div>
+<div class="product__media card media media--square mobile:media--adapt_first flex w-full flex-auto relative overflow-hidden hidden"
+  data-media-type="image"
+  data-media-id="63670410379612" data-gang-default style="display: none;"><img src="/assets_ref/x/gallery/Silver-8.webp" alt="Miroooo X - Silver" width="1000" height="1000" loading="lazy" fetchpriority="auto" class="w-full" is="lazy-image"><button type="button" class="absolute top-0 left-0 w-full h-full flex items-center justify-center" is="media-hover-button" aria-label="Open media 11 in modal" tabindex="-1"><svg class="icon icon-zoom icon-xs lg:hidden" viewBox="0 0 24 24" stroke="currentColor" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path stroke-linecap="round" stroke-linejoin="round" d="M3 3V9M3 3H9M3 3L9 9M21 21V15M21 21H15M21 21L15 15"></path>
+    </svg></button></div>
+<div class="product__media card media media--square mobile:media--adapt_first flex w-full flex-auto relative overflow-hidden hidden"
+  data-media-type="image"
+  data-media-id="63670410379613" data-gang-default style="display: none;"><img src="/assets_ref/x/gallery/Silver-9.webp" alt="Miroooo X - Silver" width="1000" height="1000" loading="lazy" fetchpriority="auto" class="w-full" is="lazy-image"><button type="button" class="absolute top-0 left-0 w-full h-full flex items-center justify-center" is="media-hover-button" aria-label="Open media 12 in modal" tabindex="-1"><svg class="icon icon-zoom icon-xs lg:hidden" viewBox="0 0 24 24" stroke="currentColor" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path stroke-linecap="round" stroke-linejoin="round" d="M3 3V9M3 3H9M3 3L9 9M21 21V15M21 21H15M21 21L15 15"></path>
+    </svg></button></div>
 </div>
       </slider-element>
 
@@ -1785,6 +1822,30 @@ theme.variantStrings = {
   aria-label="Ga naar item "
   aria-current="false" data-gang-default><img src="/assets_ref/x/gallery/Silver-9.webp" alt="Miroooo X - Grey" width="200" height="200" loading="lazy" is="lazy-image">
 </button>
+<button type="button"
+  class="product__thumbnail media media--square relative overflow-hidden hidden"
+  data-media-id="63670410379610"
+  aria-label="Ga naar item"
+  aria-current="false" data-gang-default style="display: none;"><img src="/assets_ref/x/gallery/Miroooo_x_Silver-9.webp" alt="Miroooo X - Silver" width="200" height="200" loading="lazy" is="lazy-image">
+</button>
+<button type="button"
+  class="product__thumbnail media media--square relative overflow-hidden hidden"
+  data-media-id="63670410379611"
+  aria-label="Ga naar item"
+  aria-current="false" data-gang-default style="display: none;"><img src="/assets_ref/x/gallery/Miroooo_x_Silver-10.webp" alt="Miroooo X - Silver" width="200" height="200" loading="lazy" is="lazy-image">
+</button>
+<button type="button"
+  class="product__thumbnail media media--square relative overflow-hidden hidden"
+  data-media-id="63670410379612"
+  aria-label="Ga naar item"
+  aria-current="false" data-gang-default style="display: none;"><img src="/assets_ref/x/gallery/Silver-8.webp" alt="Miroooo X - Silver" width="200" height="200" loading="lazy" is="lazy-image">
+</button>
+<button type="button"
+  class="product__thumbnail media media--square relative overflow-hidden hidden"
+  data-media-id="63670410379613"
+  aria-label="Ga naar item"
+  aria-current="false" data-gang-default style="display: none;"><img src="/assets_ref/x/gallery/Silver-9.webp" alt="Miroooo X - Silver" width="200" height="200" loading="lazy" is="lazy-image">
+</button>
 </media-dots><template>
             <slot></slot>
             <s dir="ltr" style="--t: 0; --b: 0; --l: 0; --r: 0;">
@@ -1816,7 +1877,21 @@ theme.variantStrings = {
               }
             </style>
           </template>
-        </scroll-shadow></div></media-gallery>
+        </scroll-shadow>
+        <div id="miroooo-gallery-load-more-wrap" class="w-full flex justify-center mt-3 mb-1" style="display: none;">
+          <button
+            id="miroooo-gallery-load-more-btn"
+            type="button"
+            class="miroooo-gallery-load-more-btn"
+            aria-label="Load more product images"
+          >
+            <span>Load More Images</span>
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="transform transition-transform duration-300">
+              <path d="M6 9l6 6 6-6"></path>
+            </svg>
+          </button>
+        </div>
+      </div></media-gallery>
 <product-info
         id="ProductInfo-template--24203751129433__main-product-9593510658393"
         class="product__info block sticky w-full"
@@ -5155,12 +5230,16 @@ const VARIANTS_DATA = {
     productId: "1000000664011633",
     swatchColor: "#e5e5e5",
     images: [
-      "/assets_ref/x/gallery/Silver-1.webp",
-      "/assets_ref/x/gallery/Silver-2.webp",
-      "/assets_ref/x/gallery/Silver-4.webp",
-      "/assets_ref/x/gallery/Silver-5.webp",
-      "/assets_ref/x/gallery/Silver-6.webp",
-      "/assets_ref/x/gallery/Silver-7.webp",
+      "/assets_ref/x/gallery/Miroooo_x_Silver-1.webp",
+      "/assets_ref/x/gallery/Miroooo_x_Silver-2.webp",
+      "/assets_ref/x/gallery/Miroooo_x_Silver-3.webp",
+      "/assets_ref/x/gallery/Miroooo_x_Silver-4.webp",
+      "/assets_ref/x/gallery/Miroooo_x_Silver-5.webp",
+      "/assets_ref/x/gallery/Miroooo_x_Silver-6.webp",
+      "/assets_ref/x/gallery/Miroooo_x_Silver-7.webp",
+      "/assets_ref/x/gallery/Miroooo_x_Silver-8.webp",
+      "/assets_ref/x/gallery/Miroooo_x_Silver-9.webp",
+      "/assets_ref/x/gallery/Miroooo_x_Silver-10.webp",
       "/assets_ref/x/gallery/Silver-8.webp",
       "/assets_ref/x/gallery/Silver-9.webp"
     ],
@@ -5416,6 +5495,155 @@ function updateStickyBar() {
   }
 }
 
+let isSilverGalleryExpanded = false;
+
+function calcStickyTop(elHeight, vh, margin = 24) {
+  if (elHeight + margin * 2 <= vh) {
+    return `${margin}px`;
+  }
+  return `${vh - elHeight - margin}px`;
+}
+
+function syncStickyColumns() {
+  if (window.innerWidth < 1024) {
+    const gallery = document.querySelector('.product__gallery, media-gallery.product__gallery');
+    const info = document.querySelector('.product__info');
+    if (gallery) {
+      gallery.style.removeProperty('position');
+      gallery.style.removeProperty('top');
+      gallery.style.removeProperty('bottom');
+      gallery.style.removeProperty('align-self');
+      gallery.style.removeProperty('z-index');
+    }
+    if (info) {
+      info.style.removeProperty('position');
+      info.style.removeProperty('top');
+      info.style.removeProperty('bottom');
+      info.style.removeProperty('align-self');
+      info.style.removeProperty('z-index');
+    }
+    return;
+  }
+
+  const gallery = document.querySelector('.product__gallery, media-gallery.product__gallery');
+  const info = document.querySelector('.product__info');
+  if (!gallery || !info) return;
+
+  // Temporarily reset to measure natural unconstrained heights
+  gallery.style.position = 'relative';
+  gallery.style.top = 'auto';
+  gallery.style.bottom = 'auto';
+  gallery.style.alignSelf = 'flex-start';
+
+  info.style.position = 'relative';
+  info.style.top = 'auto';
+  info.style.bottom = 'auto';
+  info.style.alignSelf = 'flex-start';
+
+  const galleryHeight = gallery.offsetHeight;
+  const infoHeight = info.offsetHeight;
+  const vh = window.innerHeight;
+
+  if (galleryHeight > infoHeight + 15) {
+    // Gallery on left is taller -> Right column (info) sticks!
+    gallery.style.position = 'relative';
+    gallery.style.top = 'auto';
+    gallery.style.bottom = 'auto';
+    gallery.style.alignSelf = 'flex-start';
+
+    info.style.position = 'sticky';
+    info.style.top = calcStickyTop(infoHeight, vh);
+    info.style.alignSelf = 'flex-start';
+    info.style.zIndex = '10';
+  } else if (infoHeight > galleryHeight + 15) {
+    // Info on right is taller -> Left column (gallery) sticks!
+    info.style.position = 'relative';
+    info.style.top = 'auto';
+    info.style.bottom = 'auto';
+    info.style.alignSelf = 'flex-start';
+
+    gallery.style.position = 'sticky';
+    gallery.style.top = calcStickyTop(galleryHeight, vh);
+    gallery.style.alignSelf = 'flex-start';
+    gallery.style.zIndex = '10';
+  } else {
+    // Roughly equal
+    gallery.style.position = 'sticky';
+    gallery.style.top = calcStickyTop(galleryHeight, vh);
+    gallery.style.alignSelf = 'flex-start';
+    gallery.style.zIndex = '10';
+
+    info.style.position = 'sticky';
+    info.style.top = calcStickyTop(infoHeight, vh);
+    info.style.alignSelf = 'flex-start';
+    info.style.zIndex = '10';
+  }
+}
+
+function updateGalleryVisibility(colorName) {
+  const isSilver = (colorName === 'Silver');
+  const mediaItems = document.querySelectorAll('.product__media-list .product__media:not(.product__media--video)');
+  const thumbItems = document.querySelectorAll('.product__thumbnails-list .product__thumbnail:not([data-media-type="video"])');
+  const loadMoreWrap = document.getElementById('miroooo-gallery-load-more-wrap');
+
+  if (isSilver) {
+    if (isSilverGalleryExpanded) {
+      mediaItems.forEach((item) => {
+        item.style.display = '';
+        item.classList.remove('hidden');
+      });
+      thumbItems.forEach((thumb) => {
+        thumb.style.display = '';
+        thumb.classList.remove('hidden');
+      });
+      if (loadMoreWrap) loadMoreWrap.style.display = 'none';
+    } else {
+      mediaItems.forEach((item, idx) => {
+        if (idx < 8) {
+          item.style.display = '';
+          item.classList.remove('hidden');
+        } else {
+          item.style.display = 'none';
+          item.classList.add('hidden');
+        }
+      });
+      thumbItems.forEach((thumb, idx) => {
+        if (idx < 8) {
+          thumb.style.display = '';
+          thumb.classList.remove('hidden');
+        } else {
+          thumb.style.display = 'none';
+          thumb.classList.add('hidden');
+        }
+      });
+      if (loadMoreWrap) loadMoreWrap.style.display = 'flex';
+    }
+  } else {
+    // For Pink and Grey (8 images total)
+    mediaItems.forEach((item, idx) => {
+      if (idx < 8) {
+        item.style.display = '';
+        item.classList.remove('hidden');
+      } else {
+        item.style.display = 'none';
+        item.classList.add('hidden');
+      }
+    });
+    thumbItems.forEach((thumb, idx) => {
+      if (idx < 8) {
+        thumb.style.display = '';
+        thumb.classList.remove('hidden');
+      } else {
+        thumb.style.display = 'none';
+        thumb.classList.add('hidden');
+      }
+    });
+    if (loadMoreWrap) loadMoreWrap.style.display = 'none';
+  }
+  syncStickyColumns();
+  setTimeout(syncStickyColumns, 50);
+}
+
 function selectColorVariant(colorName) {
   const data = VARIANTS_DATA[colorName];
   if (!data) return;
@@ -5424,10 +5652,13 @@ function selectColorVariant(colorName) {
   const mainTitle = document.getElementById('main-product-title');
   if (mainTitle) mainTitle.textContent = data.title;
 
-  // 2. Update Main Gallery Images
+  // 2. Update Gallery Visibility (Video + 8 images initially for Silver, Load More expands)
+  updateGalleryVisibility(colorName);
+
+  // 3. Update Main Gallery Images
   const galleryImageMedia = document.querySelectorAll('.product__media-list .product__media:not(.product__media--video)');
   galleryImageMedia.forEach((mediaEl, idx) => {
-    if (data.images[idx]) {
+    if (data.images && data.images[idx]) {
       const img = mediaEl.querySelector('img');
       if (img) {
         img.style.opacity = '0';
@@ -5440,10 +5671,10 @@ function selectColorVariant(colorName) {
     }
   });
 
-  // 3. Update Thumbnails
+  // 4. Update Thumbnails
   const thumbElements = document.querySelectorAll('.product__thumbnails-list .product__thumbnail:not([data-media-type="video"])');
   thumbElements.forEach((thumbEl, idx) => {
-    if (data.images[idx]) {
+    if (data.images && data.images[idx]) {
       const img = thumbEl.querySelector('img');
       if (img) {
         img.src = data.images[idx];
@@ -5452,13 +5683,13 @@ function selectColorVariant(colorName) {
     }
   });
 
-  // 4. Update video thumb background image
+  // 5. Update video thumb background image
   const videoThumbImg = document.getElementById('thumb-video-img');
-  if (videoThumbImg && data.images[0]) {
+  if (videoThumbImg && data.images && data.images[0]) {
     videoThumbImg.src = data.images[0];
   }
 
-  // 5. Update Brush with Style & Precision Hero Toothbrush Image
+  // 6. Update Brush with Style & Precision Hero Toothbrush Image
   const styleHeroImg = document.getElementById('brush-with-style-img');
   if (styleHeroImg && data.brushWithStyleImage) {
     styleHeroImg.style.transition = 'opacity 0.2s ease';
@@ -5469,7 +5700,7 @@ function selectColorVariant(colorName) {
     }, 120);
   }
 
-  // 6. Update 3 Brush Functions Mode Images
+  // 7. Update 3 Brush Functions Mode Images
   if (data.modeImages) {
     const stdImg = document.getElementById('mode-img-standard');
     const whtImg = document.getElementById('mode-img-whitening');
@@ -5919,28 +6150,43 @@ document.addEventListener('DOMContentLoaded', () => {
   // Thumbnail & Media click -> smooth scroll & open luxury Lightbox modal
   const allThumbnails = document.querySelectorAll('.product__thumbnails-list .product__thumbnail');
   const allMediaItems = document.querySelectorAll('.product__media-list .product__media');
-  allThumbnails.forEach((thumb, idx) => {
+  allThumbnails.forEach((thumb) => {
     thumb.addEventListener('click', () => {
       allThumbnails.forEach(t => t.classList.remove('is-active'));
       thumb.classList.add('is-active');
-      if (allMediaItems[idx]) {
-        allMediaItems[idx].scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'start' });
+      const visibleThumbs = [...document.querySelectorAll('.product__thumbnails-list .product__thumbnail')].filter(t => t.style.display !== 'none' && !t.classList.contains('hidden'));
+      const visibleMedia = [...document.querySelectorAll('.product__media-list .product__media')].filter(m => m.style.display !== 'none' && !m.classList.contains('hidden'));
+      const visibleIdx = visibleThumbs.indexOf(thumb);
+      if (visibleMedia[visibleIdx]) {
+        visibleMedia[visibleIdx].scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'start' });
       }
       if (typeof window.openMirooooLightbox === 'function') {
-        window.openMirooooLightbox(idx);
+        window.openMirooooLightbox(visibleIdx >= 0 ? visibleIdx : 0);
       }
     });
   });
 
-  allMediaItems.forEach((mediaItem, idx) => {
+  allMediaItems.forEach((mediaItem) => {
     mediaItem.style.cursor = 'zoom-in';
     mediaItem.addEventListener('click', (e) => {
       e.preventDefault();
+      const visibleMedia = [...document.querySelectorAll('.product__media-list .product__media')].filter(m => m.style.display !== 'none' && !m.classList.contains('hidden'));
+      const visibleIdx = visibleMedia.indexOf(mediaItem);
       if (typeof window.openMirooooLightbox === 'function') {
-        window.openMirooooLightbox(idx);
+        window.openMirooooLightbox(visibleIdx >= 0 ? visibleIdx : 0);
       }
     });
   });
+
+  // Load More Button handler
+  const loadMoreBtn = document.getElementById('miroooo-gallery-load-more-btn');
+  if (loadMoreBtn) {
+    loadMoreBtn.addEventListener('click', (e) => {
+      e.preventDefault();
+      isSilverGalleryExpanded = true;
+      updateGalleryVisibility('Silver');
+    });
+  }
 
   // Sticky Buy Bar scroll trigger (Muuhu style)
   const stickyCartWrap = document.getElementById('miroooo-sticky-cart');
@@ -6048,6 +6294,19 @@ document.addEventListener('DOMContentLoaded', () => {
       });
     });
   }
+
+  // Synchronize dynamic parallel sticky column heights
+  window.addEventListener('resize', syncStickyColumns, { passive: true });
+  window.addEventListener('load', syncStickyColumns);
+  document.querySelectorAll('details').forEach(d => {
+    d.addEventListener('toggle', () => {
+      syncStickyColumns();
+      setTimeout(syncStickyColumns, 50);
+      setTimeout(syncStickyColumns, 200);
+    });
+  });
+  syncStickyColumns();
+  setTimeout(syncStickyColumns, 200);
 });
 </script>
 

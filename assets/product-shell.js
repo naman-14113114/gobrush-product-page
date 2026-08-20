@@ -374,6 +374,7 @@
       const items = [];
       const mediaNodes = document.querySelectorAll(".product__media-list .product__media");
       mediaNodes.forEach((node) => {
+        if (node.style.display === "none" || node.classList.contains("hidden")) return;
         const video = node.querySelector("video");
         if (video || node.dataset.mediaType === "video" || node.classList.contains("product__media--video")) {
           const src = video ? (video.getAttribute("src") || video.currentSrc || video.src) : "";
