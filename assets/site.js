@@ -29,6 +29,7 @@
 
     const isOverlayHeader = Boolean(headerTarget.hasAttribute("data-overlay-header") || currentPage === "home");
     headerTarget.classList.toggle("header-layer--overlay", isOverlayHeader);
+    const logoBrandText = currentPage === "product-x" ? "MIROOOO X" : (currentPage === "product-x2" ? "MIROOOO X2" : "MIROOOO");
 
     headerTarget.innerHTML = `
       <div class="announcement" style="overflow: hidden; padding: 4px 0; min-height: 24px; background: #e6e6e6; border-bottom: 1px solid rgba(0, 0, 0, 0.08);">
@@ -133,7 +134,7 @@
           </div>
           <div class="site-header__center header__logo flex justify-center z-2" itemscope itemtype="http://schema.org/Organization">
             <a class="site-logo header__logo-link flex items-center relative" href="/" itemprop="url" style="text-decoration: none;" aria-label="Miroooo home">
-              <span style="font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif; font-size: clamp(1.3rem, 2vw, 1.6rem); font-weight: 800; letter-spacing: 0.2em; text-transform: uppercase; color: #ffffff;">MIROOOO</span>
+              <span style="font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif; font-size: clamp(1.3rem, 2vw, 1.6rem); font-weight: 800; letter-spacing: 0.2em; text-transform: uppercase; color: #ffffff;">${logoBrandText}</span>
             </a>
           </div>
           <div class="site-header__right site-actions header__icons header__icons--end flex justify-end items-center z-2">
@@ -176,6 +177,7 @@
   }
 
   function renderGlobalFooter() {
+    if (currentPage === "cart" || window.location.pathname.includes("/cart")) return;
     const footerTarget = document.querySelector("[data-site-footer]");
     if (!footerTarget) return;
 
@@ -259,13 +261,13 @@
               </p>
               <div class="site-footer__socials" aria-label="Social media links">
                 <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" class="site-footer__social-btn" aria-label="Facebook">
-                  <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
                 </a>
                 <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" class="site-footer__social-btn" aria-label="Instagram">
-                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
                 </a>
                 <a href="https://youtube.com" target="_blank" rel="noopener noreferrer" class="site-footer__social-btn" aria-label="YouTube">
-                  <svg width="19" height="19" viewBox="0 0 24 24" fill="currentColor"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 0 0-1.94 2A29 29 0 0 0 1 11.75a29 29 0 0 0 .46 5.33A2.78 2.78 0 0 0 3.4 19c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-2 29 29 0 0 0 .46-5.25 29 29 0 0 0-.46-5.33z"/><polygon points="9.75 15.02 15.5 11.75 9.75 8.48 9.75 15.02"/></svg>
                 </a>
               </div>
             </div>
