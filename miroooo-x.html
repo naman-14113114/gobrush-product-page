@@ -4253,12 +4253,168 @@ theme.variantStrings = {
       letter-spacing: 0.02em;
     }
 
-    @media (max-width: 900px) {
+    /* Mobile-specific Muuhu-style Comparison Layout (only active on phone view <768px) */
+    .miroooo-comp-mobile {
+      display: none;
+      width: 100%;
+      box-sizing: border-box;
+    }
+
+    @media (max-width: 767px) {
       .miroooo-comp-mobile-hint {
+        display: none !important;
+      }
+      .miroooo-comp-scroll-wrapper {
+        display: none !important;
+      }
+      .miroooo-comp-mobile {
+        display: block !important;
+      }
+
+      .miroooo-comp-m-table {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        position: relative;
+        box-sizing: border-box;
+      }
+
+      /* 4-column header */
+      .miroooo-comp-m-head-row {
+        display: flex;
+        align-items: flex-end;
+        width: 100%;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+        padding-bottom: 10px;
+        box-sizing: border-box;
+      }
+
+      .miroooo-comp-m-head-col {
+        flex: 1;
+        width: 25%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        padding: 6px 2px;
+        box-sizing: border-box;
+      }
+
+      .miroooo-comp-m-head-col--winner {
+        background: #ffffff;
+        color: #000000;
+        border-top-left-radius: 16px;
+        border-top-right-radius: 16px;
+        box-shadow: 0 4px 18px rgba(0, 0, 0, 0.35);
+        padding-top: 10px;
+        padding-bottom: 10px;
+      }
+
+      .miroooo-comp-m-brand-name {
+        font-family: var(--font-heading-family, 'Inter', -apple-system, sans-serif);
+        font-size: 0.72rem;
+        font-weight: 700;
+        color: #ffffff;
+        line-height: 1.2;
+        margin-bottom: 6px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        max-width: 100%;
+      }
+
+      .miroooo-comp-m-head-col--winner .miroooo-comp-m-brand-name {
+        color: #000000;
+        font-weight: 800;
+        font-size: 0.76rem;
+      }
+
+      .miroooo-comp-m-head-img {
+        height: 56px;
+        width: 100%;
+        object-fit: contain;
         display: block;
       }
-      .miroooo-comp-col--winner {
-        transform: none;
+
+      /* Feature rows */
+      .miroooo-comp-m-row-group {
+        display: flex;
+        flex-direction: column;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+        padding: 9px 0 7px 0;
+        box-sizing: border-box;
+      }
+
+      .miroooo-comp-m-row-group--last {
+        border-bottom: none;
+        padding-bottom: 0;
+      }
+
+      .miroooo-comp-m-feature-title {
+        font-family: var(--font-body-family, 'Inter', -apple-system, sans-serif);
+        font-size: 0.82rem;
+        font-weight: 600;
+        color: rgba(255, 255, 255, 0.95);
+        padding: 0 4px 4px 4px;
+        text-align: left;
+        line-height: 1.3;
+      }
+
+      .miroooo-comp-m-values-row {
+        display: flex;
+        align-items: stretch;
+        width: 100%;
+      }
+
+      .miroooo-comp-m-val-cell {
+        flex: 1;
+        width: 25%;
+        min-height: 40px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        font-family: var(--font-body-family, 'Inter', -apple-system, sans-serif);
+        font-size: 0.76rem;
+        font-weight: 600;
+        color: rgba(255, 255, 255, 0.65);
+        padding: 2px 2px;
+        box-sizing: border-box;
+      }
+
+      .miroooo-comp-m-val-cell--winner {
+        background: #ffffff;
+        color: #000000 !important;
+        font-weight: 700;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
+      }
+
+      .miroooo-comp-m-val-cell--winner-last {
+        border-bottom-left-radius: 16px;
+        border-bottom-right-radius: 16px;
+        padding-bottom: 12px;
+      }
+
+      .miroooo-comp-m-price-winner {
+        color: #15803d !important;
+        font-size: 1.05rem;
+        font-weight: 900;
+        line-height: 1.1;
+      }
+
+      .miroooo-comp-m-price-old {
+        font-size: 0.64rem;
+        color: #64748b;
+        font-weight: 700;
+        text-decoration: line-through;
+        display: block;
+        margin-top: 1px;
+      }
+
+      .miroooo-comp-m-price-competitor {
+        color: rgba(255, 255, 255, 0.85);
+        font-size: 0.86rem;
+        font-weight: 700;
       }
     }
   </style>
@@ -4447,6 +4603,199 @@ theme.variantStrings = {
 
       </div>
     </div>
+
+    <!-- Mobile Comparison View (All 4 in 1 Frame, No Horizontal Scroll - Muuhu Layout) -->
+    <div class="miroooo-comp-mobile">
+      <div class="miroooo-comp-m-table">
+        
+        <!-- 4-Col Header (Brand Logo/Name & Product Image) -->
+        <div class="miroooo-comp-m-head-row">
+          <div class="miroooo-comp-m-head-col miroooo-comp-m-head-col--winner">
+            <span class="miroooo-comp-m-brand-name">Miroooo X</span>
+            <img src="/assets_ref/x/compare-miroooo.webp" alt="Miroooo X" class="miroooo-comp-m-head-img" />
+          </div>
+          <div class="miroooo-comp-m-head-col">
+            <span class="miroooo-comp-m-brand-name">Oral-B iO6</span>
+            <img src="/assets_ref/x/compare-oralb.webp" alt="Oral-B iO6" class="miroooo-comp-m-head-img" style="filter: drop-shadow(0 4px 10px rgba(0,0,0,0.5));" />
+          </div>
+          <div class="miroooo-comp-m-head-col">
+            <span class="miroooo-comp-m-brand-name">Philips 9000</span>
+            <img src="/assets_ref/x/compare-philips.webp" alt="Philips Sonicare 9000" class="miroooo-comp-m-head-img" style="filter: drop-shadow(0 4px 10px rgba(0,0,0,0.5));" />
+          </div>
+          <div class="miroooo-comp-m-head-col">
+            <span class="miroooo-comp-m-brand-name">Suri 2.0</span>
+            <img src="/assets_ref/x/compare-suri.webp" alt="Suri 2.0" class="miroooo-comp-m-head-img" style="filter: drop-shadow(0 4px 10px rgba(0,0,0,0.5));" />
+          </div>
+        </div>
+
+        <!-- ROW 1: Ultra-Light Weight -->
+        <div class="miroooo-comp-m-row-group">
+          <div class="miroooo-comp-m-feature-title">Ultra-Light Weight</div>
+          <div class="miroooo-comp-m-values-row">
+            <div class="miroooo-comp-m-val-cell miroooo-comp-m-val-cell--winner">
+              <svg width="18" height="18" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="10" fill="#22c55e"/><path d="M6 10.2L8.6 12.8L14.2 7.2" stroke="#ffffff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </div>
+            <div class="miroooo-comp-m-val-cell">
+              <svg width="18" height="18" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="10" fill="#ef4444"/><path d="M7 7L13 13M13 7L7 13" stroke="#ffffff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </div>
+            <div class="miroooo-comp-m-val-cell">
+              <svg width="18" height="18" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="10" fill="#ef4444"/><path d="M7 7L13 13M13 7L7 13" stroke="#ffffff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </div>
+            <div class="miroooo-comp-m-val-cell">
+              <svg width="18" height="18" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="10" fill="#ef4444"/><path d="M7 7L13 13M13 7L7 13" stroke="#ffffff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </div>
+          </div>
+        </div>
+
+        <!-- ROW 2: Battery Life -->
+        <div class="miroooo-comp-m-row-group">
+          <div class="miroooo-comp-m-feature-title">Battery Life</div>
+          <div class="miroooo-comp-m-values-row">
+            <div class="miroooo-comp-m-val-cell miroooo-comp-m-val-cell--winner" style="font-weight: 800; font-size: 0.82rem;">60 Days</div>
+            <div class="miroooo-comp-m-val-cell">14 Days</div>
+            <div class="miroooo-comp-m-val-cell">14 Days</div>
+            <div class="miroooo-comp-m-val-cell">35 Days</div>
+          </div>
+        </div>
+
+        <!-- ROW 3: Free Travel Case -->
+        <div class="miroooo-comp-m-row-group">
+          <div class="miroooo-comp-m-feature-title">Free Travel Case</div>
+          <div class="miroooo-comp-m-values-row">
+            <div class="miroooo-comp-m-val-cell miroooo-comp-m-val-cell--winner">
+              <svg width="18" height="18" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="10" fill="#22c55e"/><path d="M6 10.2L8.6 12.8L14.2 7.2" stroke="#ffffff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </div>
+            <div class="miroooo-comp-m-val-cell">
+              <svg width="18" height="18" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="10" fill="#ef4444"/><path d="M7 7L13 13M13 7L7 13" stroke="#ffffff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </div>
+            <div class="miroooo-comp-m-val-cell">
+              <svg width="18" height="18" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="10" fill="#ef4444"/><path d="M7 7L13 13M13 7L7 13" stroke="#ffffff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </div>
+            <div class="miroooo-comp-m-val-cell">
+              <svg width="18" height="18" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="10" fill="#ef4444"/><path d="M7 7L13 13M13 7L7 13" stroke="#ffffff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </div>
+          </div>
+        </div>
+
+        <!-- ROW 4: Aluminium Alloy Body -->
+        <div class="miroooo-comp-m-row-group">
+          <div class="miroooo-comp-m-feature-title">Aluminium Alloy Body</div>
+          <div class="miroooo-comp-m-values-row">
+            <div class="miroooo-comp-m-val-cell miroooo-comp-m-val-cell--winner">
+              <svg width="18" height="18" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="10" fill="#22c55e"/><path d="M6 10.2L8.6 12.8L14.2 7.2" stroke="#ffffff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </div>
+            <div class="miroooo-comp-m-val-cell">
+              <svg width="18" height="18" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="10" fill="#ef4444"/><path d="M7 7L13 13M13 7L7 13" stroke="#ffffff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </div>
+            <div class="miroooo-comp-m-val-cell">
+              <svg width="18" height="18" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="10" fill="#ef4444"/><path d="M7 7L13 13M13 7L7 13" stroke="#ffffff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </div>
+            <div class="miroooo-comp-m-val-cell">
+              <svg width="18" height="18" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="10" fill="#22c55e"/><path d="M6 10.2L8.6 12.8L14.2 7.2" stroke="#ffffff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </div>
+          </div>
+        </div>
+
+        <!-- ROW 5: 2x Free Brush Heads -->
+        <div class="miroooo-comp-m-row-group">
+          <div class="miroooo-comp-m-feature-title">2x Free Brush Heads</div>
+          <div class="miroooo-comp-m-values-row">
+            <div class="miroooo-comp-m-val-cell miroooo-comp-m-val-cell--winner">
+              <svg width="18" height="18" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="10" fill="#22c55e"/><path d="M6 10.2L8.6 12.8L14.2 7.2" stroke="#ffffff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </div>
+            <div class="miroooo-comp-m-val-cell">
+              <svg width="18" height="18" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="10" fill="#ef4444"/><path d="M7 7L13 13M13 7L7 13" stroke="#ffffff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </div>
+            <div class="miroooo-comp-m-val-cell">
+              <svg width="18" height="18" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="10" fill="#ef4444"/><path d="M7 7L13 13M13 7L7 13" stroke="#ffffff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </div>
+            <div class="miroooo-comp-m-val-cell">
+              <svg width="18" height="18" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="10" fill="#ef4444"/><path d="M7 7L13 13M13 7L7 13" stroke="#ffffff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </div>
+          </div>
+        </div>
+
+        <!-- ROW 6: Whisper Quiet (<50 dB) -->
+        <div class="miroooo-comp-m-row-group">
+          <div class="miroooo-comp-m-feature-title">Whisper Quiet (&lt;50 dB)</div>
+          <div class="miroooo-comp-m-values-row">
+            <div class="miroooo-comp-m-val-cell miroooo-comp-m-val-cell--winner">
+              <svg width="18" height="18" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="10" fill="#22c55e"/><path d="M6 10.2L8.6 12.8L14.2 7.2" stroke="#ffffff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </div>
+            <div class="miroooo-comp-m-val-cell">
+              <svg width="18" height="18" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="10" fill="#ef4444"/><path d="M7 7L13 13M13 7L7 13" stroke="#ffffff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </div>
+            <div class="miroooo-comp-m-val-cell">
+              <svg width="18" height="18" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="10" fill="#ef4444"/><path d="M7 7L13 13M13 7L7 13" stroke="#ffffff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </div>
+            <div class="miroooo-comp-m-val-cell">
+              <svg width="18" height="18" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="10" fill="#ef4444"/><path d="M7 7L13 13M13 7L7 13" stroke="#ffffff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </div>
+          </div>
+        </div>
+
+        <!-- ROW 7: 90-Day Risk-Free Trial -->
+        <div class="miroooo-comp-m-row-group">
+          <div class="miroooo-comp-m-feature-title">90-Day Risk-Free Trial</div>
+          <div class="miroooo-comp-m-values-row">
+            <div class="miroooo-comp-m-val-cell miroooo-comp-m-val-cell--winner">
+              <svg width="18" height="18" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="10" fill="#22c55e"/><path d="M6 10.2L8.6 12.8L14.2 7.2" stroke="#ffffff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </div>
+            <div class="miroooo-comp-m-val-cell">
+              <svg width="18" height="18" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="10" fill="#ef4444"/><path d="M7 7L13 13M13 7L7 13" stroke="#ffffff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </div>
+            <div class="miroooo-comp-m-val-cell">
+              <svg width="18" height="18" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="10" fill="#ef4444"/><path d="M7 7L13 13M13 7L7 13" stroke="#ffffff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </div>
+            <div class="miroooo-comp-m-val-cell">
+              <svg width="18" height="18" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="10" fill="#ef4444"/><path d="M7 7L13 13M13 7L7 13" stroke="#ffffff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </div>
+          </div>
+        </div>
+
+        <!-- ROW 8: Free Tracked Delivery -->
+        <div class="miroooo-comp-m-row-group">
+          <div class="miroooo-comp-m-feature-title">Free Tracked Delivery</div>
+          <div class="miroooo-comp-m-values-row">
+            <div class="miroooo-comp-m-val-cell miroooo-comp-m-val-cell--winner">
+              <svg width="18" height="18" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="10" fill="#22c55e"/><path d="M6 10.2L8.6 12.8L14.2 7.2" stroke="#ffffff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </div>
+            <div class="miroooo-comp-m-val-cell">
+              <svg width="18" height="18" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="10" fill="#ef4444"/><path d="M7 7L13 13M13 7L7 13" stroke="#ffffff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </div>
+            <div class="miroooo-comp-m-val-cell">
+              <svg width="18" height="18" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="10" fill="#ef4444"/><path d="M7 7L13 13M13 7L7 13" stroke="#ffffff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </div>
+            <div class="miroooo-comp-m-val-cell">
+              <svg width="18" height="18" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="10" fill="#ef4444"/><path d="M7 7L13 13M13 7L7 13" stroke="#ffffff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </div>
+          </div>
+        </div>
+
+        <!-- ROW 9: Price -->
+        <div class="miroooo-comp-m-row-group miroooo-comp-m-row-group--last">
+          <div class="miroooo-comp-m-feature-title">Price</div>
+          <div class="miroooo-comp-m-values-row">
+            <div class="miroooo-comp-m-val-cell miroooo-comp-m-val-cell--winner miroooo-comp-m-val-cell--winner-last">
+              <div>
+                <div class="miroooo-comp-m-price-winner">£59</div>
+                <span class="miroooo-comp-m-price-old">£119</span>
+              </div>
+            </div>
+            <div class="miroooo-comp-m-val-cell">
+              <span class="miroooo-comp-m-price-competitor">£149</span>
+            </div>
+            <div class="miroooo-comp-m-val-cell">
+              <span class="miroooo-comp-m-price-competitor">£219</span>
+            </div>
+            <div class="miroooo-comp-m-val-cell">
+              <span class="miroooo-comp-m-price-competitor">£95</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
   </div>
 </div>
 
@@ -4598,10 +4947,10 @@ theme.variantStrings = {
   </div>
 </div>
 
-</div><div id="shopify-section-template--24203751129433__image-with-text-1" class="shopify-section" style="background: #000000; color: #ffffff; padding: clamp(3rem, 5vw, 5rem) 0; box-sizing: border-box;"><style>
+</div><div id="shopify-section-template--24203751129433__image-with-text-1" class="shopify-section" style="background: #000000; color: #ffffff; padding: 0; box-sizing: border-box;"><style>
   #shopify-section-template--24203751129433__image-with-text-1 {
-    --section-padding-top: 12px;
-    --section-padding-bottom: 72px;
+    --section-padding-top: 0px !important;
+    --section-padding-bottom: 0px !important;
     --color-background: 0 0 0;
     --color-background-2: 0 0 0;
     --color-foreground: 255 255 255;
@@ -4617,7 +4966,7 @@ theme.variantStrings = {
     }
   </style>
 
-<div class="section section--padding" style="background: #000000;">
+<div class="section section--padding" style="background: #000000; padding-top: 0 !important; padding-bottom: 0 !important;">
   <div class="page-width relative"><div class="image-with-text lg:flex lg:gap-8 lg:flex-row" style="background: #000000; border-radius: 0;">
       <div class="image-with-text__item grow shrink-0 relative">
         <div class="image-with-text__media h-full">
@@ -4760,7 +5109,7 @@ theme.variantStrings = {
   }
 </style>
 
-<div id="shopify-section-template--24203751129433__faq" class="shopify-section" style="background: #000000; color: #ffffff; width: 100%; overflow: hidden; padding: clamp(4.5rem, 7vw, 7.5rem) 0; box-sizing: border-box; border-top: 1px solid rgba(255,255,255,0.08);">
+<div id="shopify-section-template--24203751129433__faq" class="shopify-section" style="background: #000000; color: #ffffff; width: 100%; overflow: hidden; padding: clamp(24px, 4vw, 48px) 0 clamp(3rem, 5vw, 4.5rem) 0; box-sizing: border-box; border-top: 1px solid rgba(255,255,255,0.08);">
   <div style="max-width: 1320px; margin: 0 auto; padding: 0 clamp(16px, 4vw, 40px); box-sizing: border-box; width: 100%;">
 
     <!-- Title -->
