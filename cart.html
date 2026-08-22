@@ -623,6 +623,35 @@
       transform: none !important;
       box-shadow: 0 4px 24px rgba(255, 255, 255, 0.15) !important;
       transition: border-color 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s cubic-bezier(0.16, 1, 0.3, 1) !important;
+      animation: checkoutAmbientGlow 3s ease-in-out infinite !important;
+    }
+
+    @keyframes luxuryCheckoutShimmer {
+      0% {
+        transform: skewX(-25deg) translateX(-180%);
+        opacity: 0;
+      }
+      15% {
+        opacity: 1;
+      }
+      50% {
+        opacity: 1;
+      }
+      65%, 100% {
+        transform: skewX(-25deg) translateX(280%);
+        opacity: 0;
+      }
+    }
+
+    @keyframes checkoutAmbientGlow {
+      0%, 100% {
+        box-shadow: 0 0 15px rgba(255, 255, 255, 0.45), 0 0 35px rgba(255, 255, 255, 0.2), 0 4px 15px rgba(0, 0, 0, 0.5) !important;
+        transform: scale(1);
+      }
+      50% {
+        box-shadow: 0 0 28px rgba(255, 255, 255, 0.95), 0 0 60px rgba(255, 255, 255, 0.5), 0 8px 25px rgba(0, 0, 0, 0.6) !important;
+        transform: scale(1.018);
+      }
     }
 
     .cart-checkout-cta-btn::after {
@@ -632,9 +661,18 @@
       left: 0 !important;
       width: 100% !important;
       height: 100% !important;
-      background: linear-gradient(90deg, transparent calc(50% - 70px), rgba(0, 0, 0, 0.16) 50%, transparent calc(50% + 35px)) !important;
-      transform: skewX(-30deg) translateX(-150%) !important;
-      animation: proxy-bundle-shine 4s infinite ease-in-out !important;
+      background: linear-gradient(
+        90deg,
+        transparent 0%,
+        rgba(0, 0, 0, 0.04) 20%,
+        rgba(0, 0, 0, 0.22) 48%,
+        rgba(255, 255, 255, 0.95) 50%,
+        rgba(0, 0, 0, 0.22) 52%,
+        rgba(0, 0, 0, 0.04) 80%,
+        transparent 100%
+      ) !important;
+      transform: skewX(-25deg) translateX(-180%) !important;
+      animation: luxuryCheckoutShimmer 3s cubic-bezier(0.4, 0, 0.2, 1) infinite !important;
       z-index: 3 !important;
       pointer-events: none !important;
     }

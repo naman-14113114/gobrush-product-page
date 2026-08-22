@@ -355,24 +355,13 @@
     document.body.classList.remove("overflow-hidden", "cart-drawer-open");
   };
 
-  const cartDrawer = document.getElementById("CartDrawer");
-  if (cartDrawer && !cartDrawer.querySelector(".miroooo-cart-close")) {
-    const safeClose = document.createElement("button");
-    safeClose.type = "button";
-    safeClose.className = "miroooo-cart-close";
-    safeClose.setAttribute("aria-label", "Close cart");
-    safeClose.textContent = "×";
-    safeClose.addEventListener("click", closeCartDrawer);
-    cartDrawer.append(safeClose);
-  }
-
   document.addEventListener("click", (event) => {
-    const closeControl = event.target.closest?.("#CartDrawer .drawer__close, #CartDrawer overlay-element, #CartDrawer .miroooo-cart-close, #CartDrawer .miroooo-cart-close-btn, #CartDrawer .miroooo-cart-backdrop");
+    const closeControl = event.target.closest?.("#CartDrawer .drawer__close, #CartDrawer overlay-element, #CartDrawer .miroooo-cart-close-btn, #CartDrawer .miroooo-cart-backdrop");
     if (!closeControl) return;
     event.preventDefault();
     setTimeout(closeCartDrawer, 0);
   }, true);
-  document.querySelectorAll("#CartDrawer .drawer__close, #CartDrawer overlay-element, #CartDrawer .miroooo-cart-close, #CartDrawer .miroooo-cart-close-btn, #CartDrawer .miroooo-cart-backdrop").forEach((control) => {
+  document.querySelectorAll("#CartDrawer .drawer__close, #CartDrawer overlay-element, #CartDrawer .miroooo-cart-close-btn, #CartDrawer .miroooo-cart-backdrop").forEach((control) => {
     control.addEventListener("click", () => {
       setTimeout(closeCartDrawer, 0);
     }, true);

@@ -1610,71 +1610,7 @@ theme.variantStrings = {
 
 </div>
 <!-- END sections: header-group --><!-- BEGIN sections: overlay-group -->
-<div id="shopify-section-sections--24203577033049__cart-drawer" class="shopify-section shopify-section-group-overlay-group"><script src="https://cdn.shopify.com/s/files/1/0810/6023/3561/shop/t/6/assets/cart.js?v=144875933649825162081733490075" defer></script><cart-drawer id="CartDrawer" class="cart-drawer drawer drawer--end z-30 fixed bottom-0 left-0 h-full w-full pointer-events-none"
-    role="dialog"
-    aria-modal="true"
-    aria-label="Cart"
-    data-section-id="sections--24203577033049__cart-drawer"
-    shopify-design-mode
-    hidden
-  >
-    <overlay-element class="overlay fixed-modal invisible opacity-0 fixed bottom-0 left-0 w-full h-screen pointer-events-none" aria-controls="CartDrawer" aria-expanded="false"></overlay-element>
-    <div class="drawer__inner z-10 absolute top-0 flex flex-col w-full h-full overflow-hidden">
-      <gesture-element class="drawer__header flex justify-between opacity-0 invisible relative">
-        <ul class="drawer__tabs flex gap-10" is="tab-list">
-          <li>
-            <button class="drawer__tab relative" type="button" aria-controls="MiniCart-sections--24203577033049__cart-drawer" aria-expanded="true">
-              <span class="drawer__title heading lg:text-3xl text-2xl leading-none tracking-tight">Cart</span>
-              <cart-count class="count absolute font-medium text-xs lg:text-sm leading-none" aria-label="0 items" hidden>0</cart-count>
-            </button>
-          </li></ul>
-        <button class="button button--secondary button--close drawer__close hidden sm:flex items-center justify-center" type="button" aria-controls="CartDrawer" aria-expanded="false" aria-label="Close" onclick="return closeProductCart(event)">
-          <span class="btn-fill" data-fill></span>
-          <span class="btn-text"><svg class="icon icon-close icon-sm" viewBox="0 0 20 20" stroke="currentColor" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <path stroke-linecap="round" stroke-linejoin="round" d="M5 15L15 5M5 5L15 15"></path>
-    </svg></span>
-        </button>
-      </gesture-element>
-
-      <div class="drawer__content opacity-0 invisible flex flex-col h-full grow shrink">
-        <details id="MiniCart-sections--24203577033049__cart-drawer" class="drawer__panel opacity-0 flex overflow-hidden" open>
-          <summary class="sr-only" tabindex="-1">Cart</summary>
-          <div class="flex flex-col h-full"><div class="drawer__scrollable relative flex justify-center items-start grow shrink text-center">
-                <div class="drawer__empty grid gap-5 md:gap-8">
-                  <h2 class="drawer__empty-text heading leading-none tracking-tight">Your shopping bag is currently empty.</h2>
-                  <div class="drawer__empty-message text-sm md:text-base leading-tight rte"><p>Explore our collection</p></div>
-                  <ul class="drawer__empty-collections grid gap-3"><li>
-                          <a class="flex items-center justify-between" href="/shop">
-                            <span class="flex items-center gap-3">All Products</span><svg class="icon icon-arrow-right icon-sm transform" viewBox="0 0 21 20" stroke="currentColor" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <path stroke-linecap="round" stroke-linejoin="round" d="M3 10H18M18 10L12.1667 4.16675M18 10L12.1667 15.8334"></path>
-    </svg></a>
-                        </li></ul>
-                </div>
-              </div><div class="drawer__scrollable relative flex flex-col gap-9 grow shrink hidden"><div class="free-shipping-bar grid gap-3 w-full"><span class="text-sm leading-tight">Spend another <span class="font-bold">£99,00</span> to unlock FREE shipping!</span>
-    <progress-bar class="overflow-hidden rounded-full" style="--progress: 0%;"></progress-bar></div>
-<cart-items class="block grow" data-section-id="sections--24203577033049__cart-drawer">
-                <ul class="horizontal-products grid" role="list"></ul>
-              </cart-items></div>
-            <div class="drawer__footer grid w-full hidden"><div class="drawer__footer-bottom grid gap-6">
-                <div class="grid gap-4 sm:grid-6"><div class="grid grid-cols-2 gap-4">
-                    <div class="tax-note text-sm sm:text-base rte">Free tracked UK delivery. Transit is usually 3–10 business days after dispatch.</div>
-                    <div class="totals grid place-self-end gap-1">
-                      <span class="totals__subtotal text-sm sm:text-base">Subtotal</span>
-                      <div class="totals__subtotal-value text-lg-2xl font-bold leading-none tracking-tight">£0.00 GBP</div>
-                    </div>
-                  </div>
-                </div><form action="/cart" method="POST" novalidate class="drawer__footer-buttons grid grid-cols-12 gap-4"><button class="button button--primary icon-with-text col-span-full" type="submit" name="checkout" is="hover-button">
-                        <span class="btn-fill" data-fill></span>
-                        <span class="btn-text"><svg class="icon icon-lock icon-sm hidden sm:block" viewBox="0 0 20 20" stroke="currentColor" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <path stroke-linecap="round" d="M5.83333 6.66675V5.83341C5.83333 4.74781 5.83333 4.205 5.97218 3.76463C6.26651 2.83114 6.99772 2.09993 7.93122 1.8056C8.37159 1.66675 8.91439 1.66675 10 1.66675V1.66675C11.0856 1.66675 11.6284 1.66675 12.0688 1.8056C13.0023 2.09993 13.7335 2.83114 14.0278 3.76463C14.1667 4.205 14.1667 4.74781 14.1667 5.83341V6.66675M10 11.6667V13.3334M8.33333 18.3334H11.6667C13.3741 18.3334 14.2278 18.3334 14.909 18.077C15.9871 17.6713 16.8379 16.8205 17.2436 15.7424C17.5 15.0612 17.5 14.2075 17.5 12.5001V12.5001C17.5 10.7926 17.5 9.93892 17.2436 9.25775C16.8379 8.17969 15.9871 7.32888 14.909 6.92312C14.2278 6.66675 13.3741 6.66675 11.6667 6.66675H8.33333C6.62589 6.66675 5.77218 6.66675 5.091 6.92312C4.01294 7.32888 3.16213 8.17969 2.75638 9.25775C2.5 9.93892 2.5 10.7926 2.5 12.5001V12.5001C2.5 14.2075 2.5 15.0612 2.75638 15.7424C3.16213 16.8205 4.01294 17.6713 5.091 18.077C5.77218 18.3334 6.62589 18.3334 8.33333 18.3334Z"></path>
-    </svg>Proceed to Checkout</span>
-                      </button></form></div>
-            </div>
-          </div>
-        </details></div>
-    </div>
-  </cart-drawer>
-</div><div id="shopify-section-sections--24203577033049__search-drawer" class="shopify-section shopify-section-group-overlay-group">
+<div id="shopify-section-sections--24203577033049__cart-drawer" class="shopify-section shopify-section-group-overlay-group"></div><div id="shopify-section-sections--24203577033049__search-drawer" class="shopify-section shopify-section-group-overlay-group">
 </div><div id="shopify-section-sections--24203577033049__cookie-banner" class="shopify-section shopify-section-group-overlay-group"><style>
   #shopify-section-sections--24203577033049__cookie-banner {
     --color-drawer-text: 23 23 23;
@@ -3999,25 +3935,12 @@ function selectColorVariant(colorName) {
 }
 
 function closeProductCart(event) {
-  if (event) {
+  if (event && event.preventDefault) {
     event.preventDefault();
-    event.stopPropagation();
-    event.stopImmediatePropagation();
   }
-  const cartDrawer = document.getElementById('CartDrawer');
-  if (!cartDrawer) return false;
-  cartDrawer.removeAttribute('open');
-  cartDrawer.classList.remove('active', 'pointer-events-auto');
-  cartDrawer.classList.add('pointer-events-none');
-  cartDrawer.setAttribute('aria-hidden', 'true');
-  const inner = cartDrawer.querySelector('.drawer__inner');
-  if (inner) inner.style.transform = 'translateX(100%)';
-  const overlay = cartDrawer.querySelector('overlay-element');
-  if (overlay) {
-    overlay.classList.add('invisible', 'opacity-0', 'pointer-events-none');
-    overlay.classList.remove('visible', 'opacity-100', 'pointer-events-auto');
+  if (window.MirooooCart) {
+    window.MirooooCart.closeCart();
   }
-  document.body.classList.remove('overflow-hidden');
   return false;
 }
 
@@ -4036,288 +3959,18 @@ function handleAddToCartAndRedirect() {
     localStorage.removeItem('miroooo_cart_empty');
   } catch (e) {}
 
+  if (window.MirooooCart) {
+    window.MirooooCart.updateHeaderBadges();
+  }
+
   const targetCartUrl = window.location.pathname.endsWith('.html') ? '/cart.html' : '/cart';
   window.location.href = targetCartUrl;
 }
 
 function openProductCartDrawer() {
-  let savedCart = null;
-  try {
-    const stored = localStorage.getItem('miroooo_cart');
-    if (stored && localStorage.getItem('miroooo_cart_empty') !== 'true') {
-      savedCart = JSON.parse(stored);
-    }
-  } catch (e) {}
-
-  const tierId = savedCart ? (savedCart.quantity === 3 ? 'bundle-3' : savedCart.quantity === 2 ? 'bundle-2' : 'single') : activeTierId;
-  const tier = TIERS[tierId] || TIERS[activeTierId] || TIERS['bundle-2'];
-  const choices = (savedCart && Array.isArray(savedCart.colors) && savedCart.colors.length > 0)
-    ? savedCart.colors.slice(0, tier.count)
-    : ((choicesState[tierId] && choicesState[tierId].length > 0) ? choicesState[tierId].slice(0, tier.count) : ['Grey', 'Pink']);
-
-  const cartDrawer = document.getElementById('CartDrawer');
-  if (!cartDrawer) return;
-  cartDrawer.removeAttribute('hidden');
-  cartDrawer.setAttribute('aria-hidden', 'false');
-  cartDrawer.classList.remove('pointer-events-none');
-  cartDrawer.classList.add('pointer-events-auto');
-
-  const drawerInner = cartDrawer.querySelector('.drawer__inner');
-  if (drawerInner) drawerInner.style.transform = 'translateX(0)';
-
-  const drawerOverlay = cartDrawer.querySelector('overlay-element');
-  if (drawerOverlay) {
-    drawerOverlay.classList.remove('invisible', 'opacity-0', 'pointer-events-none');
-    drawerOverlay.classList.add('visible', 'opacity-100', 'pointer-events-auto');
+  if (window.MirooooCart) {
+    window.MirooooCart.openCart();
   }
-
-  const emptySection = cartDrawer.querySelector('.drawer__scrollable.text-center');
-  const scrollableSection = cartDrawer.querySelector('.drawer__scrollable.hidden, .drawer__scrollable:not(.text-center)');
-  const footerSection = cartDrawer.querySelector('.drawer__footer');
-  const headerSection = cartDrawer.querySelector('.drawer__header');
-  const contentSection = cartDrawer.querySelector('.drawer__content');
-  const panelSection = cartDrawer.querySelector('.drawer__panel');
-
-  if (emptySection) emptySection.classList.add('hidden');
-  if (scrollableSection) scrollableSection.classList.remove('hidden');
-  if (footerSection) footerSection.classList.remove('hidden');
-  if (headerSection) {
-    headerSection.classList.remove('opacity-0', 'invisible');
-    headerSection.classList.add('opacity-100', 'visible');
-  }
-  if (contentSection) {
-    contentSection.classList.remove('opacity-0', 'invisible');
-    contentSection.classList.add('opacity-100', 'visible');
-  }
-  if (panelSection) {
-    panelSection.classList.remove('opacity-0');
-    panelSection.classList.add('opacity-100');
-  }
-
-  // Update Cart Count
-  const cartCount = cartDrawer.querySelector('cart-count');
-  if (cartCount) {
-    cartCount.removeAttribute('hidden');
-    cartCount.textContent = String(tier.count);
-  }
-
-  // Populate Items
-  const itemsList = cartDrawer.querySelector('.horizontal-products');
-  if (itemsList) {
-    let itemsHTML = '';
-
-    // Add Toothbrushes
-    choices.forEach((color) => {
-      const colorData = VARIANTS_DATA[color] || VARIANTS_DATA['Grey'];
-      const unitPriceDisplay = tier.count > 1 ? `£${Math.round(tier.price / tier.count)}.00` : tier.priceDisplay;
-      itemsHTML += `
-        <li class="horizontal-product flex gap-4 py-4 border-b border-neutral-100 items-center">
-          <div class="media media--adapt rounded-lg overflow-hidden flex-shrink-0" style="width: 70px; height: 70px;">
-            <img src="${colorData.images[0]}" alt="${colorData.title}" class="w-full h-full object-cover" />
-          </div>
-          <div class="flex-1 min-w-0">
-            <h4 class="font-bold text-sm text-white leading-tight">Miroooo X2 - ${color}</h4>
-            <p class="text-xs text-neutral-500 mt-0.5">Sonic Electric Toothbrush</p>
-            <div class="mt-1 font-bold text-sm text-white">${unitPriceDisplay}</div>
-          </div>
-        </li>
-      `;
-    });
-
-    // Add Free Gifts
-    // Gift 1 (Travel Case)
-    itemsHTML += `
-      <li class="horizontal-product flex gap-4 py-3 border-b border-neutral-100 items-center bg-neutral-50/50 p-2 rounded-lg mt-1">
-        <div class="media media--adapt rounded-lg overflow-hidden flex-shrink-0" style="width: 55px; height: 55px;">
-          <img src="https://cdn.shopify.com/s/files/1/0810/6023/3561/files/Grey-color-5.jpg?v=1734444578" alt="Luxury Travel Case" class="w-full h-full object-cover" />
-        </div>
-        <div class="flex-1 min-w-0">
-          <div class="flex items-center gap-1.5">
-            <h4 class="font-bold text-xs sm:text-sm text-white leading-tight">Luxury Travel Case</h4>
-            <span class="bg-neutral-900 text-white text-[9px] font-extrabold uppercase px-1.5 py-0.5 rounded">FREE GIFT</span>
-          </div>
-          <p class="text-[11px] text-neutral-500 mt-0.5">Protect &amp; travel in style</p>
-          <div class="mt-0.5 text-xs"><span class="font-bold text-white">£0.00</span> <span class="line-through text-neutral-400 ml-1">£15.95</span></div>
-        </div>
-      </li>
-    `;
-
-    // Gift 2 (Brush Heads if Buy 2+)
-    if (tier.unlockedGifts >= 2) {
-      itemsHTML += `
-        <li class="horizontal-product flex gap-4 py-3 border-b border-neutral-100 items-center bg-neutral-50/50 p-2 rounded-lg mt-1">
-          <div class="media media--adapt rounded-lg overflow-hidden flex-shrink-0" style="width: 55px; height: 55px;">
-            <img src="https://cdn.shopify.com/s/files/1/0810/6023/3561/files/Grey-color-4.jpg?v=1734444578" alt="2x Replacement Brush Heads" class="w-full h-full object-cover" />
-          </div>
-          <div class="flex-1 min-w-0">
-            <div class="flex items-center gap-1.5">
-              <h4 class="font-bold text-xs sm:text-sm text-white leading-tight">2x Extra Brush Heads</h4>
-              <span class="bg-neutral-900 text-white text-[9px] font-extrabold uppercase px-1.5 py-0.5 rounded">FREE GIFT</span>
-            </div>
-            <p class="text-[11px] text-neutral-500 mt-0.5">Ultra-soft DuPont bristles</p>
-            <div class="mt-0.5 text-xs"><span class="font-bold text-white">£0.00</span> <span class="line-through text-neutral-400 ml-1">£19.95</span></div>
-          </div>
-        </li>
-      `;
-    }
-
-    // Gift 3 (Charging Dock if Buy 3)
-    if (tier.unlockedGifts >= 3) {
-      itemsHTML += `
-        <li class="horizontal-product flex gap-4 py-3 border-b border-neutral-100 items-center bg-neutral-50/50 p-2 rounded-lg mt-1">
-          <div class="media media--adapt rounded-lg overflow-hidden flex-shrink-0" style="width: 55px; height: 55px;">
-            <img src="https://cdn.shopify.com/s/files/1/0810/6023/3561/files/Grey-color-7.jpg?v=1734444578" alt="Magnetic Charging Dock" class="w-full h-full object-cover" />
-          </div>
-          <div class="flex-1 min-w-0">
-            <div class="flex items-center gap-1.5">
-              <h4 class="font-bold text-xs sm:text-sm text-white leading-tight">Magnetic Charging Dock</h4>
-              <span class="bg-neutral-900 text-white text-[9px] font-extrabold uppercase px-1.5 py-0.5 rounded">FREE GIFT</span>
-            </div>
-            <p class="text-[11px] text-neutral-500 mt-0.5">Fast wireless induction dock</p>
-            <div class="mt-0.5 text-xs"><span class="font-bold text-white">£0.00</span> <span class="line-through text-neutral-400 ml-1">£24.95</span></div>
-          </div>
-        </li>
-      `;
-    }
-
-    itemsList.innerHTML = itemsHTML;
-  }
-
-  // Update Free Shipping Bar
-  const shippingBarText = cartDrawer.querySelector('.free-shipping-bar span');
-  if (shippingBarText) {
-    shippingBarText.innerHTML = '<span class="font-bold">🎉 Congratulations!</span> You unlocked <span class="font-bold">FREE Shipping!</span>';
-  }
-  const progressBar = cartDrawer.querySelector('.free-shipping-bar progress-bar');
-  if (progressBar) {
-    progressBar.style.setProperty('--progress', '100%');
-  }
-
-  // Update Subtotal Value
-  const subtotalVal = cartDrawer.querySelector('.totals__subtotal-value');
-  if (subtotalVal) {
-    subtotalVal.textContent = `${tier.priceDisplay} GBP`;
-  }
-
-  // PlusBase Direct Checkout Redirection
-  const checkoutForm = cartDrawer.querySelector('.drawer__footer-buttons');
-  if (checkoutForm) {
-    checkoutForm.onsubmit = async (e) => {
-      e.preventDefault();
-      const submitBtn = checkoutForm.querySelector('button[type="submit"]');
-      if (submitBtn) {
-        submitBtn.disabled = true;
-        let loader = submitBtn.querySelector('.miroooo-button-click-loader');
-        if (!loader) {
-          loader = document.createElement('span');
-          loader.className = 'miroooo-button-click-loader buudy-button-click-loader miroooo-button-click-loader--light-dots';
-          loader.innerHTML = `
-            <span class="miroooo-button-click-loader-dots buudy-button-click-loader-dots">
-              <span></span><span></span><span></span><span></span><span></span>
-            </span>
-          `;
-          submitBtn.appendChild(loader);
-        }
-      }
-      const productId = '1000000664011618';
-      const count = tier.count || 1;
-      const selectedColors = Array.isArray(choices) && choices.length > 0 ? choices.slice(0, count) : ['Grey'];
-      while (selectedColors.length < count) {
-        selectedColors.push(selectedColors[0] || 'Grey');
-      }
-
-      const items = selectedColors.map(color => {
-        const variantObj = VARIANTS_DATA[color] || VARIANTS_DATA['Grey'] || VARIANTS_DATA['Gray'] || VARIANTS_DATA['Pink'] || VARIANTS_DATA['Silver'];
-        return {
-          productId: productId,
-          variantId: variantObj ? variantObj.variantId : '1000020348810048',
-          quantity: 1
-        };
-      });
-
-      // Preserve UTMs
-      const allowed = ['utm_source', 'utm_medium', 'utm_campaign', 'utm_term', 'utm_content', 'msclkid', 'gclid', 'fbclid', 'source'];
-      let attribution = {};
-      try {
-        attribution = JSON.parse(sessionStorage.getItem('miroooo_attribution') || localStorage.getItem('miroooo_attribution') || '{}');
-      } catch (_) {}
-      const query = new URLSearchParams(window.location.search);
-      allowed.forEach(k => {
-        const val = query.get(k) || attribution[k];
-        if (val) attribution[k] = val;
-      });
-
-      try {
-        const prepRes = await fetch('/api/checkout/prepare', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({
-            items: items,
-            discountCode: localStorage.getItem('miroooo_promo_code') || '',
-            attribution: attribution
-          })
-        });
-        if (prepRes.ok) {
-          const data = await prepRes.json();
-          if (data && data.checkoutUrl) {
-            window.location.href = data.checkoutUrl;
-            return;
-          }
-        }
-      } catch (err) {
-        console.warn('Server prepare fallback', err);
-      }
-
-      // Direct client fallback
-      try {
-        const createRes = await fetch('https://miroooo.onshopbase.com/api/checkout/next/cart.json', {
-          method: 'POST',
-          headers: { 'Accept': 'application/json' }
-        });
-        const createJson = await createRes.json();
-        const cartToken = createJson?.result?.token;
-        const checkoutToken = createJson?.result?.checkout_token;
-
-        if (cartToken && checkoutToken) {
-          const properties = [];
-          allowed.forEach(key => {
-            if (attribution[key]) {
-              properties.push({ name: `_blfm_${key}`, value: String(attribution[key]).slice(0, 500) });
-            }
-          });
-
-          for (const itm of items) {
-            await fetch(`https://miroooo.onshopbase.com/api/checkout/next/cart.json?cart_token=${encodeURIComponent(cartToken)}`, {
-              method: 'PUT',
-              headers: { 'Accept': 'application/json', 'Content-Type': 'application/json' },
-              body: JSON.stringify({
-                cartItem: {
-                  product_id: Number(itm.productId),
-                  variant_id: Number(itm.variantId),
-                  qty: Number(itm.quantity) || 1,
-                  properties: properties,
-                  metadata: { image_preview_id: '' }
-                },
-                from: 'add-to-cart'
-              })
-            });
-          }
-
-          window.location.href = `https://miroooo.us/checkouts/${checkoutToken}`;
-          return;
-        }
-      } catch (directErr) {
-        console.error('Direct PlusBase checkout failed', directErr);
-      }
-
-      window.location.href = 'https://miroooo.us/checkouts';
-    };
-  }
-
-  // Open Drawer
-  cartDrawer.setAttribute('open', 'true');
-  cartDrawer.classList.add('active');
-  document.body.classList.add('overflow-hidden', 'cart-drawer-open');
 }
 
 // Alias for backwards compatibility
@@ -4529,6 +4182,7 @@ document.addEventListener('DOMContentLoaded', () => {
 </script>
 
   <script src="/assets/lottie.min.js" defer></script>
+  <script src="/assets/site.js?v=4" defer></script>
   <script src="/assets/product-shell.js?v=6" defer></script>
 </body>
 </html>

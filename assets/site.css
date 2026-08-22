@@ -4977,6 +4977,34 @@ body.nav-open .miroooo-sticky-cart-wrap {
   font-weight: 600;
   color: #ffffff;
 }/* Slant line moving animation from Muuhu */
+@keyframes luxuryCheckoutShimmer {
+  0% {
+    transform: skewX(-25deg) translateX(-180%);
+    opacity: 0;
+  }
+  15% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 1;
+  }
+  65%, 100% {
+    transform: skewX(-25deg) translateX(280%);
+    opacity: 0;
+  }
+}
+
+@keyframes checkoutAmbientGlow {
+  0%, 100% {
+    box-shadow: 0 0 15px rgba(255, 255, 255, 0.45), 0 0 35px rgba(255, 255, 255, 0.2), 0 4px 15px rgba(0, 0, 0, 0.5) !important;
+    transform: scale(1);
+  }
+  50% {
+    box-shadow: 0 0 28px rgba(255, 255, 255, 0.95), 0 0 60px rgba(255, 255, 255, 0.5), 0 8px 25px rgba(0, 0, 0, 0.6) !important;
+    transform: scale(1.018);
+  }
+}
+
 @keyframes proxy-bundle-shine {
   0% { transform: skewX(-30deg) translateX(-150%); opacity: 0; }
   20% { opacity: 0.7; }
@@ -5983,6 +6011,7 @@ body.nav-open .miroooo-sticky-cart-wrap {
   justify-content: center !important;
   box-shadow: 0 6px 24px rgba(255, 255, 255, 0.15) !important;
   transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.25s ease, opacity 0.2s ease !important;
+  animation: checkoutAmbientGlow 3s ease-in-out infinite !important;
   font-family: inherit !important;
 }
 
@@ -5993,9 +6022,18 @@ body.nav-open .miroooo-sticky-cart-wrap {
   left: 0 !important;
   width: 100% !important;
   height: 100% !important;
-  background: linear-gradient(90deg, transparent calc(50% - 70px), rgba(0, 0, 0, 0.16) 50%, transparent calc(50% + 35px)) !important;
-  transform: skewX(-30deg) translateX(-150%) !important;
-  animation: proxy-bundle-shine 4s infinite ease-in-out !important;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(0, 0, 0, 0.04) 20%,
+    rgba(0, 0, 0, 0.22) 48%,
+    rgba(255, 255, 255, 0.95) 50%,
+    rgba(0, 0, 0, 0.22) 52%,
+    rgba(0, 0, 0, 0.04) 80%,
+    transparent 100%
+  ) !important;
+  transform: skewX(-25deg) translateX(-180%) !important;
+  animation: luxuryCheckoutShimmer 3s cubic-bezier(0.4, 0, 0.2, 1) infinite !important;
   z-index: 3 !important;
   pointer-events: none !important;
 }
@@ -6036,13 +6074,47 @@ body.nav-open .miroooo-sticky-cart-wrap {
   border-color: #ffffff !important;
   transform: scale(1.02) !important;
   box-shadow: 0 8px 30px rgba(255, 255, 255, 0.22) !important;
-}.miroooo-checkout-btn:active:not(:disabled) {
+}
+
+.miroooo-checkout-btn:active:not(:disabled) {
   transform: scale(0.98) !important;
 }
 
 .miroooo-checkout-btn:disabled {
   opacity: 0.6 !important;
   cursor: not-allowed !important;
+}
+
+/* Go to Cart Button (Matching Muuhu) */
+.miroooo-goto-cart-btn {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 8px !important;
+  width: 100% !important;
+  min-height: 48px !important;
+  padding: 0 20px !important;
+  border-radius: 9999px !important;
+  background: rgba(255, 255, 255, 0.06) !important;
+  border: 1px solid rgba(255, 255, 255, 0.18) !important;
+  color: #ffffff !important;
+  font-weight: 600 !important;
+  font-size: 0.95rem !important;
+  text-decoration: none !important;
+  letter-spacing: 0.01em !important;
+  transition: background 0.2s ease, border-color 0.2s ease, transform 0.2s ease, color 0.2s ease !important;
+  cursor: pointer !important;
+}
+
+.miroooo-goto-cart-btn:hover {
+  background: rgba(255, 255, 255, 0.14) !important;
+  border-color: rgba(255, 255, 255, 0.35) !important;
+  color: #ffffff !important;
+  transform: translateY(-1px) !important;
+}
+
+.miroooo-goto-cart-btn:active {
+  transform: translateY(0) !important;
 }
 
 .miroooo-cart-trust-badges {

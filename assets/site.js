@@ -823,9 +823,18 @@
               else if (parsed.quantity === 3) { unitPrice = 147; comparePrice = 357; }
             }
 
-            const image = isX2
+            const firstColor = (colors[0] || "").toLowerCase();
+            let image = isX2
               ? "/assets_ref/x2/gallery/miroooo-x2-sonic-electric-toothbrush-upright-grip.webp"
               : "/gallery_orig/Grey-color-8.jpg";
+
+            if (isX2) {
+              if (firstColor.includes("pink") || firstColor.includes("rose")) image = "/assets_ref/x2/gallery/Miroooo_X2_Pink-1.webp";
+              else if (firstColor.includes("silver")) image = "/assets_ref/x2/gallery/Miroooo_X2_Silver-1.webp";
+            } else {
+              if (firstColor.includes("pink") || firstColor.includes("rose")) image = "/assets_ref/x/gallery/Miroooo_x_Pink-1.webp";
+              else if (firstColor.includes("silver")) image = "/gallery_orig/Silver-color-1.jpg";
+            }
 
             return {
               items: [
@@ -853,7 +862,7 @@
         const stored = localStorage.getItem(CART_STORAGE_KEY);
         if (stored) {
           const parsed = JSON.parse(stored);
-          if (Array.isArray(parsed.items)) return parsed;
+          if (Array.isArray(parsed.items) && parsed.items.length > 0) return parsed;
         }
       } catch (_) {}
       return { items: [], promoCode: "AUTO", promoApplied: true };
@@ -882,13 +891,22 @@
 
     updateHeaderBadges(cartState) {
       const cart = cartState || this.getCart();
-      const totalCount = cart.items.reduce((sum, item) => sum + (item.bundleCount || item.quantity || 1), 0);
-      document.querySelectorAll("cart-count, .cart-count, .site-actions__bag .count, .cart-drawer-button .count").forEach((el) => {
+      const totalCount = (cart && Array.isArray(cart.items))
+        ? cart.items.reduce((sum, item) => sum + (item.bundleCount || item.quantity || 1), 0)
+        : 0;
+
+      document.querySelectorAll("cart-count, .cart-count, .site-actions__bag .count, .cart-drawer-button .count, .site-actions__bag > span, .header__buttons cart-count").forEach((el) => {
         el.textContent = String(totalCount);
         if (totalCount > 0) {
           el.removeAttribute("hidden");
+          el.classList.remove("hidden");
+          el.style.display = "grid";
+          el.style.opacity = "1";
+          el.style.visibility = "visible";
         } else {
           el.setAttribute("hidden", "true");
+          el.classList.add("hidden");
+          el.style.display = "none";
         }
       });
     },
@@ -1063,6 +1081,10 @@
                   </span>
                 </button>
               </div>
+              <a href="/cart" class="miroooo-goto-cart-btn" onclick="window.MirooooCart.closeCart()">
+                <span>Go to cart</span>
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+              </a>
               <div class="miroooo-cart-trust-badges">
                 <span>🔒 256-Bit SSL Encryption</span>
                 <span>·</span>
@@ -1406,19 +1428,32 @@
   window.initMirooooLottieIcons = initMirooooLottieIcons;
 
   // Initialize cart state, header badges, dynamic delivery date, and lottie animations
-  if (document.readyState === "loading") {
-    document.addEventListener("DOMContentLoaded", () => {
-      MirooooCart.updateHeaderBadges();
-      MirooooCart.ensureCartDrawer();
-      updateDeliveryDates();
-      initMirooooLottieIcons();
-    });
-  } else {
+  const initCartOnPage = () => {
     MirooooCart.updateHeaderBadges();
     MirooooCart.ensureCartDrawer();
     updateDeliveryDates();
     initMirooooLottieIcons();
+  };
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", initCartOnPage);
+  } else {
+    initCartOnPage();
   }
+
+  window.addEventListener("pageshow", () => {
+    MirooooCart.updateHeaderBadges();
+  });
+
+  window.addEventListener("storage", (e) => {
+    if (e.key === "miroooo_cart" || e.key === "miroooo_cart_empty" || e.key === "miroooo_cart_v1") {
+      MirooooCart.updateHeaderBadges();
+      const drawer = document.getElementById("CartDrawer");
+      if (drawer && (drawer.classList.contains("is-open") || drawer.getAttribute("aria-hidden") === "false")) {
+        MirooooCart.renderCartDrawer();
+      }
+    }
+  });
 
   // Intercept cart open clicks ONLY on header cart icon / drawer triggers
   document.addEventListener("click", (e) => {

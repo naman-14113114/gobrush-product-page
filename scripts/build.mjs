@@ -22,7 +22,7 @@ await mkdir(resolve(output, "products"), { recursive: true });
 
 const rootEntries = await readdir(root, { withFileTypes: true });
 for (const entry of rootEntries) {
-  if (entry.isFile() && /\.(html|xml|txt|svg|webmanifest)$/.test(entry.name)) {
+  if (entry.isFile() && /\.(html|xml|txt|svg|webmanifest|png|ico|webp|json)$/.test(entry.name)) {
     await cp(resolve(root, entry.name), resolve(output, entry.name));
   }
 }
