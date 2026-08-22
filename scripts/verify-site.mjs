@@ -37,7 +37,7 @@ for (const file of newPages) {
   if (file !== "404.html" && !html.includes("https://miroooo.co/")) errors.push(`${file}: missing miroooo.co canonical or metadata`);
   for (const [, href] of html.matchAll(/href="([^"]+)"/g)) {
     if (!href.startsWith("/") || href.startsWith("//")) continue;
-    if (href.startsWith("/assets/") || href === "/favicon.svg" || href === "/site.webmanifest") continue;
+    if (href.startsWith("/assets/") || href === "/favicon.svg" || href === "/favicon.png" || href === "/site.webmanifest") continue;
     const pathname = new URL(href, "https://miroooo.co").pathname.replace(/\/$/, "") || "/";
     if (!internalRoutes.has(pathname)) errors.push(`${file}: unresolved internal link ${href}`);
   }

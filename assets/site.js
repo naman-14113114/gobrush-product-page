@@ -27,12 +27,8 @@
     const headerTarget = document.querySelector("[data-site-header]");
     if (!headerTarget) return;
 
-    const isOverlayHeader = Boolean(headerTarget.hasAttribute("data-overlay-header") || currentPage === "home");
-    headerTarget.classList.toggle("header-layer--overlay", isOverlayHeader);
-    const logoBrandText = currentPage === "product-x" ? "MIROOOO X" : (currentPage === "product-x2" ? "MIROOOO X2" : "MIROOOO");
-
-    headerTarget.innerHTML = `
-      <div class="announcement" style="overflow: hidden; padding: 4px 0; min-height: 24px; background: #e6e6e6; border-bottom: 1px solid rgba(0, 0, 0, 0.08);">
+    const announcementHTML = `
+      <div class="announcement" style="background: #e6e6e6; color: #111111; padding: 4px 0; overflow: hidden; width: 100%; min-height: 24px; border-bottom: 1px solid rgba(0, 0, 0, 0.08);">
         <div class="miroooo-announcement-ticker">
           <div class="miroooo-ticker-item"><span>Free Shipping on all orders</span> <span class="miroooo-ticker-dot" aria-hidden="true"></span></div>
           <div class="miroooo-ticker-item"><span>50% OFF Today + 3 Free Gifts</span> <span class="miroooo-ticker-dot" aria-hidden="true"></span></div>
@@ -45,7 +41,24 @@
           <div class="miroooo-ticker-item"><span>4.9 Stars from 40,000+ Customers</span> <span class="miroooo-ticker-dot" aria-hidden="true"></span></div>
           <div class="miroooo-ticker-item"><span>90-Day Risk-Free Home Trial</span> <span class="miroooo-ticker-dot" aria-hidden="true"></span></div>
         </div>
-      </div>
+      </div>`;
+
+    if (currentPage === "cart" || headerTarget.closest('[data-page="cart"]') || window.location.pathname.includes("/cart") || window.location.pathname.endsWith("cart.html")) {
+      headerTarget.classList.remove("header-layer--overlay");
+      headerTarget.innerHTML = `
+      ${announcementHTML}
+      <header class="site-header site-header--cart" is="custom-header" style="background: #080909; border-bottom: 1px solid rgba(255, 255, 255, 0.08); display: flex; justify-content: center; align-items: center; width: 100%;">
+        <div class="header__logo flex justify-center w-full items-center" style="padding: 16px 0; justify-content: center; width: 100%;"><a href="/" class="header__logo-link" style="text-decoration: none;"><span style="font-family: 'Inter', -apple-system, sans-serif; font-size: clamp(1.3rem, 2vw, 1.6rem); font-weight: 800; letter-spacing: 0.2em; text-transform: uppercase; color: #ffffff;">MIROOOO</span></a></div>
+      </header>`;
+      return;
+    }
+
+    const isOverlayHeader = Boolean(headerTarget.hasAttribute("data-overlay-header") || currentPage === "home");
+    headerTarget.classList.toggle("header-layer--overlay", isOverlayHeader);
+    const logoBrandText = "MIROOOO";
+
+    headerTarget.innerHTML = `
+      ${announcementHTML}
       <menu-drawer id="MenuDrawer" class="menu-drawer drawer drawer--start z-30 fixed bottom-0 left-0 h-full w-full pointer-events-none" hidden>
         <overlay-element class="overlay fixed-modal invisible opacity-0 fixed bottom-0 left-0 w-full h-screen pointer-events-none" aria-controls="MenuDrawer" aria-expanded="false"></overlay-element>
         <div class="drawer__inner z-10 absolute top-0 flex flex-col w-full h-full overflow-hidden">

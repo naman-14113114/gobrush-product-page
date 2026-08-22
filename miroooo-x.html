@@ -7,6 +7,9 @@
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <meta name="theme-color" content="#171717">
   <link rel="canonical" href="https://miroooo.co/products/miroooo-x">
+  <link rel="icon" href="/favicon.png" type="image/png">
+  <link rel="shortcut icon" href="/favicon.png" type="image/png">
+  <link rel="manifest" href="/site.webmanifest">
   <link rel="preconnect" href="https://cdn.shopify.com" crossorigin>
   <link rel="preconnect" href="https://fonts.shopifycdn.com" crossorigin>
 
@@ -450,7 +453,7 @@
     min-height: unset !important;
     height: auto !important;
     background: #000000 !important;
-    border-radius: 14px !important;
+    border-radius: 0 !important;
     overflow: hidden !important;
   }
   .luxurious-media video {
@@ -528,7 +531,7 @@
     aspect-ratio: auto !important;
     object-fit: cover !important;
     background: #000000 !important;
-    border-radius: 12px;
+    border-radius: 0 !important;
   }
 }
 
@@ -1423,7 +1426,7 @@ theme.variantStrings = {
     </nav>
   </div><div class="header__logo flex justify-center z-2" itemscope itemtype="http://schema.org/Organization">
     <a href="/" itemprop="url" class="header__logo-link flex items-center relative" style="text-decoration: none;">
-      <span style="font-family: 'Inter', -apple-system, sans-serif; font-size: clamp(1.3rem, 2vw, 1.6rem); font-weight: 800; letter-spacing: 0.2em; text-transform: uppercase; color: #ffffff;">MIROOOO X</span>
+      <span style="font-family: 'Inter', -apple-system, sans-serif; font-size: clamp(1.3rem, 2vw, 1.6rem); font-weight: 800; letter-spacing: 0.2em; text-transform: uppercase; color: #ffffff;">MIROOOO</span>
     </a>
   </div><div class="header__icons header__icons--end flex justify-end items-center z-2">
   <div class="header__navigation header__navigation--right hidden lg:flex items-center">
@@ -1987,7 +1990,7 @@ theme.variantStrings = {
         <div>
           <div class="flex items-center gap-2">
             <span class="font-extrabold text-sm sm:text-base uppercase tracking-tight" style="color: #111111;">Buy 2</span>
-            <span class="tier-badge-pill" style="background: rgba(0, 0, 0, 0.08); color: #111111;">£20 OFF</span>
+            <span class="tier-badge-pill" style="background: rgba(0, 0, 0, 0.08); color: #111111;">£10 OFF</span>
           </div>
           <p class="text-xs sm:text-sm mt-0.5" style="color: #555555;">Includes 2 Miroooo X sets &amp; <strong style="color: #111111;">2 FREE Gifts</strong></p>
         </div>
@@ -2038,7 +2041,7 @@ theme.variantStrings = {
         <div>
           <div class="flex items-center gap-2">
             <span class="font-extrabold text-sm sm:text-base uppercase tracking-tight" style="color: #111111;">Buy 3</span>
-            <span class="tier-badge-pill" style="background: rgba(0, 0, 0, 0.08); color: #111111;">£40 OFF</span>
+            <span class="tier-badge-pill" style="background: rgba(0, 0, 0, 0.08); color: #111111;">£20 OFF</span>
           </div>
           <p class="text-xs sm:text-sm mt-0.5" style="color: #555555;">Includes 3 Miroooo X sets &amp; <strong style="color: #111111;">3 FREE Gifts</strong></p>
         </div>
@@ -2863,622 +2866,6 @@ theme.variantStrings = {
   </div>
 </div>
 
-<!-- How Miroooo beats the competition Section -->
-<div id="shopify-section-template--miroooo-competition-reasons" class="shopify-section" style="background: #000000; color: #ffffff; width: 100%; overflow: hidden; border-top: 1px solid rgba(255,255,255,0.08); position: relative;">
-  <style>
-    .miroooo-reasons {
-      background-color: #000000;
-      padding: clamp(3.5rem, 5.5vw, 5.5rem) 0;
-      overflow: hidden;
-      font-family: inherit;
-      width: 100%;
-      position: relative;
-    }
-
-    .miroooo-reasons__header {
-      display: flex;
-      align-items: flex-end;
-      justify-content: space-between;
-      max-width: 1400px;
-      margin: 0 auto;
-      padding: 0 clamp(20px, 4vw, 48px) clamp(24px, 3vw, 36px);
-      position: relative;
-    }
-
-    .miroooo-reasons__title {
-      font-family: var(--font-heading-family, 'Inter', -apple-system, sans-serif);
-      font-size: clamp(1.75rem, 3.2vw, 2.75rem);
-      font-weight: 400;
-      letter-spacing: -0.03em;
-      color: #ffffff;
-      margin: 0;
-      line-height: 1.15;
-      max-width: 680px;
-    }
-
-    .miroooo-reasons__nav {
-      display: flex;
-      gap: 10px;
-      align-items: center;
-      flex-shrink: 0;
-      padding-bottom: 4px;
-    }
-
-    .miroooo-reasons__nav-btn {
-      width: 44px;
-      height: 44px;
-      border-radius: 50%;
-      border: 1px solid rgba(255, 255, 255, 0.22);
-      background: rgba(255, 255, 255, 0.04);
-      backdrop-filter: blur(8px);
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      transition: background 0.25s ease, border-color 0.25s ease, transform 0.2s ease;
-      flex-shrink: 0;
-      outline: none;
-    }
-
-    .miroooo-reasons__nav-btn:hover {
-      background: #ffffff;
-      border-color: #ffffff;
-      transform: scale(1.04);
-    }
-
-    .miroooo-reasons__nav-btn svg {
-      width: 16px;
-      height: 16px;
-      stroke: #ffffff;
-      fill: none;
-      stroke-width: 2;
-      stroke-linecap: round;
-      stroke-linejoin: round;
-      transition: stroke 0.25s ease;
-    }
-
-    .miroooo-reasons__nav-btn:hover svg {
-      stroke: #000000;
-    }
-
-    .miroooo-reasons__track-wrapper {
-      overflow: hidden;
-      max-width: 1400px;
-      margin: 0 auto;
-      padding: 0 clamp(20px, 4vw, 48px);
-      cursor: grab;
-      user-select: none;
-      -webkit-user-select: none;
-      position: relative;
-    }
-
-    .miroooo-reasons__track-wrapper.is-dragging {
-      cursor: grabbing;
-    }
-
-    .miroooo-reasons__track {
-      display: flex;
-      gap: 20px;
-      will-change: transform;
-    }
-
-    .miroooo-reasons__card {
-      flex: 0 0 calc((100% - 60px) / 4);
-      min-width: 0;
-      box-sizing: border-box;
-    }
-
-    .miroooo-reasons__card-image-wrap {
-      position: relative;
-      overflow: hidden;
-      border-radius: 14px;
-      aspect-ratio: 3 / 4;
-      background: #0d0d0d;
-      border: 1px solid rgba(255, 255, 255, 0.08);
-      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
-    }
-
-    .miroooo-reasons__card-image-wrap img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      display: block;
-      pointer-events: none;
-      transition: transform 0.65s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-    }
-
-    .miroooo-reasons__card:hover .miroooo-reasons__card-image-wrap img {
-      transform: scale(1.05);
-    }
-
-    .miroooo-reasons__card-body {
-      padding: 16px 4px 0 4px;
-    }
-
-    .miroooo-reasons__card-label {
-      font-size: 16px;
-      font-weight: 600;
-      color: #ffffff;
-      margin: 0 0 6px;
-      letter-spacing: -0.01em;
-      line-height: 1.35;
-      font-family: inherit;
-    }
-
-    .miroooo-reasons__card-desc {
-      font-size: 13.5px;
-      font-weight: 400;
-      color: rgba(255, 255, 255, 0.65);
-      margin: 0;
-      line-height: 1.55;
-      letter-spacing: 0.005em;
-      font-family: inherit;
-    }
-
-    .miroooo-reasons__mobile-next {
-      display: none;
-    }
-
-    @media (max-width: 1024px) and (min-width: 768px) {
-      .miroooo-reasons__card {
-        flex: 0 0 calc((100% - 20px) / 2.3);
-      }
-    }
-
-    @media (max-width: 767px) {
-      .miroooo-reasons {
-        padding: clamp(2.75rem, 6vw, 3.5rem) 0;
-      }
-      .miroooo-reasons__header {
-        padding: 0 20px 20px;
-      }
-      .miroooo-reasons__track-wrapper {
-        padding: 0 20px;
-      }
-      .miroooo-reasons__card {
-        flex: 0 0 calc(82% - 10px);
-      }
-      .miroooo-reasons__track {
-        gap: 14px;
-      }
-      .miroooo-reasons__nav {
-        display: none;
-      }
-      .miroooo-reasons__mobile-next {
-        display: flex;
-        position: absolute;
-        right: 8px;
-        top: 0;
-        bottom: 0;
-        width: 48px;
-        align-items: center;
-        justify-content: center;
-        z-index: 10;
-        pointer-events: none;
-      }
-      .miroooo-reasons__mobile-next-btn {
-        width: 38px;
-        height: 38px;
-        border-radius: 50%;
-        border: 1px solid rgba(255, 255, 255, 0.2);
-        background: rgba(18, 18, 18, 0.85);
-        backdrop-filter: blur(10px);
-        cursor: pointer;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        pointer-events: all;
-        box-shadow: 0 4px 16px rgba(0,0,0,0.6);
-        transition: background 0.2s ease, border-color 0.2s ease, transform 0.2s ease;
-      }
-      .miroooo-reasons__mobile-next-btn:active {
-        transform: scale(0.95);
-        background: #ffffff;
-      }
-      .miroooo-reasons__mobile-next-btn svg {
-        width: 14px;
-        height: 14px;
-        stroke: #ffffff;
-        fill: none;
-        stroke-width: 2;
-        stroke-linecap: round;
-        stroke-linejoin: round;
-      }
-      .miroooo-reasons__mobile-next-btn:active svg {
-        stroke: #000000;
-      }
-    }
-  </style>
-
-  <div class="miroooo-reasons" id="miroooo-reasons-root">
-    <div class="miroooo-reasons__header">
-      <h2 class="miroooo-reasons__title">How Miroooo beats the competition.</h2>
-      <div class="miroooo-reasons__nav">
-        <button class="miroooo-reasons__nav-btn" id="miroooo-reasons-prev" aria-label="Previous card">
-          <svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"></polyline></svg>
-        </button>
-        <button class="miroooo-reasons__nav-btn" id="miroooo-reasons-next" aria-label="Next card">
-          <svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"></polyline></svg>
-        </button>
-      </div>
-    </div>
-
-    <div class="miroooo-reasons__track-wrapper" id="miroooo-reasons-track-wrapper">
-      <div class="miroooo-reasons__track" id="miroooo-reasons-track">
-
-        <!-- Card 1: 60+ Days Battery -->
-        <div class="miroooo-reasons__card">
-          <div class="miroooo-reasons__card-image-wrap">
-            <img src="/assets_ref/x/competition/1-battery.png" alt="Miroooo X 60+ Days Battery Life" loading="lazy">
-          </div>
-          <div class="miroooo-reasons__card-body">
-            <p class="miroooo-reasons__card-label">1. 60+ Days Battery.</p>
-            <p class="miroooo-reasons__card-desc">Forget about weekly charging hassles and messy cords. A single full charge keeps you going for over 2 months.</p>
-          </div>
-        </div>
-
-        <!-- Card 2: Aerospace Aluminium -->
-        <div class="miroooo-reasons__card">
-          <div class="miroooo-reasons__card-image-wrap">
-            <img src="/assets_ref/x/competition/2-aluminum.png" alt="Aerospace Aluminium Design" loading="lazy">
-          </div>
-          <div class="miroooo-reasons__card-body">
-            <p class="miroooo-reasons__card-label">2. Aerospace Aluminium.</p>
-            <p class="miroooo-reasons__card-desc">Engineered from aerospace-grade aluminium, it delivers an ultra-premium feel in hand while weighing a mere 51 grams.</p>
-          </div>
-        </div>
-
-        <!-- Card 3: Slim Travel Case -->
-        <div class="miroooo-reasons__card">
-          <div class="miroooo-reasons__card-image-wrap">
-            <img src="/assets_ref/x/competition/3-travel-case.png" alt="Protective Travel Case Included" loading="lazy">
-          </div>
-          <div class="miroooo-reasons__card-body">
-            <p class="miroooo-reasons__card-label">3. Slim Travel Case.</p>
-            <p class="miroooo-reasons__card-desc">Every Miroooo X includes a custom protective travel case. Say goodbye to soggy washbags and unhygienic bristle contact.</p>
-          </div>
-        </div>
-
-        <!-- Card 4: 40,000 VPM Sonic Power -->
-        <div class="miroooo-reasons__card">
-          <div class="miroooo-reasons__card-image-wrap">
-            <img src="/assets_ref/x/competition/4-sonic-tech.png" alt="40,000 VPM Sonic Power" loading="lazy">
-          </div>
-          <div class="miroooo-reasons__card-body">
-            <p class="miroooo-reasons__card-label">4. 40,000 VPM Sonic Power.</p>
-            <p class="miroooo-reasons__card-desc">Delivers 40,000 micro-vibrations per minute, driving micro-bubbles deep between teeth while remaining gentle on gums.</p>
-          </div>
-        </div>
-
-        <!-- Card 5: Magnetic Wall Mount -->
-        <div class="miroooo-reasons__card">
-          <div class="miroooo-reasons__card-image-wrap">
-            <img src="/assets_ref/x/competition/5-wall-holder.png" alt="Hygienic Wall Mount" loading="lazy">
-          </div>
-          <div class="miroooo-reasons__card-body">
-            <p class="miroooo-reasons__card-label">5. Magnetic Wall Mount.</p>
-            <p class="miroooo-reasons__card-desc">Free up valuable counter space and keep your brush dry, hygienic, and neatly docked on your mirror or tile.</p>
-          </div>
-        </div>
-
-      </div>
-
-      <div class="miroooo-reasons__mobile-next">
-        <button class="miroooo-reasons__mobile-next-btn" id="miroooo-reasons-mobile-next" aria-label="Next card">
-          <svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"></polyline></svg>
-        </button>
-      </div>
-    </div>
-  </div>
-
-  <script>
-  (function() {
-    function initCompSlider() {
-      var track     = document.getElementById('miroooo-reasons-track');
-      var wrapper   = document.getElementById('miroooo-reasons-track-wrapper');
-      var prevBtn   = document.getElementById('miroooo-reasons-prev');
-      var nextBtn   = document.getElementById('miroooo-reasons-next');
-      var mobileBtn = document.getElementById('miroooo-reasons-mobile-next');
-
-      if (!track || !wrapper) return;
-
-      var current = 0;
-      var busy = false;
-
-      // Extract only the original cards (excluding any existing clones)
-      var originals = Array.from(track.querySelectorAll('.miroooo-reasons__card:not(.ms-clone)'));
-      var N = originals.length;
-      if (N === 0) return;
-
-      function getGap() {
-        return window.innerWidth <= 767 ? 14 : 20;
-      }
-
-      function getVis() {
-        if (window.innerWidth <= 767) return 1;
-        if (window.innerWidth <= 1024) return 2;
-        return 4;
-      }
-
-      function cardW() {
-        var c = track.querySelector('.miroooo-reasons__card:not(.ms-clone)');
-        return c ? c.offsetWidth + getGap() : 0;
-      }
-
-      function rebuild() {
-        track.querySelectorAll('.ms-clone').forEach(function(el) { el.remove(); });
-        var vis = getVis();
-        for (var i = N - 1; i >= N - vis; i--) {
-          var cl = originals[i].cloneNode(true);
-          cl.classList.add('ms-clone');
-          track.insertBefore(cl, track.firstChild);
-        }
-        for (var j = 0; j < vis; j++) {
-          var cl2 = originals[j].cloneNode(true);
-          cl2.classList.add('ms-clone');
-          track.appendChild(cl2);
-        }
-      }
-
-      function jump(idx) {
-        track.style.transition = 'none';
-        track.style.transform = 'translateX(' + (-(getVis() + idx) * cardW()) + 'px)';
-        track.getBoundingClientRect();
-        current = idx;
-      }
-
-      function slideTo(idx) {
-        track.style.transition = 'transform 0.45s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
-        track.style.transform = 'translateX(' + (-(getVis() + idx) * cardW()) + 'px)';
-        current = idx;
-      }
-
-      function goNext() {
-        if (busy) return;
-        busy = true;
-        slideTo(current + 1);
-      }
-
-      function goPrev() {
-        if (busy) return;
-        busy = true;
-        slideTo(current - 1);
-      }
-
-      track.addEventListener('transitionend', function() {
-        if (current >= N) {
-          jump(current - N);
-        } else if (current < 0) {
-          jump(current + N);
-        }
-        busy = false;
-      });
-
-      if (nextBtn) {
-        nextBtn.onclick = function(e) { e.preventDefault(); goNext(); };
-      }
-      if (prevBtn) {
-        prevBtn.onclick = function(e) { e.preventDefault(); goPrev(); };
-      }
-      if (mobileBtn) {
-        mobileBtn.onclick = function(e) { e.preventDefault(); goNext(); };
-      }
-
-      var dragStartX = 0;
-      var dragStartT = 0;
-      var dragging = false;
-      var hasMoved = false;
-
-      function currentTranslateX() {
-        var st = window.getComputedStyle(track);
-        var mx = st.transform || st.webkitTransform;
-        if (!mx || mx === 'none') return 0;
-        var parts = mx.split(',');
-        return parseFloat(parts[4] || 0);
-      }
-
-      function onDragStart(x) {
-        if (busy) return;
-        dragging = true;
-        hasMoved = false;
-        dragStartX = x;
-        dragStartT = currentTranslateX();
-        track.style.transition = 'none';
-        wrapper.classList.add('is-dragging');
-      }
-
-      function onDragMove(x) {
-        if (!dragging) return;
-        var diff = x - dragStartX;
-        if (Math.abs(diff) > 4) hasMoved = true;
-        track.style.transform = 'translateX(' + (dragStartT + diff) + 'px)';
-      }
-
-      function onDragEnd(x) {
-        if (!dragging) return;
-        dragging = false;
-        wrapper.classList.remove('is-dragging');
-        var diff = x - dragStartX;
-        var threshold = cardW() * 0.18;
-        if (diff < -threshold) {
-          goNext();
-        } else if (diff > threshold) {
-          goPrev();
-        } else {
-          track.style.transition = 'transform 0.3s ease';
-          track.style.transform = 'translateX(' + (-(getVis() + current) * cardW()) + 'px)';
-        }
-      }
-
-      wrapper.addEventListener('mousedown', function(e) { onDragStart(e.clientX); });
-      window.addEventListener('mousemove', function(e) { onDragMove(e.clientX); });
-      window.addEventListener('mouseup', function(e) { onDragEnd(e.clientX); });
-
-      wrapper.addEventListener('touchstart', function(e) {
-        if (e.touches && e.touches[0]) onDragStart(e.touches[0].clientX);
-      }, { passive: true });
-
-      wrapper.addEventListener('touchmove', function(e) {
-        if (e.touches && e.touches[0]) onDragMove(e.touches[0].clientX);
-      }, { passive: true });
-
-      wrapper.addEventListener('touchend', function(e) {
-        if (e.changedTouches && e.changedTouches[0]) onDragEnd(e.changedTouches[0].clientX);
-      });
-
-      wrapper.addEventListener('click', function(e) {
-        if (hasMoved) {
-          e.preventDefault();
-          e.stopPropagation();
-        }
-      }, true);
-
-      function init() {
-        busy = false;
-        rebuild();
-        jump(0);
-      }
-
-      init();
-
-      var resizeTimer;
-      window.addEventListener('resize', function() {
-        clearTimeout(resizeTimer);
-        resizeTimer = setTimeout(init, 150);
-      });
-    }
-
-    if (document.readyState === 'loading') {
-      document.addEventListener('DOMContentLoaded', initCompSlider);
-    } else {
-      initCompSlider();
-    }
-  })();
-  </script>
-</div>
-<div id="shopify-section-template--24203751129433__help-drawer" class="shopify-section" style="display: contents;"><style>#shopify-block-content-1 {--color-background: 255 251 235;--color-foreground: 180 83 9;
-  --color-border: var(--color-foreground)/ 0.1;
-  --color-border-dark: var(--color-foreground)/ 0.4;
-  --color-border-light: var(--color-foreground)/ 0.06;--color-highlight: 255 221 191;}#shopify-block-content-2 {--color-background: 240 249 255;--color-foreground: 3 105 161;
-  --color-border: var(--color-foreground)/ 0.1;
-  --color-border-dark: var(--color-foreground)/ 0.4;
-  --color-border-light: var(--color-foreground)/ 0.06;--color-highlight: 255 221 191;}#shopify-block-content-3 {--color-background: 255 241 242;--color-foreground: 190 18 60;
-  --color-border: var(--color-foreground)/ 0.1;
-  --color-border-dark: var(--color-foreground)/ 0.4;
-  --color-border-light: var(--color-foreground)/ 0.06;--color-highlight: 255 221 191;}#shopify-block-content-4 {--color-background: 247 254 231;--color-foreground: 77 124 15;
-  --color-border: var(--color-foreground)/ 0.1;
-  --color-border-dark: var(--color-foreground)/ 0.4;
-  --color-border-light: var(--color-foreground)/ 0.06;--color-highlight: 255 221 191;}</style>
-
-<drawer-element id="HelpDrawer" class="drawer drawer--end z-30 fixed bottom-0 left-0 h-full w-full pointer-events-none"
-  role="dialog"
-  aria-modal="true"
-  aria-label="Need help?"
-  data-section-id="template--24203751129433__help-drawer"
-  shopify-design-mode
-  hidden
->
-  <overlay-element class="overlay fixed-modal invisible opacity-0 fixed bottom-0 left-0 w-full h-screen pointer-events-none" aria-controls="HelpDrawer" aria-expanded="false"></overlay-element>
-  <div class="drawer__inner z-10 absolute top-0 flex flex-col w-full h-full overflow-hidden">
-    <gesture-element class="drawer__header flex justify-between opacity-0 invisible relative">
-      <span class="drawer__title heading lg:text-3xl text-2xl leading-none tracking-tight">Need help?</span>
-      <button class="button button--secondary button--close drawer__close hidden sm:flex items-center justify-center" type="button" is="hover-button" aria-controls="HelpDrawer" aria-expanded="false" aria-label="Close">
-        <span class="btn-fill" data-fill></span>
-        <span class="btn-text"><svg class="icon icon-close icon-sm" viewBox="0 0 20 20" stroke="currentColor" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <path stroke-linecap="round" stroke-linejoin="round" d="M5 15L15 5M5 5L15 15"></path>
-    </svg></span>
-      </button>
-    </gesture-element>
-    <div class="drawer__content opacity-0 invisible flex flex-col h-full grow shrink">
-      <div class="drawer__scrollable relative flex flex-col gap-5 md:gap-7 grow shrink">
-        <div class="rte text-base"><p>If you have any questions, you are always welcome to contact us. We'll get back to you as soon as possible, within 24 hours on weekdays.</p></div><div class="help-list grid gap-4 md:gap-5"><div class="help-list__item grid gap-2d5 md:gap-3d5 relative z-1" id="shopify-block-content-1" >
-                <div class="flex items-center gap-3"><svg class="icon icon-rocket icon-md" viewBox="0 0 24 24" stroke="currentColor" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <path class="fill" fill-rule="evenodd" clip-rule="evenodd" d="M21.9991 6.8C21.9991 5.11985 21.9991 4.27977 21.6722 3.63803C21.3845 3.07355 20.9256 2.6146 20.3611 2.32698C19.7194 2 18.8793 2 17.1991 2H16.6503C15.6718 2 15.1826 2 14.7223 2.11054C14.3141 2.20853 13.9239 2.37016 13.566 2.5895C13.1623 2.83689 12.8164 3.18283 12.1246 3.8747L6.99969 9C5.90927 10.0905 5.36406 10.6358 5.07261 11.2239C4.5181 12.343 4.51812 13.6569 5.07268 14.776C5.36415 15.3642 5.90938 15.9094 6.99984 16.9998C8.09038 18.0904 8.63565 18.6357 9.22386 18.9271C10.343 19.4817 11.6569 19.4817 12.7761 18.9271C13.3643 18.6356 13.9095 18.0903 15 16.9997L20.1248 11.8745C20.8165 11.1827 21.1624 10.8368 21.4098 10.4331C21.6291 10.0753 21.7907 9.6851 21.8886 9.27698C21.9991 8.81665 21.9991 8.32749 21.9991 7.34918V6.8ZM15.0024 10.9995C16.107 10.9995 17.0024 10.1041 17.0024 8.99952C17.0024 7.89495 16.107 6.99952 15.0024 6.99952C13.8979 6.99952 13.0024 7.89495 13.0024 8.99952C13.0024 10.1041 13.8979 10.9995 15.0024 10.9995Z"/>
-      <path d="M5.50049 10.5L2.00049 7.9999L3.07849 6.92193C3.964 6.03645 4.40676 5.5937 4.9307 5.31387C5.39454 5.06614 5.90267 4.9123 6.42603 4.86115C7.01719 4.80337 7.63117 4.92617 8.85913 5.17178L10.5 5.49997M18.4999 13.5L18.8284 15.1408C19.0742 16.3689 19.1971 16.983 19.1394 17.5743C19.0883 18.0977 18.9344 18.6059 18.6867 19.0699C18.4068 19.5939 17.964 20.0367 17.0783 20.9224L16.0007 22L13.5007 18.5M7 16.9999L8.99985 15M17.0024 8.99952C17.0024 10.1041 16.107 10.9995 15.0024 10.9995C13.8979 10.9995 13.0024 10.1041 13.0024 8.99952C13.0024 7.89495 13.8979 6.99952 15.0024 6.99952C16.107 6.99952 17.0024 7.89495 17.0024 8.99952ZM17.1991 2H16.6503C15.6718 2 15.1826 2 14.7223 2.11054C14.3141 2.20853 13.9239 2.37016 13.566 2.5895C13.1623 2.83689 12.8164 3.18283 12.1246 3.8747L6.99969 9C5.90927 10.0905 5.36406 10.6358 5.07261 11.2239C4.5181 12.343 4.51812 13.6569 5.07268 14.776C5.36415 15.3642 5.90938 15.9094 6.99984 16.9998V16.9998C8.09038 18.0904 8.63565 18.6357 9.22386 18.9271C10.343 19.4817 11.6569 19.4817 12.7761 18.9271C13.3643 18.6356 13.9095 18.0903 15 16.9997L20.1248 11.8745C20.8165 11.1827 21.1624 10.8368 21.4098 10.4331C21.6291 10.0753 21.7907 9.6851 21.8886 9.27698C21.9991 8.81665 21.9991 8.32749 21.9991 7.34918V6.8C21.9991 5.11985 21.9991 4.27977 21.6722 3.63803C21.3845 3.07355 20.9256 2.6146 20.3611 2.32698C19.7194 2 18.8793 2 17.1991 2Z" stroke-linecap="round" stroke-linejoin="round"/>
-    </svg><p class="h4 font-medium leading-tight md:text-lg">Shipping Information</p>
-                </div>
-                <div class="rte text-sm"><p>Use this text to answer questions in as much detail as possible for your customers.</p></div>
-              </div><div class="help-list__item grid gap-2d5 md:gap-3d5 relative z-1" id="shopify-block-content-2" >
-                <div class="flex items-center gap-3"><svg class="icon icon-headphone icon-md" viewBox="0 0 24 24" stroke="currentColor" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <g class="fill">
-        <path d="M2 16C2 15.0681 2 14.6022 2.15224 14.2346C2.35523 13.7446 2.74458 13.3552 3.23463 13.1522C3.60218 13 4.06812 13 5 13C5.93188 13 6.39782 13 6.76537 13.1522C7.25542 13.3552 7.64477 13.7446 7.84776 14.2346C8 14.6022 8 15.0681 8 16V19C8 19.9319 8 20.3978 7.84776 20.7654C7.64477 21.2554 7.25542 21.6448 6.76537 21.8478C6.39782 22 5.93188 22 5 22C4.06812 22 3.60218 22 3.23463 21.8478C2.74458 21.6448 2.35523 21.2554 2.15224 20.7654C2 20.3978 2 19.9319 2 19V16Z"/>
-        <path d="M16 16C16 15.0681 16 14.6022 16.1522 14.2346C16.3552 13.7446 16.7446 13.3552 17.2346 13.1522C17.6022 13 18.0681 13 19 13C19.9319 13 20.3978 13 20.7654 13.1522C21.2554 13.3552 21.6448 13.7446 21.8478 14.2346C22 14.6022 22 15.0681 22 16V19C22 19.9319 22 20.3978 21.8478 20.7654C21.6448 21.2554 21.2554 21.6448 20.7654 21.8478C20.3978 22 19.9319 22 19 22C18.0681 22 17.6022 22 17.2346 21.8478C16.7446 21.6448 16.3552 21.2554 16.1522 20.7654C16 20.3978 16 19.9319 16 19V16Z"/>
-      </g>
-      <path d="M22 17V12C22 6.47715 17.5228 2 12 2V2C6.47715 2 2 6.47715 2 12V17M22 19V16C22 15.0681 22 14.6022 21.8478 14.2346C21.6448 13.7446 21.2554 13.3552 20.7654 13.1522C20.3978 13 19.9319 13 19 13V13C18.0681 13 17.6022 13 17.2346 13.1522C16.7446 13.3552 16.3552 13.7446 16.1522 14.2346C16 14.6022 16 15.0681 16 16V19C16 19.9319 16 20.3978 16.1522 20.7654C16.3552 21.2554 16.7446 21.6448 17.2346 21.8478C17.6022 22 18.0681 22 19 22V22C19.9319 22 20.3978 22 20.7654 21.8478C21.2554 21.6448 21.6448 21.2554 21.8478 20.7654C22 20.3978 22 19.9319 22 19ZM5 22V22C5.93188 22 6.39782 22 6.76537 21.8478C7.25542 21.6448 7.64477 21.2554 7.84776 20.7654C8 20.3978 8 19.9319 8 19V16C8 15.0681 8 14.6022 7.84776 14.2346C7.64477 13.7446 7.25542 13.3552 6.76537 13.1522C6.39782 13 5.93188 13 5 13V13C4.06812 13 3.60218 13 3.23463 13.1522C2.74458 13.3552 2.35523 13.7446 2.15224 14.2346C2 14.6022 2 15.0681 2 16V19C2 19.9319 2 20.3978 2.15224 20.7654C2.35523 21.2554 2.74458 21.6448 3.23463 21.8478C3.60218 22 4.06812 22 5 22Z" stroke-linecap="round" stroke-linejoin="round"/>
-    </svg><p class="h4 font-medium leading-tight md:text-lg">Customer Support</p>
-                </div>
-                <div class="rte text-sm"><p>Use this text to answer questions in as much detail as possible for your customers.</p></div>
-              </div><div class="help-list__item grid gap-2d5 md:gap-3d5 relative z-1" id="shopify-block-content-3" >
-                <div class="flex items-center gap-3"><svg class="icon icon-chat_bubble icon-md" viewBox="0 0 24 24" stroke="currentColor" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <path class="fill" d="M2 10C2 7.19974 2 5.79961 2.54497 4.73005C3.02433 3.78924 3.78924 3.02433 4.73005 2.54497C5.79961 2 7.19974 2 10 2H14C16.8003 2 18.2004 2 19.27 2.54497C20.2108 3.02433 20.9757 3.78924 21.455 4.73005C22 5.79961 22 7.19974 22 10V19.1708C22 20.1969 22 20.71 21.8373 21.0302C21.5642 21.5676 20.996 21.8893 20.3947 21.847C20.0363 21.8218 19.5964 21.5578 18.7165 21.0299C18.1917 20.715 17.9293 20.5576 17.6542 20.4347C17.1972 20.2306 16.7122 20.0963 16.2154 20.0362C15.9163 20 15.6103 20 14.9983 20H10C7.19974 20 5.79961 20 4.73005 19.455C3.78924 18.9757 3.02433 18.2108 2.54497 17.27C2 16.2004 2 14.8003 2 12V10Z"/>
-      <path d="M7 8H15M7 12H11M18.7165 21.0299V21.0299C19.5964 21.5578 20.0363 21.8218 20.3947 21.847C20.996 21.8893 21.5642 21.5676 21.8373 21.0302C22 20.71 22 20.1969 22 19.1708V10C22 7.19974 22 5.79961 21.455 4.73005C20.9757 3.78924 20.2108 3.02433 19.27 2.54497C18.2004 2 16.8003 2 14 2H10C7.19974 2 5.79961 2 4.73005 2.54497C3.78924 3.02433 3.02433 3.78924 2.54497 4.73005C2 5.79961 2 7.19974 2 10V12C2 14.8003 2 16.2004 2.54497 17.27C3.02433 18.2108 3.78924 18.9757 4.73005 19.455C5.79961 20 7.19974 20 10 20H14.9983C15.6103 20 15.9163 20 16.2154 20.0362C16.7122 20.0962 17.1972 20.2306 17.6542 20.4347C17.9293 20.5576 18.1917 20.715 18.7165 21.0299Z" stroke-linecap="round" stroke-linejoin="round"/>
-    </svg><p class="h4 font-medium leading-tight md:text-lg">FAQ’s</p>
-                </div>
-                <div class="rte text-sm"><p>Use this text to answer questions in as much detail as possible for your customers.</p></div>
-              </div><div class="help-list__item grid gap-2d5 md:gap-3d5 relative z-1" id="shopify-block-content-4" >
-                <div class="flex items-center gap-3"><svg class="icon icon-phone icon-md" viewBox="0 0 24 24" stroke="currentColor" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <path class="fill" d="M18.9522 15.7381L19.6605 15.9151C20.4461 16.1115 20.8389 16.2097 21.1388 16.4174C21.4725 16.6486 21.7279 16.9757 21.8712 17.3555C22 17.6968 22 18.0916 22 18.8812C22 19.8953 22 20.4024 21.7915 20.8225C21.5771 21.2546 21.1194 21.6595 20.6644 21.8198C20.2221 21.9756 19.7876 21.9223 18.9186 21.8158C15.8039 21.4338 13.0221 20.467 10.6579 19C8.23342 17.4956 6.24802 15.4652 4.79292 13C3.44179 10.7109 2.54788 8.04699 2.18421 5.0812C2.07767 4.21234 2.02441 3.77791 2.18022 3.33555C2.34048 2.88055 2.74541 2.42295 3.17752 2.2085C3.59762 2 4.09459 2 5.08854 2C5.89832 2 6.30321 2 6.6445 2.12878C7.02426 2.27207 7.35144 2.52752 7.58256 2.8612C7.79026 3.16106 7.88846 3.55386 8.08486 4.33946L8.08486 4.33946L8.20715 4.82862L8.20716 4.82863C8.49761 5.99045 8.64284 6.57136 8.62096 7.14144C8.60158 7.64629 8.48674 8.14289 8.28251 8.60499C8.05189 9.12681 7.66637 9.58498 6.89534 10.5013L4.79292 13C6.24802 15.4652 8.23342 17.4956 10.6579 19L13.5641 16.8239L13.5641 16.8239C14.459 16.1539 14.9064 15.8188 15.4047 15.6219C15.8462 15.4474 16.3151 15.3529 16.7897 15.3428C17.3254 15.3313 17.8677 15.4669 18.9522 15.7381Z"/>
-      <path d="M4.79292 13C3.44179 10.7109 2.54788 8.04699 2.18421 5.0812C2.07767 4.21234 2.02441 3.77791 2.18022 3.33555C2.34048 2.88055 2.74541 2.42295 3.17752 2.2085C3.59762 2 4.09459 2 5.08854 2V2C5.89832 2 6.30321 2 6.6445 2.12878C7.02426 2.27207 7.35144 2.52752 7.58256 2.8612C7.79026 3.16106 7.88846 3.55386 8.08486 4.33946L8.20715 4.82862C8.49761 5.99044 8.64284 6.57136 8.62096 7.14144C8.60158 7.64629 8.48674 8.14289 8.28251 8.60499C8.05189 9.12681 7.66637 9.58498 6.89534 10.5013L4.79292 13ZM4.79292 13C6.24802 15.4652 8.23342 17.4956 10.6579 19M10.6579 19C13.0221 20.467 15.8039 21.4338 18.9186 21.8158C19.7876 21.9223 20.2221 21.9756 20.6644 21.8198C21.1194 21.6595 21.5771 21.2546 21.7915 20.8225C22 20.4024 22 19.8953 22 18.8812V18.8812C22 18.0916 22 17.6968 21.8712 17.3555C21.7279 16.9757 21.4725 16.6486 21.1388 16.4174C20.8389 16.2097 20.4461 16.1115 19.6605 15.9151L18.9522 15.7381C17.8677 15.4669 17.3254 15.3313 16.7897 15.3428C16.3151 15.3529 15.8462 15.4474 15.4047 15.6219C14.9064 15.8188 14.459 16.1539 13.5641 16.8239L10.6579 19Z" stroke-linecap="round" stroke-linejoin="round"/>
-    </svg><p class="h4 font-medium leading-tight md:text-lg">Contact Us</p>
-                </div>
-                <div class="rte text-sm"><p>Use this text to answer questions in as much detail as possible for your customers.</p></div>
-              </div></div></div>
-    </div>
-  </div>
-</drawer-element>
-
-
-</div>
-<!-- DISCOVER THE ULTIMATE IN ORAL HYGIENE Section (From Miroooo) -->
-<div id="shopify-section-template--miroooo-discover-oral-hygiene" class="shopify-section" style="background: #000000; color: #ffffff; width: 100%; overflow: hidden; position: relative;">
-  <div style="width: 100%; max-width: 1856px; margin: 0 auto;">
-    <div class="oral-hygiene-grid" style="display: grid; grid-template-columns: 1fr; width: 100%; min-height: 600px; background: #000000; align-items: stretch;">
-
-      <!-- Left Column: Typography & Feature Bullets -->
-      <div class="oral-hygiene-content" style="display: flex; flex-direction: column; justify-content: center; padding: clamp(3rem, 6vw, 6rem) clamp(1.5rem, 5vw, 6.5rem); background: #000000; color: #ffffff; z-index: 2; box-sizing: border-box;">
-        <h2 style="font-family: var(--font-heading-family, 'Inter', serif); font-size: clamp(1.45rem, 2.6vw, 2.5rem); font-weight: 500; letter-spacing: 0.05em; text-transform: uppercase; line-height: 1.28; margin: 0 0 1.5rem 0; color: #ffffff; max-width: 540px; word-break: break-word;">
-          THE ULTIMATE TRAVEL-READY SONIC TOOTHBRUSH
-        </h2>
-
-        <div style="width: 100px; height: 1px; background: rgba(255, 255, 255, 0.35); margin: 0 0 2.25rem 0;"></div>
-
-        <ul style="list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 1.25rem; max-width: 580px;">
-          <li style="display: flex; align-items: center; gap: 0.85rem; font-size: clamp(0.92rem, 1.15vw, 1.15rem); color: rgba(255, 255, 255, 0.95); line-height: 1.45; font-weight: 400; letter-spacing: 0.01em;">
-            <span style="display: inline-block; width: 6px; height: 6px; border-radius: 50%; background: #ffffff; flex-shrink: 0;"></span>
-            <span>Slim, protective travel case included (fits seamlessly into your carry-on, wash bag, or handbag without taking up space)</span>
-          </li>
-          <li style="display: flex; align-items: center; gap: 0.85rem; font-size: clamp(0.92rem, 1.15vw, 1.15rem); color: rgba(255, 255, 255, 0.95); line-height: 1.45; font-weight: 400; letter-spacing: 0.01em;">
-            <span style="display: inline-block; width: 6px; height: 6px; border-radius: 50%; background: #ffffff; flex-shrink: 0;"></span>
-            <span>60+ days of long-lasting battery life (no need to hunt for chargers or carry cables on holidays)</span>
-          </li>
-          <li style="display: flex; align-items: center; gap: 0.85rem; font-size: clamp(0.92rem, 1.15vw, 1.15rem); color: rgba(255, 255, 255, 0.95); line-height: 1.45; font-weight: 400; letter-spacing: 0.01em;">
-            <span style="display: inline-block; width: 6px; height: 6px; border-radius: 50%; background: #ffffff; flex-shrink: 0;"></span>
-            <span>Ultralight 51g aerospace weight (lighter than standard manual brushes, you'll forget it's even in your bag)</span>
-          </li>
-        </ul>
-      </div>
-
-      <!-- Right Column: Demo Video -->
-      <div class="oral-hygiene-media" style="position: relative; width: 100%; height: 100%; overflow: hidden; background: #000000;">
-        <video
-          id="oral-hygiene-video"
-          class="w-full h-full object-cover"
-          src="/assets_ref/x/miroooo-video-3.mp4"
-          autoplay
-          loop
-          muted
-          playsinline
-          disablepictureinpicture
-          controlslist="nodownload nofullscreen noremoteplayback"
-          preload="auto"
-          style="width: 100%; height: 100%; object-fit: cover; display: block; background: #000000; pointer-events: none;"
-        ></video>
-      </div>
-
-    </div>
-  </div>
-</div>
-
 
 <!-- BRUSH WITH STYLE & PRECISION Section (From Miroooo with ALL 4 Pointers) -->
 <div id="shopify-section-template--miroooo-brush-style-precision" class="shopify-section" style="background: #e6e6e6; color: #171717; width: 100%; overflow: hidden; padding: clamp(4rem, 7vw, 7.5rem) 0; box-sizing: border-box;">
@@ -3579,13 +2966,287 @@ theme.variantStrings = {
     </div>
   </div>
 </div>
+<div id="shopify-section-template--24203751129433__help-drawer" class="shopify-section" style="display: contents;"><style>#shopify-block-content-1 {--color-background: 255 251 235;--color-foreground: 180 83 9;
+  --color-border: var(--color-foreground)/ 0.1;
+  --color-border-dark: var(--color-foreground)/ 0.4;
+  --color-border-light: var(--color-foreground)/ 0.06;--color-highlight: 255 221 191;}#shopify-block-content-2 {--color-background: 240 249 255;--color-foreground: 3 105 161;
+  --color-border: var(--color-foreground)/ 0.1;
+  --color-border-dark: var(--color-foreground)/ 0.4;
+  --color-border-light: var(--color-foreground)/ 0.06;--color-highlight: 255 221 191;}#shopify-block-content-3 {--color-background: 255 241 242;--color-foreground: 190 18 60;
+  --color-border: var(--color-foreground)/ 0.1;
+  --color-border-dark: var(--color-foreground)/ 0.4;
+  --color-border-light: var(--color-foreground)/ 0.06;--color-highlight: 255 221 191;}#shopify-block-content-4 {--color-background: 247 254 231;--color-foreground: 77 124 15;
+  --color-border: var(--color-foreground)/ 0.1;
+  --color-border-dark: var(--color-foreground)/ 0.4;
+  --color-border-light: var(--color-foreground)/ 0.06;--color-highlight: 255 221 191;}</style>
+
+<drawer-element id="HelpDrawer" class="drawer drawer--end z-30 fixed bottom-0 left-0 h-full w-full pointer-events-none"
+  role="dialog"
+  aria-modal="true"
+  aria-label="Need help?"
+  data-section-id="template--24203751129433__help-drawer"
+  shopify-design-mode
+  hidden
+>
+  <overlay-element class="overlay fixed-modal invisible opacity-0 fixed bottom-0 left-0 w-full h-screen pointer-events-none" aria-controls="HelpDrawer" aria-expanded="false"></overlay-element>
+  <div class="drawer__inner z-10 absolute top-0 flex flex-col w-full h-full overflow-hidden">
+    <gesture-element class="drawer__header flex justify-between opacity-0 invisible relative">
+      <span class="drawer__title heading lg:text-3xl text-2xl leading-none tracking-tight">Need help?</span>
+      <button class="button button--secondary button--close drawer__close hidden sm:flex items-center justify-center" type="button" is="hover-button" aria-controls="HelpDrawer" aria-expanded="false" aria-label="Close">
+        <span class="btn-fill" data-fill></span>
+        <span class="btn-text"><svg class="icon icon-close icon-sm" viewBox="0 0 20 20" stroke="currentColor" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path stroke-linecap="round" stroke-linejoin="round" d="M5 15L15 5M5 5L15 15"></path>
+    </svg></span>
+      </button>
+    </gesture-element>
+    <div class="drawer__content opacity-0 invisible flex flex-col h-full grow shrink">
+      <div class="drawer__scrollable relative flex flex-col gap-5 md:gap-7 grow shrink">
+        <div class="rte text-base"><p>If you have any questions, you are always welcome to contact us. We'll get back to you as soon as possible, within 24 hours on weekdays.</p></div><div class="help-list grid gap-4 md:gap-5"><div class="help-list__item grid gap-2d5 md:gap-3d5 relative z-1" id="shopify-block-content-1" >
+                <div class="flex items-center gap-3"><svg class="icon icon-rocket icon-md" viewBox="0 0 24 24" stroke="currentColor" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path class="fill" fill-rule="evenodd" clip-rule="evenodd" d="M21.9991 6.8C21.9991 5.11985 21.9991 4.27977 21.6722 3.63803C21.3845 3.07355 20.9256 2.6146 20.3611 2.32698C19.7194 2 18.8793 2 17.1991 2H16.6503C15.6718 2 15.1826 2 14.7223 2.11054C14.3141 2.20853 13.9239 2.37016 13.566 2.5895C13.1623 2.83689 12.8164 3.18283 12.1246 3.8747L6.99969 9C5.90927 10.0905 5.36406 10.6358 5.07261 11.2239C4.5181 12.343 4.51812 13.6569 5.07268 14.776C5.36415 15.3642 5.90938 15.9094 6.99984 16.9998C8.09038 18.0904 8.63565 18.6357 9.22386 18.9271C10.343 19.4817 11.6569 19.4817 12.7761 18.9271C13.3643 18.6356 13.9095 18.0903 15 16.9997L20.1248 11.8745C20.8165 11.1827 21.1624 10.8368 21.4098 10.4331C21.6291 10.0753 21.7907 9.6851 21.8886 9.27698C21.9991 8.81665 21.9991 8.32749 21.9991 7.34918V6.8ZM15.0024 10.9995C16.107 10.9995 17.0024 10.1041 17.0024 8.99952C17.0024 7.89495 16.107 6.99952 15.0024 6.99952C13.8979 6.99952 13.0024 7.89495 13.0024 8.99952C13.0024 10.1041 13.8979 10.9995 15.0024 10.9995Z"/>
+      <path d="M5.50049 10.5L2.00049 7.9999L3.07849 6.92193C3.964 6.03645 4.40676 5.5937 4.9307 5.31387C5.39454 5.06614 5.90267 4.9123 6.42603 4.86115C7.01719 4.80337 7.63117 4.92617 8.85913 5.17178L10.5 5.49997M18.4999 13.5L18.8284 15.1408C19.0742 16.3689 19.1971 16.983 19.1394 17.5743C19.0883 18.0977 18.9344 18.6059 18.6867 19.0699C18.4068 19.5939 17.964 20.0367 17.0783 20.9224L16.0007 22L13.5007 18.5M7 16.9999L8.99985 15M17.0024 8.99952C17.0024 10.1041 16.107 10.9995 15.0024 10.9995C13.8979 10.9995 13.0024 10.1041 13.0024 8.99952C13.0024 7.89495 13.8979 6.99952 15.0024 6.99952C16.107 6.99952 17.0024 7.89495 17.0024 8.99952ZM17.1991 2H16.6503C15.6718 2 15.1826 2 14.7223 2.11054C14.3141 2.20853 13.9239 2.37016 13.566 2.5895C13.1623 2.83689 12.8164 3.18283 12.1246 3.8747L6.99969 9C5.90927 10.0905 5.36406 10.6358 5.07261 11.2239C4.5181 12.343 4.51812 13.6569 5.07268 14.776C5.36415 15.3642 5.90938 15.9094 6.99984 16.9998V16.9998C8.09038 18.0904 8.63565 18.6357 9.22386 18.9271C10.343 19.4817 11.6569 19.4817 12.7761 18.9271C13.3643 18.6356 13.9095 18.0903 15 16.9997L20.1248 11.8745C20.8165 11.1827 21.1624 10.8368 21.4098 10.4331C21.6291 10.0753 21.7907 9.6851 21.8886 9.27698C21.9991 8.81665 21.9991 8.32749 21.9991 7.34918V6.8C21.9991 5.11985 21.9991 4.27977 21.6722 3.63803C21.3845 3.07355 20.9256 2.6146 20.3611 2.32698C19.7194 2 18.8793 2 17.1991 2Z" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg><p class="h4 font-medium leading-tight md:text-lg">Shipping Information</p>
+                </div>
+                <div class="rte text-sm"><p>Use this text to answer questions in as much detail as possible for your customers.</p></div>
+              </div><div class="help-list__item grid gap-2d5 md:gap-3d5 relative z-1" id="shopify-block-content-2" >
+                <div class="flex items-center gap-3"><svg class="icon icon-headphone icon-md" viewBox="0 0 24 24" stroke="currentColor" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <g class="fill">
+        <path d="M2 16C2 15.0681 2 14.6022 2.15224 14.2346C2.35523 13.7446 2.74458 13.3552 3.23463 13.1522C3.60218 13 4.06812 13 5 13C5.93188 13 6.39782 13 6.76537 13.1522C7.25542 13.3552 7.64477 13.7446 7.84776 14.2346C8 14.6022 8 15.0681 8 16V19C8 19.9319 8 20.3978 7.84776 20.7654C7.64477 21.2554 7.25542 21.6448 6.76537 21.8478C6.39782 22 5.93188 22 5 22C4.06812 22 3.60218 22 3.23463 21.8478C2.74458 21.6448 2.35523 21.2554 2.15224 20.7654C2 20.3978 2 19.9319 2 19V16Z"/>
+        <path d="M16 16C16 15.0681 16 14.6022 16.1522 14.2346C16.3552 13.7446 16.7446 13.3552 17.2346 13.1522C17.6022 13 18.0681 13 19 13C19.9319 13 20.3978 13 20.7654 13.1522C21.2554 13.3552 21.6448 13.7446 21.8478 14.2346C22 14.6022 22 15.0681 22 16V19C22 19.9319 22 20.3978 21.8478 20.7654C21.6448 21.2554 21.2554 21.6448 20.7654 21.8478C20.3978 22 19.9319 22 19 22C18.0681 22 17.6022 22 17.2346 21.8478C16.7446 21.6448 16.3552 21.2554 16.1522 20.7654C16 20.3978 16 19.9319 16 19V16Z"/>
+      </g>
+      <path d="M22 17V12C22 6.47715 17.5228 2 12 2V2C6.47715 2 2 6.47715 2 12V17M22 19V16C22 15.0681 22 14.6022 21.8478 14.2346C21.6448 13.7446 21.2554 13.3552 20.7654 13.1522C20.3978 13 19.9319 13 19 13V13C18.0681 13 17.6022 13 17.2346 13.1522C16.7446 13.3552 16.3552 13.7446 16.1522 14.2346C16 14.6022 16 15.0681 16 16V19C16 19.9319 16 20.3978 16.1522 20.7654C16.3552 21.2554 16.7446 21.6448 17.2346 21.8478C17.6022 22 18.0681 22 19 22V22C19.9319 22 20.3978 22 20.7654 21.8478C21.2554 21.6448 21.6448 21.2554 21.8478 20.7654C22 20.3978 22 19.9319 22 19ZM5 22V22C5.93188 22 6.39782 22 6.76537 21.8478C7.25542 21.6448 7.64477 21.2554 7.84776 20.7654C8 20.3978 8 19.9319 8 19V16C8 15.0681 8 14.6022 7.84776 14.2346C7.64477 13.7446 7.25542 13.3552 6.76537 13.1522C6.39782 13 5.93188 13 5 13V13C4.06812 13 3.60218 13 3.23463 13.1522C2.74458 13.3552 2.35523 13.7446 2.15224 14.2346C2 14.6022 2 15.0681 2 16V19C2 19.9319 2 20.3978 2.15224 20.7654C2.35523 21.2554 2.74458 21.6448 3.23463 21.8478C3.60218 22 4.06812 22 5 22Z" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg><p class="h4 font-medium leading-tight md:text-lg">Customer Support</p>
+                </div>
+                <div class="rte text-sm"><p>Use this text to answer questions in as much detail as possible for your customers.</p></div>
+              </div><div class="help-list__item grid gap-2d5 md:gap-3d5 relative z-1" id="shopify-block-content-3" >
+                <div class="flex items-center gap-3"><svg class="icon icon-chat_bubble icon-md" viewBox="0 0 24 24" stroke="currentColor" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path class="fill" d="M2 10C2 7.19974 2 5.79961 2.54497 4.73005C3.02433 3.78924 3.78924 3.02433 4.73005 2.54497C5.79961 2 7.19974 2 10 2H14C16.8003 2 18.2004 2 19.27 2.54497C20.2108 3.02433 20.9757 3.78924 21.455 4.73005C22 5.79961 22 7.19974 22 10V19.1708C22 20.1969 22 20.71 21.8373 21.0302C21.5642 21.5676 20.996 21.8893 20.3947 21.847C20.0363 21.8218 19.5964 21.5578 18.7165 21.0299C18.1917 20.715 17.9293 20.5576 17.6542 20.4347C17.1972 20.2306 16.7122 20.0963 16.2154 20.0362C15.9163 20 15.6103 20 14.9983 20H10C7.19974 20 5.79961 20 4.73005 19.455C3.78924 18.9757 3.02433 18.2108 2.54497 17.27C2 16.2004 2 14.8003 2 12V10Z"/>
+      <path d="M7 8H15M7 12H11M18.7165 21.0299V21.0299C19.5964 21.5578 20.0363 21.8218 20.3947 21.847C20.996 21.8893 21.5642 21.5676 21.8373 21.0302C22 20.71 22 20.1969 22 19.1708V10C22 7.19974 22 5.79961 21.455 4.73005C20.9757 3.78924 20.2108 3.02433 19.27 2.54497C18.2004 2 16.8003 2 14 2H10C7.19974 2 5.79961 2 4.73005 2.54497C3.78924 3.02433 3.02433 3.78924 2.54497 4.73005C2 5.79961 2 7.19974 2 10V12C2 14.8003 2 16.2004 2.54497 17.27C3.02433 18.2108 3.78924 18.9757 4.73005 19.455C5.79961 20 7.19974 20 10 20H14.9983C15.6103 20 15.9163 20 16.2154 20.0362C16.7122 20.0962 17.1972 20.2306 17.6542 20.4347C17.9293 20.5576 18.1917 20.715 18.7165 21.0299Z" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg><p class="h4 font-medium leading-tight md:text-lg">FAQ’s</p>
+                </div>
+                <div class="rte text-sm"><p>Use this text to answer questions in as much detail as possible for your customers.</p></div>
+              </div><div class="help-list__item grid gap-2d5 md:gap-3d5 relative z-1" id="shopify-block-content-4" >
+                <div class="flex items-center gap-3"><svg class="icon icon-phone icon-md" viewBox="0 0 24 24" stroke="currentColor" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path class="fill" d="M18.9522 15.7381L19.6605 15.9151C20.4461 16.1115 20.8389 16.2097 21.1388 16.4174C21.4725 16.6486 21.7279 16.9757 21.8712 17.3555C22 17.6968 22 18.0916 22 18.8812C22 19.8953 22 20.4024 21.7915 20.8225C21.5771 21.2546 21.1194 21.6595 20.6644 21.8198C20.2221 21.9756 19.7876 21.9223 18.9186 21.8158C15.8039 21.4338 13.0221 20.467 10.6579 19C8.23342 17.4956 6.24802 15.4652 4.79292 13C3.44179 10.7109 2.54788 8.04699 2.18421 5.0812C2.07767 4.21234 2.02441 3.77791 2.18022 3.33555C2.34048 2.88055 2.74541 2.42295 3.17752 2.2085C3.59762 2 4.09459 2 5.08854 2C5.89832 2 6.30321 2 6.6445 2.12878C7.02426 2.27207 7.35144 2.52752 7.58256 2.8612C7.79026 3.16106 7.88846 3.55386 8.08486 4.33946L8.08486 4.33946L8.20715 4.82862L8.20716 4.82863C8.49761 5.99045 8.64284 6.57136 8.62096 7.14144C8.60158 7.64629 8.48674 8.14289 8.28251 8.60499C8.05189 9.12681 7.66637 9.58498 6.89534 10.5013L4.79292 13C6.24802 15.4652 8.23342 17.4956 10.6579 19L13.5641 16.8239L13.5641 16.8239C14.459 16.1539 14.9064 15.8188 15.4047 15.6219C15.8462 15.4474 16.3151 15.3529 16.7897 15.3428C17.3254 15.3313 17.8677 15.4669 18.9522 15.7381Z"/>
+      <path d="M4.79292 13C3.44179 10.7109 2.54788 8.04699 2.18421 5.0812C2.07767 4.21234 2.02441 3.77791 2.18022 3.33555C2.34048 2.88055 2.74541 2.42295 3.17752 2.2085C3.59762 2 4.09459 2 5.08854 2V2C5.89832 2 6.30321 2 6.6445 2.12878C7.02426 2.27207 7.35144 2.52752 7.58256 2.8612C7.79026 3.16106 7.88846 3.55386 8.08486 4.33946L8.20715 4.82862C8.49761 5.99044 8.64284 6.57136 8.62096 7.14144C8.60158 7.64629 8.48674 8.14289 8.28251 8.60499C8.05189 9.12681 7.66637 9.58498 6.89534 10.5013L4.79292 13ZM4.79292 13C6.24802 15.4652 8.23342 17.4956 10.6579 19M10.6579 19C13.0221 20.467 15.8039 21.4338 18.9186 21.8158C19.7876 21.9223 20.2221 21.9756 20.6644 21.8198C21.1194 21.6595 21.5771 21.2546 21.7915 20.8225C22 20.4024 22 19.8953 22 18.8812V18.8812C22 18.0916 22 17.6968 21.8712 17.3555C21.7279 16.9757 21.4725 16.6486 21.1388 16.4174C20.8389 16.2097 20.4461 16.1115 19.6605 15.9151L18.9522 15.7381C17.8677 15.4669 17.3254 15.3313 16.7897 15.3428C16.3151 15.3529 15.8462 15.4474 15.4047 15.6219C14.9064 15.8188 14.459 16.1539 13.5641 16.8239L10.6579 19Z" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg><p class="h4 font-medium leading-tight md:text-lg">Contact Us</p>
+                </div>
+                <div class="rte text-sm"><p>Use this text to answer questions in as much detail as possible for your customers.</p></div>
+              </div></div></div>
+    </div>
+  </div>
+</drawer-element>
 
 
-<!-- 3 BRUSH FUNCTIONS, 1 EFFECTIVE TECHNOLOGY Section (From Miroooo) -->
+</div>
+<!-- 3 BRUSH FUNCTIONS, 1 EFFECTIVE TECHNOLOGY (White Card Video Section - From Miroooo X) -->
+<div id="shopify-section-template--24203751129433__video_with_text_BkMKDR" class="shopify-section" style="background: #000000; color: #171717; width: 100%; overflow: hidden; padding: clamp(24px, 4vw, 48px) clamp(16px, 4vw, 48px) !important; margin-bottom: 0; box-sizing: border-box;">
+  <style>
+    #shopify-section-template--24203751129433__video_with_text_BkMKDR {
+      background-color: #000000 !important;
+      background: #000000 !important;
+      padding: clamp(24px, 4vw, 48px) clamp(16px, 4vw, 48px) !important;
+      margin-bottom: 0 !important;
+      box-sizing: border-box !important;
+      width: 100% !important;
+      overflow: hidden;
+    }
+    .video-mode-container {
+      max-width: 1320px;
+      margin: 0 auto;
+      background: #fafafa;
+      border-radius: 24px;
+      padding: 0 clamp(1.25rem, 4.5vw, 4rem);
+      overflow: hidden;
+      box-sizing: border-box;
+      width: 100%;
+    }
+    .video-mode-frame-grid {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 1.5rem;
+      width: 100%;
+    }
+    .video-mode-col-text {
+      order: 2;
+      width: 100%;
+      max-width: 580px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      text-align: left;
+      padding: 0 1rem clamp(2rem, 5vw, 3rem) 1rem;
+      box-sizing: border-box;
+    }
+    .video-mode-col-video {
+      order: 1;
+      width: 100%;
+      max-width: 480px;
+      aspect-ratio: 1 / 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: transparent;
+    }
+    .video-mode-col-video video {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      background: transparent;
+      border: none;
+      outline: none;
+      box-shadow: none;
+    }
+
+    @media screen and (min-width: 768px) {
+      .video-mode-container {
+        padding: 0 clamp(2rem, 4.5vw, 4rem);
+      }
+      .video-mode-frame-grid {
+        display: grid;
+        grid-template-columns: 1.15fr 1fr;
+        gap: clamp(2rem, 4vw, 4rem);
+        align-items: center;
+        justify-items: center;
+      }
+      .video-mode-col-text {
+        order: 1 !important;
+        text-align: left;
+        padding: 0;
+        justify-content: center;
+      }
+      .video-mode-col-video {
+        order: 2 !important;
+        width: 100%;
+        max-width: 460px;
+        aspect-ratio: 1 / 1;
+      }
+    }
+  </style>
+
+  <div class="video-mode-container">
+    <div class="video-mode-frame-grid">
+
+      <!-- Video Column (Left on Desktop, Top on Mobile) -->
+      <div class="video-mode-col-video">
+        <video
+          id="mode-360-video"
+          autoplay
+          loop
+          muted
+          playsinline
+          preload="auto"
+          src="/assets_ref/x/miroooo-x-360-view.mp4"
+        ></video>
+      </div>
+
+      <!-- Text Column (Right on Desktop, Bottom on Mobile) -->
+      <div class="video-mode-col-text">
+        <h2 style="font-family: 'GFS Didot', 'Playfair Display', Georgia, serif; font-size: clamp(1.6rem, 2.4vw, 2.3rem); font-weight: 600; color: #111111; margin: 0 0 1.25rem 0; line-height: 1.25; letter-spacing: 0.02em; text-transform: uppercase;">
+          3 BRUSH FUNCTIONS, 1 EFFECTIVE TECHNOLOGY
+        </h2>
+
+        <div style="display: flex; flex-direction: column; gap: 1.15rem;">
+          <!-- 1. Standard (Blue Light Mode) -->
+          <div style="display: flex; align-items: flex-start; gap: 1rem;">
+            <img src="/assets/icons/mode-standard-blue.png" alt="Standard Mode" width="44" height="44" style="width: 44px; height: 44px; flex-shrink: 0; object-fit: contain; border-radius: 50%;" />
+            <div>
+              <h3 style="font-family: 'GFS Didot', 'Playfair Display', Georgia, serif; font-size: 1.05rem; font-weight: 600; color: #111111; letter-spacing: 0.05em; text-transform: uppercase; margin: 0 0 0.25rem 0;">
+                STANDARD
+              </h3>
+              <p style="font-family: var(--font-body-family, 'Inter', sans-serif); font-size: 0.88rem; color: #444444; line-height: 1.5; margin: 0;">
+                Gentle daily oral care designed for sensitive teeth and gums, providing a smooth, comfortable clean perfect for everyday brushing.
+              </p>
+            </div>
+          </div>
+
+          <!-- 2. Whitening (Purple Light Mode) -->
+          <div style="display: flex; align-items: flex-start; gap: 1rem;">
+            <img src="/assets/icons/mode-whitening-purple.png" alt="Whitening Mode" width="44" height="44" style="width: 44px; height: 44px; flex-shrink: 0; object-fit: contain; border-radius: 50%;" />
+            <div>
+              <h3 style="font-family: 'GFS Didot', 'Playfair Display', Georgia, serif; font-size: 1.05rem; font-weight: 600; color: #111111; letter-spacing: 0.05em; text-transform: uppercase; margin: 0 0 0.25rem 0;">
+                WHITENING
+              </h3>
+              <p style="font-family: var(--font-body-family, 'Inter', sans-serif); font-size: 0.88rem; color: #444444; line-height: 1.5; margin: 0;">
+                Targeted high-frequency vibrations that effectively lift stubborn surface stains from coffee, tea, and food for a radiant smile.
+              </p>
+            </div>
+          </div>
+
+          <!-- 3. Deep Cleansing (Green Light Mode) -->
+          <div style="display: flex; align-items: flex-start; gap: 1rem;">
+            <img src="/assets/icons/mode-deepclean-green.png" alt="Deep Cleansing Mode" width="44" height="44" style="width: 44px; height: 44px; flex-shrink: 0; object-fit: contain; border-radius: 50%;" />
+            <div>
+              <h3 style="font-family: 'GFS Didot', 'Playfair Display', Georgia, serif; font-size: 1.05rem; font-weight: 600; color: #111111; letter-spacing: 0.05em; text-transform: uppercase; margin: 0 0 0.25rem 0;">
+                DEEP CLEANSING
+              </h3>
+              <p style="font-family: var(--font-body-family, 'Inter', sans-serif); font-size: 0.88rem; color: #444444; line-height: 1.5; margin: 0;">
+                Maximum sonic power for an intensive plaque-removing clean, delivering a dentist-fresh feeling along the gumline and hard-to-reach areas.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- DISCOVER THE ULTIMATE IN ORAL HYGIENE Section (From Miroooo - Restored) -->
+<div id="shopify-section-template--miroooo-discover-oral-hygiene" class="shopify-section" style="background: #000000; color: #ffffff; width: 100%; overflow: hidden; position: relative; border-top: 1px solid rgba(255,255,255,0.08);">
+  <div style="width: 100%; max-width: 1856px; margin: 0 auto;">
+    <div class="oral-hygiene-grid" style="display: grid; grid-template-columns: 1fr; width: 100%; min-height: 600px; background: #000000; align-items: stretch;">
+
+      <!-- Left Column: Typography & Feature Bullets -->
+      <div class="oral-hygiene-content" style="display: flex; flex-direction: column; justify-content: center; padding: clamp(3rem, 6vw, 6rem) clamp(1.5rem, 5vw, 6.5rem); background: #000000; color: #ffffff; z-index: 2; box-sizing: border-box;">
+        <h2 style="font-family: var(--font-heading-family, 'Inter', serif); font-size: clamp(1.45rem, 2.6vw, 2.5rem); font-weight: 500; letter-spacing: 0.05em; text-transform: uppercase; line-height: 1.28; margin: 0 0 1.5rem 0; color: #ffffff; max-width: 540px; word-break: break-word;">
+          THE ULTIMATE TRAVEL-READY SONIC TOOTHBRUSH
+        </h2>
+
+        <div style="width: 100px; height: 1px; background: rgba(255, 255, 255, 0.35); margin: 0 0 2.25rem 0;"></div>
+
+        <ul style="list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 1.25rem; max-width: 580px;">
+          <li style="display: flex; align-items: center; gap: 0.85rem; font-size: clamp(0.92rem, 1.15vw, 1.15rem); color: rgba(255, 255, 255, 0.95); line-height: 1.45; font-weight: 400; letter-spacing: 0.01em;">
+            <span style="display: inline-block; width: 6px; height: 6px; border-radius: 50%; background: #ffffff; flex-shrink: 0;"></span>
+            <span>Slim, protective travel case included (fits seamlessly into your carry-on, wash bag, or handbag without taking up space)</span>
+          </li>
+          <li style="display: flex; align-items: center; gap: 0.85rem; font-size: clamp(0.92rem, 1.15vw, 1.15rem); color: rgba(255, 255, 255, 0.95); line-height: 1.45; font-weight: 400; letter-spacing: 0.01em;">
+            <span style="display: inline-block; width: 6px; height: 6px; border-radius: 50%; background: #ffffff; flex-shrink: 0;"></span>
+            <span>60+ days of long-lasting battery life (no need to hunt for chargers or carry cables on holidays)</span>
+          </li>
+          <li style="display: flex; align-items: center; gap: 0.85rem; font-size: clamp(0.92rem, 1.15vw, 1.15rem); color: rgba(255, 255, 255, 0.95); line-height: 1.45; font-weight: 400; letter-spacing: 0.01em;">
+            <span style="display: inline-block; width: 6px; height: 6px; border-radius: 50%; background: #ffffff; flex-shrink: 0;"></span>
+            <span>Ultralight 51g aerospace weight (lighter than standard manual brushes, you'll forget it's even in your bag)</span>
+          </li>
+        </ul>
+      </div>
+
+      <!-- Right Column: Demo Video -->
+      <div class="oral-hygiene-media" style="position: relative; width: 100%; height: 100%; overflow: hidden; background: #000000;">
+        <video
+          id="oral-hygiene-video"
+          class="w-full h-full object-cover"
+          src="/assets_ref/x/miroooo-video-3.mp4"
+          autoplay
+          loop
+          muted
+          playsinline
+          disablepictureinpicture
+          controlslist="nodownload nofullscreen noremoteplayback"
+          preload="auto"
+          style="width: 100%; height: 100%; object-fit: cover; display: block; background: #000000; pointer-events: none;"
+        ></video>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- 3 BRUSH FUNCTIONS, 1 EFFECTIVE TECHNOLOGY Section (From Miroooo)
 <div id="shopify-section-template--miroooo-brush-functions" class="shopify-section" style="background: #000000; color: #ffffff; width: 100%; overflow: hidden; padding: clamp(4rem, 6vw, 6.5rem) 0; box-sizing: border-box; border-top: 1px solid rgba(255,255,255,0.08);">
   <div style="max-width: 1240px; margin: 0 auto; padding: 0 clamp(16px, 4vw, 40px); box-sizing: border-box; width: 100%;">
-
-    <!-- Section Header -->
     <div style="text-align: center; margin-bottom: clamp(3rem, 5.5vw, 5.5rem); width: 100%; display: flex; flex-direction: column; align-items: center;">
       <h2 style="font-family: 'GFS Didot', 'Playfair Display', Georgia, serif; font-size: clamp(1.75rem, 3.2vw, 2.75rem); font-weight: 600; color: #ffffff; margin: 0 0 1.25rem 0; letter-spacing: 0.04em; text-transform: uppercase; line-height: 1.3; text-align: center; width: 100%;">
         3 BRUSH FUNCTIONS, 1 EFFECTIVE TECHNOLOGY
@@ -3594,58 +3255,38 @@ theme.variantStrings = {
         Our unique ultrasonic brushing method is complemented by three individual brushing functions, catering to every need, whether you seek a gentle or deep cleaning. The choice is yours!
       </p>
     </div>
-
-    <!-- 3 Circular Thumbnails Row -->
     <div class="brush-functions-grid" style="display: grid; grid-template-columns: repeat(3, 1fr); gap: clamp(1.5rem, 4vw, 4.5rem); text-align: center; justify-items: center; width: 100%; box-sizing: border-box;">
-
-      <!-- Function 1: STANDARD -->
       <div class="function-item" style="display: flex; flex-direction: column; align-items: center; text-align: center; gap: 1.25rem;">
         <div style="width: clamp(140px, 18vw, 220px); height: clamp(140px, 18vw, 220px); border-radius: 50%; overflow: hidden; background: #111111; display: flex; align-items: center; justify-content: center; box-shadow: 0 10px 30px rgba(0,0,0,0.6); border: 1px solid rgba(255,255,255,0.08); transition: transform 0.3s ease;">
           <img id="mode-img-standard" src="/assets_ref/x/G1.webp" alt="Standard Mode" style="width: 100%; height: 100%; object-fit: cover; display: block;" />
         </div>
         <div>
-          <h3 style="font-family: 'GFS Didot', 'Playfair Display', Georgia, serif; font-size: clamp(1.1rem, 1.4vw, 1.35rem); font-weight: 600; color: #ffffff; letter-spacing: 0.08em; text-transform: uppercase; margin: 0 0 0.75rem 0;">
-            STANDARD
-          </h3>
-          <p style="font-family: var(--font-body-family, 'Inter', sans-serif); font-size: clamp(0.9rem, 1.05vw, 1.02rem); color: rgba(255, 255, 255, 0.7); line-height: 1.6; max-width: 320px; margin: 0 auto; text-align: center; font-weight: 400;">
-            Gentle daily oral care designed for sensitive teeth and gums, providing a smooth, comfortable clean perfect for everyday brushing.
-          </p>
+          <h3 style="font-family: 'GFS Didot', 'Playfair Display', Georgia, serif; font-size: clamp(1.1rem, 1.4vw, 1.35rem); font-weight: 600; color: #ffffff; letter-spacing: 0.08em; text-transform: uppercase; margin: 0 0 0.75rem 0;">STANDARD</h3>
+          <p style="font-family: var(--font-body-family, 'Inter', sans-serif); font-size: clamp(0.9rem, 1.05vw, 1.02rem); color: rgba(255, 255, 255, 0.7); line-height: 1.6; max-width: 320px; margin: 0 auto; text-align: center; font-weight: 400;">Gentle daily oral care designed for sensitive teeth and gums, providing a smooth, comfortable clean perfect for everyday brushing.</p>
         </div>
       </div>
-
-      <!-- Function 2: WHITENING -->
       <div class="function-item" style="display: flex; flex-direction: column; align-items: center; text-align: center; gap: 1.25rem;">
         <div style="width: clamp(140px, 18vw, 220px); height: clamp(140px, 18vw, 220px); border-radius: 50%; overflow: hidden; background: #111111; display: flex; align-items: center; justify-content: center; box-shadow: 0 10px 30px rgba(0,0,0,0.6); border: 1px solid rgba(255,255,255,0.08); transition: transform 0.3s ease;">
           <img id="mode-img-whitening" src="/assets_ref/x/G2.webp" alt="Whitening Mode" style="width: 100%; height: 100%; object-fit: cover; display: block;" />
         </div>
         <div>
-          <h3 style="font-family: 'GFS Didot', 'Playfair Display', Georgia, serif; font-size: clamp(1.1rem, 1.4vw, 1.35rem); font-weight: 600; color: #ffffff; letter-spacing: 0.08em; text-transform: uppercase; margin: 0 0 0.75rem 0;">
-            WHITENING
-          </h3>
-          <p style="font-family: var(--font-body-family, 'Inter', sans-serif); font-size: clamp(0.9rem, 1.05vw, 1.02rem); color: rgba(255, 255, 255, 0.7); line-height: 1.6; max-width: 320px; margin: 0 auto; text-align: center; font-weight: 400;">
-            Targeted high-frequency vibrations that effectively lift stubborn surface stains from coffee, tea, and food for a radiant smile.
-          </p>
+          <h3 style="font-family: 'GFS Didot', 'Playfair Display', Georgia, serif; font-size: clamp(1.1rem, 1.4vw, 1.35rem); font-weight: 600; color: #ffffff; letter-spacing: 0.08em; text-transform: uppercase; margin: 0 0 0.75rem 0;">WHITENING</h3>
+          <p style="font-family: var(--font-body-family, 'Inter', sans-serif); font-size: clamp(0.9rem, 1.05vw, 1.02rem); color: rgba(255, 255, 255, 0.7); line-height: 1.6; max-width: 320px; margin: 0 auto; text-align: center; font-weight: 400;">Targeted high-frequency vibrations that effectively lift stubborn surface stains from coffee, tea, and food for a radiant smile.</p>
         </div>
       </div>
-
-      <!-- Function 3: DEEP CLEANSING -->
       <div class="function-item" style="display: flex; flex-direction: column; align-items: center; text-align: center; gap: 1.25rem;">
         <div style="width: clamp(140px, 18vw, 220px); height: clamp(140px, 18vw, 220px); border-radius: 50%; overflow: hidden; background: #111111; display: flex; align-items: center; justify-content: center; box-shadow: 0 10px 30px rgba(0,0,0,0.6); border: 1px solid rgba(255,255,255,0.08); transition: transform 0.3s ease;">
           <img id="mode-img-deep-clean" src="/assets_ref/x/G3.webp" alt="Deep Cleansing Mode" style="width: 100%; height: 100%; object-fit: cover; display: block;" />
         </div>
         <div>
-          <h3 style="font-family: 'GFS Didot', 'Playfair Display', Georgia, serif; font-size: clamp(1.1rem, 1.4vw, 1.35rem); font-weight: 600; color: #ffffff; letter-spacing: 0.08em; text-transform: uppercase; margin: 0 0 0.75rem 0;">
-            DEEP CLEANSING
-          </h3>
-          <p style="font-family: var(--font-body-family, 'Inter', sans-serif); font-size: clamp(0.9rem, 1.05vw, 1.02rem); color: rgba(255, 255, 255, 0.7); line-height: 1.6; max-width: 320px; margin: 0 auto; text-align: center; font-weight: 400;">
-            Maximum sonic power for an intensive plaque-removing clean, delivering a dentist-fresh feeling along the gumline and hard-to-reach areas.
-          </p>
+          <h3 style="font-family: 'GFS Didot', 'Playfair Display', Georgia, serif; font-size: clamp(1.1rem, 1.4vw, 1.35rem); font-weight: 600; color: #ffffff; letter-spacing: 0.08em; text-transform: uppercase; margin: 0 0 0.75rem 0;">DEEP CLEANSING</h3>
+          <p style="font-family: var(--font-body-family, 'Inter', sans-serif); font-size: clamp(0.9rem, 1.05vw, 1.02rem); color: rgba(255, 255, 255, 0.7); line-height: 1.6; max-width: 320px; margin: 0 auto; text-align: center; font-weight: 400;">Maximum sonic power for an intensive plaque-removing clean, delivering a dentist-fresh feeling along the gumline and hard-to-reach areas.</p>
         </div>
       </div>
-
     </div>
   </div>
 </div>
+-->
 
 
 <!-- LUXURIOUS PROFESSIONALISM Section (From Miroooo) -->
@@ -3654,7 +3295,7 @@ theme.variantStrings = {
     <div class="luxurious-grid" style="display: grid; grid-template-columns: 1fr; width: 100%; background: #000000 !important; align-items: stretch;">
 
       <!-- Left Column: Video 2 -->
-      <div class="luxurious-media" style="position: relative; width: 100%; height: 100%; overflow: hidden; background: #000000 !important; border-radius: 12px;">
+      <div class="luxurious-media" style="position: relative; width: 100%; height: 100%; overflow: hidden; background: #000000 !important; border-radius: 0;">
         <video
           id="luxurious-video"
           class="w-full h-full object-cover"
@@ -3666,7 +3307,7 @@ theme.variantStrings = {
           disablepictureinpicture
           controlslist="nodownload nofullscreen noremoteplayback"
           preload="auto"
-          style="width: 100%; height: 100%; object-fit: cover; display: block; background: #000000 !important; border-radius: 12px; pointer-events: none;"
+          style="width: 100%; height: 100%; object-fit: cover; display: block; background: #000000 !important; border-radius: 0; pointer-events: none;"
         ></video>
       </div>
 
@@ -4799,6 +4440,500 @@ theme.variantStrings = {
   </div>
 </div>
 
+<!-- How Miroooo beats the competition Section -->
+<div id="shopify-section-template--miroooo-competition-reasons" class="shopify-section" style="background: #000000; color: #ffffff; width: 100%; overflow: hidden; border-top: 1px solid rgba(255,255,255,0.08); position: relative;">
+  <style>
+    .miroooo-reasons {
+      background-color: #000000;
+      padding: clamp(3.5rem, 5.5vw, 5.5rem) 0;
+      overflow: hidden;
+      font-family: inherit;
+      width: 100%;
+      position: relative;
+    }
+
+    .miroooo-reasons__header {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 0 clamp(20px, 4vw, 48px) clamp(24px, 3vw, 36px);
+      position: relative;
+    }
+
+    .miroooo-reasons__title {
+      font-family: var(--font-heading-family, 'Inter', -apple-system, sans-serif);
+      font-size: clamp(1.75rem, 3.2vw, 2.75rem);
+      font-weight: 400;
+      letter-spacing: -0.03em;
+      color: #ffffff;
+      margin: 0;
+      line-height: 1.15;
+      max-width: 680px;
+    }
+
+    .miroooo-reasons__nav {
+      display: flex;
+      gap: 10px;
+      align-items: center;
+      flex-shrink: 0;
+      padding-bottom: 4px;
+    }
+
+    .miroooo-reasons__nav-btn {
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      border: 1px solid rgba(255, 255, 255, 0.22);
+      background: rgba(255, 255, 255, 0.04);
+      backdrop-filter: blur(8px);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background 0.25s ease, border-color 0.25s ease, transform 0.2s ease;
+      flex-shrink: 0;
+      outline: none;
+    }
+
+    .miroooo-reasons__nav-btn:hover {
+      background: #ffffff;
+      border-color: #ffffff;
+      transform: scale(1.04);
+    }
+
+    .miroooo-reasons__nav-btn svg {
+      width: 16px;
+      height: 16px;
+      stroke: #ffffff;
+      fill: none;
+      stroke-width: 2;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      transition: stroke 0.25s ease;
+    }
+
+    .miroooo-reasons__nav-btn:hover svg {
+      stroke: #000000;
+    }
+
+    .miroooo-reasons__track-wrapper {
+      overflow: hidden;
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 0 clamp(20px, 4vw, 48px);
+      cursor: grab;
+      user-select: none;
+      -webkit-user-select: none;
+      position: relative;
+    }
+
+    .miroooo-reasons__track-wrapper.is-dragging {
+      cursor: grabbing;
+    }
+
+    .miroooo-reasons__track {
+      display: flex;
+      gap: 20px;
+      will-change: transform;
+    }
+
+    .miroooo-reasons__card {
+      flex: 0 0 calc((100% - 60px) / 4);
+      min-width: 0;
+      box-sizing: border-box;
+    }
+
+    .miroooo-reasons__card-image-wrap {
+      position: relative;
+      overflow: hidden;
+      border-radius: 14px;
+      aspect-ratio: 3 / 4;
+      background: #0d0d0d;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+    }
+
+    .miroooo-reasons__card-image-wrap img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      pointer-events: none;
+      transition: transform 0.65s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    }
+
+    .miroooo-reasons__card:hover .miroooo-reasons__card-image-wrap img {
+      transform: scale(1.05);
+    }
+
+    .miroooo-reasons__card-body {
+      padding: 16px 4px 0 4px;
+    }
+
+    .miroooo-reasons__card-label {
+      font-size: 16px;
+      font-weight: 600;
+      color: #ffffff;
+      margin: 0 0 6px;
+      letter-spacing: -0.01em;
+      line-height: 1.35;
+      font-family: inherit;
+    }
+
+    .miroooo-reasons__card-desc {
+      font-size: 13.5px;
+      font-weight: 400;
+      color: rgba(255, 255, 255, 0.65);
+      margin: 0;
+      line-height: 1.55;
+      letter-spacing: 0.005em;
+      font-family: inherit;
+    }
+
+    .miroooo-reasons__mobile-next {
+      display: none;
+    }
+
+    @media (max-width: 1024px) and (min-width: 768px) {
+      .miroooo-reasons__card {
+        flex: 0 0 calc((100% - 20px) / 2.3);
+      }
+    }
+
+    @media (max-width: 767px) {
+      .miroooo-reasons {
+        padding: clamp(2.75rem, 6vw, 3.5rem) 0;
+      }
+      .miroooo-reasons__header {
+        padding: 0 20px 20px;
+      }
+      .miroooo-reasons__track-wrapper {
+        padding: 0 20px;
+      }
+      .miroooo-reasons__card {
+        flex: 0 0 calc(82% - 10px);
+      }
+      .miroooo-reasons__track {
+        gap: 14px;
+      }
+      .miroooo-reasons__nav {
+        display: none;
+      }
+      .miroooo-reasons__mobile-next {
+        display: flex;
+        position: absolute;
+        right: 8px;
+        top: 0;
+        bottom: 0;
+        width: 48px;
+        align-items: center;
+        justify-content: center;
+        z-index: 10;
+        pointer-events: none;
+      }
+      .miroooo-reasons__mobile-next-btn {
+        width: 38px;
+        height: 38px;
+        border-radius: 50%;
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        background: rgba(18, 18, 18, 0.85);
+        backdrop-filter: blur(10px);
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        pointer-events: all;
+        box-shadow: 0 4px 16px rgba(0,0,0,0.6);
+        transition: background 0.2s ease, border-color 0.2s ease, transform 0.2s ease;
+      }
+      .miroooo-reasons__mobile-next-btn:active {
+        transform: scale(0.95);
+        background: #ffffff;
+      }
+      .miroooo-reasons__mobile-next-btn svg {
+        width: 14px;
+        height: 14px;
+        stroke: #ffffff;
+        fill: none;
+        stroke-width: 2;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+      }
+      .miroooo-reasons__mobile-next-btn:active svg {
+        stroke: #000000;
+      }
+    }
+  </style>
+
+  <div class="miroooo-reasons" id="miroooo-reasons-root">
+    <div class="miroooo-reasons__header">
+      <h2 class="miroooo-reasons__title">How Miroooo beats the competition.</h2>
+      <div class="miroooo-reasons__nav">
+        <button class="miroooo-reasons__nav-btn" id="miroooo-reasons-prev" aria-label="Previous card">
+          <svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"></polyline></svg>
+        </button>
+        <button class="miroooo-reasons__nav-btn" id="miroooo-reasons-next" aria-label="Next card">
+          <svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"></polyline></svg>
+        </button>
+      </div>
+    </div>
+
+    <div class="miroooo-reasons__track-wrapper" id="miroooo-reasons-track-wrapper">
+      <div class="miroooo-reasons__track" id="miroooo-reasons-track">
+
+        <!-- Card 1: 60+ Days Battery -->
+        <div class="miroooo-reasons__card">
+          <div class="miroooo-reasons__card-image-wrap">
+            <img src="/assets_ref/x/competition/1-battery.png" alt="Miroooo X 60+ Days Battery Life" loading="lazy">
+          </div>
+          <div class="miroooo-reasons__card-body">
+            <p class="miroooo-reasons__card-label">1. 60+ Days Battery.</p>
+            <p class="miroooo-reasons__card-desc">Forget about weekly charging hassles and messy cords. A single full charge keeps you going for over 2 months.</p>
+          </div>
+        </div>
+
+        <!-- Card 2: Aerospace Aluminium -->
+        <div class="miroooo-reasons__card">
+          <div class="miroooo-reasons__card-image-wrap">
+            <img src="/assets_ref/x/competition/2-aluminum.png" alt="Aerospace Aluminium Design" loading="lazy">
+          </div>
+          <div class="miroooo-reasons__card-body">
+            <p class="miroooo-reasons__card-label">2. Aerospace Aluminium.</p>
+            <p class="miroooo-reasons__card-desc">Engineered from aerospace-grade aluminium, it delivers an ultra-premium feel in hand while weighing a mere 51 grams.</p>
+          </div>
+        </div>
+
+        <!-- Card 3: Slim Travel Case -->
+        <div class="miroooo-reasons__card">
+          <div class="miroooo-reasons__card-image-wrap">
+            <img src="/assets_ref/x/competition/3-travel-case.png" alt="Protective Travel Case Included" loading="lazy">
+          </div>
+          <div class="miroooo-reasons__card-body">
+            <p class="miroooo-reasons__card-label">3. Slim Travel Case.</p>
+            <p class="miroooo-reasons__card-desc">Every Miroooo X includes a custom protective travel case. Say goodbye to soggy washbags and unhygienic bristle contact.</p>
+          </div>
+        </div>
+
+        <!-- Card 4: 40,000 VPM Sonic Power -->
+        <div class="miroooo-reasons__card">
+          <div class="miroooo-reasons__card-image-wrap">
+            <img src="/assets_ref/x/competition/4-sonic-tech.png" alt="40,000 VPM Sonic Power" loading="lazy">
+          </div>
+          <div class="miroooo-reasons__card-body">
+            <p class="miroooo-reasons__card-label">4. 40,000 VPM Sonic Power.</p>
+            <p class="miroooo-reasons__card-desc">Delivers 40,000 micro-vibrations per minute, driving micro-bubbles deep between teeth while remaining gentle on gums.</p>
+          </div>
+        </div>
+
+        <!-- Card 5: Magnetic Wall Mount -->
+        <div class="miroooo-reasons__card">
+          <div class="miroooo-reasons__card-image-wrap">
+            <img src="/assets_ref/x/competition/5-wall-holder.png" alt="Hygienic Wall Mount" loading="lazy">
+          </div>
+          <div class="miroooo-reasons__card-body">
+            <p class="miroooo-reasons__card-label">5. Magnetic Wall Mount.</p>
+            <p class="miroooo-reasons__card-desc">Free up valuable counter space and keep your brush dry, hygienic, and neatly docked on your mirror or tile.</p>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="miroooo-reasons__mobile-next">
+        <button class="miroooo-reasons__mobile-next-btn" id="miroooo-reasons-mobile-next" aria-label="Next card">
+          <svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"></polyline></svg>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+  (function() {
+    function initCompSlider() {
+      var track     = document.getElementById('miroooo-reasons-track');
+      var wrapper   = document.getElementById('miroooo-reasons-track-wrapper');
+      var prevBtn   = document.getElementById('miroooo-reasons-prev');
+      var nextBtn   = document.getElementById('miroooo-reasons-next');
+      var mobileBtn = document.getElementById('miroooo-reasons-mobile-next');
+
+      if (!track || !wrapper) return;
+
+      var current = 0;
+      var busy = false;
+
+      // Extract only the original cards (excluding any existing clones)
+      var originals = Array.from(track.querySelectorAll('.miroooo-reasons__card:not(.ms-clone)'));
+      var N = originals.length;
+      if (N === 0) return;
+
+      function getGap() {
+        return window.innerWidth <= 767 ? 14 : 20;
+      }
+
+      function getVis() {
+        if (window.innerWidth <= 767) return 1;
+        if (window.innerWidth <= 1024) return 2;
+        return 4;
+      }
+
+      function cardW() {
+        var c = track.querySelector('.miroooo-reasons__card:not(.ms-clone)');
+        return c ? c.offsetWidth + getGap() : 0;
+      }
+
+      function rebuild() {
+        track.querySelectorAll('.ms-clone').forEach(function(el) { el.remove(); });
+        var vis = getVis();
+        for (var i = N - 1; i >= N - vis; i--) {
+          var cl = originals[i].cloneNode(true);
+          cl.classList.add('ms-clone');
+          track.insertBefore(cl, track.firstChild);
+        }
+        for (var j = 0; j < vis; j++) {
+          var cl2 = originals[j].cloneNode(true);
+          cl2.classList.add('ms-clone');
+          track.appendChild(cl2);
+        }
+      }
+
+      function jump(idx) {
+        track.style.transition = 'none';
+        track.style.transform = 'translateX(' + (-(getVis() + idx) * cardW()) + 'px)';
+        track.getBoundingClientRect();
+        current = idx;
+      }
+
+      function slideTo(idx) {
+        track.style.transition = 'transform 0.45s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
+        track.style.transform = 'translateX(' + (-(getVis() + idx) * cardW()) + 'px)';
+        current = idx;
+      }
+
+      function goNext() {
+        if (busy) return;
+        busy = true;
+        slideTo(current + 1);
+      }
+
+      function goPrev() {
+        if (busy) return;
+        busy = true;
+        slideTo(current - 1);
+      }
+
+      track.addEventListener('transitionend', function() {
+        if (current >= N) {
+          jump(current - N);
+        } else if (current < 0) {
+          jump(current + N);
+        }
+        busy = false;
+      });
+
+      if (nextBtn) {
+        nextBtn.onclick = function(e) { e.preventDefault(); goNext(); };
+      }
+      if (prevBtn) {
+        prevBtn.onclick = function(e) { e.preventDefault(); goPrev(); };
+      }
+      if (mobileBtn) {
+        mobileBtn.onclick = function(e) { e.preventDefault(); goNext(); };
+      }
+
+      var dragStartX = 0;
+      var dragStartT = 0;
+      var dragging = false;
+      var hasMoved = false;
+
+      function currentTranslateX() {
+        var st = window.getComputedStyle(track);
+        var mx = st.transform || st.webkitTransform;
+        if (!mx || mx === 'none') return 0;
+        var parts = mx.split(',');
+        return parseFloat(parts[4] || 0);
+      }
+
+      function onDragStart(x) {
+        if (busy) return;
+        dragging = true;
+        hasMoved = false;
+        dragStartX = x;
+        dragStartT = currentTranslateX();
+        track.style.transition = 'none';
+        wrapper.classList.add('is-dragging');
+      }
+
+      function onDragMove(x) {
+        if (!dragging) return;
+        var diff = x - dragStartX;
+        if (Math.abs(diff) > 4) hasMoved = true;
+        track.style.transform = 'translateX(' + (dragStartT + diff) + 'px)';
+      }
+
+      function onDragEnd(x) {
+        if (!dragging) return;
+        dragging = false;
+        wrapper.classList.remove('is-dragging');
+        var diff = x - dragStartX;
+        var threshold = cardW() * 0.18;
+        if (diff < -threshold) {
+          goNext();
+        } else if (diff > threshold) {
+          goPrev();
+        } else {
+          track.style.transition = 'transform 0.3s ease';
+          track.style.transform = 'translateX(' + (-(getVis() + current) * cardW()) + 'px)';
+        }
+      }
+
+      wrapper.addEventListener('mousedown', function(e) { onDragStart(e.clientX); });
+      window.addEventListener('mousemove', function(e) { onDragMove(e.clientX); });
+      window.addEventListener('mouseup', function(e) { onDragEnd(e.clientX); });
+
+      wrapper.addEventListener('touchstart', function(e) {
+        if (e.touches && e.touches[0]) onDragStart(e.touches[0].clientX);
+      }, { passive: true });
+
+      wrapper.addEventListener('touchmove', function(e) {
+        if (e.touches && e.touches[0]) onDragMove(e.touches[0].clientX);
+      }, { passive: true });
+
+      wrapper.addEventListener('touchend', function(e) {
+        if (e.changedTouches && e.changedTouches[0]) onDragEnd(e.changedTouches[0].clientX);
+      });
+
+      wrapper.addEventListener('click', function(e) {
+        if (hasMoved) {
+          e.preventDefault();
+          e.stopPropagation();
+        }
+      }, true);
+
+      function init() {
+        busy = false;
+        rebuild();
+        jump(0);
+      }
+
+      init();
+
+      var resizeTimer;
+      window.addEventListener('resize', function() {
+        clearTimeout(resizeTimer);
+        resizeTimer = setTimeout(init, 150);
+      });
+    }
+
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', initCompSlider);
+    } else {
+      initCompSlider();
+    }
+  })();
+  </script>
+</div>
+
 <!-- COMMENTED OUT: Radiant smile banner
 <div id="shopify-section-template--24203751129433__image_with_text_overlay_tfKPyw" class="shopify-section" style="background: #000000;"><style>
   #shopify-section-template--24203751129433__image_with_text_overlay_tfKPyw {
@@ -4832,122 +4967,7 @@ theme.variantStrings = {
 
 </div>
 -->
-
-<div id="shopify-section-template--24203751129433__video_with_text_BkMKDR" class="shopify-section" style="background: #000000; color: #171717; width: 100%; overflow: hidden; padding: clamp(24px, 4vw, 48px) clamp(16px, 4vw, 48px) !important; margin-bottom: 0; box-sizing: border-box;"><style>
-  #shopify-section-template--24203751129433__video_with_text_BkMKDR {
-    background-color: #000000 !important;
-    background: #000000 !important;
-    padding: clamp(24px, 4vw, 48px) clamp(16px, 4vw, 48px) !important;
-    margin-bottom: 0 !important;
-    box-sizing: border-box !important;
-    width: 100% !important;
-    overflow: hidden;
-  }
-  .video-mode-container {
-    max-width: 1320px;
-    margin: 0 auto;
-    background: #fafafa;
-    border-radius: 24px;
-    padding: 0 clamp(1.25rem, 4.5vw, 4rem);
-    overflow: hidden;
-    box-sizing: border-box;
-    width: 100%;
-  }
-  .video-mode-frame-grid {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 1.5rem;
-    width: 100%;
-  }
-  .video-mode-col-text {
-    order: 2;
-    width: 100%;
-    max-width: 520px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    gap: 0.85rem;
-    text-align: center;
-    padding: 0 1rem clamp(2.5rem, 6vw, 3.5rem) 1rem;
-    box-sizing: border-box;
-  }
-  .video-mode-col-video {
-    order: 1;
-    width: 100%;
-    max-width: 480px;
-    aspect-ratio: 1 / 1;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: transparent;
-  }
-  .video-mode-col-video video {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    display: block;
-    background: transparent;
-    border: none;
-    outline: none;
-    box-shadow: none;
-  }
-
-  @media screen and (min-width: 768px) {
-    .video-mode-container {
-      padding: 0 clamp(2rem, 4.5vw, 4rem);
-    }
-    .video-mode-frame-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: clamp(2rem, 4vw, 4rem);
-      align-items: center;
-      justify-items: center;
-    }
-    .video-mode-col-text {
-      order: 1;
-      text-align: left;
-      padding: 0;
-    }
-    .video-mode-col-video {
-      order: 2;
-    }
-  }
-</style>
-
-<div class="video-mode-container">
-  <div class="video-mode-frame-grid">
-
-    <!-- Text Column -->
-    <div class="video-mode-col-text">
-      <h2 style="font-family: 'GFS Didot', 'Playfair Display', Georgia, serif; font-size: clamp(1.8rem, 2.6vw, 2.5rem); font-weight: 600; color: #111111; margin: 0; line-height: 1.2; letter-spacing: -0.01em;">
-        Miroooo X
-      </h2>
-      <p style="font-size: clamp(1.02rem, 1.2vw, 1.15rem); font-weight: 600; color: #111111; margin: 0; line-height: 1.45;">
-        The perfect toothbrush that excels in every way!
-      </p>
-      <p style="font-size: clamp(0.92rem, 1.05vw, 1rem); color: #333333; line-height: 1.65; margin: 0;">
-        The basic mode is perfect for daily use, while the whitening mode gives your teeth an extra cleaning boost. Want a radiant white smile? The polishing mode gives your teeth that perfect finishing touch.
-      </p>
-    </div>
-
-    <!-- Video Column -->
-    <div class="video-mode-col-video">
-      <video
-        id="mode-360-video"
-        autoplay
-        loop
-        muted
-        playsinline
-        preload="auto"
-        src="/assets_ref/x/miroooo-x-360-view.mp4"
-      ></video>
-    </div>
-
-  </div>
-</div>
-
-</div><div id="shopify-section-template--24203751129433__image-with-text-1" class="shopify-section" style="background: #000000; color: #ffffff; padding: 0; box-sizing: border-box;"><style>
+<div id="shopify-section-template--24203751129433__image-with-text-1" class="shopify-section" style="background: #000000; color: #ffffff; padding: 0; box-sizing: border-box;"><style>
   #shopify-section-template--24203751129433__image-with-text-1 {
     --section-padding-top: 0px !important;
     --section-padding-bottom: 0px !important;

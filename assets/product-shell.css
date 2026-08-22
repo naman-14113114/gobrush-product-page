@@ -1192,7 +1192,8 @@
   align-items: center;
   justify-content: space-between;
   gap: 20px;
-  padding: 28px 0 36px;
+  padding: 28px 0 120px !important;
+  padding-bottom: 120px !important;
   border-top: 1px solid rgba(255, 255, 255, 0.08);
   color: #777777;
   font-size: 11px;
@@ -1286,7 +1287,8 @@
     flex-direction: column;
     text-align: center;
     gap: 16px;
-    padding: 24px 0 110px;
+    padding: 24px 0 120px !important;
+    padding-bottom: 120px !important;
   }
 
   .site-footer__payments {
