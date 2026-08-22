@@ -4,13 +4,13 @@ Miroooo is a UK-focused electric toothbrush brand offering two models: Miroooo X
 
 ## Primary pages
 
-- [Homepage](https://miroooo.co/): Brand and product overview.
-- [Shop](https://miroooo.co/shop): Model comparison and buying routes.
-- [Miroooo X](https://miroooo.co/products/miroooo-x): Lightweight model with three modes and 60+ days of battery life.
-- [Miroooo X2](https://miroooo.co/products/miroooo-x2): Guided model with pressure feedback, IPX7 water resistance and up to 90 days of battery life.
-- [FAQs](https://miroooo.co/faq): Product, care, delivery and return answers.
-- [Delivery and returns](https://miroooo.co/delivery-returns): UK fulfilment estimates and the 90-day home trial.
-- [Warranty](https://miroooo.co/warranty): Two-year limited warranty terms.
+- [Homepage](https://trymiroooo.com/): Brand and product overview.
+- [Shop](https://trymiroooo.com/shop): Model comparison and buying routes.
+- [Miroooo X](https://trymiroooo.com/products/miroooo-x): Lightweight model with three modes and 60+ days of battery life.
+- [Miroooo X2](https://trymiroooo.com/products/miroooo-x2): Guided model with pressure feedback, IPX7 water resistance and up to 90 days of battery life.
+- [FAQs](https://trymiroooo.com/faq): Product, care, delivery and return answers.
+- [Delivery and returns](https://trymiroooo.com/delivery-returns): UK fulfilment estimates and the 90-day home trial.
+- [Warranty](https://trymiroooo.com/warranty): Two-year limited warranty terms.
 
 ## Important context
 

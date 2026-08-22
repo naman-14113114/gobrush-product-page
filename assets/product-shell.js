@@ -281,7 +281,7 @@
             <div class="site-footer__touch-content">
               <p class="site-footer__hours">Operating Hours<br>Monday - Friday - 9am - 5pm GMT</p>
               <p class="site-footer__email">
-                <a href="mailto:support@miroooo.co" class="underline underline-offset-4" style="color: #ffffff;">support@miroooo.co</a>
+                <a href="mailto:support@trymiroooo.com" class="underline underline-offset-4" style="color: #ffffff;">support@trymiroooo.com</a>
               </p>
               <div class="site-footer__socials" aria-label="Social media links">
                 <a href="https://www.facebook.com/profile.php?id=61593351131893" target="_blank" rel="noopener noreferrer" class="site-footer__social-btn" aria-label="Facebook">

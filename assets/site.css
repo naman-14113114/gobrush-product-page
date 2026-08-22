@@ -1116,7 +1116,7 @@ p {
   justify-content: space-between;
   gap: 24px;
   padding-top: 24px;
-  padding-bottom: 120px !important;
+  padding-bottom: 24px;
   border-top: 1px solid rgba(255, 255, 255, 0.12);
   color: rgba(255, 255, 255, 0.45);
   font-size: 11px;
@@ -2998,8 +2998,7 @@ body.is-ready [data-hero-reveal] {
   align-items: center;
   justify-content: space-between;
   gap: 20px;
-  padding: 28px 0 120px !important;
-  padding-bottom: 120px !important;
+  padding: 28px 0;
   border-top: 1px solid rgba(255, 255, 255, 0.08);
   color: #777777;
   font-size: 11px;
@@ -3377,8 +3376,7 @@ body.is-ready [data-hero-reveal] {
     flex-direction: column;
     text-align: center;
     gap: 16px;
-    padding: 24px 0 120px !important;
-    padding-bottom: 120px !important;
+    padding: 24px 0;
   }
 
   .site-footer__payments {

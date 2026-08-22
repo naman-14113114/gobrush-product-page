@@ -33,12 +33,12 @@ for (const file of newPages) {
   if (!/<html lang="en-GB">/.test(html)) errors.push(`${file}: missing en-GB language`);
   if (!html.includes("/assets/site.css")) errors.push(`${file}: missing shared stylesheet`);
   if (!html.includes("/assets/site.js")) errors.push(`${file}: missing shared script`);
-  if (/(?:go)brush|Miroooo\.nl|miroooo\.com|hello@domain\.com/i.test(html)) errors.push(`${file}: inherited or placeholder brand reference`);
-  if (file !== "404.html" && !html.includes("https://miroooo.co/")) errors.push(`${file}: missing miroooo.co canonical or metadata`);
+  if (/(?:go)brush|Miroooo\.nl|https?:\/\/miroooo\.com|hello@domain\.com/i.test(html)) errors.push(`${file}: inherited or placeholder brand reference`);
+  if (file !== "404.html" && !html.includes("https://trymiroooo.com/")) errors.push(`${file}: missing trymiroooo.com canonical or metadata`);
   for (const [, href] of html.matchAll(/href="([^"]+)"/g)) {
     if (!href.startsWith("/") || href.startsWith("//")) continue;
     if (href.startsWith("/assets/") || href === "/favicon.svg" || href === "/favicon.png" || href === "/site.webmanifest") continue;
-    const pathname = new URL(href, "https://miroooo.co").pathname.replace(/\/$/, "") || "/";
+    const pathname = new URL(href, "https://trymiroooo.com").pathname.replace(/\/$/, "") || "/";
     if (!internalRoutes.has(pathname)) errors.push(`${file}: unresolved internal link ${href}`);
   }
 }
@@ -69,9 +69,9 @@ if (/background:\s*var\(--miroooo-green\)/.test(productShellStyles)) {
 for (const [file, route] of [["miroooo-x.html", "/products/miroooo-x"], ["miroooo-x2.html", "/products/miroooo-x2"]]) {
   const html = await readFile(resolve(root, file), "utf8");
   if (!/<html[^>]+lang="en-GB"/.test(html)) errors.push(`${file}: missing en-GB language`);
-  if (!html.includes(`rel="canonical" href="https://miroooo.co${route}"`)) errors.push(`${file}: incorrect canonical`);
+  if (!html.includes(`rel="canonical" href="https://trymiroooo.com${route}"`)) errors.push(`${file}: incorrect canonical`);
   if (!html.includes("/assets/product-shell.css") || !html.includes("/assets/product-shell.js")) errors.push(`${file}: missing shared product shell`);
-  if (/(?:go)brush|Miroooo\.nl|miroooo\.com|hello@domain\.com|lang="nl"/i.test(html)) errors.push(`${file}: inherited store contamination remains`);
+  if (/(?:go)brush|Miroooo\.nl|https?:\/\/miroooo\.com|hello@domain\.com|lang="nl"/i.test(html)) errors.push(`${file}: inherited store contamination remains`);
   if (/€|\bEUR\b/.test(html)) errors.push(`${file}: non-GBP currency remains`);
   if (/delivery tomorrow|Order within[^<]*(?:\d{1,2}:\d{2})/i.test(html)) errors.push(`${file}: unsupported urgency or delivery promise remains`);
 }
@@ -82,7 +82,7 @@ if (!config.outputDirectory || config.outputDirectory !== "public") errors.push(
 
 const sitemap = await readFile(resolve(root, "sitemap.xml"), "utf8");
 for (const route of ["/shop", "/products/miroooo-x", "/products/miroooo-x2", "/delivery-returns", "/privacy", "/terms", "/cart"]) {
-  if (!sitemap.includes(`https://miroooo.co${route}`)) errors.push(`sitemap.xml: missing ${route}`);
+  if (!sitemap.includes(`https://trymiroooo.com${route}`)) errors.push(`sitemap.xml: missing ${route}`);
 }
 
 if (errors.length) {

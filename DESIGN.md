@@ -173,7 +173,7 @@ Components feel engineered, generous and immediate.
 
 - **Do** use authentic X and X2 product imagery at its natural ratio.
 - **Do** keep the buying path and policy links visible and functional on mobile.
-- **Do** use UK English, GBP and `miroooo.co` canonicals throughout.
+- **Do** use UK English, GBP and `trymiroooo.com` canonicals throughout.
 - **Do** honour reduced-motion preferences and keyboard operation.
 - **Do** distinguish model differences with factual product information.
 

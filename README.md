@@ -18,4 +18,4 @@ Static storefront for Miroooo X and Miroooo X2, designed for UK English and GBP.
 npm run verify
 ```
 
-The intended production domain is `miroooo.co`. Domain, support mailbox and live PlusBase checkout verification must be completed before accepting live orders.
+The intended production domain is `trymiroooo.com`. Domain, support mailbox and live PlusBase checkout verification must be completed before accepting live orders.

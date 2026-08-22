@@ -6,7 +6,7 @@ Append-only memory for the `gobrush-product-page` repository. Do not delete or s
 
 - Workspace: `E:\1st YEAR DTU\New folder`.
 - Repository: `E:\1st YEAR DTU\New folder\gobrush-product-page`.
-- Intended public domain from repository docs and metadata: `https://miroooo.co`.
+- Intended public domain from repository docs and metadata: `https://trymiroooo.com`.
 - Branch and upstream before task-specific reads: `main`, upstream `origin/main`.
 - HEAD before memory write: `ba47704feed4445bbdc3e8882dc59e5f3408e0b7`.
 - Upstream state after `git fetch --all --prune`: aligned with `origin/main`, ahead/behind `0/0`.
@@ -37,10 +37,10 @@ Append-only memory for the `gobrush-product-page` repository. Do not delete or s
 
 ## Current Static Page Understanding
 
-- `index.html`: homepage title `Miroooo | Sonic electric toothbrushes`, canonical `https://miroooo.co/`, overlay header, hero copy `Precision. Without the noise.`, product-first imagery, range links to `Miroooo X` and `Miroooo X2`, visible prices `GBP 59` and `GBP 79`, story and service sections.
+- `index.html`: homepage title `Miroooo | Sonic electric toothbrushes`, canonical `https://trymiroooo.com/`, overlay header, hero copy `Precision. Without the noise.`, product-first imagery, range links to `Miroooo X` and `Miroooo X2`, visible prices `GBP 59` and `GBP 79`, story and service sections.
 - `shop.html`: product comparison page for X and X2 with current visible prices `GBP 59` compare `GBP 119` for X and `GBP 79` compare `GBP 159` for X2. Comparison states X is the lighter simpler option with 60+ days, 51g, three modes, travel case and USB-C; X2 adds up to 90 days, pressure-sensor ring, 45-degree sweep guidance, IPX7, travel case and USB-C.
 - `about.html`: brand story route with `The quiet instrument.`, focused on useful design, hand feel, routine fit, and a restrained Miroooo design language.
-- `faq.html`: FAQPage schema route. Key promises include 1-3 business days processing, 3-10 business days tracked transit, 90-day home trial, two-product range difference, and support via `support@miroooo.co`.
+- `faq.html`: FAQPage schema route. Key promises include 1-3 business days processing, 3-10 business days tracked transit, 90-day home trial, two-product range difference, and support via `support@trymiroooo.com`.
 - `contact.html`: support route for order help, returns, product questions, and links to order tracking, policies, and FAQs.
 - `delivery-returns.html`: delivery/returns policy route, last updated 16 Aug 2026, with 1-3 business days processing, 3-10 business days tracked transit, 90-day home trial, inspection/refund language, and damaged/faulty item guidance.
 - `warranty.html`: two-year limited warranty route, last updated 16 Aug 2026, covering manufacturing faults and exclusions.
@@ -66,11 +66,11 @@ Append-only memory for the `gobrush-product-page` repository. Do not delete or s
 - Both product pages use a custom buy-box/cart-drawer flow and redirect final checkout to `https://buudy.com/pages/add-to-cart` with product, variant, quantity, source, and preserved attribution parameters.
 - Both product pages show a custom cart drawer populated with selected bundle rows and gift rows before external checkout. The external checkout URL sends one variant ID and a quantity equal to the selected bundle count; it does not send separate line items for each color shown in the drawer.
 - Both product pages include sticky buy bars, thumbnail/gallery behavior, video/reel behavior with autoplay/pause logic, sound toggles, bundle tier cards, gift unlock UI, reviews/comparison sections, and FAQ accordions.
-- Current `Miroooo X` public route: `/products/miroooo-x`, source file `miroooo-x.html`, title `Miroooo X - Miroooo`, canonical `https://miroooo.co/products/miroooo-x`, visible H1 `Miroooo X - Grey`.
+- Current `Miroooo X` public route: `/products/miroooo-x`, source file `miroooo-x.html`, title `Miroooo X - Miroooo`, canonical `https://trymiroooo.com/products/miroooo-x`, visible H1 `Miroooo X - Grey`.
 - Current `Miroooo X` offer details observed: primary visible price `GBP 59`, compare price `GBP 119`, product ID for Buudy checkout `1000000664011633`, color variants Pink `1000020348812111`, Grey `1000020348812113`, Silver `1000020348812112`, checkout source `miroooo`.
 - Current `Miroooo X` bundle behavior observed: Buy 2 is the default/Most Popular tier; Buy 3 is Best Value. Gift unlock labels include Travel Case always, 2x Brush Heads at Buy 2, and Charging Dock at Buy 3.
 - Current `Miroooo X` content notes: features mention 60+ days battery, free travel case, lightweight 51 grams, and routine elevation. Trust badges include `2-Year Warranty`, `60-Day Trial`, and `Free Tracked Shipping`, which is inconsistent with the wider site's 90-day home trial wording.
-- Current `Miroooo X2` public route: `/products/miroooo-x2`, source file `miroooo-x2.html`, title `Miroooo X2 - Miroooo`, canonical `https://miroooo.co/products/miroooo-x2`, visible H1 `Miroooo X2 Grey`.
+- Current `Miroooo X2` public route: `/products/miroooo-x2`, source file `miroooo-x2.html`, title `Miroooo X2 - Miroooo`, canonical `https://trymiroooo.com/products/miroooo-x2`, visible H1 `Miroooo X2 Grey`.
 - Current `Miroooo X2` offer details observed: primary visible price `GBP 79`, compare price `GBP 159`, product ID for Buudy checkout `1000000664011618`, effective variant IDs from `VARIANTS_DATA` Pink `1000020348810062`, Grey `1000020348810048`, Silver `1000020348810046`, checkout source `miroooo-x2`.
 - Current `Miroooo X2` bundle behavior observed: Buy 2 is default/Most Popular; Buy 3 shows `GBP 199.00` against `GBP 477.00`. X2 color choice is driven through bundle-row swatches rather than a separate top selector.
 - Current `Miroooo X2` content notes: features mention up to 90 days battery, 45-degree sweep sonic cleaning, and travel case value. Trust badges include `90-Day Trial`.
