@@ -233,7 +233,7 @@
             <p class="site-footer__tagline">Quietly precise electric toothbrushes, built to make better brushing feel uncomplicated.</p>
             <div class="site-footer__address">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" class="site-footer__address-icon" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
-              <span>15 Harefield Rd, Rickmansworth, England, WD3 1LY, UK</span>
+              <span>71-75 Shelton St, London WC2H 9JQ, UK</span>
             </div>
           </div>
 
@@ -654,24 +654,24 @@
       id: "travel-case",
       name: "Luxury Travel Case",
       subtitle: "Protect & travel in style",
-      value: "£15.95",
-      valueNum: 15.95,
+      value: "£16",
+      valueNum: 16,
       image: "https://cdn.shopify.com/s/files/1/0810/6023/3561/files/Grey-color-5.jpg?v=1734444578&width=120"
     },
     heads: {
       id: "brush-heads",
       name: "2x Extra DuPont Brush Heads",
       subtitle: "Ultra-soft DuPont bristles",
-      value: "£19.95",
-      valueNum: 19.95,
+      value: "£20",
+      valueNum: 20,
       image: "https://cdn.shopify.com/s/files/1/0810/6023/3561/files/Grey-color-4.jpg?v=1734444578&width=120"
     },
     dock: {
       id: "charging-dock",
       name: "Magnetic Charging Dock",
       subtitle: "Fast wireless induction dock",
-      value: "£24.95",
-      valueNum: 24.95,
+      value: "£25",
+      valueNum: 25,
       image: "https://cdn.shopify.com/s/files/1/0810/6023/3561/files/Grey-color-7.jpg?v=1734444578&width=120"
     }
   };
@@ -989,10 +989,7 @@
             <div class="miroooo-cart-header">
               <div class="miroooo-cart-header-title-wrap">
                 <p class="miroooo-cart-kicker">CART</p>
-                <h2 class="miroooo-cart-title">
-                  Shopping Bag
-                  <span class="miroooo-cart-count-badge" id="cart-item-count-badge">0 items</span>
-                </h2>
+                <h2 class="miroooo-cart-title">Your Miroooo bag</h2>
               </div>
               <button type="button" class="miroooo-cart-close-btn" aria-label="Close cart">
                 <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -1002,35 +999,7 @@
               </button>
             </div>
             <div class="miroooo-cart-body" id="cart-drawer-body">
-              <div class="miroooo-cart-delivery-box" id="cart-delivery-box">
-                <div class="miroooo-delivery-header">
-                  <div class="miroooo-delivery-icon-title">
-                    <span class="miroooo-delivery-pulse"></span>
-                    <span class="miroooo-delivery-badge">Free Tracked UK Delivery</span>
-                  </div>
-                  <span class="miroooo-delivery-status">Unlocked</span>
-                </div>
-                <div class="miroooo-delivery-timer-text">
-                  Order in next <strong class="miroooo-timer-highlight" id="cart-countdown-timer">09m : 45s</strong> for Free Tracked UK Delivery
-                </div>
-                <div class="miroooo-delivery-progress-track">
-                  <div class="miroooo-delivery-progress-bar" style="width: 100%;"></div>
-                </div>
-              </div>
               <div class="miroooo-cart-items" id="cart-items-list"></div>
-              <div class="miroooo-cart-gifts-panel" id="cart-gifts-panel"></div>
-              <div class="miroooo-cart-promo-box" id="cart-promo-box">
-                <div class="miroooo-promo-header">
-                  <div class="miroooo-promo-info">
-                    <span class="miroooo-promo-label">Promo Code</span>
-                    <p class="miroooo-promo-desc" id="cart-promo-desc">Applied automatically for offers and free tracked shipping.</p>
-                  </div>
-                  <span class="miroooo-promo-badge">
-                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
-                    AUTO
-                  </span>
-                </div>
-              </div>
             </div>
             <div class="miroooo-cart-footer" id="cart-drawer-footer">
               <div class="miroooo-cart-discount-row" id="cart-discount-toggle">
@@ -1039,58 +1008,33 @@
                     Total discount
                     <svg class="miroooo-chevron-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
                   </span>
-                  <span class="miroooo-discount-amount" id="cart-discount-val">-£0.00</span>
+                  <span class="miroooo-discount-amount" id="cart-discount-val">-£0</span>
                 </div>
                 <div class="miroooo-discount-details" id="cart-discount-details">
                   <div class="miroooo-discount-detail-item" id="cart-bundle-discount-row">
                     <span>Bundle Special Offer</span>
-                    <span id="cart-bundle-discount-val">-£0.00</span>
+                    <span id="cart-bundle-discount-val">-£0</span>
                   </div>
                   <div class="miroooo-discount-detail-item" id="cart-gift-discount-row">
                     <span>Unlocked Free Gifts</span>
-                    <span id="cart-gift-discount-val">-£0.00</span>
+                    <span id="cart-gift-discount-val">-£0</span>
                   </div>
                 </div>
               </div>
-              <div class="miroooo-cart-totals">
-                <div class="miroooo-totals-line">
-                  <span class="miroooo-totals-label">Subtotal</span>
-                  <span class="miroooo-totals-value" id="cart-subtotal-val">£0.00</span>
+              <div class="cart-subtotal-section" style="display: flex; align-items: center; justify-content: space-between; padding-top: 14px; border-top: 1px solid rgba(255, 255, 255, 0.08); margin-bottom: 16px;">
+                <div>
+                  <span class="cart-subtotal-label" style="font-size: 0.88rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.06em; color: #ffffff; display: block;">SUBTOTAL</span>
+                  <span class="cart-subtotal-sub" style="font-size: 0.75rem; color: #888888; display: block; margin-top: 2px;">Includes all taxes.</span>
                 </div>
-                <div class="miroooo-totals-line">
-                  <span class="miroooo-totals-label">Tracked Shipping</span>
-                  <span class="miroooo-totals-free">FREE</span>
-                </div>
-                <div class="miroooo-totals-main">
-                  <div>
-                    <span class="miroooo-total-title">Total</span>
-                    <span class="miroooo-tax-note">Includes all taxes & duties</span>
-                  </div>
-                  <div class="miroooo-total-price" id="cart-total-val">£0.00 GBP</div>
-                </div>
+                <div class="cart-subtotal-amount" id="cart-subtotal-val" style="font-size: 1.85rem; font-weight: 800; color: #ffffff; line-height: 1; letter-spacing: -0.02em;">£0</div>
               </div>
               <div class="miroooo-checkout-btn-wrap">
-                <button type="button" id="cart-drawer-checkout-btn" class="miroooo-checkout-btn" is="hover-button">
-                  <span class="btn-fill"></span>
+                <a href="/cart" class="cart-checkout-cta-btn miroooo-checkout-btn" is="hover-button" style="text-decoration: none;" onclick="window.MirooooCart.closeCart()">
+                  <span class="btn-fill" data-fill></span>
                   <span class="btn-text">
-                    <svg class="miroooo-lock-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                      <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
-                      <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
-                    </svg>
-                    <span id="cart-checkout-btn-text">Checkout Securely</span>
+                    <span>Go to cart &rarr;</span>
                   </span>
-                </button>
-              </div>
-              <a href="/cart" class="miroooo-goto-cart-btn" onclick="window.MirooooCart.closeCart()">
-                <span>Go to cart</span>
-                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
-              </a>
-              <div class="miroooo-cart-trust-badges">
-                <span>🔒 256-Bit SSL Encryption</span>
-                <span>·</span>
-                <span>90-Day Trial</span>
-                <span>·</span>
-                <span>2-Year Warranty</span>
+                </a>
               </div>
             </div>
           </aside>
@@ -1098,16 +1042,15 @@
 
         drawer.querySelector(".miroooo-cart-backdrop")?.addEventListener("click", () => this.closeCart());
         drawer.querySelector(".miroooo-cart-close-btn")?.addEventListener("click", () => this.closeCart());
-        
+
         const discountToggle = drawer.querySelector("#cart-discount-toggle");
         discountToggle?.addEventListener("click", () => {
           discountToggle.classList.toggle("is-open");
-        });
-
-        const checkoutBtn = drawer.querySelector("#cart-drawer-checkout-btn");
-        checkoutBtn?.addEventListener("click", (e) => {
-          e.preventDefault();
-          this.checkout();
+          const details = discountToggle.querySelector("#cart-discount-details");
+          if (details) {
+            const isOpen = discountToggle.classList.contains("is-open");
+            details.style.display = isOpen ? "block" : "none";
+          }
         });
       }
     },
@@ -1118,24 +1061,10 @@
       const items = cart.items || [];
       const hasItems = items.length > 0;
 
-      // Header item count
-      const totalItemCount = items.reduce((sum, item) => sum + (item.bundleCount || item.quantity || 1), 0);
-      const countBadge = document.getElementById("cart-item-count-badge");
-      if (countBadge) {
-        countBadge.textContent = `${totalItemCount} item${totalItemCount === 1 ? "" : "s"}`;
-      }
-
-      // Delivery Box & Promo Box & Footer visibility
-      const deliveryBox = document.getElementById("cart-delivery-box");
-      const promoBox = document.getElementById("cart-promo-box");
-      const giftsPanel = document.getElementById("cart-gifts-panel");
       const footer = document.getElementById("cart-drawer-footer");
       const itemsList = document.getElementById("cart-items-list");
 
       if (!hasItems) {
-        if (deliveryBox) deliveryBox.style.display = "none";
-        if (promoBox) promoBox.style.display = "none";
-        if (giftsPanel) giftsPanel.style.display = "none";
         if (footer) footer.style.display = "none";
 
         if (itemsList) {
@@ -1158,18 +1087,27 @@
         return;
       }
 
-      if (deliveryBox) deliveryBox.style.display = "flex";
-      if (promoBox) promoBox.style.display = "block";
-      if (giftsPanel) giftsPanel.style.display = "flex";
       if (footer) footer.style.display = "flex";
 
       // Render Line Items
       if (itemsList) {
         let itemsHtml = "";
         items.forEach((item) => {
-          const colorsLabel = item.choices && item.choices.length > 0 ? `Colors: ${item.choices.join(" + ")}` : (item.color ? `Color: ${item.color}` : "");
-          const unitPriceDisplay = `£${Number(item.unitPrice).toFixed(2)}`;
-          const comparePriceDisplay = item.comparePrice ? `£${Number(item.comparePrice).toFixed(2)}` : "";
+          const isX2 = item.productHandle === "miroooo-x2" || (item.title && item.title.toLowerCase().includes("x2")) || item.productId === "1000000664011618";
+          const description = isX2
+            ? "45° Bass sweep guidance, smart pressure sensor halo, and 90-day cobalt endurance."
+            : "Ultra-precise acoustic motor, 60-day battery, and 3 brushing modes with travel case.";
+
+          const colorsLabel = item.choices && item.choices.length > 0
+            ? `Colors: ${item.choices.join(" + ")}`
+            : (item.color ? `Color: ${item.color}` : "");
+
+          const unitPriceInt = Math.round(Number(item.unitPrice || 0));
+          const unitPriceDisplay = `£${unitPriceInt}`;
+          const comparePriceInt = item.comparePrice ? Math.round(Number(item.comparePrice)) : (unitPriceInt * 2);
+          const comparePriceDisplay = comparePriceInt > unitPriceInt ? `£${comparePriceInt}` : "";
+
+          const quantity = item.bundleCount || item.quantity || 1;
 
           itemsHtml += `
             <div class="miroooo-cart-item" data-item-id="${item.id}">
@@ -1180,6 +1118,7 @@
                 <div class="miroooo-cart-item-top">
                   <div>
                     <h4 class="miroooo-cart-item-title">${item.title}</h4>
+                    <p class="miroooo-cart-item-desc" style="font-size: 0.76rem; color: rgba(255, 255, 255, 0.55); margin: 3px 0 0; line-height: 1.35;">${description}</p>
                     ${colorsLabel ? `<p class="miroooo-cart-item-colors">${colorsLabel}</p>` : ""}
                   </div>
                   <div class="miroooo-cart-item-pricing">
@@ -1189,11 +1128,11 @@
                 </div>
                 <div class="miroooo-cart-item-bottom">
                   <div class="miroooo-cart-stepper">
-                    <button type="button" class="miroooo-stepper-btn" aria-label="Decrease quantity" onclick="window.MirooooCart.updateQuantity('${item.id}', ${(item.bundleCount || item.quantity || 1) - 1})">
+                    <button type="button" class="miroooo-stepper-btn" aria-label="Decrease quantity" onclick="window.MirooooCart.updateQuantity('${item.id}', ${quantity - 1})">
                       <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="5" y1="12" x2="19" y2="12"></line></svg>
                     </button>
-                    <span class="miroooo-stepper-val">${item.bundleCount || item.quantity || 1}</span>
-                    <button type="button" class="miroooo-stepper-btn" aria-label="Increase quantity" onclick="window.MirooooCart.updateQuantity('${item.id}', ${(item.bundleCount || item.quantity || 1) + 1})">
+                    <span class="miroooo-stepper-val">${quantity}</span>
+                    <button type="button" class="miroooo-stepper-btn" aria-label="Increase quantity" onclick="window.MirooooCart.updateQuantity('${item.id}', ${quantity + 1})">
                       <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
                     </button>
                   </div>
@@ -1212,63 +1151,28 @@
         itemsList.innerHTML = itemsHtml;
       }
 
-      // Calculate totals & unlocked gifts
+      // Calculate totals & savings (integers only)
       let subtotal = 0;
       let compareTotal = 0;
       let maxUnlockedGifts = 1;
 
       items.forEach((item) => {
         const qty = item.quantity || 1;
-        subtotal += Number(item.unitPrice || 0) * qty;
-        compareTotal += Number(item.comparePrice || item.unitPrice * 2) * qty;
+        const unitPrice = Math.round(Number(item.unitPrice || 0));
+        const comparePrice = item.comparePrice ? Math.round(Number(item.comparePrice)) : unitPrice * 2;
+        subtotal += unitPrice * qty;
+        compareTotal += comparePrice * qty;
         const itemGifts = item.unlockedGifts || (item.bundleCount === 3 ? 3 : item.bundleCount === 2 ? 2 : 1);
         if (itemGifts > maxUnlockedGifts) maxUnlockedGifts = itemGifts;
       });
 
-      // Gifts rendering
       const unlockedGiftsList = [GIFTS_DATABASE.case];
       if (maxUnlockedGifts >= 2) unlockedGiftsList.push(GIFTS_DATABASE.heads);
       if (maxUnlockedGifts >= 3) unlockedGiftsList.push(GIFTS_DATABASE.dock);
 
-      const totalGiftValueNum = unlockedGiftsList.reduce((sum, g) => sum + g.valueNum, 0);
+      const totalGiftValueNum = unlockedGiftsList.reduce((sum, g) => sum + Math.round(Number(g.valueNum || 0)), 0);
       const bundleSavings = Math.max(0, compareTotal - subtotal);
       const totalDiscountNum = bundleSavings + totalGiftValueNum;
-
-      if (giftsPanel) {
-        let giftsHtml = `
-          <div class="miroooo-gifts-header">
-            <div class="miroooo-gifts-title-wrap">
-              <span class="miroooo-gifts-kicker">Free Rewards</span>
-              <h4 class="miroooo-gifts-title">${unlockedGiftsList.length}/${unlockedGiftsList.length} gifts unlocked</h4>
-            </div>
-            <span class="miroooo-gifts-value-badge">£${totalGiftValueNum.toFixed(2)} value</span>
-          </div>
-          <div class="miroooo-gifts-list">
-        `;
-
-        unlockedGiftsList.forEach((gift) => {
-          giftsHtml += `
-            <div class="miroooo-gift-row">
-              <div class="miroooo-gift-thumb">
-                <img src="${gift.image}" alt="${gift.name}" loading="lazy" />
-              </div>
-              <div class="miroooo-gift-info">
-                <div class="miroooo-gift-name">
-                  <span>${gift.name}</span>
-                  <span class="miroooo-gift-tag">FREE GIFT</span>
-                </div>
-                <p class="miroooo-gift-desc">${gift.subtitle}</p>
-              </div>
-              <div class="miroooo-gift-price">
-                <span class="miroooo-gift-free">£0.00</span>
-                <span class="miroooo-gift-original">${gift.value}</span>
-              </div>
-            </div>
-          `;
-        });
-        giftsHtml += "</div>";
-        giftsPanel.innerHTML = giftsHtml;
-      }
 
       // Update Summary Values
       const subtotalValEl = document.getElementById("cart-subtotal-val");
@@ -1277,11 +1181,11 @@
       const bundleDiscountValEl = document.getElementById("cart-bundle-discount-val");
       const giftDiscountValEl = document.getElementById("cart-gift-discount-val");
 
-      if (subtotalValEl) subtotalValEl.textContent = `£${subtotal.toFixed(2)}`;
-      if (totalValEl) totalValEl.textContent = `£${subtotal.toFixed(2)} GBP`;
-      if (discountValEl) discountValEl.textContent = `-£${totalDiscountNum.toFixed(2)}`;
-      if (bundleDiscountValEl) bundleDiscountValEl.textContent = `-£${bundleSavings.toFixed(2)}`;
-      if (giftDiscountValEl) giftDiscountValEl.textContent = `-£${totalGiftValueNum.toFixed(2)}`;
+      if (subtotalValEl) subtotalValEl.textContent = `£${Math.round(subtotal)}`;
+      if (totalValEl) totalValEl.textContent = `£${Math.round(subtotal)}`;
+      if (discountValEl) discountValEl.textContent = `-£${Math.round(totalDiscountNum)}`;
+      if (bundleDiscountValEl) bundleDiscountValEl.textContent = `-£${Math.round(bundleSavings)}`;
+      if (giftDiscountValEl) giftDiscountValEl.textContent = `-£${Math.round(totalGiftValueNum)}`;
     },
 
     startTimer() {

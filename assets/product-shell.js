@@ -244,7 +244,7 @@
             <p class="site-footer__tagline">Quietly precise electric toothbrushes, built to make better brushing feel uncomplicated.</p>
             <div class="site-footer__address">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" class="site-footer__address-icon" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
-              <span>15 Harefield Rd, Rickmansworth, England, WD3 1LY, UK</span>
+              <span>71-75 Shelton St, London WC2H 9JQ, UK</span>
             </div>
           </div>
 

@@ -81,7 +81,7 @@
       displayDate: '16 August 2026',
       variant: 'Color: Grey',
       title: 'Retired my Oral-B iO — far gentler on gums with better plaque removal',
-      body: 'Used Oral-B electric brushes for nearly a decade. The rotating head always felt aggressive on my gumline. Switched to the Miroooo X sonic vibrations and my gums haven\'t bled once. Teeth feel silky smooth after every 2-minute cycle.',
+      body: 'Used Oral-B electric brushes for nearly a decade. The rotating head always felt aggressive on my gumline. Switched to the Miroooo X micro-vibrations and my gums haven\'t bled once. Teeth feel silky smooth after every 2-minute cycle.',
       images: ['/assets_ref/reviews/customer-review-bristle-head-detail.png'],
       helpful: 42,
       verified: true
@@ -165,7 +165,7 @@
       displayDate: '4 August 2026',
       variant: 'Color: Grey',
       title: 'Weighs just 51g — unbelievable power for such a lightweight brush',
-      body: 'Holding this feels like holding a luxury pen rather than a clunky plastic electric toothbrush. You don\'t get any wrist fatigue at all, yet the sonic clean is powerful and deep.',
+      body: 'Holding this feels like holding a luxury pen rather than a clunky plastic electric toothbrush. You don\'t get any wrist fatigue at all, yet the acoustic clean is powerful and deep.',
       images: [],
       helpful: 33,
       verified: true
@@ -206,8 +206,8 @@
       date: '2026-07-27',
       displayDate: '27 July 2026',
       variant: 'Color: Pink',
-      title: 'Gentlest sonic clean I\'ve experienced for sensitive receding gums',
-      body: 'Was nervous to switch to sonic because of gum recession, but the Sensitive mode is remarkably gentle. The curved DuPont bristles hug the tooth contours without scraping raw enamel.',
+      title: 'Gentlest acoustic clean I\'ve experienced for sensitive receding gums',
+      body: 'Was nervous to switch to acoustic because of gum recession, but the Sensitive mode is remarkably gentle. The curved DuPont bristles hug the tooth contours without scraping raw enamel.',
       images: [],
       helpful: 28,
       verified: true
@@ -359,7 +359,7 @@
       merchantReply: {
         author: 'Miroooo Support Care',
         date: '15 June 2026',
-        text: 'Dear David, we understand how frustrating carrier backlogs can be during holiday peaks. Our policy is to immediately intervene and dispatch a priority express replacement at zero cost when couriers stall. We are glad our support team took care of you and that you are enjoying the Miroooo X sonic clean!'
+        text: 'Dear David, we understand how frustrating carrier backlogs can be during holiday peaks. Our policy is to immediately intervene and dispatch a priority express replacement at zero cost when couriers stall. We are glad our support team took care of you and that you are enjoying the Miroooo X clean!'
       }
     },
     {
@@ -435,7 +435,7 @@
       merchantReply: {
         author: 'Miroooo Customer Care',
         date: '3 June 2026',
-        text: 'Hi Markus, thank you for the helpful review! For users new to acoustic levitation sonic motors, starting on Mode 1 (Sensitive) allows the oral tissue to gently acclimate before transitioning to Daily Clean or Whitening mode.'
+        text: 'Hi Markus, thank you for the helpful review! For users new to acoustic levitation motors, starting on Mode 1 (Sensitive) allows the oral tissue to gently acclimate before transitioning to Daily Clean or Whitening mode.'
       }
     },
     {
@@ -484,8 +484,8 @@
       date: '2026-04-14',
       displayDate: 'Apr 14, 2026',
       variant: 'Color: Pink',
-      title: 'Enjoying the gentle yet thorough sonic clean',
-      body: 'I am thoroughly enjoying my new sonic toothbrush. The DuPont bristles are soft on sensitive areas yet lift daily plaque effortlessly. Leaves my mouth feeling completely refreshed every morning.',
+      title: 'Enjoying the gentle yet thorough acoustic clean',
+      body: 'I am thoroughly enjoying my new electric toothbrush. The DuPont bristles are soft on sensitive areas yet lift daily plaque effortlessly. Leaves my mouth feeling completely refreshed every morning.',
       images: [],
       helpful: 27,
       verified: true
@@ -499,7 +499,7 @@
       displayDate: 'Feb 11, 2026',
       variant: 'Color: Grey',
       title: 'Clean teeth and no more bleeding gums',
-      body: 'Really happy with my Miroooo sonic brush. Squeaky clean teeth and no more bleeding gums when brushing. What more could you ask for?',
+      body: 'Really happy with my Miroooo electric brush. Squeaky clean teeth and no more bleeding gums when brushing. What more could you ask for?',
       images: [],
       helpful: 31,
       verified: true
@@ -527,7 +527,7 @@
       displayDate: 'Jul 12, 2026',
       variant: 'Color: Grey',
       title: 'Great lightweight toothbrush with exceptional battery life',
-      body: 'Great lightweight sonic toothbrush with exceptional battery life. The acoustic motor runs smooth and quiet, and the magnetic charging base is completely hassle-free.',
+      body: 'Great lightweight electric toothbrush with exceptional battery life. The acoustic motor runs smooth and quiet, and the magnetic charging base is completely hassle-free.',
       images: [],
       helpful: 38,
       verified: true
@@ -541,7 +541,7 @@
       displayDate: 'Jun 2, 2025',
       variant: 'Color: Grey',
       title: 'Remarkably sleek design and fantastic brushing power',
-      body: 'Not only remarkably sleek and handsome on the countertop, but also a truly fantastic sonic toothbrush. Customer service was top tier too — in short, an absolute recommendation!',
+      body: 'Not only remarkably sleek and handsome on the countertop, but also a truly fantastic electric toothbrush. Customer service was top tier too — in short, an absolute recommendation!',
       images: [],
       helpful: 36,
       verified: true
@@ -568,8 +568,8 @@
       date: '2025-04-01',
       displayDate: 'Apr 1, 2025',
       variant: 'Color: Grey',
-      title: 'Top tier sonic toothbrush — leaves teeth squeaky clean',
-      body: 'Top tier sonic toothbrush. Delivers an effortless, scale-and-polish clean every single morning and evening. Highly satisfied.',
+      title: 'Top tier electric toothbrush — leaves teeth squeaky clean',
+      body: 'Top tier electric toothbrush. Delivers an effortless, scale-and-polish clean every single morning and evening. Highly satisfied.',
       images: [],
       helpful: 20,
       verified: true
@@ -611,7 +611,7 @@
       displayDate: 'Mar 16, 2025',
       variant: 'Color: Silver',
       title: 'Ordered two units for my son and myself — highly recommended',
-      body: 'Ordered two toothbrushes for my teenage son and myself. Delivery was very fast. Took a couple of days to adjust to sonic vibration, but it is a lovely, lightweight brush with 3 great modes. I recommend it to everyone.',
+      body: 'Ordered two toothbrushes for my teenage son and myself. Delivery was very fast. Took a couple of days to adjust to acoustic vibration, but it is a lovely, lightweight brush with 3 great modes. I recommend it to everyone.',
       images: [],
       helpful: 33,
       verified: true
@@ -639,7 +639,7 @@
       displayDate: 'Feb 22, 2025',
       variant: 'Color: Grey',
       title: 'Ideal for business travel with slim profile and hard case',
-      body: 'Very elegant design and excellent brushing performance. Together with the ventilated travel case, this toothbrush is ideal for travel. I regularly travel abroad for work, so having a sonic brush that has the slim profile of a manual brush without bulky charging stands is perfect!',
+      body: 'Very elegant design and excellent brushing performance. Together with the ventilated travel case, this toothbrush is ideal for travel. I regularly travel abroad for work, so having an electric brush that has the slim profile of a manual brush without bulky charging stands is perfect!',
       images: [],
       helpful: 39,
       verified: true
@@ -653,7 +653,7 @@
       displayDate: 'Feb 20, 2025',
       variant: 'Color: Silver',
       title: 'Premium acoustic build quality and extraordinary battery life',
-      body: 'The sonic acoustic cleaning performs remarkably well. Battery life lasts far longer than expected. I was initially hesitant about build quality, but after several weeks of use it clearly sits in the luxury tier and cleans deep into gum margins.',
+      body: 'The acoustic micro-vibration cleaning performs remarkably well. Battery life lasts far longer than expected. I was initially hesitant about build quality, but after several weeks of use it clearly sits in the luxury tier and cleans deep into gum margins.',
       images: [],
       helpful: 41,
       verified: true
@@ -722,8 +722,8 @@
       date: '2025-01-26',
       displayDate: 'Jan 26, 2025',
       variant: 'Color: Grey',
-      title: 'Brilliant sonic brush and compact travel case',
-      body: 'Brilliant sonic toothbrush, and the slim travel case is so handy for packing. The acoustic hum is very discreet and the 2-minute auto timer keeps me on track.',
+      title: 'Brilliant electric brush and compact travel case',
+      body: 'Brilliant electric toothbrush, and the slim travel case is so handy for packing. The acoustic hum is very discreet and the 2-minute auto timer keeps me on track.',
       images: [],
       helpful: 19,
       verified: true
@@ -737,7 +737,7 @@
       displayDate: 'Jan 17, 2025',
       variant: 'Color: Silver',
       title: 'Sleek aesthetic and thorough hydrodynamic cleaning',
-      body: 'Takes a couple of days to get used to the sonic tickle, but it looks sleek and cleans thoroughly between tight teeth. Very courteous and efficient support team when ordering extra brush heads.',
+      body: 'Takes a couple of days to get used to the acoustic micro-vibrations, but it looks sleek and cleans thoroughly between tight teeth. Very courteous and efficient support team when ordering extra brush heads.',
       images: [],
       helpful: 22,
       verified: true
@@ -779,7 +779,7 @@
       displayDate: 'Dec 28, 2024',
       variant: 'Color: Grey',
       title: 'Upgraded from a manual brush — night and day difference',
-      body: 'Upgraded from a manual toothbrush to this sonic brush and it is a massive step up. The micro-vibrations lift plaque without aggressive brushing pressure. Night and day difference!',
+      body: 'Upgraded from a manual toothbrush to this electric brush and it is a massive step up. The micro-vibrations lift plaque without aggressive brushing pressure. Night and day difference!',
       images: [],
       helpful: 29,
       verified: true
@@ -835,7 +835,7 @@
       displayDate: 'Nov 14, 2024',
       variant: 'Color: Grey',
       title: 'Switched from Oral-B — much gentler and cleaner feel',
-      body: 'I had always used Oral-B oscillating brushes and decided it was time to try sonic acoustic cleaning. After the first few days, I am thoroughly impressed. Much gentler on my enamel, excellent results, and neatly packaged.',
+      body: 'I had always used Oral-B oscillating brushes and decided it was time to try acoustic micro-vibration cleaning. After the first few days, I am thoroughly impressed. Much gentler on my enamel, excellent results, and neatly packaged.',
       images: [],
       helpful: 38,
       verified: true
@@ -863,7 +863,7 @@
       displayDate: 'Sep 24, 2024',
       variant: 'Color: Pink',
       title: 'Immediate relief for sensitive gums',
-      body: 'I often struggle with sensitive gums and receding margins. After using Sensitive mode on this sonic brush for a few weeks, I noticed an immediate difference. Zero irritation and much healthier gums.',
+      body: 'I often struggle with sensitive gums and receding margins. After using Sensitive mode on this electric brush for a few weeks, I noticed an immediate difference. Zero irritation and much healthier gums.',
       images: [],
       helpful: 37,
       verified: true
@@ -1054,7 +1054,7 @@
     'Sleek travel case with ventilation is wonderfully engineered',
     'Feels like leaving a professional dental hygienist every day',
     '30-second quadrant pacer transformed my brushing routine',
-    'Best sonic electric toothbrush I have owned in 15 years',
+    'Best electric toothbrush I have owned in 15 years',
     'Grey anodized finish looks stunning in my bathroom',
     'So much gentler on enamel than round oscillating heads',
     'Fluid dynamic cavitation reaches where manual bristles cannot',
@@ -1090,14 +1090,14 @@
     'Magnetic induction mount snapped right onto our shower tile',
     'Outstanding product — delivered quickly and impeccably boxed',
     'Two full minutes fly by thanks to the quad-interval pacer',
-    'The pinnacle of sonic toothbrush design and daily performance'
+    'The pinnacle of electric toothbrush design and daily performance'
   ];
 
   const FIVE_STAR_OPENERS = [
     'I have tested nearly every major electric toothbrush brand over the past decade, but the Miroooo X operates on a completely different level.',
     'After my dental hygienist warned me about early gum recession from aggressive manual brushing, I immediately ordered the Miroooo X.',
     'I travel constantly for business across Europe and North America, and I was so tired of packing chunky proprietary chargers.',
-    'As someone with very sensitive teeth and mild fluorosis, finding a sonic toothbrush that doesn\'t cause toothache was a major challenge.',
+    'As someone with very sensitive teeth and mild fluorosis, finding an electric toothbrush that doesn\'t cause toothache was a major challenge.',
     'My previous electric toothbrush sounded like an industrial drill and vibrated my entire skull every single morning.',
     'I was skeptical about the 60-day battery claim at first, but after two full months of twice-daily use, the Miroooo X proved me wrong.',
     'Bought this based on the recommendation of a colleague who is a dental surgeon, and it has exceeded every possible expectation.',
@@ -1131,7 +1131,7 @@
   ];
 
   const FIVE_STAR_CLOSERS = [
-    'I cannot recommend this sonic toothbrush highly enough to anyone who values their long-term oral health.',
+    'I cannot recommend this electric toothbrush highly enough to anyone who values their long-term oral health.',
     'Truly an exceptional piece of modern industrial design and oral care engineering. Five stars all the way.',
     'I have already purchased a second unit in Pink for my partner, and she is just as enamored with it.',
     'Easily the best £59 investment I have made for my daily wellness routine this year.',
@@ -1144,20 +1144,20 @@
   // 4-Star Phrasing (Authentic praise with minor constructive notes)
   const FOUR_STAR_TITLES = [
     'Brilliant brushing power, wish single pack included 4 heads standard',
-    'Takes 2-3 days to adapt to the sonic tickle, but results are incredible',
+    'Takes 2-3 days to adapt to the acoustic micro-vibrations, but results are incredible',
     'Exceptional 60-day battery, dock USB cable could be slightly longer',
     'Leaves teeth feeling like glass, would love more head color options',
     'Great hardware and quiet motor, travel case bristle cap could snap firmer',
     'Outstanding plaque removal, 30s timer is subtle at first',
     'Very high quality build, wish the LED indicator was slightly brighter in daylight',
-    'Best sonic brush I have used, replacement heads should come in 6-packs',
+    'Best electric brush I have used, replacement heads should come in 6-packs',
     'Super smooth acoustic clean, took a few days to master the angle',
     'Immaculate design and battery life, minor shipping packaging note'
   ];
 
   const FOUR_STAR_BODIES = [
     'The 32,000 VPM motor and DuPont bristles clean exceptionally well — my teeth feel just like they do after a hygienist scale and polish. The battery longevity is genuine as I have only charged it once since getting it. My only small suggestion is that the single unit bundle should include four replacement heads instead of two.',
-    'If you are transitioning from a manual toothbrush or a slow oscillating brush, the high-frequency sonic vibration feels very ticklish on the lips for the first 48 hours. Start on Sensitive mode! By day 3 I was fully accustomed to it and now I could never go back.',
+    'If you are transitioning from a manual toothbrush or a slow oscillating brush, the high-frequency acoustic vibration feels very ticklish on the lips for the first 48 hours. Start on Sensitive mode! By day 3 I was fully accustomed to it and now I could never go back.',
     'The Miroooo X device itself is 10 out of 10. Sleek Grey finish, whisper-quiet motor, and the magnetic dock holds solid on the wall. The USB cable that connects to the dock was a little short for my bathroom layout, but any standard USB-C cable works fine.',
     'My teeth have never looked cleaner or felt smoother. The Whitening mode lifted coffee stains within three weeks without irritating my gums. The only reason for 4 stars instead of 5 is that I would like to order replacement heads in mixed color packs for family members.',
     'The ventilated travel case is very well made and protects the power button inside my suitcase. The magnetic charging dock works smoothly. Brushing performance is top tier and my dentist confirmed my gums look significantly healthier.',
@@ -1169,7 +1169,7 @@
     'Good brush, high vibration intensity takes a week of adjustment',
     'Great hardware and battery, international delivery took 6 business days',
     'Very well made, acoustic motor is stronger than expected',
-    'Solid sonic clean, magnetic wall mount requires flat smooth tile',
+    'Solid acoustic clean, magnetic wall mount requires flat smooth tile',
     'Impressive battery life, handle is very sleek but can be slippery when wet'
   ];
 
@@ -1177,7 +1177,7 @@
     'The toothbrush is undeniably well manufactured and the 60-day battery claim appears accurate. However, the 32,000 VPM motor is quite intense even on the lowest mode. I recommend starting strictly on Sensitive mode for the first full week until your gums and teeth acclimate.',
     'The Miroooo X hardware is very high quality — whisper quiet, completely waterproof, and the travel case is great. Delivery to Europe took 6 business days rather than the estimated 3-4 days. Customer support was polite and provided tracking when asked.',
     'Cleaning performance is good and the magnetic dock is a very clean solution. The satin finish is beautiful, though if you have soapy hands in the shower you need to maintain a firm grip. Plaque removal is noticeably better than my old manual brush.',
-    'A good sonic toothbrush with great battery longevity. Make sure your bathroom tile is completely clean and smooth before applying the 3M magnetic wall plate so it adheres securely.'
+    'A good electric toothbrush with great battery longevity. Make sure your bathroom tile is completely clean and smooth before applying the 3M magnetic wall plate so it adheres securely.'
   ];
 
   // 2-Star Phrasing (Transit/minor issues + merchant care)
@@ -1191,7 +1191,7 @@
   const TWO_STAR_BODIES = [
     'The toothbrush and travel case inside were pristine and work exactly as described. However, the outer postal box was slightly squashed by Royal Mail during transit. For a luxury product, transit outer cartons should be heavier duty.',
     'The package comes with the magnetic charging dock and USB-C cable, but you have to supply your own USB wall plug or use your phone adapter. Works fine once plugged in, but would have preferred a dedicated wall plug included.',
-    'I found the 32,000 vibrations per minute too intense for my highly sensitive front teeth during the first few days. Sensitive mode helped, but it took nearly two weeks of gradual use to become comfortable with sonic brushing.'
+    'I found the 32,000 vibrations per minute too intense for my highly sensitive front teeth during the first few days. Sensitive mode helped, but it took nearly two weeks of gradual use to become comfortable with acoustic brushing.'
   ];
 
   const TWO_STAR_REPLIES = [
@@ -1222,7 +1222,7 @@
   const ONE_STAR_REPLIES = [
     {
       author: 'Miroooo Support Care',
-      text: 'Dear customer, we sincerely apologize for the carrier delay during the peak holiday volume. Our strict policy is to immediately dispatch a priority express replacement at zero charge whenever a courier stalls. We are glad our support team took care of you and that you are enjoying your Miroooo X sonic clean!'
+      text: 'Dear customer, we sincerely apologize for the carrier delay during the peak holiday volume. Our strict policy is to immediately dispatch a priority express replacement at zero charge whenever a courier stalls. We are glad our support team took care of you and that you are enjoying your Miroooo X clean!'
     },
     {
       author: 'Miroooo Client Services',

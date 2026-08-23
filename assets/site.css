@@ -5255,7 +5255,7 @@ body.nav-open .miroooo-sticky-cart-wrap {
 }
 
 /* =========================================================
-   MIROOOO LUXURY DARK CART DRAWER (MUUHU / PLUSBASE FLOW)
+   MIROOOO LUXURY DARK CART DRAWER (MUUHU STYLE)
    ========================================================= */
 
 .miroooo-cart-drawer {
@@ -5302,13 +5302,14 @@ body.nav-open .miroooo-sticky-cart-wrap {
   width: 100%;
   max-width: 460px;
   height: 100%;
+  height: 100dvh;
   background: #111213;
   border-left: 1px solid rgba(255, 255, 255, 0.1);
   box-shadow: -24px 0 60px -15px rgba(0, 0, 0, 0.8);
   display: flex;
   flex-direction: column;
   color: #ffffff;
-  font-family: Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
   transform: translateX(100%);
   transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
   box-sizing: border-box;
@@ -5330,13 +5331,20 @@ body.nav-open .miroooo-sticky-cart-wrap {
   flex-shrink: 0;
 }
 
+.miroooo-cart-header-title-wrap {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
 .miroooo-cart-kicker {
   font-size: 11px;
   font-weight: 700;
   letter-spacing: 0.12em;
   text-transform: uppercase;
   color: rgba(255, 255, 255, 0.45);
-  margin: 0 0 4px 0;
+  margin: 0;
+  line-height: 1.2;
 }
 
 .miroooo-cart-title {
@@ -5348,6 +5356,7 @@ body.nav-open .miroooo-sticky-cart-wrap {
   display: flex;
   align-items: center;
   gap: 8px;
+  line-height: 1.25;
 }
 
 .miroooo-cart-count-badge {
@@ -5360,12 +5369,14 @@ body.nav-open .miroooo-sticky-cart-wrap {
   border: 1px solid rgba(255, 255, 255, 0.08);
 }
 
+/* Circular Close Button */
 .miroooo-cart-close-btn {
   display: inline-flex;
   align-items: center;
   justify-content: center;
   width: 38px;
   height: 38px;
+  min-width: 38px;
   border-radius: 50%;
   background: rgba(255, 255, 255, 0.06);
   border: 1px solid rgba(255, 255, 255, 0.12);
@@ -5392,96 +5403,21 @@ body.nav-open .miroooo-sticky-cart-wrap {
   padding: 20px 24px;
   display: flex;
   flex-direction: column;
-  gap: 18px;
+  gap: 16px;
   -webkit-overflow-scrolling: touch;
 }
 
 .miroooo-cart-body::-webkit-scrollbar {
   width: 5px;
 }
+
 .miroooo-cart-body::-webkit-scrollbar-track {
   background: transparent;
 }
+
 .miroooo-cart-body::-webkit-scrollbar-thumb {
   background: rgba(255, 255, 255, 0.15);
   border-radius: 10px;
-}
-
-/* Delivery Countdown Box */
-.miroooo-cart-delivery-box {
-  background: rgba(255, 255, 255, 0.035);
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  border-radius: 16px;
-  padding: 14px 16px;
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-}
-
-.miroooo-delivery-header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-
-.miroooo-delivery-icon-title {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-}
-
-.miroooo-delivery-pulse {
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
-  background: #22c55e;
-  box-shadow: 0 0 0 3px rgba(34, 197, 94, 0.2);
-  display: inline-block;
-  animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
-}
-
-.miroooo-delivery-badge {
-  font-size: 0.8rem;
-  font-weight: 700;
-  letter-spacing: 0.03em;
-  text-transform: uppercase;
-  color: #ffffff;
-}
-
-.miroooo-delivery-status {
-  font-size: 0.75rem;
-  font-weight: 700;
-  color: #22c55e;
-  background: rgba(34, 197, 94, 0.12);
-  border: 1px solid rgba(34, 197, 94, 0.25);
-  padding: 2px 8px;
-  border-radius: 9999px;
-}
-
-.miroooo-delivery-timer-text {
-  font-size: 0.84rem;
-  color: rgba(255, 255, 255, 0.75);
-  line-height: 1.4;
-}
-
-.miroooo-timer-highlight {
-  color: #ffffff;
-  font-weight: 700;
-}
-
-.miroooo-delivery-progress-track {
-  width: 100%;
-  height: 4px;
-  background: rgba(255, 255, 255, 0.08);
-  border-radius: 9999px;
-  overflow: hidden;
-}
-
-.miroooo-delivery-progress-bar {
-  height: 100%;
-  background: linear-gradient(90deg, #22c55e 0%, #4ade80 100%);
-  border-radius: 9999px;
-  transition: width 0.4s ease;
 }
 
 /* Empty State */
@@ -5559,15 +5495,17 @@ body.nav-open .miroooo-sticky-cart-wrap {
   border-color: rgba(255, 255, 255, 0.14);
 }
 
+/* Thumbnail (72x72px rounded-xl) */
 .miroooo-cart-item-thumb {
-  width: 76px;
-  height: 76px;
-  flex-shrink: 0;
+  width: 72px;
+  height: 72px;
+  min-width: 72px;
   border-radius: 12px;
   background: #18191b;
   border: 1px solid rgba(255, 255, 255, 0.08);
   overflow: hidden;
   position: relative;
+  flex-shrink: 0;
 }
 
 .miroooo-cart-item-thumb img {
@@ -5583,13 +5521,14 @@ body.nav-open .miroooo-sticky-cart-wrap {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  gap: 6px;
 }
 
 .miroooo-cart-item-top {
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
-  gap: 8px;
+  gap: 10px;
 }
 
 .miroooo-cart-item-title {
@@ -5600,10 +5539,15 @@ body.nav-open .miroooo-sticky-cart-wrap {
   line-height: 1.25;
 }
 
-.miroooo-cart-item-colors {
+/* Short description in muted text */
+.miroooo-cart-item-desc,
+.miroooo-cart-item-colors,
+.miroooo-cart-item-subtitle,
+.miroooo-cart-item-variant {
   font-size: 0.78rem;
-  color: rgba(255, 255, 255, 0.55);
+  color: rgba(255, 255, 255, 0.6);
   margin: 3px 0 0 0;
+  line-height: 1.35;
 }
 
 .miroooo-cart-item-pricing {
@@ -5629,22 +5573,23 @@ body.nav-open .miroooo-sticky-cart-wrap {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin-top: 10px;
+  margin-top: 6px;
 }
 
-/* Stepper */
+/* Stepper (- 1 +) */
 .miroooo-cart-stepper {
   display: inline-flex;
   align-items: center;
   background: rgba(255, 255, 255, 0.05);
   border: 1px solid rgba(255, 255, 255, 0.12);
   border-radius: 9999px;
-  padding: 2px;
+  padding: 2px 4px;
+  gap: 2px;
 }
 
 .miroooo-stepper-btn {
-  width: 28px;
-  height: 28px;
+  width: 26px;
+  height: 26px;
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -5669,6 +5614,7 @@ body.nav-open .miroooo-sticky-cart-wrap {
   color: #ffffff;
 }
 
+/* Remove button */
 .miroooo-cart-remove-btn {
   display: inline-flex;
   align-items: center;
@@ -5689,181 +5635,11 @@ body.nav-open .miroooo-sticky-cart-wrap {
   background: rgba(239, 68, 68, 0.1);
 }
 
-/* Free Gifts Section */
-.miroooo-cart-gifts-panel {
-  background: rgba(255, 255, 255, 0.035);
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  border-radius: 16px;
-  padding: 16px;
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-}
-
-.miroooo-gifts-header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-
-.miroooo-gifts-title-wrap {
-  display: flex;
-  flex-direction: column;
-}
-
-.miroooo-gifts-kicker {
-  font-size: 10px;
-  font-weight: 700;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: rgba(255, 255, 255, 0.45);
-}
-
-.miroooo-gifts-title {
-  font-size: 0.92rem;
-  font-weight: 700;
-  color: #ffffff;
-  margin-top: 2px;
-}
-
-.miroooo-gifts-value-badge {
-  font-size: 0.75rem;
-  font-weight: 700;
-  color: #ffffff;
-  background: rgba(255, 255, 255, 0.1);
-  border: 1px solid rgba(255, 255, 255, 0.15);
-  padding: 4px 10px;
-  border-radius: 9999px;
-}
-
-.miroooo-gifts-list {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-}
-
-.miroooo-gift-row {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  background: rgba(255, 255, 255, 0.025);
-  border: 1px solid rgba(255, 255, 255, 0.06);
-  border-radius: 12px;
-  padding: 8px 12px;
-}
-
-.miroooo-gift-thumb {
-  width: 44px;
-  height: 44px;
-  flex-shrink: 0;
-  border-radius: 8px;
-  background: #18191b;
-  overflow: hidden;
-}
-
-.miroooo-gift-thumb img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  display: block;
-}
-
-.miroooo-gift-info {
-  flex: 1;
-  min-width: 0;
-}
-
-.miroooo-gift-name {
-  font-size: 0.82rem;
-  font-weight: 700;
-  color: #ffffff;
-  line-height: 1.2;
-  display: flex;
-  align-items: center;
-  gap: 6px;
-}
-
-.miroooo-gift-tag {
-  font-size: 9px;
-  font-weight: 800;
-  text-transform: uppercase;
-  background: #ffffff;
-  color: #000000;
-  padding: 1px 5px;
-  border-radius: 4px;
-}
-
-.miroooo-gift-desc {
-  font-size: 0.72rem;
-  color: rgba(255, 255, 255, 0.45);
-  margin-top: 2px;
-}
-
-.miroooo-gift-price {
-  text-align: right;
-}
-
-.miroooo-gift-free {
-  font-size: 0.82rem;
-  font-weight: 700;
-  color: #22c55e;
-}
-
-.miroooo-gift-original {
-  font-size: 0.72rem;
-  color: rgba(255, 255, 255, 0.35);
-  text-decoration: line-through;
-  display: block;
-}
-
-/* Promo Box */
-.miroooo-cart-promo-box {
-  background: rgba(255, 255, 255, 0.035);
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  border-radius: 16px;
-  padding: 14px 16px;
-}
-
-.miroooo-promo-header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 10px;
-}
-
-.miroooo-promo-label {
-  font-size: 0.78rem;
-  font-weight: 700;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-  color: rgba(255, 255, 255, 0.6);
-  display: block;
-}
-
-.miroooo-promo-desc {
-  font-size: 0.76rem;
-  color: rgba(255, 255, 255, 0.45);
-  margin: 3px 0 0 0;
-  line-height: 1.35;
-}
-
-.miroooo-promo-badge {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  background: rgba(34, 197, 94, 0.12);
-  border: 1px solid rgba(34, 197, 94, 0.3);
-  color: #4ade80;
-  font-size: 0.78rem;
-  font-weight: 700;
-  padding: 4px 10px;
-  border-radius: 9999px;
-  flex-shrink: 0;
-}
-
-/* Footer Section */
+/* =========================================================
+   Cart Footer & Summary Card
+   ========================================================= */
 .miroooo-cart-footer {
-  padding: 20px 24px 24px;
+  padding: 18px 24px 24px;
   border-top: 1px solid rgba(255, 255, 255, 0.08);
   background: #111213;
   display: flex;
@@ -5872,11 +5648,30 @@ body.nav-open .miroooo-sticky-cart-wrap {
   flex-shrink: 0;
 }
 
+/* Rounded container with background rgba(255,255,255,0.035), border rgba(255,255,255,0.1), border-radius 20px, padding 18px 20px 20px */
+.miroooo-cart-card {
+  background: rgba(255, 255, 255, 0.035);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 20px;
+  padding: 18px 20px 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+/* Discount row: 'Total discount ⌵' on left, '-£59' on right */
 .miroooo-cart-discount-row {
   background: rgba(255, 255, 255, 0.03);
   border: 1px solid rgba(255, 255, 255, 0.06);
   border-radius: 12px;
   padding: 10px 14px;
+}
+
+.miroooo-cart-card .miroooo-cart-discount-row {
+  background: transparent;
+  border: none;
+  padding: 0;
+  border-radius: 0;
 }
 
 .miroooo-discount-btn {
@@ -5885,10 +5680,11 @@ body.nav-open .miroooo-sticky-cart-wrap {
   justify-content: space-between;
   cursor: pointer;
   user-select: none;
+  width: 100%;
 }
 
 .miroooo-discount-label {
-  font-size: 0.84rem;
+  font-size: 0.88rem;
   font-weight: 600;
   color: rgba(255, 255, 255, 0.85);
   display: flex;
@@ -5898,6 +5694,8 @@ body.nav-open .miroooo-sticky-cart-wrap {
 
 .miroooo-chevron-icon {
   transition: transform 0.25s ease;
+  width: 14px;
+  height: 14px;
 }
 
 .miroooo-cart-discount-row.is-open .miroooo-chevron-icon {
@@ -5905,7 +5703,7 @@ body.nav-open .miroooo-sticky-cart-wrap {
 }
 
 .miroooo-discount-amount {
-  font-size: 0.88rem;
+  font-size: 0.92rem;
   font-weight: 700;
   color: #4ade80;
 }
@@ -5929,7 +5727,16 @@ body.nav-open .miroooo-sticky-cart-wrap {
   margin-bottom: 4px;
 }
 
-/* Totals */
+/* Divider Line */
+.miroooo-cart-divider {
+  height: 1px;
+  width: 100%;
+  background: rgba(255, 255, 255, 0.08);
+  margin: 0;
+  border: none;
+}
+
+/* Subtotal row */
 .miroooo-cart-totals {
   display: flex;
   flex-direction: column;
@@ -5953,46 +5760,65 @@ body.nav-open .miroooo-sticky-cart-wrap {
   font-weight: 700;
 }
 
-.miroooo-totals-main {
+.miroooo-totals-main,
+.miroooo-cart-subtotal-row {
   display: flex;
   justify-content: space-between;
   align-items: flex-end;
   padding-top: 10px;
-  margin-top: 4px;
+  margin-top: 2px;
   border-top: 1px solid rgba(255, 255, 255, 0.08);
 }
 
-.miroooo-total-title {
-  font-size: 1.15rem;
-  font-weight: 700;
+.miroooo-cart-card .miroooo-totals-main,
+.miroooo-cart-card .miroooo-cart-subtotal-row {
+  border-top: none;
+  padding-top: 0;
+  margin-top: 0;
+}
+
+.miroooo-total-title,
+.miroooo-subtotal-label {
+  font-size: 0.95rem;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
   color: #ffffff;
   display: block;
 }
 
 .miroooo-tax-note {
-  font-size: 0.72rem;
-  color: rgba(255, 255, 255, 0.45);
+  font-size: 0.75rem;
+  color: rgba(255, 255, 255, 0.5);
+  font-weight: 400;
+  text-transform: none;
+  letter-spacing: normal;
   display: block;
-  margin-top: 2px;
+  margin-top: 3px;
 }
 
-.miroooo-total-price {
-  font-size: 1.45rem;
+.miroooo-total-price,
+.miroooo-subtotal-price {
+  font-size: 1.85rem;
   font-weight: 800;
   color: #ffffff;
-  letter-spacing: -0.02em;
+  letter-spacing: -0.03em;
+  line-height: 1;
 }
 
-/* Checkout Button */
+/* CTA Button: 'Go to cart →' / Checkout Button */
 .miroooo-checkout-btn-wrap {
   position: relative;
   width: 100%;
 }
 
-.miroooo-checkout-btn {
-  position: relative !important;
-  overflow: hidden !important;
-  isolation: isolate !important;
+.miroooo-checkout-btn,
+.miroooo-goto-cart-btn,
+.miroooo-cart-cta-btn {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 8px !important;
   width: 100% !important;
   min-height: 52px !important;
   padding: 0 24px !important;
@@ -6000,81 +5826,30 @@ body.nav-open .miroooo-sticky-cart-wrap {
   background: #ffffff !important;
   color: #000000 !important;
   font-weight: 700 !important;
-  font-size: 1.02rem !important;
-  letter-spacing: 0.02em !important;
+  font-size: 1rem !important;
+  letter-spacing: 0.01em !important;
   border: 2px solid #ffffff !important;
   cursor: pointer !important;
-  display: flex !important;
-  align-items: center !important;
-  justify-content: center !important;
-  box-shadow: 0 6px 24px rgba(255, 255, 255, 0.15) !important;
-  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.25s ease, opacity 0.2s ease !important;
-  animation: checkoutAmbientGlow 3s ease-in-out infinite !important;
+  text-decoration: none !important;
+  box-shadow: 0 4px 20px rgba(255, 255, 255, 0.12) !important;
+  transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.2s ease, opacity 0.2s ease, background-color 0.2s ease, color 0.2s ease !important;
   font-family: inherit !important;
+  box-sizing: border-box !important;
 }
 
-.miroooo-checkout-btn::after {
-  content: '' !important;
-  position: absolute !important;
-  top: 0 !important;
-  left: 0 !important;
-  width: 100% !important;
-  height: 100% !important;
-  background: linear-gradient(
-    90deg,
-    transparent 0%,
-    rgba(0, 0, 0, 0.04) 20%,
-    rgba(0, 0, 0, 0.22) 48%,
-    rgba(255, 255, 255, 0.95) 50%,
-    rgba(0, 0, 0, 0.22) 52%,
-    rgba(0, 0, 0, 0.04) 80%,
-    transparent 100%
-  ) !important;
-  transform: skewX(-25deg) translateX(-180%) !important;
-  animation: luxuryCheckoutShimmer 3s cubic-bezier(0.4, 0, 0.2, 1) infinite !important;
-  z-index: 3 !important;
-  pointer-events: none !important;
-}
-
-.miroooo-checkout-btn .btn-fill {
-  position: absolute !important;
-  inset: 0 !important;
-  width: 100% !important;
-  height: 100% !important;
-  background: #000000 !important;
-  transform: translateY(100%) !important;
-  transition: transform 0.38s cubic-bezier(0.16, 1, 0.3, 1) !important;
-  border-radius: 9999px !important;
-  z-index: 1 !important;
-  pointer-events: none !important;
-}
-
-.miroooo-checkout-btn .btn-text {
-  position: relative !important;
-  z-index: 2 !important;
-  display: inline-flex !important;
-  align-items: center !important;
-  justify-content: center !important;
-  gap: 8px !important;
-  color: #000000 !important;
-  transition: color 0.25s cubic-bezier(0.16, 1, 0.3, 1) !important;
-}
-
-.miroooo-checkout-btn:hover:not(:disabled) .btn-fill {
-  transform: translateY(0%) !important;
-}
-
-.miroooo-checkout-btn:hover:not(:disabled) .btn-text {
-  color: #ffffff !important;
-}
-
-.miroooo-checkout-btn:hover:not(:disabled) {
-  border-color: #ffffff !important;
+.miroooo-checkout-btn:hover:not(:disabled),
+.miroooo-goto-cart-btn:hover,
+.miroooo-cart-cta-btn:hover {
   transform: scale(1.02) !important;
   box-shadow: 0 8px 30px rgba(255, 255, 255, 0.22) !important;
+  opacity: 0.96 !important;
+  background: #ffffff !important;
+  color: #000000 !important;
 }
 
-.miroooo-checkout-btn:active:not(:disabled) {
+.miroooo-checkout-btn:active:not(:disabled),
+.miroooo-goto-cart-btn:active,
+.miroooo-cart-cta-btn:active {
   transform: scale(0.98) !important;
 }
 
@@ -6083,36 +5858,16 @@ body.nav-open .miroooo-sticky-cart-wrap {
   cursor: not-allowed !important;
 }
 
-/* Go to Cart Button (Matching Muuhu) */
-.miroooo-goto-cart-btn {
-  display: flex !important;
+.miroooo-checkout-btn .btn-fill {
+  display: none !important;
+}
+
+.miroooo-checkout-btn .btn-text {
+  display: inline-flex !important;
   align-items: center !important;
   justify-content: center !important;
   gap: 8px !important;
-  width: 100% !important;
-  min-height: 48px !important;
-  padding: 0 20px !important;
-  border-radius: 9999px !important;
-  background: rgba(255, 255, 255, 0.06) !important;
-  border: 1px solid rgba(255, 255, 255, 0.18) !important;
-  color: #ffffff !important;
-  font-weight: 600 !important;
-  font-size: 0.95rem !important;
-  text-decoration: none !important;
-  letter-spacing: 0.01em !important;
-  transition: background 0.2s ease, border-color 0.2s ease, transform 0.2s ease, color 0.2s ease !important;
-  cursor: pointer !important;
-}
-
-.miroooo-goto-cart-btn:hover {
-  background: rgba(255, 255, 255, 0.14) !important;
-  border-color: rgba(255, 255, 255, 0.35) !important;
-  color: #ffffff !important;
-  transform: translateY(-1px) !important;
-}
-
-.miroooo-goto-cart-btn:active {
-  transform: translateY(0) !important;
+  color: inherit !important;
 }
 
 .miroooo-cart-trust-badges {
@@ -6123,15 +5878,7 @@ body.nav-open .miroooo-sticky-cart-wrap {
   font-size: 0.72rem;
   font-weight: 500;
   color: rgba(255, 255, 255, 0.45);
-}
-
-@keyframes spin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
-}
-
-.animate-spin {
-  animation: spin 1s linear infinite;
+  margin-top: 2px;
 }
 
 /* =========================================================

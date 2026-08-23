@@ -235,7 +235,7 @@
       displayDate: '08 Jul 2026',
       variant: 'Grey / Single',
       title: 'Outstanding performance, took 3 days to adjust to sweep motion',
-      body: 'The 45-degree sweeping action feels very different from standard high-frequency sonic vibration. The first two days felt slightly ticklish along the gumline. By day four, I got used to it and now I can\'t imagine using a conventional vibrating toothbrush. Deducted one star solely for the initial learning curve.',
+      body: 'The 45-degree sweeping action feels very different from standard high-frequency acoustic vibration. The first two days felt slightly ticklish along the gumline. By day four, I got used to it and now I can\'t imagine using a conventional vibrating toothbrush. Deducted one star solely for the initial learning curve.',
       images: [],
       helpful: 27,
       verified: true
@@ -666,7 +666,7 @@
   const UK_CITIES = ["London, UK", "Manchester, UK", "Edinburgh, UK", "Birmingham, UK", "Bristol, UK", "Glasgow, UK", "Liverpool, UK", "Leeds, UK", "Sheffield, UK", "Oxford, UK", "Cambridge, UK", "Cardiff, UK", "Belfast, UK", "Newcastle, UK", "Nottingham, UK", "Southampton, UK", "Norwich, UK", "York, UK", "Bath, UK", "Exeter, UK"];
   const TITLES_5 = [
     "Incredible plaque removal around the gumline",
-    "Best sonic toothbrush on the market bar none",
+    "Best electric toothbrush on the market bar none",
     "90-day battery life makes travelling effortless",
     "Smart pressure ring stopped all gum bleeding",
     "True IPX7 - fully shower safe and easy to rinse",
