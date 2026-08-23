@@ -5043,8 +5043,8 @@ body.nav-open .miroooo-sticky-cart-wrap {
   border: 2px solid #ffffff !important;
   border-radius: 9999px !important;
   cursor: pointer !important;
-  transform: none !important;
   transition: border-color 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s cubic-bezier(0.16, 1, 0.3, 1) !important;
+  animation: checkoutAmbientGlow 3s ease-in-out infinite !important;
 }
 
 #hero-cta::after,
@@ -5057,9 +5057,18 @@ body.nav-open .miroooo-sticky-cart-wrap {
   left: 0 !important;
   width: 100% !important;
   height: 100% !important;
-  background: linear-gradient(90deg, transparent calc(50% - 70px), rgba(0, 0, 0, 0.16) 50%, transparent calc(50% + 35px)) !important;
-  transform: skewX(-30deg) translateX(-150%) !important;
-  animation: proxy-bundle-shine 4s infinite ease-in-out !important;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(0, 0, 0, 0.04) 20%,
+    rgba(0, 0, 0, 0.22) 48%,
+    rgba(255, 255, 255, 0.95) 50%,
+    rgba(0, 0, 0, 0.22) 52%,
+    rgba(0, 0, 0, 0.04) 80%,
+    transparent 100%
+  ) !important;
+  transform: skewX(-25deg) translateX(-180%) !important;
+  animation: luxuryCheckoutShimmer 3s cubic-bezier(0.4, 0, 0.2, 1) infinite !important;
   z-index: 2 !important;
   pointer-events: none !important;
 }
@@ -5068,7 +5077,7 @@ body.nav-open .miroooo-sticky-cart-wrap {
 #sticky-bar-cta-btn:hover::after,
 .proxy-bundle-btn:hover::after,
 .miroooo-sticky-btn:hover::after {
-  background: linear-gradient(90deg, transparent calc(50% - 70px), rgba(255, 255, 255, 0.3) 50%, transparent calc(50% + 35px)) !important;
+  background: linear-gradient(90deg, transparent 0%, rgba(255, 255, 255, 0.5) 40%, rgba(255, 255, 255, 0.95) 50%, rgba(255, 255, 255, 0.5) 60%, transparent 100%) !important;
 }
 
 .miroooo-sticky-btn,
@@ -5203,7 +5212,6 @@ body.nav-open .miroooo-sticky-cart-wrap {
 .miroooo-sticky-btn:hover,
 .miroooo-sticky-btn:focus,
 .miroooo-sticky-btn:active {
-  transform: none !important;
   background-color: #ffffff !important;
   background: #ffffff !important;
   border-color: #ffffff !important;

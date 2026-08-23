@@ -1721,7 +1721,6 @@
   border: 2px solid #ffffff !important;
   border-radius: 9999px !important;
   cursor: pointer !important;
-  transform: none !important;
   transition: border-color 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s cubic-bezier(0.16, 1, 0.3, 1) !important;
   animation: checkoutAmbientGlow 3s ease-in-out infinite !important;
 }
@@ -2092,7 +2091,6 @@ body.nav-open .miroooo-sticky-cart-wrap {
 .miroooo-sticky-btn:hover,
 .miroooo-sticky-btn:focus,
 .miroooo-sticky-btn:active {
-  transform: none !important;
   background-color: #ffffff !important;
   background: #ffffff !important;
   border-color: #ffffff !important;
