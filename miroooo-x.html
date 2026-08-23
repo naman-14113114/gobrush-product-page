@@ -910,6 +910,14 @@
   box-shadow: inset 0 1px 2px rgba(255, 255, 255, 0.5), inset 0 -1px 2px rgba(0, 0, 0, 0.4), 0 2px 5px rgba(0, 0, 0, 0.25) !important;
 }
 
+.standalone-swatch-btn[data-color="Black"],
+.standalone-swatch-btn.swatch-black,
+.color-swatch-btn.swatch-black,
+.color-swatch-btn[data-color="Black"] {
+  background: linear-gradient(135deg, #444444 0%, #1a1a1a 40%, #000000 100%) !important;
+  box-shadow: inset 0 1px 2px rgba(255, 255, 255, 0.4), inset 0 -1px 2px rgba(0, 0, 0, 0.8), 0 2px 5px rgba(0, 0, 0, 0.4) !important;
+}
+
 /* Standalone Active Selection Ring: White Outer Circle */
 .standalone-swatch-btn.is-active {
   box-shadow: 0 0 0 2px #000000, 0 0 0 4px #ffffff, 0 4px 10px rgba(0, 0, 0, 0.5) !important;
@@ -1857,6 +1865,8 @@ theme.variantStrings = {
     <button type="button" class="standalone-swatch-btn is-active" data-color="Pink" onclick="selectStandaloneColor('Pink')" title="Pink" aria-label="Pink"></button>
     <!-- Grey Swatch -->
     <button type="button" class="standalone-swatch-btn" data-color="Grey" onclick="selectStandaloneColor('Grey')" title="Grey" aria-label="Grey"></button>
+    <!-- Black Swatch -->
+    <button type="button" class="standalone-swatch-btn" data-color="Black" onclick="selectStandaloneColor('Black')" title="Black" aria-label="Black"></button>
   </div>
   <div style="display: flex; align-items: center; gap: 8px; margin-top: 12px; font-size: 13px; color: rgba(255, 255, 255, 0.85); font-weight: 500;">
     <span style="width: 8px; height: 8px; border-radius: 50%; background: #22c55e; display: inline-block;"></span>
@@ -1903,6 +1913,7 @@ theme.variantStrings = {
           <button type="button" class="color-swatch-btn swatch-grey" title="Grey" aria-label="Grey" onclick="setBrushChoice('single', 0, 'Grey', event)"></button>
           <button type="button" class="color-swatch-btn swatch-pink is-active" title="Pink" aria-label="Pink" onclick="setBrushChoice('single', 0, 'Pink', event)"></button>
           <button type="button" class="color-swatch-btn swatch-silver" title="Silver" aria-label="Silver" onclick="setBrushChoice('single', 0, 'Silver', event)"></button>
+          <button type="button" class="color-swatch-btn swatch-black" title="Black" aria-label="Black" onclick="setBrushChoice('single', 0, 'Black', event)"></button>
         </div>
       </div>
     </div>
@@ -1950,6 +1961,7 @@ theme.variantStrings = {
           <button type="button" class="color-swatch-btn swatch-grey" title="Grey" aria-label="Grey" onclick="setBrushChoice('bundle-2', 0, 'Grey', event)"></button>
           <button type="button" class="color-swatch-btn swatch-pink is-active" title="Pink" aria-label="Pink" onclick="setBrushChoice('bundle-2', 0, 'Pink', event)"></button>
           <button type="button" class="color-swatch-btn swatch-silver" title="Silver" aria-label="Silver" onclick="setBrushChoice('bundle-2', 0, 'Silver', event)"></button>
+          <button type="button" class="color-swatch-btn swatch-black" title="Black" aria-label="Black" onclick="setBrushChoice('bundle-2', 0, 'Black', event)"></button>
         </div>
       </div>
       <!-- Row 2 -->
@@ -1959,6 +1971,7 @@ theme.variantStrings = {
           <button type="button" class="color-swatch-btn swatch-grey is-active" title="Grey" aria-label="Grey" onclick="setBrushChoice('bundle-2', 1, 'Grey', event)"></button>
           <button type="button" class="color-swatch-btn swatch-pink" title="Pink" aria-label="Pink" onclick="setBrushChoice('bundle-2', 1, 'Pink', event)"></button>
           <button type="button" class="color-swatch-btn swatch-silver" title="Silver" aria-label="Silver" onclick="setBrushChoice('bundle-2', 1, 'Silver', event)"></button>
+          <button type="button" class="color-swatch-btn swatch-black" title="Black" aria-label="Black" onclick="setBrushChoice('bundle-2', 1, 'Black', event)"></button>
         </div>
       </div>
     </div>
@@ -2001,6 +2014,7 @@ theme.variantStrings = {
           <button type="button" class="color-swatch-btn swatch-grey" title="Grey" aria-label="Grey" onclick="setBrushChoice('bundle-3', 0, 'Grey', event)"></button>
           <button type="button" class="color-swatch-btn swatch-pink is-active" title="Pink" aria-label="Pink" onclick="setBrushChoice('bundle-3', 0, 'Pink', event)"></button>
           <button type="button" class="color-swatch-btn swatch-silver" title="Silver" aria-label="Silver" onclick="setBrushChoice('bundle-3', 0, 'Silver', event)"></button>
+          <button type="button" class="color-swatch-btn swatch-black" title="Black" aria-label="Black" onclick="setBrushChoice('bundle-3', 0, 'Black', event)"></button>
         </div>
       </div>
       <!-- Row 2 -->
@@ -2010,6 +2024,7 @@ theme.variantStrings = {
           <button type="button" class="color-swatch-btn swatch-grey is-active" title="Grey" aria-label="Grey" onclick="setBrushChoice('bundle-3', 1, 'Grey', event)"></button>
           <button type="button" class="color-swatch-btn swatch-pink" title="Pink" aria-label="Pink" onclick="setBrushChoice('bundle-3', 1, 'Pink', event)"></button>
           <button type="button" class="color-swatch-btn swatch-silver" title="Silver" aria-label="Silver" onclick="setBrushChoice('bundle-3', 1, 'Silver', event)"></button>
+          <button type="button" class="color-swatch-btn swatch-black" title="Black" aria-label="Black" onclick="setBrushChoice('bundle-3', 1, 'Black', event)"></button>
         </div>
       </div>
       <!-- Row 3 -->
@@ -2019,6 +2034,7 @@ theme.variantStrings = {
           <button type="button" class="color-swatch-btn swatch-grey" title="Grey" aria-label="Grey" onclick="setBrushChoice('bundle-3', 2, 'Grey', event)"></button>
           <button type="button" class="color-swatch-btn swatch-pink" title="Pink" aria-label="Pink" onclick="setBrushChoice('bundle-3', 2, 'Pink', event)"></button>
           <button type="button" class="color-swatch-btn swatch-silver is-active" title="Silver" aria-label="Silver" onclick="setBrushChoice('bundle-3', 2, 'Silver', event)"></button>
+          <button type="button" class="color-swatch-btn swatch-black" title="Black" aria-label="Black" onclick="setBrushChoice('bundle-3', 2, 'Black', event)"></button>
         </div>
       </div>
     </div>
@@ -5567,6 +5583,30 @@ const VARIANTS_DATA = {
       whitening: "/assets_ref/x/S2.webp",
       deepClean: "/assets_ref/x/S3.webp"
     }
+  },
+  "Black": {
+    name: "Black",
+    title: "Miroooo X - Black",
+    price: "£59",
+    variantId: "1000020348812113",
+    productId: "1000000664011633",
+    swatchColor: "#111111",
+    images: [
+      "/assets_ref/x/gallery/Black-1.jpg",
+      "/assets_ref/x/gallery/Black-2.jpg",
+      "/assets_ref/x/gallery/Black-3.jpg",
+      "/assets_ref/x/gallery/Black-4.jpg",
+      "/assets_ref/x/gallery/Black-5.jpg",
+      "/assets_ref/x/gallery/Black-6.jpg",
+      "/assets_ref/x/gallery/Black-7.png",
+      "/assets_ref/x/gallery/Black-8.png"
+    ],
+    brushWithStyleImage: "/assets_ref/x/gray_brush_with_style.webp",
+    modeImages: {
+      standard: "/assets_ref/x/G1.webp",
+      whitening: "/assets_ref/x/G2.webp",
+      deepClean: "/assets_ref/x/G3.webp"
+    }
   }
 };
 // Aliases
@@ -6076,7 +6116,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   const urlParams = new URLSearchParams(window.location.search);
   const colorParam = urlParams.get('color') || urlParams.get('variant');
-  const validColors = ['Pink', 'Grey', 'Silver'];
+  const validColors = ['Pink', 'Grey', 'Silver', 'Black'];
   let initialColor = 'Pink';
   if (colorParam) {
     const found = validColors.find(c => c.toLowerCase() === colorParam.toLowerCase());
@@ -6085,6 +6125,8 @@ document.addEventListener('DOMContentLoaded', () => {
     initialColor = 'Grey';
   } else if (window.location.pathname.toLowerCase().includes('silver')) {
     initialColor = 'Silver';
+  } else if (window.location.pathname.toLowerCase().includes('black')) {
+    initialColor = 'Black';
   }
   selectStandaloneColor(initialColor);
   if (typeof setBrushChoice === 'function') {
