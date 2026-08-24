@@ -391,7 +391,7 @@
 
     function getGalleryMediaItems() {
       const items = [];
-      const mediaNodes = document.querySelectorAll(".product__media-list .product__media");
+      const mediaNodes = document.querySelectorAll("#MirooooGallerySlides .miroooo-gallery__slide, .product__media-list .product__media");
       mediaNodes.forEach((node) => {
         if (node.style.display === "none" || node.classList.contains("hidden")) return;
         const video = node.querySelector("video");

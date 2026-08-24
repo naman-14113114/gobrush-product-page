@@ -636,17 +636,344 @@
   border-color: #ffffff;
   box-shadow: 0 0 0 1px #ffffff;
 }
-/* Product Gallery Grey Luxury Background (#e6e6e6) */
-.product__media:not(.product__media--video),
-.product__media.card:not(.product__media--video),
-.product__media--square,
-.product__thumbnail:not([data-media-type="video"]),
+/* ==========================================================================
+   Miroooo X MinMun-Style Product Gallery (Dark Luxury Theme)
+   ========================================================================== */
+.miroooo-minmun-gallery {
+  display: flex;
+  flex-direction: row;
+  gap: 16px;
+  align-items: flex-start;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* Thumbnail Column (Desktop: Left Vertical Strip) */
+.miroooo-gallery__nav-wrap {
+  flex: 0 0 84px;
+  width: 84px;
+  box-sizing: border-box;
+}
+
+.miroooo-gallery__nav {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  max-height: 560px;
+  overflow-y: auto;
+  overflow-x: hidden;
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE 10+ */
+  scroll-behavior: smooth;
+  padding: 2px 2px 6px 2px;
+}
+
+.miroooo-gallery__nav::-webkit-scrollbar {
+  display: none;
+}
+
+.miroooo-gallery__thumb {
+  position: relative;
+  width: 80px;
+  height: 80px;
+  padding: 0;
+  border: 1.5px solid rgba(255, 255, 255, 0.15);
+  border-radius: 10px;
+  background: #e6e6e6;
+  overflow: hidden;
+  cursor: pointer;
+  flex-shrink: 0;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  box-sizing: border-box;
+  opacity: 0.65;
+}
+
+.miroooo-gallery__thumb:hover {
+  opacity: 0.95;
+  border-color: rgba(255, 255, 255, 0.45);
+  transform: translateY(-1px);
+}
+
+.miroooo-gallery__thumb.is-active {
+  opacity: 1;
+  border: 2px solid #ffffff !important;
+  box-shadow: 0 0 0 1px #ffffff, 0 4px 12px rgba(0, 0, 0, 0.4) !important;
+}
+
+.miroooo-gallery__thumb .thumb-inner {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  background: #e6e6e6;
+}
+
+.miroooo-gallery__thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  mix-blend-mode: multiply;
+  pointer-events: none;
+}
+
+/* Video Thumbnail */
+.miroooo-gallery__thumb[data-media-type="video"],
+.miroooo-gallery__thumb .thumb-video-inner {
+  background: #000000 !important;
+}
+
+.miroooo-gallery__thumb .thumb-video-inner img {
+  opacity: 0.55;
+  mix-blend-mode: normal !important;
+}
+
+.thumb-play-icon {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  background: rgba(0, 0, 0, 0.65);
+  backdrop-filter: blur(4px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #ffffff;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.6);
+  pointer-events: none;
+}
+
+.thumb-play-icon svg {
+  width: 13px;
+  height: 13px;
+  margin-left: 2px;
+  fill: #ffffff;
+}
+
+/* Main Featured Media Stage (Right Side) */
+.miroooo-gallery__stage-wrap {
+  flex: 1 1 0%;
+  min-width: 0;
+  width: 100%;
+}
+
+.miroooo-gallery__stage {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  border-radius: 16px;
+  overflow: hidden;
+  background: #e6e6e6;
+  box-shadow: 0 6px 24px rgba(0, 0, 0, 0.2);
+  cursor: zoom-in;
+  user-select: none;
+  touch-action: pan-y;
+}
+
+.miroooo-gallery__slides {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.miroooo-gallery__slide {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #e6e6e6;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition: opacity 0.25s ease, visibility 0.25s ease;
+  z-index: 1;
+}
+
+.miroooo-gallery__slide.is-active {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+  z-index: 2;
+}
+
+.miroooo-gallery__slide img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  mix-blend-mode: multiply;
+  transition: opacity 0.2s ease;
+}
+
+.miroooo-gallery__slide[data-media-type="video"],
+.miroooo-gallery__slide .video-wrapper {
+  background: #000000 !important;
+  width: 100%;
+  height: 100%;
+}
+
+.miroooo-gallery__slide video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* Miroooo Dark Luxury Navigation Chevrons */
+.miroooo-gallery__arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 10;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: rgba(14, 14, 14, 0.72);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.45);
+  padding: 0;
+}
+
+.miroooo-gallery__arrow svg {
+  width: 22px;
+  height: 22px;
+  color: #ffffff;
+  stroke: #ffffff;
+  transition: transform 0.2s ease;
+}
+
+.miroooo-gallery__arrow--prev {
+  left: 14px;
+}
+
+.miroooo-gallery__arrow--next {
+  right: 14px;
+}
+
+.miroooo-gallery__arrow:hover {
+  background: #000000;
+  border-color: #ffffff;
+  transform: translateY(-50%) scale(1.08);
+  box-shadow: 0 6px 22px rgba(0, 0, 0, 0.6);
+}
+
+.miroooo-gallery__arrow:active {
+  transform: translateY(-50%) scale(0.96);
+}
+
+.miroooo-gallery__zoom-badge {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  z-index: 8;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: rgba(14, 14, 14, 0.65);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  padding: 0;
+  opacity: 0.85;
+}
+
+.miroooo-gallery__zoom-badge svg {
+  width: 18px;
+  height: 18px;
+}
+
+.miroooo-gallery__zoom-badge:hover {
+  opacity: 1;
+  background: #000000;
+  border-color: #ffffff;
+  transform: scale(1.06);
+}
+
+/* Mobile & Tablet Layout (< 1024px) */
+@media screen and (max-width: 1023px) {
+  .miroooo-minmun-gallery {
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .miroooo-gallery__nav-wrap {
+    flex: 0 0 auto;
+    width: 100%;
+    order: 2;
+  }
+
+  .miroooo-gallery__stage-wrap {
+    order: 1;
+  }
+
+  .miroooo-gallery__nav {
+    flex-direction: row;
+    max-height: none;
+    overflow-x: auto;
+    overflow-y: hidden;
+    gap: 8px;
+    padding: 2px 2px 4px 2px;
+  }
+
+  .miroooo-gallery__thumb {
+    width: 68px;
+    height: 68px;
+    border-radius: 8px;
+  }
+
+  .miroooo-gallery__arrow {
+    width: 38px;
+    height: 38px;
+  }
+
+  .miroooo-gallery__arrow svg {
+    width: 18px;
+    height: 18px;
+  }
+
+  .miroooo-gallery__arrow--prev {
+    left: 8px;
+  }
+
+  .miroooo-gallery__arrow--next {
+    right: 8px;
+  }
+
+  .miroooo-gallery__zoom-badge {
+    top: 8px;
+    right: 8px;
+    width: 32px;
+    height: 32px;
+  }
+}
+
+/* Backward-compatible background rules for sticky bar & gifts */
 [data-sticky-product-media],
 .gift-image-wrap {
   background-color: #e6e6e6 !important;
 }
-.product__media:not(.product__media--video) img,
-.product__thumbnail:not([data-media-type="video"]) img,
 [data-sticky-product-media] img,
 .gift-image-wrap img {
   background-color: #e6e6e6 !important;
@@ -1579,225 +1906,184 @@ theme.variantStrings = {
   }</style><div class="section section--padding section--rounded relative">
   <div class="page-width relative">
     <div class="featured-product product product--columns flex flex-col items-start lg:grid gap-5 w-full relative"><media-gallery
-  class="product__gallery product__gallery--full_width block w-full relative
-"
+  class="product__gallery product__gallery--full_width block w-full relative"
   form="ProductForm-template--24203751129433__main-product-9593510658393"
-  aria-label="Galerijviewer"
+  aria-label="Product Gallery"
   data-animate="fade-up"
   data-immediate
-><div class="product__media-container flex flex-col gap-4"
-  >
-    <div class="relative w-full h-full">
-      <slider-element id="SliderGallery-template--24203751129433__main-product-9593510658393" class="slider slider--desktop slider--tablet block w-full h-full" selector=".product__media">
-        <div
-          class="product__media-list flex gap-1 lg:grid lg:gap-4 xl:gap-5 grid-cols-2"
+>
+  <div class="miroooo-minmun-gallery" id="MirooooMainGallery">
+    <!-- Left: Vertical Thumbnails Strip (Desktop) / Bottom: Horizontal Strip (Mobile) -->
+    <div class="miroooo-gallery__nav-wrap" aria-label="Product image thumbnails">
+      <div class="miroooo-gallery__nav" id="MirooooGalleryNav">
+        <!-- 0: Video thumbnail -->
+        <button
+          type="button"
+          class="miroooo-gallery__thumb is-active"
+          id="thumb-video-item"
+          data-media-type="video"
+          data-index="0"
+          aria-label="Play product video"
+          aria-current="true"
         >
-
-<div id="product-media-video-item" class="product__media product__media--video card col-span-2 w-full relative overflow-hidden" data-media-type="video" style="grid-column: 1 / -1; width: 100%; min-width: 100%; flex: 0 0 100%; scroll-snap-align: start; border-radius: var(--card-radius, 1rem); background: #000; box-shadow: 0 4px 20px rgba(0,0,0,0.06); margin-bottom: 4px; pointer-events: auto; cursor: zoom-in;">
-  <div class="video-wrapper relative w-full overflow-hidden" style="position: relative; width: 100%; display: flex; align-items: center; justify-content: center; background: #000; border-radius: inherit; pointer-events: auto; cursor: zoom-in;">
-    <video
-      id="gallery-featured-video"
-      class="w-full h-full object-cover"
-      src="/assets_ref/x/gallery/miroooo-video-1.mp4"
-      autoplay
-      loop
-      muted
-      playsinline
-      disablepictureinpicture
-      controlslist="nodownload nofullscreen noremoteplayback"
-      preload="auto"
-      style="width: 100%; height: 100%; object-fit: cover; display: block; border-radius: inherit; pointer-events: auto; cursor: zoom-in;"
-    ></video>
-  </div>
-</div>
-<div class="product__media card media media--square mobile:media--adapt_first flex w-full flex-auto relative overflow-hidden"
-  data-media-type="image"
-  data-media-id="63670410641753" data-gang-default><img src="/assets_ref/x/gallery/Gray-1.webp" alt="Miroooo X - Grey" width="1000" height="1000" loading="eager" fetchpriority="high" class="w-full" is="lazy-image"><button type="button" class="absolute top-0 left-0 w-full h-full flex items-center justify-center" is="media-hover-button" aria-label="Open media 1 in modal" tabindex="-1"><svg class="icon icon-zoom icon-xs lg:hidden" viewBox="0 0 24 24" stroke="currentColor" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <path stroke-linecap="round" stroke-linejoin="round" d="M3 3V9M3 3H9M3 3L9 9M21 21V15M21 21H15M21 21L15 15"></path>
-    </svg></button></div>
-<div class="product__media card media media--square mobile:media--adapt_first flex w-full flex-auto relative overflow-hidden"
-  data-media-type="image"
-  data-media-id="63670410314073" data-gang-default><img src="/assets_ref/x/gallery/Gray-2.webp" alt="Miroooo X - Grey" width="1000" height="1000" loading="lazy" fetchpriority="auto" class="w-full" is="lazy-image"><button type="button" class="absolute top-0 left-0 w-full h-full flex items-center justify-center" is="media-hover-button" aria-label="Open media 2 in modal" tabindex="-1"><svg class="icon icon-zoom icon-xs lg:hidden" viewBox="0 0 24 24" stroke="currentColor" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <path stroke-linecap="round" stroke-linejoin="round" d="M3 3V9M3 3H9M3 3L9 9M21 21V15M21 21H15M21 21L15 15"></path>
-    </svg></button></div>
-<div class="product__media card media media--square mobile:media--adapt_first flex w-full flex-auto relative overflow-hidden"
-  data-media-type="image"
-  data-media-id="63670410477913" data-gang-default><img src="/assets_ref/x/gallery/Gray-4.webp" alt="Miroooo X - Grey" width="1000" height="1000" loading="lazy" fetchpriority="auto" class="w-full" is="lazy-image"><button type="button" class="absolute top-0 left-0 w-full h-full flex items-center justify-center" is="media-hover-button" aria-label="Open media 3 in modal" tabindex="-1"><svg class="icon icon-zoom icon-xs lg:hidden" viewBox="0 0 24 24" stroke="currentColor" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <path stroke-linecap="round" stroke-linejoin="round" d="M3 3V9M3 3H9M3 3L9 9M21 21V15M21 21H15M21 21L15 15"></path>
-    </svg></button></div>
-<div class="product__media card media media--square mobile:media--adapt_first flex w-full flex-auto relative overflow-hidden"
-  data-media-type="image"
-  data-media-id="63670410445145" data-gang-default><img src="/assets_ref/x/gallery/Gray-5.webp" alt="Miroooo X - Grey" width="1000" height="1000" loading="lazy" fetchpriority="auto" class="w-full" is="lazy-image"><button type="button" class="absolute top-0 left-0 w-full h-full flex items-center justify-center" is="media-hover-button" aria-label="Open media 4 in modal" tabindex="-1"><svg class="icon icon-zoom icon-xs lg:hidden" viewBox="0 0 24 24" stroke="currentColor" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <path stroke-linecap="round" stroke-linejoin="round" d="M3 3V9M3 3H9M3 3L9 9M21 21V15M21 21H15M21 21L15 15"></path>
-    </svg></button></div>
-<div class="product__media card media media--square mobile:media--adapt_first flex w-full flex-auto relative overflow-hidden"
-  data-media-type="image"
-  data-media-id="63670410576217" data-gang-default><img src="/assets_ref/x/gallery/Gray-6.webp" alt="Miroooo X - Grey" width="1000" height="1000" loading="lazy" fetchpriority="auto" class="w-full" is="lazy-image"><button type="button" class="absolute top-0 left-0 w-full h-full flex items-center justify-center" is="media-hover-button" aria-label="Open media 5 in modal" tabindex="-1"><svg class="icon icon-zoom icon-xs lg:hidden" viewBox="0 0 24 24" stroke="currentColor" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <path stroke-linecap="round" stroke-linejoin="round" d="M3 3V9M3 3H9M3 3L9 9M21 21V15M21 21H15M21 21L15 15"></path>
-    </svg></button></div>
-<div class="product__media card media media--square mobile:media--adapt_first flex w-full flex-auto relative overflow-hidden"
-  data-media-type="image"
-  data-media-id="63670410412377" data-gang-default><img src="/assets_ref/x/gallery/Gray-7.webp" alt="Miroooo X - Grey" width="1000" height="1000" loading="lazy" fetchpriority="auto" class="w-full" is="lazy-image"><button type="button" class="absolute top-0 left-0 w-full h-full flex items-center justify-center" is="media-hover-button" aria-label="Open media 6 in modal" tabindex="-1"><svg class="icon icon-zoom icon-xs lg:hidden" viewBox="0 0 24 24" stroke="currentColor" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <path stroke-linecap="round" stroke-linejoin="round" d="M3 3V9M3 3H9M3 3L9 9M21 21V15M21 21H15M21 21L15 15"></path>
-    </svg></button></div>
-<div class="product__media card media media--square mobile:media--adapt_first flex w-full flex-auto relative overflow-hidden"
-  data-media-type="image"
-  data-media-id="63670410543449" data-gang-default><img src="/assets_ref/x/gallery/Gray-8.webp" alt="Miroooo X - Grey" width="1000" height="1000" loading="lazy" fetchpriority="auto" class="w-full" is="lazy-image"><button type="button" class="absolute top-0 left-0 w-full h-full flex items-center justify-center" is="media-hover-button" aria-label="Open media 7 in modal" tabindex="-1"><svg class="icon icon-zoom icon-xs lg:hidden" viewBox="0 0 24 24" stroke="currentColor" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <path stroke-linecap="round" stroke-linejoin="round" d="M3 3V9M3 3H9M3 3L9 9M21 21V15M21 21H15M21 21L15 15"></path>
-    </svg></button></div>
-<div class="product__media card media media--square mobile:media--adapt_first flex w-full flex-auto relative overflow-hidden"
-  data-media-type="image"
-  data-media-id="63670410379609" data-gang-default><img src="/assets_ref/x/gallery/Silver-9.webp" alt="Miroooo X - Grey" width="1000" height="1000" loading="lazy" fetchpriority="auto" class="w-full" is="lazy-image"><button type="button" class="absolute top-0 left-0 w-full h-full flex items-center justify-center" is="media-hover-button" aria-label="Open media 8 in modal" tabindex="-1"><svg class="icon icon-zoom icon-xs lg:hidden" viewBox="0 0 24 24" stroke="currentColor" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <path stroke-linecap="round" stroke-linejoin="round" d="M3 3V9M3 3H9M3 3L9 9M21 21V15M21 21H15M21 21L15 15"></path>
-    </svg></button></div>
-<div class="product__media card media media--square mobile:media--adapt_first flex w-full flex-auto relative overflow-hidden hidden"
-  data-media-type="image"
-  data-media-id="63670410379610" data-gang-default style="display: none;"><img src="/assets_ref/x/gallery/Miroooo_x_Silver-9.webp" alt="Miroooo X - Silver" width="1000" height="1000" loading="lazy" fetchpriority="auto" class="w-full" is="lazy-image"><button type="button" class="absolute top-0 left-0 w-full h-full flex items-center justify-center" is="media-hover-button" aria-label="Open media 9 in modal" tabindex="-1"><svg class="icon icon-zoom icon-xs lg:hidden" viewBox="0 0 24 24" stroke="currentColor" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <path stroke-linecap="round" stroke-linejoin="round" d="M3 3V9M3 3H9M3 3L9 9M21 21V15M21 21H15M21 21L15 15"></path>
-    </svg></button></div>
-<div class="product__media card media media--square mobile:media--adapt_first flex w-full flex-auto relative overflow-hidden hidden"
-  data-media-type="image"
-  data-media-id="63670410379611" data-gang-default style="display: none;"><img src="/assets_ref/x/gallery/Miroooo_x_Silver-10.webp" alt="Miroooo X - Silver" width="1000" height="1000" loading="lazy" fetchpriority="auto" class="w-full" is="lazy-image"><button type="button" class="absolute top-0 left-0 w-full h-full flex items-center justify-center" is="media-hover-button" aria-label="Open media 10 in modal" tabindex="-1"><svg class="icon icon-zoom icon-xs lg:hidden" viewBox="0 0 24 24" stroke="currentColor" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <path stroke-linecap="round" stroke-linejoin="round" d="M3 3V9M3 3H9M3 3L9 9M21 21V15M21 21H15M21 21L15 15"></path>
-    </svg></button></div>
-<div class="product__media card media media--square mobile:media--adapt_first flex w-full flex-auto relative overflow-hidden hidden"
-  data-media-type="image"
-  data-media-id="63670410379612" data-gang-default style="display: none;"><img src="/assets_ref/x/gallery/Miroooo_x_Silver-11.webp" alt="Miroooo X - Silver" width="1000" height="1000" loading="lazy" fetchpriority="auto" class="w-full" is="lazy-image"><button type="button" class="absolute top-0 left-0 w-full h-full flex items-center justify-center" is="media-hover-button" aria-label="Open media 11 in modal" tabindex="-1"><svg class="icon icon-zoom icon-xs lg:hidden" viewBox="0 0 24 24" stroke="currentColor" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <path stroke-linecap="round" stroke-linejoin="round" d="M3 3V9M3 3H9M3 3L9 9M21 21V15M21 21H15M21 21L15 15"></path>
-    </svg></button></div>
-<div class="product__media card media media--square mobile:media--adapt_first flex w-full flex-auto relative overflow-hidden hidden"
-  data-media-type="image"
-  data-media-id="63670410379613" data-gang-default style="display: none;"><img src="/assets_ref/x/gallery/Silver-9.webp" alt="Miroooo X - Silver" width="1000" height="1000" loading="lazy" fetchpriority="auto" class="w-full" is="lazy-image"><button type="button" class="absolute top-0 left-0 w-full h-full flex items-center justify-center" is="media-hover-button" aria-label="Open media 12 in modal" tabindex="-1"><svg class="icon icon-zoom icon-xs lg:hidden" viewBox="0 0 24 24" stroke="currentColor" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <path stroke-linecap="round" stroke-linejoin="round" d="M3 3V9M3 3H9M3 3L9 9M21 21V15M21 21H15M21 21L15 15"></path>
-    </svg></button></div>
-</div>
-      </slider-element>
-
-      <div class="indicators hidden items-center justify-between opacity-0 z-1 absolute top-0 left-0 w-full h-full pointer-events-none">
-        <button class="button button--secondary pointer-events-auto" type="button" is="previous-button" aria-controls="SliderGallery-template--24203751129433__main-product-9593510658393" aria-label="Previous" disabled>
-          <span class="btn-fill" data-fill></span>
-          <span class="btn-text"><svg class="icon icon-chevron-left icon-md transform" viewBox="0 0 24 24" stroke="currentColor" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <path stroke-linecap="round" stroke-linejoin="round" d="M14 6L8 12L14 18"></path>
-    </svg></span>
+          <div class="thumb-inner thumb-video-inner">
+            <img id="thumb-video-img" alt="Video thumbnail" src="/assets_ref/x/gallery/Gray-1.webp" />
+            <span class="thumb-play-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="currentColor">
+                <path d="M8 5v14l11-7z"/>
+              </svg>
+            </span>
+          </div>
         </button>
-        <button class="button button--secondary pointer-events-auto" type="button" is="next-button" aria-controls="SliderGallery-template--24203751129433__main-product-9593510658393" aria-label="Next">
-          <span class="btn-fill" data-fill></span>
-          <span class="btn-text"><svg class="icon icon-chevron-right icon-md transform" viewBox="0 0 24 24" stroke="currentColor" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <path stroke-linecap="round" stroke-linejoin="round" d="M10 6L16 12L10 18"></path>
-    </svg></span>
+
+        <!-- 1..12: Image thumbnails -->
+        <button type="button" class="miroooo-gallery__thumb" data-index="1" aria-label="Product image 1" data-gang-default>
+          <div class="thumb-inner"><img src="/assets_ref/x/gallery/Gray-1.webp" alt="Miroooo X - 1" loading="lazy" /></div>
+        </button>
+        <button type="button" class="miroooo-gallery__thumb" data-index="2" aria-label="Product image 2" data-gang-default>
+          <div class="thumb-inner"><img src="/assets_ref/x/gallery/Gray-2.webp" alt="Miroooo X - 2" loading="lazy" /></div>
+        </button>
+        <button type="button" class="miroooo-gallery__thumb" data-index="3" aria-label="Product image 3" data-gang-default>
+          <div class="thumb-inner"><img src="/assets_ref/x/gallery/Gray-4.webp" alt="Miroooo X - 3" loading="lazy" /></div>
+        </button>
+        <button type="button" class="miroooo-gallery__thumb" data-index="4" aria-label="Product image 4" data-gang-default>
+          <div class="thumb-inner"><img src="/assets_ref/x/gallery/Gray-5.webp" alt="Miroooo X - 4" loading="lazy" /></div>
+        </button>
+        <button type="button" class="miroooo-gallery__thumb" data-index="5" aria-label="Product image 5" data-gang-default>
+          <div class="thumb-inner"><img src="/assets_ref/x/gallery/Gray-6.webp" alt="Miroooo X - 5" loading="lazy" /></div>
+        </button>
+        <button type="button" class="miroooo-gallery__thumb" data-index="6" aria-label="Product image 6" data-gang-default>
+          <div class="thumb-inner"><img src="/assets_ref/x/gallery/Gray-7.webp" alt="Miroooo X - 6" loading="lazy" /></div>
+        </button>
+        <button type="button" class="miroooo-gallery__thumb" data-index="7" aria-label="Product image 7" data-gang-default>
+          <div class="thumb-inner"><img src="/assets_ref/x/gallery/Gray-8.webp" alt="Miroooo X - 7" loading="lazy" /></div>
+        </button>
+        <button type="button" class="miroooo-gallery__thumb" data-index="8" aria-label="Product image 8" data-gang-default>
+          <div class="thumb-inner"><img src="/assets_ref/x/gallery/Silver-9.webp" alt="Miroooo X - 8" loading="lazy" /></div>
+        </button>
+        <button type="button" class="miroooo-gallery__thumb hidden" data-index="9" aria-label="Product image 9" data-gang-default style="display: none;">
+          <div class="thumb-inner"><img src="/assets_ref/x/gallery/Miroooo_x_Silver-9.webp" alt="Miroooo X - 9" loading="lazy" /></div>
+        </button>
+        <button type="button" class="miroooo-gallery__thumb hidden" data-index="10" aria-label="Product image 10" data-gang-default style="display: none;">
+          <div class="thumb-inner"><img src="/assets_ref/x/gallery/Miroooo_x_Silver-10.webp" alt="Miroooo X - 10" loading="lazy" /></div>
+        </button>
+        <button type="button" class="miroooo-gallery__thumb hidden" data-index="11" aria-label="Product image 11" data-gang-default style="display: none;">
+          <div class="thumb-inner"><img src="/assets_ref/x/gallery/Miroooo_x_Silver-11.webp" alt="Miroooo X - 11" loading="lazy" /></div>
+        </button>
+        <button type="button" class="miroooo-gallery__thumb hidden" data-index="12" aria-label="Product image 12" data-gang-default style="display: none;">
+          <div class="thumb-inner"><img src="/assets_ref/x/gallery/Silver-9.webp" alt="Miroooo X - 12" loading="lazy" /></div>
         </button>
       </div>
-    </div><scroll-shadow class="product__thumbnails lg:hidden product__thumbnails--beside grid items-center relative w-full"><media-dots class="product__thumbnails-list scroll-area grid items-end justify-start gap-4 w-full" aria-controls="SliderGallery-template--24203751129433__main-product-9593510658393">
-<button id="thumb-video-item" aria-current="true" aria-label="Go to video" class="product__thumbnail media media--square relative overflow-hidden is-active" data-media-type="video" type="button" style="border-radius: 8px;">
-  <div style="width: 100%; height: 100%; background: #000; display: flex; align-items: center; justify-content: center; position: relative;">
-    <img id="thumb-video-img" alt="Video thumbnail" src="/assets_ref/x/gallery/Gray-1.webp" style="width: 100%; height: 100%; object-fit: cover; opacity: 0.6;" />
-    <svg style="position: absolute; width: 18px; height: 18px; fill: white; filter: drop-shadow(0 2px 4px rgba(0,0,0,0.5));" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+    </div>
+
+    <!-- Right: Main 1:1 Square Featured Media Viewport -->
+    <div class="miroooo-gallery__stage-wrap">
+      <div class="miroooo-gallery__stage" id="MirooooGalleryStage" role="region" aria-label="Product media carousel">
+        <!-- Navigation Prev Button -->
+        <button
+          type="button"
+          class="miroooo-gallery__arrow miroooo-gallery__arrow--prev"
+          id="MirooooGalleryPrevBtn"
+          aria-label="Previous product image"
+        >
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="15 18 9 12 15 6"></polyline>
+          </svg>
+        </button>
+
+        <!-- Slides List -->
+        <div class="miroooo-gallery__slides" id="MirooooGallerySlides">
+          <!-- Slide 0: Video -->
+          <div
+            class="miroooo-gallery__slide is-active"
+            id="product-media-video-item"
+            data-media-type="video"
+            data-index="0"
+          >
+            <div class="video-wrapper">
+              <video
+                id="gallery-featured-video"
+                src="/assets_ref/x/gallery/miroooo-video-1.mp4"
+                autoplay
+                loop
+                muted
+                playsinline
+                disablepictureinpicture
+                controlslist="nodownload nofullscreen noremoteplayback"
+                preload="auto"
+              ></video>
+            </div>
+          </div>
+
+          <!-- Slides 1..12: Images -->
+          <div class="miroooo-gallery__slide" data-media-type="image" data-index="1" data-gang-default>
+            <img src="/assets_ref/x/gallery/Gray-1.webp" alt="Miroooo X - Grey" width="1000" height="1000" fetchpriority="high" />
+          </div>
+          <div class="miroooo-gallery__slide" data-media-type="image" data-index="2" data-gang-default>
+            <img src="/assets_ref/x/gallery/Gray-2.webp" alt="Miroooo X - Grey" width="1000" height="1000" loading="lazy" />
+          </div>
+          <div class="miroooo-gallery__slide" data-media-type="image" data-index="3" data-gang-default>
+            <img src="/assets_ref/x/gallery/Gray-4.webp" alt="Miroooo X - Grey" width="1000" height="1000" loading="lazy" />
+          </div>
+          <div class="miroooo-gallery__slide" data-media-type="image" data-index="4" data-gang-default>
+            <img src="/assets_ref/x/gallery/Gray-5.webp" alt="Miroooo X - Grey" width="1000" height="1000" loading="lazy" />
+          </div>
+          <div class="miroooo-gallery__slide" data-media-type="image" data-index="5" data-gang-default>
+            <img src="/assets_ref/x/gallery/Gray-6.webp" alt="Miroooo X - Grey" width="1000" height="1000" loading="lazy" />
+          </div>
+          <div class="miroooo-gallery__slide" data-media-type="image" data-index="6" data-gang-default>
+            <img src="/assets_ref/x/gallery/Gray-7.webp" alt="Miroooo X - Grey" width="1000" height="1000" loading="lazy" />
+          </div>
+          <div class="miroooo-gallery__slide" data-media-type="image" data-index="7" data-gang-default>
+            <img src="/assets_ref/x/gallery/Gray-8.webp" alt="Miroooo X - Grey" width="1000" height="1000" loading="lazy" />
+          </div>
+          <div class="miroooo-gallery__slide" data-media-type="image" data-index="8" data-gang-default>
+            <img src="/assets_ref/x/gallery/Silver-9.webp" alt="Miroooo X - Grey" width="1000" height="1000" loading="lazy" />
+          </div>
+          <div class="miroooo-gallery__slide hidden" data-media-type="image" data-index="9" data-gang-default style="display: none;">
+            <img src="/assets_ref/x/gallery/Miroooo_x_Silver-9.webp" alt="Miroooo X - Silver" width="1000" height="1000" loading="lazy" />
+          </div>
+          <div class="miroooo-gallery__slide hidden" data-media-type="image" data-index="10" data-gang-default style="display: none;">
+            <img src="/assets_ref/x/gallery/Miroooo_x_Silver-10.webp" alt="Miroooo X - Silver" width="1000" height="1000" loading="lazy" />
+          </div>
+          <div class="miroooo-gallery__slide hidden" data-media-type="image" data-index="11" data-gang-default style="display: none;">
+            <img src="/assets_ref/x/gallery/Miroooo_x_Silver-11.webp" alt="Miroooo X - Silver" width="1000" height="1000" loading="lazy" />
+          </div>
+          <div class="miroooo-gallery__slide hidden" data-media-type="image" data-index="12" data-gang-default style="display: none;">
+            <img src="/assets_ref/x/gallery/Silver-9.webp" alt="Miroooo X - Silver" width="1000" height="1000" loading="lazy" />
+          </div>
+        </div>
+
+        <!-- Navigation Next Button -->
+        <button
+          type="button"
+          class="miroooo-gallery__arrow miroooo-gallery__arrow--next"
+          id="MirooooGalleryNextBtn"
+          aria-label="Next product image"
+        >
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="9 18 15 12 9 6"></polyline>
+          </svg>
+        </button>
+
+        <!-- Zoom / Lightbox expand hint badge -->
+        <button
+          type="button"
+          class="miroooo-gallery__zoom-badge"
+          id="MirooooGalleryZoomBtn"
+          aria-label="Expand image"
+        >
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="11" cy="11" r="8"></circle>
+            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+            <line x1="11" y1="8" x2="11" y2="14"></line>
+            <line x1="8" y1="11" x2="14" y2="11"></line>
+          </svg>
+        </button>
+      </div>
+    </div>
   </div>
-</button><button type="button"
-  class="product__thumbnail media media--square relative overflow-hidden"
-  data-media-id="63670410641753"
-  aria-label="Ga naar item "
-  aria-current="true" data-gang-default><img src="/assets_ref/x/gallery/Gray-1.webp" alt="Miroooo X - Grey" width="200" height="200" loading="lazy" is="lazy-image">
-</button>
-<button type="button"
-  class="product__thumbnail media media--square relative overflow-hidden"
-  data-media-id="63670410314073"
-  aria-label="Ga naar item "
-  aria-current="false" data-gang-default><img src="/assets_ref/x/gallery/Gray-2.webp" alt="Miroooo X - Grey" width="200" height="200" loading="lazy" is="lazy-image">
-</button>
-<button type="button"
-  class="product__thumbnail media media--square relative overflow-hidden"
-  data-media-id="63670410477913"
-  aria-label="Ga naar item "
-  aria-current="false" data-gang-default><img src="/assets_ref/x/gallery/Gray-4.webp" alt="Miroooo X - Grey" width="200" height="200" loading="lazy" is="lazy-image">
-</button>
-<button type="button"
-  class="product__thumbnail media media--square relative overflow-hidden"
-  data-media-id="63670410445145"
-  aria-label="Ga naar item "
-  aria-current="false" data-gang-default><img src="/assets_ref/x/gallery/Gray-5.webp" alt="Miroooo X - Grey" width="200" height="200" loading="lazy" is="lazy-image">
-</button>
-<button type="button"
-  class="product__thumbnail media media--square relative overflow-hidden"
-  data-media-id="63670410576217"
-  aria-label="Ga naar item "
-  aria-current="false" data-gang-default><img src="/assets_ref/x/gallery/Gray-6.webp" alt="Miroooo X - Grey" width="200" height="200" loading="lazy" is="lazy-image">
-</button>
-<button type="button"
-  class="product__thumbnail media media--square relative overflow-hidden"
-  data-media-id="63670410412377"
-  aria-label="Ga naar item "
-  aria-current="false" data-gang-default><img src="/assets_ref/x/gallery/Gray-7.webp" alt="Miroooo X - Grey" width="200" height="200" loading="lazy" is="lazy-image">
-</button>
-<button type="button"
-  class="product__thumbnail media media--square relative overflow-hidden"
-  data-media-id="63670410543449"
-  aria-label="Ga naar item "
-  aria-current="false" data-gang-default><img src="/assets_ref/x/gallery/Gray-8.webp" alt="Miroooo X - Grey" width="200" height="200" loading="lazy" is="lazy-image">
-</button>
-<button type="button"
-  class="product__thumbnail media media--square relative overflow-hidden"
-  data-media-id="63670410379609"
-  aria-label="Ga naar item "
-  aria-current="false" data-gang-default><img src="/assets_ref/x/gallery/Silver-9.webp" alt="Miroooo X - Grey" width="200" height="200" loading="lazy" is="lazy-image">
-</button>
-<button type="button"
-  class="product__thumbnail media media--square relative overflow-hidden hidden"
-  data-media-id="63670410379610"
-  aria-label="Ga naar item"
-  aria-current="false" data-gang-default style="display: none;"><img src="/assets_ref/x/gallery/Miroooo_x_Silver-9.webp" alt="Miroooo X - Silver" width="200" height="200" loading="lazy" is="lazy-image">
-</button>
-<button type="button"
-  class="product__thumbnail media media--square relative overflow-hidden hidden"
-  data-media-id="63670410379611"
-  aria-label="Ga naar item"
-  aria-current="false" data-gang-default style="display: none;"><img src="/assets_ref/x/gallery/Miroooo_x_Silver-10.webp" alt="Miroooo X - Silver" width="200" height="200" loading="lazy" is="lazy-image">
-</button>
-<button type="button"
-  class="product__thumbnail media media--square relative overflow-hidden hidden"
-  data-media-id="63670410379612"
-  aria-label="Ga naar item"
-  aria-current="false" data-gang-default style="display: none;"><img src="/assets_ref/x/gallery/Miroooo_x_Silver-11.webp" alt="Miroooo X - Silver" width="200" height="200" loading="lazy" is="lazy-image">
-</button>
-<button type="button"
-  class="product__thumbnail media media--square relative overflow-hidden hidden"
-  data-media-id="63670410379613"
-  aria-label="Ga naar item"
-  aria-current="false" data-gang-default style="display: none;"><img src="/assets_ref/x/gallery/Silver-9.webp" alt="Miroooo X - Silver" width="200" height="200" loading="lazy" is="lazy-image">
-</button>
-</media-dots><template>
-            <slot></slot>
-            <s dir="ltr" style="--t: 0; --b: 0; --l: 0; --r: 0;">
-              <span class="t"><svg class="icon icon-chevron-up icon-md" viewBox="0 0 24 24" stroke="currentColor" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <path stroke-linecap="round" stroke-linejoin="round" d="M6 15L12 9L18 15"></path>
-    </svg></span>
-              <span class="b"><svg class="icon icon-chevron-down icon-md" viewBox="0 0 24 24" stroke="currentColor" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <path stroke-linecap="round" stroke-linejoin="round" d="M6 9L12 15L18 9"></path>
-    </svg></span>
-              <span class="l"><svg class="icon icon-chevron-left icon-md" viewBox="0 0 24 24" stroke="currentColor" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <path stroke-linecap="round" stroke-linejoin="round" d="M14 6L8 12L14 18"></path>
-    </svg></span>
-              <span class="r"><svg class="icon icon-chevron-right icon-md" viewBox="0 0 24 24" stroke="currentColor" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <path stroke-linecap="round" stroke-linejoin="round" d="M10 6L16 12L10 18"></path>
-    </svg></span>
-            </s>
-            <style>
-              :host{display:inline-block;position:relative}:host([hidden]){display:none}
-              s{position:absolute;inset:0;pointer-events:none;}
-              s svg{width:24px;height:auto;stroke-width:var(--icon-weight);}
-              s span{position:absolute;display:grid;align-items:center;justify-items:center;background-color:rgb(var(--color-background));padding:8px;opacity:0;transition:opacity var(--animation-short);}
-              s .t{inset-block-start:0;inset-inline:-5px;border-block-end:1px solid rgb(var(--color-border));opacity:var(--t);}
-              s .b{inset-block-end:0;inset-inline:-5px;border-block-start:1px solid rgb(var(--color-border));opacity:var(--b);}
-              s .l{inset-inline-start:0;inset-block:-5px;border-inline-end:1px solid rgb(var(--color-border));opacity:var(--l);}
-              s .r{inset-inline-end:0;inset-block:-5px;border-inline-start:1px solid rgb(var(--color-border));opacity:var(--r);}
-              s[dir=rtl] :is(.icon-chevron-left,.icon-chevron-right){transform:scaleX(-1);}
-              @media screen and (max-width: 1023px) {
-                s{display:none}
-              }
-            </style>
-          </template>
-        </scroll-shadow>
-      </div></media-gallery>
+</media-gallery>
 <product-info
         id="ProductInfo-template--24203751129433__main-product-9593510658393"
         class="product__info block sticky w-full"
@@ -5936,13 +6222,82 @@ function syncStickyColumns() {
   }
 }
 
+let currentGalleryIndex = 0;
+
+function getVisibleGalleryItems() {
+  const thumbs = [...document.querySelectorAll('#MirooooGalleryNav .miroooo-gallery__thumb')].filter(t => t.style.display !== 'none' && !t.classList.contains('hidden'));
+  const slides = [...document.querySelectorAll('#MirooooGallerySlides .miroooo-gallery__slide')].filter(s => s.style.display !== 'none' && !s.classList.contains('hidden'));
+  return { thumbs, slides };
+}
+
+function setActiveGalleryIndex(targetIdx, shouldScrollThumb = true) {
+  const { thumbs, slides } = getVisibleGalleryItems();
+  if (slides.length === 0) return;
+
+  if (targetIdx < 0) targetIdx = slides.length - 1;
+  if (targetIdx >= slides.length) targetIdx = 0;
+
+  currentGalleryIndex = targetIdx;
+
+  slides.forEach((slide, i) => {
+    if (i === targetIdx) {
+      slide.classList.add('is-active');
+      slide.style.opacity = '1';
+      slide.style.visibility = 'visible';
+      slide.style.pointerEvents = 'auto';
+      slide.style.zIndex = '2';
+      const vid = slide.querySelector('video');
+      if (vid) {
+        vid.currentTime = 0;
+        vid.play().catch(() => {});
+      }
+    } else {
+      slide.classList.remove('is-active');
+      slide.style.opacity = '0';
+      slide.style.visibility = 'hidden';
+      slide.style.pointerEvents = 'none';
+      slide.style.zIndex = '1';
+      const vid = slide.querySelector('video');
+      if (vid) vid.pause();
+    }
+  });
+
+  thumbs.forEach((thumb, i) => {
+    if (i === targetIdx) {
+      thumb.classList.add('is-active');
+      thumb.setAttribute('aria-current', 'true');
+      if (shouldScrollThumb) {
+        thumb.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'nearest' });
+      }
+    } else {
+      thumb.classList.remove('is-active');
+      thumb.setAttribute('aria-current', 'false');
+    }
+  });
+}
+
+function nextGallerySlide() {
+  const { slides } = getVisibleGalleryItems();
+  if (slides.length <= 1) return;
+  const nextIdx = (currentGalleryIndex + 1) % slides.length;
+  setActiveGalleryIndex(nextIdx, true);
+}
+
+function prevGallerySlide() {
+  const { slides } = getVisibleGalleryItems();
+  if (slides.length <= 1) return;
+  const prevIdx = (currentGalleryIndex - 1 + slides.length) % slides.length;
+  setActiveGalleryIndex(prevIdx, true);
+}
+
 function updateGalleryVisibility(colorName) {
   const data = VARIANTS_DATA[colorName] || VARIANTS_DATA['Grey'];
   const imageCount = (data && data.images) ? data.images.length : 8;
-  const mediaItems = document.querySelectorAll('.product__media-list .product__media:not(.product__media--video)');
-  const thumbItems = document.querySelectorAll('.product__thumbnails-list .product__thumbnail:not([data-media-type="video"])');
+  
+  const slideItems = document.querySelectorAll('#MirooooGallerySlides .miroooo-gallery__slide[data-media-type="image"]');
+  const thumbItems = document.querySelectorAll('#MirooooGalleryNav .miroooo-gallery__thumb:not([data-media-type="video"])');
 
-  mediaItems.forEach((item, idx) => {
+  slideItems.forEach((item, idx) => {
     if (idx < imageCount) {
       item.style.display = '';
       item.classList.remove('hidden');
@@ -5962,6 +6317,11 @@ function updateGalleryVisibility(colorName) {
     }
   });
 
+  const { slides } = getVisibleGalleryItems();
+  if (currentGalleryIndex >= slides.length) {
+    setActiveGalleryIndex(0, false);
+  }
+
   syncStickyColumns();
   setTimeout(syncStickyColumns, 50);
 }
@@ -5974,18 +6334,19 @@ function selectColorVariant(colorName) {
   const mainTitle = document.getElementById('main-product-title');
   if (mainTitle) mainTitle.textContent = data.title;
 
-  // 2. Update Gallery Visibility (Video + 8 images initially for Silver, Load More expands)
+  // 2. Update Gallery Visibility
   updateGalleryVisibility(colorName);
 
   // 3. Update Main Gallery Images
-  const galleryImageMedia = document.querySelectorAll('.product__media-list .product__media:not(.product__media--video)');
-  galleryImageMedia.forEach((mediaEl, idx) => {
+  const slideImages = document.querySelectorAll('#MirooooGallerySlides .miroooo-gallery__slide[data-media-type="image"]');
+  slideImages.forEach((slideEl, idx) => {
     if (data.images && data.images[idx]) {
-      const img = mediaEl.querySelector('img');
+      const img = slideEl.querySelector('img');
       if (img) {
         img.style.opacity = '0';
         setTimeout(() => {
           img.src = data.images[idx];
+          img.alt = `${data.title} - ${idx + 1}`;
           img.removeAttribute('srcset');
           img.style.opacity = '1';
         }, 120);
@@ -5994,12 +6355,13 @@ function selectColorVariant(colorName) {
   });
 
   // 4. Update Thumbnails
-  const thumbElements = document.querySelectorAll('.product__thumbnails-list .product__thumbnail:not([data-media-type="video"])');
-  thumbElements.forEach((thumbEl, idx) => {
+  const thumbImages = document.querySelectorAll('#MirooooGalleryNav .miroooo-gallery__thumb:not([data-media-type="video"])');
+  thumbImages.forEach((thumbEl, idx) => {
     if (data.images && data.images[idx]) {
       const img = thumbEl.querySelector('img');
       if (img) {
         img.src = data.images[idx];
+        img.alt = `${data.title} thumbnail ${idx + 1}`;
         img.removeAttribute('srcset');
       }
     }
@@ -6188,36 +6550,109 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // Thumbnail & Media click -> smooth scroll & open luxury Lightbox modal
-  const allThumbnails = document.querySelectorAll('.product__thumbnails-list .product__thumbnail');
-  const allMediaItems = document.querySelectorAll('.product__media-list .product__media');
-  allThumbnails.forEach((thumb) => {
-    thumb.addEventListener('click', () => {
-      allThumbnails.forEach(t => t.classList.remove('is-active'));
-      thumb.classList.add('is-active');
-      const visibleThumbs = [...document.querySelectorAll('.product__thumbnails-list .product__thumbnail')].filter(t => t.style.display !== 'none' && !t.classList.contains('hidden'));
-      const visibleMedia = [...document.querySelectorAll('.product__media-list .product__media')].filter(m => m.style.display !== 'none' && !m.classList.contains('hidden'));
-      const visibleIdx = visibleThumbs.indexOf(thumb);
-      if (visibleMedia[visibleIdx]) {
-        visibleMedia[visibleIdx].scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'start' });
-      }
-      if (typeof window.openMirooooLightbox === 'function') {
-        window.openMirooooLightbox(visibleIdx >= 0 ? visibleIdx : 0);
+  // Initialize MinMun-Style Gallery Interactivity
+  const prevGalleryBtn = document.getElementById('MirooooGalleryPrevBtn');
+  const nextGalleryBtn = document.getElementById('MirooooGalleryNextBtn');
+  if (prevGalleryBtn) {
+    prevGalleryBtn.addEventListener('click', (e) => {
+      e.preventDefault();
+      e.stopPropagation();
+      prevGallerySlide();
+    });
+  }
+  if (nextGalleryBtn) {
+    nextGalleryBtn.addEventListener('click', (e) => {
+      e.preventDefault();
+      e.stopPropagation();
+      nextGallerySlide();
+    });
+  }
+
+  // Thumbnail clicks
+  const galleryThumbs = document.querySelectorAll('#MirooooGalleryNav .miroooo-gallery__thumb');
+  galleryThumbs.forEach((thumb) => {
+    thumb.addEventListener('click', (e) => {
+      e.preventDefault();
+      const { thumbs } = getVisibleGalleryItems();
+      const visibleIdx = thumbs.indexOf(thumb);
+      if (visibleIdx !== -1) {
+        setActiveGalleryIndex(visibleIdx, true);
       }
     });
   });
 
-  allMediaItems.forEach((mediaItem) => {
-    mediaItem.style.cursor = 'zoom-in';
-    mediaItem.addEventListener('click', (e) => {
-      e.preventDefault();
-      const visibleMedia = [...document.querySelectorAll('.product__media-list .product__media')].filter(m => m.style.display !== 'none' && !m.classList.contains('hidden'));
-      const visibleIdx = visibleMedia.indexOf(mediaItem);
+  // Stage click -> opens Lightbox Modal
+  const galleryStage = document.getElementById('MirooooGalleryStage');
+  const zoomBadgeBtn = document.getElementById('MirooooGalleryZoomBtn');
+  if (galleryStage) {
+    galleryStage.addEventListener('click', (e) => {
+      if (e.target.closest('.miroooo-gallery__arrow') || e.target.closest('#MirooooGalleryZoomBtn')) return;
       if (typeof window.openMirooooLightbox === 'function') {
-        window.openMirooooLightbox(visibleIdx >= 0 ? visibleIdx : 0);
+        window.openMirooooLightbox(currentGalleryIndex);
       }
     });
+  }
+  if (zoomBadgeBtn) {
+    zoomBadgeBtn.addEventListener('click', (e) => {
+      e.preventDefault();
+      e.stopPropagation();
+      if (typeof window.openMirooooLightbox === 'function') {
+        window.openMirooooLightbox(currentGalleryIndex);
+      }
+    });
+  }
+
+  // Touch Swipe for Mobile Gallery
+  if (galleryStage) {
+    let startX = 0;
+    let startY = 0;
+    let isSwiping = false;
+
+    galleryStage.addEventListener('touchstart', (e) => {
+      if (e.touches.length === 1) {
+        startX = e.touches[0].clientX;
+        startY = e.touches[0].clientY;
+        isSwiping = true;
+      }
+    }, { passive: true });
+
+    galleryStage.addEventListener('touchend', (e) => {
+      if (!isSwiping) return;
+      isSwiping = false;
+      const touch = e.changedTouches[0];
+      if (!touch) return;
+      const diffX = touch.clientX - startX;
+      const diffY = touch.clientY - startY;
+      if (Math.abs(diffX) > Math.abs(diffY) && Math.abs(diffX) > 35) {
+        if (diffX < 0) {
+          nextGallerySlide();
+        } else {
+          prevGallerySlide();
+        }
+      }
+    }, { passive: true });
+  }
+
+  // Keyboard navigation when gallery is in view
+  document.addEventListener('keydown', (e) => {
+    const activeModal = document.getElementById('MirooooGalleryLightbox');
+    if (activeModal && activeModal.classList.contains('is-open')) return;
+    if (document.activeElement && (document.activeElement.tagName === 'INPUT' || document.activeElement.tagName === 'TEXTAREA')) return;
+    if (e.key === 'ArrowLeft') {
+      const rect = galleryStage?.getBoundingClientRect();
+      if (rect && rect.top < window.innerHeight && rect.bottom > 0) {
+        prevGallerySlide();
+      }
+    } else if (e.key === 'ArrowRight') {
+      const rect = galleryStage?.getBoundingClientRect();
+      if (rect && rect.top < window.innerHeight && rect.bottom > 0) {
+        nextGallerySlide();
+      }
+    }
   });
+
+  // Set initial gallery state
+  setActiveGalleryIndex(0, false);
 
   // Sticky Buy Bar scroll trigger (Muuhu style)
   const stickyCartWrap = document.getElementById('miroooo-sticky-cart');
