@@ -276,7 +276,7 @@
                 <a href="https://www.facebook.com/profile.php?id=61593351131893" target="_blank" rel="noopener noreferrer" class="site-footer__social-btn" aria-label="Facebook">
                   <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
                 </a>
-                <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" class="site-footer__social-btn" aria-label="Instagram">
+                <a href="https://www.instagram.com/miroooo_official/" target="_blank" rel="noopener noreferrer" class="site-footer__social-btn" aria-label="Instagram">
                   <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
                 </a>
                 <a href="https://www.youtube.com/channel/UCVMc0L8ja_3DCL_bI3dczrQ" target="_blank" rel="noopener noreferrer" class="site-footer__social-btn" aria-label="YouTube">
@@ -1021,12 +1021,12 @@
                   </div>
                 </div>
               </div>
-              <div class="cart-subtotal-section" style="display: flex; align-items: center; justify-content: space-between; padding-top: 14px; border-top: 1px solid rgba(255, 255, 255, 0.08); margin-bottom: 16px;">
+              <div class="cart-subtotal-section" style="display: flex; align-items: center; justify-content: space-between; padding-top: 14px; border-top: 1px solid rgba(0, 0, 0, 0.08); margin-bottom: 16px;">
                 <div>
-                  <span class="cart-subtotal-label" style="font-size: 0.88rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.06em; color: #ffffff; display: block;">SUBTOTAL</span>
-                  <span class="cart-subtotal-sub" style="font-size: 0.75rem; color: #888888; display: block; margin-top: 2px;">Includes all taxes.</span>
+                  <span class="cart-subtotal-label" style="font-size: 0.88rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.06em; color: #000000; display: block;">SUBTOTAL</span>
+                  <span class="cart-subtotal-sub" style="font-size: 0.75rem; color: #666666; display: block; margin-top: 2px;">Includes all taxes.</span>
                 </div>
-                <div class="cart-subtotal-amount" id="cart-subtotal-val" style="font-size: 1.85rem; font-weight: 800; color: #ffffff; line-height: 1; letter-spacing: -0.02em;">£0</div>
+                <div class="cart-subtotal-amount" id="cart-subtotal-val" style="font-size: 1.85rem; font-weight: 800; color: #000000; line-height: 1; letter-spacing: -0.02em;">£0</div>
               </div>
               <div class="miroooo-checkout-btn-wrap">
                 <a href="/cart" class="cart-checkout-cta-btn miroooo-checkout-btn" is="hover-button" style="text-decoration: none;" onclick="window.MirooooCart.closeCart()">
@@ -1118,8 +1118,8 @@
                 <div class="miroooo-cart-item-top">
                   <div>
                     <h4 class="miroooo-cart-item-title">${item.title}</h4>
-                    <p class="miroooo-cart-item-desc" style="font-size: 0.76rem; color: rgba(255, 255, 255, 0.55); margin: 3px 0 0; line-height: 1.35;">${description}</p>
-                    ${colorsLabel ? `<p class="miroooo-cart-item-colors">${colorsLabel}</p>` : ""}
+                    <p class="miroooo-cart-item-desc" style="font-size: 0.76rem; color: #555555; margin: 3px 0 0; line-height: 1.35;">${description}</p>
+                    ${colorsLabel ? `<p class="miroooo-cart-item-colors" style="font-size: 0.78rem; color: #555555; font-weight: 500; margin: 3px 0 0; line-height: 1.35;">${colorsLabel}</p>` : ""}
                   </div>
                   <div class="miroooo-cart-item-pricing">
                     <span class="miroooo-cart-item-price">${unitPriceDisplay}</span>

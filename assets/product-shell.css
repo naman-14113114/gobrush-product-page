@@ -2299,12 +2299,12 @@ body.nav-open .miroooo-sticky-cart-wrap {
   max-width: 460px;
   height: 100%;
   height: 100dvh;
-  background: #111213;
-  border-left: 1px solid rgba(255, 255, 255, 0.1);
-  box-shadow: -24px 0 60px -15px rgba(0, 0, 0, 0.8);
+  background: #e6e6e6;
+  border-left: 1px solid rgba(0, 0, 0, 0.12);
+  box-shadow: -24px 0 60px -15px rgba(0, 0, 0, 0.4);
   display: flex;
   flex-direction: column;
-  color: #ffffff;
+  color: #111111;
   font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
   transform: translateX(100%);
   transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
@@ -2322,8 +2322,8 @@ body.nav-open .miroooo-sticky-cart-wrap {
   align-items: center;
   justify-content: space-between;
   padding: 20px 24px;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-  background: #111213;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+  background: #e6e6e6;
   flex-shrink: 0;
 }
 
@@ -2338,7 +2338,7 @@ body.nav-open .miroooo-sticky-cart-wrap {
   font-weight: 700;
   letter-spacing: 0.12em;
   text-transform: uppercase;
-  color: rgba(255, 255, 255, 0.45);
+  color: rgba(0, 0, 0, 0.5);
   margin: 0;
   line-height: 1.2;
 }
@@ -2348,7 +2348,7 @@ body.nav-open .miroooo-sticky-cart-wrap {
   font-size: 1.35rem;
   font-weight: 700;
   letter-spacing: -0.02em;
-  color: #ffffff;
+  color: #000000;
   display: flex;
   align-items: center;
   gap: 8px;
@@ -2358,11 +2358,11 @@ body.nav-open .miroooo-sticky-cart-wrap {
 .miroooo-cart-count-badge {
   font-size: 0.8rem;
   font-weight: 600;
-  color: rgba(255, 255, 255, 0.6);
-  background: rgba(255, 255, 255, 0.08);
+  color: #111111;
+  background: rgba(0, 0, 0, 0.07);
   padding: 3px 10px;
   border-radius: 9999px;
-  border: 1px solid rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(0, 0, 0, 0.1);
 }
 
 /* Circular Close Button */
@@ -2374,17 +2374,17 @@ body.nav-open .miroooo-sticky-cart-wrap {
   height: 38px;
   min-width: 38px;
   border-radius: 50%;
-  background: rgba(255, 255, 255, 0.06);
-  border: 1px solid rgba(255, 255, 255, 0.12);
-  color: #ffffff;
+  background: rgba(0, 0, 0, 0.06);
+  border: 1px solid rgba(0, 0, 0, 0.12);
+  color: #000000;
   cursor: pointer;
   padding: 0;
   transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1), background-color 0.2s ease, border-color 0.2s ease;
 }
 
 .miroooo-cart-close-btn:hover {
-  background: rgba(255, 255, 255, 0.15);
-  border-color: rgba(255, 255, 255, 0.25);
+  background: rgba(0, 0, 0, 0.12);
+  border-color: rgba(0, 0, 0, 0.2);
   transform: scale(1.06);
 }
 
@@ -2412,7 +2412,7 @@ body.nav-open .miroooo-sticky-cart-wrap {
 }
 
 .miroooo-cart-body::-webkit-scrollbar-thumb {
-  background: rgba(255, 255, 255, 0.15);
+  background: rgba(0, 0, 0, 0.15);
   border-radius: 10px;
 }
 
@@ -2431,19 +2431,19 @@ body.nav-open .miroooo-sticky-cart-wrap {
 .miroooo-empty-icon {
   width: 52px;
   height: 52px;
-  color: rgba(255, 255, 255, 0.35);
+  color: rgba(0, 0, 0, 0.35);
 }
 
 .miroooo-empty-title {
   font-size: 1.25rem;
   font-weight: 700;
-  color: #ffffff;
+  color: #000000;
   margin: 0;
 }
 
 .miroooo-empty-text {
   font-size: 0.88rem;
-  color: rgba(255, 255, 255, 0.55);
+  color: #555555;
   max-width: 280px;
   margin: 0;
   line-height: 1.5;
@@ -2456,8 +2456,8 @@ body.nav-open .miroooo-sticky-cart-wrap {
   gap: 8px;
   padding: 12px 28px;
   border-radius: 9999px;
-  background: #ffffff;
-  color: #000000;
+  background: #000000;
+  color: #ffffff;
   font-weight: 700;
   font-size: 0.9rem;
   text-decoration: none;
@@ -2479,16 +2479,17 @@ body.nav-open .miroooo-sticky-cart-wrap {
 .miroooo-cart-item {
   display: flex;
   gap: 14px;
-  background: rgba(255, 255, 255, 0.03);
-  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: #ffffff;
+  border: 1px solid rgba(0, 0, 0, 0.08);
   border-radius: 16px;
   padding: 14px;
   position: relative;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
   transition: border-color 0.2s ease;
 }
 
 .miroooo-cart-item:hover {
-  border-color: rgba(255, 255, 255, 0.14);
+  border-color: rgba(0, 0, 0, 0.18);
 }
 
 /* Thumbnail (72x72px rounded-xl) */
@@ -2497,8 +2498,8 @@ body.nav-open .miroooo-sticky-cart-wrap {
   height: 72px;
   min-width: 72px;
   border-radius: 12px;
-  background: #18191b;
-  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: #f0f0f0;
+  border: 1px solid rgba(0, 0, 0, 0.08);
   overflow: hidden;
   position: relative;
   flex-shrink: 0;
@@ -2530,7 +2531,7 @@ body.nav-open .miroooo-sticky-cart-wrap {
 .miroooo-cart-item-title {
   font-size: 0.95rem;
   font-weight: 700;
-  color: #ffffff;
+  color: #000000;
   margin: 0;
   line-height: 1.25;
 }
@@ -2540,10 +2541,10 @@ body.nav-open .miroooo-sticky-cart-wrap {
 .miroooo-cart-item-colors,
 .miroooo-cart-item-subtitle,
 .miroooo-cart-item-variant {
-  font-size: 0.78rem;
-  color: rgba(255, 255, 255, 0.6);
-  margin: 3px 0 0 0;
-  line-height: 1.35;
+  font-size: 0.78rem !important;
+  color: #555555 !important;
+  margin: 3px 0 0 0 !important;
+  line-height: 1.35 !important;
 }
 
 .miroooo-cart-item-pricing {
@@ -2554,12 +2555,12 @@ body.nav-open .miroooo-sticky-cart-wrap {
 .miroooo-cart-item-price {
   font-size: 0.95rem;
   font-weight: 700;
-  color: #ffffff;
+  color: #000000;
 }
 
 .miroooo-cart-item-compare {
   font-size: 0.76rem;
-  color: rgba(255, 255, 255, 0.4);
+  color: #777777;
   text-decoration: line-through;
   display: block;
   margin-top: 1px;
@@ -2576,8 +2577,8 @@ body.nav-open .miroooo-sticky-cart-wrap {
 .miroooo-cart-stepper {
   display: inline-flex;
   align-items: center;
-  background: rgba(255, 255, 255, 0.05);
-  border: 1px solid rgba(255, 255, 255, 0.12);
+  background: #f4f4f4;
+  border: 1px solid rgba(0, 0, 0, 0.12);
   border-radius: 9999px;
   padding: 2px 4px;
   gap: 2px;
@@ -2592,14 +2593,14 @@ body.nav-open .miroooo-sticky-cart-wrap {
   border-radius: 50%;
   background: transparent;
   border: none;
-  color: #ffffff;
+  color: #000000;
   cursor: pointer;
   padding: 0;
   transition: background-color 0.15s ease, opacity 0.15s ease;
 }
 
 .miroooo-stepper-btn:hover {
-  background: rgba(255, 255, 255, 0.15);
+  background: rgba(0, 0, 0, 0.08);
 }
 
 .miroooo-stepper-val {
@@ -2607,7 +2608,7 @@ body.nav-open .miroooo-sticky-cart-wrap {
   text-align: center;
   font-size: 0.85rem;
   font-weight: 700;
-  color: #ffffff;
+  color: #000000;
 }
 
 /* Remove button */
@@ -2617,7 +2618,7 @@ body.nav-open .miroooo-sticky-cart-wrap {
   gap: 5px;
   background: transparent;
   border: none;
-  color: rgba(255, 255, 255, 0.45);
+  color: #666666;
   font-size: 0.75rem;
   font-weight: 600;
   cursor: pointer;
@@ -2627,8 +2628,8 @@ body.nav-open .miroooo-sticky-cart-wrap {
 }
 
 .miroooo-cart-remove-btn:hover {
-  color: #ef4444;
-  background: rgba(239, 68, 68, 0.1);
+  color: #dc2626;
+  background: rgba(220, 38, 38, 0.08);
 }
 
 /* =========================================================
@@ -2636,18 +2637,18 @@ body.nav-open .miroooo-sticky-cart-wrap {
    ========================================================= */
 .miroooo-cart-footer {
   padding: 18px 24px 24px;
-  border-top: 1px solid rgba(255, 255, 255, 0.08);
-  background: #111213;
+  border-top: 1px solid rgba(0, 0, 0, 0.08);
+  background: #e6e6e6;
   display: flex;
   flex-direction: column;
   gap: 14px;
   flex-shrink: 0;
 }
 
-/* Rounded container with background rgba(255,255,255,0.035), border rgba(255,255,255,0.1), border-radius 20px, padding 18px 20px 20px */
+/* Rounded container with background #ffffff, border rgba(0, 0, 0, 0.08), border-radius 20px, padding 18px 20px 20px */
 .miroooo-cart-card {
-  background: rgba(255, 255, 255, 0.035);
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: #ffffff;
+  border: 1px solid rgba(0, 0, 0, 0.08);
   border-radius: 20px;
   padding: 18px 20px 20px;
   display: flex;
@@ -2657,8 +2658,8 @@ body.nav-open .miroooo-sticky-cart-wrap {
 
 /* Discount row: 'Total discount ⌵' on left, '-£59' on right */
 .miroooo-cart-discount-row {
-  background: rgba(255, 255, 255, 0.03);
-  border: 1px solid rgba(255, 255, 255, 0.06);
+  background: #ffffff;
+  border: 1px solid rgba(0, 0, 0, 0.08);
   border-radius: 12px;
   padding: 10px 14px;
 }
@@ -2682,7 +2683,7 @@ body.nav-open .miroooo-sticky-cart-wrap {
 .miroooo-discount-label {
   font-size: 0.88rem;
   font-weight: 600;
-  color: rgba(255, 255, 255, 0.85);
+  color: #111111;
   display: flex;
   align-items: center;
   gap: 6px;
@@ -2701,16 +2702,16 @@ body.nav-open .miroooo-sticky-cart-wrap {
 .miroooo-discount-amount {
   font-size: 0.92rem;
   font-weight: 700;
-  color: #4ade80;
+  color: #16a34a;
 }
 
 .miroooo-discount-details {
   display: none;
   padding-top: 10px;
   margin-top: 10px;
-  border-top: 1px solid rgba(255, 255, 255, 0.06);
+  border-top: 1px solid rgba(0, 0, 0, 0.08);
   font-size: 0.78rem;
-  color: rgba(255, 255, 255, 0.55);
+  color: #555555;
 }
 
 .miroooo-cart-discount-row.is-open .miroooo-discount-details {
@@ -2727,7 +2728,7 @@ body.nav-open .miroooo-sticky-cart-wrap {
 .miroooo-cart-divider {
   height: 1px;
   width: 100%;
-  background: rgba(255, 255, 255, 0.08);
+  background: rgba(0, 0, 0, 0.08);
   margin: 0;
   border: none;
 }
@@ -2743,16 +2744,16 @@ body.nav-open .miroooo-sticky-cart-wrap {
   display: flex;
   justify-content: space-between;
   font-size: 0.85rem;
-  color: rgba(255, 255, 255, 0.6);
+  color: #555555;
 }
 
 .miroooo-totals-value {
-  color: #ffffff;
+  color: #000000;
   font-weight: 600;
 }
 
 .miroooo-totals-free {
-  color: #4ade80;
+  color: #16a34a;
   font-weight: 700;
 }
 
@@ -2763,7 +2764,7 @@ body.nav-open .miroooo-sticky-cart-wrap {
   align-items: flex-end;
   padding-top: 10px;
   margin-top: 2px;
-  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  border-top: 1px solid rgba(0, 0, 0, 0.08);
 }
 
 .miroooo-cart-card .miroooo-totals-main,
@@ -2779,13 +2780,13 @@ body.nav-open .miroooo-sticky-cart-wrap {
   font-weight: 800;
   letter-spacing: 0.06em;
   text-transform: uppercase;
-  color: #ffffff;
+  color: #000000;
   display: block;
 }
 
 .miroooo-tax-note {
   font-size: 0.75rem;
-  color: rgba(255, 255, 255, 0.5);
+  color: #666666;
   font-weight: 400;
   text-transform: none;
   letter-spacing: normal;
@@ -2797,7 +2798,7 @@ body.nav-open .miroooo-sticky-cart-wrap {
 .miroooo-subtotal-price {
   font-size: 1.85rem;
   font-weight: 800;
-  color: #ffffff;
+  color: #000000;
   letter-spacing: -0.03em;
   line-height: 1;
 }
@@ -2819,15 +2820,15 @@ body.nav-open .miroooo-sticky-cart-wrap {
   min-height: 52px !important;
   padding: 0 24px !important;
   border-radius: 9999px !important;
-  background: #ffffff !important;
-  color: #000000 !important;
+  background: #000000 !important;
+  color: #ffffff !important;
   font-weight: 700 !important;
   font-size: 1rem !important;
   letter-spacing: 0.01em !important;
-  border: 2px solid #ffffff !important;
+  border: 2px solid #000000 !important;
   cursor: pointer !important;
   text-decoration: none !important;
-  box-shadow: 0 4px 20px rgba(255, 255, 255, 0.12) !important;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25) !important;
   transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.2s ease, opacity 0.2s ease, background-color 0.2s ease, color 0.2s ease !important;
   font-family: inherit !important;
   box-sizing: border-box !important;
@@ -2837,10 +2838,10 @@ body.nav-open .miroooo-sticky-cart-wrap {
 .miroooo-goto-cart-btn:hover,
 .miroooo-cart-cta-btn:hover {
   transform: scale(1.02) !important;
-  box-shadow: 0 8px 30px rgba(255, 255, 255, 0.22) !important;
+  box-shadow: 0 6px 24px rgba(0, 0, 0, 0.35) !important;
   opacity: 0.96 !important;
-  background: #ffffff !important;
-  color: #000000 !important;
+  background: #222222 !important;
+  color: #ffffff !important;
 }
 
 .miroooo-checkout-btn:active:not(:disabled),
