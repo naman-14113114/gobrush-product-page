@@ -652,24 +652,81 @@
 .miroooo-gallery__nav-wrap {
   flex: 0 0 84px;
   width: 84px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
   box-sizing: border-box;
+  position: relative;
 }
 
 .miroooo-gallery__nav {
   display: flex;
   flex-direction: column;
   gap: 10px;
-  max-height: 560px;
+  height: 440px;
+  max-height: 440px;
   overflow-y: auto;
   overflow-x: hidden;
   scrollbar-width: none; /* Firefox */
   -ms-overflow-style: none; /* IE 10+ */
   scroll-behavior: smooth;
-  padding: 2px 2px 6px 2px;
+  padding: 2px 2px 2px 2px;
+  box-sizing: border-box;
+  width: 100%;
 }
 
 .miroooo-gallery__nav::-webkit-scrollbar {
   display: none;
+}
+
+/* Miroooo Dark Luxury Vertical Navigation Arrows */
+.miroooo-gallery__nav-arrow {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  background: rgba(14, 14, 14, 0.85);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.45);
+  padding: 0;
+  flex-shrink: 0;
+  z-index: 5;
+}
+
+.miroooo-gallery__nav-arrow svg {
+  width: 16px;
+  height: 16px;
+  color: #ffffff;
+  stroke: #ffffff;
+  transition: transform 0.2s ease;
+}
+
+.miroooo-gallery__nav-arrow:hover:not(:disabled):not(.is-disabled) {
+  background: #000000;
+  border-color: #ffffff;
+  transform: scale(1.1);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.65);
+}
+
+.miroooo-gallery__nav-arrow:active:not(:disabled):not(.is-disabled) {
+  transform: scale(0.94);
+}
+
+.miroooo-gallery__nav-arrow:disabled,
+.miroooo-gallery__nav-arrow.is-disabled {
+  opacity: 0.22;
+  cursor: not-allowed;
+  pointer-events: none;
+  transform: none !important;
+  border-color: rgba(255, 255, 255, 0.08);
 }
 
 .miroooo-gallery__thumb {
@@ -922,6 +979,13 @@
     flex: 0 0 auto;
     width: 100%;
     order: 2;
+    flex-direction: row;
+    align-items: center;
+    gap: 6px;
+  }
+
+  .miroooo-gallery__nav-arrow {
+    display: none !important;
   }
 
   .miroooo-gallery__stage-wrap {
@@ -930,6 +994,7 @@
 
   .miroooo-gallery__nav {
     flex-direction: row;
+    height: auto;
     max-height: none;
     overflow-x: auto;
     overflow-y: hidden;
@@ -1876,6 +1941,13 @@ theme.variantStrings = {
     .featured-product.product {
       align-items: flex-start !important;
     }
+    .product__gallery,
+    media-gallery.product__gallery {
+      position: sticky !important;
+      top: 24px !important;
+      align-self: flex-start !important;
+      z-index: 10;
+    }
   }
   @media (max-width: 1023px) {
     .product__gallery,
@@ -1908,6 +1980,18 @@ theme.variantStrings = {
   <div class="miroooo-minmun-gallery" id="MirooooMainGallery">
     <!-- Left: Vertical Thumbnails Strip (Desktop) / Bottom: Horizontal Strip (Mobile) -->
     <div class="miroooo-gallery__nav-wrap" aria-label="Product image thumbnails">
+      <!-- Thumbnail Scroll Up Arrow -->
+      <button
+        type="button"
+        class="miroooo-gallery__nav-arrow miroooo-gallery__nav-arrow--prev"
+        id="MirooooGalleryNavPrev"
+        aria-label="Scroll thumbnails up"
+      >
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="18 15 12 9 6 15"></polyline>
+        </svg>
+      </button>
+
       <div class="miroooo-gallery__nav" id="MirooooGalleryNav">
         <!-- 0: Video thumbnail -->
         <button
@@ -1965,6 +2049,18 @@ theme.variantStrings = {
           <div class="thumb-inner"><img src="/assets_ref/x/gallery/Silver-9.webp" alt="Miroooo X - Pink 9" loading="lazy" /></div>
         </button>
       </div>
+
+      <!-- Thumbnail Scroll Down Arrow -->
+      <button
+        type="button"
+        class="miroooo-gallery__nav-arrow miroooo-gallery__nav-arrow--next"
+        id="MirooooGalleryNavNext"
+        aria-label="Scroll thumbnails down"
+      >
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="6 9 12 15 18 9"></polyline>
+        </svg>
+      </button>
     </div>
 
     <!-- Right: Main 1:1 Square Featured Media Viewport -->
@@ -6126,17 +6222,30 @@ function updateStickyBar() {
   }
 }
 
-function calcStickyTop(elHeight, vh, margin = 24) {
-  if (elHeight + margin * 2 <= vh) {
-    return `${margin}px`;
+function updateNavArrowsState() {
+  const nav = document.getElementById('MirooooGalleryNav');
+  const prevBtn = document.getElementById('MirooooGalleryNavPrev');
+  const nextBtn = document.getElementById('MirooooGalleryNavNext');
+  if (!nav || !prevBtn || !nextBtn) return;
+
+  const isVertical = window.innerWidth >= 1024;
+  if (isVertical) {
+    const atTop = nav.scrollTop <= 2;
+    const atBottom = nav.scrollTop + nav.clientHeight >= nav.scrollHeight - 2;
+    const canScroll = nav.scrollHeight > nav.clientHeight + 2;
+
+    prevBtn.disabled = atTop || !canScroll;
+    prevBtn.classList.toggle('is-disabled', atTop || !canScroll);
+    nextBtn.disabled = atBottom || !canScroll;
+    nextBtn.classList.toggle('is-disabled', atBottom || !canScroll);
   }
-  return `${vh - elHeight - margin}px`;
 }
 
 function syncStickyColumns() {
+  const gallery = document.querySelector('.product__gallery, media-gallery.product__gallery');
+  const info = document.querySelector('.product__info');
+
   if (window.innerWidth < 1024) {
-    const gallery = document.querySelector('.product__gallery, media-gallery.product__gallery');
-    const info = document.querySelector('.product__info');
     if (gallery) {
       gallery.style.removeProperty('position');
       gallery.style.removeProperty('top');
@@ -6154,58 +6263,16 @@ function syncStickyColumns() {
     return;
   }
 
-  const gallery = document.querySelector('.product__gallery, media-gallery.product__gallery');
-  const info = document.querySelector('.product__info');
-  if (!gallery || !info) return;
-
-  // Temporarily reset to measure natural unconstrained heights
-  gallery.style.position = 'relative';
-  gallery.style.top = 'auto';
-  gallery.style.bottom = 'auto';
-  gallery.style.alignSelf = 'flex-start';
-
-  info.style.position = 'relative';
-  info.style.top = 'auto';
-  info.style.bottom = 'auto';
-  info.style.alignSelf = 'flex-start';
-
-  const galleryHeight = gallery.offsetHeight;
-  const infoHeight = info.offsetHeight;
-  const vh = window.innerHeight;
-
-  if (galleryHeight > infoHeight + 15) {
-    // Gallery on left is taller -> Right column (info) sticks!
-    gallery.style.position = 'relative';
-    gallery.style.top = 'auto';
-    gallery.style.bottom = 'auto';
+  if (gallery) {
+    gallery.style.position = 'sticky';
+    gallery.style.top = '24px';
     gallery.style.alignSelf = 'flex-start';
-
-    info.style.position = 'sticky';
-    info.style.top = calcStickyTop(infoHeight, vh);
-    info.style.alignSelf = 'flex-start';
-    info.style.zIndex = '10';
-  } else if (infoHeight > galleryHeight + 15) {
-    // Info on right is taller -> Left column (gallery) sticks!
+    gallery.style.zIndex = '10';
+  }
+  if (info) {
     info.style.position = 'relative';
     info.style.top = 'auto';
-    info.style.bottom = 'auto';
     info.style.alignSelf = 'flex-start';
-
-    gallery.style.position = 'sticky';
-    gallery.style.top = calcStickyTop(galleryHeight, vh);
-    gallery.style.alignSelf = 'flex-start';
-    gallery.style.zIndex = '10';
-  } else {
-    // Roughly equal
-    gallery.style.position = 'sticky';
-    gallery.style.top = calcStickyTop(galleryHeight, vh);
-    gallery.style.alignSelf = 'flex-start';
-    gallery.style.zIndex = '10';
-
-    info.style.position = 'sticky';
-    info.style.top = calcStickyTop(infoHeight, vh);
-    info.style.alignSelf = 'flex-start';
-    info.style.zIndex = '10';
   }
 }
 
@@ -6261,6 +6328,8 @@ function setActiveGalleryIndex(targetIdx, shouldScrollThumb = true) {
       thumb.setAttribute('aria-current', 'false');
     }
   });
+
+  setTimeout(updateNavArrowsState, 120);
 }
 
 function nextGallerySlide() {
@@ -6316,6 +6385,7 @@ function updateGalleryVisibility(colorName) {
 
   syncStickyColumns();
   setTimeout(syncStickyColumns, 50);
+  setTimeout(updateNavArrowsState, 50);
 }
 
 function selectColorVariant(colorName) {
@@ -6586,6 +6656,39 @@ document.addEventListener('DOMContentLoaded', () => {
       nextGallerySlide();
     });
   }
+
+  // Thumbnail Navigation Arrows & Scroll Handlers
+  const navPrevBtn = document.getElementById('MirooooGalleryNavPrev');
+  const navNextBtn = document.getElementById('MirooooGalleryNavNext');
+  const galleryNav = document.getElementById('MirooooGalleryNav');
+
+  if (navPrevBtn && galleryNav) {
+    navPrevBtn.addEventListener('click', (e) => {
+      e.preventDefault();
+      e.stopPropagation();
+      galleryNav.scrollBy({ top: -90, behavior: 'smooth' });
+    });
+  }
+
+  if (navNextBtn && galleryNav) {
+    navNextBtn.addEventListener('click', (e) => {
+      e.preventDefault();
+      e.stopPropagation();
+      galleryNav.scrollBy({ top: 90, behavior: 'smooth' });
+    });
+  }
+
+  if (galleryNav) {
+    galleryNav.addEventListener('scroll', () => {
+      updateNavArrowsState();
+    }, { passive: true });
+  }
+
+  updateNavArrowsState();
+  window.addEventListener('resize', () => {
+    updateNavArrowsState();
+    syncStickyColumns();
+  });
 
   // Thumbnail clicks
   const galleryThumbs = document.querySelectorAll('#MirooooGalleryNav .miroooo-gallery__thumb');
