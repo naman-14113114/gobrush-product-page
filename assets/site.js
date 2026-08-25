@@ -312,6 +312,7 @@
   }
 
   // Mobile Menu Drawer Handler
+  // Mobile Menu Drawer Handler
   function initMobileMenuDrawer() {
     const menuDrawer = document.getElementById("MenuDrawer");
     if (!menuDrawer) return;
@@ -319,7 +320,7 @@
     const overlay = menuDrawer.querySelector(".overlay, overlay-element");
     const closeBtn = menuDrawer.querySelector(".drawer__close, button.drawer__close, .mobile-panel__close");
     const openBtns = document.querySelectorAll('[aria-controls="MenuDrawer"], .menu-drawer-button, .nav-toggle');
-
+    const drawerInner = menuDrawer.querySelector(".drawer__inner");
     function openDrawer() {
       menuDrawer.removeAttribute("hidden");
       requestAnimationFrame(() => {
@@ -339,7 +340,7 @@
         if (!menuDrawer.hasAttribute("active")) {
           menuDrawer.setAttribute("hidden", "");
         }
-      }, 550);
+      }, 800);
     }
 
     openBtns.forEach((btn) => {
@@ -381,6 +382,72 @@
         closeDrawer();
       }
     });
+
+    // Touch gesture drag-to-dismiss physics
+    let touchStartY = 0;
+    let touchMoveY = 0;
+    let isDragging = false;
+
+    menuDrawer.addEventListener("touchstart", (e) => {
+      if (!menuDrawer.hasAttribute("active")) return;
+      const target = e.target;
+      if (target.closest(".drawer__header") || target.closest(".drawer__inner")) {
+        touchStartY = e.touches[0].clientY;
+        touchMoveY = 0;
+        isDragging = true;
+      }
+    }, { passive: true });
+
+    menuDrawer.addEventListener("touchmove", (e) => {
+      if (!isDragging) return;
+      const currentY = e.touches[0].clientY;
+      const diffY = currentY - touchStartY;
+      if (diffY > 0) {
+        touchMoveY = diffY;
+        if (drawerInner) {
+          drawerInner.style.transform = `translate3d(0, ${diffY}px, 0)`;
+          drawerInner.style.transition = "none";
+        }
+        if (overlay) {
+          const opacity = Math.max(0, 1 - diffY / (window.innerHeight * 0.6));
+          overlay.style.opacity = String(opacity);
+          overlay.style.transition = "none";
+        }
+      }
+    }, { passive: true });
+
+    menuDrawer.addEventListener("touchend", () => {
+      if (!isDragging) return;
+      isDragging = false;
+      const threshold = Math.min(160, window.innerHeight * 0.22);
+      if (touchMoveY > threshold) {
+        if (drawerInner) {
+          drawerInner.style.transition = "transform 0.5s cubic-bezier(0.25, 1, 0.5, 1)";
+        }
+        if (overlay) {
+          overlay.style.transition = "opacity 0.5s cubic-bezier(0.25, 1, 0.5, 1)";
+        }
+        closeDrawer();
+        setTimeout(() => {
+          if (drawerInner) drawerInner.style.transform = "";
+          if (overlay) overlay.style.opacity = "";
+        }, 550);
+      } else {
+        if (drawerInner) {
+          drawerInner.style.transition = "transform 0.4s cubic-bezier(0.16, 1, 0.3, 1)";
+          drawerInner.style.transform = "translate3d(0, 0, 0)";
+        }
+        if (overlay) {
+          overlay.style.transition = "opacity 0.4s cubic-bezier(0.16, 1, 0.3, 1)";
+          overlay.style.opacity = "1";
+        }
+        setTimeout(() => {
+          if (drawerInner) drawerInner.style.transition = "";
+          if (overlay) overlay.style.transition = "";
+        }, 450);
+      }
+      touchMoveY = 0;
+    }, { passive: true });
   }
 
   // Header Dropdown Toggle & Accessibility Logic

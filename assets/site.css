@@ -1651,7 +1651,7 @@ menu-drawer#MenuDrawer,
   opacity: 0 !important;
   visibility: hidden !important;
   pointer-events: none !important;
-  transition: opacity 0.5s cubic-bezier(0.25, 1, 0.5, 1), visibility 0.5s cubic-bezier(0.25, 1, 0.5, 1) !important;
+  transition: opacity 0.8s cubic-bezier(0.25, 1, 0.5, 1), visibility 0.8s cubic-bezier(0.25, 1, 0.5, 1) !important;
   z-index: 1 !important;
 }
 
@@ -1684,7 +1684,7 @@ html.js #MenuDrawer .drawer__inner {
   color: #000000 !important;
   box-shadow: 0 -4px 30px rgba(0, 0, 0, 0.25) !important;
   transform: translate3d(0, 100%, 0) !important;
-  transition: transform 0.55s cubic-bezier(0.25, 1, 0.5, 1) !important;
+  transition: transform 0.8s cubic-bezier(0.25, 1, 0.5, 1) !important;
   z-index: 10 !important;
   pointer-events: auto !important;
   inset-block-start: 60px !important;
@@ -1725,6 +1725,7 @@ html.js #MenuDrawer .drawer__header {
   background: transparent !important;
   align-items: center !important;
   justify-content: space-between !important;
+  transition: opacity 0.5s cubic-bezier(0.3, 1, 0.3, 1) 0.35s, visibility 0.5s cubic-bezier(0.3, 1, 0.3, 1) 0.35s !important;
 }
 
 #MenuDrawer .drawer__header:before,
@@ -1803,6 +1804,7 @@ html.js #MenuDrawer .drawer__content {
   opacity: 1 !important;
   background: transparent !important;
   padding: 8px 0 !important;
+  transition: opacity 0.5s cubic-bezier(0.3, 1, 0.3, 1) 0.35s, visibility 0.5s cubic-bezier(0.3, 1, 0.3, 1) 0.35s !important;
 }
 
 #MenuDrawer[active] .drawer__content,
@@ -1817,10 +1819,51 @@ html.js #MenuDrawer .drawer__content {
   margin: 0 !important;
 }
 
-#MenuDrawer .drawer__menu li {
+#MenuDrawer .drawer__menu > li {
   padding: 0 !important;
   margin: 0 !important;
   list-style: none !important;
+  opacity: 0 !important;
+  transform: translateX(-20px) !important;
+  transition: transform 0.6s cubic-bezier(0.075, 0.82, 0.165, 1), opacity 0.6s cubic-bezier(0.075, 0.82, 0.165, 1) !important;
+  will-change: transform, opacity;
+}
+
+#MenuDrawer[active] .drawer__menu > li,
+#MenuDrawer[open] .drawer__menu > li,
+html.js #MenuDrawer[active] .drawer__menu > li {
+  opacity: 1 !important;
+  transform: translateX(0) !important;
+}
+
+#MenuDrawer[active] .drawer__menu > li:nth-child(1),
+#MenuDrawer[open] .drawer__menu > li:nth-child(1) {
+  transition-delay: 0.3s !important;
+}
+
+#MenuDrawer[active] .drawer__menu > li:nth-child(2),
+#MenuDrawer[open] .drawer__menu > li:nth-child(2) {
+  transition-delay: 0.4s !important;
+}
+
+#MenuDrawer[active] .drawer__menu > li:nth-child(3),
+#MenuDrawer[open] .drawer__menu > li:nth-child(3) {
+  transition-delay: 0.5s !important;
+}
+
+#MenuDrawer[active] .drawer__menu > li:nth-child(4),
+#MenuDrawer[open] .drawer__menu > li:nth-child(4) {
+  transition-delay: 0.6s !important;
+}
+
+#MenuDrawer[active] .drawer__menu > li:nth-child(5),
+#MenuDrawer[open] .drawer__menu > li:nth-child(5) {
+  transition-delay: 0.7s !important;
+}
+
+#MenuDrawer[active] .drawer__menu > li:nth-child(6),
+#MenuDrawer[open] .drawer__menu > li:nth-child(6) {
+  transition-delay: 0.8s !important;
 }
 
 #MenuDrawer .drawer__menu-item,
@@ -1835,7 +1878,7 @@ html.js #MenuDrawer .drawer__content {
   display: block !important;
   text-decoration: none !important;
   border-bottom: none !important;
-  transition: opacity 0.2s ease !important;
+  transition: opacity 0.2s ease, transform var(--animation-primary, 0.4s ease) !important;
 }
 
 #MenuDrawer .drawer__menu-item:hover,
@@ -3568,6 +3611,21 @@ body[data-page="cart"] .site-header--cart .header__logo {
 }
 
 @media screen and (max-width: 1023px) {
+  .site-header__inner {
+    width: calc(100% - 32px) !important;
+    min-height: 60px !important;
+    height: 60px !important;
+    grid-template-columns: 44px 1fr auto !important;
+    gap: 8px !important;
+    padding: 0 !important;
+  }
+
+  .site-header__left {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: flex-start !important;
+  }
+
   .site-header__left .header__menu,
   .site-header__left .site-nav,
   .header__navigation,
@@ -3582,8 +3640,42 @@ body[data-page="cart"] .site-header--cart .header__logo {
   .site-header__left .menu-drawer-button,
   .site-header .nav-toggle,
   .menu-drawer-button,
-  .nav-toggle {
+  .nav-toggle,
+  .header__icons--start,
+  .header__icons--start .menu-drawer-button {
     display: inline-flex !important;
+    align-items: center !important;
+    justify-content: flex-start !important;
+    width: 44px !important;
+    height: 44px !important;
+    padding: 0 !important;
+    background: transparent !important;
+    border: none !important;
+    color: #ffffff !important;
+    cursor: pointer !important;
+  }
+
+  .site-header__center,
+  .site-header .header__logo {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    text-align: center !important;
+  }
+
+  .site-header__right,
+  .site-header .header__icons--end {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: flex-end !important;
+    gap: 6px !important;
+  }
+
+  .site-header__right .header__buttons,
+  .site-header .header__buttons {
+    display: flex !important;
+    align-items: center !important;
+    gap: 6px !important;
   }
 
   .site-header__right .account-link,
@@ -3591,8 +3683,30 @@ body[data-page="cart"] .site-header--cart .header__logo {
   .header__buttons .account-link,
   .site-actions__track,
   .header__buttons a[href*="customer_authentication"],
-  .header__buttons a[href="/order-tracking"] {
-    display: none !important;
+  .header__buttons a[href="/order-tracking"],
+  .site-header .header__icons--end a[href="/order-tracking"],
+  .site-header .header__icons--end .account-link {
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    width: 44px !important;
+    height: 44px !important;
+    color: #ffffff !important;
+  }
+
+  .site-header__right .cart-drawer-button,
+  .cart-drawer-button,
+  .header__buttons .cart-drawer-button,
+  .header__buttons a[href="/cart"],
+  .site-actions__bag,
+  .site-header .header__icons--end .cart-drawer-button {
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    width: 44px !important;
+    height: 44px !important;
+    color: #ffffff !important;
+    position: relative !important;
   }
 }
 
