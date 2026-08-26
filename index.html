@@ -51,6 +51,18 @@
       box-shadow: 0 20px 50px rgba(0,0,0,0.8), 0 0 0 1px rgba(255,255,255,0.08);
       position: relative;
     }
+    .gb-video-feature-box--portrait {
+      width: 100%;
+      max-width: 360px;
+      aspect-ratio: 9 / 16;
+      max-height: min(76vh, 600px);
+      margin: 0 auto;
+      border-radius: 24px;
+      overflow: hidden;
+      background: #0d0d0d;
+      box-shadow: 0 20px 50px rgba(0,0,0,0.8), 0 0 0 1px rgba(255,255,255,0.08);
+      position: relative;
+    }
     .gb-video-feature-player {
       width: 100%;
       height: 100%;
@@ -127,6 +139,9 @@
         order: 2;
         padding-left: clamp(16px, 3vw, 36px);
       }
+      .gb-video-feature-grid--reverse {
+        grid-template-columns: 1.15fr 0.85fr;
+      }
       .gb-video-feature-grid--reverse .gb-video-feature-content {
         order: 1;
         padding-left: 0;
@@ -134,9 +149,16 @@
       }
       .gb-video-feature-grid--reverse .gb-video-feature-media {
         order: 2;
+        display: flex;
+        justify-content: center;
       }
     }
     @media (max-width: 1023px) {
+      .gb-video-feature-box--portrait {
+        max-width: min(82vw, 320px);
+        max-height: 520px;
+        margin: 0 auto;
+      }
       .gb-video-feature-media,
       .gb-video-feature-grid--reverse .gb-video-feature-media {
         order: 1;
@@ -383,7 +405,7 @@
 
           <!-- Video Column: Right on desktop (order 2), on top on mobile (order 1) -->
           <div class="gb-video-feature-media reveal">
-            <div class="gb-video-feature-box">
+            <div class="gb-video-feature-box--portrait">
               <video
                 class="gb-video-feature-player"
                 src="/assets_ref/x2/vbj9qc-h264-hd.mp4"
