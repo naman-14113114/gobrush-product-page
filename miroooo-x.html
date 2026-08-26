@@ -3989,10 +3989,8 @@ theme.variantStrings = {
 
 
 
-<!-- ========================================================================= -->
-<!-- TASK 5: COMPETITOR COMPARISON TABLE SECTION                              -->
-<!-- ========================================================================= -->
-<div id="shopify-section-template--miroooo-comparison" class="shopify-section" style="background: #000000; color: #ffffff; padding: clamp(3.5rem, 6vw, 6rem) 0; overflow: visible; width: 100%; border-top: 1px solid rgba(255,255,255,0.08); box-sizing: border-box;">
+<!-- COMMENTED OUT: TASK 5: COMPETITOR COMPARISON TABLE SECTION
+<div id="shopify-section-template--miroooo-comparison" class="shopify-section" style="display: none !important;" aria-hidden="true">
 
   <style>
     .miroooo-comp-section {
@@ -4009,142 +4007,111 @@ theme.variantStrings = {
     }
     .miroooo-comp-title {
       font-family: var(--font-heading-family, 'Inter', -apple-system, sans-serif);
-      font-size: clamp(2rem, 3.8vw, 3.2rem);
-      font-weight: 700;
+      font-size: clamp(1.85rem, 3.5vw, 2.75rem);
+      font-weight: 800;
       color: #ffffff;
+      margin: 0 0 10px 0;
       letter-spacing: -0.03em;
-      margin: 0 0 12px 0;
       line-height: 1.15;
     }
     .miroooo-comp-subtitle {
       font-family: var(--font-body-family, 'Inter', -apple-system, sans-serif);
-      font-size: clamp(1rem, 1.4vw, 1.18rem);
-      font-style: italic;
+      font-size: clamp(0.95rem, 1.8vw, 1.15rem);
       color: rgba(255, 255, 255, 0.65);
       margin: 0;
-      line-height: 1.45;
-    }
-    .miroooo-comp-scroll-wrapper {
-      width: 100%;
-      padding-bottom: 20px;
-      padding-top: 15px;
-    }
-    @media (max-width: 900px) {
-      .miroooo-comp-scroll-wrapper {
-        overflow-x: auto;
-        -webkit-overflow-scrolling: touch;
-      }
-      .miroooo-comp-scroll-wrapper::-webkit-scrollbar {
-        height: 6px;
-      }
-      .miroooo-comp-scroll-wrapper::-webkit-scrollbar-track {
-        background: rgba(255, 255, 255, 0.05);
-        border-radius: 10px;
-      }
-      .miroooo-comp-scroll-wrapper::-webkit-scrollbar-thumb {
-        background: rgba(255, 255, 255, 0.2);
-        border-radius: 10px;
-      }
-    }
-    .miroooo-comp-grid {
-      display: grid;
-      grid-template-columns: 220px 1.28fr 1fr 1fr 1fr;
-      gap: 14px;
-      min-width: 940px;
-      align-items: stretch;
+      font-weight: 400;
     }
 
-    /* Column Base Styles */
+    .miroooo-comp-scroll-wrapper {
+      width: 100%;
+      overflow-x: auto;
+      padding: 24px 8px 32px 8px;
+      box-sizing: border-box;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: thin;
+      scrollbar-color: rgba(255, 255, 255, 0.2) transparent;
+    }
+    .miroooo-comp-scroll-wrapper::-webkit-scrollbar {
+      height: 6px;
+    }
+    .miroooo-comp-scroll-wrapper::-webkit-scrollbar-thumb {
+      background: rgba(255, 255, 255, 0.2);
+      border-radius: 9999px;
+    }
+
+    .miroooo-comp-grid {
+      display: grid;
+      grid-template-columns: 220px repeat(4, minmax(180px, 1fr));
+      min-width: 960px;
+      gap: 0;
+      position: relative;
+    }
+
     .miroooo-comp-col {
       display: flex;
       flex-direction: column;
-      border-radius: 16px;
-      background: rgba(255, 255, 255, 0.03);
-      border: 1px solid rgba(255, 255, 255, 0.09);
+      background: #111111;
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      border-right: 1px solid rgba(255, 255, 255, 0.08);
       position: relative;
-      transition: border-color 0.2s ease, transform 0.2s ease;
-      box-sizing: border-box;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
     }
-    .miroooo-comp-col:not(.miroooo-comp-col--features):not(.miroooo-comp-col--winner):hover {
-      border-color: rgba(255, 255, 255, 0.18);
-      background: rgba(255, 255, 255, 0.045);
+    .miroooo-comp-col:last-child {
+      border-top-right-radius: 16px;
+      border-bottom-right-radius: 16px;
     }
 
-    /* Feature Labels Column */
     .miroooo-comp-col--features {
-      background: transparent;
-      border: none;
+      background: #000000;
+      border-left: 1px solid rgba(255, 255, 255, 0.08);
+      border-top-left-radius: 16px;
+      border-bottom-left-radius: 16px;
+      z-index: 1;
     }
 
-    /* 3D Elevated White Column For Miroooo X */
     .miroooo-comp-col--winner {
-      background: #ffffff !important;
-      color: #000000 !important;
-      border-radius: 18px !important;
-      border: 1px solid rgba(255, 255, 255, 0.4) !important;
-      box-shadow: 0 16px 40px rgba(0, 0, 0, 0.7), 0 0 0 1px rgba(255, 255, 255, 0.2);
-      transform: scale(1.02);
-      z-index: 5;
-      position: relative;
+      background: #ffffff;
+      color: #000000;
+      border: 2px solid #22c55e !important;
+      border-radius: 18px;
+      transform: scale(1.035) translateY(-8px);
+      z-index: 10;
+      box-shadow: 0 20px 45px rgba(0, 0, 0, 0.6), 0 0 25px rgba(34, 197, 94, 0.25);
     }
 
-    /* Sticky Frozen Column Headers */
     .miroooo-comp-cell--head {
-      height: 195px;
-      padding: 14px 10px 10px 10px;
+      min-height: 220px;
+      padding: 24px 16px 16px 16px;
       display: flex;
       flex-direction: column;
-      justify-content: flex-start;
       align-items: center;
+      justify-content: flex-start;
       text-align: center;
       border-bottom: 1px solid rgba(255, 255, 255, 0.08);
       box-sizing: border-box;
-      position: sticky;
-      top: 0px !important;
-      z-index: 25 !important;
-      background: #080909;
-      border-top-left-radius: 15px;
-      border-top-right-radius: 15px;
-      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.35);
-    }
-    @media (max-width: 768px) {
-      .miroooo-comp-cell--head {
-        top: 0px !important;
-      }
+      position: relative;
     }
     .miroooo-comp-col--features .miroooo-comp-cell--head {
-      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
       align-items: flex-start;
-      justify-content: flex-start;
       text-align: left;
-      padding-left: 12px;
-      background: #000000;
-      border-top-left-radius: 0;
-      border-top-right-radius: 0;
-      box-shadow: none;
+      justify-content: flex-end;
+      padding-bottom: 18px;
     }
     .miroooo-comp-col--winner .miroooo-comp-cell--head {
+      border-bottom: 2px solid #22c55e;
       background: #ffffff;
-      border-top-left-radius: 17px;
-      border-top-right-radius: 17px;
-      border-bottom: 2px solid #e2e8f0;
-      padding: 14px 10px 10px 10px;
-      z-index: 25 !important;
-      box-shadow: 0 6px 16px rgba(0, 0, 0, 0.12);
+      border-top-left-radius: 16px;
+      border-top-right-radius: 16px;
     }
 
-    /* Collinear Brand Names & Image Wrappers */
     .miroooo-comp-head-name-row {
-      height: 30px;
       display: flex;
       align-items: center;
       justify-content: center;
+      gap: 6px;
+      margin-bottom: 8px;
       width: 100%;
-      white-space: nowrap;
-      box-sizing: border-box;
-    }
-    .miroooo-comp-col--features .miroooo-comp-head-name-row {
-      justify-content: flex-start;
     }
     .miroooo-comp-head-img-wrap {
       height: 140px;
@@ -4155,7 +4122,6 @@ theme.variantStrings = {
       margin-top: 4px;
     }
 
-    /* Rows / Cells */
     .miroooo-comp-cell {
       min-height: 62px;
       padding: 12px 14px;
@@ -4186,12 +4152,10 @@ theme.variantStrings = {
       justify-content: center;
     }
 
-    /* Subtle zebra striping on winner column */
     .miroooo-comp-col--winner .miroooo-comp-cell:nth-child(even) {
       background: rgba(0, 0, 0, 0.015);
     }
 
-    /* Price Row */
     .miroooo-comp-cell--price {
       min-height: 76px;
       font-size: 1.2rem;
@@ -4207,7 +4171,6 @@ theme.variantStrings = {
       border-bottom-right-radius: 17px;
     }
 
-    /* Green badge */
     .miroooo-comp-pill-green {
       display: inline-block;
       background: rgba(34, 197, 94, 0.14);
@@ -4222,7 +4185,6 @@ theme.variantStrings = {
       letter-spacing: 0.03em;
     }
 
-    /* Mobile Hint */
     .miroooo-comp-mobile-hint {
       display: none;
       text-align: center;
@@ -4232,7 +4194,6 @@ theme.variantStrings = {
       letter-spacing: 0.02em;
     }
 
-    /* Mobile-specific Muuhu-style Comparison Layout (only active on phone view <768px) */
     .miroooo-comp-mobile {
       display: none;
       width: 100%;
@@ -4240,9 +4201,6 @@ theme.variantStrings = {
     }
 
     @media (max-width: 767px) {
-      .miroooo-comp-mobile-hint {
-        display: none !important;
-      }
       .miroooo-comp-scroll-wrapper {
         display: none !important;
       }
@@ -4258,7 +4216,6 @@ theme.variantStrings = {
         box-sizing: border-box;
       }
 
-      /* 4-column header */
       .miroooo-comp-m-head-row {
         display: flex;
         align-items: flex-end;
@@ -4268,46 +4225,6 @@ theme.variantStrings = {
         box-sizing: border-box;
       }
 
-      .miroooo-comp-m-head-col {
-        flex: 1;
-        width: 25%;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        text-align: center;
-        padding: 6px 2px;
-        box-sizing: border-box;
-      }
-
-      .miroooo-comp-m-head-col--winner {
-        background: #ffffff;
-        color: #000000;
-        border-top-left-radius: 16px;
-        border-top-right-radius: 16px;
-        box-shadow: 0 4px 18px rgba(0, 0, 0, 0.35);
-        padding-top: 10px;
-        padding-bottom: 10px;
-      }
-
-      .miroooo-comp-m-brand-name {
-        font-family: var(--font-heading-family, 'Inter', -apple-system, sans-serif);
-        font-size: 0.72rem;
-        font-weight: 700;
-        color: #ffffff;
-        line-height: 1.2;
-        margin-bottom: 6px;
-        white-space: nowrap;
-        overflow: hidden;
-        text-overflow: ellipsis;
-        max-width: 100%;
-      }
-
-      .miroooo-comp-m-head-col--winner .miroooo-comp-m-brand-name {
-        color: #000000;
-        font-weight: 800;
-        font-size: 0.76rem;
-      }
-
       .miroooo-comp-m-head-img {
         height: 56px;
         width: 100%;
@@ -4315,7 +4232,6 @@ theme.variantStrings = {
         display: block;
       }
 
-      /* Feature rows */
       .miroooo-comp-m-row-group {
         display: flex;
         flex-direction: column;
@@ -4323,104 +4239,27 @@ theme.variantStrings = {
         padding: 9px 0 7px 0;
         box-sizing: border-box;
       }
-
-      .miroooo-comp-m-row-group--last {
-        border-bottom: none;
-        padding-bottom: 0;
-      }
-
-      .miroooo-comp-m-feature-title {
-        font-family: var(--font-body-family, 'Inter', -apple-system, sans-serif);
-        font-size: 0.82rem;
-        font-weight: 600;
-        color: rgba(255, 255, 255, 0.95);
-        padding: 0 4px 4px 4px;
-        text-align: left;
-        line-height: 1.3;
-      }
-
-      .miroooo-comp-m-values-row {
-        display: flex;
-        align-items: stretch;
-        width: 100%;
-      }
-
-      .miroooo-comp-m-val-cell {
-        flex: 1;
-        width: 25%;
-        min-height: 40px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        text-align: center;
-        font-family: var(--font-body-family, 'Inter', -apple-system, sans-serif);
-        font-size: 0.76rem;
-        font-weight: 600;
-        color: rgba(255, 255, 255, 0.65);
-        padding: 2px 2px;
-        box-sizing: border-box;
-      }
-
-      .miroooo-comp-m-val-cell--winner {
-        background: #ffffff;
-        color: #000000 !important;
-        font-weight: 700;
-        box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
-      }
-
-      .miroooo-comp-m-val-cell--winner-last {
-        border-bottom-left-radius: 16px;
-        border-bottom-right-radius: 16px;
-        padding-bottom: 12px;
-      }
-
-      .miroooo-comp-m-price-winner {
-        color: #15803d !important;
-        font-size: 1.05rem;
-        font-weight: 900;
-        line-height: 1.1;
-      }
-
-      .miroooo-comp-m-price-old {
-        font-size: 0.64rem;
-        color: #64748b;
-        font-weight: 700;
-        text-decoration: line-through;
-        display: block;
-        margin-top: 1px;
-      }
-
-      .miroooo-comp-m-price-competitor {
-        color: rgba(255, 255, 255, 0.85);
-        font-size: 0.86rem;
-        font-weight: 700;
-      }
     }
   </style>
 
   <div class="miroooo-comp-section">
-    <!-- Header -->
     <div class="miroooo-comp-header">
       <h2 class="miroooo-comp-title">What makes Brush X right for you?</h2>
       <p class="miroooo-comp-subtitle">(Here is a comparison, but there is really no comparison)</p>
     </div>
 
-    <!-- Mobile Scroll Hint -->
     <div class="miroooo-comp-mobile-hint">
       <span>← Swipe horizontally to compare all models →</span>
     </div>
 
-    <!-- Scrollable Comparison Grid -->
     <div class="miroooo-comp-scroll-wrapper">
       <div class="miroooo-comp-grid">
 
-        <!-- COLUMN 0: FEATURES -->
         <div class="miroooo-comp-col miroooo-comp-col--features">
           <div class="miroooo-comp-cell--head">
             <div class="miroooo-comp-head-name-row">
               <span style="font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.08em; color: rgba(255,255,255,0.4); font-weight: 700;">SPECIFICATION</span>
             </div>
-            <div style="font-size: 1.05rem; font-weight: 700; color: #ffffff; margin-top: auto; padding-bottom: 8px;">Key Features</div>
           </div>
           <div class="miroooo-comp-cell">Ultra-Light Weight</div>
           <div class="miroooo-comp-cell">Battery Life</div>
@@ -4433,7 +4272,6 @@ theme.variantStrings = {
           <div class="miroooo-comp-cell miroooo-comp-cell--price" style="font-size: 1rem; color: #ffffff;">Price</div>
         </div>
 
-        <!-- COLUMN 1: MIROOOO X (WINNER - 3D HIGHLIGHTED) -->
         <div class="miroooo-comp-col miroooo-comp-col--winner">
           <div class="miroooo-comp-cell--head">
             <div class="miroooo-comp-head-name-row">
@@ -4475,7 +4313,6 @@ theme.variantStrings = {
           </div>
         </div>
 
-        <!-- COLUMN 2: ORAL-B iO6 -->
         <div class="miroooo-comp-col">
           <div class="miroooo-comp-cell--head">
             <div class="miroooo-comp-head-name-row">
@@ -4510,7 +4347,6 @@ theme.variantStrings = {
           <div class="miroooo-comp-cell miroooo-comp-cell--price">£149</div>
         </div>
 
-        <!-- COLUMN 3: PHILIPS SONICARE 9000 -->
         <div class="miroooo-comp-col">
           <div class="miroooo-comp-cell--head">
             <div class="miroooo-comp-head-name-row">
@@ -4545,7 +4381,6 @@ theme.variantStrings = {
           <div class="miroooo-comp-cell miroooo-comp-cell--price">£219</div>
         </div>
 
-        <!-- COLUMN 4: SURI 2.0 -->
         <div class="miroooo-comp-col">
           <div class="miroooo-comp-cell--head">
             <div class="miroooo-comp-head-name-row">
@@ -4583,11 +4418,9 @@ theme.variantStrings = {
       </div>
     </div>
 
-    <!-- Mobile Comparison View (All 4 in 1 Frame, No Horizontal Scroll - Muuhu Layout) -->
     <div class="miroooo-comp-mobile">
       <div class="miroooo-comp-m-table">
         
-        <!-- 4-Col Header (Brand Logo/Name & Product Image) -->
         <div class="miroooo-comp-m-head-row">
           <div class="miroooo-comp-m-head-col miroooo-comp-m-head-col--winner">
             <span class="miroooo-comp-m-brand-name">Brush X</span>
@@ -4607,7 +4440,6 @@ theme.variantStrings = {
           </div>
         </div>
 
-        <!-- ROW 1: Ultra-Light Weight -->
         <div class="miroooo-comp-m-row-group">
           <div class="miroooo-comp-m-feature-title">Ultra-Light Weight</div>
           <div class="miroooo-comp-m-values-row">
@@ -4626,7 +4458,6 @@ theme.variantStrings = {
           </div>
         </div>
 
-        <!-- ROW 2: Battery Life -->
         <div class="miroooo-comp-m-row-group">
           <div class="miroooo-comp-m-feature-title">Battery Life</div>
           <div class="miroooo-comp-m-values-row">
@@ -4637,7 +4468,6 @@ theme.variantStrings = {
           </div>
         </div>
 
-        <!-- ROW 3: Free Travel Case -->
         <div class="miroooo-comp-m-row-group">
           <div class="miroooo-comp-m-feature-title">Free Travel Case</div>
           <div class="miroooo-comp-m-values-row">
@@ -4656,7 +4486,6 @@ theme.variantStrings = {
           </div>
         </div>
 
-        <!-- ROW 4: Aluminium Alloy Body -->
         <div class="miroooo-comp-m-row-group">
           <div class="miroooo-comp-m-feature-title">Aluminium Alloy Body</div>
           <div class="miroooo-comp-m-values-row">
@@ -4675,7 +4504,6 @@ theme.variantStrings = {
           </div>
         </div>
 
-        <!-- ROW 5: 2x Free Brush Heads -->
         <div class="miroooo-comp-m-row-group">
           <div class="miroooo-comp-m-feature-title">2x Free Brush Heads</div>
           <div class="miroooo-comp-m-values-row">
@@ -4694,7 +4522,6 @@ theme.variantStrings = {
           </div>
         </div>
 
-        <!-- ROW 6: Whisper Quiet (<50 dB) -->
         <div class="miroooo-comp-m-row-group">
           <div class="miroooo-comp-m-feature-title">Whisper Quiet (&lt;50 dB)</div>
           <div class="miroooo-comp-m-values-row">
@@ -4713,7 +4540,6 @@ theme.variantStrings = {
           </div>
         </div>
 
-        <!-- ROW 7: Risk-Free Home Trial -->
         <div class="miroooo-comp-m-row-group">
           <div class="miroooo-comp-m-feature-title">Risk-Free Home Trial</div>
           <div class="miroooo-comp-m-values-row">
@@ -4732,7 +4558,6 @@ theme.variantStrings = {
           </div>
         </div>
 
-        <!-- ROW 8: Free Tracked Delivery -->
         <div class="miroooo-comp-m-row-group">
           <div class="miroooo-comp-m-feature-title">Free Tracked Delivery</div>
           <div class="miroooo-comp-m-values-row">
@@ -4751,7 +4576,6 @@ theme.variantStrings = {
           </div>
         </div>
 
-        <!-- ROW 9: Price -->
         <div class="miroooo-comp-m-row-group miroooo-comp-m-row-group--last">
           <div class="miroooo-comp-m-feature-title">Price</div>
           <div class="miroooo-comp-m-values-row">
@@ -4777,6 +4601,7 @@ theme.variantStrings = {
     </div>
   </div>
 </div>
+-->
 
 <!-- COMMENTED OUT: How Miroooo beats the competition Section
 <div id="shopify-section-template--miroooo-competition-reasons" class="shopify-section" style="background: #000000; color: #ffffff; width: 100%; overflow: hidden; border-top: 1px solid rgba(255,255,255,0.08); position: relative;">

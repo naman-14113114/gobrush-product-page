@@ -2006,7 +2006,7 @@ theme.variantStrings = {
         data-immediate
         data-section-id="template--24203751129433__main-product"
         data-product-id="9593510658393"
-        data-product-url="/products/brush-one-grey"
+        data-product-url="/products/miroooo-x2"
         data-update-url="true"
       >
   <!-- 1. Green Stars Rating (Above Product Title) -->
@@ -2028,10 +2028,10 @@ theme.variantStrings = {
 
   <!-- 2. Price Display (£) -->
   <div class="product__price grid gap-2 mt-2" id="main-product-price-section">
-    <div class="flex flex-wrap items-baseline gap-2">
+    <div class="flex flex-wrap items-baseline gap-2" style="display: flex; align-items: baseline; gap: 8px;">
       <span class="text-2xl sm:text-3xl font-extrabold text-white" id="main-price-display" style="font-size: 1.85rem; font-weight: 800; color: #ffffff;">£79</span>
-      <span class="text-base sm:text-lg text-neutral-400 line-through" id="main-compare-price-display" style="color: rgba(255, 255, 255, 0.5); text-decoration: line-through;">£159</span>
-      <span class="inline-block px-2.5 py-0.5 rounded-full text-xs font-bold uppercase tracking-wider" id="main-discount-badge" style="background: #ffffff; color: #000000; font-size: 11px; font-weight: 800; padding: 3px 10px; border-radius: 9999px;">50% OFF</span>
+      <span class="text-base sm:text-lg price-compare-strike" id="main-compare-price-display" style="color: rgba(255, 255, 255, 0.55); font-size: 1.15rem;">£159</span>
+      <span class="inline-block px-2.5 py-0.5 rounded-full text-xs font-bold uppercase tracking-wider" id="main-discount-badge" style="background: #e6e6e6; color: #111111; font-size: 11px; font-weight: 800; padding: 3px 10px; border-radius: 9999px; letter-spacing: 0.05em; display: inline-flex; align-items: center;">50% OFF</span>
     </div>
   </div>
 
@@ -2065,6 +2065,107 @@ theme.variantStrings = {
     </ul>
   </div>
 
+  <!-- Bundle Divider -->
+  <div class="bundle-header-divider flex items-center gap-3 my-4">
+    <span class="h-px flex-1" style="background-color: rgba(255, 255, 255, 0.15); height: 1px; flex: 1;"></span>
+    <span class="text-[10.5px] sm:text-[11px] font-bold uppercase tracking-widest" style="letter-spacing: 0.12em; color: rgba(255, 255, 255, 0.7);">
+      BUNDLE &amp; SAVE + FREE SHIPPING &amp; GIFTS
+    </span>
+    <span class="h-px flex-1" style="background-color: rgba(255, 255, 255, 0.15); height: 1px; flex: 1;"></span>
+  </div>
+
+  <!-- 3 Tier Cards -->
+  <div class="bundle-tiers-container flex flex-col gap-4" id="bundle-tiers" style="display: flex; flex-direction: column; gap: 20px;">
+    <!-- Tier 1: Buy 1 -->
+    <div class="bundle-tier-card" data-tier="single" onclick="selectBundleTier('single')">
+      <button type="button" class="tier-header-btn" aria-label="Select Buy 1 Tier">
+        <div class="tier-radio"><div class="tier-radio-dot"></div></div>
+        <div class="flex-1 flex justify-between items-start gap-2" style="display: flex; justify-content: space-between; align-items: flex-start; gap: 8px; flex: 1;">
+          <div>
+            <div class="flex items-center gap-2">
+              <span class="font-extrabold text-sm sm:text-base uppercase tracking-tight" style="color: #111111;">Buy 1</span>
+            </div>
+            <p class="text-xs sm:text-sm mt-0.5" style="color: #555555;">Includes 1 Brush X2 set &amp; <strong style="color: #111111;">3 FREE Gifts</strong></p>
+          </div>
+          <div class="text-right" style="text-align: right; display: flex; flex-direction: column; align-items: flex-end; justify-content: flex-start; flex-shrink: 0;">
+            <div class="flex items-baseline gap-1.5 justify-end" style="display: flex; align-items: baseline; justify-content: flex-end; gap: 6px;">
+              <span class="font-bold text-base sm:text-lg" style="font-weight: 700; font-size: 1.1rem; color: #111111;">£79</span>
+              <span class="text-xs sm:text-sm price-compare-strike" style="font-size: 12px; color: #777777;">£159</span>
+            </div>
+            <span class="tier-badge-pill mt-0.5" style="background: rgba(0, 0, 0, 0.08); color: #111111; font-size: 10.5px; font-weight: 800; padding: 2px 8px; border-radius: 9999px; display: inline-block;">50% OFF</span>
+          </div>
+        </div>
+      </button>
+    </div>
+
+    <!-- Tier 2: Buy 2 (Default, Most Popular) -->
+    <div class="bundle-tier-card is-selected has-top-badge" data-tier="bundle-2" onclick="selectBundleTier('bundle-2')">
+      <div class="tier-popular-badge-wrap badge-popular">
+        <div class="tier-popular-seal">
+          <svg width="84" height="53" viewBox="0 0 90 56" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M 85.0 28.0 Q 80.2 31.2 83.0 35.1 Q 76.8 37.3 77.4 41.5 Q 70.2 42.5 68.5 46.6 Q 61.2 46.3 57.4 49.9 Q 50.6 48.2 45.0 51.0 Q 39.4 48.2 32.6 49.9 Q 28.8 46.3 21.5 46.6 Q 19.8 42.5 12.6 41.5 Q 13.2 37.3 7.0 35.1 Q 9.8 31.2 5.0 28.0 Q 9.8 24.8 7.0 20.9 Q 13.2 18.7 12.6 14.5 Q 19.8 13.5 21.5 9.4 Q 28.8 9.7 32.6 6.1 Q 39.4 7.8 45.0 5.0 Q 50.6 7.8 57.4 6.1 Q 61.2 9.7 68.5 9.4 Q 70.2 13.5 77.4 14.5 Q 76.8 18.7 83.0 20.9 Q 80.2 24.8 85.0 28.0 Z" fill="#22c55e" />
+            <ellipse cx="45" cy="28" rx="34" ry="18.5" stroke="rgba(255, 255, 255, 0.45)" stroke-width="0.9" stroke-dasharray="2 1.5" fill="none" />
+            <text x="45" y="23" text-anchor="middle" fill="#ffffff" font-family="'Playfair Display', Georgia, serif" font-size="12.5" font-style="italic" font-weight="600" letter-spacing="0.3">Most</text>
+            <text x="45" y="37.5" text-anchor="middle" fill="#ffffff" font-family="'Inter', -apple-system, sans-serif" font-size="11" font-weight="800" letter-spacing="0.5">Popular</text>
+          </svg>
+        </div>
+      </div>
+      <button type="button" class="tier-header-btn" aria-label="Select Buy 2 Tier">
+        <div class="tier-radio"><div class="tier-radio-dot"></div></div>
+        <div class="flex-1 flex justify-between items-start gap-2" style="display: flex; justify-content: space-between; align-items: flex-start; gap: 8px; flex: 1;">
+          <div>
+            <div class="flex items-center gap-2">
+              <span class="font-extrabold text-sm sm:text-base uppercase tracking-tight" style="color: #111111;">Buy 2</span>
+              <span class="tier-badge-pill" style="background: rgba(0, 0, 0, 0.08); color: #111111;">£10 OFF</span>
+            </div>
+            <p class="text-xs sm:text-sm mt-0.5" style="color: #555555;">Includes 2 Brush X2 sets &amp; <strong style="color: #111111;">3 FREE Gifts</strong></p>
+          </div>
+          <div class="text-right" style="text-align: right; display: flex; flex-direction: column; align-items: flex-end; justify-content: flex-start; flex-shrink: 0; margin-top: 14px;">
+            <div class="flex items-baseline gap-1 justify-end" style="display: flex; align-items: baseline; justify-content: flex-end; gap: 4px;">
+              <span class="font-bold text-base sm:text-lg" style="font-weight: 700; font-size: 1.1rem; color: #111111;">£74</span>
+              <span class="text-xs sm:text-sm font-medium" style="font-weight: 500; font-size: 0.85rem; color: #444444;">each</span>
+            </div>
+            <div class="flex items-baseline gap-1.5 mt-0.5 justify-end" style="display: flex; align-items: baseline; justify-content: flex-end; gap: 6px;">
+              <span class="text-xs sm:text-sm price-compare-strike" style="font-size: 12px; color: #777777;">£318</span>
+              <span class="font-bold text-xs sm:text-sm" style="color: #111111; font-weight: 700; font-size: 11.5px;">(£148)</span>
+            </div>
+          </div>
+        </div>
+      </button>
+    </div>
+
+    <!-- Tier 3: Buy 3 (Best Value) -->
+    <div class="bundle-tier-card has-top-badge" data-tier="bundle-3" onclick="selectBundleTier('bundle-3')">
+      <div class="tier-best-value-wrap badge-value">
+        <div class="tier-best-value-ribbon">
+          BEST VALUE
+        </div>
+      </div>
+      <button type="button" class="tier-header-btn" aria-label="Select Buy 3 Tier">
+        <div class="tier-radio"><div class="tier-radio-dot"></div></div>
+        <div class="flex-1 flex justify-between items-start gap-2" style="display: flex; justify-content: space-between; align-items: flex-start; gap: 8px; flex: 1;">
+          <div>
+            <div class="flex items-center gap-2">
+              <span class="font-extrabold text-sm sm:text-base uppercase tracking-tight" style="color: #111111;">Buy 3</span>
+              <span class="tier-badge-pill" style="background: rgba(0, 0, 0, 0.08); color: #111111;">£20 OFF</span>
+            </div>
+            <p class="text-xs sm:text-sm mt-0.5" style="color: #555555;">Includes 3 Brush X2 sets &amp; <strong style="color: #111111;">3 FREE Gifts</strong></p>
+          </div>
+          <div class="text-right" style="text-align: right; display: flex; flex-direction: column; align-items: flex-end; justify-content: flex-start; flex-shrink: 0;">
+            <div class="flex items-baseline gap-1 justify-end" style="display: flex; align-items: baseline; justify-content: flex-end; gap: 4px;">
+              <span class="font-bold text-base sm:text-lg" style="font-weight: 700; font-size: 1.1rem; color: #111111;">£69</span>
+              <span class="text-xs sm:text-sm font-medium" style="font-weight: 500; font-size: 0.85rem; color: #444444;">each</span>
+            </div>
+            <div class="flex items-baseline gap-1.5 mt-0.5 justify-end" style="display: flex; align-items: baseline; justify-content: flex-end; gap: 6px;">
+              <span class="text-xs sm:text-sm price-compare-strike" style="font-size: 12px; color: #777777;">£477</span>
+              <span class="font-bold text-xs sm:text-sm" style="color: #111111; font-weight: 700; font-size: 11.5px;">(£207)</span>
+            </div>
+          </div>
+        </div>
+      </button>
+    </div>
+  </div>
+
   <!-- Delivery Countdown Timer Box -->
   <div class="delivery-timer-box rounded-xl p-3.5 my-4 flex items-center gap-3 text-sm" style="background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 255, 255, 0.1); color: rgba(255, 255, 255, 0.85); margin: 16px 0;">
     <div class="w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0" style="background: rgba(255, 255, 255, 0.1); color: #ffffff; width: 32px; height: 32px; border-radius: 9999px; display: inline-flex; align-items: center; justify-content: center;">
@@ -2075,7 +2176,7 @@ theme.variantStrings = {
     </div>
   </div>
 
-  <!-- 4. Add To Cart Main Button (Moved Above Bundle) -->
+  <!-- Add To Cart Main Button -->
   <div class="main-cta-wrapper my-4" style="margin: 18px 0 14px 0; --color-button-text: 0 0 0; --color-button-background: 255 255 255; --color-button-border: 255 255 255; --buttons-radius: 9999px; --buttons-border-width: 2px; --buttons-border-opacity: 1.0; --border-opacity: 1.0; --buttons-shadow-horizontal-offset: 0px; --buttons-shadow-vertical-offset: 0px; --buttons-shadow-opacity: 0;">
     <style>
       @keyframes btn-pulse {
@@ -2123,138 +2224,26 @@ theme.variantStrings = {
       id="hero-cta"
       class="button button--primary"
       style="width: 100%; font-size: 1.05rem;"
+      onclick="handleAddToCartAndRedirect()"
       is="hover-button">
       <span class="btn-fill" data-fill></span>
       <span class="btn-text" id="main-cta-text">Add To Cart + 3 Free Gifts</span>
     </button>
   </div>
 
-  <!-- 5. 3 Trust Badges Strip -->
-  <div class="grid grid-cols-3 gap-2 py-3 px-1 mb-4 text-center" style="display: grid; grid-template-columns: repeat(3, 1fr); border-bottom: 1px solid rgba(255,255,255,0.12); padding: 12px 0 16px; margin-bottom: 18px;">
+  <!-- Trust Badges Strip -->
+  <div class="grid grid-cols-3 gap-2 py-3 px-1 mb-6 text-center" style="display: grid; grid-template-columns: repeat(3, 1fr); border-bottom: 1px solid rgba(255, 255, 255, 0.12); padding: 12px 0 16px; margin-bottom: 24px;">
     <div class="flex flex-col items-center gap-1.5" style="display: flex; flex-direction: column; align-items: center; gap: 6px;">
       <svg style="width: 24px; height: 24px; color: #ffffff;" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="1.7"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-      <span class="text-[11px] font-bold uppercase tracking-tight leading-tight" style="color: #ffffff; font-size: 11px;">2-Year<br/>Warranty</span>
+      <span class="text-[11px] font-bold uppercase tracking-tight leading-tight" style="color: rgba(255, 255, 255, 0.85);">2-Year<br/>Warranty</span>
     </div>
     <div class="flex flex-col items-center gap-1.5" style="display: flex; flex-direction: column; align-items: center; gap: 6px;">
       <svg style="width: 24px; height: 24px; color: #ffffff;" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="1.7"><path d="M21 2v6h-6"/><path d="M3 12a9 9 0 0 1 15-6.7L21 8"/><path d="M3 22v-6h6"/><path d="M21 12a9 9 0 0 1-15 6.7L3 16"/></svg>
-      <span class="text-[11px] font-bold uppercase tracking-tight leading-tight" style="color: #ffffff; font-size: 11px;">Risk-Free<br/>Trial</span>
+      <span class="text-[11px] font-bold uppercase tracking-tight leading-tight" style="color: rgba(255, 255, 255, 0.85);">Risk-Free<br/>Trial</span>
     </div>
     <div class="flex flex-col items-center gap-1.5" style="display: flex; flex-direction: column; align-items: center; gap: 6px;">
       <svg style="width: 24px; height: 24px; color: #ffffff;" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="1.7"><rect x="1" y="3" width="15" height="13" rx="1"/><polygon points="16 8 20 8 23 11 23 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
-      <span class="text-[11px] font-bold uppercase tracking-tight leading-tight" style="color: #ffffff; font-size: 11px;">Free Tracked<br/>Shipping</span>
-    </div>
-  </div>
-
-  <!-- 6. Standalone Color Selector (Silver Only) -->
-  <div class="standalone-color-selector my-4" style="margin: 16px 0 12px 0;">
-    <div class="flex items-center justify-between mb-2.5" style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 10px;">
-      <span class="text-xs sm:text-sm font-bold uppercase tracking-wider" style="color: #ffffff; letter-spacing: 0.08em; font-size: 12px;">
-        Color: <span id="standalone-color-name" style="font-weight: 500; text-transform: capitalize; color: rgba(255,255,255,0.85);">Silver</span>
-      </span>
-    </div>
-    <div class="flex items-center gap-3" id="standalone-swatches" style="display: flex; align-items: center; gap: 12px;">
-      <button type="button" class="standalone-swatch-btn is-active" data-color="Silver" title="Silver" aria-label="Silver" style="background: radial-gradient(circle at 35% 35%, #ffffff 0%, #d4d4d4 50%, #8a8a8a 100%); cursor: default;"></button>
-    </div>
-  </div>
-
-  <!-- 7. Bundle Divider -->
-  <div class="bundle-header-divider flex items-center gap-3 my-4" style="display: flex; align-items: center; gap: 12px; margin: 18px 0;">
-    <span class="h-px flex-1" style="background-color: rgba(255,255,255,0.15); height: 1px; flex: 1;"></span>
-    <span class="text-[10.5px] sm:text-[11px] font-bold uppercase tracking-widest" style="letter-spacing: 0.12em; color: rgba(255,255,255,0.85); font-size: 11px;">
-      BUNDLE &amp; SAVE + FREE SHIPPING &amp; GIFTS
-    </span>
-    <span class="h-px flex-1" style="background-color: rgba(255,255,255,0.15); height: 1px; flex: 1;"></span>
-  </div>
-
-  <!-- 8. 3 Tier Cards (Grey Luxury Theme #e6e6e6) -->
-  <div class="bundle-tiers-container flex flex-col gap-4" id="bundle-tiers">
-    <!-- Tier 1: Buy 1 -->
-    <div class="bundle-tier-card" data-tier="single" onclick="selectBundleTier('single')">
-      <button type="button" class="tier-header-btn" aria-label="Select Buy 1 Tier">
-        <div class="tier-radio"><div class="tier-radio-dot"></div></div>
-        <div class="flex-1 flex justify-between items-start gap-2">
-          <div>
-            <div class="flex items-center gap-2">
-              <span class="font-extrabold text-sm sm:text-base uppercase tracking-tight" style="color: #111111;">Buy 1</span>
-            </div>
-            <p class="text-xs sm:text-sm mt-0.5" style="color: #555555;">Includes 1 Brush X2 set &amp; <strong style="color: #111111;">3 FREE Gifts</strong></p>
-          </div>
-          <div class="text-right">
-            <div class="flex items-baseline gap-1.5 justify-end">
-              <span class="font-bold text-base sm:text-lg" style="color: #111111;">£79</span>
-              <span class="price-compare-strike text-xs sm:text-sm" style="color: #777777;">£159</span>
-            </div>
-            <span class="tier-badge-pill mt-0.5">50% OFF</span>
-          </div>
-        </div>
-      </button>
-    </div>
-
-    <!-- Tier 2: Buy 2 (Default, Most Popular) -->
-    <div class="bundle-tier-card is-selected has-top-badge" data-tier="bundle-2" onclick="selectBundleTier('bundle-2')">
-      <div class="tier-popular-badge-wrap badge-popular">
-        <div class="tier-popular-seal">
-          <svg width="84" height="53" viewBox="0 0 90 56" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M 85.0 28.0 Q 80.2 31.2 83.0 35.1 Q 76.8 37.3 77.4 41.5 Q 70.2 42.5 68.5 46.6 Q 61.2 46.3 57.4 49.9 Q 50.6 48.2 45.0 51.0 Q 39.4 48.2 32.6 49.9 Q 28.8 46.3 21.5 46.6 Q 19.8 42.5 12.6 41.5 Q 13.2 37.3 7.0 35.1 Q 9.8 31.2 5.0 28.0 Q 9.8 24.8 7.0 20.9 Q 13.2 18.7 12.6 14.5 Q 19.8 13.5 21.5 9.4 Q 28.8 9.7 32.6 6.1 Q 39.4 7.8 45.0 5.0 Q 50.6 7.8 57.4 6.1 Q 61.2 9.7 68.5 9.4 Q 70.2 13.5 77.4 14.5 Q 76.8 18.7 83.0 20.9 Q 80.2 24.8 85.0 28.0 Z" fill="#22c55e" />
-            <ellipse cx="45" cy="28" rx="34" ry="18.5" stroke="rgba(255, 255, 255, 0.45)" stroke-width="0.9" stroke-dasharray="2 1.5" fill="none" />
-            <text x="45" y="23" text-anchor="middle" fill="#ffffff" font-family="'Playfair Display', Georgia, serif" font-size="12.5" font-style="italic" font-weight="600" letter-spacing="0.3">Most</text>
-            <text x="45" y="37.5" text-anchor="middle" fill="#ffffff" font-family="'Inter', -apple-system, sans-serif" font-size="11" font-weight="800" letter-spacing="0.5">Popular</text>
-          </svg>
-        </div>
-      </div>
-      <button type="button" class="tier-header-btn" aria-label="Select Buy 2 Tier">
-        <div class="tier-radio"><div class="tier-radio-dot"></div></div>
-        <div class="flex-1 flex justify-between items-start gap-2">
-          <div>
-            <div class="flex items-center gap-2">
-              <span class="font-extrabold text-sm sm:text-base uppercase tracking-tight" style="color: #111111;">Buy 2</span>
-              <span class="tier-badge-pill">£10 OFF</span>
-            </div>
-            <p class="text-xs sm:text-sm mt-0.5" style="color: #555555;">Includes 2 Brush X2 sets &amp; <strong style="color: #111111;">3 FREE Gifts</strong></p>
-          </div>
-          <div class="text-right" style="margin-top: 14px;">
-            <div class="flex items-baseline gap-1 justify-end">
-              <span class="font-bold text-base sm:text-lg" style="color: #111111;">£74</span>
-              <span class="text-xs sm:text-sm font-medium" style="color: #666666;">each</span>
-            </div>
-            <div class="flex items-baseline gap-1.5 mt-0.5 justify-end">
-              <span class="price-compare-strike text-xs sm:text-sm" style="color: #777777;">£318</span>
-              <span class="font-bold text-xs sm:text-sm" style="color: #111111;">(£148)</span>
-            </div>
-          </div>
-        </div>
-      </button>
-    </div>
-
-    <!-- Tier 3: Buy 3 (Best Value) -->
-    <div class="bundle-tier-card has-top-badge" data-tier="bundle-3" onclick="selectBundleTier('bundle-3')">
-      <div class="tier-best-value-wrap badge-value">
-        <div class="tier-best-value-ribbon">
-          BEST VALUE
-        </div>
-      </div>
-      <button type="button" class="tier-header-btn" aria-label="Select Buy 3 Tier">
-        <div class="tier-radio"><div class="tier-radio-dot"></div></div>
-        <div class="flex-1 flex justify-between items-start gap-2">
-          <div>
-            <div class="flex items-center gap-2">
-              <span class="font-extrabold text-sm sm:text-base uppercase tracking-tight" style="color: #111111;">Buy 3</span>
-              <span class="tier-badge-pill">£39 OFF</span>
-            </div>
-            <p class="text-xs sm:text-sm mt-0.5" style="color: #555555;">Includes 3 Brush X2 sets &amp; <strong style="color: #111111;">3 FREE Gifts</strong></p>
-          </div>
-          <div class="text-right" style="margin-top: 14px;">
-            <div class="flex items-baseline gap-1 justify-end">
-              <span class="font-bold text-base sm:text-lg" style="color: #111111;">£66</span>
-              <span class="text-xs sm:text-sm font-medium" style="color: #666666;">each</span>
-            </div>
-            <div class="flex items-baseline gap-1.5 mt-0.5 justify-end">
-              <span class="price-compare-strike text-xs sm:text-sm" style="color: #777777;">£477</span>
-              <span class="font-bold text-xs sm:text-sm" style="color: #111111;">(£198)</span>
-            </div>
-          </div>
-        </div>
-      </button>
+      <span class="text-[11px] font-bold uppercase tracking-tight leading-tight" style="color: rgba(255, 255, 255, 0.85);">Free Tracked<br/>Shipping</span>
     </div>
   </div>
 
@@ -3831,10 +3820,10 @@ const TIERS = {
   'bundle-3': {
     label: 'Buy 3',
     count: 3,
-    price: 198,
-    priceDisplay: '£198',
+    price: 207,
+    priceDisplay: '£207',
     compareDisplay: '£477',
-    saveDisplay: '£39 OFF',
+    saveDisplay: '£20 OFF',
     ctaText: 'Add To Cart + 3 Free Gifts',
     giftsValue: '£60.85',
     unlockedGifts: 3,
