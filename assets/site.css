@@ -6507,11 +6507,14 @@ body:not([data-page="home"]) .announcement:not(.header-layer--overlay .announcem
   width: max-content !important;
   will-change: transform !important;
   animation: mirooooTickerScroll 28s linear infinite !important;
+  animation-play-state: running !important;
   line-height: 1 !important;
 }
 
-.miroooo-announcement-ticker:hover {
-  animation-play-state: paused !important;
+.miroooo-announcement-ticker:hover,
+.miroooo-announcement-ticker:focus,
+.miroooo-announcement-ticker:active {
+  animation-play-state: running !important;
 }
 
 .miroooo-ticker-item {

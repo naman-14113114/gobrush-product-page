@@ -14,7 +14,7 @@
 
   document.querySelectorAll(".announcement-text").forEach((item) => {
     item.classList.remove("hidden");
-    item.innerHTML = "Free tracked UK delivery · 90-day home trial";
+    item.innerHTML = "Free tracked UK delivery · Risk-Free Home Trial";
   });
 
   // Synchronize Navigation links and duplicate text for roll-up animation
@@ -224,7 +224,7 @@
         <div class="service-strip__item">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" class="service-strip__icon" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
           <div>
-            <strong>90-day home trial</strong>
+            <strong>Risk-Free Home Trial</strong>
             <span>Take time to decide</span>
           </div>
         </div>

@@ -62,10 +62,13 @@
   width: max-content !important;
   will-change: transform !important;
   animation: mirooooTickerScroll 28s linear infinite !important;
+  animation-play-state: running !important;
 }
 
-.miroooo-announcement-ticker:hover {
-  animation-play-state: paused !important;
+.miroooo-announcement-ticker:hover,
+.miroooo-announcement-ticker:focus,
+.miroooo-announcement-ticker:active {
+  animation-play-state: running !important;
 }
 
 .miroooo-ticker-item {

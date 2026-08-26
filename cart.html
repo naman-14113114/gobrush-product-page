@@ -1176,7 +1176,7 @@
                 </span>
                 <span id="breakdown-bundle-val">-£128</span>
               </div>
-              <div class="cart-discount-breakdown-row" id="breakdown-gift-case-row">
+              <div class="cart-discount-breakdown-row" id="breakdown-gift-case-row" style="display: none;">
                 <span class="flex items-center gap-1.5 uppercase">
                   <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7.01" y2="7"></line></svg>
                   Free Luxury Travel Case
@@ -1267,40 +1267,26 @@
 
           </div>
 
-          <!-- Card 2: Free Rewards Progress Card (Matching Muuhu) -->
+          <!-- Card 2: Free Rewards Progress Card -->
           <div class="cart-luxury-card" id="free-rewards-card">
             <div class="rewards-card-header">
               <div>
-                <h3 class="rewards-card-title">FREE REWARDS</h3>
-                <p class="rewards-card-subtitle" id="rewards-unlocked-text">2/3 gifts unlocked</p>
+                <h3 class="rewards-card-title">FREE REWARD INCLUDED</h3>
+                <p class="rewards-card-subtitle" id="rewards-unlocked-text">1 gift unlocked</p>
               </div>
-              <span class="rewards-card-badge" id="rewards-total-value">£36 value</span>
+              <span class="rewards-card-badge" id="rewards-total-value">£20 value</span>
             </div>
 
             <!-- Step Dots Progress Track -->
-            <div class="rewards-progress-track-wrap" aria-hidden="true">
+            <div class="rewards-progress-track-wrap" style="grid-template-columns: 1fr;" aria-hidden="true">
               <div class="rewards-progress-line-bg"></div>
-              <div class="rewards-progress-line-fill" id="rewards-progress-fill" style="width: 66%;"></div>
+              <div class="rewards-progress-line-fill" id="rewards-progress-fill" style="width: 100%;"></div>
               
               <div class="rewards-progress-step is-unlocked" id="reward-step-1">
                 <div class="rewards-progress-node">
                   <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
                 </div>
-                <div class="rewards-progress-label">TRAVEL CASE</div>
-              </div>
-
-              <div class="rewards-progress-step is-unlocked" id="reward-step-2">
-                <div class="rewards-progress-node">
-                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
-                </div>
-                <div class="rewards-progress-label">2X HEADS</div>
-              </div>
-
-              <div class="rewards-progress-step" id="reward-step-3">
-                <div class="rewards-progress-node" id="reward-node-3">
-                  <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
-                </div>
-                <div class="rewards-progress-label">DOCK</div>
+                <div class="rewards-progress-label">2X EXTRA BRUSH HEADS (FREE)</div>
               </div>
             </div>
           </div>
@@ -1362,7 +1348,7 @@
         </svg>
         <h1 class="cart-empty-title">Your cart is empty.</h1>
         <p class="cart-empty-desc">
-          Add the Miroooo X or Miroooo X2 to unlock current bundle offers, complimentary travel gifts, and free tracked UK delivery.
+          Add the Miroooo X or Miroooo X2 to unlock current bundle offers, complimentary DuPont brush heads, and free tracked UK delivery.
         </p>
         <a href="/shop" class="cart-empty-shop-btn" is="hover-button">
           Shop Miroooo
@@ -1375,7 +1361,7 @@
   <footer class="cart-minimal-footer" style="background: #080909; border-top: 1px solid rgba(255,255,255,0.08); padding: 36px 20px 48px; text-align: center; color: rgba(255,255,255,0.7); font-family: 'Inter', sans-serif;">
     <div style="max-width: 1200px; margin: 0 auto; display: flex; flex-direction: column; align-items: center; gap: 16px;">
       <p style="font-size: 11px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: rgba(255,255,255,0.5); margin: 0;">
-        SECURE PAYMENTS &nbsp;•&nbsp; FREE TRACKED SHIPPING &nbsp;•&nbsp; EASY SUPPORT
+        SECURE PAYMENTS &nbsp;•&nbsp; FREE TRACKED UK DELIVERY &nbsp;•&nbsp; RISK-FREE HOME TRIAL &nbsp;•&nbsp; HASSLE-FREE REFUNDS
       </p>
       <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 16px 24px; font-size: 12px; font-weight: 500;">
         <a href="/shipping-policy" style="color: rgba(255,255,255,0.75); text-decoration: none; transition: color 0.2s;">Shipping Policy</a>
@@ -1478,7 +1464,7 @@
           name: "Luxury Travel Case",
           desc: "Protect & travel in style with hard-shell magnetic enclosure.",
           comparePrice: 16,
-          image: "/gallery_orig/Grey-color-5.jpg",
+          image: "/assets_ref/x/gallery/Miroooo_x_Pink-6.webp",
           minQty: 1,
           badgeQty: "UNLOCKED X 1"
         },
@@ -1488,7 +1474,7 @@
           desc: "Ultra-soft DuPont bristles for superior plaque removal.",
           comparePrice: 20,
           image: "/gallery_orig/Grey-color-4.jpg",
-          minQty: 2,
+          minQty: 1,
           badgeQty: "UNLOCKED X 2"
         },
         {
@@ -1572,14 +1558,9 @@
         const compareAt = Math.round(tier.compareAt);
         const bundleSavings = Math.round(tier.bundleSavings);
 
-        let giftsValue = 0;
-        let unlockedGiftsCount = 0;
-        GIFTS_DATA.forEach(g => {
-          if (state.quantity >= g.minQty) {
-            giftsValue += Math.round(g.comparePrice);
-            unlockedGiftsCount++;
-          }
-        });
+        // Cart presents 2x Extra Brush Heads (£20) complimentary gift
+        let giftsValue = 20;
+        let unlockedGiftsCount = 1;
 
         let promoDiscount = 0;
         if (appliedPromoCode) {
@@ -1631,7 +1612,7 @@
           el.textContent = String(totals.quantity);
         });
 
-        // 6A. Render Left Column: Primary Product + Free Gifts
+        // 6A. Render Left Column: Primary Product + Free 2x Extra Brush Heads ONLY
         if (lineItemsWrap) {
           const colorsLabel = (cartState.colors && cartState.colors.length > 0)
             ? cartState.colors.join(" + ")
@@ -1641,13 +1622,18 @@
             ? `${product.name} (Buy ${cartState.quantity} - ${colorsLabel})`
             : `${product.name} - ${colorsLabel}`;
 
-          const unlockedGifts = GIFTS_DATA.filter(g => cartState.quantity >= g.minQty);
+          const firstColor = (cartState.colors && cartState.colors[0]) ? cartState.colors[0] : "Grey";
+          const variantObj = product.variants[firstColor] || product.variants["Grey"] || product.variants["Pink"] || product.variants["Silver"];
+          const productImage = variantObj?.image || product.image;
+
+          // Filter so ONLY 2x Extra Brush Heads is rendered as a gift line item under primary product
+          const lineItemGifts = GIFTS_DATA.filter(g => g.id === "brush-heads" && cartState.quantity >= g.minQty);
 
           let html = `
             <!-- Primary Product Item -->
             <div class="cart-line-item">
               <div class="cart-line-item__media">
-                <img src="${product.image}" alt="${product.name}" />
+                <img src="${productImage}" alt="${product.name}" />
               </div>
               <div class="cart-line-item__content">
                 <div>
@@ -1656,7 +1642,7 @@
                       <h2 class="cart-line-item__title">${productTitle}</h2>
                       <p class="cart-line-item__subtitle">${product.subtitle}</p>
                       <div class="cart-line-item__tags">
-                        <span class="cart-tag-pill">INCLUDES ${totals.unlockedGiftsCount} FREE GIFT${totals.unlockedGiftsCount > 1 ? "S" : ""}</span>
+                        <span class="cart-tag-pill">INCLUDES FREE 2X BRUSH HEADS</span>
                         <span class="cart-tag-pill">${cartState.quantity === 3 ? "58% OFF" : cartState.quantity === 2 ? "54% OFF" : "50% OFF"}</span>
                       </div>
                     </div>
@@ -1687,8 +1673,8 @@
             </div>
           `;
 
-          // Render Unlocked Free Gifts (as full line items under primary product, exactly like ScalpPro in Muuhu)
-          unlockedGifts.forEach(gift => {
+          // Render only Free 2x Extra Brush Heads line item
+          lineItemGifts.forEach(gift => {
             html += `
               <div class="cart-line-item">
                 <div class="cart-line-item__media">
@@ -1752,6 +1738,7 @@
         // 6B. Render Right Column: Summary Card
         const summarySavingsEl = document.getElementById("summary-savings-val");
         const breakdownBundleVal = document.getElementById("breakdown-bundle-val");
+        const breakdownGiftCase = document.getElementById("breakdown-gift-case-row");
         const breakdownGiftHeads = document.getElementById("breakdown-gift-heads-row");
         const breakdownGiftDock = document.getElementById("breakdown-gift-dock-row");
         const breakdownPromoRow = document.getElementById("breakdown-promo-row");
@@ -1762,8 +1749,9 @@
         if (summarySavingsEl) summarySavingsEl.textContent = `-£${Math.round(totals.totalSavings)}`;
         if (breakdownBundleVal) breakdownBundleVal.textContent = `-£${Math.round(totals.bundleSavings)}`;
         
-        if (breakdownGiftHeads) breakdownGiftHeads.style.display = cartState.quantity >= 2 ? "flex" : "none";
-        if (breakdownGiftDock) breakdownGiftDock.style.display = cartState.quantity >= 3 ? "flex" : "none";
+        if (breakdownGiftCase) breakdownGiftCase.style.display = "none";
+        if (breakdownGiftHeads) breakdownGiftHeads.style.display = "flex";
+        if (breakdownGiftDock) breakdownGiftDock.style.display = "none";
 
         if (totals.promoDiscount > 0) {
           if (breakdownPromoRow) breakdownPromoRow.style.display = "flex";
@@ -1783,27 +1771,11 @@
         const rewardsTotalValue = document.getElementById("rewards-total-value");
         const rewardsProgressFill = document.getElementById("rewards-progress-fill");
         const step1 = document.getElementById("reward-step-1");
-        const step2 = document.getElementById("reward-step-2");
-        const step3 = document.getElementById("reward-step-3");
-        const node3 = document.getElementById("reward-node-3");
 
-        if (rewardsUnlockedText) rewardsUnlockedText.textContent = `${totals.unlockedGiftsCount}/3 gifts unlocked`;
-        if (rewardsTotalValue) rewardsTotalValue.textContent = `£${Math.round(totals.giftsValue)} value`;
-
-        const fillPercent = totals.unlockedGiftsCount === 1 ? 33 : totals.unlockedGiftsCount === 2 ? 66 : 100;
-        if (rewardsProgressFill) rewardsProgressFill.style.width = `${fillPercent}%`;
-
-        if (step1) step1.classList.toggle("is-unlocked", cartState.quantity >= 1);
-        if (step2) step2.classList.toggle("is-unlocked", cartState.quantity >= 2);
-        if (step3) step3.classList.toggle("is-unlocked", cartState.quantity >= 3);
-
-        if (node3) {
-          if (cartState.quantity >= 3) {
-            node3.innerHTML = `<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>`;
-          } else {
-            node3.innerHTML = `<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>`;
-          }
-        }
+        if (rewardsUnlockedText) rewardsUnlockedText.textContent = `1 gift unlocked`;
+        if (rewardsTotalValue) rewardsTotalValue.textContent = `£20 value`;
+        if (rewardsProgressFill) rewardsProgressFill.style.width = `100%`;
+        if (step1) step1.classList.add("is-unlocked");
 
         // 6D. Update Promo Box UI
         const promoForm = document.getElementById("cart-promo-form");
@@ -1954,8 +1926,22 @@
 
             window.location.href = checkoutUrl;
           } catch (error) {
-            console.error("Checkout redirection failed:", error);
-            window.location.href = "https://miroooo.us/checkouts";
+            console.error("Checkout redirection failed, redirecting to PlusBase checkout:", error);
+            try {
+              const firstVariantId = items[0]?.variantId || (cartState.productId === "miroooo-x2" ? "1000020348810048" : "1000020348812113");
+              const bridgeUrl = new URL("https://buudy.com/pages/add-to-cart");
+              bridgeUrl.searchParams.set("product_id", productId);
+              bridgeUrl.searchParams.set("variant_id", firstVariantId);
+              bridgeUrl.searchParams.set("quantity", String(cartState.quantity));
+              bridgeUrl.searchParams.set("source", cartState.productId || "miroooo");
+              allowed.forEach(k => {
+                if (attribution[k]) bridgeUrl.searchParams.set(k, attribution[k]);
+              });
+              if (appliedPromoCode) bridgeUrl.searchParams.set("discount", appliedPromoCode);
+              window.location.href = bridgeUrl.toString();
+            } catch (_) {
+              window.location.href = "https://miroooo.us/checkouts";
+            }
           }
         }
 
