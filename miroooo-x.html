@@ -4604,22 +4604,43 @@ theme.variantStrings = {
 -->
 
 <!-- Package Contents Section -->
-<div id="shopify-section-template--24203751129433__image-with-text-1" class="shopify-section" style="background: #000000; color: #ffffff; width: 100%; overflow: hidden; padding: clamp(3.5rem, 6vw, 6rem) 0; box-sizing: border-box; border-top: 1px solid rgba(255, 255, 255, 0.08);">
-  <div class="page-width relative" style="max-width: 1320px; margin: 0 auto; padding: 0 clamp(16px, 4vw, 40px); box-sizing: border-box;">
-    <div class="image-with-text lg:flex lg:gap-8 lg:flex-row" style="background: #000000; border-radius: 0; display: flex; flex-direction: column; align-items: center; gap: 2rem;">
-      <div class="image-with-text__item grow shrink-0 relative" style="flex: 1; width: 100%;">
+<div id="shopify-section-template--24203751129433__image-with-text-1" class="shopify-section" style="background: #000000; color: #ffffff; box-sizing: border-box; border-top: 1px solid rgba(255, 255, 255, 0.08);"><style>
+  #shopify-section-template--24203751129433__image-with-text-1 {
+    --section-padding-top: 0px !important;
+    --section-padding-bottom: 0px !important;
+    --color-background: 0 0 0;
+    --color-background-2: 0 0 0;
+    --color-foreground: 255 255 255;
+    --color-border: var(--color-foreground)/ 0.1;
+    --color-border-dark: var(--color-foreground)/ 0.4;
+    --color-border-light: var(--color-foreground)/ 0.06;
+    --gradient-highlight: linear-gradient(278deg, rgba(251, 51, 166, 1), rgba(48, 145, 211, 1) 100%);
+    --ratio-percent: 66.6667%;
+  }
+  @media screen and (max-width: 767px) {
+    #shopify-section-template--24203751129433__image-with-text-1 {
+      --ratio-percent: 66.6667%;
+    }
+  }
+</style>
+
+<div class="section section--padding" style="background: #000000; padding-top: 0 !important; padding-bottom: 0 !important;">
+  <div class="page-width relative">
+    <div class="image-with-text lg:flex lg:gap-8 lg:flex-row" style="background: #000000; border-radius: 0;">
+      <div class="image-with-text__item grow shrink-0 relative">
         <div class="image-with-text__media h-full">
-          <media-element class="image-with-text__image block media--adapt mobile:media--adapt relative overflow-hidden" style="border-radius: 14px;">
-            <picture class="media media--height block w-full h-full relative overflow-hidden" style="border-radius: 14px; background: transparent; aspect-ratio: 3 / 2;"><img src="/assets_ref/x/miroooo-x-package-box.webp" alt="Package Contents" width="1000" height="667" loading="lazy" style="width: 100%; height: 100%; object-fit: contain; border-radius: 14px;" is="lazy-image"></picture>
+          <media-element class="image-with-text__image block media--adapt mobile:media--adapt relative overflow-hidden" style="border-radius: 14px; aspect-ratio: 3 / 2; padding-bottom: 66.6667%;">
+            <picture class="media media--height block w-full h-full relative overflow-hidden" style="border-radius: 14px; background: transparent; aspect-ratio: 3 / 2;"><img src="/assets_ref/x/miroooo-x-package-box.webp" alt="Package Contents" width="1000" height="667" loading="lazy" style="width: 100%; height: 100%; object-fit: cover; border-radius: 14px;" is="lazy-image"></picture>
           </media-element>
         </div>
       </div>
 
-      <div class="image-with-text__item grow shrink-0 align-self-center" style="flex: 1; width: 100%;">
-        <div class="rich-text lg:text-left text-center relative z-1"><h2 class="heading leading-none title-sm" style="color: #ffffff; margin-bottom: 1.25rem;"><em class="highlighted-text inline-block not-italic relative" is="highlighted-text" data-style="text" style="color: #ffffff; -webkit-text-fill-color: #ffffff;">Package Contents</em></h2><div class="rte leading-normal body subtext-md text-opacity" style="color: rgba(255, 255, 255, 0.8);"><p>Brush X electric toothbrush in chosen colour, brush heads, Travel case, magnetic charging dock, and USB-C charging cable (adapter not included).</p></div></div>
+      <div class="image-with-text__item grow shrink-0 align-self-center">
+        <div class="rich-text lg:text-left text-center relative z-1"><h2 class="heading leading-none title-sm" style="color: #ffffff;"><em class="highlighted-text inline-block not-italic relative" is="highlighted-text" data-style="text" style="color: #ffffff; -webkit-text-fill-color: #ffffff;">Package Contents</em></h2><div class="rte leading-normal body subtext-md text-opacity" style="color: rgba(255, 255, 255, 0.8);"><p>Brush X electric toothbrush in chosen colour, brush heads, Travel case, magnetic charging dock, and USB-C charging cable (adapter not included).</p></div></div>
       </div>
     </div>
   </div>
+</div>
 </div>
 
 <style>
@@ -4747,7 +4768,7 @@ theme.variantStrings = {
   }
 </style>
 
-<div id="shopify-section-template--24203751129433__faq" class="shopify-section" style="background: #000000; color: #ffffff; width: 100%; overflow: hidden; padding: clamp(3.5rem, 6vw, 6rem) 0; box-sizing: border-box; border-top: 1px solid rgba(255,255,255,0.08);">
+<div id="shopify-section-template--24203751129433__faq" class="shopify-section" style="background: #000000; color: #ffffff; width: 100%; overflow: hidden; padding: clamp(32px, 5vw, 64px) 0 clamp(3.5rem, 6vw, 6rem) 0; box-sizing: border-box; border-top: 1px solid rgba(255,255,255,0.08);">
   <div style="max-width: 1320px; margin: 0 auto; padding: 0 clamp(16px, 4vw, 40px); box-sizing: border-box; width: 100%;">
 
     <!-- Title -->
