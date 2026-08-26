@@ -878,17 +878,18 @@
             const productHandle = isX2 ? "miroooo-x2" : "miroooo-x";
             const title = isX2 ? "Brush X2" : "Brush X";
             const colors = Array.isArray(parsed.colors) && parsed.colors.length > 0 ? parsed.colors : ["Grey"];
+            const qty = Math.max(1, parsed.quantity || colors.length);
 
             let unitPrice = 59;
             let comparePrice = 119;
             if (isX2) {
-              if (parsed.quantity === 1) { unitPrice = 79; comparePrice = 159; }
-              else if (parsed.quantity === 2) { unitPrice = 148; comparePrice = 318; }
-              else if (parsed.quantity === 3) { unitPrice = 198; comparePrice = 477; }
+              if (qty === 1) { unitPrice = 79; comparePrice = 159; }
+              else if (qty === 2) { unitPrice = 148; comparePrice = 318; }
+              else { unitPrice = qty * 66; comparePrice = qty * 159; }
             } else {
-              if (parsed.quantity === 1) { unitPrice = 59; comparePrice = 119; }
-              else if (parsed.quantity === 2) { unitPrice = 110; comparePrice = 238; }
-              else if (parsed.quantity === 3) { unitPrice = 147; comparePrice = 357; }
+              if (qty === 1) { unitPrice = 59; comparePrice = 119; }
+              else if (qty === 2) { unitPrice = 110; comparePrice = 238; }
+              else { unitPrice = qty * 49; comparePrice = qty * 119; }
             }
 
             const firstColor = (colors[0] || "").toLowerCase();
@@ -907,18 +908,18 @@
             return {
               items: [
                 {
-                  id: `${parsed.productId}-${parsed.quantity}`,
+                  id: `${parsed.productId}-${qty}`,
                   productId: isX2 ? "1000000664011618" : "1000000664011633",
                   productHandle: productHandle,
-                  title: parsed.quantity > 1 ? `${title} (Buy ${parsed.quantity})` : title,
+                  title: qty > 1 ? `${title} (Buy ${qty})` : title,
                   quantity: 1,
-                  bundleCount: parsed.quantity,
+                  bundleCount: qty,
                   choices: colors,
                   color: colors[0] || "Grey",
                   unitPrice: unitPrice,
                   comparePrice: comparePrice,
                   image: image,
-                  unlockedGifts: parsed.quantity
+                  unlockedGifts: 3
                 }
               ],
               promoCode: "AUTO",
@@ -1005,10 +1006,11 @@
         } else {
           const item = cart.items[index];
           const isX2 = item.productHandle === "miroooo-x2" || item.productId === "1000000664011618";
-          const newQty = Math.min(3, Math.max(1, quantity));
-          let colors = item.choices || ["Grey"];
-          if (newQty === 2 && colors.length < 2) colors = ["Grey", "Pink"];
-          if (newQty === 3 && colors.length < 3) colors = ["Grey", "Pink", "Silver"];
+          const newQty = Math.max(1, quantity);
+          let colors = Array.isArray(item.choices) && item.choices.length > 0 ? [...item.choices] : ["Grey"];
+          while (colors.length < newQty) {
+            colors.push(colors[0] || "Grey");
+          }
           colors = colors.slice(0, newQty);
 
           try {

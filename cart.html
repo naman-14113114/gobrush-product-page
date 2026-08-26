@@ -1272,13 +1272,13 @@
             <div class="rewards-card-header">
               <div>
                 <h3 class="rewards-card-title">FREE REWARD INCLUDED</h3>
-                <p class="rewards-card-subtitle" id="rewards-unlocked-text">1 gift unlocked</p>
+                <p class="rewards-card-subtitle" id="rewards-unlocked-text">3 gifts unlocked</p>
               </div>
-              <span class="rewards-card-badge" id="rewards-total-value">£20 value</span>
+              <span class="rewards-card-badge" id="rewards-total-value">£61 value</span>
             </div>
 
             <!-- Step Dots Progress Track -->
-            <div class="rewards-progress-track-wrap" style="grid-template-columns: 1fr;" aria-hidden="true">
+            <div class="rewards-progress-track-wrap" aria-hidden="true">
               <div class="rewards-progress-line-bg"></div>
               <div class="rewards-progress-line-fill" id="rewards-progress-fill" style="width: 100%;"></div>
               
@@ -1287,6 +1287,20 @@
                   <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
                 </div>
                 <div class="rewards-progress-label">2X EXTRA BRUSH HEADS (FREE)</div>
+              </div>
+
+              <div class="rewards-progress-step is-unlocked" id="reward-step-2">
+                <div class="rewards-progress-node">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                </div>
+                <div class="rewards-progress-label">LUXURY TRAVEL CASE (FREE)</div>
+              </div>
+
+              <div class="rewards-progress-step is-unlocked" id="reward-step-3">
+                <div class="rewards-progress-node">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                </div>
+                <div class="rewards-progress-label">MAGNETIC CHARGING DOCK (FREE)</div>
               </div>
             </div>
           </div>
@@ -1418,7 +1432,7 @@
         if (desktopDateEl) desktopDateEl.textContent = formattedDate;
       }
 
-      // 3. PRODUCT CONFIGURATION & TIERS
+      // 3. PRODUCT CONFIGURATION & DYNAMIC PRICING
       const PRODUCTS_CONFIG = {
         "miroooo-x": {
           id: "miroooo-x",
@@ -1432,10 +1446,11 @@
             "Pink": { variantId: "1000020348812111", image: "/assets_ref/x/gallery/Miroooo_x_Pink-1.webp" },
             "Silver": { variantId: "1000020348812112", image: "/assets_ref/x/gallery/Miroooo_x_Silver-1.webp" }
           },
-          tiers: {
-            1: { price: 59, compareAt: 119, bundleSavings: 60, gifts: 1 },
-            2: { price: 110, compareAt: 238, bundleSavings: 128, gifts: 2 },
-            3: { price: 147, compareAt: 357, bundleSavings: 210, gifts: 3 }
+          getPricing(qty) {
+            const count = Math.max(1, qty);
+            if (count === 1) return { price: 59, compareAt: 119, bundleSavings: 60 };
+            if (count === 2) return { price: 110, compareAt: 238, bundleSavings: 128 };
+            return { price: count * 49, compareAt: count * 119, bundleSavings: (count * 119) - (count * 49) };
           }
         },
         "miroooo-x2": {
@@ -1447,27 +1462,19 @@
           image: "/assets_ref/x2/gallery/miroooo-x2-sonic-electric-toothbrush-upright-grip.webp",
           variants: {
             "Grey": { variantId: "1000020348810048", image: "/assets_ref/x2/gallery/miroooo-x2-sonic-electric-toothbrush-upright-grip.webp" },
-            "Pink": { variantId: "1000020348810062", image: "/assets_ref/x2/gallery/miroooo-x2-sonic-electric-toothbrush-upright-grip.webp" },
-            "Silver": { variantId: "1000020348810046", image: "/assets_ref/x2/gallery/miroooo-x2-sonic-electric-toothbrush-upright-grip.webp" }
+            "Pink": { variantId: "1000020348810062", image: "/assets_ref/x2/gallery/Miroooo_X2_Pink-1.webp" },
+            "Silver": { variantId: "1000020348810046", image: "/assets_ref/x2/gallery/Miroooo_X2_Silver-1.webp" }
           },
-          tiers: {
-            1: { price: 79, compareAt: 159, bundleSavings: 80, gifts: 1 },
-            2: { price: 148, compareAt: 318, bundleSavings: 170, gifts: 2 },
-            3: { price: 198, compareAt: 477, bundleSavings: 279, gifts: 3 }
+          getPricing(qty) {
+            const count = Math.max(1, qty);
+            if (count === 1) return { price: 79, compareAt: 159, bundleSavings: 80 };
+            if (count === 2) return { price: 148, compareAt: 318, bundleSavings: 170 };
+            return { price: count * 66, compareAt: count * 159, bundleSavings: (count * 159) - (count * 66) };
           }
         }
       };
 
       const GIFTS_DATA = [
-        {
-          id: "travel-case",
-          name: "Luxury Travel Case",
-          desc: "Protect & travel in style with hard-shell magnetic enclosure.",
-          comparePrice: 16,
-          image: "/assets_ref/x/gallery/Miroooo_x_Pink-6.webp",
-          minQty: 1,
-          badgeQty: "UNLOCKED X 1"
-        },
         {
           id: "brush-heads",
           name: "2x Extra Brush Heads",
@@ -1478,18 +1485,36 @@
           badgeQty: "UNLOCKED X 2"
         },
         {
+          id: "travel-case",
+          name: "Luxury Travel Case",
+          desc: "Protect & travel in style with hard-shell magnetic enclosure.",
+          comparePrice: 16,
+          image: "/assets_ref/x/gallery/Miroooo_x_Pink-6.webp",
+          minQty: 1,
+          badgeQty: "UNLOCKED X 1"
+        },
+        {
           id: "charging-dock",
           name: "Magnetic Charging Dock",
           desc: "Fast wireless magnetic induction dock.",
           comparePrice: 25,
           image: "/gallery_orig/Grey-color-7.jpg",
-          minQty: 3,
+          minQty: 1,
           badgeQty: "UNLOCKED X 1"
         }
       ];
 
       // 4. CART STATE MANAGEMENT
       let appliedPromoCode = localStorage.getItem("miroooo_promo_code") || "";
+
+      function normalizeColor(color) {
+        if (!color) return "Grey";
+        const c = String(color).trim();
+        const lower = c.toLowerCase();
+        if (lower.includes("pink") || lower.includes("rose")) return "Pink";
+        if (lower.includes("silver")) return "Silver";
+        return "Grey";
+      }
 
       function loadCartState() {
         if (localStorage.getItem("miroooo_cart_empty") === "true") {
@@ -1500,7 +1525,28 @@
         if (stored) {
           try {
             const parsed = JSON.parse(stored);
-            if (parsed && parsed.quantity > 0) return parsed;
+            if (parsed) {
+              let colors = [];
+              if (Array.isArray(parsed.colors) && parsed.colors.length > 0) {
+                colors = parsed.colors.map(normalizeColor);
+              } else if (parsed.color) {
+                colors = [normalizeColor(parsed.color)];
+              }
+
+              const qty = Math.max(1, parseInt(parsed.quantity || colors.length || "1", 10));
+              while (colors.length < qty) {
+                colors.push(colors[0] || "Grey");
+              }
+              if (colors.length > qty) {
+                colors = colors.slice(0, qty);
+              }
+
+              return {
+                productId: parsed.productId || "miroooo-x",
+                quantity: qty,
+                colors: colors
+              };
+            }
           } catch (e) {}
         }
 
@@ -1508,8 +1554,12 @@
         const params = new URLSearchParams(window.location.search);
         const prodParam = params.get("product");
         if (prodParam && PRODUCTS_CONFIG[prodParam]) {
-          const qty = Math.max(1, Math.min(3, parseInt(params.get("quantity") || params.get("count") || "1", 10)));
-          const colors = (params.get("colors") || params.get("color") || "Grey").split(",");
+          const qty = Math.max(1, parseInt(params.get("quantity") || params.get("count") || "1", 10));
+          let colors = (params.get("colors") || params.get("color") || "Grey").split(",").map(normalizeColor);
+          while (colors.length < qty) {
+            colors.push(colors[0] || "Grey");
+          }
+          colors = colors.slice(0, qty);
           return { productId: prodParam, quantity: qty, colors: colors };
         }
 
@@ -1524,7 +1574,7 @@
       let cartState = loadCartState();
 
       function persistCart(state) {
-        if (!state || state.quantity <= 0) {
+        if (!state || state.quantity <= 0 || !state.colors || state.colors.length === 0) {
           localStorage.removeItem("miroooo_cart");
           localStorage.setItem("miroooo_cart_empty", "true");
         } else {
@@ -1553,18 +1603,17 @@
         }
 
         const product = PRODUCTS_CONFIG[state.productId] || PRODUCTS_CONFIG["miroooo-x"];
-        const tier = product.tiers[state.quantity] || product.tiers[1];
-        let subtotal = Math.round(tier.price);
-        const compareAt = Math.round(tier.compareAt);
-        const bundleSavings = Math.round(tier.bundleSavings);
+        const pricing = product.getPricing(state.quantity);
+        let subtotal = Math.round(pricing.price);
+        const compareAt = Math.round(pricing.compareAt);
+        const bundleSavings = Math.round(pricing.bundleSavings);
 
-        // Cart presents 2x Extra Brush Heads (£20) complimentary gift
-        let giftsValue = 20;
-        let unlockedGiftsCount = 1;
+        // 3 Free Rewards (£20 + £16 + £25 = £61)
+        let giftsValue = 61;
+        let unlockedGiftsCount = 3;
 
         let promoDiscount = 0;
         if (appliedPromoCode) {
-          // Standard 10% promo discount
           promoDiscount = Math.round(subtotal * 0.10);
         }
 
@@ -1590,7 +1639,7 @@
         const emptyView = document.getElementById("cart-empty-container");
         const lineItemsWrap = document.getElementById("cart-line-items-wrapper");
 
-        if (!cartState || cartState.quantity <= 0) {
+        if (!cartState || cartState.quantity <= 0 || !cartState.colors || cartState.colors.length === 0) {
           if (activeGrid) activeGrid.style.display = "none";
           if (emptyView) emptyView.style.display = "block";
           document.querySelectorAll("cart-count").forEach(el => {
@@ -1612,68 +1661,82 @@
           el.textContent = String(totals.quantity);
         });
 
-        // 6A. Render Left Column: Primary Product + Free 2x Extra Brush Heads ONLY
+        // 6A. Render Left Column: Distinct Brush Color Items + Free 2x Extra Brush Heads Line Item
         if (lineItemsWrap) {
-          const colorsLabel = (cartState.colors && cartState.colors.length > 0)
-            ? cartState.colors.join(" + ")
-            : "Grey";
+          // Group colors and maintain appearance order
+          const colorGroups = [];
+          const colorCounts = {};
+          (cartState.colors || ["Grey"]).forEach(c => {
+            const color = normalizeColor(c);
+            if (!colorCounts[color]) {
+              colorCounts[color] = 0;
+              colorGroups.push(color);
+            }
+            colorCounts[color]++;
+          });
 
-          const productTitle = cartState.quantity > 1
-            ? `${product.name} (Buy ${cartState.quantity} - ${colorsLabel})`
-            : `${product.name} - ${colorsLabel}`;
+          const totalQty = cartState.quantity;
+          const unitSubtotal = totals.subtotal / totalQty;
+          const unitCompare = totals.compareAt / totalQty;
 
-          const firstColor = (cartState.colors && cartState.colors[0]) ? cartState.colors[0] : "Grey";
-          const variantObj = product.variants[firstColor] || product.variants["Grey"] || product.variants["Pink"] || product.variants["Silver"];
-          const productImage = variantObj?.image || product.image;
+          let html = "";
 
-          // Filter so ONLY 2x Extra Brush Heads is rendered as a gift line item under primary product
-          const lineItemGifts = GIFTS_DATA.filter(g => g.id === "brush-heads" && cartState.quantity >= g.minQty);
+          // Render a separate line item card for each unique color
+          colorGroups.forEach(color => {
+            const count = colorCounts[color];
+            const itemTitle = count > 1
+              ? `${product.name} (Buy ${count} - ${color})`
+              : `${product.name} (${color})`;
 
-          let html = `
-            <!-- Primary Product Item -->
-            <div class="cart-line-item">
-              <div class="cart-line-item__media">
-                <img src="${productImage}" alt="${product.name}" />
-              </div>
-              <div class="cart-line-item__content">
-                <div>
-                  <div class="cart-line-item__header">
-                    <div>
-                      <h2 class="cart-line-item__title">${productTitle}</h2>
-                      <p class="cart-line-item__subtitle">${product.subtitle}</p>
-                      <div class="cart-line-item__tags">
-                        <span class="cart-tag-pill">INCLUDES FREE 2X BRUSH HEADS</span>
-                        <span class="cart-tag-pill">${cartState.quantity === 3 ? "58% OFF" : cartState.quantity === 2 ? "54% OFF" : "50% OFF"}</span>
+            const variantObj = product.variants[color] || product.variants["Grey"] || product.variants["Pink"] || product.variants["Silver"];
+            const itemImage = variantObj?.image || product.image;
+
+            const itemPrice = Math.round(unitSubtotal * count);
+            const itemCompare = Math.round(unitCompare * count);
+
+            html += `
+              <!-- Brush Item (${color}) -->
+              <div class="cart-line-item" data-color="${color}">
+                <div class="cart-line-item__media">
+                  <img src="${itemImage}" alt="${itemTitle}" />
+                </div>
+                <div class="cart-line-item__content">
+                  <div>
+                    <div class="cart-line-item__header">
+                      <div>
+                        <h2 class="cart-line-item__title">${itemTitle}</h2>
+                        <p class="cart-line-item__subtitle">${product.subtitle}</p>
+                      </div>
+                      <div class="cart-line-item__pricing">
+                        <span class="cart-line-item__price">£${itemPrice}</span>
+                        <s class="cart-line-item__compare">£${itemCompare}</s>
                       </div>
                     </div>
-                    <div class="cart-line-item__pricing">
-                      <span class="cart-line-item__price">£${Math.round(totals.subtotal)}</span>
-                      <s class="cart-line-item__compare">£${Math.round(totals.compareAt)}</s>
+                  </div>
+
+                  <div class="cart-line-item__actions">
+                    <div class="cart-stepper-pill" aria-label="Quantity selector for ${color}">
+                      <button type="button" class="cart-stepper-btn" data-action="minus" data-color="${color}" aria-label="Decrease ${color} quantity">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+                      </button>
+                      <span class="cart-stepper-count">${count}</span>
+                      <button type="button" class="cart-stepper-btn" data-action="plus" data-color="${color}" aria-label="Increase ${color} quantity">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+                      </button>
                     </div>
-                  </div>
-                </div>
 
-                <div class="cart-line-item__actions">
-                  <div class="cart-stepper-pill" aria-label="Quantity selector">
-                    <button type="button" class="cart-stepper-btn" id="cart-step-minus" aria-label="Decrease quantity">
-                      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"></line></svg>
-                    </button>
-                    <span class="cart-stepper-count" id="cart-step-val">${cartState.quantity}</span>
-                    <button type="button" class="cart-stepper-btn" id="cart-step-plus" aria-label="Increase quantity" ${cartState.quantity >= 3 ? "disabled" : ""}>
-                      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+                    <button type="button" class="cart-remove-button" data-action="remove" data-color="${color}" aria-label="Remove ${color} brush from cart">
+                      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></svg>
+                      <span>Remove</span>
                     </button>
                   </div>
-
-                  <button type="button" class="cart-remove-button" id="cart-remove-product-btn" aria-label="Remove item from cart">
-                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></svg>
-                    <span>Remove</span>
-                  </button>
                 </div>
               </div>
-            </div>
-          `;
+            `;
+          });
 
-          // Render only Free 2x Extra Brush Heads line item
+          // Render Free 2x Extra Brush Heads line item
+          const lineItemGifts = GIFTS_DATA.filter(g => g.id === "brush-heads");
           lineItemGifts.forEach(gift => {
             html += `
               <div class="cart-line-item">
@@ -1704,34 +1767,50 @@
 
           lineItemsWrap.innerHTML = html;
 
-          // Attach Stepper & Remove Events
-          document.getElementById("cart-step-minus")?.addEventListener("click", () => {
-            if (cartState.quantity > 1) {
-              cartState.quantity--;
-              cartState.colors = cartState.colors.slice(0, cartState.quantity);
+          // Attach Stepper & Remove Events per color item
+          lineItemsWrap.querySelectorAll('button[data-action="plus"]').forEach(btn => {
+            btn.addEventListener("click", () => {
+              const color = btn.getAttribute("data-color") || "Grey";
+              cartState.colors.push(color);
+              cartState.quantity = cartState.colors.length;
               persistCart(cartState);
               renderCartView();
-            } else {
-              cartState = null;
-              persistCart(null);
-              renderCartView();
-            }
+            });
           });
 
-          document.getElementById("cart-step-plus")?.addEventListener("click", () => {
-            if (cartState.quantity < 3) {
-              cartState.quantity++;
-              if (cartState.quantity === 2 && cartState.colors.length < 2) cartState.colors.push("Pink");
-              if (cartState.quantity === 3 && cartState.colors.length < 3) cartState.colors.push("Silver");
-              persistCart(cartState);
+          lineItemsWrap.querySelectorAll('button[data-action="minus"]').forEach(btn => {
+            btn.addEventListener("click", () => {
+              const color = btn.getAttribute("data-color") || "Grey";
+              const lastIdx = cartState.colors.lastIndexOf(color);
+              if (lastIdx > -1) {
+                cartState.colors.splice(lastIdx, 1);
+              } else if (cartState.colors.length > 0) {
+                cartState.colors.pop();
+              }
+              cartState.quantity = cartState.colors.length;
+              if (cartState.quantity <= 0) {
+                cartState = null;
+                persistCart(null);
+              } else {
+                persistCart(cartState);
+              }
               renderCartView();
-            }
+            });
           });
 
-          document.getElementById("cart-remove-product-btn")?.addEventListener("click", () => {
-            cartState = null;
-            persistCart(null);
-            renderCartView();
+          lineItemsWrap.querySelectorAll('button[data-action="remove"]').forEach(btn => {
+            btn.addEventListener("click", () => {
+              const color = btn.getAttribute("data-color") || "Grey";
+              cartState.colors = cartState.colors.filter(c => normalizeColor(c) !== normalizeColor(color));
+              cartState.quantity = cartState.colors.length;
+              if (cartState.quantity <= 0) {
+                cartState = null;
+                persistCart(null);
+              } else {
+                persistCart(cartState);
+              }
+              renderCartView();
+            });
           });
         }
 
@@ -1749,9 +1828,9 @@
         if (summarySavingsEl) summarySavingsEl.textContent = `-£${Math.round(totals.totalSavings)}`;
         if (breakdownBundleVal) breakdownBundleVal.textContent = `-£${Math.round(totals.bundleSavings)}`;
         
-        if (breakdownGiftCase) breakdownGiftCase.style.display = "none";
+        if (breakdownGiftCase) breakdownGiftCase.style.display = "flex";
         if (breakdownGiftHeads) breakdownGiftHeads.style.display = "flex";
-        if (breakdownGiftDock) breakdownGiftDock.style.display = "none";
+        if (breakdownGiftDock) breakdownGiftDock.style.display = "flex";
 
         if (totals.promoDiscount > 0) {
           if (breakdownPromoRow) breakdownPromoRow.style.display = "flex";
@@ -1771,11 +1850,15 @@
         const rewardsTotalValue = document.getElementById("rewards-total-value");
         const rewardsProgressFill = document.getElementById("rewards-progress-fill");
         const step1 = document.getElementById("reward-step-1");
+        const step2 = document.getElementById("reward-step-2");
+        const step3 = document.getElementById("reward-step-3");
 
-        if (rewardsUnlockedText) rewardsUnlockedText.textContent = `1 gift unlocked`;
-        if (rewardsTotalValue) rewardsTotalValue.textContent = `£20 value`;
+        if (rewardsUnlockedText) rewardsUnlockedText.textContent = `3 gifts unlocked`;
+        if (rewardsTotalValue) rewardsTotalValue.textContent = `£61 value`;
         if (rewardsProgressFill) rewardsProgressFill.style.width = `100%`;
         if (step1) step1.classList.add("is-unlocked");
+        if (step2) step2.classList.add("is-unlocked");
+        if (step3) step3.classList.add("is-unlocked");
 
         // 6D. Update Promo Box UI
         const promoForm = document.getElementById("cart-promo-form");
@@ -1800,7 +1883,7 @@
 
         async function handleCheckout(e) {
           if (e) e.preventDefault();
-          if (!cartState || cartState.quantity <= 0) return;
+          if (!cartState || cartState.quantity <= 0 || !cartState.colors || cartState.colors.length === 0) return;
 
           const allCheckoutBtns = [checkoutBtn, stickyBtn].filter(Boolean);
           allCheckoutBtns.forEach(btn => {
@@ -1822,22 +1905,27 @@
 
           const product = PRODUCTS_CONFIG[cartState.productId] || PRODUCTS_CONFIG["miroooo-x"];
           const productId = product.productId;
-          const selectedColors = (cartState.colors && cartState.colors.length > 0)
-            ? cartState.colors.slice(0, cartState.quantity)
-            : ["Grey"];
 
-          // If fewer colors selected than quantity, fill remaining with first choice or Grey
-          while (selectedColors.length < cartState.quantity) {
-            selectedColors.push(selectedColors[0] || "Grey");
-          }
+          // Group colors into items payload with exact quantities
+          const colorCounts = {};
+          const colorList = [];
+          (cartState.colors || ["Grey"]).forEach(c => {
+            const color = normalizeColor(c);
+            if (!colorCounts[color]) {
+              colorCounts[color] = 0;
+              colorList.push(color);
+            }
+            colorCounts[color]++;
+          });
 
-          const items = selectedColors.map(color => {
-            const variantObj = product.variants[color] || product.variants["Grey"] || product.variants["Gray"] || product.variants["Pink"] || product.variants["Silver"];
+          const items = colorList.map(color => {
+            const count = colorCounts[color];
+            const variantObj = product.variants[color] || product.variants["Grey"] || product.variants["Pink"] || product.variants["Silver"];
             const vId = variantObj ? variantObj.variantId : (cartState.productId === "miroooo-x2" ? "1000020348810048" : "1000020348812113");
             return {
               productId: productId,
               variantId: vId,
-              quantity: 1
+              quantity: count
             };
           });
 
