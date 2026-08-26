@@ -28,7 +28,7 @@
 .miroooo-reviews-section {
   background-color: var(--miroooo-bg);
   color: var(--miroooo-text-primary);
-  padding: 80px 0 90px;
+  padding: clamp(3.5rem, 6vw, 5.5rem) 0;
   border-top: 1px solid rgba(255, 255, 255, 0.08);
   font-family: -apple-system, BlinkMacSystemFont, "Inter", "Segoe UI", Roboto, sans-serif;
   position: relative;
