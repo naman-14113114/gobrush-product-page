@@ -593,76 +593,87 @@
   transition: opacity 0.3s ease;
 }
 
-/* Miroooo X2 Juujo-Style Bundle Tiers & Free Gifts */
+/* Miroooo X2 Juujo-Style Bundle Tiers & Free Gifts (Grey Luxury Theme #e6e6e6) */
 .bundle-tiers-container {
   display: flex;
   flex-direction: column;
-  gap: 16px;
+  gap: 20px;
 }
 .bundle-tier-card {
   position: relative;
   display: flex;
   flex-direction: column;
   border-radius: 16px;
-  border: 1.5px solid rgba(255, 255, 255, 0.15);
-  background: #111111;
-  color: #ffffff;
+  border: 1.5px solid rgba(0, 0, 0, 0.12);
+  background: #e6e6e6;
+  color: #111111;
   transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
   cursor: pointer;
   overflow: visible;
 }
 .bundle-tier-card:hover {
-  border-color: rgba(255, 255, 255, 0.4);
+  border-color: rgba(0, 0, 0, 0.35);
 }
 .bundle-tier-card.is-selected {
-  border: 2px solid #ffffff;
-  background: #181818;
-  box-shadow: 0 4px 25px rgba(0, 0, 0, 0.6);
+  border: 2px solid #000000 !important;
+  background: #e6e6e6 !important;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15) !important;
 }
 .bundle-tier-card .tier-header-btn {
   display: flex;
   align-items: flex-start;
   gap: 12px;
-  padding: 14px 16px;
+  padding: 16px 18px;
   width: 100%;
   text-align: left;
   background: none;
   border: none;
   cursor: pointer;
   font-family: inherit;
+  box-sizing: border-box;
 }
 .bundle-tier-card.has-top-badge .tier-header-btn {
-  padding-top: 16px;
+  padding-top: 24px;
+}
+.bundle-tier-card .tier-header-btn .text-right {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  justify-content: flex-start;
+  text-align: right;
+  flex-shrink: 0;
 }
 .bundle-tier-card[data-tier="bundle-2"] .tier-header-btn .text-right,
 .bundle-tier-card.has-top-badge:has(.tier-popular-badge-wrap) .tier-header-btn .text-right {
   margin-top: 14px !important;
 }
-.tier-radio {
+.bundle-tier-card .tier-radio {
   margin-top: 2px;
   width: 20px;
   height: 20px;
   border-radius: 50%;
-  border: 1.5px solid rgba(255, 255, 255, 0.4);
+  border: 1.5px solid #666666;
   display: flex;
   align-items: center;
   justify-content: center;
   flex-shrink: 0;
-  transition: all 0.15s ease;
-  background: transparent;
-}
-.bundle-tier-card.is-selected .tier-radio {
-  border-color: #ffffff;
   background: #ffffff;
+  box-sizing: border-box;
 }
-.bundle-tier-card.is-selected .tier-radio .tier-radio-dot {
-  background: #000000;
-}
-.tier-radio-dot {
-  width: 8px;
-  height: 8px;
+.bundle-tier-card .tier-radio-dot {
+  width: 10px;
+  height: 10px;
   border-radius: 50%;
   background: transparent;
+  transition: all 0.15s ease;
+  display: block;
+}
+.bundle-tier-card.is-selected .tier-radio {
+  border-color: #000000 !important;
+  background: #ffffff !important;
+}
+.bundle-tier-card.is-selected .tier-radio .tier-radio-dot {
+  background: #000000 !important;
 }
 .tier-badge-pill {
   font-size: 10.5px;
@@ -671,10 +682,30 @@
   letter-spacing: 0.04em;
   padding: 2.5px 8px;
   border-radius: 9999px;
-  background: #ffffff;
-  color: #000000;
+  background: rgba(0, 0, 0, 0.08);
+  color: #111111;
   display: inline-flex;
   align-items: center;
+}
+
+/* Slanted Red Slash on Compare-At Prices */
+.price-compare-strike {
+  position: relative;
+  display: inline-block;
+  text-decoration: none !important;
+  line-height: 1;
+}
+.price-compare-strike::after {
+  content: "";
+  position: absolute;
+  left: -2px;
+  right: -2px;
+  top: 50%;
+  height: 1.5px;
+  background-color: #ef4444;
+  transform: translateY(-50%) rotate(-16deg);
+  transform-origin: center;
+  pointer-events: none;
 }
 
 /* Most Popular Badge (CloudAlign Scallop Seal Style) */
@@ -717,15 +748,42 @@
   text-transform: uppercase;
   letter-spacing: 0.04em;
   color: #ffffff !important;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
   line-height: 1.2;
 }
+
+/* Standalone Color Swatches (Hero Section) */
+.standalone-swatch-btn {
+  width: 32px !important;
+  height: 32px !important;
+  border-radius: 50% !important;
+  border: none !important;
+  cursor: pointer !important;
+  padding: 0 !important;
+  outline: none !important;
+  position: relative !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  transition: transform 0.18s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.18s cubic-bezier(0.16, 1, 0.3, 1) !important;
+  overflow: visible !important;
+  background-clip: padding-box !important;
+}
+.standalone-swatch-btn::before,
+.standalone-swatch-btn::after {
+  display: none !important;
+  content: none !important;
+}
+.standalone-swatch-btn:hover {
+  transform: scale(1.12) !important;
+}
+
 .tier-expanded-panel {
-  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  border-top: 1px solid rgba(0, 0, 0, 0.08);
   border-bottom-left-radius: 14px;
   border-bottom-right-radius: 14px;
-  padding: 12px 16px 14px;
-  background: #141414;
+  padding: 14px 18px 16px;
+  background: transparent !important;
   display: flex;
   flex-direction: column;
   gap: 10px;
@@ -765,22 +823,52 @@
 .color-swatch-btn:hover {
   transform: scale(1.12) !important;
 }
-.color-swatch-btn.swatch-silver {
+
+/* Metallic Color Swatches (Silver, Pink, Grey) */
+.standalone-swatch-btn[data-color="Silver"],
+.standalone-swatch-btn.swatch-silver,
+.color-swatch-btn.swatch-silver,
+.color-swatch-btn[data-color="Silver"] {
   background: linear-gradient(135deg, #f0f2f5 0%, #cbd2da 25%, #ffffff 50%, #9aa1aa 75%, #d5dadf 100%) !important;
   box-shadow: inset 0 1px 2px rgba(255, 255, 255, 0.9), inset 0 -1px 2px rgba(0, 0, 0, 0.25), 0 2px 5px rgba(0, 0, 0, 0.2) !important;
 }
-.color-swatch-btn.swatch-pink {
+
+.standalone-swatch-btn[data-color="Pink"],
+.standalone-swatch-btn.swatch-pink,
+.color-swatch-btn.swatch-pink,
+.color-swatch-btn[data-color="Pink"] {
   background: linear-gradient(135deg, #fedbdf 0%, #e8a2af 25%, #fff0f2 50%, #c47685 75%, #e8aab5 100%) !important;
   box-shadow: inset 0 1px 2px rgba(255, 255, 255, 0.9), inset 0 -1px 2px rgba(0, 0, 0, 0.25), 0 2px 5px rgba(0, 0, 0, 0.2) !important;
 }
-.color-swatch-btn.swatch-grey {
+
+.standalone-swatch-btn[data-color="Grey"],
+.standalone-swatch-btn.swatch-grey,
+.color-swatch-btn.swatch-grey,
+.color-swatch-btn[data-color="Grey"] {
   background: linear-gradient(135deg, #8c919a 0%, #565a62 25%, #a1a6b0 50%, #3a3d43 75%, #6a6f78 100%) !important;
   box-shadow: inset 0 1px 2px rgba(255, 255, 255, 0.5), inset 0 -1px 2px rgba(0, 0, 0, 0.4), 0 2px 5px rgba(0, 0, 0, 0.25) !important;
 }
+
+/* Standalone Active Selection Ring: White Outer Circle */
+.standalone-swatch-btn.is-active {
+  box-shadow: 0 0 0 2px #000000, 0 0 0 4px #ffffff, 0 4px 10px rgba(0, 0, 0, 0.5) !important;
+  transform: scale(1.08) !important;
+}
+
+/* Bundle Active Selection Ring: Single Black Outer Circle */
 .color-swatch-btn.is-active {
   border-color: transparent !important;
   box-shadow: 0 0 0 2px #ffffff, 0 0 0 4px #000000 !important;
   transform: scale(1.08) !important;
+}
+
+/* Accordion Rotating Chevron */
+.product__accordion summary .icon-chevron {
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.product__accordion[open] summary .icon-chevron,
+.product__accordion.active summary .icon-chevron {
+  transform: rotate(180deg);
 }
 
 /* Free Gifts 3-Tier Grid */
@@ -2054,6 +2142,17 @@ theme.variantStrings = {
     <div class="flex flex-col items-center gap-1.5" style="display: flex; flex-direction: column; align-items: center; gap: 6px;">
       <svg style="width: 24px; height: 24px; color: #ffffff;" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="1.7"><rect x="1" y="3" width="15" height="13" rx="1"/><polygon points="16 8 20 8 23 11 23 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
       <span class="text-[11px] font-bold uppercase tracking-tight leading-tight" style="color: #ffffff; font-size: 11px;">Free Tracked<br/>Shipping</span>
+      <!-- Standalone Color Selector (Matches Miroooo X) -->
+  <div class="standalone-color-selector my-4" style="margin: 16px 0 12px 0;">
+    <div class="flex items-center justify-between mb-2.5" style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 10px;">
+      <span class="text-xs sm:text-sm font-bold uppercase tracking-wider" style="color: #ffffff; letter-spacing: 0.08em; font-size: 12px;">
+        Color: <span id="standalone-color-name" style="font-weight: 500; text-transform: capitalize; color: rgba(255,255,255,0.85);">Silver</span>
+      </span>
+    </div>
+    <div class="flex items-center gap-3" id="standalone-swatches" style="display: flex; align-items: center; gap: 12px;">
+      <button type="button" class="standalone-swatch-btn is-active" data-color="Silver" title="Silver" aria-label="Silver" onclick="selectStandaloneColor('Silver')"></button>
+      <button type="button" class="standalone-swatch-btn" data-color="Pink" title="Pink" aria-label="Pink" onclick="selectStandaloneColor('Pink')"></button>
+      <button type="button" class="standalone-swatch-btn" data-color="Grey" title="Grey" aria-label="Grey" onclick="selectStandaloneColor('Grey')"></button>
     </div>
   </div>
 
@@ -2066,7 +2165,7 @@ theme.variantStrings = {
     <span class="h-px flex-1" style="background-color: rgba(255,255,255,0.15); height: 1px; flex: 1;"></span>
   </div>
 
-  <!-- 8. 3 Tier Cards (Pure Dark Backgrounds when opened) -->
+  <!-- 8. 3 Tier Cards (Grey Luxury Theme #e6e6e6) -->
   <div class="bundle-tiers-container flex flex-col gap-4" id="bundle-tiers">
     <!-- Tier 1: Buy 1 -->
     <div class="bundle-tier-card" data-tier="single" onclick="selectBundleTier('single')">
@@ -2075,14 +2174,14 @@ theme.variantStrings = {
         <div class="flex-1 flex justify-between items-start gap-2">
           <div>
             <div class="flex items-center gap-2">
-              <span class="font-extrabold text-sm sm:text-base uppercase tracking-tight text-white">Buy 1</span>
+              <span class="font-extrabold text-sm sm:text-base uppercase tracking-tight" style="color: #111111;">Buy 1</span>
             </div>
-            <p class="text-xs sm:text-sm mt-0.5" style="color: rgba(255,255,255,0.65);">Includes 1 Brush X2 set &amp; <strong style="color: #ffffff;">3 FREE Gifts</strong></p>
+            <p class="text-xs sm:text-sm mt-0.5" style="color: #555555;">Includes 1 Brush X2 set &amp; <strong style="color: #111111;">3 FREE Gifts</strong></p>
           </div>
           <div class="text-right">
             <div class="flex items-baseline gap-1.5 justify-end">
-              <span class="font-bold text-base sm:text-lg text-white">£79</span>
-              <span class="text-xs sm:text-sm line-through" style="color: rgba(255,255,255,0.45);">£159</span>
+              <span class="font-bold text-base sm:text-lg" style="color: #111111;">£79</span>
+              <span class="price-compare-strike text-xs sm:text-sm" style="color: #777777;">£159</span>
             </div>
             <span class="tier-badge-pill mt-0.5">50% OFF</span>
           </div>
@@ -2090,11 +2189,11 @@ theme.variantStrings = {
       </button>
       <div class="tier-expanded-panel" id="panel-single" style="display: none;">
         <div class="brush-selection-row">
-          <span class="text-xs sm:text-sm font-medium" style="color: #ffffff;">Brush Color:</span>
+          <span class="text-xs sm:text-sm font-semibold" style="color: #111111;">Brush Color:</span>
           <div class="brush-color-swatches" data-brush-index="0">
-            <button type="button" class="color-swatch-btn swatch-grey is-active" title="Grey" aria-label="Grey" onclick="setBrushChoice('single', 0, 'Grey', event)"></button>
+            <button type="button" class="color-swatch-btn swatch-grey" title="Grey" aria-label="Grey" onclick="setBrushChoice('single', 0, 'Grey', event)"></button>
             <button type="button" class="color-swatch-btn swatch-pink" title="Pink" aria-label="Pink" onclick="setBrushChoice('single', 0, 'Pink', event)"></button>
-            <button type="button" class="color-swatch-btn swatch-silver" title="Silver" aria-label="Silver" onclick="setBrushChoice('single', 0, 'Silver', event)"></button>
+            <button type="button" class="color-swatch-btn swatch-silver is-active" title="Silver" aria-label="Silver" onclick="setBrushChoice('single', 0, 'Silver', event)"></button>
           </div>
         </div>
       </div>
@@ -2117,19 +2216,19 @@ theme.variantStrings = {
         <div class="flex-1 flex justify-between items-start gap-2">
           <div>
             <div class="flex items-center gap-2">
-              <span class="font-extrabold text-sm sm:text-base uppercase tracking-tight text-white">Buy 2</span>
+              <span class="font-extrabold text-sm sm:text-base uppercase tracking-tight" style="color: #111111;">Buy 2</span>
               <span class="tier-badge-pill">£10 OFF</span>
             </div>
-            <p class="text-xs sm:text-sm mt-0.5" style="color: rgba(255,255,255,0.75);">Includes 2 Brush X2 sets &amp; <strong style="color: #ffffff;">3 FREE Gifts</strong></p>
+            <p class="text-xs sm:text-sm mt-0.5" style="color: #555555;">Includes 2 Brush X2 sets &amp; <strong style="color: #111111;">3 FREE Gifts</strong></p>
           </div>
           <div class="text-right" style="margin-top: 14px;">
             <div class="flex items-baseline gap-1 justify-end">
-              <span class="font-bold text-base sm:text-lg text-white">£74</span>
-              <span class="text-xs sm:text-sm font-medium" style="color: rgba(255,255,255,0.75);">each</span>
+              <span class="font-bold text-base sm:text-lg" style="color: #111111;">£74</span>
+              <span class="text-xs sm:text-sm font-medium" style="color: #666666;">each</span>
             </div>
             <div class="flex items-baseline gap-1.5 mt-0.5 justify-end">
-              <span class="text-xs sm:text-sm line-through" style="color: rgba(255,255,255,0.45);">£318</span>
-              <span class="font-bold text-xs sm:text-sm text-white">(£148)</span>
+              <span class="price-compare-strike text-xs sm:text-sm" style="color: #777777;">£318</span>
+              <span class="font-bold text-xs sm:text-sm" style="color: #111111;">(£148)</span>
             </div>
           </div>
         </div>
@@ -2137,16 +2236,16 @@ theme.variantStrings = {
       <div class="tier-expanded-panel" id="panel-bundle-2">
         <!-- Row 1 -->
         <div class="brush-selection-row">
-          <span class="text-xs sm:text-sm font-medium" style="color: #ffffff;">#1 Brush Color:</span>
+          <span class="text-xs sm:text-sm font-semibold" style="color: #111111;">#1 Brush Color:</span>
           <div class="brush-color-swatches" data-brush-index="0">
-            <button type="button" class="color-swatch-btn swatch-grey is-active" title="Grey" aria-label="Grey" onclick="setBrushChoice('bundle-2', 0, 'Grey', event)"></button>
+            <button type="button" class="color-swatch-btn swatch-grey" title="Grey" aria-label="Grey" onclick="setBrushChoice('bundle-2', 0, 'Grey', event)"></button>
             <button type="button" class="color-swatch-btn swatch-pink" title="Pink" aria-label="Pink" onclick="setBrushChoice('bundle-2', 0, 'Pink', event)"></button>
-            <button type="button" class="color-swatch-btn swatch-silver" title="Silver" aria-label="Silver" onclick="setBrushChoice('bundle-2', 0, 'Silver', event)"></button>
+            <button type="button" class="color-swatch-btn swatch-silver is-active" title="Silver" aria-label="Silver" onclick="setBrushChoice('bundle-2', 0, 'Silver', event)"></button>
           </div>
         </div>
         <!-- Row 2 -->
         <div class="brush-selection-row">
-          <span class="text-xs sm:text-sm font-medium" style="color: #ffffff;">#2 Brush Color:</span>
+          <span class="text-xs sm:text-sm font-semibold" style="color: #111111;">#2 Brush Color:</span>
           <div class="brush-color-swatches" data-brush-index="1">
             <button type="button" class="color-swatch-btn swatch-grey" title="Grey" aria-label="Grey" onclick="setBrushChoice('bundle-2', 1, 'Grey', event)"></button>
             <button type="button" class="color-swatch-btn swatch-pink is-active" title="Pink" aria-label="Pink" onclick="setBrushChoice('bundle-2', 1, 'Pink', event)"></button>
@@ -2168,19 +2267,19 @@ theme.variantStrings = {
         <div class="flex-1 flex justify-between items-start gap-2">
           <div>
             <div class="flex items-center gap-2">
-              <span class="font-extrabold text-sm sm:text-base uppercase tracking-tight text-white">Buy 3</span>
+              <span class="font-extrabold text-sm sm:text-base uppercase tracking-tight" style="color: #111111;">Buy 3</span>
               <span class="tier-badge-pill">£39 OFF</span>
             </div>
-            <p class="text-xs sm:text-sm mt-0.5" style="color: rgba(255,255,255,0.75);">Includes 3 Brush X2 sets &amp; <strong style="color: #ffffff;">3 FREE Gifts</strong></p>
+            <p class="text-xs sm:text-sm mt-0.5" style="color: #555555;">Includes 3 Brush X2 sets &amp; <strong style="color: #111111;">3 FREE Gifts</strong></p>
           </div>
           <div class="text-right" style="margin-top: 14px;">
             <div class="flex items-baseline gap-1 justify-end">
-              <span class="font-bold text-base sm:text-lg text-white">£66</span>
-              <span class="text-xs sm:text-sm font-medium" style="color: rgba(255,255,255,0.75);">each</span>
+              <span class="font-bold text-base sm:text-lg" style="color: #111111;">£66</span>
+              <span class="text-xs sm:text-sm font-medium" style="color: #666666;">each</span>
             </div>
             <div class="flex items-baseline gap-1.5 mt-0.5 justify-end">
-              <span class="text-xs sm:text-sm line-through" style="color: rgba(255,255,255,0.45);">£477</span>
-              <span class="font-bold text-xs sm:text-sm text-white">(£198)</span>
+              <span class="price-compare-strike text-xs sm:text-sm" style="color: #777777;">£477</span>
+              <span class="font-bold text-xs sm:text-sm" style="color: #111111;">(£198)</span>
             </div>
           </div>
         </div>
@@ -2188,16 +2287,16 @@ theme.variantStrings = {
       <div class="tier-expanded-panel" id="panel-bundle-3" style="display: none;">
         <!-- Row 1 -->
         <div class="brush-selection-row">
-          <span class="text-xs sm:text-sm font-medium" style="color: #ffffff;">#1 Brush Color:</span>
+          <span class="text-xs sm:text-sm font-semibold" style="color: #111111;">#1 Brush Color:</span>
           <div class="brush-color-swatches" data-brush-index="0">
-            <button type="button" class="color-swatch-btn swatch-grey is-active" title="Grey" aria-label="Grey" onclick="setBrushChoice('bundle-3', 0, 'Grey', event)"></button>
+            <button type="button" class="color-swatch-btn swatch-grey" title="Grey" aria-label="Grey" onclick="setBrushChoice('bundle-3', 0, 'Grey', event)"></button>
             <button type="button" class="color-swatch-btn swatch-pink" title="Pink" aria-label="Pink" onclick="setBrushChoice('bundle-3', 0, 'Pink', event)"></button>
-            <button type="button" class="color-swatch-btn swatch-silver" title="Silver" aria-label="Silver" onclick="setBrushChoice('bundle-3', 0, 'Silver', event)"></button>
+            <button type="button" class="color-swatch-btn swatch-silver is-active" title="Silver" aria-label="Silver" onclick="setBrushChoice('bundle-3', 0, 'Silver', event)"></button>
           </div>
         </div>
         <!-- Row 2 -->
         <div class="brush-selection-row">
-          <span class="text-xs sm:text-sm font-medium" style="color: #ffffff;">#2 Brush Color:</span>
+          <span class="text-xs sm:text-sm font-semibold" style="color: #111111;">#2 Brush Color:</span>
           <div class="brush-color-swatches" data-brush-index="1">
             <button type="button" class="color-swatch-btn swatch-grey" title="Grey" aria-label="Grey" onclick="setBrushChoice('bundle-3', 1, 'Grey', event)"></button>
             <button type="button" class="color-swatch-btn swatch-pink is-active" title="Pink" aria-label="Pink" onclick="setBrushChoice('bundle-3', 1, 'Pink', event)"></button>
@@ -2206,11 +2305,11 @@ theme.variantStrings = {
         </div>
         <!-- Row 3 -->
         <div class="brush-selection-row">
-          <span class="text-xs sm:text-sm font-medium" style="color: #ffffff;">#3 Brush Color:</span>
+          <span class="text-xs sm:text-sm font-semibold" style="color: #111111;">#3 Brush Color:</span>
           <div class="brush-color-swatches" data-brush-index="2">
-            <button type="button" class="color-swatch-btn swatch-grey" title="Grey" aria-label="Grey" onclick="setBrushChoice('bundle-3', 2, 'Grey', event)"></button>
+            <button type="button" class="color-swatch-btn swatch-grey is-active" title="Grey" aria-label="Grey" onclick="setBrushChoice('bundle-3', 2, 'Grey', event)"></button>
             <button type="button" class="color-swatch-btn swatch-pink" title="Pink" aria-label="Pink" onclick="setBrushChoice('bundle-3', 2, 'Pink', event)"></button>
-            <button type="button" class="color-swatch-btn swatch-silver is-active" title="Silver" aria-label="Silver" onclick="setBrushChoice('bundle-3', 2, 'Silver', event)"></button>
+            <button type="button" class="color-swatch-btn swatch-silver" title="Silver" aria-label="Silver" onclick="setBrushChoice('bundle-3', 2, 'Silver', event)"></button>
           </div>
         </div>
       </div>
@@ -2256,29 +2355,127 @@ theme.variantStrings = {
     </div>
   </section>
 
-  <!-- 10. Package contents Accordion -->
-  <details class="product__accordion details" is="accordion-details" style="border-top: 1px solid rgba(255,255,255,0.12); padding: 8px 0;">
-    <summary class="details__summary flex items-center justify-between gap-2 cursor-pointer" style="color: #ffffff; outline: none; list-style: none;">
-      <div class="flex items-center gap-2d5" style="display: flex; align-items: center; gap: 10px;">
-        <svg class="icon icon-box icon-md" viewBox="0 0 20 20" stroke="#ffffff" fill="none" xmlns="http://www.w3.org/2000/svg" style="width: 20px; height: 20px;">
-          <path d="M6.24986 7.91666L13.7499 3.33333M9.99996 10.4167L17.5 5.83333M9.99996 10.4167L2.49996 5.83333M9.99996 10.4167V18.75M1.66663 8.55104V11.4489C1.66663 12.44 1.66663 12.9355 1.80881 13.3807C1.93464 13.7747 2.14059 14.1385 2.41371 14.4491C2.72235 14.8001 3.14725 15.055 3.99705 15.5649L7.53038 17.6849C8.42828 18.2237 8.87723 18.493 9.35649 18.5983C9.78042 18.6914 10.2195 18.6914 10.6434 18.5983C11.1227 18.493 11.5716 18.2237 12.4695 17.6849L16.0029 15.5649C16.8527 15.055 17.2776 14.8001 17.5862 14.4491C17.8593 14.1385 18.0653 13.7747 18.1911 13.3807C18.3333 12.9355 18.3333 12.44 18.3333 11.4489V8.55104C18.3333 7.56002 18.3333 7.0645 18.1911 6.61926C18.0653 6.22525 17.8593 5.86151 17.5862 5.5509C17.2776 5.19989 16.8527 4.94495 16.0029 4.43508L12.4695 2.31508C11.5716 1.77634 11.1227 1.50697 10.6434 1.40172C10.2195 1.30863 9.78042 1.30863 9.35649 1.40172C8.87723 1.50697 8.42828 1.77634 7.53038 2.31508L3.99705 4.43508C3.14725 4.94495 2.72235 5.19989 2.41371 5.5509C2.14059 5.86151 1.93464 6.22525 1.80881 6.61926C1.66663 7.0645 1.66663 7.56002 1.66663 8.55104Z" stroke-linecap="round" stroke-linejoin="round"/>
+  <!-- 10. Product Accordions (Why Brush X2, Specifications, Package Contents, Certifications) -->
+  <div class="product__accordions" style="display: flex; flex-direction: column; gap: 0; margin-top: 14px;">
+    <!-- Accordion 1: Why Brush X2? -->
+    <details class="product__accordion details" is="accordion-details" style="border-top: 1px solid rgba(255,255,255,0.12); padding: 12px 0;">
+      <summary class="details__summary flex items-center justify-between gap-2 cursor-pointer" style="color: #ffffff; outline: none; list-style: none;">
+        <div class="flex items-center gap-2.5" style="display: flex; align-items: center; gap: 10px;">
+          <svg class="icon icon-sparkles icon-md" viewBox="0 0 20 20" stroke="#ffffff" fill="none" xmlns="http://www.w3.org/2000/svg" style="width: 20px; height: 20px;">
+            <path d="M10 2L11.8 7.2L17 9L11.8 10.8L10 16L8.2 10.8L3 9L8.2 7.2L10 2Z" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          <span class="text-sm font-semibold leading-none" style="color: #ffffff;">Why Brush X2?</span>
+        </div>
+        <svg class="icon icon-chevron icon-xs flex-auto" viewBox="0 0 24 24" stroke="#ffffff" fill="none" stroke-width="2" style="width: 16px; height: 16px;">
+          <polyline points="6 9 12 15 18 9"></polyline>
         </svg>
-        <span class="text-sm-base font-medium leading-none" style="color: #ffffff;">Package contents</span>
+      </summary>
+      <div class="details__content rte text-sm" style="margin-top: 12px; color: rgba(255,255,255,0.75); line-height: 1.6;">
+        <p><strong>Next-Generation Sonic Performance:</strong> Brush X2 elevates daily oral care with our enhanced 45° swept acoustic Bass vibration motor delivering over 40,000 micro-sweeps per minute for thorough plaque removal along the gumline.</p>
+        <p style="margin-top: 8px;"><strong>Smart Red Halo Pressure Ring:</strong> An integrated LED pressure sensor ring glows instantly when excessive force is applied, protecting sensitive gums and enamel in real-time.</p>
+        <p style="margin-top: 8px;"><strong>90-Day Ultra Battery Life:</strong> Powered by an advanced cobalt lithium cell, Brush X2 runs up to 90 days on a single 2.5-hour USB-C fast charge, making it the ultimate travel companion.</p>
       </div>
-      <svg class="icon icon-plus-alt icon-xs flex-auto" viewBox="0 0 14 14" stroke="#ffffff" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <path stroke-linecap="round" stroke-linejoin="round" d="M7 1V13M13 7H1"></path>
-      </svg>
-    </summary>
-    <div class="details__content rte text-sm text-opacity" style="margin-top: 10px; color: rgba(255,255,255,0.75); line-height: 1.6;">
-      <ul>
-        <li>1x Brush X2 electric toothbrush in selected colour</li>
-        <li>1x 2x replacement brush heads</li>
-        <li>1x Travel case</li>
-        <li>1x Magnetic charging dock with USB-C cable (power adapter not included)</li>
-        <li>1x Luxury presentation packaging</li>
-      </ul>
-    </div>
-  </details>
+    </details>
+
+    <!-- Accordion 2: Specifications -->
+    <details class="product__accordion details" is="accordion-details" style="border-top: 1px solid rgba(255,255,255,0.12); padding: 12px 0;">
+      <summary class="details__summary flex items-center justify-between gap-2 cursor-pointer" style="color: #ffffff; outline: none; list-style: none;">
+        <div class="flex items-center gap-2.5" style="display: flex; align-items: center; gap: 10px;">
+          <svg class="icon icon-settings icon-md" viewBox="0 0 20 20" stroke="#ffffff" fill="none" xmlns="http://www.w3.org/2000/svg" style="width: 20px; height: 20px;">
+            <circle cx="10" cy="10" r="3"></circle>
+            <path d="M16.2 12.6C16.3 12.2 16.4 11.8 16.4 11.4C16.4 11 16.3 10.6 16.2 10.2L17.9 8.8C18.1 8.6 18.1 8.3 18 8.1L16.4 5.3C16.3 5.1 16 5 15.8 5.1L13.8 5.9C13.4 5.6 12.9 5.3 12.5 5.1L12.2 3C12.2 2.7 12 2.5 11.7 2.5H8.3C8 2.5 7.8 2.7 7.8 3L7.5 5.1C7.1 5.3 6.6 5.6 6.2 5.9L4.2 5.1C4 5 3.7 5.1 3.6 5.3L2 8.1C1.9 8.3 1.9 8.6 2.1 8.8L3.8 10.2C3.7 10.6 3.6 11 3.6 11.4C3.6 11.8 3.7 12.2 3.8 12.6L2.1 14C1.9 14.2 1.9 14.5 2 14.7L3.6 17.5C3.7 17.7 4 17.8 4.2 17.7L6.2 16.9C6.6 17.2 7.1 17.5 7.5 17.7L7.8 19.8C7.8 20.1 8 20.3 8.3 20.3H11.7C12 20.3 12.2 20.1 12.2 19.8L12.5 17.7C12.9 17.5 13.4 17.2 13.8 16.9L15.8 17.7C16 17.8 16.3 17.7 16.4 17.5L18 14.7C18.1 14.5 18.1 14.2 17.9 14L16.2 12.6Z" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          <span class="text-sm font-semibold leading-none" style="color: #ffffff;">Specifications</span>
+        </div>
+        <svg class="icon icon-chevron icon-xs flex-auto" viewBox="0 0 24 24" stroke="#ffffff" fill="none" stroke-width="2" style="width: 16px; height: 16px;">
+          <polyline points="6 9 12 15 18 9"></polyline>
+        </svg>
+      </summary>
+      <div class="details__content rte text-sm" style="margin-top: 12px; color: rgba(255,255,255,0.75);">
+        <dl style="display: grid; grid-template-columns: auto 1fr; gap: 8px 16px; margin: 0; font-size: 13px;">
+          <dt style="font-weight: 600; color: #ffffff;">Vibration Speed:</dt>
+          <dd style="margin: 0; color: rgba(255,255,255,0.85);">40,000+ Sweeps/Min (45° Wide-Angle Bass Method)</dd>
+          
+          <dt style="font-weight: 600; color: #ffffff;">Pressure Sensor:</dt>
+          <dd style="margin: 0; color: rgba(255,255,255,0.85);">Smart Red Halo Ring Feedback</dd>
+          
+          <dt style="font-weight: 600; color: #ffffff;">Cleaning Modes:</dt>
+          <dd style="margin: 0; color: rgba(255,255,255,0.85);">3 Modes (Standard Clean, Whitening, Deep Clean)</dd>
+          
+          <dt style="font-weight: 600; color: #ffffff;">Battery Life:</dt>
+          <dd style="margin: 0; color: rgba(255,255,255,0.85);">Up to 90 Days (Cobalt Cell)</dd>
+          
+          <dt style="font-weight: 600; color: #ffffff;">Charging:</dt>
+          <dd style="margin: 0; color: rgba(255,255,255,0.85);">USB-C Fast Charging (2.5 – 3 Hours)</dd>
+          
+          <dt style="font-weight: 600; color: #ffffff;">Waterproof Rating:</dt>
+          <dd style="margin: 0; color: rgba(255,255,255,0.85);">IPX7 Full Immersion Submersible</dd>
+          
+          <dt style="font-weight: 600; color: #ffffff;">Smart Timer:</dt>
+          <dd style="margin: 0; color: rgba(255,255,255,0.85);">2-Minute Auto-Off with 30s Quad-Pacer</dd>
+          
+          <dt style="font-weight: 600; color: #ffffff;">Noise Level:</dt>
+          <dd style="margin: 0; color: rgba(255,255,255,0.85);">Whisper Quiet (&lt;50 dB)</dd>
+          
+          <dt style="font-weight: 600; color: #ffffff;">Bristle Type:</dt>
+          <dd style="margin: 0; color: rgba(255,255,255,0.85);">DuPont Precision Rounded End Nylon</dd>
+          
+          <dt style="font-weight: 600; color: #ffffff;">Body Material:</dt>
+          <dd style="margin: 0; color: rgba(255,255,255,0.85);">Aerospace CNC Aluminium Unibody</dd>
+        </dl>
+      </div>
+    </details>
+
+    <!-- Accordion 3: Package contents -->
+    <details class="product__accordion details" is="accordion-details" style="border-top: 1px solid rgba(255,255,255,0.12); padding: 12px 0;">
+      <summary class="details__summary flex items-center justify-between gap-2 cursor-pointer" style="color: #ffffff; outline: none; list-style: none;">
+        <div class="flex items-center gap-2.5" style="display: flex; align-items: center; gap: 10px;">
+          <svg class="icon icon-box icon-md" viewBox="0 0 20 20" stroke="#ffffff" fill="none" xmlns="http://www.w3.org/2000/svg" style="width: 20px; height: 20px;">
+            <path d="M6.24986 7.91666L13.7499 3.33333M9.99996 10.4167L17.5 5.83333M9.99996 10.4167L2.49996 5.83333M9.99996 10.4167V18.75M1.66663 8.55104V11.4489C1.66663 12.44 1.66663 12.9355 1.80881 13.3807C1.93464 13.7747 2.14059 14.1385 2.41371 14.4491C2.72235 14.8001 3.14725 15.055 3.99705 15.5649L7.53038 17.6849C8.42828 18.2237 8.87723 18.493 9.35649 18.5983C9.78042 18.6914 10.2195 18.6914 10.6434 18.5983C11.1227 18.493 11.5716 18.2237 12.4695 17.6849L16.0029 15.5649C16.8527 15.055 17.2776 14.8001 17.5862 14.4491C17.8593 14.1385 18.0653 13.7747 18.1911 13.3807C18.3333 12.9355 18.3333 12.44 18.3333 11.4489V8.55104C18.3333 7.56002 18.3333 7.0645 18.1911 6.61926C18.0653 6.22525 17.8593 5.86151 17.5862 5.5509C17.2776 5.19989 16.8527 4.94495 16.0029 4.43508L12.4695 2.31508C11.5716 1.77634 11.1227 1.50697 10.6434 1.40172C10.2195 1.30863 9.78042 1.30863 9.35649 1.40172C8.87723 1.50697 8.42828 1.77634 7.53038 2.31508L3.99705 4.43508C3.14725 4.94495 2.72235 5.19989 2.41371 5.5509C2.14059 5.86151 1.93464 6.22525 1.80881 6.61926C1.66663 7.0645 1.66663 7.56002 1.66663 8.55104Z" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          <span class="text-sm font-semibold leading-none" style="color: #ffffff;">Package contents</span>
+        </div>
+        <svg class="icon icon-chevron icon-xs flex-auto" viewBox="0 0 24 24" stroke="#ffffff" fill="none" stroke-width="2" style="width: 16px; height: 16px;">
+          <polyline points="6 9 12 15 18 9"></polyline>
+        </svg>
+      </summary>
+      <div class="details__content rte text-sm" style="margin-top: 12px; color: rgba(255,255,255,0.75); line-height: 1.6;">
+        <div style="margin-bottom: 12px; border-radius: 8px; overflow: hidden; border: 1px solid rgba(255,255,255,0.1);">
+          <img src="/assets_ref/x2/gallery/miroooo-x2-sonic-toothbrush-complete-set-packaging.webp" alt="Miroooo Brush X2 Complete Set Presentation Packaging" style="width: 100%; height: auto; display: block;" loading="lazy" />
+        </div>
+        <ul style="padding-left: 18px; margin: 0;">
+          <li>1x Miroooo Brush X2 Sonic Electric Toothbrush Handle (in selected colour)</li>
+          <li>1x 2x Precision DuPont Replacement Brush Heads (Gift)</li>
+          <li>1x Luxury Travel Case (Gift)</li>
+          <li>1x Magnetic USB-C Fast Charging Cable &amp; Stand</li>
+          <li>1x Luxury Presentation Box &amp; User Manual</li>
+        </ul>
+      </div>
+    </details>
+
+    <!-- Accordion 4: Certifications -->
+    <details class="product__accordion details" is="accordion-details" style="border-top: 1px solid rgba(255,255,255,0.12); border-bottom: 1px solid rgba(255,255,255,0.12); padding: 12px 0;">
+      <summary class="details__summary flex items-center justify-between gap-2 cursor-pointer" style="color: #ffffff; outline: none; list-style: none;">
+        <div class="flex items-center gap-2.5" style="display: flex; align-items: center; gap: 10px;">
+          <svg class="icon icon-shield icon-md" viewBox="0 0 20 20" stroke="#ffffff" fill="none" xmlns="http://www.w3.org/2000/svg" style="width: 20px; height: 20px;">
+            <path d="M10 2L3 5V10C3 14.5 6 18 10 19C14 18 17 14.5 17 10V5L10 2Z" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          <span class="text-sm font-semibold leading-none" style="color: #ffffff;">Certifications &amp; Safety</span>
+        </div>
+        <svg class="icon icon-chevron icon-xs flex-auto" viewBox="0 0 24 24" stroke="#ffffff" fill="none" stroke-width="2" style="width: 16px; height: 16px;">
+          <polyline points="6 9 12 15 18 9"></polyline>
+        </svg>
+      </summary>
+      <div class="details__content rte text-sm" style="margin-top: 12px; color: rgba(255,255,255,0.75); line-height: 1.6;">
+        <ul style="padding-left: 18px; margin: 0;">
+          <li><strong>CE Certified:</strong> Meets all European health, safety, and environmental protection standards.</li>
+          <li><strong>RoHS Compliant:</strong> Free from hazardous substances (lead, mercury, cadmium).</li>
+          <li><strong>IPX7 Waterproof:</strong> Laboratory-tested for full 1-meter immersion safety in shower and bath.</li>
+          <li><strong>FDA-Grade Materials:</strong> BPA-free medical-grade handle materials and food-safe DuPont bristles.</li>
+        </ul>
+      </div>
+    </details>
+  </div>
 </div>
     </div>
     <!-- MUUHU-INSPIRED FLOATING PILL STICKY ADD TO CART -->
@@ -3643,47 +3840,9 @@ theme.variantStrings = {
 <script src="https://cdnjs.cloudflare.com/ajax/libs/flickity/2.3.0/flickity.pkgd.min.js"></script>
 <script>
 const VARIANTS_DATA = {
-  "Pink": {
-    name: "Pink",
-    title: "Brush X2 Pink",
-    price: "£79",
-    variantId: "1000020348810062",
-    productId: "1000000664011618",
-    swatchColor: "#f2a7b3",
-    images: [
-      "/assets_ref/x2/gallery/miroooo-x2-sonic-toothbrush-ipx7-waterproof.webp",
-      "/assets_ref/x2/gallery/miroooo-x2-sonic-electric-toothbrush-silver-in-hand.webp",
-      "/assets_ref/x2/gallery/miroooo-x2-sonic-electric-toothbrush-upright-grip.webp",
-      "/assets_ref/x2/gallery/miroooo-x2-sonic-toothbrush-precision-bristle-head.webp",
-      "/assets_ref/x2/gallery/miroooo-x2-sonic-toothbrush-smart-pressure-sensor-ring.jpg",
-      "/assets_ref/x2/gallery/miroooo-x2-sonic-toothbrush-usbc-fast-charging-port.webp",
-      "/assets_ref/x2/gallery/miroooo-x2-sonic-toothbrush-portable-travel-cap.webp",
-      "/assets_ref/x2/gallery/miroooo-x2-sonic-toothbrush-ventilated-travel-case.webp",
-      "/assets_ref/x2/gallery/miroooo-x2-sonic-toothbrush-complete-set-packaging.webp"
-    ]
-  },
-  "Grey": {
-    name: "Grey",
-    title: "Brush X2 Grey",
-    price: "£79",
-    variantId: "1000020348810048",
-    productId: "1000000664011618",
-    swatchColor: "#737373",
-    images: [
-      "/assets_ref/x2/gallery/miroooo-x2-sonic-toothbrush-ipx7-waterproof.webp",
-      "/assets_ref/x2/gallery/miroooo-x2-sonic-electric-toothbrush-silver-in-hand.webp",
-      "/assets_ref/x2/gallery/miroooo-x2-sonic-electric-toothbrush-upright-grip.webp",
-      "/assets_ref/x2/gallery/miroooo-x2-sonic-toothbrush-precision-bristle-head.webp",
-      "/assets_ref/x2/gallery/miroooo-x2-sonic-toothbrush-smart-pressure-sensor-ring.jpg",
-      "/assets_ref/x2/gallery/miroooo-x2-sonic-toothbrush-usbc-fast-charging-port.webp",
-      "/assets_ref/x2/gallery/miroooo-x2-sonic-toothbrush-portable-travel-cap.webp",
-      "/assets_ref/x2/gallery/miroooo-x2-sonic-toothbrush-ventilated-travel-case.webp",
-      "/assets_ref/x2/gallery/miroooo-x2-sonic-toothbrush-complete-set-packaging.webp"
-    ]
-  },
   "Silver": {
     name: "Silver",
-    title: "Brush X2 Silver",
+    title: "Brush X2 - Silver",
     price: "£79",
     variantId: "1000020348810046",
     productId: "1000000664011618",
@@ -3698,6 +3857,44 @@ const VARIANTS_DATA = {
       "/assets_ref/x2/gallery/miroooo-x2-sonic-toothbrush-portable-travel-cap.webp",
       "/assets_ref/x2/gallery/miroooo-x2-sonic-toothbrush-ventilated-travel-case.webp",
       "/assets_ref/x2/gallery/miroooo-x2-sonic-toothbrush-complete-set-packaging.webp"
+    ]
+  },
+  "Pink": {
+    name: "Pink",
+    title: "Brush X2 - Pink",
+    price: "£79",
+    variantId: "1000020348810062",
+    productId: "1000000664011618",
+    swatchColor: "#f2a7b3",
+    images: [
+      "/assets_ref/x2/gallery/miroooo-x2-pink-toothbrush-ipx7-waterproof.webp",
+      "/assets_ref/x2/gallery/miroooo-x2-pink-in-hand.webp",
+      "/assets_ref/x2/gallery/miroooo-x2-pink-electric-toothbrush-upright-grip.webp",
+      "/assets_ref/x2/gallery/miroooo-x2-pink-toothbrush-precision-bristle-head.webp",
+      "/assets_ref/x2/gallery/miroooo-x2-pink-toothbrush-smart-pressure-sensor-ring.jpg",
+      "/assets_ref/x2/gallery/miroooo-x2-pink-toothbrush-usbc-fast-charging-port.webp",
+      "/assets_ref/x2/gallery/miroooo-x2-pink-toothbrush-portable-travel-cap.webp",
+      "/assets_ref/x2/gallery/miroooo-x2-pink-toothbrush-ventilated-travel-case.webp",
+      "/assets_ref/x2/gallery/miroooo-x2-pink-toothbrush-complete-set-packaging.webp"
+    ]
+  },
+  "Grey": {
+    name: "Grey",
+    title: "Brush X2 - Grey",
+    price: "£79",
+    variantId: "1000020348810048",
+    productId: "1000000664011618",
+    swatchColor: "#737373",
+    images: [
+      "/assets_ref/x2/gallery/miroooo-x2-grey-toothbrush-ipx7-waterproof.webp",
+      "/assets_ref/x2/gallery/miroooo-x2-grey-in-hand.webp",
+      "/assets_ref/x2/gallery/miroooo-x2-grey-electric-toothbrush-upright-grip.webp",
+      "/assets_ref/x2/gallery/miroooo-x2-grey-toothbrush-precision-bristle-head.webp",
+      "/assets_ref/x2/gallery/miroooo-x2-grey-toothbrush-smart-pressure-sensor-ring.jpg",
+      "/assets_ref/x2/gallery/miroooo-x2-grey-toothbrush-usbc-fast-charging-port.webp",
+      "/assets_ref/x2/gallery/miroooo-x2-grey-toothbrush-portable-travel-cap.webp",
+      "/assets_ref/x2/gallery/miroooo-x2-grey-toothbrush-ventilated-travel-case.webp",
+      "/assets_ref/x2/gallery/miroooo-x2-grey-toothbrush-complete-set-packaging.webp"
     ]
   }
 };
@@ -3757,11 +3954,57 @@ const TIERS = {
 };
 
 let activeTierId = 'bundle-2'; // Default preselected
+let activeSelectedColor = 'Silver';
+
 const choicesState = {
-  'single': ['Grey'],
-  'bundle-2': ['Grey', 'Pink'],
-  'bundle-3': ['Grey', 'Pink', 'Silver']
+  'single': ['Silver'],
+  'bundle-2': ['Silver', 'Pink'],
+  'bundle-3': ['Silver', 'Pink', 'Grey']
 };
+
+function selectStandaloneColor(colorName) {
+  if (!VARIANTS_DATA[colorName]) return;
+  activeSelectedColor = colorName;
+
+  // 1. Update Standalone Color Name
+  const colorNameEl = document.getElementById('standalone-color-name');
+  if (colorNameEl) {
+    colorNameEl.textContent = colorName;
+  }
+
+  // 2. Update Standalone Swatch active ring
+  document.querySelectorAll('.standalone-swatch-btn').forEach(btn => {
+    if (btn.dataset.color === colorName) {
+      btn.classList.add('is-active');
+    } else {
+      btn.classList.remove('is-active');
+    }
+  });
+
+  // 3. Update active tier #1 brush choice to match standalone selection
+  if (choicesState[activeTierId]) {
+    choicesState[activeTierId][0] = colorName;
+    const panel = document.getElementById('panel-' + activeTierId);
+    if (panel) {
+      const swatchesContainer = panel.querySelectorAll('.brush-color-swatches')[0];
+      if (swatchesContainer) {
+        swatchesContainer.querySelectorAll('.color-swatch-btn').forEach(btn => {
+          if (btn.getAttribute('title') === colorName || btn.getAttribute('aria-label') === colorName) {
+            btn.classList.add('is-active');
+          } else {
+            btn.classList.remove('is-active');
+          }
+        });
+      }
+    }
+  }
+
+  // 4. Update Gallery
+  selectColorVariant(colorName);
+
+  // 5. Update Sticky Bar
+  updateStickyBar();
+}
 
 function selectBundleTier(tierId) {
   if (!TIERS[tierId]) return;
@@ -3785,13 +4028,11 @@ function selectBundleTier(tierId) {
     }
   });
 
-  // 3. Top Hero Price Block remains static (£79 / £159 / 50% OFF)
-
-  // 4. Update Main CTA Button Text
+  // 3. Update Main CTA Button Text
   const mainCtaText = document.getElementById('main-cta-text');
   if (mainCtaText) mainCtaText.textContent = tier.ctaText;
 
-  // 5. Update Free Gifts Section (All 3 permanently unlocked)
+  // 4. Update Free Gifts Section (All 3 permanently unlocked)
   const giftsBanner = document.getElementById('gifts-total-value-banner');
   if (giftsBanner) giftsBanner.textContent = '£60.85';
 
@@ -3815,12 +4056,12 @@ function selectBundleTier(tierId) {
     giftBadge3.innerHTML = 'FREE <span style="text-decoration: line-through; opacity: 0.8; font-weight: normal; margin-left: 2px;">£24.95</span>';
   }
 
-  // 6. Update Sticky Bar
+  // 5. Update Sticky Bar
   updateStickyBar();
 
-  // 7. Sync Gallery to first brush color in active tier
-  const firstColor = choicesState[tierId][0] || 'Grey';
-  selectColorVariant(firstColor);
+  // 6. Sync Gallery to first brush color in active tier
+  const firstColor = choicesState[tierId][0] || 'Silver';
+  selectStandaloneColor(firstColor);
 }
 
 function setBrushChoice(tierId, index, colorName, event) {
@@ -3843,12 +4084,12 @@ function setBrushChoice(tierId, index, colorName, event) {
     }
   }
 
-  // If first brush color changed, update gallery
+  // If first brush color changed, update standalone selector & gallery
   if (index === 0) {
-    selectColorVariant(colorName);
+    selectStandaloneColor(colorName);
   }
 
-  // Update Sticky Bar options
+  // Update Sticky Bar
   updateStickyBar();
 }
 
@@ -3856,9 +4097,9 @@ function updateStickyBar() {
   const tier = TIERS[activeTierId];
   if (!tier) return;
 
-  const choices = choicesState[activeTierId] || ['Grey'];
-  const firstColor = choices[0] || 'Grey';
-  const colorData = VARIANTS_DATA[firstColor] || VARIANTS_DATA['Grey'];
+  const choices = choicesState[activeTierId] || ['Silver'];
+  const firstColor = choices[0] || 'Silver';
+  const colorData = VARIANTS_DATA[firstColor] || VARIANTS_DATA['Silver'];
 
   // 1. Sticky Title
   const stickyTitle = document.getElementById('sticky-bar-title');
@@ -3904,7 +4145,7 @@ function selectColorVariant(colorName) {
   const mainTitle = document.getElementById('main-product-title');
   if (mainTitle) mainTitle.textContent = data.title;
 
-  // 2. Update Main Gallery Images
+  // 2. Update Main Gallery Images (excluding video slide)
   const galleryImageMedia = document.querySelectorAll('.product__media-list .product__media:not(.product__media--video)');
   galleryImageMedia.forEach((mediaEl, idx) => {
     if (data.images[idx]) {
@@ -3919,7 +4160,7 @@ function selectColorVariant(colorName) {
     }
   });
 
-  // 3. Update Thumbnails
+  // 3. Update Thumbnails (excluding video thumbnail)
   const thumbElements = document.querySelectorAll('.product__thumbnails-list .product__thumbnail:not([data-media-type="video"])');
   thumbElements.forEach((thumbEl, idx) => {
     if (data.images[idx]) {
@@ -3954,7 +4195,7 @@ function handleAddToCartAndRedirect() {
   const tier = TIERS[activeTierId] || TIERS['bundle-2'];
   const choices = (choicesState[activeTierId] && choicesState[activeTierId].length > 0)
     ? choicesState[activeTierId].slice(0, tier.count)
-    : ['Grey', 'Pink'];
+    : ['Silver', 'Pink'];
 
   try {
     localStorage.setItem('miroooo_cart', JSON.stringify({
