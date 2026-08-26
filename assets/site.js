@@ -81,12 +81,12 @@
                   <ul class="drawer__submenu" role="list">
                     <li>
                       <a class="drawer__submenu-item flex flex-col" href="/products/miroooo-x">
-                        <span class="drawer__submenu-title">Miroooo X</span>
+                        <span class="drawer__submenu-title">Brush X</span>
                       </a>
                     </li>
                     <li>
                       <a class="drawer__submenu-item flex flex-col" href="/products/miroooo-x2">
-                        <span class="drawer__submenu-title">Miroooo X2</span>
+                        <span class="drawer__submenu-title">Brush X2</span>
                       </a>
                     </li>
                   </ul>
@@ -133,10 +133,10 @@
                     </button>
                     <div class="dropdown-menu" role="menu">
                       <a href="/products/miroooo-x" class="dropdown-item" role="menuitem">
-                        <div class="dropdown-item__title">Miroooo X</div>
+                        <div class="dropdown-item__title">Brush X</div>
                       </a>
                       <a href="/products/miroooo-x2" class="dropdown-item" role="menuitem">
-                        <div class="dropdown-item__title">Miroooo X2</div>
+                        <div class="dropdown-item__title">Brush X2</div>
                       </a>
                     </div>
                   </li>
@@ -243,8 +243,8 @@
               <h4 class="site-footer__heading">SHOP</h4>
               <ul class="site-footer__links">
                 <li><a href="/">Home</a></li>
-                <li><a href="/products/miroooo-x" data-product-link>Miroooo X</a></li>
-                <li><a href="/products/miroooo-x2" data-product-link>Miroooo X2</a></li>
+                <li><a href="/products/miroooo-x" data-product-link>Brush X</a></li>
+                <li><a href="/products/miroooo-x2" data-product-link>Brush X2</a></li>
                 <li><a href="/privacy">Privacy Policy</a></li>
                 <li><a href="/return-policy">Return Policy</a></li>
                 <li><a href="/shipping-policy">Shipping Policy</a></li>
@@ -876,7 +876,7 @@
           if (parsed && parsed.quantity > 0) {
             const isX2 = parsed.productId === "miroooo-x2";
             const productHandle = isX2 ? "miroooo-x2" : "miroooo-x";
-            const title = isX2 ? "Miroooo X2" : "Miroooo X";
+            const title = isX2 ? "Brush X2" : "Brush X";
             const colors = Array.isArray(parsed.colors) && parsed.colors.length > 0 ? parsed.colors : ["Grey"];
 
             let unitPrice = 59;
@@ -1144,7 +1144,7 @@
                 <path d="M16 10a4 4 0 0 1-8 0"></path>
               </svg>
               <h3 class="miroooo-empty-title">Your shopping bag is empty.</h3>
-              <p class="miroooo-empty-text">Add the Miroooo X or Miroooo X2 to unlock current offers and free shipping.</p>
+              <p class="miroooo-empty-text">Add the Brush X or Brush X2 to unlock current offers and free shipping.</p>
               <a href="/shop" class="miroooo-empty-shop-btn" onclick="window.MirooooCart.closeCart()">
                 Shop Miroooo
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>

@@ -10,7 +10,7 @@ UK shoppers who want a premium electric toothbrush that feels considered, travel
 
 ## Product Purpose
 
-Miroooo is a focused oral-care storefront for two electric toothbrush models, Miroooo X and Miroooo X2. The store should make model selection straightforward, carry visitors from discovery into the approved product pages, and keep the browsing experience under the Miroooo brand until the external payment step is configured. Success means visitors can understand the range, trust the store, reach the right product and find honest support or policy information without friction.
+Miroooo is a focused oral-care storefront for two electric toothbrush models, Brush X and Brush X2. The store should make model selection straightforward, carry visitors from discovery into the approved product pages, and keep the browsing experience under the Miroooo brand until the external payment step is configured. Success means visitors can understand the range, trust the store, reach the right product and find honest support or policy information without friction.
 
 ## Brand Personality
 

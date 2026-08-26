@@ -81,7 +81,7 @@
       displayDate: '16 August 2026',
       variant: 'Color: Grey',
       title: 'Retired my Oral-B iO — far gentler on gums with better plaque removal',
-      body: 'Used Oral-B electric brushes for nearly a decade. The rotating head always felt aggressive on my gumline. Switched to the Miroooo X micro-vibrations and my gums haven\'t bled once. Teeth feel silky smooth after every 2-minute cycle.',
+      body: 'Used Oral-B electric brushes for nearly a decade. The rotating head always felt aggressive on my gumline. Switched to the Brush X micro-vibrations and my gums haven\'t bled once. Teeth feel silky smooth after every 2-minute cycle.',
       images: ['/assets_ref/reviews/customer-review-bristle-head-detail.png'],
       helpful: 42,
       verified: true
@@ -123,7 +123,7 @@
       displayDate: '10 August 2026',
       variant: 'Color: Grey',
       title: 'Whisper quiet acoustic motor — noticeably quieter than my old SURI',
-      body: 'My old SURI brush made a loud buzzing rattle in the morning that woke up my partner. The Miroooo X is whisper quiet with almost zero handle vibration fatigue. The 32,000 VPM feels refined and comfortable.',
+      body: 'My old SURI brush made a loud buzzing rattle in the morning that woke up my partner. The Brush X is whisper quiet with almost zero handle vibration fatigue. The 32,000 VPM feels refined and comfortable.',
       images: [],
       helpful: 39,
       verified: true
@@ -263,7 +263,7 @@
       displayDate: '15 July 2026',
       variant: 'Color: Pink',
       title: 'Replaced my bulky Philips Sonicare — slimmer, lighter and lasts way longer',
-      body: 'My old Sonicare DiamondClean felt like a heavy brick and the rubber grip started peeling after a year. The Miroooo X full aluminium shell is so much more premium and hygienic. Very happy customer.',
+      body: 'My old Sonicare DiamondClean felt like a heavy brick and the rubber grip started peeling after a year. The Brush X full aluminium shell is so much more premium and hygienic. Very happy customer.',
       images: [],
       helpful: 47,
       verified: true
@@ -305,7 +305,7 @@
       displayDate: '6 July 2026',
       variant: 'Color: Silver',
       title: 'Aerospace aluminium finish is in a completely different league',
-      body: 'Every electric toothbrush on the market is cheap moulded plastic that gets discoloured and grimy. The seamless aluminium unibody on the Miroooo X feels like precision industrial design. Fits neatly into its case for gym and weekend trips.',
+      body: 'Every electric toothbrush on the market is cheap moulded plastic that gets discoloured and grimy. The seamless aluminium unibody on the Brush X feels like precision industrial design. Fits neatly into its case for gym and weekend trips.',
       images: ['/assets_ref/reviews/customer-review-aluminium-handle-case.png'],
       helpful: 52,
       verified: true
@@ -340,7 +340,7 @@
       merchantReply: {
         author: 'Miroooo Customer Experience Team',
         date: '20 June 2026',
-        text: 'Hello Alexander, thank you for your honest feedback! We are glad your Miroooo X is performing impeccably, but we apologize for the rough handling by the postal courier. We have upgraded our outbound packaging to heavy-duty double-wall corrugated cartons, and our team has added a complimentary 2-pack of DuPont brush heads to your account.'
+        text: 'Hello Alexander, thank you for your honest feedback! We are glad your Brush X is performing impeccably, but we apologize for the rough handling by the postal courier. We have upgraded our outbound packaging to heavy-duty double-wall corrugated cartons, and our team has added a complimentary 2-pack of DuPont brush heads to your account.'
       }
     },
     {
@@ -359,7 +359,7 @@
       merchantReply: {
         author: 'Miroooo Support Care',
         date: '15 June 2026',
-        text: 'Dear David, we understand how frustrating carrier backlogs can be during holiday peaks. Our policy is to immediately intervene and dispatch a priority express replacement at zero cost when couriers stall. We are glad our support team took care of you and that you are enjoying the Miroooo X clean!'
+        text: 'Dear David, we understand how frustrating carrier backlogs can be during holiday peaks. Our policy is to immediately intervene and dispatch a priority express replacement at zero cost when couriers stall. We are glad our support team took care of you and that you are enjoying the Brush X clean!'
       }
     },
     {
@@ -416,7 +416,7 @@
       merchantReply: {
         author: 'Miroooo Customer Care',
         date: '8 June 2026',
-        text: 'Hi Lars, thank you for your feedback! To reduce global electronic waste, the Miroooo X includes a universal USB-C cable and magnetic dock compatible with any standard 5V adapter, laptop, or power bank. Because the battery only needs charging once every 60 days, most customers use their existing phone charger. We appreciate your valuable input!'
+        text: 'Hi Lars, thank you for your feedback! To reduce global electronic waste, the Brush X includes a universal USB-C cable and magnetic dock compatible with any standard 5V adapter, laptop, or power bank. Because the battery only needs charging once every 60 days, most customers use their existing phone charger. We appreciate your valuable input!'
       }
     },
     {
@@ -447,7 +447,7 @@
       displayDate: '27 May 2026',
       variant: 'Color: Silver',
       title: 'Great hardware, delivery took 6 days to Spain',
-      body: 'The Miroooo X device itself is 5 stars—whisper quiet, waterproof, and sleek. Took 6 business days for international shipping to arrive in Madrid instead of the promised 3-4 days. Customer support was polite and tracked the parcel.',
+      body: 'The Brush X device itself is 5 stars—whisper quiet, waterproof, and sleek. Took 6 business days for international shipping to arrive in Madrid instead of the promised 3-4 days. Customer support was polite and tracked the parcel.',
       images: [],
       helpful: 11,
       verified: true,
@@ -970,7 +970,7 @@
 
   // ==========================================================================
   // HIGH-PERFORMANCE 4,275 REVIEW DATASET & GENERATOR ENGINE
-  // Tailored 100% to Miroooo X specifications with strict anti-duplication
+  // Tailored 100% to Brush X specifications with strict anti-duplication
   // ==========================================================================
 
   const FIRST_NAMES = [
@@ -1094,12 +1094,12 @@
   ];
 
   const FIVE_STAR_OPENERS = [
-    'I have tested nearly every major electric toothbrush brand over the past decade, but the Miroooo X operates on a completely different level.',
-    'After my dental hygienist warned me about early gum recession from aggressive manual brushing, I immediately ordered the Miroooo X.',
+    'I have tested nearly every major electric toothbrush brand over the past decade, but the Brush X operates on a completely different level.',
+    'After my dental hygienist warned me about early gum recession from aggressive manual brushing, I immediately ordered the Brush X.',
     'I travel constantly for business across Europe and North America, and I was so tired of packing chunky proprietary chargers.',
     'As someone with very sensitive teeth and mild fluorosis, finding an electric toothbrush that doesn\'t cause toothache was a major challenge.',
     'My previous electric toothbrush sounded like an industrial drill and vibrated my entire skull every single morning.',
-    'I was skeptical about the 60-day battery claim at first, but after two full months of twice-daily use, the Miroooo X proved me wrong.',
+    'I was skeptical about the 60-day battery claim at first, but after two full months of twice-daily use, the Brush X proved me wrong.',
     'Bought this based on the recommendation of a colleague who is a dental surgeon, and it has exceeded every possible expectation.',
     'The moment you hold this brush in your hand, the anodized finish and weighted ergonomic balance feel like high-end precision audio hardware.',
     'I have a permanent retainer behind my lower teeth which constantly traps plaque, making manual brushing very frustrating.',
@@ -1135,7 +1135,7 @@
     'Truly an exceptional piece of modern industrial design and oral care engineering. Five stars all the way.',
     'I have already purchased a second unit in Pink for my partner, and she is just as enamored with it.',
     'Easily the best £59 investment I have made for my daily wellness routine this year.',
-    'If you are on the fence between this and overpriced drugstore brands, get the Miroooo X — you will not regret it.',
+    'If you are on the fence between this and overpriced drugstore brands, get the Brush X — you will not regret it.',
     'A masterclass in minimalist design, quiet performance, and uncompromising battery longevity.',
     'My only regret is that I did not switch to this acoustic technology years earlier.',
     'Top tier build quality, rapid delivery, and immaculate packaging. Truly a 10 out of 10 product.'
@@ -1158,7 +1158,7 @@
   const FOUR_STAR_BODIES = [
     'The 32,000 VPM motor and DuPont bristles clean exceptionally well — my teeth feel just like they do after a hygienist scale and polish. The battery longevity is genuine as I have only charged it once since getting it. My only small suggestion is that the single unit bundle should include four replacement heads instead of two.',
     'If you are transitioning from a manual toothbrush or a slow oscillating brush, the high-frequency acoustic vibration feels very ticklish on the lips for the first 48 hours. Start on Sensitive mode! By day 3 I was fully accustomed to it and now I could never go back.',
-    'The Miroooo X device itself is 10 out of 10. Sleek Grey finish, whisper-quiet motor, and the magnetic dock holds solid on the wall. The USB cable that connects to the dock was a little short for my bathroom layout, but any standard USB-C cable works fine.',
+    'The Brush X device itself is 10 out of 10. Sleek Grey finish, whisper-quiet motor, and the magnetic dock holds solid on the wall. The USB cable that connects to the dock was a little short for my bathroom layout, but any standard USB-C cable works fine.',
     'My teeth have never looked cleaner or felt smoother. The Whitening mode lifted coffee stains within three weeks without irritating my gums. The only reason for 4 stars instead of 5 is that I would like to order replacement heads in mixed color packs for family members.',
     'The ventilated travel case is very well made and protects the power button inside my suitcase. The magnetic charging dock works smoothly. Brushing performance is top tier and my dentist confirmed my gums look significantly healthier.',
     'The 30-second quadrant pacer is very helpful once you get used to the brief vibration pause. Battery is still going strong after 5 weeks without recharging. Overall a superb toothbrush that easily beats the expensive legacy brands.'
@@ -1175,7 +1175,7 @@
 
   const THREE_STAR_BODIES = [
     'The toothbrush is undeniably well manufactured and the 60-day battery claim appears accurate. However, the 32,000 VPM motor is quite intense even on the lowest mode. I recommend starting strictly on Sensitive mode for the first full week until your gums and teeth acclimate.',
-    'The Miroooo X hardware is very high quality — whisper quiet, completely waterproof, and the travel case is great. Delivery to Europe took 6 business days rather than the estimated 3-4 days. Customer support was polite and provided tracking when asked.',
+    'The Brush X hardware is very high quality — whisper quiet, completely waterproof, and the travel case is great. Delivery to Europe took 6 business days rather than the estimated 3-4 days. Customer support was polite and provided tracking when asked.',
     'Cleaning performance is good and the magnetic dock is a very clean solution. The satin finish is beautiful, though if you have soapy hands in the shower you need to maintain a firm grip. Plaque removal is noticeably better than my old manual brush.',
     'A good electric toothbrush with great battery longevity. Make sure your bathroom tile is completely clean and smooth before applying the 3M magnetic wall plate so it adheres securely.'
   ];
@@ -1197,11 +1197,11 @@
   const TWO_STAR_REPLIES = [
     {
       author: 'Miroooo Customer Experience Team',
-      text: 'Thank you for your feedback! We are delighted that your Miroooo X is performing well. We have upgraded our outbound packaging to heavy-duty corrugated cartons to prevent courier transit damage, and our team has credited a complimentary 2-pack of DuPont brush heads to your account.'
+      text: 'Thank you for your feedback! We are delighted that your Brush X is performing well. We have upgraded our outbound packaging to heavy-duty corrugated cartons to prevent courier transit damage, and our team has credited a complimentary 2-pack of DuPont brush heads to your account.'
     },
     {
       author: 'Miroooo Customer Care',
-      text: 'Hi there, thank you for sharing your experience! To minimize global electronic waste, Miroooo X includes a universal USB-C magnetic dock compatible with any standard 5V wall adapter or power bank. Because the battery lasts 60 days, most users only plug it in 6 times a year. We appreciate your valuable feedback!'
+      text: 'Hi there, thank you for sharing your experience! To minimize global electronic waste, Brush X includes a universal USB-C magnetic dock compatible with any standard 5V wall adapter or power bank. Because the battery lasts 60 days, most users only plug it in 6 times a year. We appreciate your valuable feedback!'
     }
   ];
 
@@ -1222,11 +1222,11 @@
   const ONE_STAR_REPLIES = [
     {
       author: 'Miroooo Support Care',
-      text: 'Dear customer, we sincerely apologize for the carrier delay during the peak holiday volume. Our strict policy is to immediately dispatch a priority express replacement at zero charge whenever a courier stalls. We are glad our support team took care of you and that you are enjoying your Miroooo X clean!'
+      text: 'Dear customer, we sincerely apologize for the carrier delay during the peak holiday volume. Our strict policy is to immediately dispatch a priority express replacement at zero charge whenever a courier stalls. We are glad our support team took care of you and that you are enjoying your Brush X clean!'
     },
     {
       author: 'Miroooo Client Services',
-      text: 'Thank you for your patience! We take logistics reliability very seriously and intervened immediately to ensure your replacement was delivered. We hope the Miroooo X provides you with years of immaculate oral care.'
+      text: 'Thank you for your patience! We take logistics reliability very seriously and intervened immediately to ensure your replacement was delivered. We hope the Brush X provides you with years of immaculate oral care.'
     }
   ];
 

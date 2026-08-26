@@ -128,8 +128,8 @@
       height: 44px;
       flex-shrink: 0;
       border-radius: 50%;
-      background: rgba(0, 0, 0, 0.07);
-      color: #000000;
+      background: #000000;
+      color: #ffffff;
       display: grid;
       place-items: center;
       border: 1px solid rgba(0, 0, 0, 0.12);
@@ -1348,7 +1348,7 @@
         </svg>
         <h1 class="cart-empty-title">Your cart is empty.</h1>
         <p class="cart-empty-desc">
-          Add the Miroooo X or Miroooo X2 to unlock current bundle offers, complimentary DuPont brush heads, and free tracked UK delivery.
+          Add the Brush X or Brush X2 to unlock current bundle offers, complimentary DuPont brush heads, and free tracked UK delivery.
         </p>
         <a href="/shop" class="cart-empty-shop-btn" is="hover-button">
           Shop Miroooo
@@ -1422,7 +1422,7 @@
       const PRODUCTS_CONFIG = {
         "miroooo-x": {
           id: "miroooo-x",
-          name: "Miroooo X",
+          name: "Brush X",
           productId: "1000000664011633",
           source: "miroooo",
           subtitle: "Electric Toothbrush with 32,000 VPM acoustic motor & 60-day battery.",
@@ -1440,7 +1440,7 @@
         },
         "miroooo-x2": {
           id: "miroooo-x2",
-          name: "Miroooo X2",
+          name: "Brush X2",
           productId: "1000000664011618",
           source: "miroooo-x2",
           subtitle: "Precision Guided Electric Toothbrush with 45° sweep guidance & 90-day battery.",
@@ -1513,7 +1513,7 @@
           return { productId: prodParam, quantity: qty, colors: colors };
         }
 
-        // Default: Miroooo X Buy 2 Bundle (Grey + Pink)
+        // Default: Brush X Buy 2 Bundle (Grey + Pink)
         return {
           productId: "miroooo-x",
           quantity: 2,

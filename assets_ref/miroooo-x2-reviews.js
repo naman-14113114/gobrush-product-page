@@ -42,7 +42,7 @@
     return dateStr;
   }
 
-  // Miroooo X2 Authentic Curated Reviews
+  // Brush X2 Authentic Curated Reviews
   const CURATED_REVIEWS = [
     {
       id: 'x2-01',
@@ -53,7 +53,7 @@
       displayDate: '19 Aug 2026',
       variant: 'Grey / Double Pack',
       title: 'The 45° swept vibration Bass method is genuinely revolutionary',
-      body: 'As a practicing dental surgeon for over 16 years, I routinely lecture patients on the Bass brushing technique. Most electric toothbrushes just vibrate randomly in place. The Miroooo X2 is the first unit I\'ve tested that physically sweeps at a true 45° angle along the gingival margin. My personal plaque index dropped to near zero within two weeks. The micro-diamond Dupont bristles are impeccably rounded.',
+      body: 'As a practicing dental surgeon for over 16 years, I routinely lecture patients on the Bass brushing technique. Most electric toothbrushes just vibrate randomly in place. The Brush X2 is the first unit I\'ve tested that physically sweeps at a true 45° angle along the gingival margin. My personal plaque index dropped to near zero within two weeks. The micro-diamond Dupont bristles are impeccably rounded.',
       images: [],
       helpful: 84,
       verified: true
@@ -81,7 +81,7 @@
       displayDate: '14 Aug 2026',
       variant: 'Pink / Single',
       title: 'Red pressure ring saved my sensitive gums',
-      body: 'I used to scrub aggressively until my gums would bleed regularly. The instant the Miroooo X2 detects excess pressure, the red halo LED illuminates and the sweep rhythm softens automatically. My gums haven\'t bled once in 3 months of daily use.',
+      body: 'I used to scrub aggressively until my gums would bleed regularly. The instant the Brush X2 detects excess pressure, the red halo LED illuminates and the sweep rhythm softens automatically. My gums haven\'t bled once in 3 months of daily use.',
       images: [],
       helpful: 47,
       verified: true
@@ -165,7 +165,7 @@
       displayDate: '24 Jul 2026',
       variant: 'Silver / Single',
       title: 'The capacitive button design solves hygiene issues',
-      body: 'Normal electric toothbrushes have rubberized power switches where grime and calcium buildup accumulates and turns black. The unibody capacitive button on Miroooo X2 is completely flush and wipes clean with a cloth in two seconds.',
+      body: 'Normal electric toothbrushes have rubberized power switches where grime and calcium buildup accumulates and turns black. The unibody capacitive button on Brush X2 is completely flush and wipes clean with a cloth in two seconds.',
       images: [],
       helpful: 22,
       verified: true
@@ -179,7 +179,7 @@
       displayDate: '20 Jul 2026',
       variant: 'Grey / Double Pack',
       title: 'Upgraded from Sonicare DiamondClean - this is miles better',
-      body: 'My Sonicare had a failing battery after 14 months and the rubber seals molded. The Miroooo X2 battery is in a different league and the 45-degree sweeping mechanism removes far more stubborn interdental debris without gum irritation.',
+      body: 'My Sonicare had a failing battery after 14 months and the rubber seals molded. The Brush X2 battery is in a different league and the 45-degree sweeping mechanism removes far more stubborn interdental debris without gum irritation.',
       images: [],
       helpful: 35,
       verified: true
@@ -291,14 +291,14 @@
       displayDate: '17 Jun 2026',
       variant: 'Grey / Single',
       title: 'Royal Mail delivery was delayed by 4 days, brush itself is solid',
-      body: 'The Miroooo X2 device is well made and cleans thoroughly, but the tracked shipping took nearly a week to arrive in Manchester when 48-hour delivery was expected at checkout.',
+      body: 'The Brush X2 device is well made and cleans thoroughly, but the tracked shipping took nearly a week to arrive in Manchester when 48-hour delivery was expected at checkout.',
       images: [],
       helpful: 9,
       verified: true,
       merchantReply: {
         author: 'Response from Miroooo Customer Care',
         date: '18 Jun 2026',
-        text: 'Hi Lucas, we sincerely apologize for the regional postal carrier bottleneck in June. We have since upgraded our UK dispatch logistics to priority tracked Royal Mail 24/48 to ensure every Miroooo X2 arrives on schedule.'
+        text: 'Hi Lucas, we sincerely apologize for the regional postal carrier bottleneck in June. We have since upgraded our UK dispatch logistics to priority tracked Royal Mail 24/48 to ensure every Brush X2 arrives on schedule.'
       }
     },
     {
@@ -336,7 +336,7 @@
       merchantReply: {
         author: 'Response from Miroooo Customer Care',
         date: '03 Jun 2026',
-        text: 'Hi Arthur, thank you for bringing this to our attention. While we are glad the internal protective casing kept your Miroooo X2 in pristine working order, we have forwarded your feedback to our fulfillment warehouse to introduce reinforced corrugated outer mailers.'
+        text: 'Hi Arthur, thank you for bringing this to our attention. While we are glad the internal protective casing kept your Brush X2 in pristine working order, we have forwarded your feedback to our fulfillment warehouse to introduce reinforced corrugated outer mailers.'
       }
     },
     {
@@ -451,7 +451,7 @@
       displayDate: '24 Apr 2026',
       variant: 'Silver / Double Pack',
       title: 'No mold or water damage after 4 months in a humid bathroom',
-      body: 'Our bathroom has poor ventilation and my previous brush developed black mold along the rubber seams. Miroooo X2\'s seamless capacitive metal body stays 100% spotless.',
+      body: 'Our bathroom has poor ventilation and my previous brush developed black mold along the rubber seams. Brush X2\'s seamless capacitive metal body stays 100% spotless.',
       images: [],
       helpful: 32,
       verified: true
@@ -521,7 +521,7 @@
       displayDate: '01 Apr 2026',
       variant: 'Grey / Double Pack',
       title: 'Replaced our family Oral-B iO brushes - never looking back',
-      body: 'We bought the Double Pack for myself and my wife. The Miroooo X2 is sleeker, quieter, cleans far better around the gumline, and only needs charging 4 times a year.',
+      body: 'We bought the Double Pack for myself and my wife. The Brush X2 is sleeker, quieter, cleans far better around the gumline, and only needs charging 4 times a year.',
       images: [],
       helpful: 41,
       verified: true
@@ -660,7 +660,7 @@
     }
   ];
 
-  // Procedural Extension for Miroooo X2
+  // Procedural Extension for Brush X2
   const FIRST_NAMES = ["James", "Emma", "William", "Olivia", "Alexander", "Sophia", "Matthew", "Isabella", "Daniel", "Emily", "Michael", "Mia", "Benjamin", "Charlotte", "Ethan", "Amelia", "Lucas", "Harper", "Henry", "Evelyn", "Alexander", "Abigail", "Sebastian", "Elizabeth", "Jack", "Avery", "Owen", "Ella", "Samuel", "Scarlett"];
   const LAST_INITIALS = ["H.", "K.", "M.", "B.", "W.", "T.", "P.", "S.", "R.", "D.", "L.", "C.", "G.", "N.", "V."];
   const UK_CITIES = ["London, UK", "Manchester, UK", "Edinburgh, UK", "Birmingham, UK", "Bristol, UK", "Glasgow, UK", "Liverpool, UK", "Leeds, UK", "Sheffield, UK", "Oxford, UK", "Cambridge, UK", "Cardiff, UK", "Belfast, UK", "Newcastle, UK", "Nottingham, UK", "Southampton, UK", "Norwich, UK", "York, UK", "Bath, UK", "Exeter, UK"];
@@ -677,7 +677,7 @@
     "Pure luxury build quality and whisper quiet"
   ];
   const BODIES_5 = [
-    "I have used premium electric toothbrushes for over a decade, and the Miroooo X2's 45° sweeping action is vastly superior. My teeth feel like glass after every 2-minute cycle.",
+    "I have used premium electric toothbrushes for over a decade, and the Brush X2's 45° sweeping action is vastly superior. My teeth feel like glass after every 2-minute cycle.",
     "The 90-day battery life is a game-changer. I charged it once 2 months ago and it is still running strong with zero loss in motor power. Beautiful matte metal chassis.",
     "The red LED pressure warning ring is very responsive. It immediately corrected my aggressive brushing habit and my gums have stopped bleeding entirely.",
     "I brush in the shower daily and the IPX7 waterproof rating is completely reliable. No moisture buildup or battery degradation whatsoever.",
