@@ -53,11 +53,11 @@
     }
     .gb-video-feature-box--portrait {
       width: 100%;
-      max-width: 360px;
+      max-width: 440px;
       aspect-ratio: 9 / 16;
-      max-height: min(76vh, 600px);
+      max-height: min(88vh, 720px);
       margin: 0 auto;
-      border-radius: 24px;
+      border-radius: 28px;
       overflow: hidden;
       background: #0d0d0d;
       box-shadow: 0 20px 50px rgba(0,0,0,0.8), 0 0 0 1px rgba(255,255,255,0.08);
@@ -139,18 +139,22 @@
         order: 2;
         padding-left: clamp(16px, 3vw, 36px);
       }
+      #x2-showcase .gb-video-feature-container {
+        max-width: 1140px;
+      }
       .gb-video-feature-grid--reverse {
-        grid-template-columns: 1.15fr 0.85fr;
+        grid-template-columns: 1.15fr 0.95fr;
+        gap: 24px;
       }
       .gb-video-feature-grid--reverse .gb-video-feature-content {
         order: 1;
         padding-left: 0;
-        padding-right: clamp(16px, 3vw, 36px);
+        padding-right: 0;
       }
       .gb-video-feature-grid--reverse .gb-video-feature-media {
         order: 2;
         display: flex;
-        justify-content: center;
+        justify-content: flex-start;
       }
     }
     @media (max-width: 1023px) {
