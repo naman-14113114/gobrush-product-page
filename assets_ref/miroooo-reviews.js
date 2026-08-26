@@ -1142,57 +1142,58 @@
   ];
 
   // 4-Star Phrasing (Authentic praise, diverse titles, modular structures with zero duplication)
+  // 4-Star Phrasing (Authentic praise, clean titles, modular structures with zero duplication)
   const FOUR_STAR_TITLES = [
-    'Recommend to all ✨',
-    'Love the brush! 🪥',
-    'Great toothbrush, very happy with results 👍',
-    'Recommend to anyone looking for a sleek acoustic brush ✨',
-    'Love the brush — teeth feel so polished 🤍',
-    'Exceptional 60-day battery life, very quiet motor ⭐️',
+    'Recommend to all',
+    'Love the brush',
+    'Great toothbrush, very happy with results',
+    'Recommend to anyone looking for a sleek acoustic brush',
+    'Love the brush — teeth feel so polished',
+    'Exceptional 60-day battery life, very quiet motor',
     'Leaves teeth feeling like glass, minor suggestion on extra heads',
-    'Top tier acoustic clean, very gentle on sensitive gums 👌',
-    'High quality build, highly recommend to all! 🌟',
-    'Love the brush — clean teeth and no sink clutter ✨',
-    'Whisper quiet and powerful, beautiful Pink finish 🌸',
-    'Superb plaque removal, great upgrade from manual brush 🪥',
+    'Top tier acoustic clean, very gentle on sensitive gums',
+    'High quality build, highly recommend to all',
+    'Love the brush — clean teeth and no sink clutter',
+    'Whisper quiet and powerful, beautiful Pink finish',
+    'Superb plaque removal, great upgrade from manual brush',
     'Brilliant toothbrush, wish the travel cap snapped tighter',
-    'Very pleased with the clean, teeth feel noticeably smoother 👍',
-    'Solid 4 stars, excellent battery longevity and finish ✨',
-    'Recommend to all my colleagues! 🌟',
-    'Love the brush and the minimalist magnetic mount 🤍',
-    'Great clean, gums stopped bleeding after week one 🪥',
-    'Clean and modern look, fast USB-C charging 👌',
-    'Gentle micro-vibrations, wonderful daily experience ✨',
-    'Super smooth teeth, beautiful anodised aluminium ⭐️',
-    'Outstanding value in the multi-pack bundle 💫',
-    'Fantastic acoustic brush, would buy again 👍',
-    'Love the brush — clean teeth from morning until night 🤍',
-    'Recommend to all! Zero regrets switching from old oscillating brush 🪥',
+    'Very pleased with the clean, teeth feel noticeably smoother',
+    'Solid 4 stars, excellent battery longevity and finish',
+    'Recommend to all my colleagues',
+    'Love the brush and the minimalist magnetic mount',
+    'Great clean, gums stopped bleeding after week one',
+    'Clean and modern look, fast USB-C charging',
+    'Gentle micro-vibrations, wonderful daily experience',
+    'Super smooth teeth, beautiful anodised aluminium',
+    'Outstanding value in the multi-pack bundle',
+    'Fantastic acoustic brush, would buy again',
+    'Love the brush — clean teeth from morning until night',
+    'Recommend to all! Zero regrets switching from old oscillating brush',
     'Super clean feeling, took a couple of days to adjust',
-    'Impressive power and sleek feel in hand ✨',
+    'Impressive power and sleek feel in hand',
     'Takes 2-3 days to adapt to high-speed vibrations, then it is amazing',
-    'Great hardware, quiet acoustic clean and no counter mess 👍',
-    'Remarkably lightweight at 51g, perfect for travelling ⭐️',
-    'Gentle on enamel and gums, highly recommend to all! ✨',
-    'Love the brush! Teeth feel as smooth as after a hygienist clean 🪥',
-    'Minimalist design done right, battery lasts months 🤍',
+    'Great hardware, quiet acoustic clean and no counter mess',
+    'Remarkably lightweight at 51g, perfect for travelling',
+    'Gentle on enamel and gums, highly recommend to all',
+    'Love the brush! Teeth feel as smooth as after a hygienist clean',
+    'Minimalist design done right, battery lasts months',
     'Great daily performance, single pack could include 4 heads',
-    'Acoustic micro-vibrations are smooth and effective 👌',
-    'Love the sleek metallic finish, recommend to all! 🌟',
-    'Very quiet at 6 AM, partner does not hear it at all ✨',
-    'Noticeable brightening on whitening mode in 3 weeks 👍',
-    'Wonderful brush, lightweight and very comfortable to grip 🤍',
-    'Recommend to all friends looking to upgrade their oral care 🪥',
+    'Acoustic micro-vibrations are smooth and effective',
+    'Love the sleek metallic finish, recommend to all',
+    'Very quiet at 6 AM, partner does not hear it at all',
+    'Noticeable brightening on whitening mode in 3 weeks',
+    'Wonderful brush, lightweight and very comfortable to grip',
+    'Recommend to all friends looking to upgrade their oral care',
     'Great toothbrush, dock USB lead is a bit short for my sink',
-    'Love the brush! 30-second interval pulse keeps routine disciplined ⭐️',
-    'Solid acoustic clean, very easy to rinse clean under water ✨',
-    'Clean feel lasts all day, recommend to all! 👌',
-    'Very impressed by the battery life and build precision 🌟',
-    'DuPont bristles are soft yet thorough, great purchase 🪥',
-    'Love the brush — feels like a luxury gadget in the bathroom 🤍',
-    'Recommend to all, superior to clunky drugstore electric brushes ✨',
-    'Teeth feel silky smooth, wonderful travel case included 👍',
-    'Great design and clean, highly recommend to anyone! ⭐️'
+    'Love the brush! 30-second interval pulse keeps routine disciplined',
+    'Solid acoustic clean, very easy to rinse clean under water',
+    'Clean feel lasts all day, recommend to all',
+    'Very impressed by the battery life and build precision',
+    'DuPont bristles are soft yet thorough, great purchase',
+    'Love the brush — feels like a luxury gadget in the bathroom',
+    'Recommend to all, superior to clunky drugstore electric brushes',
+    'Teeth feel silky smooth, wonderful travel case included',
+    'Great design and clean, highly recommend to anyone'
   ];
 
   const FOUR_STAR_OPENERS = [
@@ -1247,44 +1248,28 @@
   ];
 
   const FOUR_STAR_CLOSERS = [
-    'Overall, recommend to all! A fantastic daily toothbrush. ✨',
-    'Definitely love the brush and will be ordering extra replacement heads soon. 👍',
-    'Highly recommend to anyone looking to upgrade their oral care routine! ⭐️',
-    'Solid 4 stars. Great product and very pleased with the clean. 🪥',
-    'Would recommend to all my friends and family without hesitation! 🤍',
-    'Love the brush and very happy with the purchase. 🌟',
-    'Recommend to all! Teeth feel cleaner and fresher than ever before. 👌',
-    'A wonderful addition to my bathroom counter. Great job Miroooo! ✨',
-    'Very happy with how clean my teeth feel every single morning. 👍',
-    'Great purchase overall, recommend to all! 💫',
-    'Love the brush! Sleek, quiet, and delivers great results daily. 🪥',
-    'Superb value and performance. Recommend to all! ⭐️',
-    'Genuinely pleased with the build quality and results. Recommend to all! 🤍',
-    'Solid 4 stars. Minimalist luxury done right. ✨',
-    'Love the brush — clean teeth, no clutter, and great battery life. 👍'
+    'Recommend to all. A fantastic daily toothbrush.',
+    'Definitely love the brush and will be ordering extra replacement heads soon.',
+    'Highly recommend to anyone looking to upgrade their oral care routine.',
+    'Solid 4 stars. Great product and very pleased with the clean.',
+    'Would recommend to all my friends and family without hesitation.',
+    'Love the brush and very happy with the purchase.',
+    'Recommend to all. Teeth feel cleaner and fresher than ever before.',
+    'A wonderful addition to my bathroom counter. Great job Miroooo!',
+    'Very happy with how clean my teeth feel every single morning.',
+    'Great purchase overall, recommend to all.',
+    'Love the brush! Sleek, quiet, and delivers great results daily.',
+    'Superb value and performance. Recommend to all.',
+    'Genuinely pleased with the build quality and results. Recommend to all.',
+    'Solid 4 stars. Minimalist luxury done right.',
+    'Love the brush — clean teeth, no clutter, and great battery life.'
   ];
 
   const FOUR_STAR_SHORT_REVIEWS = [
-    'Love the brush! Teeth feel super clean and fresh. Took a couple of days to get used to the vibration, but now recommend to all! ✨',
-    'Recommend to all! 🪥 Sleek aluminium handle and whisper quiet motor. Gums feel much healthier already.',
-    'Great electric toothbrush. Battery life is unbelievable and the magnetic mount keeps the counter clean. 👍',
-    'Love the brush! Clean feels just like leaving the dental hygienist. Wish replacement heads came in bigger packs. ⭐️',
-    'Very sleek design and cleans thoroughly. Highly recommend to friends and family! ✨',
-    'My teeth feel polished and smooth every single day. The Pink colour is gorgeous in person. Recommend to all! 🤍',
-    'Brilliant toothbrush and wonderful battery life. Gentle on gums and removed coffee stains after 3 weeks. 👌',
-    'Recommend to anyone looking to upgrade from a manual brush. The 30s quad-timer is very handy. 💫',
-    'The unboxing and metal feel is pure luxury. Cleans much better than my old oscillating brush. 🪥',
-    'Super clean feeling and zero bathroom clutter. Love the minimalist magnetic mount! 🤍',
-    'Impressive power and battery. A little ticklish for the first few days, but now love the brush! ✨',
-    'Great brush, leaves teeth silky smooth. Fast USB-C charging when needed. Highly recommend to all! 🌟',
-    'Very pleased with the performance and finish. The acoustic motor is quiet and powerful. 👍',
-    'Love the brush, feels great in hand and the battery lasts forever. Recommend to all! 👌',
-    'Really solid performance. Cleans deeply along the gumline without any harsh scratching. ✨',
-    'Excellent toothbrush with premium materials. Replaced my old clunky brush and very happy! ⭐️',
-    'Leaves my mouth feeling genuinely fresh all day. Recommend to all my colleagues! 🪥',
-    'Love the brush! The design is minimal and gorgeous, and teeth feel glass-smooth. 💫',
-    'Top tier acoustic clean. Sensitive mode is perfect for daily gum care. Recommend to all! 🤍',
-    'Superb build quality and battery endurance. Great purchase overall! 👍'
+    'Love the brush! Clean feels just like leaving the dental hygienist. Wish replacement heads came in bigger packs.',
+    'Recommend to all. Sleek aluminium handle and whisper quiet motor. Gums feel much healthier already.',
+    'Great electric toothbrush. Battery life is unbelievable and the magnetic mount keeps the counter clean.',
+    'Very sleek design and cleans thoroughly. Highly recommend to friends and family.'
   ];
 
   // 3-Star Phrasing (Balanced feedback)
@@ -1469,11 +1454,23 @@
       const titleIdx = (i * 7 + Math.floor(r1 * 23)) % FOUR_STAR_TITLES.length;
       const title = FOUR_STAR_TITLES[titleIdx];
 
-      const openerIdx = (i * 7 + Math.floor(r2 * 19)) % FOUR_STAR_OPENERS.length;
-      const featureIdx = (i * 11 + Math.floor(r3 * 17)) % FOUR_STAR_FEATURES.length;
-      const feedbackIdx = (i * 13 + Math.floor(r4 * 13)) % FOUR_STAR_FEEDBACK.length;
-      const closerIdx = (i * 17 + Math.floor(r5 * 11)) % FOUR_STAR_CLOSERS.length;
-      const body = `${FOUR_STAR_OPENERS[openerIdx]} ${FOUR_STAR_FEATURES[featureIdx]} ${FOUR_STAR_FEEDBACK[feedbackIdx]} ${FOUR_STAR_CLOSERS[closerIdx]}`;
+      let body = '';
+      const SHORT_INDICES = { 3: 0, 24: 1, 70: 2, 140: 3 };
+      const EMOJI_MAP = { 12: ' ✨', 45: ' 👍', 98: ' 🪥', 165: ' ⭐️' };
+
+      if (SHORT_INDICES[i] !== undefined) {
+        body = FOUR_STAR_SHORT_REVIEWS[SHORT_INDICES[i]];
+      } else {
+        const openerIdx = (i * 7 + Math.floor(r2 * 19)) % FOUR_STAR_OPENERS.length;
+        const featureIdx = (i * 11 + Math.floor(r3 * 17)) % FOUR_STAR_FEATURES.length;
+        const feedbackIdx = (i * 13 + Math.floor(r4 * 13)) % FOUR_STAR_FEEDBACK.length;
+        const closerIdx = (i * 17 + Math.floor(r5 * 11)) % FOUR_STAR_CLOSERS.length;
+        body = `${FOUR_STAR_OPENERS[openerIdx]} ${FOUR_STAR_FEATURES[featureIdx]} ${FOUR_STAR_FEEDBACK[feedbackIdx]} ${FOUR_STAR_CLOSERS[closerIdx]}`;
+      }
+
+      if (EMOJI_MAP[i]) {
+        body += EMOJI_MAP[i];
+      }
 
       const { isoDate, displayDate } = generateDate(globalIndex, totalTarget);
       const helpful = Math.floor(r7 * 24);
