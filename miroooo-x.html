@@ -2004,7 +2004,7 @@ theme.variantStrings = {
           aria-current="true"
         >
           <div class="thumb-inner thumb-video-inner">
-            <img id="thumb-video-img" alt="Video thumbnail" src="/assets_ref/x/gallery/Miroooo_x_Pink-1.webp" />
+            <img id="thumb-video-img" alt="Video thumbnail" src="/assets_ref/x/gallery/miroooo-x-electric-toothbrush-video-thumbnail.webp" />
             <span class="thumb-play-icon" aria-hidden="true">
               <svg viewBox="0 0 24 24" fill="currentColor">
                 <path d="M8 5v14l11-7z"/>
@@ -2091,6 +2091,7 @@ theme.variantStrings = {
               <video
                 id="gallery-featured-video"
                 src="/assets_ref/x/gallery/miroooo-video-1.mp4"
+                poster="/assets_ref/x/gallery/miroooo-x-electric-toothbrush-video-thumbnail.webp"
                 autoplay
                 loop
                 muted
@@ -3041,7 +3042,7 @@ theme.variantStrings = {
       <div class="miroooo-sticky-pill">
         <div class="miroooo-sticky-left">
           <div class="miroooo-sticky-img-wrap">
-            <img id="sticky-bar-img" src="/gallery_orig/Grey-color-8.jpg" alt="Brush X" width="54" height="54" loading="eager">
+            <img id="sticky-bar-img" src="/assets/miroooo-x-electric-toothbrushes-contact-support.webp" alt="Brush X" width="54" height="54" loading="eager">
           </div>
           <div class="miroooo-sticky-info">
             <p class="miroooo-sticky-title" id="sticky-bar-title">Brush X - Grey</p>
@@ -6221,9 +6222,9 @@ function updateStickyBar() {
 
   // 5. Sticky Thumbnail
   const stickyImg = document.getElementById('sticky-bar-img');
-  if (stickyImg && colorData && colorData.images && colorData.images[0]) {
-    stickyImg.src = colorData.images[0];
-    stickyImg.alt = `Brush X - ${firstColor}`;
+  if (stickyImg) {
+    stickyImg.src = "/assets/miroooo-x-electric-toothbrushes-contact-support.webp";
+    stickyImg.alt = "Brush X";
   }
 }
 
@@ -6465,8 +6466,8 @@ function selectColorVariant(colorName) {
 
   // 5. Update video thumb background image
   const videoThumbImg = document.getElementById('thumb-video-img');
-  if (videoThumbImg && data.images && data.images[0]) {
-    videoThumbImg.src = data.images[0];
+  if (videoThumbImg) {
+    videoThumbImg.src = "/assets_ref/x/gallery/miroooo-x-electric-toothbrush-video-thumbnail.webp";
   }
 
   // 6. Update Brush with Style & Precision Hero Toothbrush Image
