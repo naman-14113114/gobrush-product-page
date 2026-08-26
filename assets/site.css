@@ -3576,6 +3576,7 @@ body[data-page="cart"] .site-header--cart .header__logo {
 .site-nav--right {
   display: flex !important;
   align-items: center !important;
+  margin-right: 28px !important;
 }
 
 /* Desktop vs Mobile Controls (Hide Hamburger on Desktop) */
@@ -3593,11 +3594,16 @@ body[data-page="cart"] .site-header--cart .header__logo {
   .site-header__left .site-nav,
   .header__navigation,
   .header__menu,
-  .site-nav,
+  .site-nav {
+    display: flex !important;
+    align-items: center !important;
+  }
+
   .header__navigation--right,
   .site-nav--right {
     display: flex !important;
     align-items: center !important;
+    margin-right: 28px !important;
   }
 
   .site-header__right .account-link,

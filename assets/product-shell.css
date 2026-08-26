@@ -202,14 +202,19 @@
   .header__navigation,
   .header__menu,
   .site-nav,
+  #shopify-section-sections--24203576967513__header .header__navigation,
+  #shopify-section-sections--24203576967513__header .header__menu {
+    display: flex !important;
+    align-items: center !important;
+  }
+
   .header__navigation--right,
   .site-nav--right,
-  #shopify-section-sections--24203576967513__header .header__navigation,
-  #shopify-section-sections--24203576967513__header .header__menu,
   #shopify-section-sections--24203576967513__header .header__navigation--right,
   #shopify-section-sections--24203576967513__header .site-nav--right {
     display: flex !important;
     align-items: center !important;
+    margin-right: 28px !important;
   }
 
   .header__buttons .account-link,
