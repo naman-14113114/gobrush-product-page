@@ -685,6 +685,91 @@
     "Switched from a traditional oscillating brush and the difference in gumline cleanliness is astounding. Mode 2 Whitening is my daily favourite."
   ];
 
+  const TITLES_4 = [
+    "Recommend to all ✨",
+    "Love the brush! 🪥",
+    "Great toothbrush, very happy with results 👍",
+    "Recommend to anyone looking for a sleek acoustic brush ✨",
+    "Love the brush — teeth feel so polished 🤍",
+    "Exceptional 90-day battery life, very quiet motor ⭐️",
+    "Leaves teeth feeling like glass, minor suggestion on extra heads",
+    "Top tier acoustic clean, very gentle on sensitive gums 👌",
+    "High quality build, highly recommend to all! 🌟",
+    "Love the brush — clean teeth and no sink clutter ✨",
+    "Whisper quiet and powerful, beautiful Silver finish ⭐️",
+    "Superb plaque removal with the 45° Bass sweep 🪥",
+    "Brilliant toothbrush, wish the travel cap snapped tighter",
+    "Very pleased with the clean, teeth feel noticeably smoother 👍",
+    "Solid 4 stars, excellent battery longevity and finish ✨",
+    "Recommend to all my colleagues! 🌟",
+    "Love the brush and the minimalist magnetic mount 🤍",
+    "Smart pressure halo ring stopped all bleeding 🪥",
+    "Clean and modern look, fast USB-C charging 👌",
+    "Gentle micro-vibrations, wonderful daily experience ✨",
+    "Super smooth teeth, beautiful anodised aluminium ⭐️",
+    "Outstanding value in the multi-pack bundle 💫",
+    "Fantastic acoustic brush, would buy again 👍",
+    "Love the brush — clean teeth from morning until night 🤍",
+    "Recommend to all! Zero regrets switching to X2 🪥"
+  ];
+
+  const OPENERS_4 = [
+    "I have been using the Brush X2 for several weeks and the cleaning power is outstanding.",
+    "Switched to the X2 after my dental hygienist recommended a brush with a pressure sensor.",
+    "Really love the brush! The minimalist aluminium unibody looks so modern in the bathroom.",
+    "Upgraded from a manual toothbrush and the difference in oral cleanliness is night and day.",
+    "Ordered the Double Pack for myself and my partner and we are both very pleased.",
+    "This is easily one of the best electric toothbrushes I have tried in terms of daily comfort.",
+    "The unboxing was great and the build precision feels like a high-end luxury gadget.",
+    "Brushing with this has made my morning routine feel completely fresh and effortless.",
+    "I was skeptical about the 90-day battery claim at first, but it really does keep going strong.",
+    "My teeth have always been slightly sensitive, so the capacitive mode switching is a great plus."
+  ];
+
+  const FEATURES_4 = [
+    "The 45° sweeping action cleans along the gumline with zero harsh scraping.",
+    "The 3 dedicated modes make it simple to alternate between daily Clean and Whitening.",
+    "The 90-day cobalt battery is genuine — power output remains consistent week after week.",
+    "The pressure sensor halo ring gives an immediate visual reminder if you press too hard.",
+    "The magnetic wall dock snaps on effortlessly and keeps the sink area spotless.",
+    "The acoustic motor produces a refined quiet hum with almost no vibration in the hand.",
+    "The 30-second quadrant interval pacer ensures all four dental zones receive equal care.",
+    "The IPX7 waterproof unibody construction means I can rinse it thoroughly under running water."
+  ];
+
+  const FEEDBACK_4 = [
+    "My only small suggestion is that the starter single box should include four replacement heads instead of two.",
+    "It takes about 48 hours to get used to the sweeping acoustic movement if you are transitioning from manual brushing.",
+    "The USB cable for the magnetic base is slightly short for my particular bathroom plug layout.",
+    "Would love to see replacement brush heads available in mixed colour multipacks.",
+    "The travel case works great, though the snap cap could click with just a fraction more resistance.",
+    "Delivery took three days instead of two due to courier backlog, but product itself is stellar."
+  ];
+
+  const CLOSERS_4 = [
+    "Overall, recommend to all! A fantastic daily toothbrush. ✨",
+    "Definitely love the brush and will be ordering extra replacement heads soon. 👍",
+    "Highly recommend to anyone looking to upgrade their oral care routine! ⭐️",
+    "Solid 4 stars. Great product and very pleased with the clean. 🪥",
+    "Would recommend to all my friends and family without hesitation! 🤍",
+    "Love the brush and very happy with the purchase. 🌟",
+    "Recommend to all! Teeth feel cleaner and fresher than ever before. 👌",
+    "A wonderful addition to my bathroom counter. Great job Miroooo! ✨"
+  ];
+
+  const SHORT_REVIEWS_4 = [
+    "Love the brush! Teeth feel super clean and fresh. Took a couple of days to get used to the vibration, but now recommend to all! ✨",
+    "Recommend to all! 🪥 Sleek aluminium handle and whisper quiet motor. Gums feel much healthier already.",
+    "Great electric toothbrush. Battery life is unbelievable and the pressure sensor is very helpful. 👍",
+    "Love the brush! Clean feels just like leaving the dental hygienist. Wish replacement heads came in bigger packs. ⭐️",
+    "Very sleek design and cleans thoroughly. Highly recommend to friends and family! ✨",
+    "My teeth feel polished and smooth every single day. Recommend to all! 🤍",
+    "Brilliant toothbrush and wonderful battery life. Gentle on gums and removed coffee stains after 3 weeks. 👌",
+    "Recommend to anyone looking to upgrade from a manual brush. The 30s quad-timer is very handy. 💫",
+    "The unboxing and metal feel is pure luxury. Cleans much better than my old oscillating brush. 🪥",
+    "Super clean feeling and zero bathroom clutter. Love the minimalist magnetic mount! 🤍"
+  ];
+
   const PROCEDURAL_REVIEWS = [];
 
   for (let i = 41; i <= 240; i++) {
@@ -693,8 +778,22 @@
     const city = UK_CITIES[(i * 5) % UK_CITIES.length];
     const is5 = (i % 10 !== 0);
     const rating = is5 ? 5 : 4;
-    const title = is5 ? TITLES_5[i % TITLES_5.length] : "Very solid performance and sleek design";
-    const body = is5 ? BODIES_5[i % BODIES_5.length] : "Cleans teeth thoroughly and the battery lasts as advertised. Slightly distinct feel compared to vibrating heads.";
+
+    let title, body;
+    if (is5) {
+      title = TITLES_5[i % TITLES_5.length];
+      body = BODIES_5[i % BODIES_5.length];
+    } else {
+      const idx = Math.floor(i / 10);
+      const titleIdx = (idx * 7) % TITLES_4.length;
+      title = TITLES_4[titleIdx];
+      const op = OPENERS_4[(idx * 3) % OPENERS_4.length];
+      const ft = FEATURES_4[(idx * 5) % FEATURES_4.length];
+      const fb = FEEDBACK_4[(idx * 7) % FEEDBACK_4.length];
+      const cl = CLOSERS_4[(idx * 11) % CLOSERS_4.length];
+      body = `${op} ${ft} ${fb} ${cl}`;
+    }
+
     const variants = ["Grey / Double Pack", "Grey / Single", "Silver / Travel Edition", "Silver / Single", "Pink / Double Pack", "Pink / Single"];
     const daysAgo = Math.floor(i * 1.8) + 14;
     const d = new Date(Date.now() + (5 - daysAgo) * 24 * 60 * 60 * 1000);
@@ -725,7 +824,6 @@
   let currentFilterRating = null; // null = all
   let currentWithPhotos = false;
   let currentVerifiedOnly = false;
-  let currentSort = 'most-recent';
   let currentVisibleCount = 12;
   const PAGE_SIZE = 12;
 
@@ -964,28 +1062,8 @@
       list = list.filter(r => r.verified === true);
     }
 
-    // 4. Sort
-    list.sort((a, b) => {
-      switch (currentSort) {
-        case 'with-photos': {
-          const aHas = a.images && a.images.length > 0 ? 1 : 0;
-          const bHas = b.images && b.images.length > 0 ? 1 : 0;
-          if (bHas !== aHas) return bHas - aHas;
-          return new Date(b.date) - new Date(a.date);
-        }
-        case 'highest-rating':
-          if (b.rating !== a.rating) return b.rating - a.rating;
-          return new Date(b.date) - new Date(a.date);
-        case 'lowest-rating':
-          if (a.rating !== b.rating) return a.rating - b.rating;
-          return new Date(b.date) - new Date(a.date);
-        case 'oldest':
-          return new Date(a.date) - new Date(b.date);
-        case 'most-recent':
-        default:
-          return new Date(b.date) - new Date(a.date);
-      }
-    });
+    // Chronological default sorting (most recent first)
+    list.sort((a, b) => new Date(b.date) - new Date(a.date));
 
     return list;
   }
@@ -995,7 +1073,7 @@
     if (!gridEl) return;
 
     const filtered = getFilteredAndSortedReviews();
-    const isFiltered = currentFilterRating !== null || currentWithPhotos || currentVerifiedOnly || currentSort !== 'most-recent';
+    const isFiltered = currentFilterRating !== null || currentWithPhotos || currentVerifiedOnly;
 
     // Update Filter Status Bar & Reset Button
     if (resetFilterBtn) {
@@ -1131,39 +1209,7 @@
       });
     }
 
-    // 4. Sort Dropdown
-    const sortTrigger = document.getElementById('miroooo-sort-trigger');
-    const sortMenu = document.getElementById('miroooo-sort-menu');
-    const sortDropdown = document.getElementById('miroooo-sort-dropdown');
-
-    if (sortTrigger && sortMenu && sortDropdown) {
-      sortTrigger.addEventListener('click', (e) => {
-        e.stopPropagation();
-        closeAllDropdowns(sortDropdown);
-        sortDropdown.classList.toggle('open');
-        const isOpen = sortDropdown.classList.contains('open');
-        sortTrigger.setAttribute('aria-expanded', isOpen);
-      });
-
-      const sortItems = sortMenu.querySelectorAll('.miroooo-dropdown-item');
-      sortItems.forEach(item => {
-        item.addEventListener('click', () => {
-          const val = item.getAttribute('data-value');
-          sortItems.forEach(i => i.classList.remove('active'));
-          item.classList.add('active');
-
-          currentSort = val;
-          const sortLabel = document.getElementById('miroooo-selected-sort-label');
-          if (sortLabel) sortLabel.textContent = item.textContent;
-
-          sortDropdown.classList.remove('open');
-          sortTrigger.setAttribute('aria-expanded', 'false');
-          renderReviews();
-        });
-      });
-    }
-
-    // 5. Reset Filters
+    // 4. Reset Filters
     if (resetFilterBtn) {
       resetFilterBtn.addEventListener('click', resetAllFilters);
     }
@@ -1174,12 +1220,12 @@
       emptyResetBtn.addEventListener('click', resetAllFilters);
     }
 
-    // 6. Close dropdowns on outside click
+    // 5. Close dropdowns on outside click
     document.addEventListener('click', () => {
       closeAllDropdowns();
     });
 
-    // 7. Load More Button
+    // 6. Load More Button
     if (loadMoreBtn) {
       loadMoreBtn.addEventListener('click', () => {
         currentVisibleCount += PAGE_SIZE;
@@ -1207,7 +1253,6 @@
     currentFilterRating = null;
     currentWithPhotos = false;
     currentVerifiedOnly = false;
-    currentSort = 'most-recent';
     currentVisibleCount = PAGE_SIZE;
 
     const photoPill = document.getElementById('miroooo-filter-photos');
@@ -1223,14 +1268,9 @@
     }
 
     updateStarDropdownLabel('All stars');
-    const sortLabel = document.getElementById('miroooo-selected-sort-label');
-    if (sortLabel) sortLabel.textContent = 'Most recent';
 
     const starMenuItems = document.querySelectorAll('#miroooo-star-menu .miroooo-dropdown-item');
     starMenuItems.forEach(item => item.classList.toggle('active', item.getAttribute('data-value') === 'all'));
-
-    const sortMenuItems = document.querySelectorAll('#miroooo-sort-menu .miroooo-dropdown-item');
-    sortMenuItems.forEach(item => item.classList.toggle('active', item.getAttribute('data-value') === 'most-recent'));
 
     renderReviews();
   }

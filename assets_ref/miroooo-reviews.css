@@ -336,34 +336,14 @@ div.miroooo-progress-bar {
 }
 
 /* ==========================================================================
-   2. FILTER & SORT TOOLBAR
+   2. FILTER TOOLBAR
    ========================================================================== */
-.miroooo-toolbar-card {
-  background: var(--miroooo-card-bg);
-  border: 1px solid var(--miroooo-card-border);
-  border-radius: 18px;
-  padding: 16px 20px;
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-  margin-bottom: 28px;
-  box-sizing: border-box;
-}
-
-@media (min-width: 900px) {
-  .miroooo-toolbar-card {
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-between;
-    padding: 16px 24px;
-  }
-}
-
-.miroooo-toolbar-left {
+.miroooo-toolbar-filters {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
   gap: 10px;
+  margin-bottom: 28px;
 }
 
 .miroooo-toolbar-heading {
@@ -373,20 +353,6 @@ div.miroooo-progress-bar {
   letter-spacing: 0.05em;
   color: var(--miroooo-text-secondary);
   margin-right: 4px;
-}
-
-.miroooo-toolbar-right {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-}
-
-@media (max-width: 899px) {
-  .miroooo-toolbar-right {
-    justify-content: space-between;
-    border-top: 1px solid rgba(255, 255, 255, 0.06);
-    padding-top: 14px;
-  }
 }
 
 /* Dropdowns */
