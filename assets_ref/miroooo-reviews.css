@@ -336,14 +336,34 @@ div.miroooo-progress-bar {
 }
 
 /* ==========================================================================
-   2. FILTER TOOLBAR
+   2. FILTER & SORT TOOLBAR
    ========================================================================== */
-.miroooo-toolbar-filters {
+.miroooo-toolbar-card {
+  background: var(--miroooo-card-bg);
+  border: 1px solid var(--miroooo-card-border);
+  border-radius: 18px;
+  padding: 16px 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-bottom: 28px;
+  box-sizing: border-box;
+}
+
+@media (min-width: 900px) {
+  .miroooo-toolbar-card {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    padding: 16px 24px;
+  }
+}
+
+.miroooo-toolbar-left {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
   gap: 10px;
-  margin-bottom: 28px;
 }
 
 .miroooo-toolbar-heading {
@@ -353,6 +373,20 @@ div.miroooo-progress-bar {
   letter-spacing: 0.05em;
   color: var(--miroooo-text-secondary);
   margin-right: 4px;
+}
+
+.miroooo-toolbar-right {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+@media (max-width: 899px) {
+  .miroooo-toolbar-right {
+    justify-content: space-between;
+    border-top: 1px solid rgba(255, 255, 255, 0.06);
+    padding-top: 14px;
+  }
 }
 
 /* Dropdowns */
@@ -771,15 +805,17 @@ div.miroooo-progress-bar {
 .miroooo-gallery-1 {
   border-radius: 10px;
   overflow: hidden;
-  height: 280px;
-  background: transparent;
+  aspect-ratio: auto;
+  height: auto;
+  background: #d4d4d4;
   border: 1px solid rgba(0, 0, 0, 0.08);
 }
 
 .miroooo-gallery-1 img {
   width: 100%;
-  height: 100%;
-  object-fit: cover;
+  height: auto;
+  max-height: 400px;
+  object-fit: contain;
   display: block;
   transition: transform 0.3s ease;
 }
@@ -798,7 +834,7 @@ div.miroooo-progress-bar {
 
 .miroooo-gallery-2 .miroooo-gallery-item {
   aspect-ratio: 1/1;
-  background: transparent;
+  background: #d4d4d4;
   overflow: hidden;
   border: 1px solid rgba(0, 0, 0, 0.08);
 }
@@ -806,7 +842,7 @@ div.miroooo-progress-bar {
 .miroooo-gallery-2 img {
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  object-fit: contain;
   display: block;
   transition: transform 0.3s ease;
 }
@@ -831,7 +867,7 @@ div.miroooo-progress-bar {
 }
 
 .miroooo-gallery-3 .miroooo-gallery-item {
-  background: transparent;
+  background: #d4d4d4;
   overflow: hidden;
   position: relative;
   border: 1px solid rgba(0, 0, 0, 0.08);
@@ -840,7 +876,7 @@ div.miroooo-progress-bar {
 .miroooo-gallery-3 img {
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  object-fit: contain;
   display: block;
   transition: transform 0.3s ease;
 }
