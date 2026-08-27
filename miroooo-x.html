@@ -5820,8 +5820,29 @@ function handleAddToCartAndRedirect() {
   }
 
   const targetCartUrl = window.location.pathname.endsWith('.html') ? '/cart.html' : '/cart';
+  setTimeout(resetAllButtonLoadingStates, 1200);
   window.location.href = targetCartUrl;
 }
+
+function resetAllButtonLoadingStates() {
+  document.querySelectorAll('.miroooo-button-click-loader, .buudy-button-click-loader').forEach(loader => loader.remove());
+  document.querySelectorAll('#hero-cta, #sticky-bar-cta-btn, .product-form__submit, .miroooo-sticky-btn, #miroooo-form-submit, [is="hover-button"], [is="magnet-button"]').forEach(btn => {
+    btn.removeAttribute('aria-busy');
+    btn.removeAttribute('disabled');
+    btn.disabled = false;
+    btn.classList.remove('is-loading', 'loading');
+  });
+}
+
+window.addEventListener('pageshow', () => {
+  resetAllButtonLoadingStates();
+  if (window.MirooooCart) {
+    window.MirooooCart.updateHeaderBadges();
+  }
+});
+document.addEventListener('visibilitychange', () => {
+  if (document.visibilityState === 'visible') resetAllButtonLoadingStates();
+});
 
 function openProductCartDrawer() {
   if (window.MirooooCart) {

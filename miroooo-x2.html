@@ -2224,7 +2224,6 @@ theme.variantStrings = {
       id="hero-cta"
       class="button button--primary"
       style="width: 100%; font-size: 1.05rem;"
-      onclick="handleAddToCartAndRedirect()"
       is="hover-button">
       <span class="btn-fill" data-fill></span>
       <span class="btn-text" id="main-cta-text">Add To Cart + 3 Free Gifts</span>
@@ -3924,6 +3923,26 @@ function closeProductCart(event) {
   return false;
 }
 
+function resetAllButtonStates() {
+  document.querySelectorAll('.miroooo-button-click-loader, .buudy-button-click-loader').forEach(el => el.remove());
+  document.querySelectorAll('#hero-cta, #sticky-bar-cta-btn, .miroooo-sticky-btn, .product-form__submit, #miroooo-form-submit, [is="hover-button"], [is="magnet-button"]').forEach(btn => {
+    btn.removeAttribute('aria-busy');
+    btn.removeAttribute('disabled');
+    btn.disabled = false;
+    btn.classList.remove('is-loading', 'loading');
+  });
+}
+
+window.addEventListener('pageshow', () => {
+  resetAllButtonStates();
+  if (window.MirooooCart) {
+    window.MirooooCart.updateHeaderBadges();
+  }
+});
+document.addEventListener('visibilitychange', () => {
+  if (document.visibilityState === 'visible') resetAllButtonStates();
+});
+
 function handleAddToCartAndRedirect() {
   const tier = TIERS[activeTierId] || TIERS['bundle-2'];
   try {
@@ -3940,6 +3959,7 @@ function handleAddToCartAndRedirect() {
   }
 
   const targetCartUrl = window.location.pathname.endsWith('.html') ? '/cart.html' : '/cart';
+  setTimeout(resetAllButtonStates, 1200);
   window.location.href = targetCartUrl;
 }
 

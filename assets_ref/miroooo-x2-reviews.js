@@ -1377,9 +1377,20 @@
     const cancelBtn = document.getElementById('miroooo-form-cancel');
     const successCloseBtn = document.getElementById('miroooo-success-close');
     const form = document.getElementById('miroooo-review-form');
+    const submitBtn = document.getElementById('miroooo-form-submit');
     const successBox = document.getElementById('miroooo-write-success');
 
     function openWriteModal() {
+      if (form) {
+        form.reset();
+        form.style.display = 'block';
+        if (submitBtn) {
+          submitBtn.disabled = false;
+          submitBtn.querySelectorAll('.miroooo-button-click-loader, .buudy-button-click-loader').forEach(l => l.remove());
+        }
+      }
+      if (successBox) successBox.style.display = 'none';
+
       modal.style.display = 'flex';
       void modal.offsetHeight;
       modal.classList.add('is-open');
@@ -1397,8 +1408,14 @@
       setTimeout(() => {
         if (!modal.classList.contains('is-open')) {
           modal.style.display = 'none';
-          if (form) form.reset();
-          if (form) form.style.display = 'flex';
+          if (form) {
+            form.reset();
+            form.style.display = 'block';
+            if (submitBtn) {
+              submitBtn.disabled = false;
+              submitBtn.querySelectorAll('.miroooo-button-click-loader, .buudy-button-click-loader').forEach(l => l.remove());
+            }
+          }
           if (successBox) successBox.style.display = 'none';
         }
       }, 250);

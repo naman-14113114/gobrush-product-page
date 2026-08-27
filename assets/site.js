@@ -1320,9 +1320,16 @@
         if (btnText) btnText.textContent = "Securing checkout...";
       }
 
-      const primaryItem = items[0];
-      const checkoutUrl = await createPlusbaseCheckoutSession(primaryItem);
-      window.location.assign(checkoutUrl);
+      try {
+        const primaryItem = items[0];
+        const checkoutUrl = await createPlusbaseCheckoutSession(primaryItem);
+        window.location.assign(checkoutUrl);
+      } catch (err) {
+        console.error("Checkout redirection failed:", err);
+        if (typeof window.resetButtonLoadingStates === "function") {
+          window.resetButtonLoadingStates();
+        }
+      }
     }
   };
 
@@ -1415,8 +1422,41 @@
     initCartOnPage();
   }
 
+  // Global Button Click Loader Reset Helper
+  function resetButtonLoadingStates(root) {
+    const scope = root && root.querySelectorAll ? root : document;
+    scope.querySelectorAll(".miroooo-button-click-loader, .buudy-button-click-loader").forEach((loader) => {
+      loader.remove();
+    });
+    scope.querySelectorAll("button[disabled], input[type='submit'][disabled], a.is-loading, button.is-loading, .is-loading").forEach((btn) => {
+      if (btn.dataset.permanentlyDisabled !== "true" && !btn.hasAttribute("data-static-disabled")) {
+        btn.disabled = false;
+      }
+      btn.classList.remove("is-loading");
+      btn.removeAttribute("aria-busy");
+    });
+    const drawerCheckoutText = document.getElementById("cart-checkout-btn-text");
+    if (drawerCheckoutText) {
+      drawerCheckoutText.textContent = "Go to cart \u2192";
+    }
+  }
+
+  window.resetButtonLoadingStates = resetButtonLoadingStates;
+  MirooooCart.resetLoaders = resetButtonLoadingStates;
+
   window.addEventListener("pageshow", () => {
     MirooooCart.updateHeaderBadges();
+    resetButtonLoadingStates();
+  });
+
+  window.addEventListener("popstate", () => {
+    resetButtonLoadingStates();
+  });
+
+  document.addEventListener("visibilitychange", () => {
+    if (document.visibilityState === "visible") {
+      resetButtonLoadingStates();
+    }
   });
 
   window.addEventListener("storage", (e) => {
@@ -1443,7 +1483,17 @@
 
   // Global Button Click Loader (Exact from muuhu-store)
   document.addEventListener("click", (e) => {
-    const btn = e.target.closest("button, a.gb-button, a.btn, .btn, .cart-checkout-cta-btn, .product-form__submit, #hero-cta, #sticky-bar-cta-btn, .miroooo-sticky-btn, .miroooo-checkout-btn, .proxy-bundle-btn, [is='magnet-button'], [is='hover-button'], .cart-stepper-btn, .cart-remove-button");
+    // Ignore navigation/drawer toggles and small controls from receiving intrusive 5-dot overlay
+    if (e.target.closest(
+      ".nav-toggle, .menu-drawer-button, .drawer__close, .mobile-panel__close, " +
+      ".miroooo-cart-close-btn, .header__dropdown-toggle, [data-dropdown] button, " +
+      ".miroooo-stepper-btn, .cart-stepper-btn, .miroooo-cart-remove-btn, .cart-remove-button, " +
+      "[aria-controls='MenuDrawer'], [aria-controls='CartDrawer'], .site-actions__bag, .flickity-button"
+    )) {
+      return;
+    }
+
+    const btn = e.target.closest("button, a.gb-button, a.btn, .btn, .cart-checkout-cta-btn, .product-form__submit, #hero-cta, #sticky-bar-cta-btn, .miroooo-sticky-btn, .miroooo-checkout-btn, .proxy-bundle-btn, [is='magnet-button'], [is='hover-button'], button[type='submit']");
     if (!btn || btn.disabled) return;
 
     // Detect background brightness to choose white vs black dots
@@ -1491,11 +1541,13 @@
       loader.style.display = "flex";
     }
 
-    // Auto-remove after 900ms if not submitting/redirecting
-    setTimeout(() => {
-      if (loader && loader.parentNode && !btn.disabled) {
+    // Auto-remove after 900ms to guarantee button returns to normal state
+    if (btn._loaderTimer) clearTimeout(btn._loaderTimer);
+    btn._loaderTimer = setTimeout(() => {
+      if (loader && loader.parentNode) {
         loader.remove();
       }
+      btn._loaderTimer = null;
     }, 900);
   });
 

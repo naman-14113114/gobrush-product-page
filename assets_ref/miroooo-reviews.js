@@ -2438,12 +2438,17 @@
   function openWriteModal() {
     const modal = document.getElementById('miroooo-write-modal');
     const form = document.getElementById('miroooo-review-form');
+    const submitBtn = document.getElementById('miroooo-form-submit');
     const successBox = document.getElementById('miroooo-write-success');
     if (!modal) return;
 
     if (form) {
       form.reset();
       form.style.display = 'block';
+      if (submitBtn) {
+        submitBtn.disabled = false;
+        submitBtn.querySelectorAll('.miroooo-button-click-loader, .buudy-button-click-loader').forEach(l => l.remove());
+      }
     }
     if (successBox) successBox.style.display = 'none';
 
@@ -2457,6 +2462,9 @@
 
   function closeWriteModal() {
     const modal = document.getElementById('miroooo-write-modal');
+    const form = document.getElementById('miroooo-review-form');
+    const submitBtn = document.getElementById('miroooo-form-submit');
+    const successBox = document.getElementById('miroooo-write-success');
     if (!modal) return;
     modal.classList.remove('is-open');
     modal.setAttribute('aria-hidden', 'true');
@@ -2465,6 +2473,15 @@
     setTimeout(() => {
       if (!modal.classList.contains('is-open')) {
         modal.style.display = 'none';
+        if (form) {
+          form.reset();
+          form.style.display = 'block';
+          if (submitBtn) {
+            submitBtn.disabled = false;
+            submitBtn.querySelectorAll('.miroooo-button-click-loader, .buudy-button-click-loader').forEach(l => l.remove());
+          }
+        }
+        if (successBox) successBox.style.display = 'none';
       }
     }, 250);
   }

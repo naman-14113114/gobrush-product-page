@@ -1156,6 +1156,7 @@
       const errorText = document.getElementById("track-error-text");
       const resultSection = document.getElementById("track-result-section");
       const resetBtn = document.getElementById("track-reset-btn");
+      const defaultBtnHtml = submitBtn ? submitBtn.innerHTML : "";
 
       // Result fields
       const resultOrderId = document.getElementById("result-order-id");
@@ -1204,6 +1205,9 @@
         e.preventDefault();
         hideError();
 
+        const existingLoader = submitBtn ? submitBtn.querySelector(".miroooo-button-click-loader, .buudy-button-click-loader") : null;
+        if (existingLoader) existingLoader.remove();
+
         const rawOrder = orderInput.value.trim();
         const rawEmail = emailInput.value.trim();
 
@@ -1222,12 +1226,13 @@
 
         // Set Loading state
         submitBtn.disabled = true;
-        const originalBtnHtml = submitBtn.innerHTML;
         submitBtn.innerHTML = '<span class="track-btn-spinner" aria-hidden="true"></span><span>Checking Miroooo Tracking...</span>';
 
         setTimeout(function () {
           submitBtn.disabled = false;
-          submitBtn.innerHTML = originalBtnHtml;
+          submitBtn.innerHTML = defaultBtnHtml;
+          const lingeringLoader = submitBtn.querySelector(".miroooo-button-click-loader, .buudy-button-click-loader");
+          if (lingeringLoader) lingeringLoader.remove();
 
           // Determine status mode
           const lowerOrder = rawOrder.toLowerCase();
@@ -1386,6 +1391,10 @@
         hideError();
         orderInput.value = "";
         emailInput.value = "";
+        submitBtn.disabled = false;
+        submitBtn.innerHTML = defaultBtnHtml;
+        const lingeringLoader = submitBtn.querySelector(".miroooo-button-click-loader, .buudy-button-click-loader");
+        if (lingeringLoader) lingeringLoader.remove();
         orderInput.focus();
       });
     });

@@ -350,7 +350,15 @@
         return "mailto:support@trymiroooo.com?subject=" + encodeURIComponent(subject) + "&body=" + encodeURIComponent(bodyLines.join("\n"));
       }
 
+      function removeClickLoaders() {
+        if (!submitBtn) return;
+        submitBtn.querySelectorAll(".miroooo-button-click-loader, .buudy-button-click-loader").forEach(function (el) {
+          el.remove();
+        });
+      }
+
       function setFormState(state, message, mailtoHref) {
+        removeClickLoaders();
         if (state === "submitting") {
           submitBtn.disabled = true;
           if (btnLoader) btnLoader.hidden = false;

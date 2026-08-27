@@ -1891,6 +1891,19 @@
         const stickyBtn = document.getElementById("sticky-checkout-btn");
         if (!checkoutBtn && !stickyBtn) return;
 
+        function resetCheckoutButtons() {
+          const allCheckoutBtns = [
+            document.getElementById("main-checkout-btn"),
+            document.getElementById("sticky-checkout-btn"),
+            document.getElementById("cart-drawer-checkout-btn")
+          ].filter(Boolean);
+          allCheckoutBtns.forEach(btn => {
+            btn.disabled = false;
+            btn.classList.remove("is-loading");
+            btn.querySelectorAll(".miroooo-button-click-loader, .buudy-button-click-loader").forEach(el => el.remove());
+          });
+        }
+
         async function handleCheckout(e) {
           if (e) e.preventDefault();
           if (!cartState || cartState.quantity <= 0 || !cartState.colors || cartState.colors.length === 0) return;
@@ -1912,6 +1925,9 @@
               btn.appendChild(loader);
             }
           });
+
+          // Safety fallback: re-enable buttons after 10s if redirect stalls or is cancelled
+          setTimeout(resetCheckoutButtons, 10000);
 
           const product = PRODUCTS_CONFIG[cartState.productId] || PRODUCTS_CONFIG["miroooo-x"];
           const productId = product.productId;
@@ -2038,13 +2054,16 @@
               if (appliedPromoCode) bridgeUrl.searchParams.set("discount", appliedPromoCode);
               window.location.href = bridgeUrl.toString();
             } catch (_) {
+              resetCheckoutButtons();
               window.location.href = "https://miroooo.us/checkouts";
             }
           }
         }
 
+        resetCheckoutButtons();
         if (checkoutBtn) checkoutBtn.addEventListener("click", handleCheckout);
         if (stickyBtn) stickyBtn.addEventListener("click", handleCheckout);
+        window.addEventListener("pageshow", resetCheckoutButtons);
       }
 
       // 8. PROMO CODE HANDLING
