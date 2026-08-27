@@ -702,11 +702,11 @@
   const ATTRIBUTION_STORAGE_KEY = "miroooo_attribution";
 
   const X_VARIANTS = {
-    "Grey": "1000020348812113",
-    "Gray": "1000020348812113",
-    "Pink": "1000020348812111",
-    "Rose Gold": "1000020348812111",
-    "Silver": "1000020348812112"
+    "Grey": "1000020700958564",
+    "Gray": "1000020700958564",
+    "Pink": "1000020700958562",
+    "Rose Gold": "1000020700958562",
+    "Silver": "1000020700958563"
   };
 
   const X2_VARIANTS = {
@@ -764,7 +764,7 @@
 
   async function createPlusbaseCheckoutSession(item, extraParams = {}) {
     const isX2 = item?.productHandle === "miroooo-x2" || (item?.title && item.title.includes("X2"));
-    const productId = isX2 ? "1000000664011618" : "1000000664011633";
+    const productId = isX2 ? "1000000664011618" : "1000000675113473";
     const variants = isX2 ? X2_VARIANTS : X_VARIANTS;
 
     const bundleCount = item?.bundleCount || item?.count || item?.itemCount || (item?.tierId === "bundle-3" ? 3 : item?.tierId === "bundle-2" ? 2 : 1);
@@ -777,7 +777,7 @@
     }
 
     const items = selectedColors.map((color) => {
-      const vId = variants[color] || variants["Grey"] || variants["Gray"] || variants["Pink"] || variants["Silver"] || (isX2 ? "1000020348810048" : "1000020348812113");
+      const vId = variants[color] || variants["Grey"] || variants["Gray"] || variants["Pink"] || variants["Silver"] || (isX2 ? "1000020348810048" : "1000020700958564");
       return {
         productId: productId,
         variantId: vId,
@@ -909,7 +909,7 @@
               items: [
                 {
                   id: `${parsed.productId}-${qty}`,
-                  productId: isX2 ? "1000000664011618" : "1000000664011633",
+                  productId: isX2 ? "1000000664011618" : "1000000675113473",
                   productHandle: productHandle,
                   title: qty > 1 ? `${title} (Buy ${qty})` : title,
                   quantity: 1,

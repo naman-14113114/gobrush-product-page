@@ -1437,14 +1437,14 @@
         "miroooo-x": {
           id: "miroooo-x",
           name: "Brush X",
-          productId: "1000000664011633",
+          productId: "1000000675113473",
           source: "miroooo",
           subtitle: "Electric Toothbrush with 32,000 VPM acoustic motor & 60-day battery.",
           image: "/gallery_orig/Grey-color-8.jpg",
           variants: {
-            "Grey": { variantId: "1000020348812113", image: "/gallery_orig/Grey-color-8.jpg" },
-            "Pink": { variantId: "1000020348812111", image: "/assets_ref/x/gallery/Miroooo_x_Pink-1.webp" },
-            "Silver": { variantId: "1000020348812112", image: "/assets_ref/x/gallery/Miroooo_x_Silver-1.webp" }
+            "Grey": { variantId: "1000020700958564", image: "/gallery_orig/Grey-color-8.jpg" },
+            "Pink": { variantId: "1000020700958562", image: "/assets_ref/x/gallery/Miroooo_x_Pink-1.webp" },
+            "Silver": { variantId: "1000020700958563", image: "/assets_ref/x/gallery/Miroooo_x_Silver-1.webp" }
           },
           getPricing(qty) {
             const count = Math.max(1, qty);
@@ -1921,7 +1921,7 @@
           const items = colorList.map(color => {
             const count = colorCounts[color];
             const variantObj = product.variants[color] || product.variants["Grey"] || product.variants["Pink"] || product.variants["Silver"];
-            const vId = variantObj ? variantObj.variantId : (cartState.productId === "miroooo-x2" ? "1000020348810048" : "1000020348812113");
+            const vId = variantObj ? variantObj.variantId : (cartState.productId === "miroooo-x2" ? "1000020348810048" : "1000020700958564");
             return {
               productId: productId,
               variantId: vId,
@@ -2016,7 +2016,7 @@
           } catch (error) {
             console.error("Checkout redirection failed, redirecting to PlusBase checkout:", error);
             try {
-              const firstVariantId = items[0]?.variantId || (cartState.productId === "miroooo-x2" ? "1000020348810048" : "1000020348812113");
+              const firstVariantId = items[0]?.variantId || (cartState.productId === "miroooo-x2" ? "1000020348810048" : "1000020700958564");
               const bridgeUrl = new URL("https://buudy.com/pages/add-to-cart");
               bridgeUrl.searchParams.set("product_id", productId);
               bridgeUrl.searchParams.set("variant_id", firstVariantId);

@@ -1,4 +1,4 @@
-﻿// Vercel Serverless Function: /api/checkout/prepare
+// Vercel Serverless Function: /api/checkout/prepare
 const plusbaseOrigin = "https://miroooo.onshopbase.com";
 const publicCheckoutDomain = "https://miroooo.us";
 
@@ -149,12 +149,12 @@ module.exports = async function handler(req, res) {
 
     if (Array.isArray(body.items) && body.items.length > 0) {
       items = body.items.map((it) => ({
-        productId: it.productId || "1000000664011633",
+        productId: it.productId || "1000000675113473",
         variantId: it.variantId,
         quantity: Math.max(1, Math.round(Number(it.quantity) || 1)),
       }));
     } else if (Array.isArray(body.variantIds) && body.variantIds.length > 0) {
-      const defaultProductId = body.productId || "1000000664011633";
+      const defaultProductId = body.productId || "1000000675113473";
       items = body.variantIds.map((vId) => ({
         productId: defaultProductId,
         variantId: vId,
@@ -163,8 +163,8 @@ module.exports = async function handler(req, res) {
     } else {
       items = [
         {
-          productId: body.productId || "1000000664011633",
-          variantId: body.variantId || "1000020348812113",
+          productId: body.productId || "1000000675113473",
+          variantId: body.variantId || "1000020700958564",
           quantity: Math.max(1, Math.round(Number(body.quantity) || 1)),
         },
       ];
