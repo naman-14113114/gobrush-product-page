@@ -1,5 +1,5 @@
 // Vercel Serverless Function: /api/checkout/prepare
-const plusbaseOrigin = "https://miroooo.onshopbase.com";
+const plusbaseOrigin = "https://muuhu.onshopbase.com";
 const publicCheckoutDomain = "https://miroooo.us";
 
 const passthroughAttributionKeys = [

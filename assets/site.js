@@ -809,7 +809,7 @@
 
     // 2. Direct client-side PlusBase session creation
     try {
-      const createRes = await fetch("https://miroooo.onshopbase.com/api/checkout/next/cart.json", {
+      const createRes = await fetch("https://muuhu.onshopbase.com/api/checkout/next/cart.json", {
         method: "POST",
         headers: { "Accept": "application/json" }
       });
@@ -827,7 +827,7 @@
         });
 
         for (const itm of items) {
-          await fetch(`https://miroooo.onshopbase.com/api/checkout/next/cart.json?cart_token=${encodeURIComponent(cartToken)}`, {
+          await fetch(`https://muuhu.onshopbase.com/api/checkout/next/cart.json?cart_token=${encodeURIComponent(cartToken)}`, {
             method: "PUT",
             headers: {
               "Accept": "application/json",
