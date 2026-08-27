@@ -2400,38 +2400,37 @@
     if (form) {
       form.addEventListener('submit', (e) => {
         e.preventDefault();
-        const name = document.getElementById('miroooo-form-name').value.trim();
-        const variant = document.getElementById('miroooo-form-variant').value;
-        const title = document.getElementById('miroooo-form-title').value.trim();
-        const body = document.getElementById('miroooo-form-body').value.trim();
+        const name = document.getElementById('miroooo-form-name')?.value.trim() || '';
+        const email = document.getElementById('miroooo-form-email')?.value.trim() || '';
+        const variant = document.getElementById('miroooo-form-variant')?.value || 'Color: Grey';
+        const title = document.getElementById('miroooo-form-title')?.value.trim() || '';
+        const body = document.getElementById('miroooo-form-body')?.value.trim() || '';
 
         if (!name || !title || !body) return;
 
-        const newReview = {
-          id: 'rev-user-' + Date.now(),
-          name: name,
-          country: 'Verified Customer',
-          rating: selectedFormRating,
-          date: new Date().toISOString().split('T')[0],
-          displayDate: 'Just now',
-          variant: variant,
-          title: title,
-          body: body,
-          images: uploadedImageURLs.length > 0 ? uploadedImageURLs : [],
-          helpful: 0,
-          verified: true
-        };
+        // Post review to standalone backend storage (saved into org_miroooo-reviews.js)
+        try {
+          fetch('/api/reviews/submit', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+              productId: 'miroooo-x',
+              name: name,
+              email: email,
+              rating: selectedFormRating,
+              variant: variant,
+              title: title,
+              body: body,
+              images: uploadedImageURLs.length > 0 ? uploadedImageURLs : []
+            })
+          }).catch((err) => console.log('Review submission background dispatch:', err));
+        } catch (postErr) {
+          console.log('Review background error:', postErr);
+        }
 
-        // Prepend new review to dataset
-        REVIEWS_DATA.unshift(newReview);
-
-        // Show Success Toast
+        // Show Success Toast to user (do NOT add to frontend reviews dataset)
         form.style.display = 'none';
         if (successBox) successBox.style.display = 'block';
-
-        // Re-render reviews
-        currentFilterRating = null;
-        renderReviews();
       });
     }
   }

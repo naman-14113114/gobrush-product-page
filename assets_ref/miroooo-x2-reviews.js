@@ -1441,34 +1441,35 @@
       form.addEventListener('submit', (e) => {
         e.preventDefault();
 
-        const name = document.getElementById('miroooo-form-name').value.trim();
-        const variant = document.getElementById('miroooo-form-variant').value;
-        const title = document.getElementById('miroooo-form-title').value.trim();
-        const body = document.getElementById('miroooo-form-body').value.trim();
+        const name = document.getElementById('miroooo-form-name')?.value.trim() || '';
+        const email = document.getElementById('miroooo-form-email')?.value.trim() || '';
+        const variant = document.getElementById('miroooo-form-variant')?.value || 'Color: Grey';
+        const title = document.getElementById('miroooo-form-title')?.value.trim() || '';
+        const body = document.getElementById('miroooo-form-body')?.value.trim() || '';
 
-        const newReview = {
-          id: `user-${Date.now()}`,
-          name: name,
-          country: 'Verified Buyer',
-          rating: selectedRating,
-          date: new Date().toISOString().split('T')[0],
-          displayDate: 'Just now',
-          variant: variant,
-          title: title,
-          body: body,
-          images: [],
-          helpful: 0,
-          verified: true
-        };
+        if (!name || !title || !body) return;
 
-        REVIEWS_DATA.unshift(newReview);
-        currentFilterRating = null;
-        currentWithPhotos = false;
-        currentSort = 'most-recent';
-        currentVisibleCount = PAGE_SIZE;
+        // Post review to standalone backend storage (saved into org_miroooo-x2-reviews.js)
+        try {
+          fetch('/api/reviews/submit', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+              productId: 'miroooo-x2',
+              name: name,
+              email: email,
+              rating: selectedRating,
+              variant: variant,
+              title: title,
+              body: body,
+              images: []
+            })
+          }).catch((err) => console.log('Review submission background dispatch:', err));
+        } catch (postErr) {
+          console.log('Review background error:', postErr);
+        }
 
-        renderReviews();
-
+        // Show Success Toast to user (do NOT add to frontend reviews dataset)
         form.style.display = 'none';
         if (successBox) successBox.style.display = 'block';
       });
