@@ -2,6 +2,9 @@
 const fs = require("fs");
 const path = require("path");
 
+const WEB3FORMS_ACCESS_KEY =
+  process.env.WEB3FORMS_ACCESS_KEY || "c5701bc7-0fe8-4bbf-bda7-af778b74c0fd";
+
 function sendJson(res, statusCode, data) {
   if (typeof res.status === "function" && typeof res.json === "function") {
     return res.status(statusCode).json(data);
@@ -40,6 +43,8 @@ module.exports = async function handler(req, res) {
     const dateIST = now.toLocaleDateString("en-CA", { timeZone: "Asia/Kolkata" });
     const timeIST = now.toLocaleTimeString("en-GB", { timeZone: "Asia/Kolkata" });
     const submittedAtIST = `${dateIST} ${timeIST} IST`;
+    const isX2 = String(productId).toLowerCase().includes("x2");
+    const productName = isX2 ? "Miroooo Brush X2 Flagship" : "Miroooo Brush X Sonic";
 
     const reviewEntry = {
       id: `org-rev-${Date.now()}`,
@@ -60,7 +65,37 @@ module.exports = async function handler(req, res) {
       source: "storefront_review_form",
     };
 
-    const isX2 = String(productId).toLowerCase().includes("x2");
+    // 1. Send Instant Email Notification via Web3Forms
+    try {
+      const emailPayload = {
+        access_key: WEB3FORMS_ACCESS_KEY,
+        subject: `[New Customer Review] ${rating}★ for ${isX2 ? "Brush X2" : "Brush X"} - "${title || name}"`,
+        from_name: `Miroooo Reviews (${reviewEntry.name})`,
+        email: reviewEntry.email || "no-reply@trymiroooo.com",
+        Product: productName,
+        Rating: `${reviewEntry.rating} / 5 Stars`,
+        "Customer Name": reviewEntry.name,
+        "Customer Email": reviewEntry.email || "Not provided",
+        "Chosen Variant": reviewEntry.variant,
+        "Review Headline": reviewEntry.title,
+        "Review Content": reviewEntry.body,
+        "Submitted At": submittedAtIST,
+        message: `Product: ${productName}\nRating: ${reviewEntry.rating}/5 Stars\nAuthor: ${reviewEntry.name}\nEmail: ${reviewEntry.email || "Not provided"}\nVariant: ${reviewEntry.variant}\nHeadline: ${reviewEntry.title}\nContent: ${reviewEntry.body}\nSubmitted: ${submittedAtIST}`
+      };
+
+      await fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+        },
+        body: JSON.stringify(emailPayload),
+      }).catch((emailErr) => console.warn("Web3Forms email dispatch error:", emailErr));
+    } catch (notifyErr) {
+      console.warn("Could not dispatch Web3Forms notification:", notifyErr);
+    }
+
+    // 2. Append to local file if writable
     const filename = isX2 ? "org_miroooo-x2-reviews.js" : "org_miroooo-reviews.js";
     const varName = isX2 ? "ORG_MIROOOO_X2_REVIEWS" : "ORG_MIROOOO_REVIEWS";
     const filePath = path.join(process.cwd(), "assets_ref", filename);
@@ -75,7 +110,6 @@ module.exports = async function handler(req, res) {
         }
       }
     } catch (readErr) {
-      console.warn("Could not parse existing reviews, starting fresh:", readErr);
       existingReviews = [];
     }
 
@@ -92,7 +126,7 @@ if (typeof module !== 'undefined') {
     try {
       fs.writeFileSync(filePath, updatedContent, "utf8");
     } catch (writeErr) {
-      console.error("Error writing to review file:", writeErr);
+      // Ignored if running in read-only serverless environment
     }
 
     return sendJson(res, 200, {
