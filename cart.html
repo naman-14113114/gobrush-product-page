@@ -752,14 +752,24 @@
       color: #000000 !important;
     }
 
-    .cart-checkout-cta-btn .btn-text svg {
+    .cart-checkout-cta-btn .btn-text svg,
+    .cart-checkout-cta-btn .btn-text svg path,
+    .cart-checkout-cta-btn .btn-text svg rect,
+    .cart-checkout-cta-btn .btn-text svg * {
       color: #ffffff !important;
       stroke: #ffffff !important;
+      fill: none !important;
       transition: color 0.4s cubic-bezier(0.16, 1, 0.3, 1), stroke 0.4s cubic-bezier(0.16, 1, 0.3, 1) !important;
     }
 
     .cart-checkout-cta-btn:hover .btn-text svg,
-    .cart-checkout-cta-btn:focus-visible .btn-text svg {
+    .cart-checkout-cta-btn:hover .btn-text svg path,
+    .cart-checkout-cta-btn:hover .btn-text svg rect,
+    .cart-checkout-cta-btn:hover .btn-text svg *,
+    .cart-checkout-cta-btn:focus-visible .btn-text svg,
+    .cart-checkout-cta-btn:focus-visible .btn-text svg path,
+    .cart-checkout-cta-btn:focus-visible .btn-text svg rect,
+    .cart-checkout-cta-btn:focus-visible .btn-text svg * {
       color: #000000 !important;
       stroke: #000000 !important;
       fill: none !important;
@@ -1251,7 +1261,7 @@
             <button
               type="button"
               id="main-checkout-btn"
-              class="cart-checkout-cta-btn proxy-bundle-btn"
+              class="cart-checkout-cta-btn"
               is="hover-button"
               aria-label="Proceed to secure checkout"
             >
