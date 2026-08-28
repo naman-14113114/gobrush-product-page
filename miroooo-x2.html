@@ -2736,7 +2736,7 @@ theme.variantStrings = {
       <div class="gift-card-item is-unlocked" id="gift-card-2">
         <span class="gift-badge badge-unlocked" id="gift-badge-2">FREE <span style="text-decoration: line-through; opacity: 0.8; font-weight: normal; margin-left: 2px;">£10</span></span>
         <div class="gift-image-wrap">
-          <img src="/assets_ref/x2/gallery/miroooo-x2-sonic-electric-toothbrush-wall-mounted-storage.webp" alt="Miroooo Brush X2 Wall-Mounted Storage Cradle" loading="lazy" />
+          <img id="gift-wall-mounted-img" src="/assets_ref/x2/gallery/miroooo-x2-sonic-electric-toothbrush-wall-mounted-storage.webp" alt="Miroooo Brush X2 Silver Sonic Electric Toothbrush Wall-Mounted Storage Cradle" loading="lazy" />
         </div>
         <span class="text-xs sm:text-sm font-bold leading-tight" style="color: #ffffff;">Wall-Mounted Storage</span>
       </div>
@@ -4246,7 +4246,9 @@ const VARIANTS_DATA = {
       standard: "/assets_ref/x2/modes/miroooo-x2-sonic-standard-cleaning-mode-green-led.webp",
       whitening: "/assets_ref/x2/modes/miroooo-x2-sonic-whitening-mode-purple-led.webp",
       deepClean: "/assets_ref/x2/modes/miroooo-x2-sonic-deep-cleansing-mode-blue-led.webp"
-    }
+    },
+    wallMountedImage: "/assets_ref/x2/gallery/miroooo-x2-sonic-electric-toothbrush-wall-mounted-storage.webp",
+    wallMountedAlt: "Miroooo Brush X2 Silver Sonic Electric Toothbrush Wall-Mounted Storage Cradle"
   },
   "Pink": {
     name: "Pink",
@@ -4279,7 +4281,9 @@ const VARIANTS_DATA = {
       standard: "/assets_ref/x2/modes/miroooo-x2-sonic-pink-standard-cleaning-mode-green-led.webp",
       whitening: "/assets_ref/x2/modes/miroooo-x2-sonic-pink-whitening-mode-purple-led.webp",
       deepClean: "/assets_ref/x2/modes/miroooo-x2-sonic-pink-deep-cleansing-mode-blue-led.webp"
-    }
+    },
+    wallMountedImage: "/assets_ref/x2/gallery/miroooo-x2-sonic-electric-toothbrush-pink-wall-mounted-storage.webp",
+    wallMountedAlt: "Miroooo Brush X2 Pink Sonic Electric Toothbrush Wall-Mounted Storage Cradle"
   },
   "Grey": {
     name: "Grey",
@@ -4309,10 +4313,12 @@ const VARIANTS_DATA = {
       "/assets_ref/x2/gallery/miroooo-x2-sonic-toothbrush-complete-set-packaging.webp"
     ],
     modeImages: {
-      standard: "/assets_ref/x2/modes/miroooo-x2-sonic-standard-cleaning-mode-green-led.webp",
-      whitening: "/assets_ref/x2/modes/miroooo-x2-sonic-whitening-mode-purple-led.webp",
-      deepClean: "/assets_ref/x2/modes/miroooo-x2-sonic-deep-cleansing-mode-blue-led.webp"
-    }
+      standard: "/assets_ref/x2/modes/miroooo-x2-sonic-grey-standard-cleaning-mode-green-led.webp",
+      whitening: "/assets_ref/x2/modes/miroooo-x2-sonic-grey-whitening-mode-purple-led.webp",
+      deepClean: "/assets_ref/x2/modes/miroooo-x2-sonic-grey-deep-cleansing-mode-blue-led.webp"
+    },
+    wallMountedImage: "/assets_ref/x2/gallery/miroooo-x2-sonic-electric-toothbrush-grey-wall-mounted-storage.webp",
+    wallMountedAlt: "Miroooo Brush X2 Grey Sonic Electric Toothbrush Wall-Mounted Storage Cradle"
   }
 };
 // Aliases
@@ -4421,6 +4427,20 @@ function updateGalleryForVariant(colorName) {
       setTimeout(() => {
         deepImg.src = data.modeImages.deepClean;
         deepImg.style.opacity = '1';
+      }, 120);
+    }
+  }
+
+  // 4. Update Wall-Mounted Storage Free Gift Image
+  if (data.wallMountedImage) {
+    const wallMountedImg = document.getElementById('gift-wall-mounted-img');
+    if (wallMountedImg) {
+      wallMountedImg.style.transition = 'opacity 0.2s ease';
+      wallMountedImg.style.opacity = '0';
+      setTimeout(() => {
+        wallMountedImg.src = data.wallMountedImage;
+        if (data.wallMountedAlt) wallMountedImg.alt = data.wallMountedAlt;
+        wallMountedImg.style.opacity = '1';
       }, 120);
     }
   }
