@@ -898,7 +898,7 @@
               : "/gallery_orig/Grey-color-8.jpg";
 
             if (isX2) {
-              if (firstColor.includes("pink") || firstColor.includes("rose")) image = "/assets_ref/x2/gallery/miroooo-x2-sonic-electric-toothbrush-silver-in-hand.webp";
+              if (firstColor.includes("pink") || firstColor.includes("rose")) image = "/assets_ref/x2/gallery/miroooo-x2-sonic-electric-toothbrush-pink-in-hand.webp";
               else if (firstColor.includes("silver")) image = "/assets_ref/x2/gallery/miroooo-x2-sonic-electric-toothbrush-silver-in-hand.webp";
             } else {
               if (firstColor.includes("pink") || firstColor.includes("rose")) image = "/assets_ref/x/gallery/Miroooo_x_Pink-1.webp";
