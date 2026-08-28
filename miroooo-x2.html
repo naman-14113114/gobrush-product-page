@@ -2467,6 +2467,22 @@ theme.variantStrings = {
     </ul>
   </div>
 
+  <!-- Standalone 3-Color Variant Selector (Silver, Pink, Grey) -->
+  <div class="standalone-color-selector my-4" style="margin: 20px 0 16px 0;">
+    <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 10px; font-size: 14px;">
+      <span style="color: rgba(255, 255, 255, 0.6); font-weight: 500;">Color:</span>
+      <span id="standalone-color-name" style="color: #ffffff; font-weight: 700;">Silver</span>
+    </div>
+    <div style="display: flex; align-items: center; gap: 12px;" id="standalone-swatches-group">
+      <!-- Silver Swatch (Active by default) -->
+      <button type="button" class="standalone-swatch-btn is-active" data-color="Silver" onclick="selectStandaloneColor('Silver')" title="Silver" aria-label="Silver"></button>
+      <!-- Pink Swatch -->
+      <button type="button" class="standalone-swatch-btn" data-color="Pink" onclick="selectStandaloneColor('Pink')" title="Pink" aria-label="Pink"></button>
+      <!-- Grey Swatch -->
+      <button type="button" class="standalone-swatch-btn" data-color="Grey" onclick="selectStandaloneColor('Grey')" title="Grey" aria-label="Grey"></button>
+    </div>
+  </div>
+
   <!-- Bundle Divider -->
   <div class="bundle-header-divider flex items-center gap-3 my-4">
     <span class="h-px flex-1" style="background-color: rgba(255, 255, 255, 0.15); height: 1px; flex: 1;"></span>
@@ -2498,6 +2514,17 @@ theme.variantStrings = {
           </div>
         </div>
       </button>
+      <div class="tier-expanded-panel" id="panel-single" style="display: none;">
+        <!-- Row 1 -->
+        <div class="brush-selection-row">
+          <span class="text-xs sm:text-sm font-medium" style="color: #444444;">Brush Color:</span>
+          <div class="brush-color-swatches" data-brush-index="0">
+            <button type="button" class="color-swatch-btn swatch-grey" title="Grey" aria-label="Grey" onclick="setBrushChoice('single', 0, 'Grey', event)"></button>
+            <button type="button" class="color-swatch-btn swatch-pink" title="Pink" aria-label="Pink" onclick="setBrushChoice('single', 0, 'Pink', event)"></button>
+            <button type="button" class="color-swatch-btn swatch-silver is-active" title="Silver" aria-label="Silver" onclick="setBrushChoice('single', 0, 'Silver', event)"></button>
+          </div>
+        </div>
+      </div>
     </div>
 
     <!-- Tier 2: Buy 2 (Default, Most Popular) -->
@@ -2534,6 +2561,26 @@ theme.variantStrings = {
           </div>
         </div>
       </button>
+      <div class="tier-expanded-panel" id="panel-bundle-2">
+        <!-- Row 1 -->
+        <div class="brush-selection-row">
+          <span class="text-xs sm:text-sm font-medium" style="color: #444444;">#1 Brush Color:</span>
+          <div class="brush-color-swatches" data-brush-index="0">
+            <button type="button" class="color-swatch-btn swatch-grey" title="Grey" aria-label="Grey" onclick="setBrushChoice('bundle-2', 0, 'Grey', event)"></button>
+            <button type="button" class="color-swatch-btn swatch-pink" title="Pink" aria-label="Pink" onclick="setBrushChoice('bundle-2', 0, 'Pink', event)"></button>
+            <button type="button" class="color-swatch-btn swatch-silver is-active" title="Silver" aria-label="Silver" onclick="setBrushChoice('bundle-2', 0, 'Silver', event)"></button>
+          </div>
+        </div>
+        <!-- Row 2 -->
+        <div class="brush-selection-row">
+          <span class="text-xs sm:text-sm font-medium" style="color: #444444;">#2 Brush Color:</span>
+          <div class="brush-color-swatches" data-brush-index="1">
+            <button type="button" class="color-swatch-btn swatch-grey is-active" title="Grey" aria-label="Grey" onclick="setBrushChoice('bundle-2', 1, 'Grey', event)"></button>
+            <button type="button" class="color-swatch-btn swatch-pink" title="Pink" aria-label="Pink" onclick="setBrushChoice('bundle-2', 1, 'Pink', event)"></button>
+            <button type="button" class="color-swatch-btn swatch-silver" title="Silver" aria-label="Silver" onclick="setBrushChoice('bundle-2', 1, 'Silver', event)"></button>
+          </div>
+        </div>
+      </div>
     </div>
 
     <!-- Tier 3: Buy 3 (Best Value) -->
@@ -2565,6 +2612,35 @@ theme.variantStrings = {
           </div>
         </div>
       </button>
+      <div class="tier-expanded-panel" id="panel-bundle-3" style="display: none;">
+        <!-- Row 1 -->
+        <div class="brush-selection-row">
+          <span class="text-xs sm:text-sm font-medium" style="color: #444444;">#1 Brush Color:</span>
+          <div class="brush-color-swatches" data-brush-index="0">
+            <button type="button" class="color-swatch-btn swatch-grey" title="Grey" aria-label="Grey" onclick="setBrushChoice('bundle-3', 0, 'Grey', event)"></button>
+            <button type="button" class="color-swatch-btn swatch-pink" title="Pink" aria-label="Pink" onclick="setBrushChoice('bundle-3', 0, 'Pink', event)"></button>
+            <button type="button" class="color-swatch-btn swatch-silver is-active" title="Silver" aria-label="Silver" onclick="setBrushChoice('bundle-3', 0, 'Silver', event)"></button>
+          </div>
+        </div>
+        <!-- Row 2 -->
+        <div class="brush-selection-row">
+          <span class="text-xs sm:text-sm font-medium" style="color: #444444;">#2 Brush Color:</span>
+          <div class="brush-color-swatches" data-brush-index="1">
+            <button type="button" class="color-swatch-btn swatch-grey is-active" title="Grey" aria-label="Grey" onclick="setBrushChoice('bundle-3', 1, 'Grey', event)"></button>
+            <button type="button" class="color-swatch-btn swatch-pink" title="Pink" aria-label="Pink" onclick="setBrushChoice('bundle-3', 1, 'Pink', event)"></button>
+            <button type="button" class="color-swatch-btn swatch-silver" title="Silver" aria-label="Silver" onclick="setBrushChoice('bundle-3', 1, 'Silver', event)"></button>
+          </div>
+        </div>
+        <!-- Row 3 -->
+        <div class="brush-selection-row">
+          <span class="text-xs sm:text-sm font-medium" style="color: #444444;">#3 Brush Color:</span>
+          <div class="brush-color-swatches" data-brush-index="2">
+            <button type="button" class="color-swatch-btn swatch-grey" title="Grey" aria-label="Grey" onclick="setBrushChoice('bundle-3', 2, 'Grey', event)"></button>
+            <button type="button" class="color-swatch-btn swatch-pink is-active" title="Pink" aria-label="Pink" onclick="setBrushChoice('bundle-3', 2, 'Pink', event)"></button>
+            <button type="button" class="color-swatch-btn swatch-silver" title="Silver" aria-label="Silver" onclick="setBrushChoice('bundle-3', 2, 'Silver', event)"></button>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 
@@ -3079,10 +3155,10 @@ theme.variantStrings = {
       <div class="miroooo-sticky-pill">
         <div class="miroooo-sticky-left">
           <div class="miroooo-sticky-img-wrap">
-            <img id="sticky-bar-img" src="https://cdn.shopify.com/s/files/1/0810/6023/3561/files/Grey-color-8.jpg?v=1734444578" alt="Brush X2" width="54" height="54" loading="eager">
+            <img id="sticky-bar-img" src="/assets_ref/x2/gallery/miroooo-x2-sonic-electric-toothbrush-silver-in-hand.webp" alt="Brush X2" width="54" height="54" loading="eager">
           </div>
           <div class="miroooo-sticky-info">
-            <p class="miroooo-sticky-title" id="sticky-bar-title">Buy 2 - Brush X2 (Grey + Pink)</p>
+            <p class="miroooo-sticky-title" id="sticky-bar-title">Buy 2 - Brush X2 (Silver + Grey)</p>
             <p class="miroooo-sticky-sub" id="sticky-bar-subtitle">
               <span id="sticky-bar-price" style="font-weight: 700; color: #ffffff;">£148</span>
               <span class="miroooo-sticky-bullet">·</span>
@@ -4153,7 +4229,7 @@ theme.variantStrings = {
 const VARIANTS_DATA = {
   "Silver": {
     name: "Silver",
-    title: "Brush X2",
+    title: "Brush X2 - Silver",
     price: "£79",
     variantId: "1000020348810046",
     productId: "1000000664011618",
@@ -4169,50 +4245,196 @@ const VARIANTS_DATA = {
       "/assets_ref/x2/gallery/miroooo-x2-sonic-toothbrush-ventilated-travel-case.webp",
       "/assets_ref/x2/gallery/miroooo-x2-sonic-toothbrush-handbag-travel-case.webp",
       "/assets_ref/x2/gallery/miroooo-x2-sonic-toothbrush-complete-set-packaging.webp"
+    ],
+    thumbnails: [
+      "/assets_ref/x2/gallery/miroooo-x2-sonic-toothbrush-ipx7-waterproof.webp",
+      "/assets_ref/x2/gallery/miroooo-x2-sonic-electric-toothbrush-silver-in-hand.webp",
+      "/assets_ref/x2/gallery/miroooo-x2-sonic-electric-toothbrush-upright-grip.webp",
+      "/assets_ref/x2/gallery/miroooo-x2-sonic-toothbrush-precision-bristle-head.webp",
+      "/assets_ref/x2/gallery/miroooo-x2-sonic-toothbrush-smart-pressure-sensor-ring.jpg",
+      "/assets_ref/x2/gallery/miroooo-x2-sonic-toothbrush-usbc-fast-charging-port.webp",
+      "/assets_ref/x2/gallery/miroooo-x2-sonic-toothbrush-portable-travel-cap.webp",
+      "/assets_ref/x2/gallery/miroooo-x2-sonic-toothbrush-ventilated-travel-case.webp",
+      "/assets_ref/x2/gallery/miroooo-x2-sonic-toothbrush-handbag-travel-case.webp",
+      "/assets_ref/x2/gallery/miroooo-x2-sonic-toothbrush-complete-set-packaging.webp"
+    ]
+  },
+  "Pink": {
+    name: "Pink",
+    title: "Brush X2 - Pink",
+    price: "£79",
+    variantId: "1000020348810062",
+    productId: "1000000664011618",
+    swatchColor: "#f2a7b3",
+    images: [
+      "/assets_ref/x2/gallery/miroooo-x2-sonic-toothbrush-ipx7-waterproof.webp",
+      "/assets_ref/x2/gallery/miroooo-x2-sonic-electric-toothbrush-silver-in-hand.webp",
+      "/assets_ref/x2/gallery/miroooo-x2-sonic-electric-toothbrush-upright-grip.webp",
+      "/assets_ref/x2/gallery/miroooo-x2-sonic-toothbrush-precision-bristle-head.webp",
+      "/assets_ref/x2/gallery/miroooo-x2-sonic-toothbrush-smart-pressure-sensor-ring.jpg",
+      "/assets_ref/x2/gallery/miroooo-x2-sonic-toothbrush-usbc-fast-charging-port.webp",
+      "/assets_ref/x2/gallery/miroooo-x2-sonic-toothbrush-portable-travel-cap.webp",
+      "/assets_ref/x2/gallery/miroooo-x2-sonic-toothbrush-ventilated-travel-case.webp",
+      "/assets_ref/x2/gallery/miroooo-x2-sonic-toothbrush-handbag-travel-case.webp",
+      "/assets_ref/x2/gallery/miroooo-x2-sonic-toothbrush-complete-set-packaging.webp"
+    ],
+    thumbnails: [
+      "/assets_ref/x2/gallery/miroooo-x2-sonic-toothbrush-ipx7-waterproof.webp",
+      "/assets_ref/x2/gallery/miroooo-x2-sonic-electric-toothbrush-silver-in-hand.webp",
+      "/assets_ref/x2/gallery/miroooo-x2-sonic-electric-toothbrush-upright-grip.webp",
+      "/assets_ref/x2/gallery/miroooo-x2-sonic-toothbrush-precision-bristle-head.webp",
+      "/assets_ref/x2/gallery/miroooo-x2-sonic-toothbrush-smart-pressure-sensor-ring.jpg",
+      "/assets_ref/x2/gallery/miroooo-x2-sonic-toothbrush-usbc-fast-charging-port.webp",
+      "/assets_ref/x2/gallery/miroooo-x2-sonic-toothbrush-portable-travel-cap.webp",
+      "/assets_ref/x2/gallery/miroooo-x2-sonic-toothbrush-ventilated-travel-case.webp",
+      "/assets_ref/x2/gallery/miroooo-x2-sonic-toothbrush-handbag-travel-case.webp",
+      "/assets_ref/x2/gallery/miroooo-x2-sonic-toothbrush-complete-set-packaging.webp"
+    ]
+  },
+  "Grey": {
+    name: "Grey",
+    title: "Brush X2 - Grey",
+    price: "£79",
+    variantId: "1000020348810048",
+    productId: "1000000664011618",
+    swatchColor: "#737373",
+    images: [
+      "/assets_ref/x2/gallery/miroooo-x2-sonic-toothbrush-ipx7-waterproof.webp",
+      "/assets_ref/x2/gallery/miroooo-x2-sonic-electric-toothbrush-silver-in-hand.webp",
+      "/assets_ref/x2/gallery/miroooo-x2-sonic-electric-toothbrush-upright-grip.webp",
+      "/assets_ref/x2/gallery/miroooo-x2-sonic-toothbrush-precision-bristle-head.webp",
+      "/assets_ref/x2/gallery/miroooo-x2-sonic-toothbrush-smart-pressure-sensor-ring.jpg",
+      "/assets_ref/x2/gallery/miroooo-x2-sonic-toothbrush-usbc-fast-charging-port.webp",
+      "/assets_ref/x2/gallery/miroooo-x2-sonic-toothbrush-portable-travel-cap.webp",
+      "/assets_ref/x2/gallery/miroooo-x2-sonic-toothbrush-ventilated-travel-case.webp",
+      "/assets_ref/x2/gallery/miroooo-x2-sonic-toothbrush-handbag-travel-case.webp",
+      "/assets_ref/x2/gallery/miroooo-x2-sonic-toothbrush-complete-set-packaging.webp"
+    ],
+    thumbnails: [
+      "/assets_ref/x2/gallery/miroooo-x2-sonic-toothbrush-ipx7-waterproof.webp",
+      "/assets_ref/x2/gallery/miroooo-x2-sonic-electric-toothbrush-silver-in-hand.webp",
+      "/assets_ref/x2/gallery/miroooo-x2-sonic-electric-toothbrush-upright-grip.webp",
+      "/assets_ref/x2/gallery/miroooo-x2-sonic-toothbrush-precision-bristle-head.webp",
+      "/assets_ref/x2/gallery/miroooo-x2-sonic-toothbrush-smart-pressure-sensor-ring.jpg",
+      "/assets_ref/x2/gallery/miroooo-x2-sonic-toothbrush-usbc-fast-charging-port.webp",
+      "/assets_ref/x2/gallery/miroooo-x2-sonic-toothbrush-portable-travel-cap.webp",
+      "/assets_ref/x2/gallery/miroooo-x2-sonic-toothbrush-ventilated-travel-case.webp",
+      "/assets_ref/x2/gallery/miroooo-x2-sonic-toothbrush-handbag-travel-case.webp",
+      "/assets_ref/x2/gallery/miroooo-x2-sonic-toothbrush-complete-set-packaging.webp"
     ]
   }
 };
+// Aliases
+VARIANTS_DATA["Gray"] = VARIANTS_DATA["Grey"];
+VARIANTS_DATA["Rose Gold"] = VARIANTS_DATA["Pink"];
 
 const TIERS = {
   'single': {
+    id: 'single',
     label: 'Buy 1',
     count: 1,
-    price: 79,
+    priceNum: 79,
     priceDisplay: '£79',
     compareDisplay: '£159',
     saveDisplay: '50% OFF',
-    ctaText: 'Add To Cart + 3 Free Gifts',
-    giftsValue: '£34.95',
     unlockedGifts: 3,
-    variantId: '1000020348810046'
+    giftsValue: '£34.95',
+    ctaText: 'Add To Cart + 3 Free Gifts'
   },
   'bundle-2': {
+    id: 'bundle-2',
     label: 'Buy 2',
     count: 2,
-    price: 148,
+    priceNum: 148,
     priceDisplay: '£148',
     compareDisplay: '£318',
     saveDisplay: '£10 OFF',
-    ctaText: 'Add To Cart + 3 Free Gifts',
-    giftsValue: '£34.95',
     unlockedGifts: 3,
-    variantId: '1000020348810046'
+    giftsValue: '£34.95',
+    ctaText: 'Add To Cart + 3 Free Gifts'
   },
   'bundle-3': {
+    id: 'bundle-3',
     label: 'Buy 3',
     count: 3,
-    price: 207,
+    priceNum: 207,
     priceDisplay: '£207',
     compareDisplay: '£477',
     saveDisplay: '£20 OFF',
-    ctaText: 'Add To Cart + 3 Free Gifts',
-    giftsValue: '£34.95',
     unlockedGifts: 3,
-    variantId: '1000020348810046'
+    giftsValue: '£34.95',
+    ctaText: 'Add To Cart + 3 Free Gifts'
   }
 };
 
 let activeTierId = 'bundle-2'; // Default preselected
+let activeSelectedColor = 'Silver'; // Standalone active color
+
+const choicesState = {
+  'single': ['Silver'],
+  'bundle-2': ['Silver', 'Grey'],
+  'bundle-3': ['Silver', 'Grey', 'Pink']
+};
+
+function selectStandaloneColor(colorName) {
+  if (!VARIANTS_DATA[colorName]) return;
+  activeSelectedColor = colorName;
+
+  // 1. Update standalone swatches UI
+  document.querySelectorAll('.standalone-swatch-btn').forEach(btn => {
+    if (btn.dataset.color === colorName || btn.getAttribute('title') === colorName) {
+      btn.classList.add('is-active');
+    } else {
+      btn.classList.remove('is-active');
+    }
+  });
+
+  // 2. Update color label text
+  const colorNameDisplay = document.getElementById('standalone-color-name');
+  if (colorNameDisplay) colorNameDisplay.textContent = colorName;
+
+  // 3. Update main product title
+  const mainTitle = document.getElementById('main-product-title');
+  if (mainTitle) mainTitle.textContent = `Brush X2 - ${colorName}`;
+
+  // 4. Update first brush color in active tier
+  if (choicesState[activeTierId]) {
+    choicesState[activeTierId][0] = colorName;
+    const panel = document.getElementById('panel-' + activeTierId);
+    if (panel) {
+      const swatchesContainer = panel.querySelectorAll('.brush-color-swatches')[0];
+      if (swatchesContainer) {
+        swatchesContainer.querySelectorAll('.color-swatch-btn').forEach(btn => {
+          if (btn.getAttribute('title') === colorName || btn.getAttribute('aria-label') === colorName) {
+            btn.classList.add('is-active');
+          } else {
+            btn.classList.remove('is-active');
+          }
+        });
+      }
+    }
+  }
+
+  // Update single tier first choice as well
+  if (choicesState['single']) {
+    choicesState['single'][0] = colorName;
+    const singlePanel = document.getElementById('panel-single');
+    if (singlePanel) {
+      const swatchesContainer = singlePanel.querySelectorAll('.brush-color-swatches')[0];
+      if (swatchesContainer) {
+        swatchesContainer.querySelectorAll('.color-swatch-btn').forEach(btn => {
+          if (btn.getAttribute('title') === colorName || btn.getAttribute('aria-label') === colorName) {
+            btn.classList.add('is-active');
+          } else {
+            btn.classList.remove('is-active');
+          }
+        });
+      }
+    }
+  }
+
+  updateStickyBar();
+}
 
 function selectBundleTier(tierId) {
   if (!TIERS[tierId]) return;
@@ -4228,13 +4450,21 @@ function selectBundleTier(tierId) {
     }
   });
 
-  // 2. Update Main CTA Button Text
+  // 2. Expand/Collapse Panels
+  ['single', 'bundle-2', 'bundle-3'].forEach(id => {
+    const panel = document.getElementById('panel-' + id);
+    if (panel) {
+      panel.style.display = (id === tierId) ? 'flex' : 'none';
+    }
+  });
+
+  // 3. Update Main CTA Button Text
   const mainCtaText = document.getElementById('main-cta-text');
   if (mainCtaText) mainCtaText.textContent = tier.ctaText;
 
-  // 3. Update Free Gifts Section (All 3 permanently unlocked)
+  // 4. Update Free Gifts Section (All 3 permanently unlocked)
   const giftsBanner = document.getElementById('gifts-total-value-banner');
-  if (giftsBanner) giftsBanner.textContent = '£34.95';
+  if (giftsBanner) giftsBanner.textContent = tier.giftsValue || '£34.95';
 
   const giftCard1 = document.getElementById('gift-card-1');
   const giftCard2 = document.getElementById('gift-card-2');
@@ -4256,7 +4486,31 @@ function selectBundleTier(tierId) {
     giftBadge3.innerHTML = 'FREE <span style="text-decoration: line-through; opacity: 0.8; font-weight: normal; margin-left: 2px;">£9</span>';
   }
 
-  // 4. Update Sticky Bar
+  // 5. Update Sticky Bar
+  updateStickyBar();
+}
+
+function setBrushChoice(tierId, index, colorName, event) {
+  if (event) event.stopPropagation();
+  if (!choicesState[tierId]) return;
+  choicesState[tierId][index] = colorName;
+
+  // Update Swatch Button styles in that row
+  const panel = document.getElementById('panel-' + tierId);
+  if (panel) {
+    const swatchesContainer = panel.querySelectorAll('.brush-color-swatches')[index];
+    if (swatchesContainer) {
+      swatchesContainer.querySelectorAll('.color-swatch-btn').forEach(btn => {
+        if (btn.getAttribute('title') === colorName || btn.getAttribute('aria-label') === colorName) {
+          btn.classList.add('is-active');
+        } else {
+          btn.classList.remove('is-active');
+        }
+      });
+    }
+  }
+
+  // Update Sticky Bar options
   updateStickyBar();
 }
 
@@ -4264,13 +4518,16 @@ function updateStickyBar() {
   const tier = TIERS[activeTierId];
   if (!tier) return;
 
+  const choices = choicesState[activeTierId] || ['Silver'];
+  const firstColor = choices[0] || 'Silver';
+
   // 1. Sticky Title
   const stickyTitle = document.getElementById('sticky-bar-title');
   if (stickyTitle) {
     if (activeTierId === 'single') {
-      stickyTitle.textContent = `Brush X2 (Silver)`;
+      stickyTitle.textContent = `Brush X2 - ${firstColor}`;
     } else {
-      stickyTitle.textContent = `${tier.label} - Brush X2 (Silver)`;
+      stickyTitle.textContent = `${tier.label} - Brush X2 (${choices.join(' + ')})`;
     }
   }
 
@@ -4296,7 +4553,7 @@ function updateStickyBar() {
   const stickyImg = document.getElementById('sticky-bar-img');
   if (stickyImg) {
     stickyImg.src = '/assets_ref/x2/gallery/miroooo-x2-sonic-electric-toothbrush-silver-in-hand.webp';
-    stickyImg.alt = 'Brush X2 (Silver)';
+    stickyImg.alt = `Brush X2 - ${firstColor}`;
   }
 }
 
@@ -4332,11 +4589,15 @@ document.addEventListener('visibilitychange', () => {
 
 function handleAddToCartAndRedirect() {
   const tier = TIERS[activeTierId] || TIERS['bundle-2'];
+  const choices = (choicesState[activeTierId] && choicesState[activeTierId].length > 0)
+    ? choicesState[activeTierId].slice(0, tier.count)
+    : (activeTierId === 'single' ? [activeSelectedColor || 'Silver'] : ['Silver', 'Grey']);
+
   try {
     localStorage.setItem('miroooo_cart', JSON.stringify({
       productId: 'miroooo-x2',
       quantity: tier.count,
-      colors: Array(tier.count).fill('Silver')
+      colors: choices
     }));
     localStorage.removeItem('miroooo_cart_empty');
   } catch (e) {}
@@ -4499,6 +4760,24 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Initial Bundle Tier selection (pre-select Buy 2)
   selectBundleTier('bundle-2');
+
+  const urlParams = new URLSearchParams(window.location.search);
+  const colorParam = urlParams.get('color') || urlParams.get('variant');
+  const validColors = ['Silver', 'Pink', 'Grey'];
+  let initialColor = 'Silver';
+  if (colorParam) {
+    const found = validColors.find(c => c.toLowerCase() === colorParam.toLowerCase());
+    if (found) initialColor = found;
+  } else if (window.location.pathname.toLowerCase().includes('pink')) {
+    initialColor = 'Pink';
+  } else if (window.location.pathname.toLowerCase().includes('grey') || window.location.pathname.toLowerCase().includes('gray')) {
+    initialColor = 'Grey';
+  }
+  selectStandaloneColor(initialColor);
+  if (typeof setBrushChoice === 'function') {
+    setBrushChoice('single', 0, initialColor);
+    setBrushChoice('bundle-2', 0, initialColor);
+  }
 
   // Live Delivery Countdown Timer & Dynamic Delivery Date calculation
   const initDeliveryCountdown = () => {
