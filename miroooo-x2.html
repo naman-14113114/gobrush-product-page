@@ -2649,7 +2649,7 @@ theme.variantStrings = {
         Brush X2 Free Gifts
       </h2>
       <p class="mt-2 inline-flex items-center justify-center gap-1.5 flex-wrap rounded-full px-3.5 py-1 text-xs font-bold tracking-wider" style="margin-top: 8px; display: inline-flex; align-items: center; gap: 6px; padding: 5px 16px; border-radius: 9999px; background: #161616; border: 1px solid rgba(255,255,255,0.15); color: #ffffff; font-size: 11px;">
-        <span class="font-extrabold" id="gifts-total-value-banner" style="color: #ffffff; font-weight: 800;">£60.85</span>
+        <span class="font-extrabold" id="gifts-total-value-banner" style="color: #ffffff; font-weight: 800;">£34.95</span>
         <span style="color: rgba(255,255,255,0.85);">VALUE OF FREE GIFTS FOR TODAY ONLY</span>
       </p>
     </div>
@@ -2662,21 +2662,21 @@ theme.variantStrings = {
         </div>
         <span class="text-xs sm:text-sm font-bold leading-tight" style="color: #ffffff;">Travel Case</span>
       </div>
-      <!-- Gift 2: 2x Replacement Brush Heads -->
+      <!-- Gift 2: Wall-Mounted Storage -->
       <div class="gift-card-item is-unlocked" id="gift-card-2">
-        <span class="gift-badge badge-unlocked" id="gift-badge-2">FREE <span style="text-decoration: line-through; opacity: 0.8; font-weight: normal; margin-left: 2px;">£19.95</span></span>
+        <span class="gift-badge badge-unlocked" id="gift-badge-2">FREE <span style="text-decoration: line-through; opacity: 0.8; font-weight: normal; margin-left: 2px;">£10</span></span>
         <div class="gift-image-wrap">
-          <img src="https://cdn.shopify.com/s/files/1/0810/6023/3561/files/Grey-color-4.jpg?v=1734444578&width=300" alt="2x Replacement Brush Heads" loading="lazy" />
+          <img src="/assets_ref/x2/gallery/miroooo-x2-sonic-electric-toothbrush-wall-mounted-storage.webp" alt="Miroooo Brush X2 Wall-Mounted Storage Cradle" loading="lazy" />
         </div>
-        <span class="text-xs sm:text-sm font-bold leading-tight" style="color: #ffffff;">2x Brush Heads</span>
+        <span class="text-xs sm:text-sm font-bold leading-tight" style="color: #ffffff;">Wall-Mounted Storage</span>
       </div>
-      <!-- Gift 3: Magnetic Charging Dock -->
+      <!-- Gift 3: MIROOOO App -->
       <div class="gift-card-item is-unlocked" id="gift-card-3">
-        <span class="gift-badge badge-unlocked" id="gift-badge-3">FREE <span style="text-decoration: line-through; opacity: 0.8; font-weight: normal; margin-left: 2px;">£24.95</span></span>
+        <span class="gift-badge badge-unlocked" id="gift-badge-3">FREE <span style="text-decoration: line-through; opacity: 0.8; font-weight: normal; margin-left: 2px;">£9</span></span>
         <div class="gift-image-wrap">
-          <img src="https://cdn.shopify.com/s/files/1/0810/6023/3561/files/Grey-color-7.jpg?v=1734444578&width=300" alt="Magnetic Charging Dock" loading="lazy" />
+          <img src="/assets_ref/x2/gallery/miroooo-x2-sonic-electric-toothbrush-smart-companion-app.webp" alt="MIROOOO Companion Smart App Access" loading="lazy" />
         </div>
-        <span class="text-xs sm:text-sm font-bold leading-tight" style="color: #ffffff;">Charging Dock</span>
+        <span class="text-xs sm:text-sm font-bold leading-tight" style="color: #ffffff;">MIROOOO App</span>
       </div>
     </div>
   </section>
@@ -2771,8 +2771,9 @@ theme.variantStrings = {
         </div>
         <ul style="padding-left: 18px; margin: 0;">
           <li>1x Miroooo Brush X2 Sonic Electric Toothbrush Handle (Aerospace Silver)</li>
-          <li>1x 2x Precision DuPont Replacement Brush Heads (Gift)</li>
+          <li>1x Wall-Mounted Storage (Gift)</li>
           <li>1x Luxury Travel Case (Gift)</li>
+          <li>1x MIROOOO App Access (Gift)</li>
           <li>1x Magnetic USB-C Fast Charging Cable &amp; Stand</li>
           <li>1x Luxury Presentation Box &amp; User Manual</li>
         </ul>
@@ -4197,7 +4198,7 @@ const TIERS = {
     compareDisplay: '£159',
     saveDisplay: '50% OFF',
     ctaText: 'Add To Cart + 3 Free Gifts',
-    giftsValue: '£60.85',
+    giftsValue: '£34.95',
     unlockedGifts: 3,
     variantId: '1000020348810046'
   },
@@ -4209,7 +4210,7 @@ const TIERS = {
     compareDisplay: '£318',
     saveDisplay: '£10 OFF',
     ctaText: 'Add To Cart + 3 Free Gifts',
-    giftsValue: '£60.85',
+    giftsValue: '£34.95',
     unlockedGifts: 3,
     variantId: '1000020348810046'
   },
@@ -4221,7 +4222,7 @@ const TIERS = {
     compareDisplay: '£477',
     saveDisplay: '£20 OFF',
     ctaText: 'Add To Cart + 3 Free Gifts',
-    giftsValue: '£60.85',
+    giftsValue: '£34.95',
     unlockedGifts: 3,
     variantId: '1000020348810046'
   }
@@ -4249,7 +4250,7 @@ function selectBundleTier(tierId) {
 
   // 3. Update Free Gifts Section (All 3 permanently unlocked)
   const giftsBanner = document.getElementById('gifts-total-value-banner');
-  if (giftsBanner) giftsBanner.textContent = '£60.85';
+  if (giftsBanner) giftsBanner.textContent = '£34.95';
 
   const giftCard1 = document.getElementById('gift-card-1');
   const giftCard2 = document.getElementById('gift-card-2');
@@ -4263,12 +4264,12 @@ function selectBundleTier(tierId) {
   if (giftCard2 && giftBadge2) {
     giftCard2.className = 'gift-card-item is-unlocked';
     giftBadge2.className = 'gift-badge badge-unlocked';
-    giftBadge2.innerHTML = 'FREE <span style="text-decoration: line-through; opacity: 0.8; font-weight: normal; margin-left: 2px;">£19.95</span>';
+    giftBadge2.innerHTML = 'FREE <span style="text-decoration: line-through; opacity: 0.8; font-weight: normal; margin-left: 2px;">£10</span>';
   }
   if (giftCard3 && giftBadge3) {
     giftCard3.className = 'gift-card-item is-unlocked';
     giftBadge3.className = 'gift-badge badge-unlocked';
-    giftBadge3.innerHTML = 'FREE <span style="text-decoration: line-through; opacity: 0.8; font-weight: normal; margin-left: 2px;">£24.95</span>';
+    giftBadge3.innerHTML = 'FREE <span style="text-decoration: line-through; opacity: 0.8; font-weight: normal; margin-left: 2px;">£9</span>';
   }
 
   // 4. Update Sticky Bar
