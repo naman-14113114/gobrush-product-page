@@ -2445,8 +2445,8 @@ theme.variantStrings = {
   <!-- 2. Price Display (£) -->
   <div class="product__price grid gap-2 mt-2" id="main-product-price-section">
     <div class="flex flex-wrap items-baseline gap-2" style="display: flex; align-items: baseline; gap: 8px;">
-      <span class="text-2xl sm:text-3xl font-extrabold text-white" id="main-price-display" style="font-size: 1.85rem; font-weight: 800; color: #ffffff;">£79</span>
-      <span class="text-base sm:text-lg price-compare-strike" id="main-compare-price-display" style="color: rgba(255, 255, 255, 0.55); font-size: 1.15rem;">£159</span>
+      <span class="text-2xl sm:text-3xl font-extrabold text-white" id="main-price-display" style="font-size: 1.85rem; font-weight: 800; color: #ffffff;">£69</span>
+      <span class="text-base sm:text-lg price-compare-strike" id="main-compare-price-display" style="color: rgba(255, 255, 255, 0.55); font-size: 1.15rem;">£139</span>
       <span class="inline-block px-2.5 py-0.5 rounded-full text-xs font-bold uppercase tracking-wider" id="main-discount-badge" style="background: #e6e6e6; color: #111111; font-size: 11px; font-weight: 800; padding: 3px 10px; border-radius: 9999px; letter-spacing: 0.05em; display: inline-flex; align-items: center;">50% OFF</span>
     </div>
   </div>
@@ -2470,7 +2470,7 @@ theme.variantStrings = {
         <span style="color: #ffffff; display: inline-flex; align-items: center; justify-content: center; width: 22px; height: 22px; flex-shrink: 0; background: rgba(255, 255, 255, 0.08); border-radius: 50%; border: 1px solid rgba(255, 255, 255, 0.15);">
           <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="7" width="18" height="14" rx="2"></rect><path d="M8 7V4a1 1 0 0 1 1-1h6a1 1 0 0 1 1 1v3"></path><line x1="3" y1="13" x2="21" y2="13"></line></svg>
         </span>
-        <span>Includes luxury <strong>Travel Case</strong> worth £15.95.</span>
+        <span>Includes luxury <strong>Travel Case</strong> worth £16.</span>
       </li>
       <li style="display: flex; align-items: center; gap: 10px;">
         <span style="color: #ffffff; display: inline-flex; align-items: center; justify-content: center; width: 22px; height: 22px; flex-shrink: 0; background: rgba(255, 255, 255, 0.08); border-radius: 50%; border: 1px solid rgba(255, 255, 255, 0.15);">
@@ -2521,8 +2521,8 @@ theme.variantStrings = {
           </div>
           <div class="text-right" style="text-align: right; display: flex; flex-direction: column; align-items: flex-end; justify-content: flex-start; flex-shrink: 0;">
             <div class="flex items-baseline gap-1.5 justify-end" style="display: flex; align-items: baseline; justify-content: flex-end; gap: 6px;">
-              <span class="font-bold text-base sm:text-lg" style="font-weight: 700; font-size: 1.1rem; color: #111111;">£79</span>
-              <span class="text-xs sm:text-sm price-compare-strike" style="font-size: 12px; color: #777777;">£159</span>
+              <span class="font-bold text-base sm:text-lg" style="font-weight: 700; font-size: 1.1rem; color: #111111;">£69</span>
+              <span class="text-xs sm:text-sm price-compare-strike" style="font-size: 12px; color: #777777;">£139</span>
             </div>
             <span class="tier-badge-pill mt-0.5" style="background: rgba(0, 0, 0, 0.08); color: #111111; font-size: 10.5px; font-weight: 800; padding: 2px 8px; border-radius: 9999px; display: inline-block;">50% OFF</span>
           </div>
@@ -2745,14 +2745,14 @@ theme.variantStrings = {
         Brush X2 Free Gifts
       </h2>
       <p class="mt-2 inline-flex items-center justify-center gap-1.5 flex-wrap rounded-full px-3.5 py-1 text-xs font-bold tracking-wider" style="margin-top: 8px; display: inline-flex; align-items: center; gap: 6px; padding: 5px 16px; border-radius: 9999px; background: #161616; border: 1px solid rgba(255,255,255,0.15); color: #ffffff; font-size: 11px;">
-        <span class="font-extrabold" id="gifts-total-value-banner" style="color: #ffffff; font-weight: 800;">£34.95</span>
+        <span class="font-extrabold" id="gifts-total-value-banner" style="color: #ffffff; font-weight: 800;">£35</span>
         <span style="color: rgba(255,255,255,0.85);">VALUE OF FREE GIFTS FOR TODAY ONLY</span>
       </p>
     </div>
     <div class="grid grid-cols-3 gap-2.5 sm:gap-3" id="gifts-grid" style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px;">
       <!-- Gift 1: Luxury Travel Case (Always Unlocked) -->
       <div class="gift-card-item is-unlocked" id="gift-card-1">
-        <span class="gift-badge badge-unlocked">FREE <span style="text-decoration: line-through; opacity: 0.8; font-weight: normal; margin-left: 2px;">£15.95</span></span>
+        <span class="gift-badge badge-unlocked" id="gift-badge-1">FREE <span style="text-decoration: line-through; opacity: 0.8; font-weight: normal; margin-left: 2px;">£16</span></span>
         <div class="gift-image-wrap">
           <img src="/assets_ref/x/gallery/Miroooo_x_Pink-6.webp" alt="Luxury Travel Case" loading="lazy" />
         </div>
@@ -4244,7 +4244,7 @@ const VARIANTS_DATA = {
   "Silver": {
     name: "Silver",
     title: "Brush X2 - Silver",
-    price: "£79",
+    price: "£69",
     variantId: "1000020348810046",
     productId: "1000000664011618",
     swatchColor: "#e5e5e5",
@@ -4283,7 +4283,7 @@ const VARIANTS_DATA = {
   "Pink": {
     name: "Pink",
     title: "Brush X2 - Pink",
-    price: "£79",
+    price: "£69",
     variantId: "1000020348810062",
     productId: "1000000664011618",
     swatchColor: "#f2a7b3",
@@ -4322,7 +4322,7 @@ const VARIANTS_DATA = {
   "Grey": {
     name: "Grey",
     title: "Brush X2 - Grey",
-    price: "£79",
+    price: "£69",
     variantId: "1000020348810048",
     productId: "1000000664011618",
     swatchColor: "#737373",
@@ -4368,12 +4368,12 @@ const TIERS = {
     id: 'single',
     label: 'Buy 1',
     count: 1,
-    priceNum: 79,
-    priceDisplay: '£79',
-    compareDisplay: '£159',
+    priceNum: 69,
+    priceDisplay: '£69',
+    compareDisplay: '£139',
     saveDisplay: '50% OFF',
     unlockedGifts: 3,
-    giftsValue: '£34.95',
+    giftsValue: '£35',
     ctaText: 'Add To Cart + 3 Free Gifts'
   },
   'bundle-2': {
@@ -4385,7 +4385,7 @@ const TIERS = {
     compareDisplay: '£318',
     saveDisplay: '£10 OFF',
     unlockedGifts: 3,
-    giftsValue: '£34.95',
+    giftsValue: '£35',
     ctaText: 'Add To Cart + 3 Free Gifts'
   },
   'bundle-3': {
@@ -4397,7 +4397,7 @@ const TIERS = {
     compareDisplay: '£477',
     saveDisplay: '£20 OFF',
     unlockedGifts: 3,
-    giftsValue: '£34.95',
+    giftsValue: '£35',
     ctaText: 'Add To Cart + 3 Free Gifts'
   }
 };
@@ -4599,16 +4599,21 @@ function selectBundleTier(tierId) {
 
   // 4. Update Free Gifts Section (All 3 permanently unlocked)
   const giftsBanner = document.getElementById('gifts-total-value-banner');
-  if (giftsBanner) giftsBanner.textContent = tier.giftsValue || '£34.95';
+  if (giftsBanner) giftsBanner.textContent = tier.giftsValue || '£35';
 
   const giftCard1 = document.getElementById('gift-card-1');
   const giftCard2 = document.getElementById('gift-card-2');
   const giftCard3 = document.getElementById('gift-card-3');
+  const giftBadge1 = document.getElementById('gift-badge-1');
   const giftBadge2 = document.getElementById('gift-badge-2');
   const giftBadge3 = document.getElementById('gift-badge-3');
 
   if (giftCard1) {
     giftCard1.className = 'gift-card-item is-unlocked';
+  }
+  if (giftBadge1) {
+    giftBadge1.className = 'gift-badge badge-unlocked';
+    giftBadge1.innerHTML = 'FREE <span style="text-decoration: line-through; opacity: 0.8; font-weight: normal; margin-left: 2px;">£16</span>';
   }
   if (giftCard2 && giftBadge2) {
     giftCard2.className = 'gift-card-item is-unlocked';
