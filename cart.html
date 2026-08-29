@@ -1426,10 +1426,10 @@
         }, 1000);
       }
 
-      // 2. ESTIMATED DELIVERY DATE (Friday 21 August / Today + 3 days)
+      // 2. ESTIMATED DELIVERY DATE (Friday 21 August / Today + 5 days)
       function initDeliveryDate() {
         const targetDate = new Date();
-        targetDate.setDate(targetDate.getDate() + 3);
+        targetDate.setDate(targetDate.getDate() + 5);
 
         const weekday = targetDate.toLocaleString("en-GB", { weekday: "long" });
         const day = targetDate.getDate();

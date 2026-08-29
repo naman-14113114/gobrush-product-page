@@ -1339,7 +1339,7 @@
 
   function updateDeliveryDates() {
     const deliveryDate = new Date();
-    deliveryDate.setDate(deliveryDate.getDate() + 3);
+    deliveryDate.setDate(deliveryDate.getDate() + 5);
     const options = { weekday: "long", day: "numeric", month: "long" };
     const formattedDate = deliveryDate.toLocaleDateString("en-GB", options);
     document.querySelectorAll(".miroooo-dynamic-date").forEach((el) => {

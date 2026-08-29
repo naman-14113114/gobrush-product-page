@@ -5892,7 +5892,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const initDeliveryCountdown = () => {
     const updateDeliveryDate = () => {
       const deliveryDate = new Date();
-      deliveryDate.setDate(deliveryDate.getDate() + 3);
+      deliveryDate.setDate(deliveryDate.getDate() + 5);
       const options = { weekday: 'long', day: 'numeric', month: 'short' };
       const formatted = deliveryDate.toLocaleDateString('en-GB', options).replace(',', '');
       const deliveryDateEl = document.getElementById('bundle-delivery-date');
