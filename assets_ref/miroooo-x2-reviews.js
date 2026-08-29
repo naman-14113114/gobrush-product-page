@@ -156,7 +156,7 @@
       variant: 'Grey / Single',
       title: 'Deep Cleansing blue halo mode is unbelievable',
       body: 'The 3rd mode with the cyan blue glowing ring operates at maximum swept frequency. Your mouth feels like you just stepped out of a professional hygiene appointment. Completely smooth tooth surface feeling all day long.',
-      images: [],
+      images: ['/assets_ref/x2/x2-review-wall-mount-duo.webp'],
       helpful: 19,
       verified: true
     },
@@ -212,7 +212,7 @@
       variant: 'Silver / Single',
       title: 'Magnetic charging dock is sleek and clutter-free',
       body: 'No ugly protruding plastic prongs. It balances solidly on the magnetic disc and takes up minimal bathroom counter space. Plus needing to charge only 4 times a year is liberating.',
-      images: [],
+      images: ['/assets_ref/x2/x2-review-silver-wall-dock.webp'],
       helpful: 18,
       verified: true
     },
@@ -268,7 +268,7 @@
       variant: 'Silver / Single',
       title: 'Sleek aerospace aluminum body, slightly smooth grip when wet',
       body: 'The matte metal chassis looks stunning on the counter and doesn\'t harbor mold. However, if your hands are covered in soapy water in the shower, the metal can feel a bit sleek. Brushing performance is top tier though.',
-      images: [],
+      images: ['/assets_ref/x2/x2-review-silver-in-hand-sink.webp'],
       helpful: 19,
       verified: true
     },
@@ -334,7 +334,7 @@
       variant: 'Silver / Travel Edition',
       title: 'Outer shipping box was crushed upon delivery',
       body: 'The delivery driver squeezed the package through the letterbox which creased the outer retail carton. Fortunately the internal foam and hard travel case kept the X2 undamaged, but for a premium £79 device the external shipping packaging should be more rigid.',
-      images: [],
+      images: ['/assets_ref/x2/x2-review-box-packaging-side.webp'],
       helpful: 18,
       verified: true,
       merchantReply: {
@@ -400,7 +400,7 @@
       variant: 'Silver / Travel Edition',
       title: 'Best investment for frequent business travel',
       body: 'With the ventilated travel case and 90-day battery, I never have to pack charging cords or fear bristle deformation in my carry-on bag.',
-      images: [],
+      images: ['/assets_ref/x2/x2-review-pink-packaging-box.webp'],
       helpful: 25,
       verified: true
     },
