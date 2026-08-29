@@ -895,7 +895,7 @@
             const firstColor = (colors[0] || "").toLowerCase();
             let image = isX2
               ? "/assets_ref/x2/gallery/miroooo-x2-sonic-electric-toothbrush-grey-in-hand.webp"
-              : "/gallery_orig/Grey-color-8.jpg";
+              : "/assets_ref/x/gallery/Miroooo_x_Grey-2.webp";
 
             if (isX2) {
               if (firstColor.includes("pink") || firstColor.includes("rose")) image = "/assets_ref/x2/gallery/miroooo-x2-sonic-electric-toothbrush-pink-in-hand.webp";
@@ -903,7 +903,8 @@
               else if (firstColor.includes("grey") || firstColor.includes("gray")) image = "/assets_ref/x2/gallery/miroooo-x2-sonic-electric-toothbrush-grey-in-hand.webp";
             } else {
               if (firstColor.includes("pink") || firstColor.includes("rose")) image = "/assets_ref/x/gallery/Miroooo_x_Pink-1.webp";
-              else if (firstColor.includes("silver")) image = "/gallery_orig/Silver-color-1.jpg";
+              else if (firstColor.includes("silver")) image = "/assets_ref/x/gallery/Miroooo_x_Silver-1.webp";
+              else if (firstColor.includes("grey") || firstColor.includes("gray")) image = "/assets_ref/x/gallery/Miroooo_x_Grey-2.webp";
             }
 
             return {

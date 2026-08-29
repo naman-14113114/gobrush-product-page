@@ -30,7 +30,7 @@ for (const entry of rootEntries) {
 await cp(resolve(root, "miroooo-x.html"), resolve(output, "products", "miroooo-x.html"));
 await cp(resolve(root, "miroooo-x2.html"), resolve(output, "products", "miroooo-x2.html"));
 
-for (const directory of ["assets", "assets_ref", "gallery_orig"]) {
+for (const directory of ["assets", "assets_ref"]) {
   await cp(resolve(root, directory), resolve(output, directory), { recursive: true });
 }
 
