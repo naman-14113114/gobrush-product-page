@@ -3492,305 +3492,840 @@ theme.variantStrings = {
 </div>
 
 <!-- =========================================================================
-     9. Package Contents Section
+     8. Brush X2 vs Brush X1 Comparison Section
      ========================================================================= -->
-<div id="shopify-section-template--24203751129433__image-with-text-1" class="shopify-section" style="background: #000000; color: #ffffff; width: 100%; overflow: hidden; padding: clamp(3.5rem, 6vw, 6rem) 0; box-sizing: border-box; border-top: 1px solid rgba(255, 255, 255, 0.08);">
-  <div style="max-width: 1320px; margin: 0 auto; padding: 0 clamp(16px, 4vw, 40px); box-sizing: border-box;">
-    <div class="image-with-text with-background overflow-hidden" style="background: #0d0d0d; border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 20px; padding: clamp(2rem, 4vw, 3.5rem); display: flex; flex-direction: column; gap: 2rem;">
-      <div class="split-section-grid" style="display: flex; flex-direction: column; align-items: center; gap: 2rem;">
-        <div style="flex: 1; width: 100%;">
-          <div style="border-radius: 14px; overflow: hidden;">
-            <img id="package-contents-section-img" src="/assets_ref/x2/gallery/miroooo-x2-sonic-electric-toothbrush-complete-set-packaging.webp" alt="Miroooo Brush X2 Complete Set Presentation Packaging" width="3162" height="3162" loading="lazy" style="width: 100%; height: 100%; object-fit: cover; border-radius: 14px;" />
+<div id="shopify-section-template--miroooo-x2-comparison" class="shopify-section" style="background: #000000; color: #ffffff; padding: clamp(2rem, 3.5vw, 3.5rem) 0; overflow: visible; width: 100%; border-top: 1px solid rgba(255,255,255,0.08); box-sizing: border-box;">
+
+  <style>
+    .x2-comp-section {
+      width: 100%;
+      max-width: 880px;
+      margin: 0 auto;
+      padding: 0 clamp(14px, 3.5vw, 24px);
+      box-sizing: border-box;
+    }
+    .x2-comp-header {
+      text-align: center;
+      max-width: 680px;
+      margin: 0 auto clamp(1.5rem, 3vw, 2.25rem) auto;
+    }
+    .x2-comp-eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: rgba(34, 197, 94, 0.12);
+      border: 1px solid rgba(34, 197, 94, 0.35);
+      color: #22c55e;
+      font-family: var(--font-body-family, 'Inter', -apple-system, sans-serif);
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 4px 12px;
+      border-radius: 9999px;
+      margin-bottom: 10px;
+    }
+    .x2-comp-title {
+      font-family: var(--font-heading-family, 'Inter', -apple-system, sans-serif);
+      font-size: clamp(1.6rem, 3vw, 2.35rem);
+      font-weight: 800;
+      color: #ffffff;
+      margin: 0 0 8px 0;
+      letter-spacing: -0.03em;
+      line-height: 1.15;
+    }
+    .x2-comp-subtitle {
+      font-family: var(--font-body-family, 'Inter', -apple-system, sans-serif);
+      font-size: clamp(0.88rem, 1.6vw, 1rem);
+      color: rgba(255, 255, 255, 0.65);
+      margin: 0;
+      font-weight: 400;
+      line-height: 1.45;
+    }
+
+    /* Desktop Table Grid (>= 768px) */
+    .x2-comp-desktop {
+      display: block;
+      width: 100%;
+      box-sizing: border-box;
+    }
+    .x2-comp-grid {
+      display: grid;
+      grid-template-columns: 200px 1fr 1fr;
+      gap: 0;
+      position: relative;
+      width: 100%;
+      margin-top: 18px;
+      border-radius: 16px;
+      box-sizing: border-box;
+    }
+
+    /* Column Styles */
+    .x2-comp-col {
+      display: flex;
+      flex-direction: column;
+      background: #111111;
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      border-right: 1px solid rgba(255, 255, 255, 0.08);
+      position: relative;
+      box-sizing: border-box;
+    }
+
+    .x2-comp-col--features {
+      background: #000000;
+      border-left: 1px solid rgba(255, 255, 255, 0.08);
+      border-top-left-radius: 16px;
+      border-bottom-left-radius: 16px;
+      z-index: 1;
+    }
+
+    /* Winner Spotlight Column (Brush X2) - Positioned on the LEFT of X1 */
+    .x2-comp-col--winner {
+      background: #ffffff;
+      color: #000000;
+      border: 2px solid #22c55e !important;
+      border-radius: 16px;
+      transform: scale(1.018) translateY(-6px);
+      z-index: 10;
+      box-shadow: 0 16px 36px rgba(0, 0, 0, 0.7), 0 0 25px rgba(34, 197, 94, 0.25);
+    }
+
+    .x2-comp-col--standard {
+      border-top-right-radius: 16px;
+      border-bottom-right-radius: 16px;
+      z-index: 2;
+    }
+
+    /* Header Cells */
+    .x2-comp-cell--head {
+      min-height: 175px;
+      padding: 18px 14px 12px 14px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+      text-align: center;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      box-sizing: border-box;
+      position: relative;
+    }
+    .x2-comp-col--features .x2-comp-cell--head {
+      align-items: flex-start;
+      text-align: left;
+      justify-content: flex-end;
+      padding: 16px 14px;
+    }
+    .x2-comp-col--winner .x2-comp-cell--head {
+      border-bottom: 2px solid #22c55e;
+      background: #ffffff;
+      border-top-left-radius: 14px;
+      border-top-right-radius: 14px;
+      padding: 16px 14px 0 14px;
+      overflow: visible;
+    }
+
+    .x2-comp-badge-top {
+      position: absolute;
+      top: -12px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: #22c55e;
+      color: #000000;
+      font-size: 0.66rem;
+      font-weight: 800;
+      letter-spacing: 0.06em;
+      padding: 3px 10px;
+      border-radius: 9999px;
+      text-transform: uppercase;
+      box-shadow: 0 4px 12px rgba(34, 197, 94, 0.45);
+      white-space: nowrap;
+      z-index: 20;
+    }
+
+    .x2-comp-head-title {
+      font-family: var(--font-heading-family, 'Inter', -apple-system, sans-serif);
+      font-size: 1.05rem;
+      font-weight: 800;
+      margin: 2px 0 1px 0;
+      line-height: 1.2;
+    }
+    .x2-comp-col--winner .x2-comp-head-title {
+      color: #000000;
+    }
+    .x2-comp-col--standard .x2-comp-head-title {
+      color: #ffffff;
+    }
+
+    .x2-comp-head-tag {
+      font-size: 0.72rem;
+      font-weight: 600;
+      color: rgba(255, 255, 255, 0.5);
+      margin-bottom: 6px;
+    }
+    .x2-comp-col--winner .x2-comp-head-tag {
+      color: #16a34a;
+      font-weight: 700;
+    }
+
+    .x2-comp-head-img-wrap {
+      height: 110px;
+      width: 100%;
+      display: flex;
+      align-items: flex-end;
+      justify-content: center;
+      margin-top: auto;
+      margin-bottom: 0;
+      padding-bottom: 0;
+      line-height: 0;
+      box-sizing: border-box;
+    }
+    .x2-comp-col--winner .x2-comp-head-img-wrap {
+      background: #ffffff;
+    }
+    .x2-comp-col--winner .x2-comp-head-img-wrap img {
+      max-height: 110px;
+      width: auto;
+      object-fit: contain;
+      object-position: bottom center;
+      display: block;
+      margin: 0 auto;
+      padding: 0;
+      vertical-align: bottom;
+      filter: none !important;
+    }
+    .x2-comp-col--standard .x2-comp-head-img-wrap img {
+      max-height: 100px;
+      max-width: 100%;
+      object-fit: contain;
+      display: block;
+      margin-bottom: 4px;
+      filter: drop-shadow(0 4px 10px rgba(0,0,0,0.5));
+    }
+
+    /* Regular Cells */
+    .x2-comp-cell {
+      min-height: 48px;
+      padding: 8px 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      font-size: 0.84rem;
+      color: rgba(255, 255, 255, 0.75);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+      box-sizing: border-box;
+      line-height: 1.3;
+    }
+    .x2-comp-col--features .x2-comp-cell {
+      justify-content: flex-start;
+      text-align: left;
+      font-size: 0.85rem;
+      font-weight: 700;
+      color: #ffffff;
+      padding-left: 14px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+    }
+    .x2-comp-col--winner .x2-comp-cell {
+      color: #000000 !important;
+      font-weight: 700;
+      font-size: 0.86rem;
+      border-bottom: 1px solid #e5e7eb;
+      background: #ffffff;
+    }
+    .x2-comp-col--winner .x2-comp-cell:nth-child(even) {
+      background: #fbfbfb;
+    }
+
+    .x2-comp-val-highlight {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 5px;
+      font-weight: 800;
+    }
+    .x2-comp-tick-icon {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 15px;
+      height: 15px;
+      border-radius: 50%;
+      background: #22c55e;
+      color: #ffffff;
+      font-size: 9px;
+      font-weight: 900;
+      flex-shrink: 0;
+    }
+
+    /* Price Cell (Last Row) */
+    .x2-comp-cell--price {
+      min-height: 68px;
+      padding: 10px 12px;
+      border-bottom: none !important;
+    }
+    .x2-comp-col--winner .x2-comp-cell--price {
+      background: #f0fdf4 !important;
+      border-bottom-left-radius: 14px;
+      border-bottom-right-radius: 14px;
+    }
+    .x2-comp-col--standard .x2-comp-cell--price {
+      border-bottom-right-radius: 16px;
+    }
+    .x2-comp-col--features .x2-comp-cell--price {
+      border-bottom-left-radius: 16px;
+    }
+
+    .x2-price-wrap {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 2px;
+    }
+    .x2-price-line {
+      display: inline-flex;
+      align-items: baseline;
+      gap: 5px;
+    }
+    .x2-price-old {
+      font-size: 0.86rem;
+      color: #94a3b8;
+      text-decoration: line-through;
+      font-weight: 600;
+    }
+    .x2-price-val {
+      font-size: 1.3rem;
+      font-weight: 900;
+      color: #15803d;
+      line-height: 1;
+    }
+    .x2-price-val-standard {
+      font-size: 1.25rem;
+      font-weight: 800;
+      color: #ffffff;
+      line-height: 1;
+    }
+    .x2-price-note {
+      font-size: 0.66rem;
+      font-weight: 700;
+      color: #16a34a;
+      background: rgba(34, 197, 94, 0.15);
+      padding: 1px 7px;
+      border-radius: 9999px;
+      letter-spacing: 0.02em;
+    }
+
+    /* Mobile Comparison Layout (< 768px) - Strictly NO horizontal scroll */
+    .x2-comp-mobile {
+      display: none;
+      width: 100%;
+      box-sizing: border-box;
+    }
+
+    @media (max-width: 767px) {
+      .x2-comp-desktop {
+        display: none !important;
+      }
+      .x2-comp-mobile {
+        display: flex !important;
+        flex-direction: column;
+        width: 100%;
+        box-sizing: border-box;
+      }
+
+      /* Mobile 2-Column Product Headers */
+      .x2-comp-m-head-row {
+        display: flex;
+        width: 100%;
+        gap: 8px;
+        margin-top: 14px;
+        margin-bottom: 8px;
+        box-sizing: border-box;
+      }
+      .x2-comp-m-head-card {
+        flex: 1;
+        width: 50%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        padding: 14px 6px 8px 6px;
+        border-radius: 12px;
+        box-sizing: border-box;
+        position: relative;
+      }
+      .x2-comp-m-head-card--winner {
+        background: #ffffff;
+        color: #000000;
+        border: 2px solid #22c55e;
+        padding: 14px 6px 0 6px;
+        box-shadow: 0 6px 20px rgba(0,0,0,0.5), 0 0 14px rgba(34, 197, 94, 0.25);
+        overflow: visible;
+      }
+      .x2-comp-m-head-card--standard {
+        background: #111111;
+        border: 1px solid rgba(255, 255, 255, 0.08);
+      }
+
+      .x2-comp-m-badge {
+        position: absolute;
+        top: -10px;
+        left: 50%;
+        transform: translateX(-50%);
+        background: #22c55e;
+        color: #000000;
+        font-size: 0.6rem;
+        font-weight: 800;
+        letter-spacing: 0.04em;
+        padding: 2px 8px;
+        border-radius: 9999px;
+        text-transform: uppercase;
+        box-shadow: 0 2px 8px rgba(34, 197, 94, 0.35);
+        white-space: nowrap;
+        z-index: 10;
+      }
+      .x2-comp-m-title {
+        font-family: var(--font-heading-family, 'Inter', -apple-system, sans-serif);
+        font-size: 0.9rem;
+        font-weight: 800;
+        margin: 1px 0;
+        line-height: 1.2;
+      }
+      .x2-comp-m-head-card--winner .x2-comp-m-title {
+        color: #000000;
+      }
+      .x2-comp-m-head-card--standard .x2-comp-m-title {
+        color: #ffffff;
+      }
+
+      .x2-comp-m-tag {
+        font-size: 0.64rem;
+        font-weight: 600;
+        color: rgba(255, 255, 255, 0.5);
+        margin-bottom: 4px;
+      }
+      .x2-comp-m-head-card--winner .x2-comp-m-tag {
+        color: #16a34a;
+        font-weight: 700;
+      }
+
+      .x2-comp-m-img-wrap {
+        height: 76px;
+        width: 100%;
+        display: flex;
+        align-items: flex-end;
+        justify-content: center;
+        margin-top: auto;
+        margin-bottom: 0;
+        padding-bottom: 0;
+        line-height: 0;
+      }
+      .x2-comp-m-head-card--winner .x2-comp-m-img-wrap {
+        background: #ffffff;
+      }
+      .x2-comp-m-head-card--winner .x2-comp-m-img-wrap img {
+        max-height: 76px;
+        width: auto;
+        object-fit: contain;
+        object-position: bottom center;
+        display: block;
+        margin: 0 auto;
+        padding: 0;
+        vertical-align: bottom;
+        filter: none !important;
+      }
+      .x2-comp-m-head-card--standard .x2-comp-m-img-wrap img {
+        max-height: 70px;
+        max-width: 100%;
+        object-fit: contain;
+        display: block;
+      }
+
+      /* Mobile Rows */
+      .x2-comp-m-row-card {
+        background: #0d0d0d;
+        border: 1px solid rgba(255, 255, 255, 0.07);
+        border-radius: 10px;
+        padding: 7px 7px 7px 7px;
+        margin-bottom: 5px;
+        box-sizing: border-box;
+      }
+      .x2-comp-m-row-card--price {
+        background: #111111;
+        border: 1px solid rgba(34, 197, 94, 0.35);
+        margin-top: 2px;
+      }
+
+      .x2-comp-m-feature-name {
+        font-family: var(--font-body-family, 'Inter', -apple-system, sans-serif);
+        font-size: 0.7rem;
+        font-weight: 700;
+        color: rgba(255, 255, 255, 0.5);
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+        text-align: center;
+        margin-bottom: 4px;
+      }
+
+      .x2-comp-m-split {
+        display: flex;
+        width: 100%;
+        gap: 6px;
+        align-items: stretch;
+      }
+
+      .x2-comp-m-val-box {
+        flex: 1;
+        width: 50%;
+        border-radius: 6px;
+        padding: 5px 4px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        box-sizing: border-box;
+      }
+
+      .x2-comp-m-val-box--winner {
+        background: rgba(34, 197, 94, 0.1);
+        border: 1px solid rgba(34, 197, 94, 0.3);
+        color: #ffffff;
+      }
+      .x2-comp-m-val-box--standard {
+        background: rgba(255, 255, 255, 0.03);
+        border: 1px solid rgba(255, 255, 255, 0.05);
+        color: rgba(255, 255, 255, 0.7);
+      }
+
+      .x2-comp-m-val-main {
+        font-size: 0.78rem;
+        font-weight: 700;
+        line-height: 1.2;
+      }
+      .x2-comp-m-val-box--winner .x2-comp-m-val-main {
+        color: #4ade80;
+        font-weight: 800;
+      }
+
+      .x2-comp-m-val-sub {
+        font-size: 0.64rem;
+        color: rgba(255, 255, 255, 0.5);
+        margin-top: 1px;
+        line-height: 1.15;
+      }
+      .x2-comp-m-val-box--winner .x2-comp-m-val-sub {
+        color: rgba(255, 255, 255, 0.75);
+      }
+
+      /* Mobile Price Box */
+      .x2-comp-m-price-box {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+      }
+      .x2-comp-m-old-price {
+        font-size: 0.72rem;
+        color: #94a3b8;
+        text-decoration: line-through;
+        font-weight: 600;
+      }
+      .x2-comp-m-price-val {
+        font-size: 1.15rem;
+        font-weight: 900;
+        color: #22c55e;
+        line-height: 1;
+      }
+      .x2-comp-m-price-val-standard {
+        font-size: 1.1rem;
+        font-weight: 800;
+        color: #ffffff;
+        line-height: 1;
+      }
+      .x2-comp-m-price-note {
+        font-size: 0.58rem;
+        font-weight: 700;
+        color: #22c55e;
+        margin-top: 1px;
+        background: rgba(34, 197, 94, 0.15);
+        padding: 1px 5px;
+        border-radius: 9999px;
+      }
+    }
+  </style>
+
+  <div class="x2-comp-section">
+
+    <!-- Section Header -->
+    <div class="x2-comp-header">
+      <div class="x2-comp-eyebrow">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+        <span>Model Comparison</span>
+      </div>
+      <h2 class="x2-comp-title">Miroooo Brush X2 vs Brush X1</h2>
+      <p class="x2-comp-subtitle">Compare specifications, cleaning technology, and design to see why Brush X2 is our most advanced sonic electric toothbrush yet.</p>
+    </div>
+
+    <!-- ==================== DESKTOP COMPARISON TABLE ==================== -->
+    <div class="x2-comp-desktop">
+      <div class="x2-comp-grid">
+
+        <!-- Column 1: Feature Labels -->
+        <div class="x2-comp-col x2-comp-col--features">
+          <div class="x2-comp-cell--head">
+            <span style="font-size: 0.74rem; font-weight: 700; color: rgba(255,255,255,0.4); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 3px;">Specification</span>
+            <span style="font-size: 1rem; font-weight: 800; color: #ffffff;">Key Features</span>
+          </div>
+          <div class="x2-comp-cell">Battery Life</div>
+          <div class="x2-comp-cell">Motor Power (VPM)</div>
+          <div class="x2-comp-cell">Oscillation Angle</div>
+          <div class="x2-comp-cell">Cleaning Effectiveness</div>
+          <div class="x2-comp-cell">Modern Design</div>
+          <div class="x2-comp-cell">Warranty Coverage</div>
+          <div class="x2-comp-cell x2-comp-cell--price">Price</div>
+        </div>
+
+        <!-- Column 2: Brush X2 (LEFT - Winner Spotlight) -->
+        <div class="x2-comp-col x2-comp-col--winner">
+          <div class="x2-comp-badge-top">★ Flagship Choice</div>
+          <div class="x2-comp-cell--head">
+            <h3 class="x2-comp-head-title">Brush X2</h3>
+            <span class="x2-comp-head-tag">Next-Gen Flagship</span>
+            <div class="x2-comp-head-img-wrap">
+              <img src="/assets_ref/x2/gallery/miroooo-x2-sonic-electric-toothbrush-silver-upright-grip.webp" alt="Miroooo Brush X2 Sonic Electric Toothbrush" loading="lazy" />
+            </div>
+          </div>
+          <!-- 1. Battery Life -->
+          <div class="x2-comp-cell">
+            <span class="x2-comp-val-highlight">
+              <span class="x2-comp-tick-icon">✓</span>
+              <strong>90 Days</strong> (Cobalt Cell)
+            </span>
+          </div>
+          <!-- 2. VPM -->
+          <div class="x2-comp-cell">
+            <span class="x2-comp-val-highlight">
+              <span class="x2-comp-tick-icon">✓</span>
+              <strong>40,000 VPM</strong> High-Torque Motor
+            </span>
+          </div>
+          <!-- 3. Oscillation Angle -->
+          <div class="x2-comp-cell">
+            <span class="x2-comp-val-highlight">
+              <span class="x2-comp-tick-icon">✓</span>
+              <strong>45° Bass Sweep</strong> (Dentist Motion)
+            </span>
+          </div>
+          <!-- 4. Cleaning Effectiveness -->
+          <div class="x2-comp-cell">
+            <span class="x2-comp-val-highlight">
+              <span class="x2-comp-tick-icon">✓</span>
+              <strong>Superior Deep Clean</strong>
+            </span>
+          </div>
+          <!-- 5. Modern Design -->
+          <div class="x2-comp-cell">
+            <span class="x2-comp-val-highlight">
+              <span class="x2-comp-tick-icon">✓</span>
+              Unique Ultra-Modern Look
+            </span>
+          </div>
+          <!-- 6. Warranty -->
+          <div class="x2-comp-cell">
+            <span class="x2-comp-val-highlight">
+              <span class="x2-comp-tick-icon">✓</span>
+              <strong>3-Year Warranty</strong> (Full Replacement)
+            </span>
+          </div>
+          <!-- 7. Price -->
+          <div class="x2-comp-cell x2-comp-cell--price">
+            <div class="x2-price-wrap">
+              <div class="x2-price-line">
+                <span class="x2-price-old">£99</span>
+                <span class="x2-price-val">£69</span>
+              </div>
+              <span class="x2-price-note">(for today only)</span>
+            </div>
           </div>
         </div>
-        <div style="flex: 1; width: 100%; display: flex; align-items: center;">
-          <div>
-            <h2 class="heading leading-none title-sm" style="margin-bottom: 1.25rem;">
-              <span style="color: #ffffff; font-family: 'GFS Didot', 'Playfair Display', Georgia, serif; font-size: clamp(2rem, 3vw, 2.5rem); font-weight: 600; letter-spacing: 0.02em;">
-                Package Contents
-              </span>
-            </h2>
-            <div class="rte leading-normal body subtext-md text-opacity">
-              <p style="color: rgba(255, 255, 255, 0.8); font-size: clamp(1rem, 1.15vw, 1.15rem); line-height: 1.7; margin: 0;">
-                Brush X2 electric toothbrush in chosen colour, brush heads, Travel case, magnetic charging dock, and USB-C charging cable (adapter not included).
-              </p>
+
+        <!-- Column 3: Brush X1 (RIGHT - Standard Model) -->
+        <div class="x2-comp-col x2-comp-col--standard">
+          <div class="x2-comp-cell--head">
+            <h3 class="x2-comp-head-title">Brush X1</h3>
+            <span class="x2-comp-head-tag">Standard Model</span>
+            <div class="x2-comp-head-img-wrap">
+              <img src="/assets_ref/x/compare-miroooo.webp" alt="Miroooo Brush X1 Electric Toothbrush" loading="lazy" />
+            </div>
+          </div>
+          <!-- 1. Battery Life -->
+          <div class="x2-comp-cell">60 Days (Standard Lithium)</div>
+          <!-- 2. VPM -->
+          <div class="x2-comp-cell">32,000 VPM Sonic Motor</div>
+          <!-- 3. Oscillation Angle -->
+          <div class="x2-comp-cell">Standard Micro-Vibration (0°)</div>
+          <!-- 4. Cleaning Effectiveness -->
+          <div class="x2-comp-cell">Everyday Standard Clean</div>
+          <!-- 5. Modern Design -->
+          <div class="x2-comp-cell">Classic Minimalist Look</div>
+          <!-- 6. Warranty -->
+          <div class="x2-comp-cell">2-Year Standard Warranty</div>
+          <!-- 7. Price -->
+          <div class="x2-comp-cell x2-comp-cell--price">
+            <div class="x2-price-wrap">
+              <span class="x2-price-val-standard">£69</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- ==================== MOBILE COMPARISON LAYOUT (<768px) ==================== -->
+    <!-- Guaranteed strictly ZERO horizontal scrolling on all phone viewports -->
+    <div class="x2-comp-mobile">
+
+      <!-- Mobile Headers (Side-by-Side) -->
+      <div class="x2-comp-m-head-row">
+        <!-- Left: Brush X2 (Winner) -->
+        <div class="x2-comp-m-head-card x2-comp-m-head-card--winner">
+          <div class="x2-comp-m-badge">★ Flagship</div>
+          <h3 class="x2-comp-m-title">Brush X2</h3>
+          <span class="x2-comp-m-tag">Next-Gen Flagship</span>
+          <div class="x2-comp-m-img-wrap">
+            <img src="/assets_ref/x2/gallery/miroooo-x2-sonic-electric-toothbrush-silver-upright-grip.webp" alt="Brush X2" loading="lazy" />
+          </div>
+        </div>
+        <!-- Right: Brush X1 (Standard) -->
+        <div class="x2-comp-m-head-card x2-comp-m-head-card--standard">
+          <h3 class="x2-comp-m-title">Brush X1</h3>
+          <span class="x2-comp-m-tag">Standard Model</span>
+          <div class="x2-comp-m-img-wrap">
+            <img src="/assets_ref/x/compare-miroooo.webp" alt="Brush X1" loading="lazy" />
+          </div>
+        </div>
+      </div>
+
+      <!-- Feature 1: Battery Life -->
+      <div class="x2-comp-m-row-card">
+        <div class="x2-comp-m-feature-name">1. Battery Life</div>
+        <div class="x2-comp-m-split">
+          <div class="x2-comp-m-val-box x2-comp-m-val-box--winner">
+            <span class="x2-comp-m-val-main">✓ 90 Days</span>
+            <span class="x2-comp-m-val-sub">Cobalt Cell</span>
+          </div>
+          <div class="x2-comp-m-val-box x2-comp-m-val-box--standard">
+            <span class="x2-comp-m-val-main">60 Days</span>
+            <span class="x2-comp-m-val-sub">Standard Lithium</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Feature 2: VPM -->
+      <div class="x2-comp-m-row-card">
+        <div class="x2-comp-m-feature-name">2. Motor Power (VPM)</div>
+        <div class="x2-comp-m-split">
+          <div class="x2-comp-m-val-box x2-comp-m-val-box--winner">
+            <span class="x2-comp-m-val-main">✓ 40,000 VPM</span>
+            <span class="x2-comp-m-val-sub">High-Torque Acoustic</span>
+          </div>
+          <div class="x2-comp-m-val-box x2-comp-m-val-box--standard">
+            <span class="x2-comp-m-val-main">32,000 VPM</span>
+            <span class="x2-comp-m-val-sub">Standard Sonic</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Feature 3: Oscillation Angle -->
+      <div class="x2-comp-m-row-card">
+        <div class="x2-comp-m-feature-name">3. Oscillation Angle</div>
+        <div class="x2-comp-m-split">
+          <div class="x2-comp-m-val-box x2-comp-m-val-box--winner">
+            <span class="x2-comp-m-val-main">✓ 45° Bass Sweep</span>
+            <span class="x2-comp-m-val-sub">Dentist-Recommended</span>
+          </div>
+          <div class="x2-comp-m-val-box x2-comp-m-val-box--standard">
+            <span class="x2-comp-m-val-main">Micro-Vibration</span>
+            <span class="x2-comp-m-val-sub">0° Linear</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Feature 4: Cleaning Effectiveness -->
+      <div class="x2-comp-m-row-card">
+        <div class="x2-comp-m-feature-name">4. Cleaning Effectiveness</div>
+        <div class="x2-comp-m-split">
+          <div class="x2-comp-m-val-box x2-comp-m-val-box--winner">
+            <span class="x2-comp-m-val-main">✓ Superior Deep Clean</span>
+            <span class="x2-comp-m-val-sub">Plaque & Gumline</span>
+          </div>
+          <div class="x2-comp-m-val-box x2-comp-m-val-box--standard">
+            <span class="x2-comp-m-val-main">Standard Clean</span>
+            <span class="x2-comp-m-val-sub">Everyday Surface</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Feature 5: Modern Design -->
+      <div class="x2-comp-m-row-card">
+        <div class="x2-comp-m-feature-name">5. Modern Design</div>
+        <div class="x2-comp-m-split">
+          <div class="x2-comp-m-val-box x2-comp-m-val-box--winner">
+            <span class="x2-comp-m-val-main">✓ Ultra-Modern Look</span>
+            <span class="x2-comp-m-val-sub">Futuristic Design</span>
+          </div>
+          <div class="x2-comp-m-val-box x2-comp-m-val-box--standard">
+            <span class="x2-comp-m-val-main">Classic Minimalist</span>
+            <span class="x2-comp-m-val-sub">Sleek Slim Build</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Feature 6: Higher Warranty -->
+      <div class="x2-comp-m-row-card">
+        <div class="x2-comp-m-feature-name">6. Warranty Coverage</div>
+        <div class="x2-comp-m-split">
+          <div class="x2-comp-m-val-box x2-comp-m-val-box--winner">
+            <span class="x2-comp-m-val-main">✓ 3-Year Warranty</span>
+            <span class="x2-comp-m-val-sub">Full Replacement</span>
+          </div>
+          <div class="x2-comp-m-val-box x2-comp-m-val-box--standard">
+            <span class="x2-comp-m-val-main">2-Year Standard</span>
+            <span class="x2-comp-m-val-sub">Standard Guarantee</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Feature 7: Price Comparison -->
+      <div class="x2-comp-m-row-card x2-comp-m-row-card--price">
+        <div class="x2-comp-m-feature-name" style="color: #22c55e;">7. Price Comparison</div>
+        <div class="x2-comp-m-split">
+          <div class="x2-comp-m-val-box x2-comp-m-val-box--winner" style="background: rgba(34, 197, 94, 0.15);">
+            <div class="x2-comp-m-price-box">
+              <span class="x2-comp-m-old-price">£99</span>
+              <span class="x2-comp-m-price-val">£69</span>
+              <span class="x2-comp-m-price-note">(for today only)</span>
+            </div>
+          </div>
+          <div class="x2-comp-m-val-box x2-comp-m-val-box--standard">
+            <div class="x2-comp-m-price-box">
+              <span class="x2-comp-m-price-val-standard">£69</span>
             </div>
           </div>
         </div>
       </div>
+
     </div>
+
   </div>
 </div>
 
-<!-- ==========================================
-     FULL-WIDTH EDGE-TO-EDGE DARK FAQ SECTION
-     ========================================== -->
-<style>
-  /* FAQ Exclusive Accordion Cards (Matching FAQ page greyish luxury design) */
-  .faq-accordion-list {
-    display: flex;
-    flex-direction: column;
-    gap: 16px;
-    width: 100%;
-    max-width: 1100px;
-    margin: 0 auto;
-  }
-  .faq-card {
-    border-radius: 22px;
-    border: 1px solid rgba(0, 0, 0, 0.08);
-    background: #e6e6e6;
-    transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
-    box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.6);
-    overflow: hidden;
-  }
-  .faq-card:hover {
-    background: #dedede;
-    border-color: rgba(0, 0, 0, 0.16);
-    box-shadow: 0 16px 40px -10px rgba(0, 0, 0, 0.7);
-    transform: translateY(-1px);
-  }
-  .faq-card.is-open {
-    background: #e6e6e6;
-    border-color: rgba(0, 0, 0, 0.16);
-    box-shadow: 0 20px 50px -10px rgba(0, 0, 0, 0.75);
-  }
-  .faq-card__button {
-    width: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 20px;
-    padding: 22px 28px;
-    text-align: left;
-    background: transparent;
-    border: none;
-    cursor: pointer;
-    color: #111111;
-    border-radius: 22px;
-    font: inherit;
-    outline: none;
-    user-select: none;
-  }
-  .faq-card__button:focus-visible {
-    outline: 2px solid #111111;
-    outline-offset: 2px;
-  }
-  .faq-card__question {
-    font-size: clamp(17px, 2vw, 19px);
-    font-weight: 600;
-    color: #111111;
-    line-height: 1.4;
-    transition: color 0.25s ease;
-  }
-  .faq-card:hover .faq-card__question,
-  .faq-card.is-open .faq-card__question {
-    color: #111111;
-  }
-  .faq-card__badge {
-    width: 34px;
-    height: 34px;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: rgba(0, 0, 0, 0.06);
-    color: #111111;
-    border: 1px solid rgba(0, 0, 0, 0.08);
-    flex-shrink: 0;
-    transition: all 0.35s cubic-bezier(0.25, 1, 0.5, 1);
-  }
-  .faq-card:hover .faq-card__badge {
-    background: rgba(0, 0, 0, 0.12);
-    border-color: rgba(0, 0, 0, 0.16);
-    color: #111111;
-  }
-  .faq-card.is-open .faq-card__badge {
-    transform: rotate(180deg);
-    background: #111111;
-    color: #ffffff;
-    border-color: #111111;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.25);
-  }
-  .faq-card.is-open:hover .faq-card__badge {
-    background: #000000;
-    color: #ffffff;
-    border-color: #000000;
-  }
-  .faq-card__panel {
-    display: grid;
-    grid-template-rows: 0fr;
-    opacity: 0;
-    transition: grid-template-rows 0.38s cubic-bezier(0.25, 1, 0.5, 1), opacity 0.38s ease;
-  }
-  .faq-card.is-open .faq-card__panel {
-    grid-template-rows: 1fr;
-    opacity: 1;
-  }
-  .faq-card__panel-inner {
-    overflow: hidden;
-  }
-  .faq-card__divider {
-    height: 1px;
-    width: calc(100% - 56px);
-    margin: 0 28px 18px;
-    background: rgba(0, 0, 0, 0.08);
-  }
-  .faq-card__answer {
-    padding: 0 28px 26px 28px;
-    color: rgba(17, 17, 17, 0.85);
-    font-size: 15.5px;
-    line-height: 1.7;
-    font-weight: 400;
-  }
-  .faq-card__answer p {
-    margin: 0 0 14px 0;
-  }
-  .faq-card__answer p:last-child {
-    margin-bottom: 0;
-  }
-</style>
-
-<div id="shopify-section-template--24203751129433__faq" class="shopify-section" style="background: #000000; color: #ffffff; width: 100%; overflow: hidden; padding: clamp(4.5rem, 7vw, 7.5rem) 0; box-sizing: border-box; border-top: 1px solid rgba(255,255,255,0.08);">
-  <div style="max-width: 1320px; margin: 0 auto; padding: 0 clamp(16px, 4vw, 40px); box-sizing: border-box; width: 100%;">
-
-    <!-- Title -->
-    <div style="text-align: center; margin-bottom: clamp(2.5rem, 5vw, 4rem);">
-      <h2 style="font-family: 'GFS Didot', 'Playfair Display', Georgia, serif; font-size: clamp(2rem, 3.5vw, 3.2rem); font-weight: 600; color: #ffffff; letter-spacing: 0.04em; text-transform: uppercase; margin: 0 0 1rem 0;">
-        Frequently Asked Questions
-      </h2>
-      <p style="font-family: 'Inter', sans-serif; font-size: clamp(0.95rem, 1.15vw, 1.1rem); color: rgba(255, 255, 255, 0.7); max-width: 680px; margin: 0 auto; line-height: 1.6;">
-        Everything you need to know about the new Brush X2 electric toothbrush and our satisfaction guarantee.
-      </p>
-    </div>
-
-    <!-- Full-Width FAQ Accordion List -->
-    <div class="faq-accordion-list">
-
-      <!-- FAQ 1 -->
-      <div class="faq-card" data-faq-card>
-        <button type="button" class="faq-card__button" aria-expanded="false" aria-controls="faq-answer-1" id="faq-trigger-1">
-          <span class="faq-card__question">What sets the Brush X2 toothbrush apart?</span>
-          <span class="faq-card__badge" aria-hidden="true">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-              <polyline points="6 9 12 15 18 9"></polyline>
-            </svg>
-          </span>
-        </button>
-        <div class="faq-card__panel" id="faq-answer-1" role="region" aria-labelledby="faq-trigger-1">
-          <div class="faq-card__panel-inner">
-            <div class="faq-card__divider"></div>
-            <div class="faq-card__answer">
-              <p>The Brush X2 delivers next-generation oral care with its revolutionary 45° wide-angle sweep vibration system and smart sensing chip. Compared to the older Brush X, the X2 features a unibody pressure-sensitive button, an extended 90-day battery life, IPX7 full waterproof immersion, and an adaptive soft balance algorithm for 10x deeper plaque removal.</p>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- FAQ 2 -->
-      <div class="faq-card" data-faq-card>
-        <button type="button" class="faq-card__button" aria-expanded="false" aria-controls="faq-answer-2" id="faq-trigger-2">
-          <span class="faq-card__question">How does the Brush X2 compare to the previous Brush X?</span>
-          <span class="faq-card__badge" aria-hidden="true">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-              <polyline points="6 9 12 15 18 9"></polyline>
-            </svg>
-          </span>
-        </button>
-        <div class="faq-card__panel" id="faq-answer-2" role="region" aria-labelledby="faq-trigger-2">
-          <div class="faq-card__panel-inner">
-            <div class="faq-card__divider"></div>
-            <div class="faq-card__answer">
-              <p>While the original Brush X established our ultra-quiet acoustic standard, the Brush X2 adds active 45° sweeping oscillations (the Bass brushing method), increases battery endurance from 60 days to 90 days, integrates a seamless gapless touch button with intelligent halo glow, and includes dual home wall-mount & portable travel storage.</p>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- FAQ 3 -->
-      <div class="faq-card" data-faq-card>
-        <button type="button" class="faq-card__button" aria-expanded="false" aria-controls="faq-answer-3" id="faq-trigger-3">
-          <span class="faq-card__question">Is the Brush X2 suitable for sensitive teeth and gums?</span>
-          <span class="faq-card__badge" aria-hidden="true">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-              <polyline points="6 9 12 15 18 9"></polyline>
-            </svg>
-          </span>
-        </button>
-        <div class="faq-card__panel" id="faq-answer-3" role="region" aria-labelledby="faq-trigger-3">
-          <div class="faq-card__panel-inner">
-            <div class="faq-card__divider"></div>
-            <div class="faq-card__answer">
-              <p>Absolutely! The Brush X2 is engineered with 90%+ rounded-tip bristles (0.12mm ultra-soft filament) and features an intelligent pressure sensor that automatically regulates vibration intensity if you press too hard, ensuring full gumline protection.</p>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- FAQ 4 -->
-      <div class="faq-card" data-faq-card>
-        <button type="button" class="faq-card__button" aria-expanded="false" aria-controls="faq-answer-4" id="faq-trigger-4">
-          <span class="faq-card__question">How long does the battery last and how is it charged?</span>
-          <span class="faq-card__badge" aria-hidden="true">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-              <polyline points="6 9 12 15 18 9"></polyline>
-            </svg>
-          </span>
-        </button>
-        <div class="faq-card__panel" id="faq-answer-4" role="region" aria-labelledby="faq-trigger-4">
-          <div class="faq-card__panel-inner">
-            <div class="faq-card__divider"></div>
-            <div class="faq-card__answer">
-              <p>Powered by a high-energy lithium cobalt oxide battery cell, a single full charge lasts up to 90 days (180 brushing sessions). It charges rapidly using the included universal USB-C cable and magnetic charging dock.</p>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- FAQ 5 -->
-      <div class="faq-card" data-faq-card>
-        <button type="button" class="faq-card__button" aria-expanded="false" aria-controls="faq-answer-5" id="faq-trigger-5">
-          <span class="faq-card__question">What is your warranty and money-back guarantee?</span>
-          <span class="faq-card__badge" aria-hidden="true">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-              <polyline points="6 9 12 15 18 9"></polyline>
-            </svg>
-          </span>
-        </button>
-        <div class="faq-card__panel" id="faq-answer-5" role="region" aria-labelledby="faq-trigger-5">
-          <div class="faq-card__panel-inner">
-            <div class="faq-card__divider"></div>
-            <div class="faq-card__answer">
-              <p>Every Brush X2 is backed by our two-year limited warranty and a risk-free home trial. If you are not completely delighted with your brushing results, contact us for a hassle-free return or replacement.</p>
-            </div>
-          </div>
-        </div>
-      </div>
-
-    </div>
-  </div>
-</div>
-
-<script>
-  document.addEventListener("DOMContentLoaded", function () {
-    const faqCards = document.querySelectorAll("#shopify-section-template--24203751129433__faq [data-faq-card]");
-    faqCards.forEach(function (card) {
-      const button = card.querySelector(".faq-card__button");
-      if (!button) return;
-      button.addEventListener("click", function () {
-        const isCurrentlyOpen = card.classList.contains("is-open");
-        faqCards.forEach(function (otherCard) {
-          otherCard.classList.remove("is-open");
-          const otherBtn = otherCard.querySelector(".faq-card__button");
-          if (otherBtn) otherBtn.setAttribute("aria-expanded", "false");
-        });
-        if (!isCurrentlyOpen) {
-          card.classList.add("is-open");
-          button.setAttribute("aria-expanded", "true");
-        }
-      });
-    });
-  });
-</script><div id="shopify-section-template--24203751129433__reviews" class="shopify-section">
+<!-- =========================================================================
+     9. Customer Reviews Section
+     ========================================================================= -->
+<div id="shopify-section-template--24203751129433__reviews" class="shopify-section">
   <!-- Miroooo Reviews Stylesheet -->
   <link rel="stylesheet" href="/assets_ref/miroooo-reviews.css">
 
@@ -4090,6 +4625,307 @@ theme.variantStrings = {
   <!-- Review Script -->
   <script src="/assets_ref/miroooo-x2-reviews.js" defer></script>
 </div>
+
+<!-- =========================================================================
+     9. Package Contents Section
+     ========================================================================= -->
+<div id="shopify-section-template--24203751129433__image-with-text-1" class="shopify-section" style="background: #000000; color: #ffffff; width: 100%; overflow: hidden; padding: clamp(3.5rem, 6vw, 6rem) 0; box-sizing: border-box; border-top: 1px solid rgba(255, 255, 255, 0.08);">
+  <div style="max-width: 1320px; margin: 0 auto; padding: 0 clamp(16px, 4vw, 40px); box-sizing: border-box;">
+    <div class="image-with-text with-background overflow-hidden" style="background: #0d0d0d; border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 20px; padding: clamp(2rem, 4vw, 3.5rem); display: flex; flex-direction: column; gap: 2rem;">
+      <div class="split-section-grid" style="display: flex; flex-direction: column; align-items: center; gap: 2rem;">
+        <div style="flex: 1; width: 100%;">
+          <div style="border-radius: 14px; overflow: hidden;">
+            <img id="package-contents-section-img" src="/assets_ref/x2/gallery/miroooo-x2-sonic-electric-toothbrush-complete-set-packaging.webp" alt="Miroooo Brush X2 Complete Set Presentation Packaging" width="3162" height="3162" loading="lazy" style="width: 100%; height: 100%; object-fit: cover; border-radius: 14px;" />
+          </div>
+        </div>
+        <div style="flex: 1; width: 100%; display: flex; align-items: center;">
+          <div>
+            <h2 class="heading leading-none title-sm" style="margin-bottom: 1.25rem;">
+              <span style="color: #ffffff; font-family: 'GFS Didot', 'Playfair Display', Georgia, serif; font-size: clamp(2rem, 3vw, 2.5rem); font-weight: 600; letter-spacing: 0.02em;">
+                Package Contents
+              </span>
+            </h2>
+            <div class="rte leading-normal body subtext-md text-opacity">
+              <p style="color: rgba(255, 255, 255, 0.8); font-size: clamp(1rem, 1.15vw, 1.15rem); line-height: 1.7; margin: 0;">
+                Brush X2 electric toothbrush in chosen colour, brush heads, Travel case, magnetic charging dock, and USB-C charging cable (adapter not included).
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ==========================================
+     FULL-WIDTH EDGE-TO-EDGE DARK FAQ SECTION
+     ========================================== -->
+<style>
+  /* FAQ Exclusive Accordion Cards (Matching FAQ page greyish luxury design) */
+  .faq-accordion-list {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    width: 100%;
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+  .faq-card {
+    border-radius: 22px;
+    border: 1px solid rgba(0, 0, 0, 0.08);
+    background: #e6e6e6;
+    transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+    box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.6);
+    overflow: hidden;
+  }
+  .faq-card:hover {
+    background: #dedede;
+    border-color: rgba(0, 0, 0, 0.16);
+    box-shadow: 0 16px 40px -10px rgba(0, 0, 0, 0.7);
+    transform: translateY(-1px);
+  }
+  .faq-card.is-open {
+    background: #e6e6e6;
+    border-color: rgba(0, 0, 0, 0.16);
+    box-shadow: 0 20px 50px -10px rgba(0, 0, 0, 0.75);
+  }
+  .faq-card__button {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    padding: 22px 28px;
+    text-align: left;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    color: #111111;
+    border-radius: 22px;
+    font: inherit;
+    outline: none;
+    user-select: none;
+  }
+  .faq-card__button:focus-visible {
+    outline: 2px solid #111111;
+    outline-offset: 2px;
+  }
+  .faq-card__question {
+    font-size: clamp(17px, 2vw, 19px);
+    font-weight: 600;
+    color: #111111;
+    line-height: 1.4;
+    transition: color 0.25s ease;
+  }
+  .faq-card:hover .faq-card__question,
+  .faq-card.is-open .faq-card__question {
+    color: #111111;
+  }
+  .faq-card__badge {
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(0, 0, 0, 0.06);
+    color: #111111;
+    border: 1px solid rgba(0, 0, 0, 0.08);
+    flex-shrink: 0;
+    transition: all 0.35s cubic-bezier(0.25, 1, 0.5, 1);
+  }
+  .faq-card:hover .faq-card__badge {
+    background: rgba(0, 0, 0, 0.12);
+    border-color: rgba(0, 0, 0, 0.16);
+    color: #111111;
+  }
+  .faq-card.is-open .faq-card__badge {
+    transform: rotate(180deg);
+    background: #111111;
+    color: #ffffff;
+    border-color: #111111;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.25);
+  }
+  .faq-card.is-open:hover .faq-card__badge {
+    background: #000000;
+    color: #ffffff;
+    border-color: #000000;
+  }
+  .faq-card__panel {
+    display: grid;
+    grid-template-rows: 0fr;
+    opacity: 0;
+    transition: grid-template-rows 0.38s cubic-bezier(0.25, 1, 0.5, 1), opacity 0.38s ease;
+  }
+  .faq-card.is-open .faq-card__panel {
+    grid-template-rows: 1fr;
+    opacity: 1;
+  }
+  .faq-card__panel-inner {
+    overflow: hidden;
+  }
+  .faq-card__divider {
+    height: 1px;
+    width: calc(100% - 56px);
+    margin: 0 28px 18px;
+    background: rgba(0, 0, 0, 0.08);
+  }
+  .faq-card__answer {
+    padding: 0 28px 26px 28px;
+    color: rgba(17, 17, 17, 0.85);
+    font-size: 15.5px;
+    line-height: 1.7;
+    font-weight: 400;
+  }
+  .faq-card__answer p {
+    margin: 0 0 14px 0;
+  }
+  .faq-card__answer p:last-child {
+    margin-bottom: 0;
+  }
+</style>
+
+<div id="shopify-section-template--24203751129433__faq" class="shopify-section" style="background: #000000; color: #ffffff; width: 100%; overflow: hidden; padding: clamp(4.5rem, 7vw, 7.5rem) 0; box-sizing: border-box; border-top: 1px solid rgba(255,255,255,0.08);">
+  <div style="max-width: 1320px; margin: 0 auto; padding: 0 clamp(16px, 4vw, 40px); box-sizing: border-box; width: 100%;">
+
+    <!-- Title -->
+    <div style="text-align: center; margin-bottom: clamp(2.5rem, 5vw, 4rem);">
+      <h2 style="font-family: 'GFS Didot', 'Playfair Display', Georgia, serif; font-size: clamp(2rem, 3.5vw, 3.2rem); font-weight: 600; color: #ffffff; letter-spacing: 0.04em; text-transform: uppercase; margin: 0 0 1rem 0;">
+        Frequently Asked Questions
+      </h2>
+      <p style="font-family: 'Inter', sans-serif; font-size: clamp(0.95rem, 1.15vw, 1.1rem); color: rgba(255, 255, 255, 0.7); max-width: 680px; margin: 0 auto; line-height: 1.6;">
+        Everything you need to know about the new Brush X2 electric toothbrush and our satisfaction guarantee.
+      </p>
+    </div>
+
+    <!-- Full-Width FAQ Accordion List -->
+    <div class="faq-accordion-list">
+
+      <!-- FAQ 1 -->
+      <div class="faq-card" data-faq-card>
+        <button type="button" class="faq-card__button" aria-expanded="false" aria-controls="faq-answer-1" id="faq-trigger-1">
+          <span class="faq-card__question">What sets the Brush X2 toothbrush apart?</span>
+          <span class="faq-card__badge" aria-hidden="true">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="6 9 12 15 18 9"></polyline>
+            </svg>
+          </span>
+        </button>
+        <div class="faq-card__panel" id="faq-answer-1" role="region" aria-labelledby="faq-trigger-1">
+          <div class="faq-card__panel-inner">
+            <div class="faq-card__divider"></div>
+            <div class="faq-card__answer">
+              <p>The Brush X2 delivers next-generation oral care with its revolutionary 45° wide-angle sweep vibration system and smart sensing chip. Compared to the older Brush X, the X2 features a unibody pressure-sensitive button, an extended 90-day battery life, IPX7 full waterproof immersion, and an adaptive soft balance algorithm for 10x deeper plaque removal.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- FAQ 2 -->
+      <div class="faq-card" data-faq-card>
+        <button type="button" class="faq-card__button" aria-expanded="false" aria-controls="faq-answer-2" id="faq-trigger-2">
+          <span class="faq-card__question">How does the Brush X2 compare to the previous Brush X?</span>
+          <span class="faq-card__badge" aria-hidden="true">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="6 9 12 15 18 9"></polyline>
+            </svg>
+          </span>
+        </button>
+        <div class="faq-card__panel" id="faq-answer-2" role="region" aria-labelledby="faq-trigger-2">
+          <div class="faq-card__panel-inner">
+            <div class="faq-card__divider"></div>
+            <div class="faq-card__answer">
+              <p>While the original Brush X established our ultra-quiet acoustic standard, the Brush X2 adds active 45° sweeping oscillations (the Bass brushing method), increases battery endurance from 60 days to 90 days, integrates a seamless gapless touch button with intelligent halo glow, and includes dual home wall-mount & portable travel storage.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- FAQ 3 -->
+      <div class="faq-card" data-faq-card>
+        <button type="button" class="faq-card__button" aria-expanded="false" aria-controls="faq-answer-3" id="faq-trigger-3">
+          <span class="faq-card__question">Is the Brush X2 suitable for sensitive teeth and gums?</span>
+          <span class="faq-card__badge" aria-hidden="true">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="6 9 12 15 18 9"></polyline>
+            </svg>
+          </span>
+        </button>
+        <div class="faq-card__panel" id="faq-answer-3" role="region" aria-labelledby="faq-trigger-3">
+          <div class="faq-card__panel-inner">
+            <div class="faq-card__divider"></div>
+            <div class="faq-card__answer">
+              <p>Absolutely! The Brush X2 is engineered with 90%+ rounded-tip bristles (0.12mm ultra-soft filament) and features an intelligent pressure sensor that automatically regulates vibration intensity if you press too hard, ensuring full gumline protection.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- FAQ 4 -->
+      <div class="faq-card" data-faq-card>
+        <button type="button" class="faq-card__button" aria-expanded="false" aria-controls="faq-answer-4" id="faq-trigger-4">
+          <span class="faq-card__question">How long does the battery last and how is it charged?</span>
+          <span class="faq-card__badge" aria-hidden="true">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="6 9 12 15 18 9"></polyline>
+            </svg>
+          </span>
+        </button>
+        <div class="faq-card__panel" id="faq-answer-4" role="region" aria-labelledby="faq-trigger-4">
+          <div class="faq-card__panel-inner">
+            <div class="faq-card__divider"></div>
+            <div class="faq-card__answer">
+              <p>Powered by a high-energy lithium cobalt oxide battery cell, a single full charge lasts up to 90 days (180 brushing sessions). It charges rapidly using the included universal USB-C cable and magnetic charging dock.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- FAQ 5 -->
+      <div class="faq-card" data-faq-card>
+        <button type="button" class="faq-card__button" aria-expanded="false" aria-controls="faq-answer-5" id="faq-trigger-5">
+          <span class="faq-card__question">What is your warranty and money-back guarantee?</span>
+          <span class="faq-card__badge" aria-hidden="true">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="6 9 12 15 18 9"></polyline>
+            </svg>
+          </span>
+        </button>
+        <div class="faq-card__panel" id="faq-answer-5" role="region" aria-labelledby="faq-trigger-5">
+          <div class="faq-card__panel-inner">
+            <div class="faq-card__divider"></div>
+            <div class="faq-card__answer">
+              <p>Every Brush X2 is backed by our two-year limited warranty and a risk-free home trial. If you are not completely delighted with your brushing results, contact us for a hassle-free return or replacement.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    const faqCards = document.querySelectorAll("#shopify-section-template--24203751129433__faq [data-faq-card]");
+    faqCards.forEach(function (card) {
+      const button = card.querySelector(".faq-card__button");
+      if (!button) return;
+      button.addEventListener("click", function () {
+        const isCurrentlyOpen = card.classList.contains("is-open");
+        faqCards.forEach(function (otherCard) {
+          otherCard.classList.remove("is-open");
+          const otherBtn = otherCard.querySelector(".faq-card__button");
+          if (otherBtn) otherBtn.setAttribute("aria-expanded", "false");
+        });
+        if (!isCurrentlyOpen) {
+          card.classList.add("is-open");
+          button.setAttribute("aria-expanded", "true");
+        }
+      });
+    });
+  });
+</script>
     </main>
 
     <footer-group class="footer-group block w-full">
