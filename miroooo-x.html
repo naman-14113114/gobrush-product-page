@@ -4004,8 +4004,10 @@ theme.variantStrings = {
 
 
 
-<!-- COMMENTED OUT: TASK 5: COMPETITOR COMPARISON TABLE SECTION
-<div id="shopify-section-template--miroooo-comparison" class="shopify-section" style="display: none !important;" aria-hidden="true">
+<!-- ========================================================================= -->
+<!-- TASK 5: COMPETITOR COMPARISON TABLE SECTION                              -->
+<!-- ========================================================================= -->
+<div id="shopify-section-template--miroooo-comparison" class="shopify-section" style="background: #000000; color: #ffffff; padding: clamp(3.5rem, 6vw, 6rem) 0; overflow: visible; width: 100%; border-top: 1px solid rgba(255,255,255,0.08); box-sizing: border-box;">
 
   <style>
     .miroooo-comp-section {
@@ -4037,6 +4039,7 @@ theme.variantStrings = {
       font-weight: 400;
     }
 
+    /* Desktop Table & Horizontal Scroll Wrapper */
     .miroooo-comp-scroll-wrapper {
       width: 100%;
       overflow-x: auto;
@@ -4062,6 +4065,7 @@ theme.variantStrings = {
       position: relative;
     }
 
+    /* Columns */
     .miroooo-comp-col {
       display: flex;
       flex-direction: column;
@@ -4077,6 +4081,7 @@ theme.variantStrings = {
       border-bottom-right-radius: 16px;
     }
 
+    /* Features Column */
     .miroooo-comp-col--features {
       background: #000000;
       border-left: 1px solid rgba(255, 255, 255, 0.08);
@@ -4085,6 +4090,7 @@ theme.variantStrings = {
       z-index: 1;
     }
 
+    /* Miroooo X Spotlight Column */
     .miroooo-comp-col--winner {
       background: #ffffff;
       color: #000000;
@@ -4095,6 +4101,7 @@ theme.variantStrings = {
       box-shadow: 0 20px 45px rgba(0, 0, 0, 0.6), 0 0 25px rgba(34, 197, 94, 0.25);
     }
 
+    /* Header Cells */
     .miroooo-comp-cell--head {
       min-height: 220px;
       padding: 24px 16px 16px 16px;
@@ -4137,6 +4144,7 @@ theme.variantStrings = {
       margin-top: 4px;
     }
 
+    /* Regular Cells */
     .miroooo-comp-cell {
       min-height: 62px;
       padding: 12px 14px;
@@ -4167,10 +4175,12 @@ theme.variantStrings = {
       justify-content: center;
     }
 
+    /* Subtle zebra striping on winner column */
     .miroooo-comp-col--winner .miroooo-comp-cell:nth-child(even) {
       background: rgba(0, 0, 0, 0.015);
     }
 
+    /* Price Row */
     .miroooo-comp-cell--price {
       min-height: 76px;
       font-size: 1.2rem;
@@ -4186,6 +4196,7 @@ theme.variantStrings = {
       border-bottom-right-radius: 17px;
     }
 
+    /* Green badge */
     .miroooo-comp-pill-green {
       display: inline-block;
       background: rgba(34, 197, 94, 0.14);
@@ -4200,6 +4211,7 @@ theme.variantStrings = {
       letter-spacing: 0.03em;
     }
 
+    /* Mobile Hint */
     .miroooo-comp-mobile-hint {
       display: none;
       text-align: center;
@@ -4209,6 +4221,7 @@ theme.variantStrings = {
       letter-spacing: 0.02em;
     }
 
+    /* Mobile-specific Muuhu-style Comparison Layout (only active on phone view <768px) */
     .miroooo-comp-mobile {
       display: none;
       width: 100%;
@@ -4216,6 +4229,9 @@ theme.variantStrings = {
     }
 
     @media (max-width: 767px) {
+      .miroooo-comp-mobile-hint {
+        display: none !important;
+      }
       .miroooo-comp-scroll-wrapper {
         display: none !important;
       }
@@ -4231,6 +4247,7 @@ theme.variantStrings = {
         box-sizing: border-box;
       }
 
+      /* 4-column header */
       .miroooo-comp-m-head-row {
         display: flex;
         align-items: flex-end;
@@ -4240,6 +4257,46 @@ theme.variantStrings = {
         box-sizing: border-box;
       }
 
+      .miroooo-comp-m-head-col {
+        flex: 1;
+        width: 25%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        padding: 6px 2px;
+        box-sizing: border-box;
+      }
+
+      .miroooo-comp-m-head-col--winner {
+        background: #ffffff;
+        color: #000000;
+        border-top-left-radius: 16px;
+        border-top-right-radius: 16px;
+        box-shadow: 0 4px 18px rgba(0, 0, 0, 0.35);
+        padding-top: 10px;
+        padding-bottom: 10px;
+      }
+
+      .miroooo-comp-m-brand-name {
+        font-family: var(--font-heading-family, 'Inter', -apple-system, sans-serif);
+        font-size: 0.72rem;
+        font-weight: 700;
+        color: #ffffff;
+        line-height: 1.2;
+        margin-bottom: 6px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        max-width: 100%;
+      }
+
+      .miroooo-comp-m-head-col--winner .miroooo-comp-m-brand-name {
+        color: #000000;
+        font-weight: 800;
+        font-size: 0.76rem;
+      }
+
       .miroooo-comp-m-head-img {
         height: 56px;
         width: 100%;
@@ -4247,12 +4304,85 @@ theme.variantStrings = {
         display: block;
       }
 
+      /* Feature rows */
       .miroooo-comp-m-row-group {
         display: flex;
         flex-direction: column;
         border-bottom: 1px solid rgba(255, 255, 255, 0.08);
         padding: 9px 0 7px 0;
         box-sizing: border-box;
+      }
+
+      .miroooo-comp-m-row-group--last {
+        border-bottom: none;
+        padding-bottom: 0;
+      }
+
+      .miroooo-comp-m-feature-title {
+        font-family: var(--font-body-family, 'Inter', -apple-system, sans-serif);
+        font-size: 0.82rem;
+        font-weight: 600;
+        color: rgba(255, 255, 255, 0.95);
+        padding: 0 4px 4px 4px;
+        text-align: left;
+        line-height: 1.3;
+      }
+
+      .miroooo-comp-m-values-row {
+        display: flex;
+        align-items: stretch;
+        width: 100%;
+      }
+
+      .miroooo-comp-m-val-cell {
+        flex: 1;
+        width: 25%;
+        min-height: 40px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        font-family: var(--font-body-family, 'Inter', -apple-system, sans-serif);
+        font-size: 0.76rem;
+        font-weight: 600;
+        color: rgba(255, 255, 255, 0.65);
+        padding: 2px 2px;
+        box-sizing: border-box;
+      }
+
+      .miroooo-comp-m-val-cell--winner {
+        background: #ffffff;
+        color: #000000 !important;
+        font-weight: 700;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
+      }
+
+      .miroooo-comp-m-val-cell--winner-last {
+        border-bottom-left-radius: 16px;
+        border-bottom-right-radius: 16px;
+        padding-bottom: 12px;
+      }
+
+      .miroooo-comp-m-price-winner {
+        color: #15803d !important;
+        font-size: 1.05rem;
+        font-weight: 900;
+        line-height: 1.1;
+      }
+
+      .miroooo-comp-m-price-old {
+        font-size: 0.64rem;
+        color: #64748b;
+        font-weight: 700;
+        text-decoration: line-through;
+        display: block;
+        margin-top: 1px;
+      }
+
+      .miroooo-comp-m-price-competitor {
+        color: rgba(255, 255, 255, 0.85);
+        font-size: 0.86rem;
+        font-weight: 700;
       }
     }
   </style>
@@ -4616,7 +4746,6 @@ theme.variantStrings = {
     </div>
   </div>
 </div>
--->
 
 <!-- Package Contents Section -->
 <div id="shopify-section-template--24203751129433__image-with-text-1" class="shopify-section" style="background: #000000; color: #ffffff; box-sizing: border-box; border-top: 1px solid rgba(255, 255, 255, 0.08);"><style>
