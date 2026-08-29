@@ -46,16 +46,20 @@
   const CURATED_REVIEWS = [
     {
       id: 'x2-01',
-      name: 'Dr. Julian Vance (Dental Surgeon)',
-      country: 'Edinburgh, UK',
+      name: 'Amanda R.',
+      country: 'Denver, USA',
       rating: 5,
-      date: '2026-08-27',
-      displayDate: '27 Aug 2026',
-      variant: 'Grey / Double Pack',
-      title: 'The 45° swept vibration Bass method is genuinely revolutionary',
-      body: 'As a practicing dental surgeon for over 16 years, I routinely lecture patients on the Bass brushing technique. Most electric toothbrushes just vibrate randomly in place. The Miroooo X2 is the first unit I\'ve tested that physically sweeps at a true 45° angle along the gingival margin. My personal plaque index dropped to near zero within two weeks. The micro-diamond Dupont bristles are impeccably rounded.',
+      date: '2026-08-28',
+      displayDate: '28 Aug 2026',
+      variant: 'Pink / Single',
+      title: 'Best travel setup ever—worth every penny',
+      body: 'Everything about this package is top notch. The magnetic box it comes in is super clean, and the included travel capsule fits right into my makeup bag without taking up space. The USB-C charging means I don\'t have to carry a separate brick when I go on trips. Used the Brush X by Miroooo this morning and my teeth feel polished. You get way more value here than buying the overpriced brand names.',
+      video: {
+        src: '/assets_ref/x2/qb81f4-h264-hd.mp4',
+        poster: '/assets_ref/x2/qb81f4-poster.webp'
+      },
       images: [],
-      helpful: 84,
+      helpful: 92,
       verified: true
     },
     {
@@ -96,7 +100,7 @@
       variant: 'Grey / Single',
       title: 'True IPX7 - Brushing in the hot shower without worry',
       body: 'Most electric brushes claim water resistance but die within 6 months if kept in the shower stall. The unibody seamless aluminum alloy chassis on the X2 has zero mechanical cutouts. I submerge and rinse it directly under the power shower head every morning.',
-      images: [],
+      images: ['/assets_ref/x2/x2-review-unboxing-box.webp'],
       helpful: 39,
       verified: true
     },
@@ -764,6 +768,20 @@
       .join('')
       .toUpperCase();
 
+    // Video HTML on Review Card (Poster thumbnail + centered play badge)
+    let videoHTML = '';
+    if (review.video) {
+      const posterSrc = typeof review.video === 'object' && review.video.poster ? review.video.poster : '/assets_ref/x2/qb81f4-poster.webp';
+      videoHTML = `
+        <div class="miroooo-card-video-wrap" data-review-id="${review.id}">
+          <img src="${posterSrc}" alt="Customer unboxing video by ${review.name}" class="miroooo-card-video-thumb" loading="lazy" />
+          <div class="miroooo-video-play-badge" aria-label="Play unboxing video">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+          </div>
+        </div>
+      `;
+    }
+
     // Gallery HTML
     let galleryHTML = '';
     if (review.images && review.images.length > 0) {
@@ -823,6 +841,9 @@
 
         <!-- Selected Variant -->
         ${review.variant ? `<div class="miroooo-card-variant miroooo-card-variant-tag">${review.variant}</div>` : ''}
+
+        <!-- Customer Video -->
+        ${videoHTML}
 
         <!-- Customer Gallery -->
         ${galleryHTML}
@@ -922,6 +943,19 @@
       });
     });
 
+    // 3b. Video Preview Click Trigger
+    const videoWraps = gridEl.querySelectorAll('.miroooo-card-video-wrap');
+    videoWraps.forEach(wrap => {
+      wrap.addEventListener('click', (e) => {
+        e.stopPropagation();
+        const reviewId = wrap.getAttribute('data-review-id');
+        const review = currentList.find(r => String(r.id) === String(reviewId));
+        if (review) {
+          openLightbox(review, 0);
+        }
+      });
+    });
+
     // 4. Whole Review Card Click (Opens modal on card click)
     const cards = gridEl.querySelectorAll('.miroooo-review-card');
     cards.forEach(card => {
@@ -930,6 +964,7 @@
           e.target.closest('.miroooo-helpful-btn') ||
           e.target.closest('.miroooo-read-more-btn') ||
           e.target.closest('.miroooo-card-gallery') ||
+          e.target.closest('.miroooo-card-video-wrap') ||
           e.target.closest('button') ||
           e.target.closest('a')
         ) {
@@ -956,7 +991,7 @@
 
     // 2. Photos Filter
     if (currentWithPhotos) {
-      list = list.filter(r => r.images && r.images.length > 0);
+      list = list.filter(r => (r.images && r.images.length > 0) || r.video);
     }
 
     // 3. Verified Filter
@@ -968,8 +1003,8 @@
     list.sort((a, b) => {
       switch (currentSort) {
         case 'with-photos': {
-          const aHas = a.images && a.images.length > 0 ? 1 : 0;
-          const bHas = b.images && b.images.length > 0 ? 1 : 0;
+          const aHas = (a.images && a.images.length > 0) || a.video ? 1 : 0;
+          const bHas = (b.images && b.images.length > 0) || b.video ? 1 : 0;
           if (bHas !== aHas) return bHas - aHas;
           return new Date(b.date) - new Date(a.date);
         }
@@ -1299,9 +1334,11 @@
     const countSpan = document.getElementById('miroooo-lightbox-helpful-count');
 
     const hasImages = activeLightboxReview.images && activeLightboxReview.images.length > 0;
+    const hasVideo = !!activeLightboxReview.video;
+    const hasMedia = hasImages || hasVideo;
 
     if (dialogEl) {
-      if (hasImages) {
+      if (hasMedia) {
         dialogEl.classList.remove('no-media');
         dialogEl.classList.add('has-media');
       } else {
@@ -1311,21 +1348,29 @@
     }
 
     if (mediaContainer) {
-      if (hasImages) {
+      if (hasVideo) {
         mediaContainer.style.setProperty('display', 'flex', 'important');
+        const videoSrc = typeof activeLightboxReview.video === 'string' ? activeLightboxReview.video : activeLightboxReview.video.src;
+        const posterSrc = typeof activeLightboxReview.video === 'object' && activeLightboxReview.video.poster ? `poster="${activeLightboxReview.video.poster}"` : '';
+        mediaContainer.innerHTML = `
+          <video class="miroooo-lightbox-video" controls autoplay playsinline controlsList="nodownload noplaybackrate noremoteplayback" disablePictureInPicture ${posterSrc} style="max-width: 100%; max-height: 80vh; border-radius: 10px; background: #000000; display: block;">
+            <source src="${videoSrc}" type="video/mp4">
+            Your browser does not support the video tag.
+          </video>
+        `;
+        setTimeout(() => {
+          const vid = mediaContainer.querySelector('video');
+          if (vid) {
+            vid.play().catch(() => {});
+          }
+        }, 80);
+      } else if (hasImages) {
+        mediaContainer.style.setProperty('display', 'flex', 'important');
+        const idx = activeLightboxImageIndex < activeLightboxReview.images.length ? activeLightboxImageIndex : 0;
+        mediaContainer.innerHTML = `<img id="miroooo-lightbox-img" class="miroooo-lightbox-img" src="${activeLightboxReview.images[idx]}" alt="Photo from ${activeLightboxReview.name}" />`;
       } else {
         mediaContainer.style.setProperty('display', 'none', 'important');
-      }
-    }
-
-    if (imgEl) {
-      if (hasImages) {
-        const idx = activeLightboxImageIndex < activeLightboxReview.images.length ? activeLightboxImageIndex : 0;
-        imgEl.src = activeLightboxReview.images[idx];
-        imgEl.alt = `Photo from ${activeLightboxReview.name}`;
-      } else {
-        imgEl.removeAttribute('src');
-        imgEl.alt = '';
+        mediaContainer.innerHTML = `<img id="miroooo-lightbox-img" class="miroooo-lightbox-img" alt="" />`;
       }
     }
 
@@ -1353,6 +1398,12 @@
     const modal = document.getElementById('miroooo-lightbox-modal');
     if (!modal) return;
 
+    const vid = modal.querySelector('video');
+    if (vid) {
+      vid.pause();
+      vid.currentTime = 0;
+    }
+
     modal.classList.remove('is-open');
     modal.setAttribute('aria-hidden', 'true');
     document.body.style.overflow = '';
@@ -1361,6 +1412,10 @@
     setTimeout(() => {
       if (!modal.classList.contains('is-open')) {
         modal.style.display = 'none';
+        const mediaContainer = document.querySelector('.miroooo-lightbox-media-container');
+        if (mediaContainer && mediaContainer.querySelector('video')) {
+          mediaContainer.innerHTML = '';
+        }
       }
     }, 250);
 

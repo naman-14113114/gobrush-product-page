@@ -796,6 +796,77 @@ div.miroooo-progress-bar {
   color: #16a34a !important;
 }
 
+/* Customer Video on Card */
+.miroooo-card-video-wrap {
+  margin-bottom: 14px;
+  border-radius: 10px;
+  overflow: hidden;
+  position: relative;
+  cursor: pointer;
+  width: 100%;
+  aspect-ratio: 3/4;
+  background: #f1f5f9;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+.miroooo-card-video-thumb {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  display: block;
+  transition: transform 0.35s ease;
+}
+
+.miroooo-card-video-wrap:hover .miroooo-card-video-thumb {
+  transform: scale(1.04);
+}
+
+.miroooo-video-play-badge {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.95);
+  color: #111111;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3), 0 0 0 1px rgba(255, 255, 255, 0.4);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  transition: transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1), background 0.2s ease, color 0.2s ease;
+  z-index: 2;
+  pointer-events: none;
+}
+
+.miroooo-video-play-badge svg {
+  width: 22px;
+  height: 22px;
+  margin-left: 3px;
+}
+
+.miroooo-card-video-wrap:hover .miroooo-video-play-badge {
+  transform: translate(-50%, -50%) scale(1.12);
+  background: #22c55e;
+  color: #ffffff;
+  box-shadow: 0 10px 28px rgba(34, 197, 94, 0.45);
+}
+
+/* Lightbox Modal Video Controls (Hide 3-dots overflow menu) */
+.miroooo-lightbox-video::-webkit-media-controls-overflow-menu-button,
+video::-webkit-media-controls-overflow-menu-button {
+  display: none !important;
+}
+
+.miroooo-lightbox-video::-webkit-media-controls-enclosure,
+video::-webkit-media-controls-enclosure {
+  overflow: hidden !important;
+}
+
 /* Customer Photo Gallery on Card */
 .miroooo-card-gallery {
   margin-bottom: 14px;
