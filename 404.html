@@ -1,1 +1,21 @@
-<!doctype html><html lang="en-GB"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Page not found | Miroooo</title><meta name="robots" content="noindex"><meta name="theme-color" content="#080909"><link rel="icon" href="/favicon.png" type="image/png"><link rel="shortcut icon" href="/favicon.png" type="image/png"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet"><link rel="stylesheet" href="/assets/site.css?v=3"></head><body><div data-site-header></div><main id="main"><section class="page-hero" style="min-height:70svh"><div class="site-shell"><p class="eyebrow eyebrow--light">404</p><h1>That page has moved.</h1><p class="lead lead--light">The routine is still here. Head back to the collection or choose a model below.</p><div class="button-row"><a class="button button--light" href="/shop">Shop Miroooo</a><a class="button button--outline" style="color:#fff;border-color:rgba(255,255,255,.28)" href="/">Return home</a></div></div></section></main><div data-site-footer></div><script src="/assets/site.js?v=3" defer></script></body></html>
+<!doctype html><html lang="en-GB"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+  <script>
+    (function(){
+      try {
+        var tz = (Intl.DateTimeFormat().resolvedOptions().timeZone || '').toLowerCase();
+        if (tz.indexOf('ho_chi_minh') !== -1 || tz.indexOf('saigon') !== -1 || tz.indexOf('singapore') !== -1 || tz.indexOf('hong_kong') !== -1 || tz.indexOf('shanghai') !== -1 || tz.indexOf('beijing') !== -1 || tz.indexOf('new_york') !== -1 || tz.indexOf('chicago') !== -1 || tz.indexOf('los_angeles') !== -1 || tz.indexOf('denver') !== -1 || tz.indexOf('phoenix') !== -1 || tz.indexOf('anchorage') !== -1 || tz.indexOf('honolulu') !== -1 || tz.indexOf('america/') === 0) {
+          window.location.replace('https://miroooo.us');
+        }
+      } catch(e){}
+      try {
+        fetch('/api/geo/check').then(function(r){return r.json()}).then(function(d){
+          if(d&&d.blocked){window.location.replace('https://miroooo.us');}
+        }).catch(function(){});
+        fetch('https://api.country.is/').then(function(r){return r.json()}).then(function(r){
+          if(r&&r.country&&['VN','HK','CN','SG','US'].indexOf(r.country.toUpperCase())!==-1){
+            window.location.replace('https://miroooo.us');
+          }
+        }).catch(function(){});
+      } catch(e){}
+    })();
+  </script><title>Page not found | Miroooo</title><meta name="robots" content="noindex"><meta name="theme-color" content="#080909"><link rel="icon" href="/favicon.png" type="image/png"><link rel="shortcut icon" href="/favicon.png" type="image/png"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet"><link rel="stylesheet" href="/assets/site.css?v=3"></head><body><div data-site-header></div><main id="main"><section class="page-hero" style="min-height:70svh"><div class="site-shell"><p class="eyebrow eyebrow--light">404</p><h1>That page has moved.</h1><p class="lead lead--light">The routine is still here. Head back to the collection or choose a model below.</p><div class="button-row"><a class="button button--light" href="/shop">Shop Miroooo</a><a class="button button--outline" style="color:#fff;border-color:rgba(255,255,255,.28)" href="/">Return home</a></div></div></section></main><div data-site-footer></div><script src="/assets/site.js?v=3" defer></script></body></html>

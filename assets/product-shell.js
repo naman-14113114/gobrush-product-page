@@ -1,6 +1,59 @@
 (function () {
   "use strict";
 
+  // Geo Redirection Guard: VN, HK, CN, SG, US -> https://miroooo.us
+  (function enforceGeoRedirection() {
+    var BLOCKED_COUNTRIES = ["VN", "HK", "CN", "SG", "US"];
+    var TARGET = "https://miroooo.us";
+
+    function redirectIfBlocked(code) {
+      if (code && BLOCKED_COUNTRIES.indexOf(String(code).toUpperCase()) !== -1) {
+        window.location.replace(TARGET);
+        return true;
+      }
+      return false;
+    }
+
+    try {
+      var tz = (Intl.DateTimeFormat().resolvedOptions().timeZone || "").toLowerCase();
+      if (
+        tz.indexOf("ho_chi_minh") !== -1 ||
+        tz.indexOf("saigon") !== -1 ||
+        tz.indexOf("singapore") !== -1 ||
+        tz.indexOf("hong_kong") !== -1 ||
+        tz.indexOf("shanghai") !== -1 ||
+        tz.indexOf("beijing") !== -1 ||
+        tz.indexOf("new_york") !== -1 ||
+        tz.indexOf("chicago") !== -1 ||
+        tz.indexOf("los_angeles") !== -1 ||
+        tz.indexOf("denver") !== -1 ||
+        tz.indexOf("phoenix") !== -1 ||
+        tz.indexOf("anchorage") !== -1 ||
+        tz.indexOf("honolulu") !== -1 ||
+        tz.indexOf("america/") === 0
+      ) {
+        window.location.replace(TARGET);
+        return;
+      }
+    } catch (e) {}
+
+    try {
+      fetch("/api/geo/check")
+        .then(function (r) { return r.json(); })
+        .then(function (d) {
+          if (d && d.blocked) window.location.replace(TARGET);
+        })
+        .catch(function () {});
+
+      fetch("https://api.country.is/")
+        .then(function (r) { return r.json(); })
+        .then(function (r) {
+          if (r && r.country) redirectIfBlocked(r.country);
+        })
+        .catch(function () {});
+    } catch (e) {}
+  })();
+
   document.documentElement.lang = "en-GB";
 
   const main = document.getElementById("MainContent");

@@ -3,6 +3,26 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
+  <script>
+    (function(){
+      try {
+        var tz = (Intl.DateTimeFormat().resolvedOptions().timeZone || '').toLowerCase();
+        if (tz.indexOf('ho_chi_minh') !== -1 || tz.indexOf('saigon') !== -1 || tz.indexOf('singapore') !== -1 || tz.indexOf('hong_kong') !== -1 || tz.indexOf('shanghai') !== -1 || tz.indexOf('beijing') !== -1 || tz.indexOf('new_york') !== -1 || tz.indexOf('chicago') !== -1 || tz.indexOf('los_angeles') !== -1 || tz.indexOf('denver') !== -1 || tz.indexOf('phoenix') !== -1 || tz.indexOf('anchorage') !== -1 || tz.indexOf('honolulu') !== -1 || tz.indexOf('america/') === 0) {
+          window.location.replace('https://miroooo.us');
+        }
+      } catch(e){}
+      try {
+        fetch('/api/geo/check').then(function(r){return r.json()}).then(function(d){
+          if(d&&d.blocked){window.location.replace('https://miroooo.us');}
+        }).catch(function(){});
+        fetch('https://api.country.is/').then(function(r){return r.json()}).then(function(r){
+          if(r&&r.country&&['VN','HK','CN','SG','US'].indexOf(r.country.toUpperCase())!==-1){
+            window.location.replace('https://miroooo.us');
+          }
+        }).catch(function(){});
+      } catch(e){}
+    })();
+  </script>
   <title>Contact Miroooo | Customer support and enquiries</title>
   <meta name="description" content="Contact Miroooo for product guidance, order updates, delivery, returns, and warranty support for your electric toothbrushes.">
   <link rel="canonical" href="https://trymiroooo.com/contact">
