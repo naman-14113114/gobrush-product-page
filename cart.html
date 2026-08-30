@@ -1503,6 +1503,21 @@
             if (count === 3) return { price: 177, compareAt: 417, bundleSavings: 240 };
             return { price: count * 59, compareAt: count * 139, bundleSavings: (count * 139) - (count * 59) };
           }
+        },
+        "miroooo-x2-heads": {
+          id: "miroooo-x2-heads",
+          name: "2x Brush X2 heads",
+          productId: "1000000675072188",
+          source: "miroooo-x2-heads",
+          subtitle: "DuPont Ultra-Soft Replacement Heads (2-Pack) for Brush X2.",
+          image: "/assets_ref/x2/heads/B1.webp",
+          variants: {
+            "Default": { variantId: "1000020700182885", image: "/assets_ref/x2/heads/B1.webp" }
+          },
+          getPricing(qty) {
+            const count = Math.max(1, qty);
+            return { price: count * 15, compareAt: count * 30, bundleSavings: count * 15 };
+          }
         }
       };
 
@@ -1558,7 +1573,18 @@
           try {
             const parsed = JSON.parse(stored);
             if (parsed) {
+              const isHeads = parsed.productId === "miroooo-x2-heads";
               let colors = [];
+              if (isHeads) {
+                const qty = Math.max(1, parseInt(parsed.quantity || "1", 10));
+                colors = Array(qty).fill("Default");
+                return {
+                  productId: "miroooo-x2-heads",
+                  quantity: qty,
+                  colors: colors
+                };
+              }
+
               if (Array.isArray(parsed.colors) && parsed.colors.length > 0) {
                 colors = parsed.colors.map(normalizeColor);
               } else if (parsed.color) {
@@ -1586,7 +1612,11 @@
         const params = new URLSearchParams(window.location.search);
         const prodParam = params.get("product");
         if (prodParam && PRODUCTS_CONFIG[prodParam]) {
+          const isHeads = prodParam === "miroooo-x2-heads";
           const qty = Math.max(1, parseInt(params.get("quantity") || params.get("count") || "1", 10));
+          if (isHeads) {
+            return { productId: "miroooo-x2-heads", quantity: qty, colors: Array(qty).fill("Default") };
+          }
           let colors = (params.get("colors") || params.get("color") || "Grey").split(",").map(normalizeColor);
           while (colors.length < qty) {
             colors.push(colors[0] || "Grey");
@@ -1606,7 +1636,7 @@
       let cartState = loadCartState();
 
       function persistCart(state) {
-        if (!state || state.quantity <= 0 || !state.colors || state.colors.length === 0) {
+        if (!state || state.quantity <= 0) {
           localStorage.removeItem("miroooo_cart");
           localStorage.setItem("miroooo_cart_empty", "true");
         } else {
@@ -1630,7 +1660,10 @@
             giftsValue: 0,
             promoDiscount: 0,
             totalSavings: 0,
-            finalSubtotal: 0
+            finalSubtotal: 0,
+            isX2: false,
+            isHeads: false,
+            extraBrushHeadSets: 0
           };
         }
 
@@ -1641,11 +1674,15 @@
         const bundleSavings = Math.round(pricing.bundleSavings);
 
         const isX2 = state.productId === "miroooo-x2";
+        const isHeads = state.productId === "miroooo-x2-heads";
         let giftsValue = 61;
         let unlockedGiftsCount = 3;
         const extraBrushHeadSets = (isX2 && state.quantity >= 2) ? (state.quantity - 1) : 0;
 
-        if (isX2) {
+        if (isHeads) {
+          giftsValue = 0;
+          unlockedGiftsCount = 0;
+        } else if (isX2) {
           // X2 base 3 gifts value = £35, plus £20 per extra brush heads set (2 heads/set)
           giftsValue = 35 + (extraBrushHeadSets * 20);
         }
@@ -1669,6 +1706,7 @@
           totalSavings: totalSavings,
           finalSubtotal: finalSubtotal,
           isX2: isX2,
+          isHeads: isHeads,
           extraBrushHeadSets: extraBrushHeadSets
         };
       }
@@ -1701,42 +1739,22 @@
           el.textContent = String(totals.quantity);
         });
 
-        // 6A. Render Left Column: Distinct Brush Color Items + Free 2x Extra Brush Heads Line Item
+        // 6A. Render Left Column: Distinct Brush Color Items / Heads Line Item + Free Gifts
         if (lineItemsWrap) {
-          // Group colors and maintain appearance order
-          const colorGroups = [];
-          const colorCounts = {};
-          (cartState.colors || ["Grey"]).forEach(c => {
-            const color = normalizeColor(c);
-            if (!colorCounts[color]) {
-              colorCounts[color] = 0;
-              colorGroups.push(color);
-            }
-            colorCounts[color]++;
-          });
-
+          let html = "";
           const totalQty = cartState.quantity;
           const unitSubtotal = totals.subtotal / totalQty;
           const unitCompare = totals.compareAt / totalQty;
 
-          let html = "";
-
-          // Render a separate line item card for each unique color
-          colorGroups.forEach(color => {
-            const count = colorCounts[color];
-            const itemTitle = count > 1
-              ? `${product.name} (Buy ${count} - ${color})`
-              : `${product.name} (${color})`;
-
-            const variantObj = product.variants[color] || product.variants["Grey"] || product.variants["Pink"] || product.variants["Silver"];
-            const itemImage = variantObj?.image || product.image;
-
-            const itemPrice = Math.round(unitSubtotal * count);
-            const itemCompare = Math.round(unitCompare * count);
+          if (totals.isHeads) {
+            const itemTitle = product.name;
+            const itemImage = product.image;
+            const itemPrice = Math.round(totals.subtotal);
+            const itemCompare = Math.round(totals.compareAt);
 
             html += `
-              <!-- Brush Item (${color}) -->
-              <div class="cart-line-item" data-color="${color}">
+              <!-- Brush Heads Item -->
+              <div class="cart-line-item" data-product="miroooo-x2-heads">
                 <div class="cart-line-item__media">
                   <img src="${itemImage}" alt="${itemTitle}" />
                 </div>
@@ -1755,17 +1773,17 @@
                   </div>
 
                   <div class="cart-line-item__actions">
-                    <div class="cart-stepper-pill" aria-label="Quantity selector for ${color}">
-                      <button type="button" class="cart-stepper-btn" data-action="minus" data-color="${color}" aria-label="Decrease ${color} quantity">
+                    <div class="cart-stepper-pill" aria-label="Quantity selector for ${itemTitle}">
+                      <button type="button" class="cart-stepper-btn" data-action="minus" data-color="Default" aria-label="Decrease quantity">
                         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"></line></svg>
                       </button>
-                      <span class="cart-stepper-count">${count}</span>
-                      <button type="button" class="cart-stepper-btn" data-action="plus" data-color="${color}" aria-label="Increase ${color} quantity">
+                      <span class="cart-stepper-count">${totalQty}</span>
+                      <button type="button" class="cart-stepper-btn" data-action="plus" data-color="Default" aria-label="Increase quantity">
                         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
                       </button>
                     </div>
 
-                    <button type="button" class="cart-remove-button" data-action="remove" data-color="${color}" aria-label="Remove ${color} brush from cart">
+                    <button type="button" class="cart-remove-button" data-action="remove" data-color="Default" aria-label="Remove item from cart">
                       <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></svg>
                       <span>Remove</span>
                     </button>
@@ -1773,74 +1791,140 @@
                 </div>
               </div>
             `;
-          });
-
-          // Render Free Extra Brush Heads line item
-          if (totals.isX2) {
-            if (totals.extraBrushHeadSets > 0) {
-              const sets = totals.extraBrushHeadSets;
-              const heads = sets * 2;
-              const title = `${heads}x Extra Free Brush Heads (${sets} ${sets > 1 ? "Sets" : "Set"})`;
-              const subtitle = `${sets} complimentary ${sets > 1 ? "sets contain" : "set contains"} ${heads} DuPont precision replacement heads for Brush X2.`;
-              const compareVal = sets * 20;
-              const badgeText = `UNLOCKED ${sets} ${sets > 1 ? "SETS" : "SET"} (${heads} BRUSH HEADS)`;
-              const giftImage = "/assets_ref/x2/gallery/miroooo-x2-sonic-electric-toothbrush-dupont-bristle-head-macro.webp";
-
-              html += `
-                <div class="cart-line-item">
-                  <div class="cart-line-item__media">
-                    <img src="${giftImage}" alt="${title}" />
-                  </div>
-                  <div class="cart-line-item__content">
-                    <div>
-                      <div class="cart-line-item__header">
-                        <div>
-                          <h3 class="cart-line-item__title">${title}</h3>
-                          <p class="cart-line-item__subtitle">${subtitle}</p>
-                        </div>
-                        <div class="cart-line-item__pricing">
-                          <span class="cart-line-item__price">Free</span>
-                          <s class="cart-line-item__compare">£${compareVal}</s>
-                        </div>
-                      </div>
-                    </div>
-
-                    <div class="cart-line-item__actions">
-                      <span class="cart-unlocked-badge">${badgeText}</span>
-                    </div>
-                  </div>
-                </div>
-              `;
-            }
           } else {
-            const lineItemGifts = GIFTS_DATA.filter(g => g.id === "brush-heads");
-            lineItemGifts.forEach(gift => {
+            // Group colors and maintain appearance order
+            const colorGroups = [];
+            const colorCounts = {};
+            (cartState.colors || ["Grey"]).forEach(c => {
+              const color = normalizeColor(c);
+              if (!colorCounts[color]) {
+                colorCounts[color] = 0;
+                colorGroups.push(color);
+              }
+              colorCounts[color]++;
+            });
+
+            // Render a separate line item card for each unique color
+            colorGroups.forEach(color => {
+              const count = colorCounts[color];
+              const itemTitle = count > 1
+                ? `${product.name} (Buy ${count} - ${color})`
+                : `${product.name} (${color})`;
+
+              const variantObj = product.variants[color] || product.variants["Grey"] || product.variants["Pink"] || product.variants["Silver"];
+              const itemImage = variantObj?.image || product.image;
+
+              const itemPrice = Math.round(unitSubtotal * count);
+              const itemCompare = Math.round(unitCompare * count);
+
               html += `
-                <div class="cart-line-item">
+                <!-- Brush Item (${color}) -->
+                <div class="cart-line-item" data-color="${color}">
                   <div class="cart-line-item__media">
-                    <img src="${gift.image}" alt="${gift.name}" />
+                    <img src="${itemImage}" alt="${itemTitle}" />
                   </div>
                   <div class="cart-line-item__content">
                     <div>
                       <div class="cart-line-item__header">
                         <div>
-                          <h3 class="cart-line-item__title">${gift.name}</h3>
-                          <p class="cart-line-item__subtitle">${gift.desc}</p>
+                          <h2 class="cart-line-item__title">${itemTitle}</h2>
+                          <p class="cart-line-item__subtitle">${product.subtitle}</p>
                         </div>
                         <div class="cart-line-item__pricing">
-                          <span class="cart-line-item__price">Free</span>
-                          <s class="cart-line-item__compare">£${Math.round(gift.comparePrice)}</s>
+                          <span class="cart-line-item__price">£${itemPrice}</span>
+                          <s class="cart-line-item__compare">£${itemCompare}</s>
                         </div>
                       </div>
                     </div>
 
                     <div class="cart-line-item__actions">
-                      <span class="cart-unlocked-badge">${gift.badgeQty}</span>
+                      <div class="cart-stepper-pill" aria-label="Quantity selector for ${color}">
+                        <button type="button" class="cart-stepper-btn" data-action="minus" data-color="${color}" aria-label="Decrease ${color} quantity">
+                          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+                        </button>
+                        <span class="cart-stepper-count">${count}</span>
+                        <button type="button" class="cart-stepper-btn" data-action="plus" data-color="${color}" aria-label="Increase ${color} quantity">
+                          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+                        </button>
+                      </div>
+
+                      <button type="button" class="cart-remove-button" data-action="remove" data-color="${color}" aria-label="Remove ${color} brush from cart">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></svg>
+                        <span>Remove</span>
+                      </button>
                     </div>
                   </div>
                 </div>
               `;
             });
+
+            // Render Free Extra Brush Heads line item
+            if (totals.isX2) {
+              if (totals.extraBrushHeadSets > 0) {
+                const sets = totals.extraBrushHeadSets;
+                const heads = sets * 2;
+                const title = `${heads}x Extra Free Brush Heads (${sets} ${sets > 1 ? "Sets" : "Set"})`;
+                const subtitle = `${sets} complimentary ${sets > 1 ? "sets contain" : "set contains"} ${heads} DuPont precision replacement heads for Brush X2.`;
+                const compareVal = sets * 20;
+                const badgeText = `UNLOCKED ${sets} ${sets > 1 ? "SETS" : "SET"} (${heads} BRUSH HEADS)`;
+                const giftImage = "/assets_ref/x2/gallery/miroooo-x2-sonic-electric-toothbrush-dupont-bristle-head-macro.webp";
+
+                html += `
+                  <div class="cart-line-item">
+                    <div class="cart-line-item__media">
+                      <img src="${giftImage}" alt="${title}" />
+                    </div>
+                    <div class="cart-line-item__content">
+                      <div>
+                        <div class="cart-line-item__header">
+                          <div>
+                            <h3 class="cart-line-item__title">${title}</h3>
+                            <p class="cart-line-item__subtitle">${subtitle}</p>
+                          </div>
+                          <div class="cart-line-item__pricing">
+                            <span class="cart-line-item__price">Free</span>
+                            <s class="cart-line-item__compare">£${compareVal}</s>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="cart-line-item__actions">
+                        <span class="cart-unlocked-badge">${badgeText}</span>
+                      </div>
+                    </div>
+                  </div>
+                `;
+              }
+            } else {
+              const lineItemGifts = GIFTS_DATA.filter(g => g.id === "brush-heads");
+              lineItemGifts.forEach(gift => {
+                html += `
+                  <div class="cart-line-item">
+                    <div class="cart-line-item__media">
+                      <img src="${gift.image}" alt="${gift.name}" />
+                    </div>
+                    <div class="cart-line-item__content">
+                      <div>
+                        <div class="cart-line-item__header">
+                          <div>
+                            <h3 class="cart-line-item__title">${gift.name}</h3>
+                            <p class="cart-line-item__subtitle">${gift.desc}</p>
+                          </div>
+                          <div class="cart-line-item__pricing">
+                            <span class="cart-line-item__price">Free</span>
+                            <s class="cart-line-item__compare">£${Math.round(gift.comparePrice)}</s>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="cart-line-item__actions">
+                        <span class="cart-unlocked-badge">${gift.badgeQty}</span>
+                      </div>
+                    </div>
+                  </div>
+                `;
+              });
+            }
           }
 
           lineItemsWrap.innerHTML = html;
@@ -1848,9 +1932,14 @@
           // Attach Stepper & Remove Events per color item
           lineItemsWrap.querySelectorAll('button[data-action="plus"]').forEach(btn => {
             btn.addEventListener("click", () => {
-              const color = btn.getAttribute("data-color") || "Grey";
-              cartState.colors.push(color);
-              cartState.quantity = cartState.colors.length;
+              if (cartState.productId === "miroooo-x2-heads") {
+                cartState.quantity = (cartState.quantity || 1) + 1;
+                cartState.colors = Array(cartState.quantity).fill("Default");
+              } else {
+                const color = btn.getAttribute("data-color") || "Grey";
+                cartState.colors.push(color);
+                cartState.quantity = cartState.colors.length;
+              }
               persistCart(cartState);
               renderCartView();
             });
@@ -1858,19 +1947,30 @@
 
           lineItemsWrap.querySelectorAll('button[data-action="minus"]').forEach(btn => {
             btn.addEventListener("click", () => {
-              const color = btn.getAttribute("data-color") || "Grey";
-              const lastIdx = cartState.colors.lastIndexOf(color);
-              if (lastIdx > -1) {
-                cartState.colors.splice(lastIdx, 1);
-              } else if (cartState.colors.length > 0) {
-                cartState.colors.pop();
-              }
-              cartState.quantity = cartState.colors.length;
-              if (cartState.quantity <= 0) {
-                cartState = null;
-                persistCart(null);
+              if (cartState.productId === "miroooo-x2-heads") {
+                cartState.quantity = (cartState.quantity || 1) - 1;
+                if (cartState.quantity <= 0) {
+                  cartState = null;
+                  persistCart(null);
+                } else {
+                  cartState.colors = Array(cartState.quantity).fill("Default");
+                  persistCart(cartState);
+                }
               } else {
-                persistCart(cartState);
+                const color = btn.getAttribute("data-color") || "Grey";
+                const lastIdx = cartState.colors.lastIndexOf(color);
+                if (lastIdx > -1) {
+                  cartState.colors.splice(lastIdx, 1);
+                } else if (cartState.colors.length > 0) {
+                  cartState.colors.pop();
+                }
+                cartState.quantity = cartState.colors.length;
+                if (cartState.quantity <= 0) {
+                  cartState = null;
+                  persistCart(null);
+                } else {
+                  persistCart(cartState);
+                }
               }
               renderCartView();
             });
@@ -1878,14 +1978,19 @@
 
           lineItemsWrap.querySelectorAll('button[data-action="remove"]').forEach(btn => {
             btn.addEventListener("click", () => {
-              const color = btn.getAttribute("data-color") || "Grey";
-              cartState.colors = cartState.colors.filter(c => normalizeColor(c) !== normalizeColor(color));
-              cartState.quantity = cartState.colors.length;
-              if (cartState.quantity <= 0) {
+              if (cartState.productId === "miroooo-x2-heads") {
                 cartState = null;
                 persistCart(null);
               } else {
-                persistCart(cartState);
+                const color = btn.getAttribute("data-color") || "Grey";
+                cartState.colors = cartState.colors.filter(c => normalizeColor(c) !== normalizeColor(color));
+                cartState.quantity = cartState.colors.length;
+                if (cartState.quantity <= 0) {
+                  cartState = null;
+                  persistCart(null);
+                } else {
+                  persistCart(cartState);
+                }
               }
               renderCartView();
             });
@@ -1906,7 +2011,11 @@
         if (summarySavingsEl) summarySavingsEl.textContent = `-£${Math.round(totals.totalSavings)}`;
         if (breakdownBundleVal) breakdownBundleVal.textContent = `-£${Math.round(totals.bundleSavings)}`;
         
-        if (totals.isX2) {
+        if (totals.isHeads) {
+          if (breakdownGiftCase) breakdownGiftCase.style.display = "none";
+          if (breakdownGiftHeads) breakdownGiftHeads.style.display = "none";
+          if (breakdownGiftDock) breakdownGiftDock.style.display = "none";
+        } else if (totals.isX2) {
           if (breakdownGiftCase) {
             breakdownGiftCase.style.display = "flex";
             const caseLabel = breakdownGiftCase.querySelector("span:first-child");
@@ -1983,6 +2092,10 @@
         if (summarySubtotalPrice) summarySubtotalPrice.textContent = `£${Math.round(totals.finalSubtotal)}`;
 
         // 6C. Render Free Rewards Progress Card
+        const freeRewardsCard = document.getElementById("free-rewards-card");
+        if (freeRewardsCard) {
+          freeRewardsCard.style.display = totals.isHeads ? "none" : "block";
+        }
         const rewardsUnlockedText = document.getElementById("rewards-unlocked-text");
         const rewardsTotalValue = document.getElementById("rewards-total-value");
         const rewardsProgressFill = document.getElementById("rewards-progress-fill");
@@ -1991,7 +2104,9 @@
         const step3 = document.getElementById("reward-step-3");
 
         if (rewardsUnlockedText) {
-          if (totals.isX2) {
+          if (totals.isHeads) {
+            rewardsUnlockedText.textContent = `0 gifts unlocked`;
+          } else if (totals.isX2) {
             if (totals.extraBrushHeadSets > 0) {
               const extraHeads = totals.extraBrushHeadSets * 2;
               rewardsUnlockedText.textContent = `3 gifts + ${extraHeads} free heads unlocked`;
@@ -2002,11 +2117,11 @@
             rewardsUnlockedText.textContent = `3 gifts unlocked`;
           }
         }
-        if (rewardsTotalValue) rewardsTotalValue.textContent = `£${totals.giftsValue} value`;
-        if (rewardsProgressFill) rewardsProgressFill.style.width = `100%`;
-        if (step1) step1.classList.add("is-unlocked");
-        if (step2) step2.classList.add("is-unlocked");
-        if (step3) step3.classList.add("is-unlocked");
+        if (rewardsTotalValue) rewardsTotalValue.textContent = totals.isHeads ? `£0 value` : `£${totals.giftsValue} value`;
+        if (rewardsProgressFill) rewardsProgressFill.style.width = totals.isHeads ? `0%` : `100%`;
+        if (step1) step1.classList.toggle("is-unlocked", !totals.isHeads);
+        if (step2) step2.classList.toggle("is-unlocked", !totals.isHeads);
+        if (step3) step3.classList.toggle("is-unlocked", !totals.isHeads);
 
         // 6D. Update Promo Box UI
         const promoForm = document.getElementById("cart-promo-form");
@@ -2069,39 +2184,49 @@
 
           const product = PRODUCTS_CONFIG[cartState.productId] || PRODUCTS_CONFIG["miroooo-x"];
           const productId = product.productId;
-
-          // Group colors into items payload with exact quantities
-          const colorCounts = {};
-          const colorList = [];
-          (cartState.colors || ["Grey"]).forEach(c => {
-            const color = normalizeColor(c);
-            if (!colorCounts[color]) {
-              colorCounts[color] = 0;
-              colorList.push(color);
-            }
-            colorCounts[color]++;
-          });
-
+          const isHeads = cartState.productId === "miroooo-x2-heads";
           const isX2 = cartState.productId === "miroooo-x2";
-          const items = colorList.map(color => {
-            const count = colorCounts[color];
-            const variantObj = product.variants[color] || product.variants["Grey"] || product.variants["Pink"] || product.variants["Silver"];
-            const vId = variantObj ? variantObj.variantId : (isX2 ? "1000020700182883" : "1000020700958564");
-            return {
-              productId: productId,
-              variantId: vId,
-              quantity: count
-            };
-          });
 
-          // Add extra free brush heads set(s) for X2 when Buy 2 (1 set = 2 heads) or Buy 3 (2 sets = 4 heads)
-          if (isX2 && cartState.quantity >= 2) {
-            const extraBrushHeadSets = cartState.quantity - 1;
-            items.push({
-              productId: "1000000675072187",
-              variantId: "1000020700182881",
-              quantity: extraBrushHeadSets
+          let items = [];
+          if (isHeads) {
+            items = [{
+              productId: "1000000675072188",
+              variantId: "1000020700182885",
+              quantity: cartState.quantity
+            }];
+          } else {
+            // Group colors into items payload with exact quantities
+            const colorCounts = {};
+            const colorList = [];
+            (cartState.colors || ["Grey"]).forEach(c => {
+              const color = normalizeColor(c);
+              if (!colorCounts[color]) {
+                colorCounts[color] = 0;
+                colorList.push(color);
+              }
+              colorCounts[color]++;
             });
+
+            items = colorList.map(color => {
+              const count = colorCounts[color];
+              const variantObj = product.variants[color] || product.variants["Grey"] || product.variants["Pink"] || product.variants["Silver"];
+              const vId = variantObj ? variantObj.variantId : (isX2 ? "1000020700182883" : "1000020700958564");
+              return {
+                productId: productId,
+                variantId: vId,
+                quantity: count
+              };
+            });
+
+            // Add extra free brush heads set(s) for X2 when Buy 2 (1 set = 2 heads) or Buy 3 (2 sets = 4 heads)
+            if (isX2 && cartState.quantity >= 2) {
+              const extraBrushHeadSets = cartState.quantity - 1;
+              items.push({
+                productId: "1000000675072187",
+                variantId: "1000020700182881",
+                quantity: extraBrushHeadSets
+              });
+            }
           }
 
           // Preserve UTM / Ad attribution
@@ -2191,7 +2316,8 @@
           } catch (error) {
             console.error("Checkout redirection failed, redirecting to PlusBase checkout:", error);
             try {
-              const firstVariantId = items[0]?.variantId || (cartState.productId === "miroooo-x2" ? "1000020700182883" : "1000020700958564");
+              const defaultVariantId = isHeads ? "1000020700182885" : (isX2 ? "1000020700182883" : "1000020700958564");
+              const firstVariantId = items[0]?.variantId || defaultVariantId;
               const bridgeUrl = new URL("https://buudy.com/pages/add-to-cart");
               bridgeUrl.searchParams.set("product_id", productId);
               bridgeUrl.searchParams.set("variant_id", firstVariantId);

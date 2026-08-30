@@ -142,6 +142,11 @@
                         <span class="drawer__submenu-title">Brush X2</span>
                       </a>
                     </li>
+                    <li>
+                      <a class="drawer__submenu-item flex flex-col" href="/products/miroooo-x2-heads">
+                        <span class="drawer__submenu-title">Brush X2 Heads</span>
+                      </a>
+                    </li>
                   </ul>
                 </li>
                 <li><a class="drawer__menu-item block heading text-2xl leading-none tracking-tight" href="/about-us">About Us</a></li>
@@ -180,7 +185,7 @@
               <nav class="header__menu site-nav hidden lg:flex" role="navigation" aria-label="Primary">
                 <ul class="flex flex-wrap list-menu with-block">
                   <li class="header__dropdown relative" data-dropdown>
-                    <button type="button" class="menu__item nav-link header__dropdown-toggle flex items-center font-medium z-2 relative cursor-pointer" aria-expanded="false" aria-haspopup="true" is="magnet-link" data-magnet="0"${["product-x", "product-x2", "shop"].includes(currentPage) ? ' aria-current="page"' : ""}>
+                    <button type="button" class="menu__item nav-link header__dropdown-toggle flex items-center font-medium z-2 relative cursor-pointer" aria-expanded="false" aria-haspopup="true" is="magnet-link" data-magnet="0"${["product-x", "product-x2", "product-x2-heads", "shop"].includes(currentPage) ? ' aria-current="page"' : ""}>
                       <span class="btn-text flex items-center" data-text="Electric Toothbrush">Electric Toothbrush ${chevronDownIcon}</span>
                       <span class="btn-text btn-duplicate flex items-center">Electric Toothbrush ${chevronDownIcon}</span>
                     </button>
@@ -190,6 +195,9 @@
                       </a>
                       <a href="/products/miroooo-x2" class="dropdown-item" role="menuitem">
                         <div class="dropdown-item__title">Brush X2</div>
+                      </a>
+                      <a href="/products/miroooo-x2-heads" class="dropdown-item" role="menuitem">
+                        <div class="dropdown-item__title">Brush X2 Heads</div>
                       </a>
                     </div>
                   </li>
@@ -298,6 +306,7 @@
                 <li><a href="/">Home</a></li>
                 <li><a href="/products/miroooo-x" data-product-link>Brush X</a></li>
                 <li><a href="/products/miroooo-x2" data-product-link>Brush X2</a></li>
+                <li><a href="/products/miroooo-x2-heads" data-product-link>Brush X2 Heads</a></li>
                 <li><a href="/privacy">Privacy Policy</a></li>
                 <li><a href="/return-policy">Return Policy</a></li>
                 <li><a href="/shipping-policy">Shipping Policy</a></li>
@@ -816,35 +825,48 @@
   }
 
   async function createPlusbaseCheckoutSession(item, extraParams = {}) {
+    const isHeads = item?.productHandle === "miroooo-x2-heads" || item?.productId === "1000000675072188";
     const isX2 = item?.productHandle === "miroooo-x2" || (item?.title && item.title.includes("X2"));
-    const productId = isX2 ? "1000000675072187" : "1000000675113473";
-    const variants = isX2 ? X2_VARIANTS : X_VARIANTS;
+    let productId = "1000000675113473";
+    if (isHeads) productId = "1000000675072188";
+    else if (isX2) productId = "1000000675072187";
 
-    const bundleCount = item?.bundleCount || item?.count || item?.itemCount || (item?.tierId === "bundle-3" ? 3 : item?.tierId === "bundle-2" ? 2 : 1);
-    const selectedColors = Array.isArray(item?.choices) && item.choices.length > 0
-      ? item.choices.slice(0, bundleCount)
-      : [item?.color || "Grey"];
+    let items = [];
+    if (isHeads) {
+      const qty = item?.quantity || item?.bundleCount || 1;
+      items = [{
+        productId: "1000000675072188",
+        variantId: "1000020700182885",
+        quantity: qty
+      }];
+    } else {
+      const variants = isX2 ? X2_VARIANTS : X_VARIANTS;
+      const bundleCount = item?.bundleCount || item?.count || item?.itemCount || (item?.tierId === "bundle-3" ? 3 : item?.tierId === "bundle-2" ? 2 : 1);
+      const selectedColors = Array.isArray(item?.choices) && item.choices.length > 0
+        ? item.choices.slice(0, bundleCount)
+        : [item?.color || "Grey"];
 
-    while (selectedColors.length < bundleCount) {
-      selectedColors.push(selectedColors[0] || "Grey");
-    }
+      while (selectedColors.length < bundleCount) {
+        selectedColors.push(selectedColors[0] || "Grey");
+      }
 
-    const items = selectedColors.map((color) => {
-      const vId = variants[color] || variants["Grey"] || variants["Gray"] || variants["Pink"] || variants["Silver"] || (isX2 ? "1000020700182883" : "1000020700958564");
-      return {
-        productId: productId,
-        variantId: vId,
-        quantity: 1,
-      };
-    });
-
-    if (isX2 && bundleCount >= 2) {
-      const extraSets = bundleCount - 1;
-      items.push({
-        productId: "1000000675072187",
-        variantId: "1000020700182881",
-        quantity: extraSets,
+      items = selectedColors.map((color) => {
+        const vId = variants[color] || variants["Grey"] || variants["Gray"] || variants["Pink"] || variants["Silver"] || (isX2 ? "1000020700182883" : "1000020700958564");
+        return {
+          productId: productId,
+          variantId: vId,
+          quantity: 1,
+        };
       });
+
+      if (isX2 && bundleCount >= 2) {
+        const extraSets = bundleCount - 1;
+        items.push({
+          productId: "1000000675072187",
+          variantId: "1000020700182881",
+          quantity: extraSets,
+        });
+      }
     }
 
     const attribution = readCapturedAttribution();
@@ -936,34 +958,47 @@
         if (storedStandard) {
           const parsed = JSON.parse(storedStandard);
           if (parsed && parsed.quantity > 0) {
+            const isHeads = parsed.productId === "miroooo-x2-heads";
             const isX2 = parsed.productId === "miroooo-x2";
-            const productHandle = isX2 ? "miroooo-x2" : "miroooo-x";
-            const title = isX2 ? "Brush X2" : "Brush X";
-            const colors = Array.isArray(parsed.colors) && parsed.colors.length > 0 ? parsed.colors : ["Grey"];
+            let productHandle = "miroooo-x";
+            let title = "Brush X";
+            if (isHeads) {
+              productHandle = "miroooo-x2-heads";
+              title = "2x Brush X2 heads";
+            } else if (isX2) {
+              productHandle = "miroooo-x2";
+              title = "Brush X2";
+            }
+
+            const colors = isHeads ? ["Default"] : (Array.isArray(parsed.colors) && parsed.colors.length > 0 ? parsed.colors : ["Grey"]);
             const qty = Math.max(1, parsed.quantity || colors.length);
 
             let unitPrice = 59;
             let comparePrice = 119;
-            if (isX2) {
+            let image = "/assets_ref/x/gallery/Miroooo_x_Grey-2.webp";
+            let unlockedGifts = 3;
+
+            if (isHeads) {
+              unitPrice = qty * 15;
+              comparePrice = qty * 30;
+              image = "/assets_ref/x2/heads/B1.webp";
+              unlockedGifts = 0;
+            } else if (isX2) {
               if (qty === 1) { unitPrice = 79; comparePrice = 159; }
               else if (qty === 2) { unitPrice = 148; comparePrice = 318; }
               else { unitPrice = qty * 66; comparePrice = qty * 159; }
-            } else {
-              if (qty === 1) { unitPrice = 59; comparePrice = 119; }
-              else if (qty === 2) { unitPrice = 110; comparePrice = 238; }
-              else { unitPrice = qty * 49; comparePrice = qty * 119; }
-            }
 
-            const firstColor = (colors[0] || "").toLowerCase();
-            let image = isX2
-              ? "/assets_ref/x2/gallery/miroooo-x2-sonic-electric-toothbrush-grey-in-hand.webp"
-              : "/assets_ref/x/gallery/Miroooo_x_Grey-2.webp";
-
-            if (isX2) {
+              const firstColor = (colors[0] || "").toLowerCase();
+              image = "/assets_ref/x2/gallery/miroooo-x2-sonic-electric-toothbrush-grey-in-hand.webp";
               if (firstColor.includes("pink") || firstColor.includes("rose")) image = "/assets_ref/x2/gallery/miroooo-x2-sonic-electric-toothbrush-pink-in-hand.webp";
               else if (firstColor.includes("silver")) image = "/assets_ref/x2/gallery/miroooo-x2-sonic-electric-toothbrush-silver-in-hand.webp";
               else if (firstColor.includes("grey") || firstColor.includes("gray")) image = "/assets_ref/x2/gallery/miroooo-x2-sonic-electric-toothbrush-grey-in-hand.webp";
             } else {
+              if (qty === 1) { unitPrice = 59; comparePrice = 119; }
+              else if (qty === 2) { unitPrice = 110; comparePrice = 238; }
+              else { unitPrice = qty * 49; comparePrice = qty * 119; }
+
+              const firstColor = (colors[0] || "").toLowerCase();
               if (firstColor.includes("pink") || firstColor.includes("rose")) image = "/assets_ref/x/gallery/Miroooo_x_Pink-1.webp";
               else if (firstColor.includes("silver")) image = "/assets_ref/x/gallery/Miroooo_x_Silver-1.webp";
               else if (firstColor.includes("grey") || firstColor.includes("gray")) image = "/assets_ref/x/gallery/Miroooo_x_Grey-2.webp";
@@ -973,17 +1008,17 @@
               items: [
                 {
                   id: `${parsed.productId}-${qty}`,
-                  productId: isX2 ? "1000000675072187" : "1000000675113473",
+                  productId: isHeads ? "1000000675072188" : (isX2 ? "1000000675072187" : "1000000675113473"),
                   productHandle: productHandle,
-                  title: qty > 1 ? `${title} (Buy ${qty})` : title,
+                  title: (qty > 1 && !isHeads) ? `${title} (Buy ${qty})` : (isHeads && qty > 1 ? `${title} (Qty: ${qty})` : title),
                   quantity: 1,
                   bundleCount: qty,
-                  choices: colors,
-                  color: colors[0] || "Grey",
+                  choices: isHeads ? [] : colors,
+                  color: isHeads ? "" : (colors[0] || "Grey"),
                   unitPrice: unitPrice,
                   comparePrice: comparePrice,
                   image: image,
-                  unlockedGifts: 3
+                  unlockedGifts: unlockedGifts
                 }
               ],
               promoCode: "AUTO",
@@ -1006,11 +1041,16 @@
         localStorage.setItem(CART_STORAGE_KEY, JSON.stringify(cart));
         if (cart && Array.isArray(cart.items) && cart.items.length > 0) {
           const item = cart.items[0];
+          const isHeads = item.productHandle === "miroooo-x2-heads" || item.productId === "1000000675072188";
           const isX2 = item.productHandle === "miroooo-x2" || item.productId === "1000000675072187" || item.productId === "1000000664011618";
+          let productId = "miroooo-x";
+          if (isHeads) productId = "miroooo-x2-heads";
+          else if (isX2) productId = "miroooo-x2";
+
           localStorage.setItem("miroooo_cart", JSON.stringify({
-            productId: isX2 ? "miroooo-x2" : "miroooo-x",
+            productId: productId,
             quantity: item.bundleCount || item.quantity || 1,
-            colors: item.choices || [item.color || "Grey"]
+            colors: isHeads ? ["Default"] : (item.choices || [item.color || "Grey"])
           }));
           localStorage.removeItem("miroooo_cart_empty");
         } else {
@@ -1069,17 +1109,25 @@
           this.clearCart();
         } else {
           const item = cart.items[index];
+          const isHeads = item.productHandle === "miroooo-x2-heads" || item.productId === "1000000675072188";
           const isX2 = item.productHandle === "miroooo-x2" || item.productId === "1000000675072187" || item.productId === "1000000664011618";
           const newQty = Math.max(1, quantity);
-          let colors = Array.isArray(item.choices) && item.choices.length > 0 ? [...item.choices] : ["Grey"];
-          while (colors.length < newQty) {
-            colors.push(colors[0] || "Grey");
+          let productId = "miroooo-x";
+          if (isHeads) productId = "miroooo-x2-heads";
+          else if (isX2) productId = "miroooo-x2";
+
+          let colors = ["Default"];
+          if (!isHeads) {
+            colors = Array.isArray(item.choices) && item.choices.length > 0 ? [...item.choices] : ["Grey"];
+            while (colors.length < newQty) {
+              colors.push(colors[0] || "Grey");
+            }
+            colors = colors.slice(0, newQty);
           }
-          colors = colors.slice(0, newQty);
 
           try {
             localStorage.setItem("miroooo_cart", JSON.stringify({
-              productId: isX2 ? "miroooo-x2" : "miroooo-x",
+              productId: productId,
               quantity: newQty,
               colors: colors
             }));
@@ -1227,22 +1275,26 @@
       if (itemsList) {
         let itemsHtml = "";
         items.forEach((item) => {
+          const isHeads = item.productHandle === "miroooo-x2-heads" || item.productId === "1000000675072188";
           const isX2 = item.productHandle === "miroooo-x2" || (item.title && item.title.toLowerCase().includes("x2")) || item.productId === "1000000675072187" || item.productId === "1000000664011618";
           const quantity = item.bundleCount || item.quantity || 1;
           let extraHeadsNote = "";
-          if (isX2 && quantity >= 2) {
+          if (isX2 && !isHeads && quantity >= 2) {
             const extraSets = quantity - 1;
             const extraHeads = extraSets * 2;
             extraHeadsNote = ` + ${extraHeads} Extra Free Brush Heads (${extraSets} ${extraSets > 1 ? "Sets" : "Set"})`;
           }
 
-          const description = isX2
-            ? `45° Bass sweep guidance, smart pressure sensor halo, and 90-day cobalt endurance${extraHeadsNote}.`
-            : "Ultra-precise acoustic motor, 60-day battery, and 3 brushing modes with travel case.";
+          let description = "Ultra-precise acoustic motor, 60-day battery, and 3 brushing modes with travel case.";
+          if (isHeads) {
+            description = "DuPont Ultra-Soft Replacement Heads (2-Pack) for Brush X2.";
+          } else if (isX2) {
+            description = `45° Bass sweep guidance, smart pressure sensor halo, and 90-day cobalt endurance${extraHeadsNote}.`;
+          }
 
-          const colorsLabel = item.choices && item.choices.length > 0
+          const colorsLabel = (!isHeads && item.choices && item.choices.length > 0)
             ? `Colors: ${item.choices.join(" + ")}`
-            : (item.color ? `Color: ${item.color}` : "");
+            : (!isHeads && item.color ? `Color: ${item.color}` : "");
 
           const unitPriceInt = Math.round(Number(item.unitPrice || 0));
           const unitPriceDisplay = `£${unitPriceInt}`;
@@ -1294,19 +1346,23 @@
       // Calculate totals & savings (integers only)
       let subtotal = 0;
       let compareTotal = 0;
-      let maxUnlockedGifts = 1;
+      let maxUnlockedGifts = 0;
 
       items.forEach((item) => {
+        const isHeads = item.productHandle === "miroooo-x2-heads" || item.productId === "1000000675072188";
         const qty = item.quantity || 1;
         const unitPrice = Math.round(Number(item.unitPrice || 0));
         const comparePrice = item.comparePrice ? Math.round(Number(item.comparePrice)) : unitPrice * 2;
         subtotal += unitPrice * qty;
         compareTotal += comparePrice * qty;
-        const itemGifts = item.unlockedGifts || (item.bundleCount === 3 ? 3 : item.bundleCount === 2 ? 2 : 1);
-        if (itemGifts > maxUnlockedGifts) maxUnlockedGifts = itemGifts;
+        if (!isHeads) {
+          const itemGifts = item.unlockedGifts !== undefined ? item.unlockedGifts : (item.bundleCount === 3 ? 3 : item.bundleCount === 2 ? 2 : 1);
+          if (itemGifts > maxUnlockedGifts) maxUnlockedGifts = itemGifts;
+        }
       });
 
-      const unlockedGiftsList = [GIFTS_DATABASE.case];
+      const unlockedGiftsList = [];
+      if (maxUnlockedGifts >= 1) unlockedGiftsList.push(GIFTS_DATABASE.case);
       if (maxUnlockedGifts >= 2) unlockedGiftsList.push(GIFTS_DATABASE.heads);
       if (maxUnlockedGifts >= 3) unlockedGiftsList.push(GIFTS_DATABASE.dock);
 

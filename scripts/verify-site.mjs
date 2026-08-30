@@ -21,7 +21,7 @@ const newPages = [
   "shipping-policy.html", "refund-policy.html", "cookies-policy.html", "404.html"
 ];
 const internalRoutes = new Set([
-  "/", "/shop", "/products/miroooo-x", "/products/miroooo-x2", "/cart", "/about", "/about-us", "/faq", "/contact",
+  "/", "/shop", "/products/miroooo-x", "/products/miroooo-x2", "/products/miroooo-x2-heads", "/cart", "/about", "/about-us", "/faq", "/contact",
   "/delivery-returns", "/warranty", "/order-tracking", "/privacy", "/terms", "/return-policy",
   "/shipping-policy", "/refund-policy", "/cookies-policy", "/policies/privacy-policy",
   "/policies/return-policy", "/policies/shipping-policy", "/policies/refund-policy",
@@ -66,7 +66,13 @@ if (/background:\s*var\(--miroooo-green\)/.test(productShellStyles)) {
   errors.push("assets/product-shell.css: green announcement override remains");
 }
 
-for (const [file, route] of [["miroooo-x.html", "/products/miroooo-x"], ["miroooo-x2.html", "/products/miroooo-x2"]]) {
+const productPagesToCheck = [["miroooo-x.html", "/products/miroooo-x"], ["miroooo-x2.html", "/products/miroooo-x2"]];
+try {
+  await access(resolve(root, "miroooo-x2-heads.html"));
+  productPagesToCheck.push(["miroooo-x2-heads.html", "/products/miroooo-x2-heads"]);
+} catch (_) {}
+
+for (const [file, route] of productPagesToCheck) {
   const html = await readFile(resolve(root, file), "utf8");
   if (!/<html[^>]+lang="en-GB"/.test(html)) errors.push(`${file}: missing en-GB language`);
   if (!html.includes(`rel="canonical" href="https://trymiroooo.com${route}"`)) errors.push(`${file}: incorrect canonical`);
@@ -81,7 +87,7 @@ if (config.cleanUrls !== true) errors.push("vercel.json: cleanUrls must remain e
 if (!config.outputDirectory || config.outputDirectory !== "public") errors.push("vercel.json: outputDirectory must be public");
 
 const sitemap = await readFile(resolve(root, "sitemap.xml"), "utf8");
-for (const route of ["/shop", "/products/miroooo-x", "/products/miroooo-x2", "/delivery-returns", "/privacy", "/terms", "/cart"]) {
+for (const route of ["/shop", "/products/miroooo-x", "/products/miroooo-x2", "/products/miroooo-x2-heads", "/delivery-returns", "/privacy", "/terms", "/cart"]) {
   if (!sitemap.includes(`https://trymiroooo.com${route}`)) errors.push(`sitemap.xml: missing ${route}`);
 }
 
