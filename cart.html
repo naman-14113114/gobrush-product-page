@@ -1487,14 +1487,14 @@
         "miroooo-x2": {
           id: "miroooo-x2",
           name: "Brush X2",
-          productId: "1000000664011618",
+          productId: "1000000675072187",
           source: "miroooo-x2",
           subtitle: "Precision Guided Electric Toothbrush with 45° sweep guidance & 90-day battery.",
           image: "/assets_ref/x2/gallery/miroooo-x2-sonic-electric-toothbrush-upright-grip.webp",
           variants: {
-            "Grey": { variantId: "1000020348810048", image: "/assets_ref/x2/gallery/miroooo-x2-sonic-electric-toothbrush-grey-in-hand.webp" },
-            "Pink": { variantId: "1000020348810062", image: "/assets_ref/x2/gallery/miroooo-x2-sonic-electric-toothbrush-pink-in-hand.webp" },
-            "Silver": { variantId: "1000020348810046", image: "/assets_ref/x2/gallery/miroooo-x2-sonic-electric-toothbrush-silver-in-hand.webp" }
+            "Grey": { variantId: "1000020700182883", image: "/assets_ref/x2/gallery/miroooo-x2-sonic-electric-toothbrush-grey-in-hand.webp" },
+            "Pink": { variantId: "1000020700182882", image: "/assets_ref/x2/gallery/miroooo-x2-sonic-electric-toothbrush-pink-in-hand.webp" },
+            "Silver": { variantId: "1000020700182884", image: "/assets_ref/x2/gallery/miroooo-x2-sonic-electric-toothbrush-silver-in-hand.webp" }
           },
           getPricing(qty) {
             const count = Math.max(1, qty);
@@ -1640,9 +1640,15 @@
         const compareAt = Math.round(pricing.compareAt);
         const bundleSavings = Math.round(pricing.bundleSavings);
 
-        // 3 Free Rewards (£20 + £16 + £25 = £61)
+        const isX2 = state.productId === "miroooo-x2";
         let giftsValue = 61;
         let unlockedGiftsCount = 3;
+        const extraBrushHeadSets = (isX2 && state.quantity >= 2) ? (state.quantity - 1) : 0;
+
+        if (isX2) {
+          // X2 base 3 gifts value = £35, plus £20 per extra brush heads set (2 heads/set)
+          giftsValue = 35 + (extraBrushHeadSets * 20);
+        }
 
         let promoDiscount = 0;
         if (appliedPromoCode) {
@@ -1661,7 +1667,9 @@
           giftsValue: giftsValue,
           promoDiscount: promoDiscount,
           totalSavings: totalSavings,
-          finalSubtotal: finalSubtotal
+          finalSubtotal: finalSubtotal,
+          isX2: isX2,
+          extraBrushHeadSets: extraBrushHeadSets
         };
       }
 
@@ -1767,35 +1775,73 @@
             `;
           });
 
-          // Render Free 2x Extra Brush Heads line item
-          const lineItemGifts = GIFTS_DATA.filter(g => g.id === "brush-heads");
-          lineItemGifts.forEach(gift => {
-            html += `
-              <div class="cart-line-item">
-                <div class="cart-line-item__media">
-                  <img src="${gift.image}" alt="${gift.name}" />
-                </div>
-                <div class="cart-line-item__content">
-                  <div>
-                    <div class="cart-line-item__header">
-                      <div>
-                        <h3 class="cart-line-item__title">${gift.name}</h3>
-                        <p class="cart-line-item__subtitle">${gift.desc}</p>
-                      </div>
-                      <div class="cart-line-item__pricing">
-                        <span class="cart-line-item__price">Free</span>
-                        <s class="cart-line-item__compare">£${Math.round(gift.comparePrice)}</s>
+          // Render Free Extra Brush Heads line item
+          if (totals.isX2) {
+            if (totals.extraBrushHeadSets > 0) {
+              const sets = totals.extraBrushHeadSets;
+              const heads = sets * 2;
+              const title = `${heads}x Extra Free Brush Heads (${sets} ${sets > 1 ? "Sets" : "Set"})`;
+              const subtitle = `${sets} complimentary ${sets > 1 ? "sets contain" : "set contains"} ${heads} DuPont precision replacement heads for Brush X2.`;
+              const compareVal = sets * 20;
+              const badgeText = `UNLOCKED ${sets} ${sets > 1 ? "SETS" : "SET"} (${heads} BRUSH HEADS)`;
+              const giftImage = "/assets_ref/x2/gallery/miroooo-x2-sonic-electric-toothbrush-dupont-bristle-head-macro.webp";
+
+              html += `
+                <div class="cart-line-item">
+                  <div class="cart-line-item__media">
+                    <img src="${giftImage}" alt="${title}" />
+                  </div>
+                  <div class="cart-line-item__content">
+                    <div>
+                      <div class="cart-line-item__header">
+                        <div>
+                          <h3 class="cart-line-item__title">${title}</h3>
+                          <p class="cart-line-item__subtitle">${subtitle}</p>
+                        </div>
+                        <div class="cart-line-item__pricing">
+                          <span class="cart-line-item__price">Free</span>
+                          <s class="cart-line-item__compare">£${compareVal}</s>
+                        </div>
                       </div>
                     </div>
-                  </div>
 
-                  <div class="cart-line-item__actions">
-                    <span class="cart-unlocked-badge">${gift.badgeQty}</span>
+                    <div class="cart-line-item__actions">
+                      <span class="cart-unlocked-badge">${badgeText}</span>
+                    </div>
                   </div>
                 </div>
-              </div>
-            `;
-          });
+              `;
+            }
+          } else {
+            const lineItemGifts = GIFTS_DATA.filter(g => g.id === "brush-heads");
+            lineItemGifts.forEach(gift => {
+              html += `
+                <div class="cart-line-item">
+                  <div class="cart-line-item__media">
+                    <img src="${gift.image}" alt="${gift.name}" />
+                  </div>
+                  <div class="cart-line-item__content">
+                    <div>
+                      <div class="cart-line-item__header">
+                        <div>
+                          <h3 class="cart-line-item__title">${gift.name}</h3>
+                          <p class="cart-line-item__subtitle">${gift.desc}</p>
+                        </div>
+                        <div class="cart-line-item__pricing">
+                          <span class="cart-line-item__price">Free</span>
+                          <s class="cart-line-item__compare">£${Math.round(gift.comparePrice)}</s>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="cart-line-item__actions">
+                      <span class="cart-unlocked-badge">${gift.badgeQty}</span>
+                    </div>
+                  </div>
+                </div>
+              `;
+            });
+          }
 
           lineItemsWrap.innerHTML = html;
 
@@ -1860,9 +1906,68 @@
         if (summarySavingsEl) summarySavingsEl.textContent = `-£${Math.round(totals.totalSavings)}`;
         if (breakdownBundleVal) breakdownBundleVal.textContent = `-£${Math.round(totals.bundleSavings)}`;
         
-        if (breakdownGiftCase) breakdownGiftCase.style.display = "flex";
-        if (breakdownGiftHeads) breakdownGiftHeads.style.display = "flex";
-        if (breakdownGiftDock) breakdownGiftDock.style.display = "flex";
+        if (totals.isX2) {
+          if (breakdownGiftCase) {
+            breakdownGiftCase.style.display = "flex";
+            const caseLabel = breakdownGiftCase.querySelector("span:first-child");
+            if (caseLabel) {
+              caseLabel.innerHTML = `
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7.01" y2="7"></line></svg>
+                3 Unlocked Free Gifts (Case, Dock, App)
+              `;
+            }
+            const caseVal = breakdownGiftCase.querySelector("span:last-child");
+            if (caseVal) caseVal.textContent = "-£35";
+          }
+
+          if (totals.extraBrushHeadSets > 0) {
+            if (breakdownGiftHeads) {
+              breakdownGiftHeads.style.display = "flex";
+              const headsLabel = breakdownGiftHeads.querySelector("span:first-child");
+              if (headsLabel) {
+                headsLabel.innerHTML = `
+                  <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7.01" y2="7"></line></svg>
+                  Free ${totals.extraBrushHeadSets * 2}x Extra Brush Heads (${totals.extraBrushHeadSets} ${totals.extraBrushHeadSets > 1 ? "Sets" : "Set"})
+                `;
+              }
+              const headsVal = breakdownGiftHeads.querySelector("span:last-child");
+              if (headsVal) headsVal.textContent = `-£${totals.extraBrushHeadSets * 20}`;
+            }
+          } else {
+            if (breakdownGiftHeads) breakdownGiftHeads.style.display = "none";
+          }
+          if (breakdownGiftDock) breakdownGiftDock.style.display = "none";
+        } else {
+          if (breakdownGiftCase) {
+            breakdownGiftCase.style.display = "flex";
+            const caseLabel = breakdownGiftCase.querySelector("span:first-child");
+            if (caseLabel) {
+              caseLabel.innerHTML = `
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7.01" y2="7"></line></svg>
+                Free Luxury Travel Case
+              `;
+            }
+            const caseVal = breakdownGiftCase.querySelector("span:last-child");
+            if (caseVal) caseVal.textContent = "-£16";
+          }
+          if (breakdownGiftHeads) {
+            breakdownGiftHeads.style.display = "flex";
+            const headsLabel = breakdownGiftHeads.querySelector("span:first-child");
+            if (headsLabel) {
+              headsLabel.innerHTML = `
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7.01" y2="7"></line></svg>
+                Free 2x Extra Brush Heads
+              `;
+            }
+            const headsVal = breakdownGiftHeads.querySelector("span:last-child");
+            if (headsVal) headsVal.textContent = "-£20";
+          }
+          if (breakdownGiftDock) {
+            breakdownGiftDock.style.display = "flex";
+            const dockVal = breakdownGiftDock.querySelector("span:last-child");
+            if (dockVal) dockVal.textContent = "-£25";
+          }
+        }
 
         if (totals.promoDiscount > 0) {
           if (breakdownPromoRow) breakdownPromoRow.style.display = "flex";
@@ -1885,8 +1990,19 @@
         const step2 = document.getElementById("reward-step-2");
         const step3 = document.getElementById("reward-step-3");
 
-        if (rewardsUnlockedText) rewardsUnlockedText.textContent = `3 gifts unlocked`;
-        if (rewardsTotalValue) rewardsTotalValue.textContent = `£61 value`;
+        if (rewardsUnlockedText) {
+          if (totals.isX2) {
+            if (totals.extraBrushHeadSets > 0) {
+              const extraHeads = totals.extraBrushHeadSets * 2;
+              rewardsUnlockedText.textContent = `3 gifts + ${extraHeads} free heads unlocked`;
+            } else {
+              rewardsUnlockedText.textContent = `3 gifts unlocked`;
+            }
+          } else {
+            rewardsUnlockedText.textContent = `3 gifts unlocked`;
+          }
+        }
+        if (rewardsTotalValue) rewardsTotalValue.textContent = `£${totals.giftsValue} value`;
         if (rewardsProgressFill) rewardsProgressFill.style.width = `100%`;
         if (step1) step1.classList.add("is-unlocked");
         if (step2) step2.classList.add("is-unlocked");
@@ -1966,16 +2082,27 @@
             colorCounts[color]++;
           });
 
+          const isX2 = cartState.productId === "miroooo-x2";
           const items = colorList.map(color => {
             const count = colorCounts[color];
             const variantObj = product.variants[color] || product.variants["Grey"] || product.variants["Pink"] || product.variants["Silver"];
-            const vId = variantObj ? variantObj.variantId : (cartState.productId === "miroooo-x2" ? "1000020348810048" : "1000020700958564");
+            const vId = variantObj ? variantObj.variantId : (isX2 ? "1000020700182883" : "1000020700958564");
             return {
               productId: productId,
               variantId: vId,
               quantity: count
             };
           });
+
+          // Add extra free brush heads set(s) for X2 when Buy 2 (1 set = 2 heads) or Buy 3 (2 sets = 4 heads)
+          if (isX2 && cartState.quantity >= 2) {
+            const extraBrushHeadSets = cartState.quantity - 1;
+            items.push({
+              productId: "1000000675072187",
+              variantId: "1000020700182881",
+              quantity: extraBrushHeadSets
+            });
+          }
 
           // Preserve UTM / Ad attribution
           const allowed = ["utm_source", "utm_medium", "utm_campaign", "utm_term", "utm_content", "msclkid", "gclid", "fbclid", "source"];
@@ -2064,7 +2191,7 @@
           } catch (error) {
             console.error("Checkout redirection failed, redirecting to PlusBase checkout:", error);
             try {
-              const firstVariantId = items[0]?.variantId || (cartState.productId === "miroooo-x2" ? "1000020348810048" : "1000020700958564");
+              const firstVariantId = items[0]?.variantId || (cartState.productId === "miroooo-x2" ? "1000020700182883" : "1000020700958564");
               const bridgeUrl = new URL("https://buudy.com/pages/add-to-cart");
               bridgeUrl.searchParams.set("product_id", productId);
               bridgeUrl.searchParams.set("variant_id", firstVariantId);

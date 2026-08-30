@@ -763,11 +763,11 @@
   };
 
   const X2_VARIANTS = {
-    "Grey": "1000020348810048",
-    "Gray": "1000020348810048",
-    "Pink": "1000020348810062",
-    "Rose Gold": "1000020348810062",
-    "Silver": "1000020348810046"
+    "Grey": "1000020700182883",
+    "Gray": "1000020700182883",
+    "Pink": "1000020700182882",
+    "Rose Gold": "1000020700182882",
+    "Silver": "1000020700182884"
   };
 
   const GIFTS_DATABASE = {
@@ -817,7 +817,7 @@
 
   async function createPlusbaseCheckoutSession(item, extraParams = {}) {
     const isX2 = item?.productHandle === "miroooo-x2" || (item?.title && item.title.includes("X2"));
-    const productId = isX2 ? "1000000664011618" : "1000000675113473";
+    const productId = isX2 ? "1000000675072187" : "1000000675113473";
     const variants = isX2 ? X2_VARIANTS : X_VARIANTS;
 
     const bundleCount = item?.bundleCount || item?.count || item?.itemCount || (item?.tierId === "bundle-3" ? 3 : item?.tierId === "bundle-2" ? 2 : 1);
@@ -830,13 +830,22 @@
     }
 
     const items = selectedColors.map((color) => {
-      const vId = variants[color] || variants["Grey"] || variants["Gray"] || variants["Pink"] || variants["Silver"] || (isX2 ? "1000020348810048" : "1000020700958564");
+      const vId = variants[color] || variants["Grey"] || variants["Gray"] || variants["Pink"] || variants["Silver"] || (isX2 ? "1000020700182883" : "1000020700958564");
       return {
         productId: productId,
         variantId: vId,
         quantity: 1,
       };
     });
+
+    if (isX2 && bundleCount >= 2) {
+      const extraSets = bundleCount - 1;
+      items.push({
+        productId: "1000000675072187",
+        variantId: "1000020700182881",
+        quantity: extraSets,
+      });
+    }
 
     const attribution = readCapturedAttribution();
     Object.assign(attribution, extraParams);
@@ -964,7 +973,7 @@
               items: [
                 {
                   id: `${parsed.productId}-${qty}`,
-                  productId: isX2 ? "1000000664011618" : "1000000675113473",
+                  productId: isX2 ? "1000000675072187" : "1000000675113473",
                   productHandle: productHandle,
                   title: qty > 1 ? `${title} (Buy ${qty})` : title,
                   quantity: 1,
@@ -997,7 +1006,7 @@
         localStorage.setItem(CART_STORAGE_KEY, JSON.stringify(cart));
         if (cart && Array.isArray(cart.items) && cart.items.length > 0) {
           const item = cart.items[0];
-          const isX2 = item.productHandle === "miroooo-x2" || item.productId === "1000000664011618";
+          const isX2 = item.productHandle === "miroooo-x2" || item.productId === "1000000675072187" || item.productId === "1000000664011618";
           localStorage.setItem("miroooo_cart", JSON.stringify({
             productId: isX2 ? "miroooo-x2" : "miroooo-x",
             quantity: item.bundleCount || item.quantity || 1,
@@ -1060,7 +1069,7 @@
           this.clearCart();
         } else {
           const item = cart.items[index];
-          const isX2 = item.productHandle === "miroooo-x2" || item.productId === "1000000664011618";
+          const isX2 = item.productHandle === "miroooo-x2" || item.productId === "1000000675072187" || item.productId === "1000000664011618";
           const newQty = Math.max(1, quantity);
           let colors = Array.isArray(item.choices) && item.choices.length > 0 ? [...item.choices] : ["Grey"];
           while (colors.length < newQty) {
@@ -1218,9 +1227,17 @@
       if (itemsList) {
         let itemsHtml = "";
         items.forEach((item) => {
-          const isX2 = item.productHandle === "miroooo-x2" || (item.title && item.title.toLowerCase().includes("x2")) || item.productId === "1000000664011618";
+          const isX2 = item.productHandle === "miroooo-x2" || (item.title && item.title.toLowerCase().includes("x2")) || item.productId === "1000000675072187" || item.productId === "1000000664011618";
+          const quantity = item.bundleCount || item.quantity || 1;
+          let extraHeadsNote = "";
+          if (isX2 && quantity >= 2) {
+            const extraSets = quantity - 1;
+            const extraHeads = extraSets * 2;
+            extraHeadsNote = ` + ${extraHeads} Extra Free Brush Heads (${extraSets} ${extraSets > 1 ? "Sets" : "Set"})`;
+          }
+
           const description = isX2
-            ? "45° Bass sweep guidance, smart pressure sensor halo, and 90-day cobalt endurance."
+            ? `45° Bass sweep guidance, smart pressure sensor halo, and 90-day cobalt endurance${extraHeadsNote}.`
             : "Ultra-precise acoustic motor, 60-day battery, and 3 brushing modes with travel case.";
 
           const colorsLabel = item.choices && item.choices.length > 0
@@ -1231,8 +1248,6 @@
           const unitPriceDisplay = `£${unitPriceInt}`;
           const comparePriceInt = item.comparePrice ? Math.round(Number(item.comparePrice)) : (unitPriceInt * 2);
           const comparePriceDisplay = comparePriceInt > unitPriceInt ? `£${comparePriceInt}` : "";
-
-          const quantity = item.bundleCount || item.quantity || 1;
 
           itemsHtml += `
             <div class="miroooo-cart-item" data-item-id="${item.id}">
