@@ -87,3 +87,18 @@ Append-only memory for the `gobrush-product-page` repository. Do not delete or s
 - Commit/push/deployment actions: none. No commit, push, branch, pull request, pull, merge, rebase, stash, reset, Vercel deployment, production promotion, domain/alias/environment change, checkout, payment, or order occurred.
 - Mistakes/corrections during this memory task: no storefront implementation mistake occurred. The only scope-sensitive correction was treating the user's "strictly no change in code" as allowing required append-only context/memory documentation while leaving application code untouched.
 - Remaining uncertainty/follow-up: before future edits, re-run state reconciliation because the user and collaborators often update GitHub/Antigravity. Also confirm whether future cleanup should address product-page residues such as X `60-Day Trial` versus site `90-day`, `TODAY ONLY` gift copy, `1x luxe verpakking`, inherited Shopify route residue, and X2 variant-label mismatch.
+
+## 2026-08-30 07:58:00 +05:30 - Added Competitor Comparison Section below Reviews in Brush X2
+
+- User request: Add comparison with competitors section below reviews section in X2 (`miroooo-x2.html`), matching exact layout, structure, and design from X1 (`miroooo-x.html`), updating data/image to X2 specs (90 Days battery, upright silver flagship image, price £69 with £99 strikethrough for today only), and keeping all competitor data/images intact across desktop and mobile.
+- Changes made:
+  - Added `#shopify-section-template--miroooo-comparison` directly below the reviews container and above Package Contents in `miroooo-x2.html`.
+  - Configured Winner column for `Brush X2` with image `/assets_ref/x2/gallery/miroooo-x2-sonic-electric-toothbrush-silver-upright-grip.webp`.
+  - Set specs: 90 Days battery life, ultra-lightweight unibody, travel case, wall-mounted storage, dental care app, aluminium alloy body, 2x DuPont heads, whisper quiet (<50dB), risk-free home trial, free tracked delivery.
+  - Set image to sit flush/colinear directly on the green bottom border line of the column.
+  - Added "Wall-Mounted Storage" row (X2: ✓, Oral-B: ✗, Philips: ✗, Suri: ✓).
+  - Added "Dental Care App" row (X2: ✓, Oral-B: ✗, Philips: ✗, Suri: ✗).
+  - Fixed Suri 2.0 price to £85 (was £95) on desktop and mobile.
+  - Set pricing: £69 with £99 strikethrough and "(for today only)".
+  - Built static storefront with `npm run build` and ran `npm run verify` (25 files / 17 pages checked, 0 errors).
+
