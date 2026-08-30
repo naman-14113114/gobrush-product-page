@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800&display=swap');
+
 :root {
   --header-height: 78px;
   --ink: #080909;
@@ -145,9 +147,10 @@ a {
 .site-logo {
   justify-self: center;
   color: #fff;
+  font-family: 'Montserrat', 'Outfit', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
   font-size: 17px;
   font-weight: 800;
-  letter-spacing: 0.38em;
+  letter-spacing: 0.03em;
   line-height: 1;
   text-transform: uppercase;
 }
@@ -1078,9 +1081,11 @@ p {
 .site-footer__logo {
   display: inline-block;
   margin-bottom: 28px;
+  font-family: 'Montserrat', 'Outfit', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
   font-size: 22px;
   font-weight: 800;
-  letter-spacing: 0.38em;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
 }
 
 .site-footer__brand p {
@@ -1265,8 +1270,11 @@ p {
   }
 
   .site-logo {
+    font-family: 'Montserrat', 'Outfit', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
     font-size: 14px;
-    letter-spacing: 0.3em;
+    font-weight: 800;
+    letter-spacing: 0.03em;
+    text-transform: uppercase;
   }
 
   .mobile-panel {
@@ -1521,10 +1529,12 @@ body {
 .site-logo {
   justify-self: center;
   color: currentColor;
+  font-family: 'Montserrat', 'Outfit', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
   font-size: 17px;
-  font-weight: 700;
-  letter-spacing: .42em;
+  font-weight: 800;
+  letter-spacing: 0.03em;
   line-height: 1;
+  text-transform: uppercase;
 }
 
 .site-nav,
@@ -2888,10 +2898,10 @@ body.is-ready [data-hero-reveal] {
 .site-footer__logo {
   display: inline-block;
   margin-bottom: 16px;
-  font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  font-family: 'Montserrat', 'Outfit', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
   font-size: clamp(22px, 2.5vw, 28px);
   font-weight: 800;
-  letter-spacing: 0.2em;
+  letter-spacing: 0.03em;
   text-transform: uppercase;
   color: #ffffff;
   text-decoration: none;
@@ -3260,8 +3270,11 @@ body.is-ready [data-hero-reveal] {
   }
 
   .site-logo {
+    font-family: 'Montserrat', 'Outfit', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
     font-size: 13px;
-    letter-spacing: .34em;
+    font-weight: 800;
+    letter-spacing: 0.03em;
+    text-transform: uppercase;
   }
 
   .site-actions__bag {
@@ -3404,7 +3417,11 @@ body.is-ready [data-hero-reveal] {
   }
 
   .site-footer__logo {
+    font-family: 'Montserrat', 'Outfit', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
     font-size: 24px;
+    font-weight: 800;
+    letter-spacing: 0.03em;
+    text-transform: uppercase;
   }
 
   .site-footer__column:last-child,
@@ -4054,21 +4071,24 @@ body[data-page="cart"] .site-header--cart .header__logo {
 
 /* Logo */
 .site-logo,
-.header__logo-link {
+.header__logo-link,
+.miroooo-brand-logo {
   display: inline-flex !important;
   align-items: center !important;
   text-decoration: none !important;
   color: #ffffff !important;
-  font-size: 17px !important;
+  font-family: 'Montserrat', 'Outfit', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif !important;
+  font-size: clamp(1.35rem, 2vw, 1.65rem) !important;
   font-weight: 800 !important;
-  letter-spacing: 0.38em !important;
+  letter-spacing: 0.03em !important;
   line-height: 1 !important;
   text-transform: uppercase !important;
   transition: opacity 0.2s ease, transform 0.3s cubic-bezier(0.16, 1, 0.3, 1) !important;
 }
 
 .site-logo:hover,
-.header__logo-link:hover {
+.header__logo-link:hover,
+.miroooo-brand-logo:hover {
   opacity: 0.88 !important;
   transform: scale(1.02) !important;
 }

@@ -101,7 +101,7 @@
       headerTarget.innerHTML = `
       ${announcementHTML}
       <header class="site-header site-header--cart" is="custom-header" style="background: #080909; border-bottom: 1px solid rgba(255, 255, 255, 0.08); display: flex; justify-content: center; align-items: center; width: 100%;">
-        <div class="header__logo flex justify-center w-full items-center" style="padding: 16px 0; justify-content: center; width: 100%;"><a href="/" class="header__logo-link" style="text-decoration: none;"><span style="font-family: 'Inter', -apple-system, sans-serif; font-size: clamp(1.3rem, 2vw, 1.6rem); font-weight: 800; letter-spacing: 0.2em; text-transform: uppercase; color: #ffffff;">MIROOOO</span></a></div>
+        <div class="header__logo flex justify-center w-full items-center" style="padding: 16px 0; justify-content: center; width: 100%;"><a href="/" class="header__logo-link" style="text-decoration: none;"><span class="miroooo-brand-logo" style="font-family: 'Montserrat', 'Outfit', -apple-system, BlinkMacSystemFont, sans-serif; font-size: clamp(1.35rem, 2vw, 1.65rem); font-weight: 800; letter-spacing: 0.03em; text-transform: uppercase; color: #ffffff; line-height: 1;">MIROOOO</span></a></div>
       </header>`;
       return;
     }
@@ -200,7 +200,7 @@
           </div>
           <div class="site-header__center header__logo flex justify-center z-2" itemscope itemtype="http://schema.org/Organization">
             <a class="site-logo header__logo-link flex items-center relative" href="/" itemprop="url" style="text-decoration: none;" aria-label="Miroooo home">
-              <span style="font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif; font-size: clamp(1.3rem, 2vw, 1.6rem); font-weight: 800; letter-spacing: 0.2em; text-transform: uppercase; color: #ffffff;">${logoBrandText}</span>
+              <span class="miroooo-brand-logo" style="font-family: 'Montserrat', 'Outfit', -apple-system, BlinkMacSystemFont, sans-serif; font-size: clamp(1.35rem, 2vw, 1.65rem); font-weight: 800; letter-spacing: 0.03em; text-transform: uppercase; color: #ffffff; line-height: 1;">${logoBrandText}</span>
             </a>
           </div>
           <div class="site-header__right site-actions header__icons header__icons--end flex justify-end items-center z-2">
