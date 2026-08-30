@@ -2057,9 +2057,6 @@
           <span class="miroooo-card-date">${formatUKDate(review.date || review.displayDate)}</span>
         </div>
 
-        <!-- Selected Variant -->
-        ${review.variant ? `<div class="miroooo-card-variant miroooo-card-variant-tag">${review.variant}</div>` : ''}
-
         <!-- Customer Gallery -->
         ${galleryHTML}
 
@@ -2280,8 +2277,8 @@
     if (starsEl) starsEl.innerHTML = getTrustpilotStarsHTML(activeLightboxReview.rating);
     if (dateEl) dateEl.textContent = formatUKDate(activeLightboxReview.date || activeLightboxReview.displayDate);
     if (variantEl) {
-      variantEl.textContent = activeLightboxReview.variant || 'Standard Edition';
-      variantEl.style.display = activeLightboxReview.variant ? 'inline-block' : 'none';
+      variantEl.textContent = '';
+      variantEl.style.display = 'none';
     }
     if (titleEl) titleEl.textContent = activeLightboxReview.title;
     if (bodyEl) bodyEl.textContent = activeLightboxReview.body;
