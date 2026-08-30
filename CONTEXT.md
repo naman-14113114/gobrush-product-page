@@ -102,3 +102,15 @@ Append-only memory for the `gobrush-product-page` repository. Do not delete or s
   - Set pricing: £69 with £99 strikethrough and "(for today only)".
   - Built static storefront with `npm run build` and ran `npm run verify` (25 files / 17 pages checked, 0 errors).
 
+## 2026-08-30 08:35:00 +05:30 - Updated Brush X2 Warranty to 3 Years (Preserving 2 Years for X)
+
+- User request: On X2 page if using 2 year warranty anywhere make it 3 (in reviews, FAQs, footer, badges, etc.) while keeping 2 year for X only.
+- Changes made:
+  - Updated hero trust badges strip on `miroooo-x2.html` to `3-Year Warranty`.
+  - Updated FAQ 5 on `miroooo-x2.html` to `three-year limited warranty`.
+  - Updated footer service strip on `miroooo-x2.html` to `Three-year warranty`.
+  - Kept Brush X with 2-year warranty across all X-specific touchpoints (`miroooo-x.html`, comparison tables, and `shop.html`).
+  - Synced `shop.html` and `warranty.html` to reflect 3 years for X2 and 2 years for X.
+  - Built static storefront with `npm run build` and ran `npm run verify` (25 files / 17 pages checked, 0 errors).
+
+
