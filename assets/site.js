@@ -825,18 +825,17 @@
   }
 
   async function createPlusbaseCheckoutSession(item, extraParams = {}) {
-    const isHeads = item?.productHandle === "miroooo-x2-heads" || item?.productId === "1000000675072188";
+    const isHeads = item?.productHandle === "miroooo-x2-heads" || item?.productId === "1000000675072187" && item?.variantId === "1000020700182881";
     const isX2 = item?.productHandle === "miroooo-x2" || (item?.title && item.title.includes("X2"));
     let productId = "1000000675113473";
-    if (isHeads) productId = "1000000675072188";
-    else if (isX2) productId = "1000000675072187";
+    if (isHeads || isX2) productId = "1000000675072187";
 
     let items = [];
     if (isHeads) {
       const qty = item?.quantity || item?.bundleCount || 1;
       items = [{
-        productId: "1000000675072188",
-        variantId: "1000020700182885",
+        productId: "1000000675072187",
+        variantId: "1000020700182881",
         quantity: qty
       }];
     } else {
@@ -1008,7 +1007,7 @@
               items: [
                 {
                   id: `${parsed.productId}-${qty}`,
-                  productId: isHeads ? "1000000675072188" : (isX2 ? "1000000675072187" : "1000000675113473"),
+                  productId: (isHeads || isX2) ? "1000000675072187" : "1000000675113473",
                   productHandle: productHandle,
                   title: (qty > 1 && !isHeads) ? `${title} (Buy ${qty})` : (isHeads && qty > 1 ? `${title} (Qty: ${qty})` : title),
                   quantity: 1,
@@ -1041,7 +1040,7 @@
         localStorage.setItem(CART_STORAGE_KEY, JSON.stringify(cart));
         if (cart && Array.isArray(cart.items) && cart.items.length > 0) {
           const item = cart.items[0];
-          const isHeads = item.productHandle === "miroooo-x2-heads" || item.productId === "1000000675072188";
+          const isHeads = item.productHandle === "miroooo-x2-heads";
           const isX2 = item.productHandle === "miroooo-x2" || item.productId === "1000000675072187" || item.productId === "1000000664011618";
           let productId = "miroooo-x";
           if (isHeads) productId = "miroooo-x2-heads";
@@ -1109,7 +1108,7 @@
           this.clearCart();
         } else {
           const item = cart.items[index];
-          const isHeads = item.productHandle === "miroooo-x2-heads" || item.productId === "1000000675072188";
+          const isHeads = item.productHandle === "miroooo-x2-heads";
           const isX2 = item.productHandle === "miroooo-x2" || item.productId === "1000000675072187" || item.productId === "1000000664011618";
           const newQty = Math.max(1, quantity);
           let productId = "miroooo-x";
@@ -1275,7 +1274,7 @@
       if (itemsList) {
         let itemsHtml = "";
         items.forEach((item) => {
-          const isHeads = item.productHandle === "miroooo-x2-heads" || item.productId === "1000000675072188";
+          const isHeads = item.productHandle === "miroooo-x2-heads";
           const isX2 = item.productHandle === "miroooo-x2" || (item.title && item.title.toLowerCase().includes("x2")) || item.productId === "1000000675072187" || item.productId === "1000000664011618";
           const quantity = item.bundleCount || item.quantity || 1;
           let extraHeadsNote = "";
@@ -1349,7 +1348,7 @@
       let maxUnlockedGifts = 0;
 
       items.forEach((item) => {
-        const isHeads = item.productHandle === "miroooo-x2-heads" || item.productId === "1000000675072188";
+        const isHeads = item.productHandle === "miroooo-x2-heads";
         const qty = item.quantity || 1;
         const unitPrice = Math.round(Number(item.unitPrice || 0));
         const comparePrice = item.comparePrice ? Math.round(Number(item.comparePrice)) : unitPrice * 2;

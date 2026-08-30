@@ -1507,12 +1507,12 @@
         "miroooo-x2-heads": {
           id: "miroooo-x2-heads",
           name: "2x Brush X2 heads",
-          productId: "1000000675072188",
+          productId: "1000000675072187",
           source: "miroooo-x2-heads",
           subtitle: "DuPont Ultra-Soft Replacement Heads (2-Pack) for Brush X2.",
           image: "/assets_ref/x2/heads/B1.webp",
           variants: {
-            "Default": { variantId: "1000020700182885", image: "/assets_ref/x2/heads/B1.webp" }
+            "Default": { variantId: "1000020700182881", image: "/assets_ref/x2/heads/B1.webp" }
           },
           getPricing(qty) {
             const count = Math.max(1, qty);
@@ -2190,8 +2190,8 @@
           let items = [];
           if (isHeads) {
             items = [{
-              productId: "1000000675072188",
-              variantId: "1000020700182885",
+              productId: "1000000675072187",
+              variantId: "1000020700182881",
               quantity: cartState.quantity
             }];
           } else {
@@ -2316,7 +2316,7 @@
           } catch (error) {
             console.error("Checkout redirection failed, redirecting to PlusBase checkout:", error);
             try {
-              const defaultVariantId = isHeads ? "1000020700182885" : (isX2 ? "1000020700182883" : "1000020700958564");
+              const defaultVariantId = isHeads ? "1000020700182881" : (isX2 ? "1000020700182883" : "1000020700958564");
               const firstVariantId = items[0]?.variantId || defaultVariantId;
               const bridgeUrl = new URL("https://buudy.com/pages/add-to-cart");
               bridgeUrl.searchParams.set("product_id", productId);
