@@ -1275,28 +1275,36 @@ video::-webkit-media-controls-enclosure {
   flex-direction: column;
   align-items: center;
   gap: 4px;
-  background: #18181b;
-  border: 1px solid rgba(255, 255, 255, 0.12);
+  background: #ffffff !important;
+  background-color: #ffffff !important;
+  border: 1px solid #ffffff !important;
   border-radius: 999px;
   padding: 14px 36px;
   font-size: 14px;
   font-weight: 700;
-  color: #ffffff;
+  color: #000000 !important;
   cursor: pointer;
   transition: var(--miroooo-transition);
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+  box-shadow: 0 4px 20px rgba(255, 255, 255, 0.15), 0 10px 30px rgba(0, 0, 0, 0.5) !important;
 }
 
 .miroooo-btn-load-more:hover {
-  background: #27272a;
-  border-color: rgba(255, 255, 255, 0.25);
+  background: #f4f4f5 !important;
+  background-color: #f4f4f5 !important;
+  color: #000000 !important;
+  border-color: #ffffff !important;
   transform: translateY(-2px);
 }
 
-.miroooo-load-count {
+.miroooo-btn-load-more span {
+  color: #000000 !important;
+}
+
+.miroooo-load-count,
+.miroooo-btn-load-more .miroooo-load-count {
   font-size: 11px;
   font-weight: 500;
-  color: var(--miroooo-text-muted);
+  color: rgba(0, 0, 0, 0.65) !important;
 }
 
 /* ==========================================================================

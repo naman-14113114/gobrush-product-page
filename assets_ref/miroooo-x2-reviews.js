@@ -212,7 +212,7 @@
       variant: 'Silver / Single',
       title: 'Magnetic charging dock is sleek and clutter-free',
       body: 'No ugly protruding plastic prongs. It balances solidly on the magnetic disc and takes up minimal bathroom counter space. Plus needing to charge only 4 times a year is liberating.',
-      images: ['/assets_ref/x2/x2-review-silver-wall-dock.webp'],
+      images: [],
       helpful: 18,
       verified: true
     },
