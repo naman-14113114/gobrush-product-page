@@ -33,7 +33,7 @@ try {
   await cp(resolve(root, "miroooo-x2-heads.html"), resolve(output, "products", "miroooo-x2-heads.html"));
 } catch (_) {}
 
-for (const directory of ["assets", "assets_ref"]) {
+for (const directory of ["assets", "assets_ref", "gallery_orig"]) {
   await cp(resolve(root, directory), resolve(output, directory), { recursive: true });
 }
 

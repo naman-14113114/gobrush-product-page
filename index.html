@@ -42,14 +42,17 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Montserrat:wght@700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="/assets/site.css?v=3">
   <style>
+    .gb-product-showcase {
+      border-bottom: none;
+    }
     .gb-video-feature-section {
       background: #000000;
       color: #ffffff;
-      padding: clamp(60px, 8vw, 110px) 20px;
+      padding: clamp(48px, 6vw, 72px) 20px;
       position: relative;
       overflow: hidden;
       box-sizing: border-box;
-      border-top: 1px solid rgba(255, 255, 255, 0.08);
+      border-top: none;
     }
     .gb-video-feature-container {
       max-width: 1280px;
@@ -73,9 +76,8 @@
     }
     .gb-video-feature-box--portrait {
       width: 100%;
-      max-width: 440px;
+      max-width: 380px;
       aspect-ratio: 9 / 16;
-      max-height: min(88vh, 720px);
       margin: 0 auto;
       border-radius: 28px;
       overflow: hidden;
@@ -180,7 +182,7 @@
     @media (max-width: 1023px) {
       .gb-video-feature-box--portrait {
         max-width: min(82vw, 320px);
-        max-height: 520px;
+        aspect-ratio: 9 / 16;
         margin: 0 auto;
       }
       .gb-video-feature-media,
@@ -237,37 +239,37 @@
           <a class="gb-text-link gb-text-link--light" href="/shop">Compare models <span aria-hidden="true">→</span></a>
         </div>
       </div>
-      <a class="gb-scroll-cue" href="#finish-range" aria-label="Continue to product showcase"><span></span></a>
+      <a class="gb-scroll-cue" href="#finish-range-x2" aria-label="Continue to product showcase"><span></span></a>
     </section>
 
-    <!-- Miroooo Product Finish Showcase Section -->
-    <section class="gb-product-showcase section--dark" id="finish-range" aria-labelledby="showcase-title">
+    <!-- Miroooo X2 Product Finish Showcase Section -->
+    <section class="gb-product-showcase section--dark" id="finish-range-x2" aria-labelledby="showcase-title-x2">
       <div class="gb-product-showcase__header reveal">
         <div>
           <p class="gb-kicker">Choose Your Finish</p>
-          <h2 id="showcase-title">Brush X Electric Toothbrush</h2>
+          <h2 id="showcase-title-x2">Brush X2 Electric Toothbrush</h2>
         </div>
         <a class="gb-text-link gb-text-link--light" href="/shop">View all products <span aria-hidden="true">→</span></a>
       </div>
-      <div class="gb-product-grid" data-drag-scroll tabindex="0" aria-label="Brush X Color Finishes">
+      <div class="gb-product-grid" data-drag-scroll tabindex="0" aria-label="Brush X2 Color Finishes">
         <!-- Card 1: Pink -->
         <article class="gb-product-card reveal">
           <div class="gb-product-card__media" data-slide-gallery>
-            <a class="gb-product-card__media-link" href="/products/miroooo-x?color=Pink" data-product-link aria-label="View Brush X in Pink">
+            <a class="gb-product-card__media-link" href="/products/miroooo-x2?color=Pink" data-product-link aria-label="View Brush X2 in Pink">
               <span class="badge badge--onsale">Save 50%</span>
               <div class="product-card__rating">
                 <svg class="icon icon-star icon-xs" viewBox="0 0 16 16" fill="#f59e0b" width="11" height="11"><path d="M8 0L9.88914 5.81283H16L11.056 9.40604L12.9452 15.2177L8 11.6245L3.05603 15.2177L4.94397 9.40484L0 5.81163H6.11086L8 0Z"/></svg>
-                <span>4.8</span>
+                <span>4.9</span>
               </div>
               <div class="gb-product-card__track">
                 <div class="gb-product-card__slide">
-                  <img src="/assets_ref/x/gallery/Miroooo_x_Pink-1.webp" alt="Brush X Pink Studio" width="700" height="700" loading="lazy">
+                  <img src="/assets_ref/x2/gallery/miroooo-x2-sonic-electric-toothbrush-pink-upright-grip.webp" alt="Brush X2 Pink Upright Grip" width="700" height="700" loading="lazy">
                 </div>
                 <div class="gb-product-card__slide">
-                  <img src="/assets_ref/x/gallery/Miroooo_x_Pink-2.webp" alt="Brush X Pink Lifestyle" width="700" height="700" loading="lazy">
+                  <img src="/assets_ref/x2/gallery/miroooo-x2-sonic-electric-toothbrush-pink-in-hand.webp" alt="Brush X2 Pink In Hand" width="700" height="700" loading="lazy">
                 </div>
                 <div class="gb-product-card__slide">
-                  <img src="/assets_ref/x/gallery/Miroooo_x_Pink-6.webp" alt="Brush X Pink Details" width="700" height="700" loading="lazy">
+                  <img src="/assets_ref/x2/gallery/miroooo-x2-sonic-electric-toothbrush-pink-complete-set-packaging.webp" alt="Brush X2 Pink Complete Set Packaging" width="700" height="700" loading="lazy">
                 </div>
               </div>
               <div class="flickity-page-dots" aria-hidden="true">
@@ -275,12 +277,13 @@
                 <span class="dot"></span>
                 <span class="dot"></span>
               </div>
-                        <a href="/products/miroooo-x?color=Pink" class="quick-view__button" aria-label="Quick view Pink finish" data-product-link>
-              <svg class="icon icon-eye" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M18.3334 10C18.3334 12.0833 15.8334 16.6667 10 16.6667C4.16669 16.6667 1.66669 12.0833 1.66669 10C1.66669 7.91668 4.16669 3.33334 10 3.33334C15.8334 3.33334 18.3334 7.91668 18.3334 10Z" stroke-linecap="round"/><path d="M12.5 10C12.5 11.3807 11.3807 12.5 10 12.5C8.61931 12.5 7.50002 11.3807 7.50002 10C7.50002 8.6193 8.61931 7.50001 10 7.50001C11.3807 7.50001 12.5 8.6193 12.5 10Z" stroke-linecap="round"/></svg>
+            </a>
+            <a href="/products/miroooo-x2?color=Pink" class="quick-view__button" aria-label="Quick view Pink finish" data-product-link>
+              <svg class="icon icon-eye" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M18.3334 10C18.3334 12.0833 15.8334 16.6667 10 16.6667C4.16669 16.6667 1.66669 12.0833 1.66669 10C1.66669 7.91668 4.16669 3.33334 10 3.33334C15.8334 3.33334 18.3334 7.91668 18.3334 10Z" stroke-linecap="round"/><path d="M12.5 10C12.5 11.3807 11.3807 12.5 10 12.5C8.61931 12.5 7.50002 11.3807 7.50002 10C7.50002 8.6193 8.61931 7.50001 10 7.50001C11.3807 7.50001 12.5 8.6193 12.5 8.6193Z" stroke-linecap="round"/></svg>
             </a>
           </div>
           <div class="gb-product-card__meta">
-            <h3 class="gb-product-card__name"><a href="/products/miroooo-x?color=Pink">Brush X Pink</a></h3>
+            <h3 class="gb-product-card__name"><a href="/products/miroooo-x2?color=Pink">Brush X2 Pink</a></h3>
             <div class="gb-product-card__price-wrap">
               <strong class="gb-product-card__price">£69</strong>
               <span class="gb-product-card__compare">£139</span>
@@ -291,21 +294,21 @@
         <!-- Card 2: Grey -->
         <article class="gb-product-card reveal">
           <div class="gb-product-card__media" data-slide-gallery>
-            <a class="gb-product-card__media-link" href="/products/miroooo-x?color=Grey" data-product-link aria-label="View Brush X in Grey">
+            <a class="gb-product-card__media-link" href="/products/miroooo-x2?color=Grey" data-product-link aria-label="View Brush X2 in Grey">
               <span class="badge badge--onsale">Save 50%</span>
               <div class="product-card__rating">
                 <svg class="icon icon-star icon-xs" viewBox="0 0 16 16" fill="#f59e0b" width="11" height="11"><path d="M8 0L9.88914 5.81283H16L11.056 9.40604L12.9452 15.2177L8 11.6245L3.05603 15.2177L4.94397 9.40484L0 5.81163H6.11086L8 0Z"/></svg>
-                <span>4.5</span>
+                <span>4.9</span>
               </div>
               <div class="gb-product-card__track">
                 <div class="gb-product-card__slide">
-                  <img src="/assets_ref/x/gallery/Miroooo_x_Grey-2.webp" alt="Brush X Grey Studio" width="700" height="700" loading="lazy">
+                  <img src="/assets_ref/x2/gallery/miroooo-x2-sonic-electric-toothbrush-grey-upright-grip.webp" alt="Brush X2 Grey Upright Grip" width="700" height="700" loading="lazy">
                 </div>
                 <div class="gb-product-card__slide">
-                  <img src="/assets_ref/x/gallery/Miroooo_x_Grey-6.webp" alt="Brush X Grey Lifestyle" width="700" height="700" loading="lazy">
+                  <img src="/assets_ref/x2/gallery/miroooo-x2-sonic-electric-toothbrush-grey-in-hand.webp" alt="Brush X2 Grey In Hand" width="700" height="700" loading="lazy">
                 </div>
                 <div class="gb-product-card__slide">
-                  <img src="/assets_ref/x/gallery/Miroooo_x_Grey-8.webp" alt="Brush X Grey Details" width="700" height="700" loading="lazy">
+                  <img src="/assets_ref/x2/gallery/miroooo-x2-sonic-electric-toothbrush-grey-complete-set-packaging.webp" alt="Brush X2 Grey Complete Set Packaging" width="700" height="700" loading="lazy">
                 </div>
               </div>
               <div class="flickity-page-dots" aria-hidden="true">
@@ -314,12 +317,12 @@
                 <span class="dot"></span>
               </div>
             </a>
-            <a href="/products/miroooo-x?color=Grey" class="quick-view__button" aria-label="Quick view Grey finish" data-product-link>
-              <svg class="icon icon-eye" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M18.3334 10C18.3334 12.0833 15.8334 16.6667 10 16.6667C4.16669 16.6667 1.66669 12.0833 1.66669 10C1.66669 7.91668 4.16669 3.33334 10 3.33334C15.8334 3.33334 18.3334 7.91668 18.3334 10Z" stroke-linecap="round"/><path d="M12.5 10C12.5 11.3807 11.3807 12.5 10 12.5C8.61931 12.5 7.50002 11.3807 7.50002 10C7.50002 8.6193 8.61931 7.50001 10 7.50001C11.3807 7.50001 12.5 8.6193 12.5 10Z" stroke-linecap="round"/></svg>
+            <a href="/products/miroooo-x2?color=Grey" class="quick-view__button" aria-label="Quick view Grey finish" data-product-link>
+              <svg class="icon icon-eye" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M18.3334 10C18.3334 12.0833 15.8334 16.6667 10 16.6667C4.16669 16.6667 1.66669 12.0833 1.66669 10C1.66669 7.91668 4.16669 3.33334 10 3.33334C15.8334 3.33334 18.3334 7.91668 18.3334 10Z" stroke-linecap="round"/><path d="M12.5 10C12.5 11.3807 11.3807 12.5 10 12.5C8.61931 12.5 7.50002 11.3807 7.50002 10C7.50002 8.6193 8.61931 7.50001 10 7.50001C11.3807 7.50001 12.5 8.6193 12.5 8.6193Z" stroke-linecap="round"/></svg>
             </a>
           </div>
           <div class="gb-product-card__meta">
-            <h3 class="gb-product-card__name"><a href="/products/miroooo-x?color=Grey">Brush X Grey</a></h3>
+            <h3 class="gb-product-card__name"><a href="/products/miroooo-x2?color=Grey">Brush X2 Grey</a></h3>
             <div class="gb-product-card__price-wrap">
               <strong class="gb-product-card__price">£69</strong>
               <span class="gb-product-card__compare">£139</span>
@@ -330,21 +333,21 @@
         <!-- Card 3: Silver -->
         <article class="gb-product-card reveal">
           <div class="gb-product-card__media" data-slide-gallery>
-            <a class="gb-product-card__media-link" href="/products/miroooo-x?color=Silver" data-product-link aria-label="View Brush X in Silver">
+            <a class="gb-product-card__media-link" href="/products/miroooo-x2?color=Silver" data-product-link aria-label="View Brush X2 in Silver">
               <span class="badge badge--onsale">Save 50%</span>
               <div class="product-card__rating">
                 <svg class="icon icon-star icon-xs" viewBox="0 0 16 16" fill="#f59e0b" width="11" height="11"><path d="M8 0L9.88914 5.81283H16L11.056 9.40604L12.9452 15.2177L8 11.6245L3.05603 15.2177L4.94397 9.40484L0 5.81163H6.11086L8 0Z"/></svg>
-                <span>4.4</span>
+                <span>4.8</span>
               </div>
               <div class="gb-product-card__track">
                 <div class="gb-product-card__slide">
-                  <img src="/assets_ref/x/gallery/Miroooo_x_Silver-1.webp" alt="Brush X Silver Studio" width="700" height="700" loading="lazy">
+                  <img src="/assets_ref/x2/gallery/miroooo-x2-sonic-electric-toothbrush-silver-upright-grip.webp" alt="Brush X2 Silver Upright Grip" width="700" height="700" loading="lazy">
                 </div>
                 <div class="gb-product-card__slide">
-                  <img src="/assets_ref/x/gallery/Miroooo_x_Silver-2.webp" alt="Brush X Silver Lifestyle" width="700" height="700" loading="lazy">
+                  <img src="/assets_ref/x2/gallery/miroooo-x2-sonic-electric-toothbrush-silver-in-hand.webp" alt="Brush X2 Silver In Hand" width="700" height="700" loading="lazy">
                 </div>
                 <div class="gb-product-card__slide">
-                  <img src="/assets_ref/x/gallery/Miroooo_x_Silver-5.webp" alt="Brush X Silver Details" width="700" height="700" loading="lazy">
+                  <img src="/assets_ref/x2/gallery/miroooo-x2-sonic-toothbrush-complete-set-packaging.webp" alt="Brush X2 Silver Complete Set Packaging" width="700" height="700" loading="lazy">
                 </div>
               </div>
               <div class="flickity-page-dots" aria-hidden="true">
@@ -353,12 +356,12 @@
                 <span class="dot"></span>
               </div>
             </a>
-            <a href="/products/miroooo-x?color=Silver" class="quick-view__button" aria-label="Quick view Silver finish" data-product-link>
+            <a href="/products/miroooo-x2?color=Silver" class="quick-view__button" aria-label="Quick view Silver finish" data-product-link>
               <svg class="icon icon-eye" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M18.3334 10C18.3334 12.0833 15.8334 16.6667 10 16.6667C4.16669 16.6667 1.66669 12.0833 1.66669 10C1.66669 7.91668 4.16669 3.33334 10 3.33334C15.8334 3.33334 18.3334 7.91668 18.3334 10Z" stroke-linecap="round"/><path d="M12.5 10C12.5 11.3807 11.3807 12.5 10 12.5C8.61931 12.5 7.50002 11.3807 7.50002 10C7.50002 8.6193 8.61931 7.50001 10 7.50001C11.3807 7.50001 12.5 8.6193 12.5 8.6193Z" stroke-linecap="round"/></svg>
             </a>
           </div>
           <div class="gb-product-card__meta">
-            <h3 class="gb-product-card__name"><a href="/products/miroooo-x?color=Silver">Brush X Silver</a></h3>
+            <h3 class="gb-product-card__name"><a href="/products/miroooo-x2?color=Silver">Brush X2 Silver</a></h3>
             <div class="gb-product-card__price-wrap">
               <strong class="gb-product-card__price">£69</strong>
               <span class="gb-product-card__compare">£139</span>
@@ -380,7 +383,7 @@
             </h2>
             <div class="gb-video-feature-divider"></div>
             <p class="gb-video-feature-lead">
-              Engineered for deep plaque removal with next-generation 45° Bass sweep acoustic guidance, intelligent pressure sensing, and 90-day endurance.
+              Engineered for deep plaque removal with ultra-lightweight aerospace aluminium, travel-ready protection, and up to 90 days on a single charge.
             </p>
 
             <div class="gb-video-feature-list">
@@ -388,8 +391,8 @@
               <div class="gb-video-feature-item">
                 <div class="gb-video-feature-bullet"></div>
                 <div class="gb-video-feature-text">
-                  <h3>45° Bass Sweep Technology</h3>
-                  <p>Guided acoustic sweeping action for 10x deeper plaque elimination.</p>
+                  <h3>Ultra Lightweight</h3>
+                  <p>51g unibody aerospace aluminium chassis for effortless, fatigue-free daily brushing.</p>
                 </div>
               </div>
 
@@ -397,8 +400,8 @@
               <div class="gb-video-feature-item">
                 <div class="gb-video-feature-bullet"></div>
                 <div class="gb-video-feature-text">
-                  <h3>Smart Pressure Halo Ring</h3>
-                  <p>Visual LED feedback alerts you if brushing pressure is too high.</p>
+                  <h3>Travel-Friendly</h3>
+                  <p>Slim protective travel case and magnetic charging base built for life on the move.</p>
                 </div>
               </div>
 
@@ -406,7 +409,7 @@
               <div class="gb-video-feature-item">
                 <div class="gb-video-feature-bullet"></div>
                 <div class="gb-video-feature-text">
-                  <h3>90-Day Cobalt Battery</h3>
+                  <h3>90 Days in a Single Charge</h3>
                   <p>Months of power on a single USB-C charge without sink clutter.</p>
                 </div>
               </div>
@@ -512,34 +515,34 @@
       </div>
     </section>
 
-    <!-- Miroooo X2 Product Finish Showcase Section -->
-    <section class="gb-product-showcase section--dark" id="finish-range-x2" aria-labelledby="showcase-title-x2">
+    <!-- Miroooo Product Finish Showcase Section -->
+    <section class="gb-product-showcase section--dark" id="finish-range" aria-labelledby="showcase-title">
       <div class="gb-product-showcase__header reveal">
         <div>
           <p class="gb-kicker">Choose Your Finish</p>
-          <h2 id="showcase-title-x2">Brush X2 Electric Toothbrush</h2>
+          <h2 id="showcase-title">Brush X Electric Toothbrush</h2>
         </div>
         <a class="gb-text-link gb-text-link--light" href="/shop">View all products <span aria-hidden="true">→</span></a>
       </div>
-      <div class="gb-product-grid" data-drag-scroll tabindex="0" aria-label="Brush X2 Color Finishes">
+      <div class="gb-product-grid" data-drag-scroll tabindex="0" aria-label="Brush X Color Finishes">
         <!-- Card 1: Pink -->
         <article class="gb-product-card reveal">
           <div class="gb-product-card__media" data-slide-gallery>
-            <a class="gb-product-card__media-link" href="/products/miroooo-x2?color=Pink" data-product-link aria-label="View Brush X2 in Pink">
+            <a class="gb-product-card__media-link" href="/products/miroooo-x?color=Pink" data-product-link aria-label="View Brush X in Pink">
               <span class="badge badge--onsale">Save 50%</span>
               <div class="product-card__rating">
                 <svg class="icon icon-star icon-xs" viewBox="0 0 16 16" fill="#f59e0b" width="11" height="11"><path d="M8 0L9.88914 5.81283H16L11.056 9.40604L12.9452 15.2177L8 11.6245L3.05603 15.2177L4.94397 9.40484L0 5.81163H6.11086L8 0Z"/></svg>
-                <span>4.9</span>
+                <span>4.8</span>
               </div>
               <div class="gb-product-card__track">
                 <div class="gb-product-card__slide">
-                  <img src="/assets_ref/x2/gallery/miroooo-x2-sonic-electric-toothbrush-pink-upright-grip.webp" alt="Brush X2 Pink Upright Grip" width="700" height="700" loading="lazy">
+                  <img src="/gallery_orig/RoseGold-color-1.jpg" alt="Brush X Pink Studio" width="700" height="700" loading="lazy">
                 </div>
                 <div class="gb-product-card__slide">
-                  <img src="/assets_ref/x2/gallery/miroooo-x2-sonic-electric-toothbrush-pink-in-hand.webp" alt="Brush X2 Pink In Hand" width="700" height="700" loading="lazy">
+                  <img src="/gallery_orig/RoseGold-color-2.jpg" alt="Brush X Pink Lifestyle" width="700" height="700" loading="lazy">
                 </div>
                 <div class="gb-product-card__slide">
-                  <img src="/assets_ref/x2/gallery/miroooo-x2-sonic-electric-toothbrush-pink-complete-set-packaging.webp" alt="Brush X2 Pink Complete Set Packaging" width="700" height="700" loading="lazy">
+                  <img src="/gallery_orig/RoseGold-color-6.jpg" alt="Brush X Pink Details" width="700" height="700" loading="lazy">
                 </div>
               </div>
               <div class="flickity-page-dots" aria-hidden="true">
@@ -547,13 +550,13 @@
                 <span class="dot"></span>
                 <span class="dot"></span>
               </div>
-            </a>
-            <a href="/products/miroooo-x2?color=Pink" class="quick-view__button" aria-label="Quick view Pink finish" data-product-link>
-              <svg class="icon icon-eye" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M18.3334 10C18.3334 12.0833 15.8334 16.6667 10 16.6667C4.16669 16.6667 1.66669 12.0833 1.66669 10C1.66669 7.91668 4.16669 3.33334 10 3.33334C15.8334 3.33334 18.3334 7.91668 18.3334 10Z" stroke-linecap="round"/><path d="M12.5 10C12.5 11.3807 11.3807 12.5 10 12.5C8.61931 12.5 7.50002 11.3807 7.50002 10C7.50002 8.6193 8.61931 7.50001 10 7.50001C11.3807 7.50001 12.5 8.6193 12.5 8.6193Z" stroke-linecap="round"/></svg>
+              <a href="/products/miroooo-x?color=Pink" class="quick-view__button" aria-label="Quick view Pink finish" data-product-link>
+                <svg class="icon icon-eye" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M18.3334 10C18.3334 12.0833 15.8334 16.6667 10 16.6667C4.16669 16.6667 1.66669 12.0833 1.66669 10C1.66669 7.91668 4.16669 3.33334 10 3.33334C15.8334 3.33334 18.3334 7.91668 18.3334 10Z" stroke-linecap="round"/><path d="M12.5 10C12.5 11.3807 11.3807 12.5 10 12.5C8.61931 12.5 7.50002 11.3807 7.50002 10C7.50002 8.6193 8.61931 7.50001 10 7.50001C11.3807 7.50001 12.5 8.6193 12.5 8.6193Z" stroke-linecap="round"/></svg>
+              </a>
             </a>
           </div>
           <div class="gb-product-card__meta">
-            <h3 class="gb-product-card__name"><a href="/products/miroooo-x2?color=Pink">Brush X2 Pink</a></h3>
+            <h3 class="gb-product-card__name"><a href="/products/miroooo-x?color=Pink">Brush X Pink</a></h3>
             <div class="gb-product-card__price-wrap">
               <strong class="gb-product-card__price">£69</strong>
               <span class="gb-product-card__compare">£139</span>
@@ -564,21 +567,21 @@
         <!-- Card 2: Grey -->
         <article class="gb-product-card reveal">
           <div class="gb-product-card__media" data-slide-gallery>
-            <a class="gb-product-card__media-link" href="/products/miroooo-x2?color=Grey" data-product-link aria-label="View Brush X2 in Grey">
+            <a class="gb-product-card__media-link" href="/products/miroooo-x?color=Grey" data-product-link aria-label="View Brush X in Grey">
               <span class="badge badge--onsale">Save 50%</span>
               <div class="product-card__rating">
                 <svg class="icon icon-star icon-xs" viewBox="0 0 16 16" fill="#f59e0b" width="11" height="11"><path d="M8 0L9.88914 5.81283H16L11.056 9.40604L12.9452 15.2177L8 11.6245L3.05603 15.2177L4.94397 9.40484L0 5.81163H6.11086L8 0Z"/></svg>
-                <span>4.9</span>
+                <span>4.5</span>
               </div>
               <div class="gb-product-card__track">
                 <div class="gb-product-card__slide">
-                  <img src="/assets_ref/x2/gallery/miroooo-x2-sonic-electric-toothbrush-grey-in-hand.webp" alt="Brush X2 Grey In Hand" width="700" height="700" loading="lazy">
+                  <img src="/gallery_orig/Grey-color-8.jpg" alt="Brush X Grey Studio" width="700" height="700" loading="lazy">
                 </div>
                 <div class="gb-product-card__slide">
-                  <img src="/assets_ref/x2/gallery/miroooo-x2-sonic-electric-toothbrush-grey-precision-bristle-head-halo-ring.webp" alt="Brush X2 Grey Bristle Head" width="700" height="700" loading="lazy">
+                  <img src="/gallery_orig/Grey-color-1.jpg" alt="Brush X Grey Lifestyle" width="700" height="700" loading="lazy">
                 </div>
                 <div class="gb-product-card__slide">
-                  <img src="/assets_ref/x2/gallery/miroooo-x2-sonic-electric-toothbrush-grey-complete-set-packaging.webp" alt="Brush X2 Grey Complete Set Packaging" width="700" height="700" loading="lazy">
+                  <img src="/gallery_orig/Grey-color-5.jpg" alt="Brush X Grey Details" width="700" height="700" loading="lazy">
                 </div>
               </div>
               <div class="flickity-page-dots" aria-hidden="true">
@@ -586,13 +589,13 @@
                 <span class="dot"></span>
                 <span class="dot"></span>
               </div>
-            </a>
-            <a href="/products/miroooo-x2?color=Grey" class="quick-view__button" aria-label="Quick view Grey finish" data-product-link>
-              <svg class="icon icon-eye" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M18.3334 10C18.3334 12.0833 15.8334 16.6667 10 16.6667C4.16669 16.6667 1.66669 12.0833 1.66669 10C1.66669 7.91668 4.16669 3.33334 10 3.33334C15.8334 3.33334 18.3334 7.91668 18.3334 10Z" stroke-linecap="round"/><path d="M12.5 10C12.5 11.3807 11.3807 12.5 10 12.5C8.61931 12.5 7.50002 11.3807 7.50002 10C7.50002 8.6193 8.61931 7.50001 10 7.50001C11.3807 7.50001 12.5 8.6193 12.5 8.6193Z" stroke-linecap="round"/></svg>
+              <a href="/products/miroooo-x?color=Grey" class="quick-view__button" aria-label="Quick view Grey finish" data-product-link>
+                <svg class="icon icon-eye" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M18.3334 10C18.3334 12.0833 15.8334 16.6667 10 16.6667C4.16669 16.6667 1.66669 12.0833 1.66669 10C1.66669 7.91668 4.16669 3.33334 10 3.33334C15.8334 3.33334 18.3334 7.91668 18.3334 10Z" stroke-linecap="round"/><path d="M12.5 10C12.5 11.3807 11.3807 12.5 10 12.5C8.61931 12.5 7.50002 11.3807 7.50002 10C7.50002 8.6193 8.61931 7.50001 10 7.50001C11.3807 7.50001 12.5 8.6193 12.5 8.6193Z" stroke-linecap="round"/></svg>
+              </a>
             </a>
           </div>
           <div class="gb-product-card__meta">
-            <h3 class="gb-product-card__name"><a href="/products/miroooo-x2?color=Grey">Brush X2 Grey</a></h3>
+            <h3 class="gb-product-card__name"><a href="/products/miroooo-x?color=Grey">Brush X Grey</a></h3>
             <div class="gb-product-card__price-wrap">
               <strong class="gb-product-card__price">£69</strong>
               <span class="gb-product-card__compare">£139</span>
@@ -603,21 +606,21 @@
         <!-- Card 3: Silver -->
         <article class="gb-product-card reveal">
           <div class="gb-product-card__media" data-slide-gallery>
-            <a class="gb-product-card__media-link" href="/products/miroooo-x2?color=Silver" data-product-link aria-label="View Brush X2 in Silver">
+            <a class="gb-product-card__media-link" href="/products/miroooo-x?color=Silver" data-product-link aria-label="View Brush X in Silver">
               <span class="badge badge--onsale">Save 50%</span>
               <div class="product-card__rating">
                 <svg class="icon icon-star icon-xs" viewBox="0 0 16 16" fill="#f59e0b" width="11" height="11"><path d="M8 0L9.88914 5.81283H16L11.056 9.40604L12.9452 15.2177L8 11.6245L3.05603 15.2177L4.94397 9.40484L0 5.81163H6.11086L8 0Z"/></svg>
-                <span>4.8</span>
+                <span>4.4</span>
               </div>
               <div class="gb-product-card__track">
                 <div class="gb-product-card__slide">
-                  <img src="/assets_ref/x2/gallery/miroooo-x2-sonic-electric-toothbrush-silver-in-hand.webp" alt="Brush X2 Silver In Hand" width="700" height="700" loading="lazy">
+                  <img src="/gallery_orig/Silver-color-1.jpg" alt="Brush X Silver Studio" width="700" height="700" loading="lazy">
                 </div>
                 <div class="gb-product-card__slide">
-                  <img src="/assets_ref/x2/gallery/miroooo-x2-sonic-electric-toothbrush-usbc-fast-charging-port.webp" alt="Brush X2 Silver USB-C Charging Port" width="700" height="700" loading="lazy">
+                  <img src="/gallery_orig/Silver-color-2.jpg" alt="Brush X Silver Lifestyle" width="700" height="700" loading="lazy">
                 </div>
                 <div class="gb-product-card__slide">
-                  <img src="/assets_ref/x2/gallery/miroooo-x2-sonic-electric-toothbrush-silver-upright-grip.webp" alt="Brush X2 Silver Upright Grip" width="700" height="700" loading="lazy">
+                  <img src="/gallery_orig/Silver-color-6.jpg" alt="Brush X Silver Details" width="700" height="700" loading="lazy">
                 </div>
               </div>
               <div class="flickity-page-dots" aria-hidden="true">
@@ -625,13 +628,13 @@
                 <span class="dot"></span>
                 <span class="dot"></span>
               </div>
-            </a>
-            <a href="/products/miroooo-x2?color=Silver" class="quick-view__button" aria-label="Quick view Silver finish" data-product-link>
-              <svg class="icon icon-eye" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M18.3334 10C18.3334 12.0833 15.8334 16.6667 10 16.6667C4.16669 16.6667 1.66669 12.0833 1.66669 10C1.66669 7.91668 4.16669 3.33334 10 3.33334C15.8334 3.33334 18.3334 7.91668 18.3334 10Z" stroke-linecap="round"/><path d="M12.5 10C12.5 11.3807 11.3807 12.5 10 12.5C8.61931 12.5 7.50002 11.3807 7.50002 10C7.50002 8.6193 8.61931 7.50001 10 7.50001C11.3807 7.50001 12.5 8.6193 12.5 8.6193Z" stroke-linecap="round"/></svg>
+              <a href="/products/miroooo-x?color=Silver" class="quick-view__button" aria-label="Quick view Silver finish" data-product-link>
+                <svg class="icon icon-eye" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M18.3334 10C18.3334 12.0833 15.8334 16.6667 10 16.6667C4.16669 16.6667 1.66669 12.0833 1.66669 10C1.66669 7.91668 4.16669 3.33334 10 3.33334C15.8334 3.33334 18.3334 7.91668 18.3334 10Z" stroke-linecap="round"/><path d="M12.5 10C12.5 11.3807 11.3807 12.5 10 12.5C8.61931 12.5 7.50002 11.3807 7.50002 10C7.50002 8.6193 8.61931 7.50001 10 7.50001C11.3807 7.50001 12.5 8.6193 12.5 8.6193Z" stroke-linecap="round"/></svg>
+              </a>
             </a>
           </div>
           <div class="gb-product-card__meta">
-            <h3 class="gb-product-card__name"><a href="/products/miroooo-x2?color=Silver">Brush X2 Silver</a></h3>
+            <h3 class="gb-product-card__name"><a href="/products/miroooo-x?color=Silver">Brush X Silver</a></h3>
             <div class="gb-product-card__price-wrap">
               <strong class="gb-product-card__price">£69</strong>
               <span class="gb-product-card__compare">£139</span>
