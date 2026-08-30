@@ -130,7 +130,7 @@
             <nav class="relative grow overflow-hidden" role="navigation" aria-label="Mobile navigation">
               <ul class="drawer__scrollable drawer__menu relative w-full h-full" role="list" data-parent>
                 <li class="drawer__menu-item--group">
-                  <div class="drawer__group-label">Electric Toothbrush</div>
+                  <div class="drawer__group-label">Shop</div>
                   <ul class="drawer__submenu" role="list">
                     <li>
                       <a class="drawer__submenu-item flex flex-col" href="/products/miroooo-x">
@@ -144,7 +144,7 @@
                     </li>
                     <li>
                       <a class="drawer__submenu-item flex flex-col" href="/products/miroooo-x2-heads">
-                        <span class="drawer__submenu-title">Brush X2 Heads</span>
+                        <span class="drawer__submenu-title">2x Brush X2 Heads</span>
                       </a>
                     </li>
                   </ul>
@@ -186,8 +186,8 @@
                 <ul class="flex flex-wrap list-menu with-block">
                   <li class="header__dropdown relative" data-dropdown>
                     <button type="button" class="menu__item nav-link header__dropdown-toggle flex items-center font-medium z-2 relative cursor-pointer" aria-expanded="false" aria-haspopup="true" is="magnet-link" data-magnet="0"${["product-x", "product-x2", "product-x2-heads", "shop"].includes(currentPage) ? ' aria-current="page"' : ""}>
-                      <span class="btn-text flex items-center" data-text="Electric Toothbrush">Electric Toothbrush ${chevronDownIcon}</span>
-                      <span class="btn-text btn-duplicate flex items-center">Electric Toothbrush ${chevronDownIcon}</span>
+                      <span class="btn-text flex items-center" data-text="Shop">Shop ${chevronDownIcon}</span>
+                      <span class="btn-text btn-duplicate flex items-center">Shop ${chevronDownIcon}</span>
                     </button>
                     <div class="dropdown-menu" role="menu">
                       <a href="/products/miroooo-x" class="dropdown-item" role="menuitem">
@@ -197,7 +197,7 @@
                         <div class="dropdown-item__title">Brush X2</div>
                       </a>
                       <a href="/products/miroooo-x2-heads" class="dropdown-item" role="menuitem">
-                        <div class="dropdown-item__title">Brush X2 Heads</div>
+                        <div class="dropdown-item__title">2x Brush X2 Heads</div>
                       </a>
                     </div>
                   </li>
@@ -306,7 +306,7 @@
                 <li><a href="/">Home</a></li>
                 <li><a href="/products/miroooo-x" data-product-link>Brush X</a></li>
                 <li><a href="/products/miroooo-x2" data-product-link>Brush X2</a></li>
-                <li><a href="/products/miroooo-x2-heads" data-product-link>Brush X2 Heads</a></li>
+                <li><a href="/products/miroooo-x2-heads" data-product-link>2x Brush X2 Heads</a></li>
                 <li><a href="/privacy">Privacy Policy</a></li>
                 <li><a href="/return-policy">Return Policy</a></li>
                 <li><a href="/shipping-policy">Shipping Policy</a></li>
