@@ -192,9 +192,9 @@
       date: '2026-08-07',
       displayDate: '7 August 2026',
       variant: 'Color: Silver',
-      title: 'Magnetic charging dock is so clean and minimal',
-      body: 'Snaps magnetically into the compact dock and stays upright securely. USB-C compatibility means I can charge it anywhere with standard cables without proprietary bathroom two-pin shaving plugs.',
-      images: ['/assets_ref/reviews/customer-review-magnetic-charging-dock.png'],
+      title: 'USB-C fast charging is so clean and convenient',
+      body: 'Charges quickly via standard USB-C and battery lasts for weeks. Direct USB-C compatibility means I can charge it anywhere with standard cables without proprietary bathroom two-pin shaving plugs.',
+      images: [],
       helpful: 44,
       verified: true
     },
@@ -221,7 +221,7 @@
       displayDate: '1 August 2026',
       variant: 'Color: Grey',
       title: 'Took it on a 3-week holiday to Greece without taking the charger',
-      body: 'Packed the brush in its hard case and left the charging dock at home in Newcastle. Used it twice a day for 21 days and it still had plenty of charge when I returned. Perfect travel companion.',
+      body: 'Packed the brush in its hard case and left the charging cable at home in Newcastle. Used it twice a day for 21 days and it still had plenty of charge when I returned. Perfect travel companion.',
       images: [],
       helpful: 36,
       verified: true
@@ -333,7 +333,7 @@
       displayDate: '27 June 2026',
       variant: 'Color: Grey',
       title: 'Outer shipping carton had a corner crease from Royal Mail transit',
-      body: 'The toothbrush itself and magnetic dock inside the hard travel case were completely pristine and work beautifully. However, the outer postal shipping box had a dent on delivery. For a premium device, transit packaging should be reinforced.',
+      body: 'The toothbrush itself and accessories inside the hard travel case were completely pristine and work beautifully. However, the outer postal shipping box had a dent on delivery. For a premium device, transit packaging should be reinforced.',
       images: [],
       helpful: 12,
       verified: true,
@@ -390,7 +390,7 @@
       displayDate: '17 June 2026',
       variant: 'Color: Pink',
       title: 'Missing secondary travel cap in bundle — replacement sent immediately',
-      body: 'Received the brush and magnetic dock, but the extra hygienic travel cap was missing from the box upon opening.',
+      body: 'Received the brush and accessories, but the extra hygienic travel cap was missing from the box upon opening.',
       images: [],
       helpful: 14,
       verified: true,
@@ -409,14 +409,14 @@
       displayDate: '15 June 2026',
       variant: 'Color: Grey',
       title: 'Did not realize wall charger brick was not included in box',
-      body: 'Package includes the magnetic charging dock and USB-C cable, but you need your own 5V USB wall plug. Works fine plugged into my phone charger, but would prefer a wall adapter included directly in the box.',
+      body: 'Package includes the USB-C charging cable, but you need your own 5V USB wall plug. Works fine plugged into my phone charger, but would prefer a wall adapter included directly in the box.',
       images: [],
       helpful: 14,
       verified: true,
       merchantReply: {
         author: 'Miroooo Customer Care',
         date: '16 June 2026',
-        text: 'Hi Lars, thank you for your feedback! To reduce global electronic waste, the Brush X includes a universal USB-C cable and magnetic dock compatible with any standard 5V adapter, laptop, or power bank. Because the battery only needs charging once every 60 days, most customers use their existing phone charger. We appreciate your valuable input!'
+        text: 'Hi Lars, thank you for your feedback! To reduce global electronic waste, the Brush X includes a universal USB-C cable compatible with any standard 5V adapter, laptop, or power bank. Because the battery only needs charging once every 60 days, most customers use their existing phone charger. We appreciate your valuable input!'
       }
     },
     {
@@ -513,7 +513,7 @@
       displayDate: 'Feb 15, 2026',
       variant: 'Color: Silver',
       title: 'Lightweight and sleek aesthetic on the bathroom counter',
-      body: 'I love the aesthetics of the brush. It is so light, balanced, and sleek in the hand. The magnetic dock keeps everything super neat. Simply love it!',
+      body: 'I love the aesthetics of the brush. It is so light, balanced, and sleek in the hand. The slim unibody design keeps everything super neat. Simply love it!',
       images: [],
       helpful: 29,
       verified: true
@@ -527,7 +527,7 @@
       displayDate: 'Jul 20, 2026',
       variant: 'Color: Grey',
       title: 'Great lightweight toothbrush with exceptional battery life',
-      body: 'Great lightweight electric toothbrush with exceptional battery life. The acoustic motor runs smooth and quiet, and the magnetic charging base is completely hassle-free.',
+      body: 'Great lightweight electric toothbrush with exceptional battery life. The acoustic motor runs smooth and quiet, and the USB-C fast charging is completely hassle-free.',
       images: [],
       helpful: 38,
       verified: true
@@ -807,7 +807,7 @@
       displayDate: 'Jan 4, 2025',
       variant: 'Color: Grey',
       title: 'Two months of daily brushing without a single recharge',
-      body: 'So pleased with this! I have been using the brush for nearly two months and still haven\'t needed to plug it in to recharge. The magnetic dock holds securely on tile. Absolutely wonderful device.',
+      body: 'So pleased with this! I have been using the brush for nearly two months and still haven\'t needed to plug it in to recharge. The long battery life is so reliable. Absolutely wonderful device.',
       images: [],
       helpful: 44,
       verified: true
@@ -1045,7 +1045,7 @@
     '32,000 VPM acoustic cleaning leaves teeth squeaky clean',
     'Dental hygienist was amazed at my plaque reduction',
     'Sensitive mode completely calmed my inflamed gums',
-    'Magnetic wall dock is an absolute design triumph',
+    'Universal USB-C fast charging is an absolute triumph',
     'Quiet acoustic motor — no more jarring handle vibrations',
     'DuPont curved bristles reach tight back molars with ease',
     'Took this on an 8-week international trip with no charger',
@@ -1059,7 +1059,7 @@
     'So much gentler on enamel than round oscillating heads',
     'Fluid dynamic cavitation reaches where manual bristles cannot',
     'Whisper-quiet acoustic operation is a joy at 6 AM',
-    'Countertop stays spotless thanks to the magnetic dock',
+    'Countertop stays spotless thanks to the slim unibody design',
     'Enamel feels glass-smooth from morning until night',
     'The 3 modes cover every dental need with perfection',
     'Remarkable plaque removal along the posterior gumline',
@@ -1087,7 +1087,7 @@
     'Acoustic levitation motor delivers consistent powerful torque',
     'Gentle yet undeniably thorough — five stars without hesitation',
     'My tea and red wine stains have faded completely',
-    'Magnetic induction mount snapped right onto our shower tile',
+    'IPX7 waterproof sealed unibody works wonderfully in the shower',
     'Outstanding product — delivered quickly and impeccably boxed',
     'Two full minutes fly by thanks to the quad-interval pacer',
     'The pinnacle of electric toothbrush design and daily performance'
@@ -1105,15 +1105,15 @@
     'I have a permanent retainer behind my lower teeth which constantly traps plaque, making manual brushing very frustrating.',
     'Drinking multiple flat whites and black teas every day left noticeable surface discoloration on my incisors.',
     'I always brush my teeth in the shower to streamline my morning routine, so true IPX7 waterproofing was an absolute requirement.',
-    'Our bathroom countertop used to be cluttered with unsightly charging stands and tangled wires until we installed this brush.'
+    'Our bathroom countertop used to be cluttered with bulky charging stands until we switched to this sleek USB-C brush.'
   ];
 
   const FIVE_STAR_FEATURES = [
     'The 32,000 vibrations per minute maglev motor creates powerful hydrodynamic micro-bubbles that flush out biofilm between tight teeth.',
-    'The 60-day lithium cell is genuinely extraordinary — a single USB-C charge via the magnetic base lasts for two solid months.',
+    'The 60-day lithium cell is genuinely extraordinary — a single USB-C charge lasts for two solid months.',
     'The 3 calibrated modes (Standard Clean, Whitening, Sensitive) make it effortless to switch between deep plaque removal and gentle gum care.',
     'The 3D curved DuPont filaments are rounded at the microscopic level, allowing them to glide smoothly over enamel without scratching.',
-    'The magnetic wall dock snaps firmly into place and keeps the brush head elevated and hygienic with zero countertop residue.',
+    'The sleek standing design keeps the brush head elevated and hygienic with zero countertop residue.',
     'The ventilated hard travel case protects the power switch from accidental activation in my luggage while allowing the bristles to dry naturally.',
     'The 30-second quadrant interval pacer gives a gentle, tactile pause to ensure all four dental zones receive equal 30-second attention.',
     'At under 50dB, the acoustic motor produces a refined, whisper-quiet hum with almost zero vibration transferred to your hand.'
@@ -1184,7 +1184,7 @@
     'Noticeable brightening on whitening mode in 3 weeks',
     'Wonderful brush, lightweight and very comfortable to grip',
     'Recommend to all friends looking to upgrade their oral care',
-    'Great toothbrush, dock USB lead is a bit short for my sink',
+    'Great toothbrush, USB-C charging is fast and easy',
     'Love the brush! 30-second interval pulse keeps routine disciplined',
     'Solid acoustic clean, very easy to rinse clean under water',
     'Clean feel lasts all day, recommend to all',
@@ -1224,7 +1224,7 @@
     'The 3 dedicated modes make it simple to alternate between daily Standard Clean and gentle gum polishing.',
     'The 60-day lithium battery is genuine — I have only charged it once on arrival and power has not dropped.',
     'The curved DuPont bristles fit neatly along the dental curvature without scraping enamel.',
-    'The magnetic charging dock snaps on effortlessly and keeps the sink area clean and clutter-free.',
+    'The direct USB-C charging is effortless and keeps the sink area clean and clutter-free.',
     'The acoustic motor produces a refined quiet hum that does not disturb anyone in the house early morning.',
     'The 30-second quadrant interval pacer gives a helpful tactile pulse so you do not rush your brushing.',
     'The IPX7 waterproof unibody construction means I can rinse it thoroughly under the tap without worry.',
@@ -1237,7 +1237,7 @@
   const FOUR_STAR_FEEDBACK = [
     'My only small suggestion is that the starter single box should include four replacement heads instead of two.',
     'It takes about 48 hours to get used to the ticklish high-speed vibration if you are transitioning from manual brushing.',
-    'The USB cable for the magnetic charging base is a little on the shorter side for my particular plug layout.',
+    'The USB-C cable is a little on the shorter side for my particular plug layout.',
     'Would love to see replacement brush heads available in mixed pastel colour packs for family members.',
     'The travel case works great, though the snap-fit cap could click with just a fraction more resistance.',
     'The quadrant vibration pause is quite subtle at first, but you quickly learn to recognize the rhythm.',
@@ -1268,7 +1268,7 @@
   const FOUR_STAR_SHORT_REVIEWS = [
     'Love the brush! Clean feels just like leaving the dental hygienist. Wish replacement heads came in bigger packs.',
     'Recommend to all. Sleek aluminium handle and whisper quiet motor. Gums feel much healthier already.',
-    'Great electric toothbrush. Battery life is unbelievable and the magnetic mount keeps the counter clean.',
+    'Great electric toothbrush. Battery life is unbelievable and the slim profile keeps the counter clean.',
     'Very sleek design and cleans thoroughly. Highly recommend to friends and family.'
   ];
 
@@ -1277,15 +1277,15 @@
     'Good brush, high vibration intensity takes a week of adjustment',
     'Great hardware and battery, international delivery took 6 business days',
     'Very well made, acoustic motor is stronger than expected',
-    'Solid acoustic clean, magnetic wall mount requires flat smooth tile',
+    'Solid acoustic clean, compact unibody is very easy to handle',
     'Impressive battery life, handle is very sleek but can be slippery when wet'
   ];
 
   const THREE_STAR_BODIES = [
     'The toothbrush is undeniably well manufactured and the 60-day battery claim appears accurate. However, the 32,000 VPM motor is quite intense even on the lowest mode. I recommend starting strictly on Sensitive mode for the first full week until your gums and teeth acclimate.',
     'The Brush X hardware is very high quality — whisper quiet, completely waterproof, and the travel case is great. Delivery to Europe took 6 business days rather than the estimated 3-4 days. Customer support was polite and provided tracking when asked.',
-    'Cleaning performance is good and the magnetic dock is a very clean solution. The satin finish is beautiful, though if you have soapy hands in the shower you need to maintain a firm grip. Plaque removal is noticeably better than my old manual brush.',
-    'A good electric toothbrush with great battery longevity. Make sure your bathroom tile is completely clean and smooth before applying the 3M magnetic wall plate so it adheres securely.'
+    'Cleaning performance is good and the USB-C fast charging is a very clean solution. The satin finish is beautiful, though if you have soapy hands in the shower you need to maintain a firm grip. Plaque removal is noticeably better than my old manual brush.',
+    'A good electric toothbrush with great battery longevity. Completely waterproof and fits easily in the travel case.'
   ];
 
   // 2-Star Phrasing (Transit/minor issues + merchant care)
@@ -1298,7 +1298,7 @@
 
   const TWO_STAR_BODIES = [
     'The toothbrush and travel case inside were pristine and work exactly as described. However, the outer postal box was slightly squashed by Royal Mail during transit. For a luxury product, transit outer cartons should be heavier duty.',
-    'The package comes with the magnetic charging dock and USB-C cable, but you have to supply your own USB wall plug or use your phone adapter. Works fine once plugged in, but would have preferred a dedicated wall plug included.',
+    'The package comes with the USB-C charging cable, but you have to supply your own USB wall plug or use your phone adapter. Works fine once plugged in, but would have preferred a dedicated wall plug included.',
     'I found the 32,000 vibrations per minute too intense for my highly sensitive front teeth during the first few days. Sensitive mode helped, but it took nearly two weeks of gradual use to become comfortable with acoustic brushing.'
   ];
 
@@ -1309,7 +1309,7 @@
     },
     {
       author: 'Miroooo Customer Care',
-      text: 'Hi there, thank you for sharing your experience! To minimize global electronic waste, Brush X includes a universal USB-C magnetic dock compatible with any standard 5V wall adapter or power bank. Because the battery lasts 60 days, most users only plug it in 6 times a year. We appreciate your valuable feedback!'
+      text: 'Hi there, thank you for sharing your experience! To minimize global electronic waste, Brush X includes a universal USB-C charging cable compatible with any standard 5V wall adapter or power bank. Because the battery lasts 60 days, most users only plug it in 6 times a year. We appreciate your valuable feedback!'
     }
   ];
 

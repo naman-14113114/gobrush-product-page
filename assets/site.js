@@ -84,12 +84,12 @@
       <div class="announcement" style="background: #e6e6e6; color: #111111; padding: 4px 0; overflow: hidden; width: 100%; min-height: 24px; border-bottom: 1px solid rgba(0, 0, 0, 0.08);">
         <div class="miroooo-announcement-ticker">
           <div class="miroooo-ticker-item"><span>Free Shipping on all orders</span> <span class="miroooo-ticker-dot" aria-hidden="true"></span></div>
-          <div class="miroooo-ticker-item"><span>50% OFF Today + 3 Free Gifts</span> <span class="miroooo-ticker-dot" aria-hidden="true"></span></div>
+          <div class="miroooo-ticker-item"><span>50% OFF Today</span> <span class="miroooo-ticker-dot" aria-hidden="true"></span></div>
           <div class="miroooo-ticker-item"><span>Ultra Lightweight</span> <span class="miroooo-ticker-dot" aria-hidden="true"></span></div>
           <div class="miroooo-ticker-item"><span>4.9 Stars from 40,000+ Customers</span> <span class="miroooo-ticker-dot" aria-hidden="true"></span></div>
           <div class="miroooo-ticker-item"><span>Risk-Free Home Trial</span> <span class="miroooo-ticker-dot" aria-hidden="true"></span></div>
           <div class="miroooo-ticker-item"><span>Free Shipping on all orders</span> <span class="miroooo-ticker-dot" aria-hidden="true"></span></div>
-          <div class="miroooo-ticker-item"><span>50% OFF Today + 3 Free Gifts</span> <span class="miroooo-ticker-dot" aria-hidden="true"></span></div>
+          <div class="miroooo-ticker-item"><span>50% OFF Today</span> <span class="miroooo-ticker-dot" aria-hidden="true"></span></div>
           <div class="miroooo-ticker-item"><span>Ultra Lightweight</span> <span class="miroooo-ticker-dot" aria-hidden="true"></span></div>
           <div class="miroooo-ticker-item"><span>4.9 Stars from 40,000+ Customers</span> <span class="miroooo-ticker-dot" aria-hidden="true"></span></div>
           <div class="miroooo-ticker-item"><span>Risk-Free Home Trial</span> <span class="miroooo-ticker-dot" aria-hidden="true"></span></div>
@@ -820,14 +820,6 @@
       value: "£20",
       valueNum: 20,
       image: "https://cdn.shopify.com/s/files/1/0810/6023/3561/files/Grey-color-4.jpg?v=1734444578&width=120"
-    },
-    dock: {
-      id: "charging-dock",
-      name: "Magnetic Charging Dock",
-      subtitle: "Fast wireless induction dock",
-      value: "£25",
-      valueNum: 25,
-      image: "https://cdn.shopify.com/s/files/1/0810/6023/3561/files/Grey-color-7.jpg?v=1734444578&width=120"
     }
   };
 
@@ -1388,7 +1380,6 @@
       const unlockedGiftsList = [];
       if (maxUnlockedGifts >= 1) unlockedGiftsList.push(GIFTS_DATABASE.case);
       if (maxUnlockedGifts >= 2) unlockedGiftsList.push(GIFTS_DATABASE.heads);
-      if (maxUnlockedGifts >= 3) unlockedGiftsList.push(GIFTS_DATABASE.dock);
 
       const totalGiftValueNum = unlockedGiftsList.reduce((sum, g) => sum + Math.round(Number(g.valueNum || 0)), 0);
       const bundleSavings = Math.max(0, compareTotal - subtotal);

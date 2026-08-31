@@ -1327,13 +1327,6 @@
                 </span>
                 <span>-£20</span>
               </div>
-              <div class="cart-discount-breakdown-row" id="breakdown-gift-dock-row" style="display: none;">
-                <span class="flex items-center gap-1.5 uppercase">
-                  <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7.01" y2="7"></line></svg>
-                  Free Magnetic Charging Dock
-                </span>
-                <span>-£25</span>
-              </div>
               <div class="cart-discount-breakdown-row" id="breakdown-promo-row" style="display: none;">
                 <span class="flex items-center gap-1.5 uppercase" id="breakdown-promo-label">
                   <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7.01" y2="7"></line></svg>
@@ -1610,15 +1603,6 @@
           desc: "Protect & travel in style with hard-shell magnetic enclosure.",
           comparePrice: 16,
           image: "/assets_ref/x/gallery/Miroooo_x_Pink-6.webp",
-          minQty: 1,
-          badgeQty: "UNLOCKED X 1"
-        },
-        {
-          id: "charging-dock",
-          name: "Magnetic Charging Dock",
-          desc: "Fast wireless magnetic induction dock.",
-          comparePrice: 25,
-          image: "/assets_ref/x/gallery/Miroooo_x_Grey-7.webp",
           minQty: 1,
           badgeQty: "UNLOCKED X 1"
         }
@@ -2075,7 +2059,6 @@
         const breakdownBundleVal = document.getElementById("breakdown-bundle-val");
         const breakdownGiftCase = document.getElementById("breakdown-gift-case-row");
         const breakdownGiftHeads = document.getElementById("breakdown-gift-heads-row");
-        const breakdownGiftDock = document.getElementById("breakdown-gift-dock-row");
         const breakdownPromoRow = document.getElementById("breakdown-promo-row");
         const breakdownPromoLabel = document.getElementById("breakdown-promo-label");
         const breakdownPromoVal = document.getElementById("breakdown-promo-val");
@@ -2087,7 +2070,6 @@
         if (totals.isHeads) {
           if (breakdownGiftCase) breakdownGiftCase.style.display = "none";
           if (breakdownGiftHeads) breakdownGiftHeads.style.display = "none";
-          if (breakdownGiftDock) breakdownGiftDock.style.display = "none";
         } else if (totals.isX2) {
           if (breakdownGiftCase) {
             breakdownGiftCase.style.display = "flex";
@@ -2095,7 +2077,7 @@
             if (caseLabel) {
               caseLabel.innerHTML = `
                 <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7.01" y2="7"></line></svg>
-                3 Unlocked Free Gifts (Case, Dock, App)
+                2 Unlocked Free Gifts (Case, App)
               `;
             }
             const caseVal = breakdownGiftCase.querySelector("span:last-child");
@@ -2118,7 +2100,6 @@
           } else {
             if (breakdownGiftHeads) breakdownGiftHeads.style.display = "none";
           }
-          if (breakdownGiftDock) breakdownGiftDock.style.display = "none";
         } else {
           if (breakdownGiftCase) {
             breakdownGiftCase.style.display = "flex";
@@ -2143,11 +2124,6 @@
             }
             const headsVal = breakdownGiftHeads.querySelector("span:last-child");
             if (headsVal) headsVal.textContent = "-£20";
-          }
-          if (breakdownGiftDock) {
-            breakdownGiftDock.style.display = "flex";
-            const dockVal = breakdownGiftDock.querySelector("span:last-child");
-            if (dockVal) dockVal.textContent = "-£25";
           }
         }
 

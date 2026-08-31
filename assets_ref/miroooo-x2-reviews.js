@@ -71,7 +71,7 @@
       displayDate: '25 Aug 2026',
       variant: 'Silver / Travel Edition',
       title: '90 days battery life is not an exaggeration',
-      body: 'I bought this in early May before a prolonged European business trip. I deliberately left the charging dock at home to test the 90-day cobalt cell claim. It is now mid-August and the power output hasn\'t degraded in the slightest. The unibody capacitive button also means zero dried toothpaste gunge building up in seams.',
+      body: 'I bought this in early May before a prolonged European business trip. I deliberately left the charging cable at home to test the 90-day cobalt cell claim. It is now mid-August and the power output hasn\'t degraded in the slightest. The unibody capacitive button also means zero dried toothpaste gunge building up in seams.',
       images: [],
       helpful: 62,
       verified: true
@@ -127,7 +127,7 @@
       displayDate: '11 Aug 2026',
       variant: 'Grey / Travel Edition',
       title: 'Build quality feels like an Apple product',
-      body: 'The matte anodized metal finish is weighted perfectly in the hand. No cheap squeaky plastics or silicone rubber that gets sticky and molds after a few months. The magnetic wall dock snaps into place with satisfying precision.',
+      body: 'The matte anodized metal finish is weighted perfectly in the hand. No cheap squeaky plastics or silicone rubber that gets sticky and molds after a few months. The aerospace unibody sits solidly and feels remarkably premium.',
       images: [],
       helpful: 28,
       verified: true
@@ -210,8 +210,8 @@
       date: '2026-07-20',
       displayDate: '20 Jul 2026',
       variant: 'Silver / Single',
-      title: 'Magnetic charging dock is sleek and clutter-free',
-      body: 'No ugly protruding plastic prongs. It balances solidly on the magnetic disc and takes up minimal bathroom counter space. Plus needing to charge only 4 times a year is liberating.',
+      title: 'USB-C fast charging is sleek and clutter-free',
+      body: 'No bulky proprietary charging stands. It charges via standard USB-C and takes up minimal bathroom counter space. Plus needing to charge only 4 times a year is liberating.',
       images: [],
       helpful: 18,
       verified: true
@@ -441,7 +441,7 @@
       displayDate: '07 May 2026',
       variant: 'Grey / Travel Edition',
       title: 'USB-C universal charging is a huge plus',
-      body: 'Finally an electric toothbrush that uses modern standard USB-C on the dock instead of proprietary clunky bathroom shavers sockets!',
+      body: 'Finally an electric toothbrush that uses modern standard USB-C instead of proprietary clunky bathroom shavers sockets!',
       images: [],
       helpful: 15,
       verified: true
