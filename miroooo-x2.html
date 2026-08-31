@@ -2249,18 +2249,29 @@ theme.variantStrings = {
       </button>
 
       <div class="miroooo-gallery__nav" id="MirooooGalleryNav">
-        <!-- 0: Video thumbnail -->
+        <!-- 1: Image 1 thumbnail (Upright Grip - First item) -->
         <button
           type="button"
           class="miroooo-gallery__thumb is-active"
+          data-index="1"
+          aria-label="Miroooo X2 Silver Upright Hand Grip"
+          aria-current="true"
+        >
+          <div class="thumb-inner"><img src="/assets_ref/x2/gallery/miroooo-x2-sonic-electric-toothbrush-silver-upright-grip.webp" alt="Miroooo X2 Sonic Electric Toothbrush Silver Upright Grip in Hand" fetchpriority="high" /></div>
+        </button>
+
+        <!-- 0: Video thumbnail (Second item) -->
+        <button
+          type="button"
+          class="miroooo-gallery__thumb"
           id="thumb-video-item"
           data-media-type="video"
           data-index="0"
           aria-label="Play product video"
-          aria-current="true"
+          aria-current="false"
         >
           <div class="thumb-inner thumb-video-inner">
-            <img id="thumb-video-img" alt="Video thumbnail" src="/assets_ref/x2/gallery/miroooo-x2-sonic-electric-toothbrush-video-thumbnail.webp" />
+            <img id="thumb-video-img" alt="Video thumbnail" src="/assets_ref/x2/gallery/miroooo-x2-sonic-electric-toothbrush-video-thumbnail.webp" loading="lazy" />
             <span class="thumb-play-icon" aria-hidden="true">
               <svg viewBox="0 0 24 24" fill="currentColor">
                 <path d="M8 5v14l11-7z"/>
@@ -2269,10 +2280,7 @@ theme.variantStrings = {
           </div>
         </button>
 
-        <!-- 1..14: Image thumbnails (Matching re-ordered Silver sequence) -->
-        <button type="button" class="miroooo-gallery__thumb" data-index="1" aria-label="Miroooo X2 Silver Upright Hand Grip">
-          <div class="thumb-inner"><img src="/assets_ref/x2/gallery/miroooo-x2-sonic-electric-toothbrush-silver-upright-grip.webp" alt="Miroooo X2 Sonic Electric Toothbrush Silver Upright Grip in Hand" loading="lazy" /></div>
-        </button>
+        <!-- 2..14: Image thumbnails (Matching re-ordered Silver sequence) -->
         <button type="button" class="miroooo-gallery__thumb" data-index="2" aria-label="Miroooo X2 Complete Set Presentation Packaging">
           <div class="thumb-inner"><img src="/assets_ref/x2/gallery/miroooo-x2-sonic-electric-toothbrush-complete-set-packaging.webp" alt="Miroooo X2 Complete Set Presentation Packaging with Box, Travel Case and Accessories" loading="lazy" /></div>
         </button>
@@ -2344,9 +2352,14 @@ theme.variantStrings = {
 
         <!-- Slides List -->
         <div class="miroooo-gallery__slides" id="MirooooGallerySlides">
-          <!-- Slide 0: Video -->
+          <!-- Slide 1: Upright Grip (First slide) -->
+          <div class="miroooo-gallery__slide is-active" data-media-type="image" data-index="1">
+            <img src="/assets_ref/x2/gallery/miroooo-x2-sonic-electric-toothbrush-silver-upright-grip.webp" alt="Miroooo X2 Sonic Electric Toothbrush Silver Upright Grip in Hand" width="1000" height="1000" fetchpriority="high" />
+          </div>
+
+          <!-- Slide 0: Video (Second slide) -->
           <div
-            class="miroooo-gallery__slide is-active"
+            class="miroooo-gallery__slide"
             id="product-media-video-item"
             data-media-type="video"
             data-index="0"
@@ -2367,10 +2380,7 @@ theme.variantStrings = {
             </div>
           </div>
 
-          <!-- Slides 1..14: Images (Matching re-ordered Silver sequence) -->
-          <div class="miroooo-gallery__slide" data-media-type="image" data-index="1">
-            <img src="/assets_ref/x2/gallery/miroooo-x2-sonic-electric-toothbrush-silver-upright-grip.webp" alt="Miroooo X2 Sonic Electric Toothbrush Silver Upright Grip in Hand" width="1000" height="1000" fetchpriority="high" />
-          </div>
+          <!-- Slides 2..14: Images (Matching re-ordered Silver sequence) -->
           <div class="miroooo-gallery__slide" data-media-type="image" data-index="2">
             <img src="/assets_ref/x2/gallery/miroooo-x2-sonic-electric-toothbrush-complete-set-packaging.webp" alt="Miroooo X2 Complete Set Presentation Packaging with Box, Travel Case and Accessories" width="1000" height="1000" loading="lazy" />
           </div>
