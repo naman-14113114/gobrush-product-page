@@ -3446,6 +3446,35 @@ theme.variantStrings = {
         object-fit: cover !important;
         display: block !important;
       }
+      .miroooo-sticky-img-stack {
+        display: flex !important;
+        align-items: center !important;
+        flex-shrink: 0 !important;
+      }
+      .miroooo-sticky-img-thumb {
+        position: relative !important;
+        width: 50px !important;
+        height: 50px !important;
+        border-radius: 50% !important;
+        overflow: hidden !important;
+        flex-shrink: 0 !important;
+        border: 2px solid #0e0f0f !important;
+        box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.25), 0 4px 12px rgba(0, 0, 0, 0.6) !important;
+        background: #1c1c1c !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.2s ease !important;
+      }
+      .miroooo-sticky-img-thumb:not(:first-child) {
+        margin-left: -16px !important;
+      }
+      .miroooo-sticky-img-thumb img {
+        width: 100% !important;
+        height: 100% !important;
+        object-fit: cover !important;
+        display: block !important;
+      }
       .miroooo-sticky-info {
         min-width: 0 !important;
         display: flex !important;
@@ -3638,8 +3667,13 @@ theme.variantStrings = {
     <div class="miroooo-sticky-cart-wrap" id="miroooo-sticky-cart" aria-hidden="true">
       <div class="miroooo-sticky-pill">
         <div class="miroooo-sticky-left">
-          <div class="miroooo-sticky-img-wrap">
-            <img id="sticky-bar-img" src="/assets_ref/x2/miroooo-x2-sonic-electric-toothbrush-sticky-add-to-cart.webp" alt="Miroooo Brush X2 Sonic Electric Toothbrush Add to Cart Bar" width="54" height="54" loading="eager">
+          <div class="miroooo-sticky-img-stack" id="sticky-bar-img-stack" aria-hidden="true">
+            <div class="miroooo-sticky-img-thumb" style="z-index: 1;">
+              <img src="/assets_ref/x2/gallery/miroooo-x2-sonic-electric-toothbrush-silver-checkout.webp" alt="Miroooo Brush X2 - Silver" width="50" height="50" loading="eager">
+            </div>
+            <div class="miroooo-sticky-img-thumb" style="z-index: 2;">
+              <img src="/assets_ref/x2/gallery/miroooo-x2-sonic-electric-toothbrush-grey-checkout.webp" alt="Miroooo Brush X2 - Grey" width="50" height="50" loading="eager">
+            </div>
           </div>
           <div class="miroooo-sticky-info">
             <p class="miroooo-sticky-title" id="sticky-bar-title">Buy 2 - Brush X2 (Silver + Grey)</p>
@@ -6448,6 +6482,7 @@ const VARIANTS_DATA = {
     variantId: "1000020700182884",
     productId: "1000000675072187",
     swatchColor: "#e5e5e5",
+    checkoutImage: "/assets_ref/x2/gallery/miroooo-x2-sonic-electric-toothbrush-silver-checkout.webp",
     images: [
       "/assets_ref/x2/gallery/miroooo-x2-sonic-electric-toothbrush-silver-upright-grip.webp",
       "/assets_ref/x2/gallery/miroooo-x2-sonic-electric-toothbrush-complete-set-packaging.webp",
@@ -6513,6 +6548,7 @@ const VARIANTS_DATA = {
     variantId: "1000020700182882",
     productId: "1000000675072187",
     swatchColor: "#f2a7b3",
+    checkoutImage: "/assets_ref/x2/gallery/miroooo-x2-sonic-electric-toothbrush-pink-checkout.webp",
     images: [
       "/assets_ref/x2/gallery/miroooo-x2-sonic-electric-toothbrush-pink-upright-grip.webp",
       "/assets_ref/x2/gallery/miroooo-x2-sonic-electric-toothbrush-pink-complete-set-packaging.webp",
@@ -6578,6 +6614,7 @@ const VARIANTS_DATA = {
     variantId: "1000020700182883",
     productId: "1000000675072187",
     swatchColor: "#737373",
+    checkoutImage: "/assets_ref/x2/gallery/miroooo-x2-sonic-electric-toothbrush-grey-checkout.webp",
     images: [
       "/assets_ref/x2/gallery/miroooo-x2-sonic-electric-toothbrush-grey-upright-grip.webp",
       "/assets_ref/x2/gallery/miroooo-x2-sonic-electric-toothbrush-grey-complete-set-packaging.webp",
@@ -6909,8 +6946,9 @@ function updateStickyBar() {
   const tier = TIERS[activeTierId];
   if (!tier) return;
 
-  const choices = choicesState[activeTierId] || ['Silver'];
+  const choices = choicesState[activeTierId] || (activeTierId === 'single' ? [activeSelectedColor || 'Silver'] : ['Silver', 'Grey']);
   const firstColor = choices[0] || 'Silver';
+  const activeChoices = choices.slice(0, tier.count);
 
   // 1. Sticky Title
   const stickyTitle = document.getElementById('sticky-bar-title');
@@ -6918,7 +6956,7 @@ function updateStickyBar() {
     if (activeTierId === 'single') {
       stickyTitle.textContent = `Brush X2 - ${firstColor}`;
     } else {
-      stickyTitle.textContent = `${tier.label} - Brush X2 (${choices.join(' + ')})`;
+      stickyTitle.textContent = `${tier.label} - Brush X2 (${activeChoices.join(' + ')})`;
     }
   }
 
@@ -6940,11 +6978,23 @@ function updateStickyBar() {
     }
   }
 
-  // 4. Sticky Thumbnail
-  const stickyImg = document.getElementById('sticky-bar-img');
-  if (stickyImg) {
-    stickyImg.src = '/assets_ref/x2/miroooo-x2-sonic-electric-toothbrush-sticky-add-to-cart.webp';
-    stickyImg.alt = `Miroooo Brush X2 Sonic Electric Toothbrush - ${firstColor}`;
+  // 4. Dynamic Sticky Thumbnail Stack (1, 2, or 3 overlapping circles based on tier & choices)
+  const imgStack = document.getElementById('sticky-bar-img-stack');
+  if (imgStack) {
+    const colorImages = {
+      'Silver': '/assets_ref/x2/gallery/miroooo-x2-sonic-electric-toothbrush-silver-checkout.webp',
+      'Pink': '/assets_ref/x2/gallery/miroooo-x2-sonic-electric-toothbrush-pink-checkout.webp',
+      'Rose Gold': '/assets_ref/x2/gallery/miroooo-x2-sonic-electric-toothbrush-pink-checkout.webp',
+      'Grey': '/assets_ref/x2/gallery/miroooo-x2-sonic-electric-toothbrush-grey-checkout.webp',
+      'Gray': '/assets_ref/x2/gallery/miroooo-x2-sonic-electric-toothbrush-grey-checkout.webp'
+    };
+    imgStack.innerHTML = activeChoices.map((color, idx) => {
+      const variantData = VARIANTS_DATA[color];
+      const imgSrc = (variantData && variantData.checkoutImage) || colorImages[color] || colorImages['Silver'];
+      return `<div class="miroooo-sticky-img-thumb" style="z-index: ${idx + 1};">
+        <img src="${imgSrc}" alt="Miroooo Brush X2 - ${color}" width="50" height="50" loading="eager">
+      </div>`;
+    }).join('');
   }
 }
 
