@@ -1123,18 +1123,6 @@ theme.variantStrings = {
   #shopify-section-template--24203751129433__scrolling_text_P3gRex .marquee:after {
     background: #ffffff !important;
   }
-  /* Package contents */
-  #shopify-section-template--24203751129433__image-with-text-1 {
-    background: #000000 !important;
-    color: #ffffff !important;
-    padding: clamp(3rem, 5vw, 5rem) 0 !important;
-  }
-  #shopify-section-template--24203751129433__image-with-text-1 .heading {
-    color: #ffffff !important;
-  }
-  #shopify-section-template--24203751129433__image-with-text-1 .rte p {
-    color: rgba(255, 255, 255, 0.75) !important;
-  }
   /* Multicolumn with icons footer */
   #shopify-section-sections--24203576869209__multicolumn-with-icons {
     background: #000000 !important;
@@ -1230,9 +1218,6 @@ theme.variantStrings = {
       flex-direction: row !important;
     }
     #x2-section-texture-split .split-section-grid {
-      flex-direction: row !important;
-    }
-    #shopify-section-template--24203751129433__image-with-text-1 .split-section-grid {
       flex-direction: row !important;
     }
   }
@@ -2600,7 +2585,7 @@ theme.variantStrings = {
               <span class="font-extrabold text-sm sm:text-base uppercase tracking-tight" style="color: #111111;">Buy 2</span>
               <span class="tier-badge-pill" style="background: rgba(0, 0, 0, 0.08); color: #111111;">£10 OFF</span>
             </div>
-            <p class="text-xs sm:text-sm mt-0.5" style="color: #555555;">Includes 2 Brush X2 sets</p>
+            <p class="text-xs sm:text-sm mt-0.5" style="color: #555555; line-height: 1.4;">Includes 2 Brush X2 sets<br>+ Free 2x Brush X2 heads</p>
           </div>
           <div class="text-right" style="text-align: right; display: flex; flex-direction: column; align-items: flex-end; justify-content: flex-start; flex-shrink: 0; margin-top: 14px;">
             <div class="flex items-baseline gap-1 justify-end" style="display: flex; align-items: baseline; justify-content: flex-end; gap: 4px;">
@@ -2651,7 +2636,7 @@ theme.variantStrings = {
               <span class="font-extrabold text-sm sm:text-base uppercase tracking-tight" style="color: #111111;">Buy 3</span>
               <span class="tier-badge-pill" style="background: rgba(0, 0, 0, 0.08); color: #111111;">£20 OFF</span>
             </div>
-            <p class="text-xs sm:text-sm mt-0.5" style="color: #555555;">Includes 3 Brush X2 sets</p>
+            <p class="text-xs sm:text-sm mt-0.5" style="color: #555555; line-height: 1.4;">Includes 3 Brush X2 sets<br>+ Free 4x Brush X2 heads</p>
           </div>
           <div class="text-right" style="text-align: right; display: flex; flex-direction: column; align-items: flex-end; justify-content: flex-start; flex-shrink: 0;">
             <div class="flex items-baseline gap-1 justify-end" style="display: flex; align-items: baseline; justify-content: flex-end; gap: 4px;">
@@ -2967,50 +2952,74 @@ theme.variantStrings = {
 
     <!-- Accordion 3: Package contents -->
     <details class="product__accordion details" is="accordion-details" style="border-top: 1px solid rgba(255, 255, 255, 0.12); padding: 8px 0; color: #ffffff;">
-      <summary class="details__summary flex items-center justify-between gap-2 cursor-pointer" style="color: #ffffff; outline: none; list-style: none;">
-        <div class="flex items-center gap-2.5" style="display: flex; align-items: center; gap: 10px;">
+      <summary class="details__summary flex items-center justify-between gap-2 cursor-pointer" style="color: #ffffff; list-style: none; outline: none;">
+        <div class="flex items-center gap-2d5" style="display: flex; align-items: center; gap: 10px;">
           <svg class="icon icon-md" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="width: 20px; height: 20px; flex-shrink: 0;">
             <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path>
             <polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline>
             <line x1="12" y1="22.08" x2="12" y2="12"></line>
           </svg>
-          <span class="text-sm font-semibold leading-none" style="color: #ffffff; font-size: 15px; font-weight: 600;">Package contents</span>
+          <span class="text-sm-base font-medium leading-none" style="color: #ffffff; font-size: 15px; font-weight: 600;">What's inside box</span>
         </div>
-        <svg class="icon icon-chevron icon-xs flex-auto" viewBox="0 0 24 24" stroke="#ffffff" fill="none" stroke-width="2" style="width: 16px; height: 16px;">
+        <svg class="icon icon-chevron" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width: 16px; height: 16px; flex-shrink: 0;">
           <polyline points="6 9 12 15 18 9"></polyline>
         </svg>
       </summary>
-      <div class="details__content rte text-sm" style="margin-top: 12px; color: rgba(255, 255, 255, 0.78); line-height: 1.65; font-size: 13.5px;">
-        <ul style="padding-left: 18px; margin: 0; display: flex; flex-direction: column; gap: 6px;">
-          <li>1x Miroooo Brush X2 Sonic Electric Toothbrush Handle</li>
-          <li>1x Wall-Mounted Storage Dock</li>
-          <li>1x Luxury Travel Case</li>
-          <li>1x Miroooo Dental Care Companion App</li>
-          <li>1x Magnetic USB-C Fast Charging Cable &amp; Stand</li>
-          <li>1x Luxury Presentation Box &amp; User Manual</li>
+      <div class="details__content text-sm" style="margin-top: 12px; color: rgba(255, 255, 255, 0.78); line-height: 1.65; font-size: 13.5px;">
+        <ul style="margin: 0; padding-left: 18px; display: flex; flex-direction: column; gap: 6px;">
+          <li style="margin: 0;">1x Brush X2 electric toothbrush in silver finish</li>
+          <li style="margin: 0;">2x Replacement brush heads</li>
+          <li style="margin: 0;">1x Luxury travel case</li>
+          <li style="margin: 0;">1x Wall-mounted storage dock</li>
+          <li style="margin: 0;">1x Magnetic fast charging dock with USB-C cable (power adapter not included)</li>
+          <li style="margin: 0;">1x Luxury gift packaging box &amp; user manual</li>
         </ul>
+        <div style="margin-top: 14px; border-radius: 12px; overflow: hidden; background: #000000; border: 1px solid rgba(255,255,255,0.08);">
+          <img src="/assets_ref/x2/gallery/miroooo-x2-sonic-electric-toothbrush-complete-set-packaging.webp" alt="Brush X2 Package Contents &amp; Gift Box" style="width: 100%; height: auto; display: block; border-radius: 12px; margin: 0;" loading="lazy" />
+        </div>
       </div>
     </details>
 
     <!-- Accordion 4: Certifications -->
-    <details class="product__accordion details" is="accordion-details" style="border-top: 1px solid rgba(255,255,255,0.12); border-bottom: 1px solid rgba(255,255,255,0.12); padding: 8px 0; color: #ffffff;">
-      <summary class="details__summary flex items-center justify-between gap-2 cursor-pointer" style="color: #ffffff; outline: none; list-style: none;">
-        <div class="flex items-center gap-2.5" style="display: flex; align-items: center; gap: 10px;">
-          <svg class="icon icon-shield icon-md" viewBox="0 0 20 20" stroke="#ffffff" fill="none" xmlns="http://www.w3.org/2000/svg" style="width: 20px; height: 20px;">
-            <path d="M10 2L3 5V10C3 14.5 6 18 10 19C14 18 17 14.5 17 10V5L10 2Z" stroke-linecap="round" stroke-linejoin="round"/>
+    <details class="product__accordion details" is="accordion-details" style="border-top: 1px solid rgba(255, 255, 255, 0.12); border-bottom: 1px solid rgba(255, 255, 255, 0.12); padding: 8px 0; color: #ffffff;">
+      <summary class="details__summary flex items-center justify-between gap-2 cursor-pointer" style="color: #ffffff; list-style: none; outline: none;">
+        <div class="flex items-center gap-2d5" style="display: flex; align-items: center; gap: 10px;">
+          <svg class="icon icon-md" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="width: 20px; height: 20px; flex-shrink: 0;">
+            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+            <polyline points="9 12 11 14 15 10"></polyline>
           </svg>
-          <span class="text-sm font-semibold leading-none" style="color: #ffffff; font-size: 15px; font-weight: 600;">Certifications &amp; Safety</span>
+          <span class="text-sm-base font-medium leading-none" style="color: #ffffff; font-size: 15px; font-weight: 600;">Certifications</span>
         </div>
-        <svg class="icon icon-chevron icon-xs flex-auto" viewBox="0 0 24 24" stroke="#ffffff" fill="none" stroke-width="2" style="width: 16px; height: 16px;">
+        <svg class="icon icon-chevron" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width: 16px; height: 16px; flex-shrink: 0;">
           <polyline points="6 9 12 15 18 9"></polyline>
         </svg>
       </summary>
-      <div class="details__content rte text-sm" style="margin-top: 12px; color: rgba(255,255,255,0.78); line-height: 1.65; font-size: 13.5px;">
-        <ul style="padding-left: 18px; margin: 0; display: flex; flex-direction: column; gap: 6px;">
-          <li><strong>CE Certified:</strong> Meets all European health, safety, and environmental protection standards.</li>
-          <li><strong>RoHS Compliant:</strong> Free from hazardous substances (lead, mercury, cadmium).</li>
-          <li><strong>IPX7 Waterproof:</strong> Laboratory-tested for full 1-meter immersion safety in shower and bath.</li>
-          <li><strong>FDA-Grade Materials:</strong> BPA-free medical-grade handle materials and food-safe DuPont bristles.</li>
+      <div class="details__content text-sm" style="margin-top: 12px; color: rgba(255, 255, 255, 0.85); font-size: 13.5px; line-height: 1.6;">
+        <ul style="list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 0;">
+          <li style="display: flex; align-items: center; gap: 10px; padding: 8px 0; border-bottom: 1px solid rgba(255, 255, 255, 0.08); font-size: 13.5px; color: #ffffff; margin: 0;">
+            <span style="color: #ffffff; font-weight: 700; font-size: 15px; line-height: 1; min-width: 16px; display: inline-flex; align-items: center; justify-content: center; flex-shrink: 0; margin: 0;">✓</span>
+            <span style="margin: 0;"><strong>CE Certified</strong> — European Health &amp; Safety Standard</span>
+          </li>
+          <li style="display: flex; align-items: center; gap: 10px; padding: 8px 0; border-bottom: 1px solid rgba(255, 255, 255, 0.08); font-size: 13.5px; color: #ffffff; margin: 0;">
+            <span style="color: #ffffff; font-weight: 700; font-size: 15px; line-height: 1; min-width: 16px; display: inline-flex; align-items: center; justify-content: center; flex-shrink: 0; margin: 0;">✓</span>
+            <span style="margin: 0;"><strong>RoHS Compliant</strong> — 100% Free of Toxic Heavy Metals</span>
+          </li>
+          <li style="display: flex; align-items: center; gap: 10px; padding: 8px 0; border-bottom: 1px solid rgba(255, 255, 255, 0.08); font-size: 13.5px; color: #ffffff; margin: 0;">
+            <span style="color: #ffffff; font-weight: 700; font-size: 15px; line-height: 1; min-width: 16px; display: inline-flex; align-items: center; justify-content: center; flex-shrink: 0; margin: 0;">✓</span>
+            <span style="margin: 0;"><strong>IPX7 Waterproof</strong> — Certified Submersible Immersion Safe</span>
+          </li>
+          <li style="display: flex; align-items: center; gap: 10px; padding: 8px 0; border-bottom: 1px solid rgba(255, 255, 255, 0.08); font-size: 13.5px; color: #ffffff; margin: 0;">
+            <span style="color: #ffffff; font-weight: 700; font-size: 15px; line-height: 1; min-width: 16px; display: inline-flex; align-items: center; justify-content: center; flex-shrink: 0; margin: 0;">✓</span>
+            <span style="margin: 0;"><strong>EMC Compliant</strong> — Zero Electromagnetic Interference</span>
+          </li>
+          <li style="display: flex; align-items: center; gap: 10px; padding: 8px 0; border-bottom: 1px solid rgba(255, 255, 255, 0.08); font-size: 13.5px; color: #ffffff; margin: 0;">
+            <span style="color: #ffffff; font-weight: 700; font-size: 15px; line-height: 1; min-width: 16px; display: inline-flex; align-items: center; justify-content: center; flex-shrink: 0; margin: 0;">✓</span>
+            <span style="margin: 0;"><strong>SGS Tested</strong> — Laboratory Verified Durability &amp; Safety</span>
+          </li>
+          <li style="display: flex; align-items: center; gap: 10px; padding: 8px 0; font-size: 13.5px; color: #ffffff; margin: 0;">
+            <span style="color: #ffffff; font-weight: 700; font-size: 15px; line-height: 1; min-width: 16px; display: inline-flex; align-items: center; justify-content: center; flex-shrink: 0; margin: 0;">✓</span>
+            <span style="margin: 0;"><strong>DuPont Food-Contact Material Compliant</strong> — BPA-Free Food-Safe Filaments</span>
+          </li>
         </ul>
       </div>
     </details>
@@ -3334,9 +3343,6 @@ theme.variantStrings = {
 
       <!-- Text / Data Content (Left on Desktop, Below on Phone) -->
       <div style="flex: 1; width: 100%; box-sizing: border-box;">
-        <span style="font-family: 'Inter', sans-serif; font-size: clamp(0.75rem, 0.9vw, 0.85rem); font-weight: 700; text-transform: uppercase; letter-spacing: 0.15em; color: rgba(255,255,255,0.6); display: block; margin-bottom: 0.5rem;">
-          [MIROOOO] Oral Care Technology
-        </span>
         <h2 style="font-family: 'GFS Didot', 'Playfair Display', Georgia, serif; font-size: clamp(2rem, 3.5vw, 3.2rem); font-weight: 700; color: #ffffff; line-height: 1.15; margin: 0 0 0.5rem 0; letter-spacing: 0.02em; text-transform: uppercase;">
           INSTANT ENERGY BOOST
         </h2>
@@ -3407,9 +3413,6 @@ theme.variantStrings = {
 
       <!-- Text / Data Content (Right on Desktop, Below on Phone) -->
       <div style="flex: 1; width: 100%; box-sizing: border-box;">
-        <span style="font-family: 'Inter', sans-serif; font-size: clamp(0.75rem, 0.9vw, 0.85rem); font-weight: 700; text-transform: uppercase; letter-spacing: 0.15em; color: rgba(255,255,255,0.6); display: block; margin-bottom: 0.5rem;">
-          [MIROOOO] Oral Care Technology
-        </span>
         <h2 style="font-family: 'GFS Didot', 'Playfair Display', Georgia, serif; font-size: clamp(2rem, 3.5vw, 3.2rem); font-weight: 700; color: #ffffff; line-height: 1.15; margin: 0 0 0.5rem 0; letter-spacing: 0.02em; text-transform: uppercase;">
           EXQUISITE TEXTURE
         </h2>
@@ -5580,35 +5583,44 @@ theme.variantStrings = {
   </div>
 </div>
 
-<!-- =========================================================================
-     9. Package Contents Section
-     ========================================================================= -->
-<div id="shopify-section-template--24203751129433__image-with-text-1" class="shopify-section" style="background: #000000; color: #ffffff; width: 100%; overflow: hidden; padding: clamp(3.5rem, 6vw, 6rem) 0; box-sizing: border-box; border-top: 1px solid rgba(255, 255, 255, 0.08);">
-  <div style="max-width: 1320px; margin: 0 auto; padding: 0 clamp(16px, 4vw, 40px); box-sizing: border-box;">
-    <div class="image-with-text with-background overflow-hidden" style="background: #0d0d0d; border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 20px; padding: clamp(2rem, 4vw, 3.5rem); display: flex; flex-direction: column; gap: 2rem;">
-      <div class="split-section-grid" style="display: flex; flex-direction: column; align-items: center; gap: 2rem;">
-        <div style="flex: 1; width: 100%;">
-          <div style="border-radius: 14px; overflow: hidden;">
-            <img id="package-contents-section-img" src="/assets_ref/x2/gallery/miroooo-x2-sonic-electric-toothbrush-complete-set-packaging.webp" alt="Miroooo Brush X2 Complete Set Presentation Packaging" width="3162" height="3162" loading="lazy" style="width: 100%; height: 100%; object-fit: cover; border-radius: 14px;" />
-          </div>
+<!-- Package Contents Section -->
+<div id="shopify-section-template--24203751129433__image-with-text-1" class="shopify-section" style="background: #000000; color: #ffffff; box-sizing: border-box; border-top: 1px solid rgba(255, 255, 255, 0.08);"><style>
+  #shopify-section-template--24203751129433__image-with-text-1 {
+    --section-padding-top: 0px !important;
+    --section-padding-bottom: 0px !important;
+    --color-background: 0 0 0;
+    --color-background-2: 0 0 0;
+    --color-foreground: 255 255 255;
+    --color-border: var(--color-foreground)/ 0.1;
+    --color-border-dark: var(--color-foreground)/ 0.4;
+    --color-border-light: var(--color-foreground)/ 0.06;
+    --gradient-highlight: linear-gradient(278deg, rgba(251, 51, 166, 1), rgba(48, 145, 211, 1) 100%);
+    --ratio-percent: 66.6667%;
+  }
+  @media screen and (max-width: 767px) {
+    #shopify-section-template--24203751129433__image-with-text-1 {
+      --ratio-percent: 66.6667%;
+    }
+  }
+</style>
+
+<div class="section section--padding" style="background: #000000; padding-top: 0 !important; padding-bottom: 0 !important;">
+  <div class="page-width relative">
+    <div class="image-with-text lg:flex lg:gap-8 lg:flex-row" style="background: #000000; border-radius: 0;">
+      <div class="image-with-text__item grow shrink-0 relative">
+        <div class="image-with-text__media h-full">
+          <media-element class="image-with-text__image block media--adapt mobile:media--adapt relative overflow-hidden" style="border-radius: 14px; aspect-ratio: 3 / 2; padding-bottom: 66.6667%;">
+            <picture class="media media--height block w-full h-full relative overflow-hidden" style="border-radius: 14px; background: transparent; aspect-ratio: 3 / 2;"><img id="package-contents-section-img" src="/assets_ref/x2/gallery/miroooo-x2-sonic-electric-toothbrush-complete-set-packaging.webp" alt="Miroooo Brush X2 Complete Set Presentation Packaging" width="3162" height="3162" loading="lazy" style="width: 100%; height: 100%; object-fit: cover; border-radius: 14px;" is="lazy-image"></picture>
+          </media-element>
         </div>
-        <div style="flex: 1; width: 100%; display: flex; align-items: center;">
-          <div>
-            <h2 class="heading leading-none title-sm" style="margin-bottom: 1.25rem;">
-              <span style="color: #ffffff; font-family: 'GFS Didot', 'Playfair Display', Georgia, serif; font-size: clamp(2rem, 3vw, 2.5rem); font-weight: 600; letter-spacing: 0.02em;">
-                Package Contents
-              </span>
-            </h2>
-            <div class="rte leading-normal body subtext-md text-opacity">
-              <p style="color: rgba(255, 255, 255, 0.8); font-size: clamp(1rem, 1.15vw, 1.15rem); line-height: 1.7; margin: 0;">
-                Brush X2 electric toothbrush in chosen colour, brush heads, Travel case, magnetic charging dock, and USB-C charging cable (adapter not included).
-              </p>
-            </div>
-          </div>
-        </div>
+      </div>
+
+      <div class="image-with-text__item grow shrink-0 align-self-center">
+        <div class="rich-text lg:text-left text-center relative z-1"><h2 class="heading leading-none title-sm" style="color: #ffffff;"><em class="highlighted-text inline-block not-italic relative" is="highlighted-text" data-style="text" style="color: #ffffff; -webkit-text-fill-color: #ffffff;">Package Contents</em></h2><div class="rte leading-normal body subtext-md text-opacity" style="color: rgba(255, 255, 255, 0.8);"><p>Brush X2 electric toothbrush in silver finish, 2x DuPont replacement brush heads, Luxury travel case, wall-mounted storage dock, magnetic fast charging dock, and USB-C cable (adapter not included).</p></div></div>
       </div>
     </div>
   </div>
+</div>
 </div>
 
 <!-- ==========================================

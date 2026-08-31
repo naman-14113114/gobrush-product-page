@@ -374,26 +374,75 @@
     }
 
     .about-btn-action {
+      position: relative;
+      overflow: hidden;
+      isolation: isolate;
       display: inline-flex;
       align-items: center;
+      justify-content: center;
       gap: 8px;
       font-size: 0.9375rem;
       font-weight: 600;
       color: #ffffff;
       text-decoration: none;
       padding: 12px 28px;
-      border-radius: 999px;
+      border-radius: 9999px;
       background: #000000;
       border: 1px solid #000000;
       box-shadow: 0 4px 14px rgba(0, 0, 0, 0.2);
-      transition: all 0.25s ease;
+      transition: border-color 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+      cursor: pointer;
     }
 
-    .about-btn-action:hover {
-      background: #222222;
-      border-color: #222222;
-      transform: translateY(-2px);
-      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+    .about-btn-action .btn-fill {
+      position: absolute;
+      border-radius: 50%;
+      width: 150%;
+      height: 200%;
+      inset-block-start: -50%;
+      top: -50%;
+      inset-inline-start: -25%;
+      left: -25%;
+      background-color: #ffffff;
+      background: #ffffff;
+      pointer-events: none;
+      z-index: 1;
+      transform: translate3d(0, 76%, 0);
+      transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .about-btn-action:hover .btn-fill,
+    .about-btn-action:focus-visible .btn-fill {
+      transform: translate3d(0, 0%, 0);
+    }
+
+    .about-btn-action .btn-text {
+      position: relative;
+      z-index: 2;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      color: #ffffff;
+      transition: color 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+      pointer-events: none;
+    }
+
+    .about-btn-action:hover .btn-text,
+    .about-btn-action:focus-visible .btn-text {
+      color: #000000;
+    }
+
+    .about-btn-action .btn-text svg {
+      color: #ffffff;
+      stroke: #ffffff;
+      transition: color 0.4s cubic-bezier(0.16, 1, 0.3, 1), stroke 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .about-btn-action:hover .btn-text svg,
+    .about-btn-action:focus-visible .btn-text svg {
+      color: #000000;
+      stroke: #000000;
     }
 
     /* Ambient Glow (Monochrome Dark) */
@@ -564,11 +613,14 @@
             </div>
 
             <div style="margin-top: 20px;">
-              <a href="/faq" class="about-btn-action">
-                <span>Visit Support &amp; FAQ Center</span>
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
-                  <path d="M5 12h14M12 5l7 7-7 7"/>
-                </svg>
+              <a href="/faq" class="about-btn-action" is="hover-button">
+                <span class="btn-fill" data-fill></span>
+                <span class="btn-text">
+                  <span>Visit Support &amp; FAQ Center</span>
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                    <path d="M5 12h14M12 5l7 7-7 7"/>
+                  </svg>
+                </span>
               </a>
             </div>
           </div>

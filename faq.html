@@ -364,17 +364,22 @@
     }
 
     .faq-action-btn {
+      position: relative;
+      overflow: hidden;
+      isolation: isolate;
       display: inline-flex;
       align-items: center;
       justify-content: center;
       gap: 10px;
       padding: 13px 24px;
-      border-radius: 999px;
+      border-radius: 9999px;
       font-size: 14px;
       font-weight: 600;
       text-decoration: none;
-      transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+      transition: border-color 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s cubic-bezier(0.16, 1, 0.3, 1);
       width: 100%;
+      cursor: pointer;
+      transform: none;
     }
 
     @media (min-width: 640px) {
@@ -383,31 +388,101 @@
       }
     }
 
+    .faq-action-btn .btn-fill {
+      position: absolute;
+      border-radius: 50%;
+      width: 150%;
+      height: 200%;
+      inset-block-start: -50%;
+      top: -50%;
+      inset-inline-start: -25%;
+      left: -25%;
+      pointer-events: none;
+      z-index: 1;
+      transform: translate3d(0, 76%, 0);
+      transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .faq-action-btn--email .btn-fill {
+      background-color: #ffffff;
+      background: #ffffff;
+    }
+
+    .faq-action-btn--ticket .btn-fill {
+      background-color: #000000;
+      background: #000000;
+    }
+
+    .faq-action-btn:hover .btn-fill,
+    .faq-action-btn:focus-visible .btn-fill {
+      transform: translate3d(0, 0%, 0);
+    }
+
+    .faq-action-btn .btn-text {
+      position: relative;
+      z-index: 2;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      transition: color 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+      pointer-events: none;
+    }
+
     .faq-action-btn--email {
       background: #111111;
       color: #ffffff;
+      border: 1.5px solid #111111;
       box-shadow: 0 4px 14px rgba(0, 0, 0, 0.2);
     }
 
-    .faq-action-btn--email:hover {
-      background: #000000;
+    .faq-action-btn--email .btn-text {
       color: #ffffff;
-      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
-      transform: translateY(-1px);
+    }
+
+    .faq-action-btn--email:hover .btn-text,
+    .faq-action-btn--email:focus-visible .btn-text {
+      color: #111111;
+    }
+
+    .faq-action-btn--email .btn-text svg {
+      color: #ffffff;
+      stroke: #ffffff;
+      transition: color 0.4s cubic-bezier(0.16, 1, 0.3, 1), stroke 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .faq-action-btn--email:hover .btn-text svg,
+    .faq-action-btn--email:focus-visible .btn-text svg {
+      color: #111111;
+      stroke: #111111;
     }
 
     .faq-action-btn--ticket {
-      border: 1px solid rgba(0, 0, 0, 0.14);
+      border: 1.5px solid rgba(0, 0, 0, 0.14);
       color: #111111;
       background: #ffffff;
       box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
     }
 
-    .faq-action-btn--ticket:hover {
-      background: #f4f4f4;
-      border-color: #111111;
+    .faq-action-btn--ticket .btn-text {
       color: #111111;
-      transform: translateY(-1px);
+    }
+
+    .faq-action-btn--ticket:hover .btn-text,
+    .faq-action-btn--ticket:focus-visible .btn-text {
+      color: #ffffff;
+    }
+
+    .faq-action-btn--ticket .btn-text svg {
+      color: #111111;
+      stroke: #111111;
+      transition: color 0.4s cubic-bezier(0.16, 1, 0.3, 1), stroke 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .faq-action-btn--ticket:hover .btn-text svg,
+    .faq-action-btn--ticket:focus-visible .btn-text svg {
+      color: #ffffff;
+      stroke: #ffffff;
     }
 
     .faq-helpbox__social {
@@ -848,19 +923,25 @@
           <p class="faq-helpbox__subtitle">Our support desk is here for you Mon – Fri: 9:00 AM – 6:00 PM GMT.</p>
           
           <div class="faq-helpbox__actions">
-            <a href="mailto:support@trymiroooo.com" class="faq-action-btn faq-action-btn--email">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                <rect width="20" height="16" x="2" y="4" rx="2"></rect>
-                <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path>
-              </svg>
-              <span>support@trymiroooo.com</span>
+            <a href="mailto:support@trymiroooo.com" class="faq-action-btn faq-action-btn--email" is="hover-button">
+              <span class="btn-fill" data-fill></span>
+              <span class="btn-text">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <rect width="20" height="16" x="2" y="4" rx="2"></rect>
+                  <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path>
+                </svg>
+                <span>support@trymiroooo.com</span>
+              </span>
             </a>
             
-            <a href="/contact#contact-form" class="faq-action-btn faq-action-btn--ticket">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
-              </svg>
-              <span>Open Support Ticket</span>
+            <a href="/contact#contact-form" class="faq-action-btn faq-action-btn--ticket" is="hover-button">
+              <span class="btn-fill" data-fill></span>
+              <span class="btn-text">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+                </svg>
+                <span>Open Support Ticket</span>
+              </span>
             </a>
           </div>
 

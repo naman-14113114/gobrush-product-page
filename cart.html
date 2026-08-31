@@ -235,10 +235,11 @@
     }
 
     .cart-line-item__media {
-      width: 80px;
-      height: 96px;
+      width: 84px;
+      height: 84px;
+      aspect-ratio: 1 / 1;
       flex-shrink: 0;
-      border-radius: 8px;
+      border-radius: 12px;
       overflow: hidden;
       background: #d8d8d8;
       border: 1px solid rgba(0, 0, 0, 0.08);
@@ -1092,6 +1093,9 @@
     }
 
     .cart-empty-shop-btn {
+      position: relative;
+      overflow: hidden;
+      isolation: isolate;
       display: inline-flex;
       align-items: center;
       justify-content: center;
@@ -1101,16 +1105,51 @@
       background: #ffffff;
       color: #000000;
       font-weight: 700;
+      font-size: 0.95rem;
       text-decoration: none;
       border: 2px solid #ffffff;
       box-shadow: 0 4px 18px rgba(255, 255, 255, 0.15);
-      transition: transform 0.2s ease, border-color 0.2s ease;
+      transition: border-color 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+      cursor: pointer;
     }
 
-    .cart-empty-shop-btn:hover {
+    .cart-empty-shop-btn .btn-fill {
+      position: absolute;
+      border-radius: 50%;
+      width: 150%;
+      height: 200%;
+      inset-block-start: -50%;
+      top: -50%;
+      inset-inline-start: -25%;
+      left: -25%;
+      background-color: #000000;
       background: #000000;
+      pointer-events: none;
+      z-index: 1;
+      transform: translate3d(0, 76%, 0);
+      transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .cart-empty-shop-btn:hover .btn-fill,
+    .cart-empty-shop-btn:focus-visible .btn-fill {
+      transform: translate3d(0, 0%, 0);
+    }
+
+    .cart-empty-shop-btn .btn-text {
+      position: relative;
+      z-index: 2;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      color: #000000;
+      transition: color 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+      pointer-events: none;
+    }
+
+    .cart-empty-shop-btn:hover .btn-text,
+    .cart-empty-shop-btn:focus-visible .btn-text {
       color: #ffffff;
-      border-color: #ffffff;
     }
 
     .cart-minimal-footer a:hover {
@@ -1297,45 +1336,7 @@
 
           </div>
 
-          <!-- Card 2: Free Rewards Progress Card -->
-          <div class="cart-luxury-card" id="free-rewards-card">
-            <div class="rewards-card-header">
-              <div>
-                <h3 class="rewards-card-title">FREE REWARD INCLUDED</h3>
-                <p class="rewards-card-subtitle" id="rewards-unlocked-text">3 gifts unlocked</p>
-              </div>
-              <span class="rewards-card-badge" id="rewards-total-value">£61 value</span>
-            </div>
-
-            <!-- Step Dots Progress Track -->
-            <div class="rewards-progress-track-wrap" aria-hidden="true">
-              <div class="rewards-progress-line-bg"></div>
-              <div class="rewards-progress-line-fill" id="rewards-progress-fill" style="width: 100%;"></div>
-              
-              <div class="rewards-progress-step is-unlocked" id="reward-step-1">
-                <div class="rewards-progress-node">
-                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
-                </div>
-                <div class="rewards-progress-label">2X EXTRA BRUSH HEADS (FREE)</div>
-              </div>
-
-              <div class="rewards-progress-step is-unlocked" id="reward-step-2">
-                <div class="rewards-progress-node">
-                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
-                </div>
-                <div class="rewards-progress-label">LUXURY TRAVEL CASE (FREE)</div>
-              </div>
-
-              <div class="rewards-progress-step is-unlocked" id="reward-step-3">
-                <div class="rewards-progress-node">
-                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
-                </div>
-                <div class="rewards-progress-label">MAGNETIC CHARGING DOCK (FREE)</div>
-              </div>
-            </div>
-          </div>
-
-          <!-- Card 3: Gift Message Card (Matching Muuhu) -->
+          <!-- Card 2: Gift Message Card (Matching Muuhu) -->
           <div class="cart-luxury-card">
             <button
               type="button"
@@ -1395,7 +1396,8 @@
           Add the Brush X or Brush X2 to unlock current bundle offers, complimentary DuPont brush heads, and free tracked UK delivery.
         </p>
         <a href="/shop" class="cart-empty-shop-btn" is="hover-button">
-          Shop Miroooo
+          <span class="btn-fill" data-fill></span>
+          <span class="btn-text">Shop Miroooo</span>
         </a>
       </section>
 
@@ -1867,7 +1869,7 @@
                 const subtitle = `${sets} complimentary ${sets > 1 ? "sets contain" : "set contains"} ${heads} DuPont precision replacement heads for Brush X2.`;
                 const compareVal = sets * 20;
                 const badgeText = `UNLOCKED ${sets} ${sets > 1 ? "SETS" : "SET"} (${heads} BRUSH HEADS)`;
-                const giftImage = "/assets_ref/x2/gallery/miroooo-x2-sonic-electric-toothbrush-dupont-bristle-head-macro.webp";
+                const giftImage = "/assets_ref/x/gallery/Miroooo_x_Grey-4.webp";
 
                 html += `
                   <div class="cart-line-item">
@@ -2091,39 +2093,7 @@
 
         if (summarySubtotalPrice) summarySubtotalPrice.textContent = `£${Math.round(totals.finalSubtotal)}`;
 
-        // 6C. Render Free Rewards Progress Card
-        const freeRewardsCard = document.getElementById("free-rewards-card");
-        if (freeRewardsCard) {
-          freeRewardsCard.style.display = totals.isHeads ? "none" : "block";
-        }
-        const rewardsUnlockedText = document.getElementById("rewards-unlocked-text");
-        const rewardsTotalValue = document.getElementById("rewards-total-value");
-        const rewardsProgressFill = document.getElementById("rewards-progress-fill");
-        const step1 = document.getElementById("reward-step-1");
-        const step2 = document.getElementById("reward-step-2");
-        const step3 = document.getElementById("reward-step-3");
-
-        if (rewardsUnlockedText) {
-          if (totals.isHeads) {
-            rewardsUnlockedText.textContent = `0 gifts unlocked`;
-          } else if (totals.isX2) {
-            if (totals.extraBrushHeadSets > 0) {
-              const extraHeads = totals.extraBrushHeadSets * 2;
-              rewardsUnlockedText.textContent = `3 gifts + ${extraHeads} free heads unlocked`;
-            } else {
-              rewardsUnlockedText.textContent = `3 gifts unlocked`;
-            }
-          } else {
-            rewardsUnlockedText.textContent = `3 gifts unlocked`;
-          }
-        }
-        if (rewardsTotalValue) rewardsTotalValue.textContent = totals.isHeads ? `£0 value` : `£${totals.giftsValue} value`;
-        if (rewardsProgressFill) rewardsProgressFill.style.width = totals.isHeads ? `0%` : `100%`;
-        if (step1) step1.classList.toggle("is-unlocked", !totals.isHeads);
-        if (step2) step2.classList.toggle("is-unlocked", !totals.isHeads);
-        if (step3) step3.classList.toggle("is-unlocked", !totals.isHeads);
-
-        // 6D. Update Promo Box UI
+        // 6C. Update Promo Box UI
         const promoForm = document.getElementById("cart-promo-form");
         const appliedBadge = document.getElementById("cart-promo-applied-badge");
         const appliedName = document.getElementById("applied-promo-name");

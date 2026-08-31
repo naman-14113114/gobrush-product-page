@@ -271,9 +271,12 @@
 
     /* Submit Button with Hover White-Inversion Effect */
     .track-submit-btn {
+      position: relative;
+      overflow: hidden;
+      isolation: isolate;
       width: 100%;
       min-height: 50px;
-      border-radius: 999px;
+      border-radius: 9999px;
       background: #111111;
       color: #ffffff;
       border: 1.5px solid #111111;
@@ -284,22 +287,72 @@
       justify-content: center;
       gap: 10px;
       cursor: pointer;
-      transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+      transition: border-color 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s cubic-bezier(0.16, 1, 0.3, 1);
       user-select: none;
       font-family: inherit;
       box-shadow: 0 4px 14px rgba(0, 0, 0, 0.15);
+      transform: none;
     }
 
-    .track-submit-btn:hover {
+    .track-submit-btn .btn-fill {
+      position: absolute;
+      border-radius: 50%;
+      width: 150%;
+      height: 200%;
+      inset-block-start: -50%;
+      top: -50%;
+      inset-inline-start: -25%;
+      left: -25%;
+      background-color: #ffffff;
       background: #ffffff;
+      pointer-events: none;
+      z-index: 1;
+      transform: translate3d(0, 76%, 0);
+      transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .track-submit-btn:hover:not(:disabled) .btn-fill,
+    .track-submit-btn:focus-visible:not(:disabled) .btn-fill {
+      transform: translate3d(0, 0%, 0);
+    }
+
+    .track-submit-btn .btn-text {
+      position: relative;
+      z-index: 2;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      color: #ffffff;
+      transition: color 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+      pointer-events: none;
+    }
+
+    .track-submit-btn:hover:not(:disabled) .btn-text,
+    .track-submit-btn:focus-visible:not(:disabled) .btn-text {
       color: #111111;
+    }
+
+    .track-submit-btn .btn-text svg {
+      color: #ffffff;
+      stroke: #ffffff;
+      transition: color 0.4s cubic-bezier(0.16, 1, 0.3, 1), stroke 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .track-submit-btn:hover:not(:disabled) .btn-text svg,
+    .track-submit-btn:focus-visible:not(:disabled) .btn-text svg {
+      color: #111111;
+      stroke: #111111;
+    }
+
+    .track-submit-btn:hover:not(:disabled) {
       border-color: #111111;
       box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
-      transform: translateY(-1px);
+      transform: none;
     }
 
-    .track-submit-btn:active {
-      transform: scale(0.99) translateY(0);
+    .track-submit-btn:active:not(:disabled) {
+      transform: scale(0.99);
     }
 
     .track-submit-btn:disabled {
@@ -947,12 +1000,15 @@
               </div>
             </div>
 
-            <button class="track-submit-btn" id="track-submit-button" type="submit">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                <circle cx="11" cy="11" r="8"></circle>
-                <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
-              </svg>
-              <span>Track Shipment</span>
+            <button class="track-submit-btn" id="track-submit-button" type="submit" is="hover-button">
+              <span class="btn-fill" data-fill></span>
+              <span class="btn-text">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <circle cx="11" cy="11" r="8"></circle>
+                  <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                </svg>
+                <span>Track Shipment</span>
+              </span>
             </button>
 
             <!-- Quick Demo Testing Presets -->

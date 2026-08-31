@@ -2514,28 +2514,110 @@ body.is-ready [data-hero-reveal] {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: 24px;
-  padding: 0 24px;
-  border: 1px solid transparent;
-  border-radius: 999px;
-  font-size: 11px;
-  font-weight: 600;
-  letter-spacing: .04em;
-  transition: background .25s ease, color .25s ease, border-color .25s ease, transform .25s ease;
+  gap: 12px;
+  padding: 0 28px;
+  border: 2px solid transparent;
+  border-radius: 9999px;
+  font-size: 0.95rem;
+  font-weight: 700;
+  letter-spacing: .02em;
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+  cursor: pointer;
+  text-decoration: none;
+  transform: none;
+  transition: border-color 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .gb-button:hover {
-  transform: translateY(-2px);
+  transform: none;
 }
 
 .gb-button--light {
-  background: #fff;
-  color: #090909;
+  background: #ffffff;
+  background-color: #ffffff;
+  border-color: #ffffff;
+  color: #000000;
 }
 
 .gb-button--dark {
-  background: #090909;
-  color: #fff;
+  background: #000000;
+  background-color: #000000;
+  border-color: #000000;
+  color: #ffffff;
+}
+
+.gb-button .btn-fill {
+  position: absolute;
+  border-radius: 50%;
+  width: 150%;
+  height: 200%;
+  inset-block-start: -50%;
+  top: -50%;
+  inset-inline-start: -25%;
+  left: -25%;
+  background-color: #000000;
+  background: #000000;
+  pointer-events: none;
+  z-index: 1;
+  transform: translate3d(0, 76%, 0);
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.gb-button--dark .btn-fill {
+  background-color: #ffffff;
+  background: #ffffff;
+}
+
+.gb-button:hover .btn-fill,
+.gb-button:focus-visible .btn-fill {
+  transform: translate3d(0, 0%, 0);
+}
+
+.gb-button .btn-text {
+  position: relative;
+  z-index: 2;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  color: inherit;
+  transition: color 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  pointer-events: none;
+}
+
+.gb-button--light .btn-text {
+  color: #000000;
+}
+
+.gb-button--light:hover .btn-text,
+.gb-button--light:focus-visible .btn-text {
+  color: #ffffff;
+}
+
+.gb-button--dark .btn-text {
+  color: #ffffff;
+}
+
+.gb-button--dark:hover .btn-text,
+.gb-button--dark:focus-visible .btn-text {
+  color: #000000;
+}
+
+.gb-button .btn-text svg,
+.gb-button .btn-text span[aria-hidden] {
+  transition: color 0.4s cubic-bezier(0.16, 1, 0.3, 1), stroke 0.4s cubic-bezier(0.16, 1, 0.3, 1), transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.gb-button--light:hover .btn-text span[aria-hidden],
+.gb-button--light:focus-visible .btn-text span[aria-hidden] {
+  color: #ffffff;
+}
+
+.gb-button--dark:hover .btn-text span[aria-hidden],
+.gb-button--dark:focus-visible .btn-text span[aria-hidden] {
+  color: #000000;
 }
 
 .gb-text-link {
@@ -5173,7 +5255,11 @@ body.nav-open .miroooo-sticky-cart-wrap {
 .proxy-bundle-btn,
 .miroooo-sticky-btn,
 .button,
-.button--primary {
+.button--primary,
+.button--light,
+.gb-button,
+.gb-button--light,
+.cart-empty-shop-btn {
   position: relative !important;
   overflow: hidden !important;
   isolation: isolate !important;
@@ -5183,6 +5269,7 @@ body.nav-open .miroooo-sticky-cart-wrap {
   border: 2px solid #ffffff !important;
   border-radius: 9999px !important;
   cursor: pointer !important;
+  transform: none !important;
   transition: border-color 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s cubic-bezier(0.16, 1, 0.3, 1) !important;
   animation: checkoutAmbientGlow 3s ease-in-out infinite !important;
 }
@@ -5243,7 +5330,12 @@ body.nav-open .miroooo-sticky-cart-wrap {
 #sticky-bar-cta-btn .btn-fill,
 .proxy-bundle-btn .btn-fill,
 .miroooo-sticky-btn .btn-fill,
-.button .btn-fill {
+.button .btn-fill,
+.button--primary .btn-fill,
+.button--light .btn-fill,
+.gb-button .btn-fill,
+.gb-button--light .btn-fill,
+.cart-empty-shop-btn .btn-fill {
   position: absolute !important;
   border-radius: 50% !important;
   width: 150% !important;
@@ -5269,7 +5361,17 @@ body.nav-open .miroooo-sticky-cart-wrap {
 .miroooo-sticky-btn:hover .btn-fill,
 .miroooo-sticky-btn:focus-visible .btn-fill,
 .button:hover .btn-fill,
-.button:focus-visible .btn-fill {
+.button:focus-visible .btn-fill,
+.button--primary:hover .btn-fill,
+.button--primary:focus-visible .btn-fill,
+.button--light:hover .btn-fill,
+.button--light:focus-visible .btn-fill,
+.gb-button:hover .btn-fill,
+.gb-button:focus-visible .btn-fill,
+.gb-button--light:hover .btn-fill,
+.gb-button--light:focus-visible .btn-fill,
+.cart-empty-shop-btn:hover .btn-fill,
+.cart-empty-shop-btn:focus-visible .btn-fill {
   transform: translate3d(0, 0%, 0) !important;
 }
 
@@ -5277,7 +5379,12 @@ body.nav-open .miroooo-sticky-cart-wrap {
 #sticky-bar-cta-btn .btn-text,
 .proxy-bundle-btn .btn-text,
 .miroooo-sticky-btn .btn-text,
-.button .btn-text {
+.button .btn-text,
+.button--primary .btn-text,
+.button--light .btn-text,
+.gb-button .btn-text,
+.gb-button--light .btn-text,
+.cart-empty-shop-btn .btn-text {
   position: relative !important;
   z-index: 2 !important;
   display: inline-flex !important;
@@ -5298,7 +5405,17 @@ body.nav-open .miroooo-sticky-cart-wrap {
 .miroooo-sticky-btn:hover .btn-text,
 .miroooo-sticky-btn:focus-visible .btn-text,
 .button:hover .btn-text,
-.button:focus-visible .btn-text {
+.button:focus-visible .btn-text,
+.button--primary:hover .btn-text,
+.button--primary:focus-visible .btn-text,
+.button--light:hover .btn-text,
+.button--light:focus-visible .btn-text,
+.gb-button:hover .btn-text,
+.gb-button:focus-visible .btn-text,
+.gb-button--light:hover .btn-text,
+.gb-button--light:focus-visible .btn-text,
+.cart-empty-shop-btn:hover .btn-text,
+.cart-empty-shop-btn:focus-visible .btn-text {
   color: #ffffff !important;
 }
 
@@ -5307,11 +5424,21 @@ body.nav-open .miroooo-sticky-cart-wrap {
 .proxy-bundle-btn .btn-text svg,
 .miroooo-sticky-btn .btn-text svg,
 .button .btn-text svg,
+.button--primary .btn-text svg,
+.button--light .btn-text svg,
+.gb-button .btn-text svg,
+.gb-button--light .btn-text svg,
+.cart-empty-shop-btn .btn-text svg,
 #hero-cta .btn-text .icon,
 #sticky-bar-cta-btn .btn-text .icon,
 .proxy-bundle-btn .btn-text .icon,
 .miroooo-sticky-btn .btn-text .icon,
-.button .btn-text .icon {
+.button .btn-text .icon,
+.button--primary .btn-text .icon,
+.button--light .btn-text .icon,
+.gb-button .btn-text .icon,
+.gb-button--light .btn-text .icon,
+.cart-empty-shop-btn .btn-text .icon {
   color: #000000 !important;
   stroke: #000000 !important;
   transition: color 0.4s cubic-bezier(0.16, 1, 0.3, 1), stroke 0.4s cubic-bezier(0.16, 1, 0.3, 1), fill 0.4s cubic-bezier(0.16, 1, 0.3, 1) !important;
@@ -5322,11 +5449,31 @@ body.nav-open .miroooo-sticky-cart-wrap {
 .proxy-bundle-btn:hover .btn-text svg,
 .miroooo-sticky-btn:hover .btn-text svg,
 .button:hover .btn-text svg,
+.button--primary:hover .btn-text svg,
+.button--light:hover .btn-text svg,
+.gb-button:hover .btn-text svg,
+.gb-button--light:hover .btn-text svg,
+.cart-empty-shop-btn:hover .btn-text svg,
 #hero-cta:hover .btn-text .icon,
 #sticky-bar-cta-btn:hover .btn-text .icon,
 .proxy-bundle-btn:hover .btn-text .icon,
 .miroooo-sticky-btn:hover .btn-text .icon,
-.button:hover .btn-text .icon {
+.button:hover .btn-text .icon,
+.button--primary:hover .btn-text .icon,
+.button--light:hover .btn-text .icon,
+.gb-button:hover .btn-text .icon,
+.gb-button--light:hover .btn-text .icon,
+.cart-empty-shop-btn:hover .btn-text .icon,
+#hero-cta:focus-visible .btn-text svg,
+#sticky-bar-cta-btn:focus-visible .btn-text svg,
+.proxy-bundle-btn:focus-visible .btn-text svg,
+.miroooo-sticky-btn:focus-visible .btn-text svg,
+.button:focus-visible .btn-text svg,
+.button--primary:focus-visible .btn-text svg,
+.button--light:focus-visible .btn-text svg,
+.gb-button:focus-visible .btn-text svg,
+.gb-button--light:focus-visible .btn-text svg,
+.cart-empty-shop-btn:focus-visible .btn-text svg {
   color: #ffffff !important;
   stroke: #ffffff !important;
   fill: none !important;
@@ -5336,7 +5483,22 @@ body.nav-open .miroooo-sticky-cart-wrap {
 #sticky-bar-cta-btn:hover .btn-text svg path,
 .proxy-bundle-btn:hover .btn-text svg path,
 .miroooo-sticky-btn:hover .btn-text svg path,
-.button:hover .btn-text svg path {
+.button:hover .btn-text svg path,
+.button--primary:hover .btn-text svg path,
+.button--light:hover .btn-text svg path,
+.gb-button:hover .btn-text svg path,
+.gb-button--light:hover .btn-text svg path,
+.cart-empty-shop-btn:hover .btn-text svg path,
+#hero-cta:focus-visible .btn-text svg path,
+#sticky-bar-cta-btn:focus-visible .btn-text svg path,
+.proxy-bundle-btn:focus-visible .btn-text svg path,
+.miroooo-sticky-btn:focus-visible .btn-text svg path,
+.button:focus-visible .btn-text svg path,
+.button--primary:focus-visible .btn-text svg path,
+.button--light:focus-visible .btn-text svg path,
+.gb-button:focus-visible .btn-text svg path,
+.gb-button--light:focus-visible .btn-text svg path,
+.cart-empty-shop-btn:focus-visible .btn-text svg path {
   stroke: #ffffff !important;
 }
 
@@ -5355,6 +5517,104 @@ body.nav-open .miroooo-sticky-cart-wrap {
   background-color: #ffffff !important;
   background: #ffffff !important;
   border-color: #ffffff !important;
+}
+
+/* Secondary & Dark Button Hover Variants */
+.button--secondary:not(.button--close):not(.drawer__close),
+.button--dark,
+.gb-button--dark {
+  background: #000000 !important;
+  background-color: #000000 !important;
+  border-color: #000000 !important;
+  color: #ffffff !important;
+}
+
+.button--secondary:not(.button--close):not(.drawer__close) .btn-fill,
+.button--dark .btn-fill,
+.gb-button--dark .btn-fill {
+  background-color: #ffffff !important;
+  background: #ffffff !important;
+}
+
+.button--secondary:not(.button--close):not(.drawer__close) .btn-text,
+.button--dark .btn-text,
+.gb-button--dark .btn-text {
+  color: #ffffff !important;
+}
+
+.button--secondary:not(.button--close):not(.drawer__close):hover .btn-fill,
+.button--secondary:not(.button--close):not(.drawer__close):focus-visible .btn-fill,
+.button--dark:hover .btn-fill,
+.button--dark:focus-visible .btn-fill,
+.gb-button--dark:hover .btn-fill,
+.gb-button--dark:focus-visible .btn-fill {
+  transform: translate3d(0, 0%, 0) !important;
+}
+
+.button--secondary:not(.button--close):not(.drawer__close):hover .btn-text,
+.button--secondary:not(.button--close):not(.drawer__close):focus-visible .btn-text,
+.button--dark:hover .btn-text,
+.button--dark:focus-visible .btn-text,
+.gb-button--dark:hover .btn-text,
+.gb-button--dark:focus-visible .btn-text {
+  color: #000000 !important;
+}
+
+.button--secondary:not(.button--close):not(.drawer__close):hover .btn-text svg,
+.button--secondary:not(.button--close):not(.drawer__close):focus-visible .btn-text svg,
+.button--dark:hover .btn-text svg,
+.button--dark:focus-visible .btn-text svg,
+.gb-button--dark:hover .btn-text svg,
+.gb-button--dark:focus-visible .btn-text svg {
+  color: #000000 !important;
+  stroke: #000000 !important;
+}
+
+.button--secondary:not(.button--close):not(.drawer__close):hover .btn-text svg path,
+.button--secondary:not(.button--close):not(.drawer__close):focus-visible .btn-text svg path,
+.button--dark:hover .btn-text svg path,
+.button--dark:focus-visible .btn-text svg path,
+.gb-button--dark:hover .btn-text svg path,
+.gb-button--dark:focus-visible .btn-text svg path {
+  stroke: #000000 !important;
+}
+
+/* Outline Button Hover Variant */
+.button--outline {
+  background: transparent !important;
+  background-color: transparent !important;
+  color: #ffffff !important;
+  border-color: rgba(255, 255, 255, 0.35) !important;
+}
+
+.button--outline .btn-fill {
+  background: #ffffff !important;
+  background-color: #ffffff !important;
+}
+
+.button--outline .btn-text {
+  color: #ffffff !important;
+}
+
+.button--outline:hover,
+.button--outline:focus-visible {
+  border-color: #ffffff !important;
+}
+
+.button--outline:hover .btn-fill,
+.button--outline:focus-visible .btn-fill {
+  transform: translate3d(0, 0%, 0) !important;
+}
+
+.button--outline:hover .btn-text,
+.button--outline:focus-visible .btn-text {
+  color: #000000 !important;
+}
+
+.button--outline:hover .btn-text svg,
+.button--outline:focus-visible .btn-text svg {
+  color: #000000 !important;
+  stroke: #000000 !important;
 }
 
 .icon-cart-bag,
