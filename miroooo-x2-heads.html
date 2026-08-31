@@ -2186,11 +2186,26 @@ theme.variantStrings = {
       </ul>
     </nav>
   </div>
-  <div class="header__buttons flex items-center gap-1d5"><a href="/order-tracking" class="account-link flex items-center justify-center" is="magnet-link" rel="nofollow" aria-label="Account">
+  <div class="header__buttons flex items-center gap-1d5"><div class="header__dropdown header__account-dropdown relative" data-dropdown><button type="button" class="account-link header__dropdown-toggle flex items-center justify-center cursor-pointer" aria-expanded="false" aria-haspopup="true" is="magnet-button" aria-label="Account">
         <span class="sr-only">Account</span><svg class="icon icon-account icon-lg" viewBox="0 0 24 24" stroke="currentColor" fill="none" xmlns="http://www.w3.org/2000/svg">
       <rect width="10.5" height="10.5" x="6.75" y="1.75" rx="5.25"></rect>
       <path stroke-linecap="round" d="M12 15.5c1.5 0 4 .333 4.5.5.5.167 3.7.8 4.5 2 1 1.5 1 2 1 4m-10-6.5c-1.5 0-4 .333-4.5.5-.5.167-3.7.8-4.5 2-1 1.5-1 2-1 4"></path>
-    </svg></a><a href="/cart" class="cart-drawer-button flex items-center justify-center relative" is="magnet-link" aria-controls="CartDrawer" aria-expanded="false" data-no-instant aria-label="Cart">
+    </svg></button><div class="dropdown-menu dropdown-menu--right" role="menu">
+      <div class="dropdown-menu__header">
+        <p class="dropdown-menu__eyebrow">MIROOOO ACCOUNT</p>
+        <p class="dropdown-menu__subtitle">Save profile and order history</p>
+      </div>
+      <div class="dropdown-menu__body">
+        <a href="https://miroooo.us/sign-in" class="dropdown-item" role="menuitem">
+          <svg class="dropdown-item__icon" viewBox="0 0 24 24" stroke="currentColor" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+          <div class="dropdown-item__title">Sign in</div>
+        </a>
+        <a href="https://miroooo.us/sign-up" class="dropdown-item" role="menuitem">
+          <svg class="dropdown-item__icon" viewBox="0 0 24 24" stroke="currentColor" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+          <div class="dropdown-item__title">Sign up</div>
+        </a>
+      </div>
+    </div></div><a href="/cart" class="cart-drawer-button flex items-center justify-center relative" is="magnet-link" aria-controls="CartDrawer" aria-expanded="false" data-no-instant aria-label="Cart">
         <span class="sr-only">Cart</span><svg class="icon icon-cart icon-lg" viewBox="0 0 24 24" stroke="currentColor" fill="none" xmlns="http://www.w3.org/2000/svg">
           <path stroke-linecap="round" stroke-linejoin="round" d="M1 1h.5v0c.226 0 .339 0 .44.007a3 3 0 0 1 2.62 1.976c.034.095.065.204.127.42l.17.597m0 0 1.817 6.358c.475 1.664.713 2.496 1.198 3.114a4 4 0 0 0 1.633 1.231c.727.297 1.592.297 3.322.297h2.285c1.75 0 2.626 0 3.359-.302a4 4 0 0 0 1.64-1.253c.484-.627.715-1.472 1.175-3.161l.06-.221c.563-2.061.844-3.092.605-3.906a3 3 0 0 0-1.308-1.713C19.92 4 18.853 4 16.716 4H4.857ZM12 20a2 2 0 1 1-4 0 2 2 0 0 1 4 0Zm8 0a2 2 0 1 1-4 0 2 2 0 0 1 4 0Z"></path>
         </svg><cart-count class="count absolute top-0 right-0 text-xs" aria-label="0 items" hidden>0</cart-count>
@@ -3083,7 +3098,7 @@ theme.variantStrings = {
             <h4 class="site-footer__heading">SUPPORT</h4>
             <ul class="site-footer__links">
               <li><a href="/contact">Contact Us</a></li>
-              <li><a href="/order-tracking">Order Tracking</a></li>
+              <li><a href="https://miroooo.us/pages/order-tracking">Order Tracking</a></li>
               <li><a href="/about-us">About Us</a></li>
               <li><a href="/faq">FAQs</a></li>
               <li><a href="/cookies-policy">Cookies Policy</a></li>

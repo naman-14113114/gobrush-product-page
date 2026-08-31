@@ -4057,24 +4057,51 @@ body[data-page="cart"] .site-header--cart .header__logo {
 }
 
 /* Dropdown Navigation Item */
+.dropdown-menu .dropdown-item,
 .dropdown-item {
+  position: relative !important;
+  width: 100% !important;
+  height: auto !important;
+  min-height: 40px !important;
   display: flex !important;
+  flex-direction: row !important;
   align-items: center !important;
+  justify-content: flex-start !important;
   padding: 10px 16px !important;
   margin: 2px 0 !important;
   border-radius: 8px !important;
   text-decoration: none !important;
   background: transparent !important;
+  color: #ffffff !important;
   transition: background-color 0.18s ease, transform 0.18s ease !important;
   cursor: pointer !important;
+  box-sizing: border-box !important;
 }
 
+.dropdown-menu .dropdown-item:hover,
+.dropdown-menu .dropdown-item:focus,
 .dropdown-item:hover,
 .dropdown-item:focus {
   background-color: rgba(255, 255, 255, 0.08) !important;
   transform: translateX(2px) !important;
 }
 
+.dropdown-menu .dropdown-item .dropdown-item__icon,
+.dropdown-item__icon {
+  width: 16px !important;
+  height: 16px !important;
+  min-width: 16px !important;
+  min-height: 16px !important;
+  stroke: currentColor !important;
+  stroke-width: 1.6 !important;
+  fill: none !important;
+  margin-right: 12px !important;
+  color: rgba(255, 255, 255, 0.8) !important;
+  flex-shrink: 0 !important;
+  display: inline-block !important;
+}
+
+.dropdown-menu .dropdown-item .dropdown-item__title,
 .dropdown-item__title {
   color: #ffffff !important;
   font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif !important;
@@ -4082,8 +4109,10 @@ body[data-page="cart"] .site-header--cart .header__logo {
   font-weight: 500 !important;
   line-height: 1.3 !important;
   letter-spacing: -0.01em !important;
-  display: block !important;
+  display: inline-block !important;
+  white-space: nowrap !important;
   text-align: left !important;
+  flex: 1 !important;
 }
 
 .dropdown-item__subtitle {
@@ -4097,6 +4126,51 @@ body[data-page="cart"] .site-header--cart .header__logo {
   text-align: left !important;
 }
 
+/* Account Dropdown Right-Alignment & Headers */
+.dropdown-menu--right,
+.header__account-dropdown .dropdown-menu {
+  left: auto !important;
+  right: 0 !important;
+  min-width: 260px !important;
+}
+
+.dropdown-menu__header {
+  padding: 10px 16px 10px 16px !important;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08) !important;
+  margin-bottom: 4px !important;
+  text-align: left !important;
+}
+
+.dropdown-menu__eyebrow {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif !important;
+  font-size: 10.5px !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.08em !important;
+  text-transform: uppercase !important;
+  color: rgba(255, 255, 255, 0.5) !important;
+  margin: 0 !important;
+  line-height: 1.2 !important;
+  white-space: nowrap !important;
+}
+
+.dropdown-menu__subtitle {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif !important;
+  font-size: 13px !important;
+  font-weight: 600 !important;
+  color: #ffffff !important;
+  margin: 4px 0 0 0 !important;
+  line-height: 1.3 !important;
+  white-space: nowrap !important;
+}
+
+.dropdown-menu__body {
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 2px !important;
+  width: 100% !important;
+  box-sizing: border-box !important;
+}
+
 /* Authentic GoBrush Header Icon Buttons (Cart & Account) */
 .header__buttons,
 .site-actions .header__buttons {
@@ -4105,10 +4179,14 @@ body[data-page="cart"] .site-header--cart .header__logo {
   gap: 8px !important;
 }
 
-.site-header .header__buttons a,
-.site-header .header__buttons button,
-.header__buttons a,
-.header__buttons button,
+.site-header .header__buttons > a,
+.site-header .header__buttons > button,
+.site-header .header__buttons > .header__dropdown > a,
+.site-header .header__buttons > .header__dropdown > button,
+.header__buttons > a,
+.header__buttons > button,
+.header__buttons > .header__dropdown > a,
+.header__buttons > .header__dropdown > button,
 .site-actions__bag,
 .account-link {
   position: relative !important;
@@ -4128,13 +4206,17 @@ body[data-page="cart"] .site-header--cart .header__logo {
   will-change: transform;
 }
 
-/* Icon SVGs */
-.site-header .header__buttons a svg,
-.site-header .header__buttons button svg,
-.header__buttons a svg,
-.header__buttons button svg,
-.site-actions__bag svg,
-.account-link svg,
+/* Icon SVGs for direct header buttons */
+.site-header .header__buttons > a > svg,
+.site-header .header__buttons > button > svg,
+.site-header .header__buttons > .header__dropdown > a > svg,
+.site-header .header__buttons > .header__dropdown > button > svg,
+.header__buttons > a > svg,
+.header__buttons > button > svg,
+.header__buttons > .header__dropdown > a > svg,
+.header__buttons > .header__dropdown > button > svg,
+.site-actions__bag > svg,
+.account-link > svg,
 .icon-account,
 .icon-cart,
 .icon-hamburger {
@@ -4149,21 +4231,29 @@ body[data-page="cart"] .site-header--cart .header__logo {
 }
 
 @media (hover: hover) {
-  .site-header .header__buttons a:hover,
-  .site-header .header__buttons button:hover,
-  .header__buttons a:hover,
-  .header__buttons button:hover,
+  .site-header .header__buttons > a:hover,
+  .site-header .header__buttons > button:hover,
+  .site-header .header__buttons > .header__dropdown > a:hover,
+  .site-header .header__buttons > .header__dropdown > button:hover,
+  .header__buttons > a:hover,
+  .header__buttons > button:hover,
+  .header__buttons > .header__dropdown > a:hover,
+  .header__buttons > .header__dropdown > button:hover,
   .site-actions__bag:hover,
   .account-link:hover {
     background: transparent !important;
   }
 
-  .site-header .header__buttons a:hover svg,
-  .site-header .header__buttons button:hover svg,
-  .header__buttons a:hover svg,
-  .header__buttons button:hover svg,
-  .site-actions__bag:hover svg,
-  .account-link:hover svg {
+  .site-header .header__buttons > a:hover > svg,
+  .site-header .header__buttons > button:hover > svg,
+  .site-header .header__buttons > .header__dropdown > a:hover > svg,
+  .site-header .header__buttons > .header__dropdown > button:hover > svg,
+  .header__buttons > a:hover > svg,
+  .header__buttons > button:hover > svg,
+  .header__buttons > .header__dropdown > a:hover > svg,
+  .header__buttons > .header__dropdown > button:hover > svg,
+  .site-actions__bag:hover > svg,
+  .account-link:hover > svg {
     opacity: 0.8 !important;
   }
 }

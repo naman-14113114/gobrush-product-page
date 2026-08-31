@@ -64,6 +64,7 @@
   const trialIcon = '<svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M12 3 4.5 6v5.5c0 4.7 3.1 7.9 7.5 9.5 4.4-1.6 7.5-4.8 7.5-9.5V6L12 3Z"/><path d="m9 12 2 2 4-4"/></svg>';
   const warrantyIcon = '<svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>';
 
+  const userMenuIcon = '<svg class="dropdown-item__icon" viewBox="0 0 24 24" stroke="currentColor" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>';
   const currentPage = document.body.dataset.page || "";
   const current = (pages) => pages.includes(currentPage) ? ' aria-current="page"' : "";
   const flipLabel = (label) => `<span class="nav-link__flip"><span>${label}</span><span aria-hidden="true">${label}</span></span>`;
@@ -221,10 +222,28 @@
               </nav>
             </div>
             <div class="header__buttons flex items-center gap-1d5">
-              <a class="account-link flex items-center justify-center" href="/order-tracking" aria-label="Account" is="magnet-link" rel="nofollow"${current(["tracking", "order-tracking"])}>
-                <span class="sr-only">Account</span>
-                ${accountIcon}
-              </a>
+              <div class="header__dropdown header__account-dropdown relative" data-dropdown>
+                <button type="button" class="account-link header__dropdown-toggle flex items-center justify-center cursor-pointer" aria-expanded="false" aria-haspopup="true" aria-label="Account" is="magnet-button">
+                  <span class="sr-only">Account</span>
+                  ${accountIcon}
+                </button>
+                <div class="dropdown-menu dropdown-menu--right" role="menu">
+                  <div class="dropdown-menu__header">
+                    <p class="dropdown-menu__eyebrow">MIROOOO ACCOUNT</p>
+                    <p class="dropdown-menu__subtitle">Save profile and order history</p>
+                  </div>
+                  <div class="dropdown-menu__body">
+                    <a href="https://miroooo.us/sign-in" class="dropdown-item" role="menuitem">
+                      ${userMenuIcon}
+                      <div class="dropdown-item__title">Sign in</div>
+                    </a>
+                    <a href="https://miroooo.us/sign-up" class="dropdown-item" role="menuitem">
+                      ${userMenuIcon}
+                      <div class="dropdown-item__title">Sign up</div>
+                    </a>
+                  </div>
+                </div>
+              </div>
               <a class="site-actions__bag cart-drawer-button flex items-center justify-center relative" href="/cart" aria-label="Cart" is="magnet-link" aria-controls="CartDrawer" aria-expanded="false" data-no-instant>
                 <span class="sr-only">Cart</span>
                 ${bagIcon}
@@ -320,7 +339,7 @@
               <h4 class="site-footer__heading">SUPPORT</h4>
               <ul class="site-footer__links">
                 <li><a href="/contact">Contact Us</a></li>
-                <li><a href="/order-tracking">Order Tracking</a></li>
+                <li><a href="https://miroooo.us/pages/order-tracking">Order Tracking</a></li>
                 <li><a href="/about-us">About Us</a></li>
                 <li><a href="/faq">FAQs</a></li>
                 <li><a href="/cookies-policy">Cookies Policy</a></li>
