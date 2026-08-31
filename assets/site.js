@@ -1028,15 +1028,16 @@
               image = "/assets_ref/x2/heads/B1.webp";
               unlockedGifts = 0;
             } else if (isX2) {
+              unlockedGifts = 0;
               if (qty === 1) { unitPrice = 79; comparePrice = 159; }
               else if (qty === 2) { unitPrice = 148; comparePrice = 318; }
               else { unitPrice = qty * 66; comparePrice = qty * 159; }
 
               const firstColor = (colors[0] || "").toLowerCase();
-              image = "/assets_ref/x2/gallery/miroooo-x2-sonic-electric-toothbrush-grey-in-hand.webp";
-              if (firstColor.includes("pink") || firstColor.includes("rose")) image = "/assets_ref/x2/gallery/miroooo-x2-sonic-electric-toothbrush-pink-in-hand.webp";
-              else if (firstColor.includes("silver")) image = "/assets_ref/x2/gallery/miroooo-x2-sonic-electric-toothbrush-silver-in-hand.webp";
-              else if (firstColor.includes("grey") || firstColor.includes("gray")) image = "/assets_ref/x2/gallery/miroooo-x2-sonic-electric-toothbrush-grey-in-hand.webp";
+              image = "/assets_ref/x2/gallery/miroooo-x2-sonic-electric-toothbrush-grey-checkout.webp";
+              if (firstColor.includes("pink") || firstColor.includes("rose")) image = "/assets_ref/x2/gallery/miroooo-x2-sonic-electric-toothbrush-pink-checkout.webp";
+              else if (firstColor.includes("silver")) image = "/assets_ref/x2/gallery/miroooo-x2-sonic-electric-toothbrush-silver-checkout.webp";
+              else if (firstColor.includes("grey") || firstColor.includes("gray")) image = "/assets_ref/x2/gallery/miroooo-x2-sonic-electric-toothbrush-grey-checkout.webp";
             } else {
               if (qty === 1) { unitPrice = 59; comparePrice = 119; }
               else if (qty === 2) { unitPrice = 110; comparePrice = 238; }
@@ -1333,7 +1334,7 @@
           if (isHeads) {
             description = "DuPont Ultra-Soft Replacement Heads (2-Pack) for Brush X2.";
           } else if (isX2) {
-            description = `45° Bass sweep guidance, smart pressure sensor halo, and 90-day cobalt endurance${extraHeadsNote}.`;
+            description = `Includes free luxury travel case, magnetic USB-C dock & 90-day battery life${extraHeadsNote}.`;
           }
 
           const colorsLabel = (!isHeads && item.choices && item.choices.length > 0)

@@ -1537,10 +1537,11 @@
           source: "miroooo",
           subtitle: "Electric Toothbrush with 32,000 VPM acoustic motor & 60-day battery.",
           image: "/assets_ref/x/gallery/Miroooo_x_Grey-2.webp",
+          alt: "Miroooo Brush X Sonic Electric Toothbrush",
           variants: {
-            "Grey": { variantId: "1000020700958564", image: "/assets_ref/x/gallery/Miroooo_x_Grey-2.webp" },
-            "Pink": { variantId: "1000020700958562", image: "/assets_ref/x/gallery/Miroooo_x_Pink-1.webp" },
-            "Silver": { variantId: "1000020700958563", image: "/assets_ref/x/gallery/Miroooo_x_Silver-1.webp" }
+            "Grey": { variantId: "1000020700958564", image: "/assets_ref/x/gallery/Miroooo_x_Grey-2.webp", alt: "Miroooo Brush X Sonic Electric Toothbrush - Space Grey" },
+            "Pink": { variantId: "1000020700958562", image: "/assets_ref/x/gallery/Miroooo_x_Pink-1.webp", alt: "Miroooo Brush X Sonic Electric Toothbrush - Rose Pink" },
+            "Silver": { variantId: "1000020700958563", image: "/assets_ref/x/gallery/Miroooo_x_Silver-1.webp", alt: "Miroooo Brush X Sonic Electric Toothbrush - Metallic Silver" }
           },
           getPricing(qty) {
             const count = Math.max(1, qty);
@@ -1555,12 +1556,12 @@
           name: "Brush X2",
           productId: "1000000675072187",
           source: "miroooo-x2",
-          subtitle: "Precision Guided Electric Toothbrush with 45° sweep guidance & 90-day battery.",
-          image: "/assets_ref/x2/gallery/miroooo-x2-sonic-electric-toothbrush-upright-grip.webp",
+          subtitle: "Includes free luxury travel case, magnetic USB-C dock & 90-day battery life.",
+          image: "/assets_ref/x2/gallery/miroooo-x2-sonic-electric-toothbrush-silver-checkout.webp",
           variants: {
-            "Grey": { variantId: "1000020700182883", image: "/assets_ref/x2/gallery/miroooo-x2-sonic-electric-toothbrush-grey-in-hand.webp" },
-            "Pink": { variantId: "1000020700182882", image: "/assets_ref/x2/gallery/miroooo-x2-sonic-electric-toothbrush-pink-in-hand.webp" },
-            "Silver": { variantId: "1000020700182884", image: "/assets_ref/x2/gallery/miroooo-x2-sonic-electric-toothbrush-silver-in-hand.webp" }
+            "Grey": { variantId: "1000020700182883", image: "/assets_ref/x2/gallery/miroooo-x2-sonic-electric-toothbrush-grey-checkout.webp", alt: "Miroooo Brush X2 Sonic Electric Toothbrush - Space Grey" },
+            "Pink": { variantId: "1000020700182882", image: "/assets_ref/x2/gallery/miroooo-x2-sonic-electric-toothbrush-pink-checkout.webp", alt: "Miroooo Brush X2 Sonic Electric Toothbrush - Rose Pink" },
+            "Silver": { variantId: "1000020700182884", image: "/assets_ref/x2/gallery/miroooo-x2-sonic-electric-toothbrush-silver-checkout.webp", alt: "Miroooo Brush X2 Sonic Electric Toothbrush - Metallic Silver" }
           },
           getPricing(qty) {
             const count = Math.max(1, qty);
@@ -1577,8 +1578,9 @@
           source: "miroooo-x2-heads",
           subtitle: "DuPont Ultra-Soft Replacement Heads (2-Pack) for Brush X2.",
           image: "/assets_ref/x2/heads/B1.webp",
+          alt: "Miroooo Brush X2 Precision DuPont Replacement Heads 2-Pack",
           variants: {
-            "Default": { variantId: "1000020700182881", image: "/assets_ref/x2/heads/B1.webp" }
+            "Default": { variantId: "1000020700182881", image: "/assets_ref/x2/heads/B1.webp", alt: "Miroooo Brush X2 Precision DuPont Replacement Heads 2-Pack" }
           },
           getPricing(qty) {
             const count = Math.max(1, qty);
@@ -1740,8 +1742,9 @@
           giftsValue = 0;
           unlockedGiftsCount = 0;
         } else if (isX2) {
-          // X2 base 3 gifts value = £35, plus £20 per extra brush heads set (2 heads/set)
-          giftsValue = 35 + (extraBrushHeadSets * 20);
+          // X2 has NO free gift unlock section (Case, App removed). Only extra free brush heads on Buy 2+
+          giftsValue = extraBrushHeadSets * 15;
+          unlockedGiftsCount = extraBrushHeadSets > 0 ? 1 : 0;
         }
 
         let promoDiscount = 0;
@@ -1813,7 +1816,7 @@
               <!-- Brush Heads Item -->
               <div class="cart-line-item" data-product="miroooo-x2-heads">
                 <div class="cart-line-item__media">
-                  <img src="${itemImage}" alt="${itemTitle}" />
+                  <img src="${itemImage}" alt="${product.alt || itemTitle}" />
                 </div>
                 <div class="cart-line-item__content">
                   <div>
@@ -1870,6 +1873,7 @@
 
               const variantObj = product.variants[color] || product.variants["Grey"] || product.variants["Pink"] || product.variants["Silver"];
               const itemImage = variantObj?.image || product.image;
+              const itemAlt = variantObj?.alt || `${itemTitle} - Miroooo Sonic Electric Toothbrush`;
 
               const itemPrice = Math.round(unitSubtotal * count);
               const itemCompare = Math.round(unitCompare * count);
@@ -1878,7 +1882,7 @@
                 <!-- Brush Item (${color}) -->
                 <div class="cart-line-item" data-color="${color}">
                   <div class="cart-line-item__media">
-                    <img src="${itemImage}" alt="${itemTitle}" />
+                    <img src="${itemImage}" alt="${itemAlt}" />
                   </div>
                   <div class="cart-line-item__content">
                     <div>
@@ -1922,14 +1926,15 @@
                 const heads = sets * 2;
                 const title = `${heads}x Extra Free Brush Heads (${sets} ${sets > 1 ? "Sets" : "Set"})`;
                 const subtitle = `${sets} complimentary ${sets > 1 ? "sets contain" : "set contains"} ${heads} DuPont precision replacement heads for Brush X2.`;
-                const compareVal = sets * 20;
+                const compareVal = sets * 15;
                 const badgeText = `UNLOCKED ${sets} ${sets > 1 ? "SETS" : "SET"} (${heads} BRUSH HEADS)`;
-                const giftImage = "/assets_ref/x/gallery/Miroooo_x_Grey-4.webp";
+                const giftImage = "/assets_ref/x2/heads/B1.webp";
+                const giftAlt = `Complimentary ${heads}x DuPont Precision Replacement Brush Heads for Miroooo Brush X2`;
 
                 html += `
                   <div class="cart-line-item">
                     <div class="cart-line-item__media">
-                      <img src="${giftImage}" alt="${title}" />
+                      <img src="${giftImage}" alt="${giftAlt}" />
                     </div>
                     <div class="cart-line-item__content">
                       <div>
@@ -2071,18 +2076,7 @@
           if (breakdownGiftCase) breakdownGiftCase.style.display = "none";
           if (breakdownGiftHeads) breakdownGiftHeads.style.display = "none";
         } else if (totals.isX2) {
-          if (breakdownGiftCase) {
-            breakdownGiftCase.style.display = "flex";
-            const caseLabel = breakdownGiftCase.querySelector("span:first-child");
-            if (caseLabel) {
-              caseLabel.innerHTML = `
-                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7.01" y2="7"></line></svg>
-                2 Unlocked Free Gifts (Case, App)
-              `;
-            }
-            const caseVal = breakdownGiftCase.querySelector("span:last-child");
-            if (caseVal) caseVal.textContent = "-£35";
-          }
+          if (breakdownGiftCase) breakdownGiftCase.style.display = "none";
 
           if (totals.extraBrushHeadSets > 0) {
             if (breakdownGiftHeads) {
@@ -2095,7 +2089,7 @@
                 `;
               }
               const headsVal = breakdownGiftHeads.querySelector("span:last-child");
-              if (headsVal) headsVal.textContent = `-£${totals.extraBrushHeadSets * 20}`;
+              if (headsVal) headsVal.textContent = `-£${totals.extraBrushHeadSets * 15}`;
             }
           } else {
             if (breakdownGiftHeads) breakdownGiftHeads.style.display = "none";
