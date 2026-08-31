@@ -2393,12 +2393,11 @@ theme.variantStrings = {
   }
   .x2-urgency-banner__timeline-fill {
     height: 100%;
-    width: 0%;
-    background: #000000;
+    width: 78%;
+    background: linear-gradient(90deg, #111111 0%, #333333 65%, #000000 100%);
     border-radius: 9999px;
     position: relative;
     overflow: hidden;
-    transition: width 1.2s cubic-bezier(0.16, 1, 0.3, 1);
   }
   .x2-urgency-banner__timeline-fill::after {
     content: '';
@@ -2407,12 +2406,29 @@ theme.variantStrings = {
     left: -100%;
     width: 100%;
     height: 100%;
-    background: linear-gradient(90deg, transparent 0%, rgba(255, 255, 255, 0.55) 50%, transparent 100%);
+    background: linear-gradient(90deg, transparent 0%, rgba(255, 255, 255, 0.65) 50%, transparent 100%);
     animation: x2SlideShimmer 2.2s infinite ease-in-out;
   }
   @keyframes x2SlideShimmer {
     0% { transform: translateX(0); }
-    100% { transform: translateX(300%); }
+    100% { transform: translateX(250%); }
+  }
+  .x2-timeline-pulse-dot {
+    position: absolute;
+    right: 1px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 5px;
+    height: 5px;
+    background: #ffffff;
+    border-radius: 50%;
+    box-shadow: 0 0 6px rgba(255, 255, 255, 0.95);
+    animation: x2DotPulse 1.5s ease-in-out infinite;
+    z-index: 2;
+  }
+  @keyframes x2DotPulse {
+    0%, 100% { opacity: 0.5; transform: translateY(-50%) scale(0.85); }
+    50% { opacity: 1; transform: translateY(-50%) scale(1.3); }
   }
 
   /* Responsive Adjustments */
@@ -2503,7 +2519,9 @@ theme.variantStrings = {
             <span class="x2-timer-text">OFFER ENDING SOON</span>
           </div>
           <div class="x2-urgency-banner__timeline-track" role="progressbar" aria-valuenow="78" aria-valuemin="0" aria-valuemax="100" aria-label="Time remaining progress">
-            <div class="x2-urgency-banner__timeline-fill" id="x2TimelineFill"></div>
+            <div class="x2-urgency-banner__timeline-fill" id="x2TimelineFill">
+              <span class="x2-timeline-pulse-dot"></span>
+            </div>
           </div>
         </div>
       </div>
