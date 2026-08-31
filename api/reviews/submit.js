@@ -44,7 +44,7 @@ module.exports = async function handler(req, res) {
     const timeIST = now.toLocaleTimeString("en-GB", { timeZone: "Asia/Kolkata" });
     const submittedAtIST = `${dateIST} ${timeIST} IST`;
     const isX2 = String(productId).toLowerCase().includes("x2");
-    const productName = isX2 ? "Miroooo Brush X2 Flagship" : "Miroooo Brush X Sonic";
+    const productName = isX2 ? "Miroooo Brush X2 Flagship" : "Miroooo Brush X1 Sonic";
 
     const reviewEntry = {
       id: `org-rev-${Date.now()}`,
@@ -69,7 +69,7 @@ module.exports = async function handler(req, res) {
     try {
       const emailPayload = {
         access_key: WEB3FORMS_ACCESS_KEY,
-        subject: `[New Customer Review] ${rating}★ for ${isX2 ? "Brush X2" : "Brush X"} - "${title || name}"`,
+        subject: `[New Customer Review] ${rating}★ for ${isX2 ? "Brush X2" : "Brush X1"} - "${title || name}"`,
         from_name: `Miroooo Reviews (${reviewEntry.name})`,
         email: reviewEntry.email || "no-reply@trymiroooo.com",
         Product: productName,
@@ -115,7 +115,7 @@ module.exports = async function handler(req, res) {
 
     existingReviews.unshift(reviewEntry);
 
-    const updatedContent = `// Standalone Organic Customer Submissions for ${isX2 ? "Brush X2" : "Brush X"} (Not rendered on storefront)
+    const updatedContent = `// Standalone Organic Customer Submissions for ${isX2 ? "Brush X2" : "Brush X1"} (Not rendered on storefront)
 const ${varName} = ${JSON.stringify(existingReviews, null, 2)};
 
 if (typeof module !== 'undefined') {

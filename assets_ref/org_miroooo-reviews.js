@@ -1,4 +1,4 @@
-// Standalone Organic Customer Submissions for Brush X (Not rendered on storefront)
+// Standalone Organic Customer Submissions for Brush X1 (Not rendered on storefront)
 const ORG_MIROOOO_REVIEWS = [
   {
     "id": "org-rev-1787803682049",

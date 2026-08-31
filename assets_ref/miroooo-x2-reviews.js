@@ -52,7 +52,7 @@
       displayDate: '28 August 2026',
       variant: 'Pink / Single',
       title: 'Best travel setup ever—worth every penny',
-      body: 'Everything about this package is top notch. The magnetic box it comes in is super clean, and the included travel capsule fits right into my makeup bag without taking up space. The USB-C charging means I don\'t have to carry a separate brick when I go on trips. Used the Brush X by Miroooo this morning and my teeth feel polished. You get way more value here than buying the overpriced brand names.',
+      body: 'Everything about this package is top notch. The magnetic box it comes in is super clean, and the included travel capsule fits right into my makeup bag without taking up space. The USB-C charging means I don\'t have to carry a separate brick when I go on trips. Used the Brush X1 by Miroooo this morning and my teeth feel polished. You get way more value here than buying the overpriced brand names.',
       video: {
         src: '/assets_ref/x2/qb81f4-h264-hd.mp4',
         poster: '/assets_ref/x2/qb81f4-poster.webp'

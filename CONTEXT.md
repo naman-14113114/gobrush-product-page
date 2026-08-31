@@ -113,4 +113,18 @@ Append-only memory for the `gobrush-product-page` repository. Do not delete or s
   - Synced `shop.html` and `warranty.html` to reflect 3 years for X2 and 2 years for X.
   - Built static storefront with `npm run build` and ran `npm run verify` (25 files / 17 pages checked, 0 errors).
 
+## 2026-08-31 23:25:00 +05:30 - Renamed Brush X / Miroooo X to Brush X1
+
+- User request: Change name of Brush X or Miroooo X wherever used on website (including reviews, comparisons, navigation, FAQs, titles, metadata, cart) to Brush X1. Keep all images, videos, layout, and Brush X2 / 2x Brush X2 Heads completely intact.
+- Changes made:
+  - Updated all user-facing names, alt text, JS data, schema, and titles in `miroooo-x.html` to `Brush X1`.
+  - Updated comparison table headers, navigation dropdowns, mobile drawer, and FAQ text in `miroooo-x2.html` and `miroooo-x2-heads.html` to `Brush X1`.
+  - Updated meta tags, hero shop buttons, feature copy, and finish cards in `index.html` and `shop.html` to `Brush X1`.
+  - Updated cart configuration, empty state, and bundle items in `cart.html` and `assets/site.js` to `Brush X1`.
+  - Updated reviews datasets and review generator in `assets_ref/miroooo-reviews.js` and `assets_ref/miroooo-x2-reviews.js` to `Brush X1`.
+  - Updated API fallback name and email notification subject in `api/reviews/submit.js` to `Brush X1`.
+  - Kept `Brush X2`, `Miroooo X2`, and `2x Brush X2 Heads` completely intact.
+  - Preserved all routing URLs (`/products/miroooo-x`), physical file names (`miroooo-x.html`), media paths (`/assets_ref/x/...`), and PlusBase checkout parameters (`source: "miroooo"`).
+  - Built static storefront with `npm run build` (`Miroooo verification passed: 25 required files and 17 storefront pages checked`).
+
 

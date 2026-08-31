@@ -135,7 +135,7 @@
                   <ul class="drawer__submenu" role="list">
                     <li>
                       <a class="drawer__submenu-item flex flex-col" href="/products/miroooo-x">
-                        <span class="drawer__submenu-title">Brush X</span>
+                        <span class="drawer__submenu-title">Brush X1</span>
                       </a>
                     </li>
                     <li>
@@ -192,7 +192,7 @@
                     </button>
                     <div class="dropdown-menu" role="menu">
                       <a href="/products/miroooo-x" class="dropdown-item" role="menuitem">
-                        <div class="dropdown-item__title">Brush X</div>
+                        <div class="dropdown-item__title">Brush X1</div>
                       </a>
                       <a href="/products/miroooo-x2" class="dropdown-item" role="menuitem">
                         <div class="dropdown-item__title">Brush X2</div>
@@ -323,7 +323,7 @@
               <h4 class="site-footer__heading">SHOP</h4>
               <ul class="site-footer__links">
                 <li><a href="/">Home</a></li>
-                <li><a href="/products/miroooo-x" data-product-link>Brush X</a></li>
+                <li><a href="/products/miroooo-x" data-product-link>Brush X1</a></li>
                 <li><a href="/products/miroooo-x2" data-product-link>Brush X2</a></li>
                 <li><a href="/products/miroooo-x2-heads" data-product-link>2x Brush X2 Heads</a></li>
                 <li><a href="/privacy">Privacy Policy</a></li>
@@ -1005,7 +1005,7 @@
             const isHeads = parsed.productId === "miroooo-x2-heads";
             const isX2 = parsed.productId === "miroooo-x2";
             let productHandle = "miroooo-x";
-            let title = "Brush X";
+            let title = "Brush X1";
             if (isHeads) {
               productHandle = "miroooo-x2-heads";
               title = "2x Brush X2 heads";
@@ -1303,7 +1303,7 @@
                 <path d="M16 10a4 4 0 0 1-8 0"></path>
               </svg>
               <h3 class="miroooo-empty-title">Your shopping bag is empty.</h3>
-              <p class="miroooo-empty-text">Add the Brush X or Brush X2 to unlock current offers and free shipping.</p>
+              <p class="miroooo-empty-text">Add the Brush X1 or Brush X2 to unlock current offers and free shipping.</p>
               <a href="/shop" class="miroooo-empty-shop-btn" onclick="window.MirooooCart.closeCart()">
                 Shop Miroooo
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
