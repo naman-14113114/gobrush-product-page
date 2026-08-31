@@ -1653,7 +1653,7 @@
 
   // Global Button Click Loader (Exact from muuhu-store)
   document.addEventListener("click", (e) => {
-    // Ignore navigation/drawer toggles, review controls, and small controls from receiving intrusive 5-dot overlay
+    // Ignore navigation/drawer toggles, review controls, gift message, and small controls from receiving intrusive 5-dot overlay
     if (e.target.closest(
       ".nav-toggle, .menu-drawer-button, .drawer__close, .mobile-panel__close, " +
       ".miroooo-cart-close-btn, .header__dropdown-toggle, [data-dropdown] button, " +
@@ -1664,7 +1664,9 @@
       ".miroooo-dropdown-item, .miroooo-filter-pill, .miroooo-breakdown-row, " +
       ".miroooo-lightbox-close, .miroooo-write-close, .miroooo-lightbox-close-btn, .miroooo-write-close-btn, " +
       ".miroooo-form-cancel, .miroooo-success-close, .miroooo-empty-reset-btn, #miroooo-clear-all-link, " +
-      ".accordion-summary, summary, [is='accordion-details']"
+      ".accordion-summary, summary, [is='accordion-details'], " +
+      ".gift-msg-toggle, #gift-msg-toggle-btn, .gift-msg-save-btn, #gift-msg-save-btn, " +
+      ".cart-discount-toggle, #discount-toggle-btn, .cart-promo-remove-btn, #remove-promo-btn, #cart-more-discount-link"
     )) {
       return;
     }
