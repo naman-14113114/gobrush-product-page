@@ -25,18 +25,38 @@
       } catch(e){}
     })();
   </script>
+  <link rel="preload" as="image" href="/assets_ref/x2/heads/B1.webp" type="image/webp" fetchpriority="high">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
   <link rel="preconnect" href="https://embed.tawk.to" crossorigin>
   <link rel="dns-prefetch" href="https://embed.tawk.to">
   <!--Start of Tawk.to Script-->
   <script type="text/javascript">
   var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
   (function(){
-  var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
-  s1.async=true;
-  s1.src='https://embed.tawk.to/6a94f3ac266bf9344afa81da/1k1atfn2e';
-  s1.charset='UTF-8';
-  s1.setAttribute('crossorigin','*');
-  s0.parentNode.insertBefore(s1,s0);
+    function loadTawk(){
+      if (window._tawkLoaded) return;
+      window._tawkLoaded = true;
+      var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
+      s1.async=true;
+      s1.src='https://embed.tawk.to/6a94f3ac266bf9344afa81da/1k1atfn2e';
+      s1.charset='UTF-8';
+      s1.setAttribute('crossorigin','*');
+      s0.parentNode.insertBefore(s1,s0);
+    }
+    if (document.readyState === 'complete') {
+      if ('requestIdleCallback' in window) requestIdleCallback(loadTawk, { timeout: 3000 });
+      else setTimeout(loadTawk, 2000);
+    } else {
+      window.addEventListener('load', function(){
+        if ('requestIdleCallback' in window) requestIdleCallback(loadTawk, { timeout: 3000 });
+        else setTimeout(loadTawk, 2000);
+      });
+    }
+    ['mousemove','touchstart','scroll','keydown'].forEach(function(evt){
+      window.addEventListener(evt, loadTawk, { once: true, passive: true });
+    });
   })();
   </script>
   <!--End of Tawk.to Script-->
@@ -402,11 +422,14 @@
 
 
 
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=GFS+Didot&display=swap" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flickity/2.3.0/flickity.min.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=GFS+Didot&display=swap" media="print" onload="this.media='all'">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800&display=swap" media="print" onload="this.media='all'">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flickity/2.3.0/flickity.min.css" media="print" onload="this.media='all'">
+<noscript>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=GFS+Didot&display=swap">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800&display=swap">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flickity/2.3.0/flickity.min.css">
+</noscript>
 <style>
 @media screen and (max-width: 1023px) {
   .product__media-list > .product__media-top-hero {
@@ -2315,16 +2338,16 @@ theme.variantStrings = {
 
       <div class="miroooo-gallery__nav" id="MirooooGalleryNav">
         <button type="button" class="miroooo-gallery__thumb is-active" data-media-type="image" data-index="0" aria-label="View product image 1" aria-current="true">
-          <div class="thumb-inner"><img alt="2x Brush X2 DuPont Replacement Heads Pack" src="/assets_ref/x2/heads/B1.webp" width="80" height="80" loading="eager" /></div>
+          <div class="thumb-inner"><img alt="2x Brush X2 DuPont Replacement Heads Pack" src="/assets_ref/x2/heads/B1.webp" width="80" height="80" /></div>
         </button>
         <button type="button" class="miroooo-gallery__thumb" data-media-type="image" data-index="1" aria-label="View product image 2" aria-current="false">
-          <div class="thumb-inner"><img alt="Miroooo Brush X2 Replacement Heads Bristle Detail" src="/assets_ref/x2/heads/B2.webp" width="80" height="80" loading="lazy" /></div>
+          <div class="thumb-inner"><img alt="Miroooo Brush X2 Replacement Heads Bristle Detail" src="/assets_ref/x2/heads/B2.webp" width="80" height="80" /></div>
         </button>
         <button type="button" class="miroooo-gallery__thumb" data-media-type="image" data-index="2" aria-label="View product image 3" aria-current="false">
-          <div class="thumb-inner"><img alt="Miroooo Brush X2 Heads Hygienic Packaging" src="/assets_ref/x2/heads/B3.webp" width="80" height="80" loading="lazy" /></div>
+          <div class="thumb-inner"><img alt="Miroooo Brush X2 Heads Hygienic Packaging" src="/assets_ref/x2/heads/B3.webp" width="80" height="80" /></div>
         </button>
         <button type="button" class="miroooo-gallery__thumb" data-media-type="image" data-index="3" aria-label="View product image 4" aria-current="false">
-          <div class="thumb-inner"><img alt="Miroooo Brush X2 Precision Sonic Attachment" src="/assets_ref/x2/heads/B4.webp" width="80" height="80" loading="lazy" /></div>
+          <div class="thumb-inner"><img alt="Miroooo Brush X2 Precision Sonic Attachment" src="/assets_ref/x2/heads/B4.webp" width="80" height="80" /></div>
         </button>
       </div>
 
@@ -2353,13 +2376,13 @@ theme.variantStrings = {
             <img src="/assets_ref/x2/heads/B1.webp" alt="2x Brush X2 DuPont Replacement Heads Pack" width="1000" height="1000" fetchpriority="high" />
           </div>
           <div class="miroooo-gallery__slide" data-media-type="image" data-index="1">
-            <img src="/assets_ref/x2/heads/B2.webp" alt="Miroooo Brush X2 Replacement Heads Bristle Detail" width="1000" height="1000" loading="lazy" />
+            <img src="/assets_ref/x2/heads/B2.webp" alt="Miroooo Brush X2 Replacement Heads Bristle Detail" width="1000" height="1000" />
           </div>
           <div class="miroooo-gallery__slide" data-media-type="image" data-index="2">
-            <img src="/assets_ref/x2/heads/B3.webp" alt="Miroooo Brush X2 Heads Hygienic Packaging" width="1000" height="1000" loading="lazy" />
+            <img src="/assets_ref/x2/heads/B3.webp" alt="Miroooo Brush X2 Heads Hygienic Packaging" width="1000" height="1000" />
           </div>
           <div class="miroooo-gallery__slide" data-media-type="image" data-index="3">
-            <img src="/assets_ref/x2/heads/B4.webp" alt="Miroooo Brush X2 Precision Sonic Attachment" width="1000" height="1000" loading="lazy" />
+            <img src="/assets_ref/x2/heads/B4.webp" alt="Miroooo Brush X2 Precision Sonic Attachment" width="1000" height="1000" />
           </div>
         </div>
 

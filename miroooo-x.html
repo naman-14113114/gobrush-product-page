@@ -25,18 +25,38 @@
       } catch(e){}
     })();
   </script>
+  <link rel="preload" as="image" href="/assets_ref/x/gallery/Miroooo_x_Pink-1.webp" type="image/webp" fetchpriority="high">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
   <link rel="preconnect" href="https://embed.tawk.to" crossorigin>
   <link rel="dns-prefetch" href="https://embed.tawk.to">
   <!--Start of Tawk.to Script-->
   <script type="text/javascript">
   var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
   (function(){
-  var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
-  s1.async=true;
-  s1.src='https://embed.tawk.to/6a94f3ac266bf9344afa81da/1k1atfn2e';
-  s1.charset='UTF-8';
-  s1.setAttribute('crossorigin','*');
-  s0.parentNode.insertBefore(s1,s0);
+    function loadTawk(){
+      if (window._tawkLoaded) return;
+      window._tawkLoaded = true;
+      var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
+      s1.async=true;
+      s1.src='https://embed.tawk.to/6a94f3ac266bf9344afa81da/1k1atfn2e';
+      s1.charset='UTF-8';
+      s1.setAttribute('crossorigin','*');
+      s0.parentNode.insertBefore(s1,s0);
+    }
+    if (document.readyState === 'complete') {
+      if ('requestIdleCallback' in window) requestIdleCallback(loadTawk, { timeout: 3000 });
+      else setTimeout(loadTawk, 2000);
+    } else {
+      window.addEventListener('load', function(){
+        if ('requestIdleCallback' in window) requestIdleCallback(loadTawk, { timeout: 3000 });
+        else setTimeout(loadTawk, 2000);
+      });
+    }
+    ['mousemove','touchstart','scroll','keydown'].forEach(function(evt){
+      window.addEventListener(evt, loadTawk, { once: true, passive: true });
+    });
   })();
   </script>
   <!--End of Tawk.to Script-->
@@ -402,11 +422,14 @@
 
 
 
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=GFS+Didot&display=swap" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flickity/2.3.0/flickity.min.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=GFS+Didot&display=swap" media="print" onload="this.media='all'">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800&display=swap" media="print" onload="this.media='all'">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flickity/2.3.0/flickity.min.css" media="print" onload="this.media='all'">
+<noscript>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=GFS+Didot&display=swap">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800&display=swap">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flickity/2.3.0/flickity.min.css">
+</noscript>
 <style>
 @media screen and (max-width: 1023px) {
   .product__media--video {
@@ -2059,14 +2082,14 @@ theme.variantStrings = {
 
         <!-- 1..8: Image thumbnails -->
         <button type="button" class="miroooo-gallery__thumb" data-index="1" aria-label="Product image 1" data-gang-default>
-          <div class="thumb-inner"><img src="/assets_ref/x/gallery/Miroooo_x_Pink-1.webp" alt="Brush X - Pink 1" loading="lazy" /></div>
+          <div class="thumb-inner"><img src="/assets_ref/x/gallery/Miroooo_x_Pink-1.webp" alt="Brush X - Pink 1" /></div>
         </button>
         <button type="button" class="miroooo-gallery__thumb" data-index="2" aria-label="Product image 2" data-gang-default>
-          <div class="thumb-inner"><img src="/assets_ref/x/gallery/Miroooo_x_Pink-2.webp" alt="Brush X - Pink 2" loading="lazy" /></div>
+          <div class="thumb-inner"><img src="/assets_ref/x/gallery/Miroooo_x_Pink-2.webp" alt="Brush X - Pink 2" /></div>
         </button>
         <button type="button" class="miroooo-gallery__thumb" data-index="3" data-media-type="video" aria-label="Product video 3" data-gang-default>
           <div class="thumb-inner thumb-video-inner">
-            <img src="/assets_ref/x/gallery/Miroooo_x_Pink-3.webp" alt="Brush X - Pink video thumbnail" loading="lazy" />
+            <img src="/assets_ref/x/gallery/Miroooo_x_Pink-3.webp" alt="Brush X - Pink video thumbnail" />
             <span class="thumb-play-icon" aria-hidden="true">
               <svg viewBox="0 0 24 24" fill="currentColor">
                 <path d="M8 5v14l11-7z"/>
@@ -2075,19 +2098,19 @@ theme.variantStrings = {
           </div>
         </button>
         <button type="button" class="miroooo-gallery__thumb" data-index="4" aria-label="Product image 4" data-gang-default>
-          <div class="thumb-inner"><img src="/assets_ref/x/gallery/Miroooo_x_Pink-4.webp" alt="Brush X - Pink 4" loading="lazy" /></div>
+          <div class="thumb-inner"><img src="/assets_ref/x/gallery/Miroooo_x_Pink-4.webp" alt="Brush X - Pink 4" /></div>
         </button>
         <button type="button" class="miroooo-gallery__thumb" data-index="5" aria-label="Product image 5" data-gang-default>
-          <div class="thumb-inner"><img src="/assets_ref/x/gallery/Miroooo_x_Pink-5.webp" alt="Brush X - Pink 5" loading="lazy" /></div>
+          <div class="thumb-inner"><img src="/assets_ref/x/gallery/Miroooo_x_Pink-5.webp" alt="Brush X - Pink 5" /></div>
         </button>
         <button type="button" class="miroooo-gallery__thumb" data-index="6" aria-label="Product image 6" data-gang-default>
-          <div class="thumb-inner"><img src="/assets_ref/x/gallery/Miroooo_x_Pink-6.webp" alt="Brush X - Pink 6" loading="lazy" /></div>
+          <div class="thumb-inner"><img src="/assets_ref/x/gallery/Miroooo_x_Pink-6.webp" alt="Brush X - Pink 6" /></div>
         </button>
         <button type="button" class="miroooo-gallery__thumb" data-index="7" aria-label="Product image 7" data-gang-default>
-          <div class="thumb-inner"><img src="/assets_ref/x/gallery/Miroooo_x_Pink-8.webp" alt="Brush X - Pink 8" loading="lazy" /></div>
+          <div class="thumb-inner"><img src="/assets_ref/x/gallery/Miroooo_x_Pink-8.webp" alt="Brush X - Pink 8" /></div>
         </button>
         <button type="button" class="miroooo-gallery__thumb" data-index="8" aria-label="Product image 8" data-gang-default>
-          <div class="thumb-inner"><img src="/assets_ref/x/gallery/Silver-9.webp" alt="Brush X - Pink 9" loading="lazy" /></div>
+          <div class="thumb-inner"><img src="/assets_ref/x/gallery/Silver-9.webp" alt="Brush X - Pink 9" /></div>
         </button>
       </div>
 
@@ -2139,7 +2162,7 @@ theme.variantStrings = {
                 playsinline
                 disablepictureinpicture
                 controlslist="nodownload nofullscreen noremoteplayback"
-                preload="auto"
+                preload="none"
               ></video>
             </div>
           </div>
@@ -2149,7 +2172,7 @@ theme.variantStrings = {
             <img src="/assets_ref/x/gallery/Miroooo_x_Pink-1.webp" alt="Brush X - Pink 1" width="1000" height="1000" fetchpriority="high" />
           </div>
           <div class="miroooo-gallery__slide" data-media-type="image" data-index="2" data-gang-default>
-            <img src="/assets_ref/x/gallery/Miroooo_x_Pink-2.webp" alt="Brush X - Pink 2" width="1000" height="1000" loading="lazy" />
+            <img src="/assets_ref/x/gallery/Miroooo_x_Pink-2.webp" alt="Brush X - Pink 2" width="1000" height="1000" />
           </div>
           <div class="miroooo-gallery__slide" data-media-type="video" data-index="3" data-gang-default>
             <div class="video-wrapper">
@@ -2161,24 +2184,24 @@ theme.variantStrings = {
                 playsinline
                 disablepictureinpicture
                 controlslist="nodownload nofullscreen noremoteplayback"
-                preload="auto"
+                preload="none"
               ></video>
             </div>
           </div>
           <div class="miroooo-gallery__slide" data-media-type="image" data-index="4" data-gang-default>
-            <img src="/assets_ref/x/gallery/Miroooo_x_Pink-4.webp" alt="Brush X - Pink 4" width="1000" height="1000" loading="lazy" />
+            <img src="/assets_ref/x/gallery/Miroooo_x_Pink-4.webp" alt="Brush X - Pink 4" width="1000" height="1000" />
           </div>
           <div class="miroooo-gallery__slide" data-media-type="image" data-index="5" data-gang-default>
-            <img src="/assets_ref/x/gallery/Miroooo_x_Pink-5.webp" alt="Brush X - Pink 5" width="1000" height="1000" loading="lazy" />
+            <img src="/assets_ref/x/gallery/Miroooo_x_Pink-5.webp" alt="Brush X - Pink 5" width="1000" height="1000" />
           </div>
           <div class="miroooo-gallery__slide" data-media-type="image" data-index="6" data-gang-default>
-            <img src="/assets_ref/x/gallery/Miroooo_x_Pink-6.webp" alt="Brush X - Pink 6" width="1000" height="1000" loading="lazy" />
+            <img src="/assets_ref/x/gallery/Miroooo_x_Pink-6.webp" alt="Brush X - Pink 6" width="1000" height="1000" />
           </div>
           <div class="miroooo-gallery__slide" data-media-type="image" data-index="7" data-gang-default>
-            <img src="/assets_ref/x/gallery/Miroooo_x_Pink-8.webp" alt="Brush X - Pink 8" width="1000" height="1000" loading="lazy" />
+            <img src="/assets_ref/x/gallery/Miroooo_x_Pink-8.webp" alt="Brush X - Pink 8" width="1000" height="1000" />
           </div>
           <div class="miroooo-gallery__slide" data-media-type="image" data-index="8" data-gang-default>
-            <img src="/assets_ref/x/gallery/Silver-9.webp" alt="Brush X - Pink 9" width="1000" height="1000" loading="lazy" />
+            <img src="/assets_ref/x/gallery/Silver-9.webp" alt="Brush X - Pink 9" width="1000" height="1000" />
           </div>
         </div>
 
@@ -2725,7 +2748,7 @@ theme.variantStrings = {
                     <li style="margin: 0;">1x Luxury packaging box</li>
                   </ul>
                   <div style="margin-top: 14px; border-radius: 12px; overflow: hidden; background: #000000; border: 1px solid rgba(255,255,255,0.08);">
-                    <img src="/assets_ref/x/miroooo-x-package-box.webp" alt="Brush X Package Contents &amp; Gift Box" style="width: 100%; height: auto; display: block; border-radius: 12px; margin: 0;" loading="lazy" />
+                    <img src="/assets_ref/x/miroooo-x-package-box.webp" alt="Brush X Package Contents &amp; Gift Box" style="width: 100%; height: auto; display: block; border-radius: 12px; margin: 0;" />
                   </div>
                 </div>
               </details>
@@ -3685,7 +3708,8 @@ theme.variantStrings = {
 <!-- Miroooo Reviews Section -->
 <div id="shopify-section-template--24203751129433__reviews" class="shopify-section">
   <!-- Miroooo Reviews Stylesheet -->
-  <link rel="stylesheet" href="/assets_ref/miroooo-reviews.css">
+  <link rel="stylesheet" href="/assets_ref/miroooo-reviews.css" media="print" onload="this.media='all'">
+  <noscript><link rel="stylesheet" href="/assets_ref/miroooo-reviews.css"></noscript>
 
   <section class="miroooo-reviews-section" id="reviews" aria-label="Customer Reviews">
     <div class="miroooo-reviews-container">
@@ -4728,7 +4752,7 @@ theme.variantStrings = {
       <div class="image-with-text__item grow shrink-0 relative">
         <div class="image-with-text__media h-full">
           <media-element class="image-with-text__image block media--adapt mobile:media--adapt relative overflow-hidden" style="border-radius: 14px; aspect-ratio: 3 / 2; padding-bottom: 66.6667%;">
-            <picture class="media media--height block w-full h-full relative overflow-hidden" style="border-radius: 14px; background: transparent; aspect-ratio: 3 / 2;"><img src="/assets_ref/x/miroooo-x-package-box.webp" alt="Package Contents" width="1000" height="667" loading="lazy" style="width: 100%; height: 100%; object-fit: cover; border-radius: 14px;" is="lazy-image"></picture>
+            <picture class="media media--height block w-full h-full relative overflow-hidden" style="border-radius: 14px; background: transparent; aspect-ratio: 3 / 2;"><img src="/assets_ref/x/miroooo-x-package-box.webp" alt="Package Contents" width="1000" height="667" style="width: 100%; height: 100%; object-fit: cover; border-radius: 14px;"></picture>
           </media-element>
         </div>
       </div>
@@ -5257,7 +5281,7 @@ theme.variantStrings = {
   <script src="https://cdn.shopify.com/s/files/1/0810/6023/3561/t/6/assets/instant-page.js?v=99963444960178710701733490075" type="module" fetchpriority="low" defer="defer"></script>
   <script src="https://cdn.shopify.com/storefront/standard-actions.js" type="module" data-source-attribution="shopify.standard_actions"></script>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/flickity/2.3.0/flickity.pkgd.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/flickity/2.3.0/flickity.pkgd.min.js" defer></script>
 <script>
 const VARIANTS_DATA = {
   "Pink": {
@@ -5746,14 +5770,14 @@ function selectColorVariant(colorName) {
               playsinline
               disablepictureinpicture
               controlslist="nodownload nofullscreen noremoteplayback"
-              preload="auto"
+              preload="none"
             ></video>
           </div>
         `;
       } else {
         slideEl.setAttribute('data-media-type', 'image');
         slideEl.innerHTML = `
-          <img src="${mediaSrc}" alt="${data.title} - ${idx + 1}" width="1000" height="1000" loading="lazy" />
+          <img src="${mediaSrc}" alt="${data.title} - ${idx + 1}" width="1000" height="1000" />
         `;
       }
     }
@@ -5770,7 +5794,7 @@ function selectColorVariant(colorName) {
         thumbEl.setAttribute('data-media-type', 'video');
         thumbEl.innerHTML = `
           <div class="thumb-inner thumb-video-inner">
-            <img src="${thumbSrc}" alt="${data.title} video thumbnail ${idx + 1}" loading="lazy" />
+            <img src="${thumbSrc}" alt="${data.title} video thumbnail ${idx + 1}" />
             <span class="thumb-play-icon" aria-hidden="true">
               <svg viewBox="0 0 24 24" fill="currentColor">
                 <path d="M8 5v14l11-7z"/>
@@ -5781,7 +5805,7 @@ function selectColorVariant(colorName) {
       } else {
         thumbEl.setAttribute('data-media-type', 'image');
         thumbEl.innerHTML = `
-          <div class="thumb-inner"><img src="${thumbSrc}" alt="${data.title} thumbnail ${idx + 1}" loading="lazy" /></div>
+          <div class="thumb-inner"><img src="${thumbSrc}" alt="${data.title} thumbnail ${idx + 1}" /></div>
         `;
       }
     }

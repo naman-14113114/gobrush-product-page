@@ -440,11 +440,15 @@
       }
     });
 
+    let resizeTimer = null;
     window.addEventListener("resize", () => {
-      if (window.innerWidth >= 991 && menuDrawer.hasAttribute("active")) {
-        closeDrawer();
-      }
-    });
+      clearTimeout(resizeTimer);
+      resizeTimer = setTimeout(() => {
+        if (window.innerWidth >= 991 && menuDrawer.hasAttribute("active")) {
+          closeDrawer();
+        }
+      }, 100);
+    }, { passive: true });
 
     // Touch gesture drag-to-dismiss physics
     let touchStartY = 0;
@@ -583,21 +587,26 @@
 
       const btnText = target.querySelector("[data-text]");
 
+      let rafId = null;
       target.addEventListener("mousemove", (e) => {
-        const rect = target.getBoundingClientRect();
-        const x = ((e.clientX - rect.left) / rect.width - 0.5) * 10;
-        const y = ((e.clientY - rect.top) / rect.height - 0.5) * 10;
+        if (rafId) cancelAnimationFrame(rafId);
+        rafId = requestAnimationFrame(() => {
+          const rect = target.getBoundingClientRect();
+          const x = ((e.clientX - rect.left) / rect.width - 0.5) * 10;
+          const y = ((e.clientY - rect.top) / rect.height - 0.5) * 10;
 
-        if (btnText) {
-          btnText.style.transform = `translate3d(${x}px, ${y}px, 0px)`;
-          btnText.style.transition = "transform 0.08s ease-out";
-        } else {
-          target.style.transform = `translate3d(${x}px, ${y}px, 0px)`;
-          target.style.transition = "transform 0.08s ease-out";
-        }
-      });
+          if (btnText) {
+            btnText.style.transform = `translate3d(${x}px, ${y}px, 0px)`;
+            btnText.style.transition = "transform 0.08s ease-out";
+          } else {
+            target.style.transform = `translate3d(${x}px, ${y}px, 0px)`;
+            target.style.transition = "transform 0.08s ease-out";
+          }
+        });
+      }, { passive: true });
 
       target.addEventListener("mouseleave", () => {
+        if (rafId) cancelAnimationFrame(rafId);
         if (btnText) {
           btnText.style.transform = "translate3d(0px, 0px, 0px)";
           btnText.style.transition = "transform 0.5s cubic-bezier(0.16, 1, 0.3, 1)";
@@ -1320,7 +1329,7 @@
           itemsHtml += `
             <div class="miroooo-cart-item" data-item-id="${item.id}">
               <div class="miroooo-cart-item-thumb">
-                <img src="${item.image}" alt="${item.title}" loading="lazy" />
+                <img src="${item.image}" alt="${item.title}" />
               </div>
               <div class="miroooo-cart-item-content">
                 <div class="miroooo-cart-item-top">

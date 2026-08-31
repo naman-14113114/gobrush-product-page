@@ -775,7 +775,7 @@
       const posterSrc = typeof review.video === 'object' && review.video.poster ? review.video.poster : '/assets_ref/x2/qb81f4-poster.webp';
       videoHTML = `
         <div class="miroooo-card-video-wrap" data-review-id="${review.id}">
-          <img src="${posterSrc}" alt="Customer unboxing video by ${review.name}" class="miroooo-card-video-thumb" loading="lazy" />
+          <img src="${posterSrc}" alt="Customer unboxing video by ${review.name}" class="miroooo-card-video-thumb" />
           <div class="miroooo-video-play-badge" aria-label="Play unboxing video">
             <svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
           </div>
@@ -789,24 +789,24 @@
       if (review.images.length === 1) {
         galleryHTML = `
           <div class="miroooo-card-gallery miroooo-gallery-1" data-review-id="${review.id}" data-img-index="0">
-            <img src="${review.images[0]}" alt="Photo from ${review.name}" loading="lazy" />
+            <img src="${review.images[0]}" alt="Photo from ${review.name}" />
           </div>
         `;
       } else if (review.images.length === 2) {
         galleryHTML = `
           <div class="miroooo-card-gallery miroooo-gallery-2" data-review-id="${review.id}">
-            <div class="miroooo-gallery-item" data-img-index="0"><img src="${review.images[0]}" alt="Photo 1 from ${review.name}" loading="lazy" /></div>
-            <div class="miroooo-gallery-item" data-img-index="1"><img src="${review.images[1]}" alt="Photo 2 from ${review.name}" loading="lazy" /></div>
+            <div class="miroooo-gallery-item" data-img-index="0"><img src="${review.images[0]}" alt="Photo 1 from ${review.name}" /></div>
+            <div class="miroooo-gallery-item" data-img-index="1"><img src="${review.images[1]}" alt="Photo 2 from ${review.name}" /></div>
           </div>
         `;
       } else {
         const remainingCount = review.images.length - 3;
         galleryHTML = `
           <div class="miroooo-card-gallery miroooo-gallery-3" data-review-id="${review.id}">
-            <div class="miroooo-gallery-item" data-img-index="0"><img src="${review.images[0]}" alt="Photo 1 from ${review.name}" loading="lazy" /></div>
-            <div class="miroooo-gallery-item" data-img-index="1"><img src="${review.images[1]}" alt="Photo 2 from ${review.name}" loading="lazy" /></div>
+            <div class="miroooo-gallery-item" data-img-index="0"><img src="${review.images[0]}" alt="Photo 1 from ${review.name}" /></div>
+            <div class="miroooo-gallery-item" data-img-index="1"><img src="${review.images[1]}" alt="Photo 2 from ${review.name}" /></div>
             <div class="miroooo-gallery-item" data-img-index="2">
-              <img src="${review.images[2]}" alt="Photo 3 from ${review.name}" loading="lazy" />
+              <img src="${review.images[2]}" alt="Photo 3 from ${review.name}" />
               ${remainingCount > 0 ? `<div class="miroooo-gallery-more-badge">+${remainingCount}</div>` : ''}
             </div>
           </div>
@@ -1638,9 +1638,17 @@
     });
   }
 
+  function scheduleInit() {
+    if ('requestIdleCallback' in window) {
+      requestIdleCallback(init, { timeout: 1500 });
+    } else {
+      setTimeout(init, 50);
+    }
+  }
+
   if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', init);
+    document.addEventListener('DOMContentLoaded', scheduleInit);
   } else {
-    init();
+    scheduleInit();
   }
 })();
