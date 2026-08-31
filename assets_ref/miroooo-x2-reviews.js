@@ -738,15 +738,16 @@
   let activeLightboxImageIndex = 0;
 
   // DOM Cache
-  const gridEl = document.getElementById('miroooo-reviews-grid');
-  const loadMoreBtn = document.getElementById('miroooo-load-more-btn');
-  const loadCountEl = document.getElementById('miroooo-load-count');
-  const emptyStateEl = document.getElementById('miroooo-reviews-empty');
-  const emptyResetBtn = document.getElementById('miroooo-empty-reset-btn');
-  const filterStatusEl = document.getElementById('miroooo-filter-status');
-  const statusTextEl = document.getElementById('miroooo-status-text');
-  const clearAllLink = document.getElementById('miroooo-clear-all-link');
-  const resetFilterBtn = document.getElementById('miroooo-reset-filter');
+  let gridEl = null;
+  let loadMoreBtn = null;
+  let loadCountEl = null;
+  let emptyStateEl = null;
+  let emptyResetBtn = null;
+  let filterStatusEl = null;
+  let statusTextEl = null;
+  let clearAllLink = null;
+  let resetFilterBtn = null;
+  let breakdownRows = [];
 
   // Star Rating HTML Generator
   function getTrustpilotStarsHTML(rating) {
@@ -1099,7 +1100,7 @@
   // Event Handlers for Filtering and Sorting
   function setupFilterEvents() {
     // 1. Star Rating Breakdown Row Click
-    const breakdownRows = document.querySelectorAll('.miroooo-breakdown-row');
+    breakdownRows = Array.from(document.querySelectorAll('.miroooo-breakdown-row'));
     breakdownRows.forEach(row => {
       row.addEventListener('click', () => {
         const star = parseInt(row.getAttribute('data-star'), 10);
@@ -1110,6 +1111,10 @@
           currentFilterRating = star;
           updateStarDropdownLabel(`${star} star`);
         }
+        breakdownRows.forEach(r => {
+          const rStar = parseInt(r.getAttribute('data-star'), 10);
+          r.classList.toggle('active', currentFilterRating === rStar);
+        });
         currentVisibleCount = PAGE_SIZE;
         renderReviews();
       });
@@ -1143,6 +1148,10 @@
             currentFilterRating = parseInt(val, 10);
             updateStarDropdownLabel(`${val} star`);
           }
+          breakdownRows.forEach(r => {
+            const rStar = parseInt(r.getAttribute('data-star'), 10);
+            r.classList.toggle('active', currentFilterRating === rStar);
+          });
           starDropdown.classList.remove('open');
           starTrigger.setAttribute('aria-expanded', 'false');
           currentVisibleCount = PAGE_SIZE;
@@ -1241,6 +1250,8 @@
     currentVerifiedOnly = false;
     currentSort = 'most-recent';
     currentVisibleCount = PAGE_SIZE;
+
+    breakdownRows.forEach(r => r.classList.remove('active'));
 
     const photoPill = document.getElementById('miroooo-filter-photos');
     if (photoPill) {
@@ -1495,8 +1506,27 @@
     };
 
     starBtns.forEach(btn => {
+      const rating = parseInt(btn.getAttribute('data-rating'), 10);
+
+      btn.addEventListener('mouseenter', () => {
+        starBtns.forEach(b => {
+          const r = parseInt(b.getAttribute('data-rating'), 10);
+          b.classList.toggle('hover', r <= rating);
+        });
+        if (ratingLabel) ratingLabel.textContent = ratingTextMap[rating];
+      });
+
+      btn.addEventListener('mouseleave', () => {
+        starBtns.forEach(b => {
+          b.classList.remove('hover');
+          const r = parseInt(b.getAttribute('data-rating'), 10);
+          b.classList.toggle('active', r <= selectedRating);
+        });
+        if (ratingLabel) ratingLabel.textContent = ratingTextMap[selectedRating];
+      });
+
       btn.addEventListener('click', () => {
-        selectedRating = parseInt(btn.getAttribute('data-rating'), 10);
+        selectedRating = rating;
         starBtns.forEach(b => {
           const r = parseInt(b.getAttribute('data-rating'), 10);
           b.classList.toggle('active', r <= selectedRating);
@@ -1576,6 +1606,18 @@
 
   // Initialization
   function init() {
+    gridEl = document.getElementById('miroooo-reviews-grid');
+    loadMoreBtn = document.getElementById('miroooo-load-more-btn');
+    loadCountEl = document.getElementById('miroooo-load-count');
+    emptyStateEl = document.getElementById('miroooo-reviews-empty');
+    emptyResetBtn = document.getElementById('miroooo-empty-reset-btn');
+    filterStatusEl = document.getElementById('miroooo-filter-status');
+    statusTextEl = document.getElementById('miroooo-status-text');
+    clearAllLink = document.getElementById('miroooo-clear-all-link');
+    resetFilterBtn = document.getElementById('miroooo-reset-filter');
+
+    if (!gridEl) return;
+
     renderReviews();
     setupFilterEvents();
     setupLightboxEvents();

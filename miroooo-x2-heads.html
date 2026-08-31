@@ -1902,12 +1902,20 @@ theme.variantStrings = {
       z-index: 50 !important;
       padding: 0 !important;
       margin: 0 !important;
-      transition: background-color 0.2s ease, transform 0.2s ease !important;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15) !important;
+      transition: background-color 0.2s cubic-bezier(0.16, 1, 0.3, 1), transform 0.2s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.2s ease !important;
     }
     #MenuDrawer .drawer__close:hover,
-    #MenuDrawer .drawer__close:active {
+    #MenuDrawer .drawer__close:active,
+    #MenuDrawer button.drawer__close:hover,
+    #MenuDrawer button.drawer__close:active {
       background: #262626 !important;
-      transform: scale(1.05) !important;
+      transform: scale(1.06) !important;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25) !important;
+    }
+    #MenuDrawer .drawer__close .btn-fill,
+    #MenuDrawer button.drawer__close .btn-fill {
+      display: none !important;
     }
     #MenuDrawer .drawer__close svg,
     #MenuDrawer .drawer__close .icon {
@@ -1958,6 +1966,21 @@ theme.variantStrings = {
     #MenuDrawer .drawer__menu a:hover {
       opacity: 0.7 !important;
     }
+    #MenuDrawer .drawer__submenu-item {
+      display: flex !important;
+      flex-direction: column !important;
+      padding: 10px 14px !important;
+      background: rgba(0, 0, 0, 0.04) !important;
+      border-radius: 12px !important;
+      text-decoration: none !important;
+      transition: background-color 0.2s ease, transform 0.2s ease !important;
+    }
+    #MenuDrawer .drawer__submenu-item:hover,
+    #MenuDrawer .drawer__submenu-item:active {
+      background: rgba(0, 0, 0, 0.08) !important;
+      transform: translateX(3px) !important;
+      opacity: 1 !important;
+    }
     #MenuDrawer .drawer__footer {
       background: transparent !important;
       border-top: none !important;
@@ -1984,6 +2007,23 @@ theme.variantStrings = {
       align-items: center !important;
       justify-content: center !important;
       box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15) !important;
+      text-decoration: none !important;
+      transition: background-color 0.2s cubic-bezier(0.16, 1, 0.3, 1), transform 0.2s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.2s ease, border-color 0.2s ease !important;
+    }
+    #MenuDrawer .drawer__footer-bottom a.button--primary:hover,
+    #MenuDrawer .drawer__footer-bottom a:hover {
+      background: #262626 !important;
+      background-color: #262626 !important;
+      border-color: #262626 !important;
+      transform: scale(1.05) !important;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25) !important;
+    }
+    #MenuDrawer .drawer__footer-bottom a.button--primary:active,
+    #MenuDrawer .drawer__footer-bottom a:active {
+      transform: scale(0.96) !important;
+    }
+    #MenuDrawer .drawer__footer-bottom a .btn-fill {
+      display: none !important;
     }
     #MenuDrawer .drawer__footer-bottom a svg {
       stroke: #ffffff !important;
@@ -2380,17 +2420,73 @@ theme.variantStrings = {
   </div>
 
   <!-- Quantity Selection Bar -->
-  <div class="heads-quantity-selector my-4" style="margin: 20px 0 16px 0;">
+  <div class="heads-quantity-selector my-4">
+    <style>
+      .heads-quantity-selector {
+        margin: 20px 0 16px 0;
+      }
+      .quantity-counter-box {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        background: #111111;
+        border: 1px solid rgba(255, 255, 255, 0.18);
+        border-radius: 9999px;
+        padding: 4px 8px;
+        height: 50px;
+        box-sizing: border-box;
+      }
+      .qty-stepper-btn {
+        width: 42px;
+        height: 42px;
+        border-radius: 50%;
+        background: rgba(255, 255, 255, 0.08);
+        border: 1px solid rgba(255, 255, 255, 0.12);
+        color: #ffffff;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        font-size: 18px;
+        font-weight: 700;
+        transition: background-color 0.25s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.25s cubic-bezier(0.16, 1, 0.3, 1), transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.25s ease, opacity 0.25s ease;
+        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+        padding: 0;
+      }
+      .qty-stepper-btn:hover:not(:disabled) {
+        background: rgba(255, 255, 255, 0.22);
+        border-color: rgba(255, 255, 255, 0.35);
+        transform: scale(1.08);
+        box-shadow: 0 4px 12px rgba(255, 255, 255, 0.12);
+      }
+      .qty-stepper-btn:active:not(:disabled) {
+        background: rgba(255, 255, 255, 0.3);
+        transform: scale(0.94);
+      }
+      .qty-stepper-btn:focus-visible {
+        outline: 2px solid #ffffff;
+        outline-offset: 2px;
+      }
+      .qty-stepper-btn:disabled,
+      .qty-stepper-btn[aria-disabled="true"] {
+        opacity: 0.3;
+        cursor: not-allowed;
+        pointer-events: none;
+        transform: none !important;
+        border-color: rgba(255, 255, 255, 0.06);
+        box-shadow: none;
+      }
+    </style>
     <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
       <span style="color: rgba(255, 255, 255, 0.7); font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em;">QUANTITY:</span>
       <span style="color: rgba(255, 255, 255, 0.5); font-size: 12px;">£15 per 2-head pack</span>
     </div>
-    <div class="quantity-counter-box" style="display: flex; align-items: center; justify-content: space-between; background: #111111; border: 1px solid rgba(255, 255, 255, 0.18); border-radius: 9999px; padding: 4px 8px; height: 50px;">
-      <button type="button" id="qty-minus-btn" onclick="setQuantity(currentQty - 1)" style="width: 42px; height: 42px; border-radius: 50%; background: rgba(255, 255, 255, 0.08); border: none; color: #ffffff; display: flex; align-items: center; justify-content: center; cursor: pointer; font-size: 18px; font-weight: 700; transition: background 0.2s;" aria-label="Decrease quantity">
+    <div class="quantity-counter-box">
+      <button type="button" class="qty-stepper-btn" id="qty-minus-btn" onclick="setQuantity(currentQty - 1)" aria-label="Decrease quantity" disabled aria-disabled="true">
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="5" y1="12" x2="19" y2="12"></line></svg>
       </button>
       <span id="qty-display" style="font-size: 18px; font-weight: 700; color: #ffffff; font-family: ui-monospace, SFMono-Regular, monospace; min-width: 40px; text-align: center;">1</span>
-      <button type="button" id="qty-plus-btn" onclick="setQuantity(currentQty + 1)" style="width: 42px; height: 42px; border-radius: 50%; background: rgba(255, 255, 255, 0.08); border: none; color: #ffffff; display: flex; align-items: center; justify-content: center; cursor: pointer; font-size: 18px; font-weight: 700; transition: background 0.2s;" aria-label="Increase quantity">
+      <button type="button" class="qty-stepper-btn" id="qty-plus-btn" onclick="setQuantity(currentQty + 1)" aria-label="Increase quantity">
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
       </button>
     </div>
@@ -2817,7 +2913,7 @@ theme.variantStrings = {
       <!-- Image 2 (Left on Desktop, Top on Phone) -->
       <div style="flex: 1; width: 100%; box-sizing: border-box;">
         <div style="position: relative; width: 100%; border-radius: 20px; overflow: hidden; background: #0d0d0d; border: 1px solid rgba(255,255,255,0.1); box-shadow: 0 20px 50px rgba(0,0,0,0.8);">
-          <img src="/assets_ref/x2/miroooo-x2-sonic-toothbrush-exquisite-texture.webp" alt="Miroooo X2 Exquisite Texture Gentle Enamel Care" style="width: 100%; height: auto; display: block; object-fit: cover;" />
+          <img src="/assets_ref/x2/miroooo-x2-sonic-electric-toothbrush-precision-bristle-head.webp" alt="Miroooo Brush X2 Precision DuPont Replacement Bristle Head" style="width: 100%; height: auto; display: block; object-fit: cover;" />
         </div>
       </div>
 
@@ -3083,10 +3179,15 @@ theme.variantStrings = {
     const priceDisplay = document.getElementById('main-price-display');
     const compareDisplay = document.getElementById('main-compare-price-display');
     const qtyDisplay = document.getElementById('qty-display');
+    const minusBtn = document.getElementById('qty-minus-btn');
 
     if (priceDisplay) priceDisplay.textContent = '£' + totalPrice;
     if (compareDisplay) compareDisplay.textContent = '£' + totalCompare;
     if (qtyDisplay) qtyDisplay.textContent = String(currentQty);
+    if (minusBtn) {
+      minusBtn.disabled = currentQty <= 1;
+      minusBtn.setAttribute('aria-disabled', currentQty <= 1 ? 'true' : 'false');
+    }
 
     const stickyPrice = document.getElementById('sticky-bar-price');
     if (stickyPrice) stickyPrice.textContent = '£' + totalPrice;

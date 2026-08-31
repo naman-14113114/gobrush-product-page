@@ -1663,7 +1663,7 @@
 
   // Init Function
   function initProductReviews() {
-    const root = document.getElementById('shopify-section-template--24203751129433__reviews');
+    const root = document.getElementById('shopify-section-template--24203751129433__reviews') || document.getElementById('miroooo-reviews-grid') || document.querySelector('.miroooo-reviews-section');
     if (!root) return;
 
     gridEl = document.getElementById('miroooo-reviews-grid');
@@ -2110,7 +2110,7 @@
         e.stopPropagation();
         const reviewId = btn.getAttribute('data-review-id');
         const countSpan = btn.querySelector('.miroooo-helpful-count');
-        const review = currentList.find(r => r.id === reviewId);
+        const review = currentList.find(r => String(r.id) === String(reviewId));
         if (!review) return;
 
         if (btn.classList.contains('voted')) {
@@ -2130,7 +2130,7 @@
       btn.addEventListener('click', (e) => {
         e.stopPropagation();
         const reviewId = btn.getAttribute('data-review-id');
-        const review = currentList.find(r => r.id === reviewId);
+        const review = currentList.find(r => String(r.id) === String(reviewId));
         if (!review) return;
         openLightbox(review, 0);
       });
@@ -2142,7 +2142,7 @@
       container.addEventListener('click', (e) => {
         e.stopPropagation();
         const reviewId = container.getAttribute('data-review-id');
-        const review = currentList.find(r => r.id === reviewId);
+        const review = currentList.find(r => String(r.id) === String(reviewId));
         if (!review || !review.images || review.images.length === 0) return;
 
         let imgIndex = 0;
@@ -2170,7 +2170,7 @@
         }
         const reviewId = card.id ? card.id.replace('card-', '') : null;
         if (!reviewId) return;
-        const review = currentList.find(r => r.id === reviewId);
+        const review = currentList.find(r => String(r.id) === String(reviewId));
         if (review) {
           openLightbox(review, 0);
         }

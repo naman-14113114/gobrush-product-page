@@ -3803,9 +3803,12 @@ theme.variantStrings = {
           <!-- Write Review Action -->
           <div class="miroooo-action-col">
             <div class="miroooo-action-text">Share your brushing experience</div>
-            <button type="button" class="miroooo-btn-write" id="miroooo-write-review-btn">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>
-              Write a Review
+            <button type="button" class="miroooo-btn-write" id="miroooo-write-review-btn" is="hover-button">
+              <span class="btn-fill" data-fill></span>
+              <span class="btn-text">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>
+                Write a Review
+              </span>
             </button>
             <div class="miroooo-satisfaction-pill">
               <span class="miroooo-green-dot"></span>
@@ -3874,14 +3877,20 @@ theme.variantStrings = {
         <div class="miroooo-empty-icon">🔍</div>
         <h3>No reviews match your selected filter</h3>
         <p>Try selecting a different rating or clearing your search filters.</p>
-        <button type="button" class="miroooo-btn-outline" id="miroooo-empty-reset-btn">View All 4,275 Reviews</button>
+        <button type="button" class="miroooo-btn-outline" id="miroooo-empty-reset-btn" is="hover-button">
+          <span class="btn-fill" data-fill></span>
+          <span class="btn-text">View All 4,275 Reviews</span>
+        </button>
       </div>
 
       <!-- 5. Load More Pagination Container -->
       <div class="miroooo-pagination-container" id="miroooo-pagination-container">
-        <button type="button" class="miroooo-btn-load-more" id="miroooo-load-more-btn">
-          <span>Load More Reviews</span>
-          <span class="miroooo-load-count" id="miroooo-load-count">(Showing 12 of 4,275)</span>
+        <button type="button" class="miroooo-btn-load-more" id="miroooo-load-more-btn" is="hover-button">
+          <span class="btn-fill" data-fill></span>
+          <span class="btn-text">
+            <span>Load More Reviews</span>
+            <span class="miroooo-load-count" id="miroooo-load-count">(Showing 12 of 4,275)</span>
+          </span>
         </button>
       </div>
 

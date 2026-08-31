@@ -156,7 +156,7 @@
             </nav>
             <div class="drawer__footer grid w-full">
               <div class="drawer__footer-bottom flex items-center justify-between gap-6">
-                <a href="/order-tracking" class="button button--primary icon-with-text" style="background-color: #000000 !important; border: 1.5px solid #000000 !important; color: #ffffff !important;" is="hover-link" rel="nofollow" aria-label="Account">
+                <a href="/order-tracking" class="button button--primary icon-with-text" style="background-color: #000000 !important; border: 1.5px solid #000000 !important; color: #ffffff !important;" is="hover-button" rel="nofollow" aria-label="Account">
                   <span class="btn-fill" data-fill></span>
                   <span class="btn-text">
                     <svg class="icon icon-account-alt icon-xs" viewBox="0 0 16 17" stroke="#ffffff" fill="none" style="stroke: #ffffff !important; color: #ffffff !important;" xmlns="http://www.w3.org/2000/svg">
@@ -609,6 +609,29 @@
     });
   };
 
+  // Unified Button Hover & Fill Interaction Engine
+  const initHoverButtons = () => {
+    const hoverTargets = document.querySelectorAll(
+      '[is="hover-button"], [is="hover-link"], .btn-fill, [data-fill]'
+    );
+    hoverTargets.forEach((target) => {
+      const btn = target.closest('button, a, .button, .gb-button, #hero-cta, #sticky-bar-cta-btn, .proxy-bundle-btn, .miroooo-sticky-btn, .cart-checkout-cta-btn, .about-btn-action, .track-submit-btn, .faq-action-btn, .miroooo-btn-load-more') || (target.tagName === 'BUTTON' || target.tagName === 'A' ? target : null);
+      if (!btn || btn.dataset.hoverAttached) return;
+      btn.dataset.hoverAttached = "true";
+
+      const btnFill = btn.querySelector(".btn-fill, [data-fill]");
+      if (!btnFill) return;
+
+      btn.addEventListener("mouseenter", () => {
+        btn.classList.add("is-hovered");
+      });
+
+      btn.addEventListener("mouseleave", () => {
+        btn.classList.remove("is-hovered");
+      });
+    });
+  };
+
   // Authentic GoBrush Flickity Horizontal Sliding Hover Track on Cards
   const initSlideGalleries = () => {
     document.querySelectorAll("[data-slide-gallery]").forEach((gallery) => {
@@ -647,10 +670,12 @@
       renderGlobalFooter();
       initMobileMenuDrawer();
       initMagnet();
+      initHoverButtons();
       initSlideGalleries();
     });
   } else {
     initMagnet();
+    initHoverButtons();
     initSlideGalleries();
   }
 
@@ -1608,12 +1633,18 @@
 
   // Global Button Click Loader (Exact from muuhu-store)
   document.addEventListener("click", (e) => {
-    // Ignore navigation/drawer toggles and small controls from receiving intrusive 5-dot overlay
+    // Ignore navigation/drawer toggles, review controls, and small controls from receiving intrusive 5-dot overlay
     if (e.target.closest(
       ".nav-toggle, .menu-drawer-button, .drawer__close, .mobile-panel__close, " +
       ".miroooo-cart-close-btn, .header__dropdown-toggle, [data-dropdown] button, " +
       ".miroooo-stepper-btn, .cart-stepper-btn, .miroooo-cart-remove-btn, .cart-remove-button, " +
-      "[aria-controls='MenuDrawer'], [aria-controls='CartDrawer'], .site-actions__bag, .flickity-button"
+      "[aria-controls='MenuDrawer'], [aria-controls='CartDrawer'], .site-actions__bag, .flickity-button, " +
+      ".miroooo-helpful-btn, .miroooo-lightbox-helpful-btn, .miroooo-read-more-btn, " +
+      ".miroooo-star-btn, .miroooo-star-trigger, .miroooo-sort-trigger, .miroooo-dropdown-trigger, " +
+      ".miroooo-dropdown-item, .miroooo-filter-pill, .miroooo-breakdown-row, " +
+      ".miroooo-lightbox-close, .miroooo-write-close, .miroooo-lightbox-close-btn, .miroooo-write-close-btn, " +
+      ".miroooo-form-cancel, .miroooo-success-close, .miroooo-empty-reset-btn, #miroooo-clear-all-link, " +
+      ".accordion-summary, summary, [is='accordion-details']"
     )) {
       return;
     }

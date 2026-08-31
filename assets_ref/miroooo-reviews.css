@@ -291,31 +291,79 @@ div.miroooo-progress-bar {
 }
 
 .miroooo-btn-write {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
-  width: 100%;
-  background: #ffffff;
-  color: #000000;
-  border: none;
-  border-radius: 999px;
-  padding: 14px 24px;
-  font-size: 14px;
-  font-weight: 700;
-  cursor: pointer;
-  transition: var(--miroooo-transition);
-  box-shadow: 0 10px 25px rgba(255, 255, 255, 0.15);
-}.miroooo-btn-write:hover {
-  background: var(--miroooo-gold);
-  color: #000000;
-  transform: translateY(-2px);
-  box-shadow: 0 12px 30px rgba(34, 197, 94, 0.35);
+  position: relative !important;
+  overflow: hidden !important;
+  isolation: isolate !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 8px !important;
+  width: 100% !important;
+  background: #ffffff !important;
+  background-color: #ffffff !important;
+  color: #000000 !important;
+  border: 2px solid #ffffff !important;
+  border-radius: 9999px !important;
+  padding: 14px 24px !important;
+  font-size: 14px !important;
+  font-weight: 700 !important;
+  cursor: pointer !important;
+  transition: border-color 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s cubic-bezier(0.16, 1, 0.3, 1) !important;
+  box-shadow: 0 10px 25px rgba(255, 255, 255, 0.15) !important;
 }
 
+.miroooo-btn-write .btn-fill {
+  position: absolute !important;
+  border-radius: 50% !important;
+  width: 150% !important;
+  height: 200% !important;
+  inset-block-start: -50% !important;
+  top: -50% !important;
+  inset-inline-start: -25% !important;
+  left: -25% !important;
+  background-color: #000000 !important;
+  background: #000000 !important;
+  pointer-events: none !important;
+  z-index: 1 !important;
+  transform: translate3d(0, 76%, 0) !important;
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1) !important;
+}
+
+.miroooo-btn-write:hover .btn-fill,
+.miroooo-btn-write:focus-visible .btn-fill {
+  transform: translate3d(0, 0%, 0) !important;
+}
+
+.miroooo-btn-write .btn-text {
+  position: relative !important;
+  z-index: 2 !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 8px !important;
+  color: #000000 !important;
+  transition: color 0.4s cubic-bezier(0.16, 1, 0.3, 1) !important;
+  pointer-events: none !important;
+}
+
+.miroooo-btn-write:hover .btn-text,
+.miroooo-btn-write:focus-visible .btn-text {
+  color: #ffffff !important;
+}
+
+.miroooo-btn-write .btn-text svg,
 .miroooo-btn-write svg {
   width: 16px;
   height: 16px;
+  color: #000000;
+  transition: color 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.miroooo-btn-write:hover .btn-text svg,
+.miroooo-btn-write:hover svg,
+.miroooo-btn-write:focus-visible .btn-text svg,
+.miroooo-btn-write:focus-visible svg {
+  color: #ffffff !important;
 }
 
 .miroooo-satisfaction-pill {
@@ -1246,21 +1294,27 @@ video::-webkit-media-controls-enclosure {
 }
 
 .miroooo-btn-outline {
-  display: inline-block;
-  background: transparent;
-  border: 1px solid var(--miroooo-gold);
-  color: var(--miroooo-gold);
-  border-radius: 999px;
-  padding: 10px 24px;
-  font-size: 13px;
-  font-weight: 700;
-  cursor: pointer;
-  transition: var(--miroooo-transition);
+  position: relative !important;
+  overflow: hidden !important;
+  isolation: isolate !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  background: transparent !important;
+  border: 1px solid rgba(255, 255, 255, 0.4) !important;
+  color: #ffffff !important;
+  border-radius: 9999px !important;
+  padding: 10px 24px !important;
+  font-size: 13px !important;
+  font-weight: 700 !important;
+  cursor: pointer !important;
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1) !important;
 }
 
 .miroooo-btn-outline:hover {
-  background: var(--miroooo-gold);
-  color: #000000;
+  background: #ffffff !important;
+  border-color: #ffffff !important;
+  color: #000000 !important;
 }
 
 /* Pagination / Load More */
@@ -1271,40 +1325,74 @@ video::-webkit-media-controls-enclosure {
 }
 
 .miroooo-btn-load-more {
-  display: inline-flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 4px;
+  position: relative !important;
+  overflow: hidden !important;
+  isolation: isolate !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
   background: #ffffff !important;
   background-color: #ffffff !important;
-  border: 1px solid #ffffff !important;
-  border-radius: 999px;
-  padding: 14px 36px;
-  font-size: 14px;
-  font-weight: 700;
+  border: 2px solid #ffffff !important;
+  border-radius: 9999px !important;
+  padding: 14px 36px !important;
+  font-size: 14px !important;
+  font-weight: 700 !important;
   color: #000000 !important;
-  cursor: pointer;
-  transition: var(--miroooo-transition);
+  cursor: pointer !important;
+  transition: border-color 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s cubic-bezier(0.16, 1, 0.3, 1) !important;
   box-shadow: 0 4px 20px rgba(255, 255, 255, 0.15), 0 10px 30px rgba(0, 0, 0, 0.5) !important;
 }
 
-.miroooo-btn-load-more:hover {
-  background: #f4f4f5 !important;
-  background-color: #f4f4f5 !important;
-  color: #000000 !important;
-  border-color: #ffffff !important;
-  transform: translateY(-2px);
+.miroooo-btn-load-more .btn-fill {
+  position: absolute !important;
+  border-radius: 50% !important;
+  width: 150% !important;
+  height: 200% !important;
+  inset-block-start: -50% !important;
+  top: -50% !important;
+  inset-inline-start: -25% !important;
+  left: -25% !important;
+  background-color: #000000 !important;
+  background: #000000 !important;
+  pointer-events: none !important;
+  z-index: 1 !important;
+  transform: translate3d(0, 76%, 0) !important;
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1) !important;
 }
 
-.miroooo-btn-load-more span {
-  color: #000000 !important;
+.miroooo-btn-load-more:hover .btn-fill,
+.miroooo-btn-load-more:focus-visible .btn-fill {
+  transform: translate3d(0, 0%, 0) !important;
 }
 
-.miroooo-load-count,
+.miroooo-btn-load-more .btn-text {
+  position: relative !important;
+  z-index: 2 !important;
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 2px !important;
+  color: #000000 !important;
+  transition: color 0.4s cubic-bezier(0.16, 1, 0.3, 1) !important;
+  pointer-events: none !important;
+}
+
+.miroooo-btn-load-more:hover .btn-text,
+.miroooo-btn-load-more:hover .btn-text span,
+.miroooo-btn-load-more:hover .miroooo-load-count,
+.miroooo-btn-load-more:focus-visible .btn-text,
+.miroooo-btn-load-more:focus-visible .btn-text span,
+.miroooo-btn-load-more:focus-visible .miroooo-load-count {
+  color: #ffffff !important;
+}
+
 .miroooo-btn-load-more .miroooo-load-count {
-  font-size: 11px;
-  font-weight: 500;
+  font-size: 11px !important;
+  font-weight: 500 !important;
   color: rgba(0, 0, 0, 0.65) !important;
+  transition: color 0.4s cubic-bezier(0.16, 1, 0.3, 1) !important;
 }
 
 /* ==========================================================================
@@ -1898,20 +1986,24 @@ video::-webkit-media-controls-enclosure {
 }
 
 .miroooo-btn-submit {
-  background: #ffffff;
-  color: #000000;
-  border: none;
-  border-radius: 999px;
-  padding: 11px 26px;
-  font-size: 13px;
-  font-weight: 700;
-  cursor: pointer;
-  transition: var(--miroooo-transition);
+  position: relative !important;
+  overflow: hidden !important;
+  isolation: isolate !important;
+  background: #ffffff !important;
+  color: #000000 !important;
+  border: 1px solid #ffffff !important;
+  border-radius: 9999px !important;
+  padding: 11px 26px !important;
+  font-size: 13px !important;
+  font-weight: 700 !important;
+  cursor: pointer !important;
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1) !important;
 }
 
 .miroooo-btn-submit:hover {
-  background: var(--miroooo-gold);
-  transform: translateY(-1px);
+  background: #000000 !important;
+  color: #ffffff !important;
+  border-color: #ffffff !important;
 }
 
 /* Success Toast */
