@@ -147,6 +147,7 @@
                     </li>
                   </ul>
                 </li>
+                <li><a class="drawer__menu-item block heading text-2xl leading-none tracking-tight" href="/smile-coach">Smile Coach</a></li>
                 <li><a class="drawer__menu-item block heading text-2xl leading-none tracking-tight" href="/about-us">About Us</a></li>
                 <li><a class="drawer__menu-item block heading text-2xl leading-none tracking-tight" href="/contact">Contact Us</a></li>
                 <li><a class="drawer__menu-item block heading text-2xl leading-none tracking-tight" href="/faq">FAQs</a></li>
@@ -188,6 +189,7 @@
                       <span class="btn-text btn-duplicate flex items-center">Shop ${chevronDownIcon}</span>
                     </button>
                   </li>
+                  ${menuPill("/smile-coach", "Smile Coach", ["smile-coach"])}
                   ${menuPill("/about-us", "About Us", ["about", "about-us"])}
                 </ul>
               </nav>
@@ -324,6 +326,7 @@
             <div class="site-footer__column">
               <h4 class="site-footer__heading">SUPPORT</h4>
               <ul class="site-footer__links">
+                <li><a href="/smile-coach">Free Smile Coach App</a></li>
                 <li><a href="/contact">Contact Us</a></li>
                 <li><a href="https://miroooo.us/pages/order-tracking">Order Tracking</a></li>
                 <li><a href="/about-us">About Us</a></li>

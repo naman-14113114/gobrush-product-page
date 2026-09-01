@@ -7,7 +7,8 @@ const required = [
   "contact.html", "delivery-returns.html", "warranty.html", "order-tracking.html", "privacy.html",
   "terms.html", "return-policy.html", "shipping-policy.html", "refund-policy.html", "cookies-policy.html",
   "404.html", "assets/site.css", "assets/site.js", "assets/microsoft-ads.js", "assets/klaviyo.js", "vercel.json", "sitemap.xml",
-  "robots.txt", "llms.txt"
+  "robots.txt", "llms.txt", "smile-coach.html", "assets/smile-coach.css", "assets/smile-coach.js",
+  "smile-coach.webmanifest", "smile-coach-sw.js", "assets/app/miroooo-smile-coach-lifestyle.png"
 ];
 const errors = [];
 
@@ -26,7 +27,7 @@ const internalRoutes = new Set([
   "/shipping-policy", "/refund-policy", "/cookies-policy", "/policies/privacy-policy",
   "/policies/return-policy", "/policies/shipping-policy", "/policies/refund-policy",
   "/policies/terms-of-service", "/policies/cookies-policy", "/pages/order-tracking",
-  "/pages/contact-us"
+  "/pages/contact-us", "/smile-coach"
 ]);
 for (const file of newPages) {
   const html = await readFile(resolve(root, file), "utf8");
@@ -45,13 +46,36 @@ for (const file of newPages) {
 }
 
 const homepage = await readFile(resolve(root, "index.html"), "utf8");
-for (const marker of ["gb-hero", "gb-video-feature-section", "gb-story"]) {
+for (const marker of ["gb-hero", "gb-video-feature-section", "gb-story", "gb-coach-promo", "/smile-coach"]) {
   if (!homepage.includes(marker)) errors.push(`index.html: missing redesigned homepage marker ${marker}`);
 }
 
 const sharedScript = await readFile(resolve(root, "assets/site.js"), "utf8");
 for (const marker of ["nav-link__flip", "mobile-panel__close", "service-strip", "data-drag-scroll"]) {
   if (!sharedScript.includes(marker)) errors.push(`assets/site.js: missing shared theme behaviour ${marker}`);
+}
+
+const coachPage = await readFile(resolve(root, "smile-coach.html"), "utf8");
+for (const marker of [
+  '<html lang="en-GB">',
+  'rel="canonical" href="https://trymiroooo.com/smile-coach"',
+  '/smile-coach.webmanifest',
+  '/assets/smile-coach.css',
+  '/assets/smile-coach.js',
+  '/assets_ref/x/gallery/Miroooo_x_Silver-1.webp',
+  '/assets_ref/x2/gallery/miroooo-x2-sonic-electric-toothbrush-silver-upright-grip.webp',
+  'Guided two-minute sessions',
+  '28-DAY SMILE RESET'
+]) {
+  if (!coachPage.includes(marker)) errors.push(`smile-coach.html: missing ${marker}`);
+}
+
+const coachScript = await readFile(resolve(root, "assets/smile-coach.js"), "utf8");
+for (const marker of ["miroooo_smile_coach_v1", "SESSION_SECONDS = 120", "PLAN_DAYS = 28", "localStorage", "beforeinstallprompt", "serviceWorker"]) {
+  if (!coachScript.includes(marker)) errors.push(`assets/smile-coach.js: missing ${marker}`);
+}
+if (/bluetooth|connected brush|pressure sensor|AI score/i.test(`${coachPage}\n${coachScript}`)) {
+  errors.push("Smile Coach: unsupported connected-brush or sensor claim remains");
 }
 
 const microsoftAdsScript = await readFile(resolve(root, "assets/microsoft-ads.js"), "utf8");
@@ -126,7 +150,7 @@ if (config.cleanUrls !== true) errors.push("vercel.json: cleanUrls must remain e
 if (!config.outputDirectory || config.outputDirectory !== "public") errors.push("vercel.json: outputDirectory must be public");
 
 const sitemap = await readFile(resolve(root, "sitemap.xml"), "utf8");
-for (const route of ["/shop", "/products/miroooo-x", "/products/miroooo-x2", "/products/miroooo-x2-heads", "/delivery-returns", "/privacy", "/terms", "/cart"]) {
+for (const route of ["/shop", "/products/miroooo-x", "/products/miroooo-x2", "/products/miroooo-x2-heads", "/smile-coach", "/delivery-returns", "/privacy", "/terms", "/cart"]) {
   if (!sitemap.includes(`https://trymiroooo.com${route}`)) errors.push(`sitemap.xml: missing ${route}`);
 }
 

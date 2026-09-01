@@ -27,6 +27,8 @@ for (const entry of rootEntries) {
   }
 }
 
+await cp(resolve(root, "smile-coach-sw.js"), resolve(output, "smile-coach-sw.js"));
+
 await cp(resolve(root, "miroooo-x.html"), resolve(output, "products", "miroooo-x.html"));
 await cp(resolve(root, "miroooo-x2.html"), resolve(output, "products", "miroooo-x2.html"));
 try {
