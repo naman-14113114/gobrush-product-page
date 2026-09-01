@@ -1568,7 +1568,7 @@
           if (isHeads) {
             description = "DuPont Ultra-Soft Replacement Heads (2-Pack) for Brush X2.";
           } else if (isX2) {
-            description = `Includes free luxury travel case, magnetic USB-C dock & 90-day battery life${extraHeadsNote}.`;
+            description = `Includes free luxury travel case, wall-mounted storage & 90-day battery life${extraHeadsNote}.`;
           }
 
           const colorsLabel = (!isHeads && item.choices && item.choices.length > 0)
