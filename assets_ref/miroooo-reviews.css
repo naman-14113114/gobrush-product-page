@@ -912,17 +912,14 @@ video::-webkit-media-controls-enclosure {
 .miroooo-gallery-1 {
   border-radius: 10px;
   overflow: hidden;
-  aspect-ratio: auto;
-  height: auto;
-  background: #d4d4d4;
+  width: 100%;
   border: 1px solid rgba(0, 0, 0, 0.08);
+  line-height: 0;
 }
 
 .miroooo-gallery-1 img {
   width: 100%;
   height: auto;
-  max-height: 400px;
-  object-fit: contain;
   display: block;
   transition: transform 0.3s ease;
 }
@@ -941,15 +938,16 @@ video::-webkit-media-controls-enclosure {
 
 .miroooo-gallery-2 .miroooo-gallery-item {
   aspect-ratio: 1/1;
-  background: #d4d4d4;
+  background: transparent;
   overflow: hidden;
+  border-radius: 6px;
   border: 1px solid rgba(0, 0, 0, 0.08);
 }
 
 .miroooo-gallery-2 img {
   width: 100%;
   height: 100%;
-  object-fit: contain;
+  object-fit: cover;
   display: block;
   transition: transform 0.3s ease;
 }
@@ -974,16 +972,17 @@ video::-webkit-media-controls-enclosure {
 }
 
 .miroooo-gallery-3 .miroooo-gallery-item {
-  background: #d4d4d4;
+  background: transparent;
   overflow: hidden;
   position: relative;
+  border-radius: 6px;
   border: 1px solid rgba(0, 0, 0, 0.08);
 }
 
 .miroooo-gallery-3 img {
   width: 100%;
   height: 100%;
-  object-fit: contain;
+  object-fit: cover;
   display: block;
   transition: transform 0.3s ease;
 }
