@@ -2,6 +2,12 @@
   "cleanUrls": true,
   "trailingSlash": false,
   "outputDirectory": "public",
+  "crons": [
+    {
+      "path": "/api/cron/reconcile-microsoft-purchases",
+      "schedule": "20 5 * * *"
+    }
+  ],
   "rewrites": [
     {"source":"/policies/privacy-policy","destination":"/privacy.html"},
     {"source":"/policies/return-policy","destination":"/return-policy.html"},

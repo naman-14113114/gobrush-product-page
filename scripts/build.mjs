@@ -1,4 +1,4 @@
-import { cp, mkdir, readdir, rm } from "node:fs/promises";
+import { cp, mkdir, readFile, readdir, rm, writeFile } from "node:fs/promises";
 import { resolve } from "node:path";
 import { spawnSync } from "node:child_process";
 
@@ -32,6 +32,19 @@ await cp(resolve(root, "miroooo-x2.html"), resolve(output, "products", "miroooo-
 try {
   await cp(resolve(root, "miroooo-x2-heads.html"), resolve(output, "products", "miroooo-x2-heads.html"));
 } catch (_) {}
+
+const microsoftTrackingScript = '<script src="/assets/microsoft-ads.js?v=20260901" defer></script>';
+const outputHtmlFiles = [
+  ...(await readdir(output)).filter((name) => name.endsWith(".html")).map((name) => resolve(output, name)),
+  ...(await readdir(resolve(output, "products"))).filter((name) => name.endsWith(".html")).map((name) => resolve(output, "products", name))
+];
+
+for (const htmlFile of outputHtmlFiles) {
+  const html = await readFile(htmlFile, "utf8");
+  if (!html.includes("/assets/microsoft-ads.js")) {
+    await writeFile(htmlFile, html.replace("</body>", `  ${microsoftTrackingScript}\n</body>`), "utf8");
+  }
+}
 
 for (const directory of ["assets", "assets_ref", "gallery_orig"]) {
   await cp(resolve(root, directory), resolve(output, directory), { recursive: true });

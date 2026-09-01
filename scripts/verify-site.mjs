@@ -6,7 +6,7 @@ const required = [
   "index.html", "shop.html", "miroooo-x.html", "miroooo-x2.html", "cart.html", "about.html", "about-us.html", "faq.html",
   "contact.html", "delivery-returns.html", "warranty.html", "order-tracking.html", "privacy.html",
   "terms.html", "return-policy.html", "shipping-policy.html", "refund-policy.html", "cookies-policy.html",
-  "404.html", "assets/site.css", "assets/site.js", "vercel.json", "sitemap.xml",
+  "404.html", "assets/site.css", "assets/site.js", "assets/microsoft-ads.js", "vercel.json", "sitemap.xml",
   "robots.txt", "llms.txt"
 ];
 const errors = [];
@@ -51,6 +51,25 @@ for (const marker of ["gb-hero", "gb-video-feature-section", "gb-story"]) {
 const sharedScript = await readFile(resolve(root, "assets/site.js"), "utf8");
 for (const marker of ["nav-link__flip", "mobile-panel__close", "service-strip", "data-drag-scroll"]) {
   if (!sharedScript.includes(marker)) errors.push(`assets/site.js: missing shared theme behaviour ${marker}`);
+}
+
+const microsoftAdsScript = await readFile(resolve(root, "assets/microsoft-ads.js"), "utf8");
+for (const marker of ["211072489", "355060364", "shoppingUetq", "miroooo_attribution", "bat.bing.com/bat.js"]) {
+  if (!microsoftAdsScript.includes(marker)) errors.push(`assets/microsoft-ads.js: missing ${marker}`);
+}
+
+const buildScript = await readFile(resolve(root, "scripts/build.mjs"), "utf8");
+if (!buildScript.includes("/assets/microsoft-ads.js?v=20260901")) {
+  errors.push("scripts/build.mjs: Microsoft Ads browser tracking is not injected into built pages");
+}
+
+for (const file of [
+  "lib/shopbase-orders.js",
+  "lib/microsoft-ads.js",
+  "api/webhooks/shopbase/orders-paid.js",
+  "api/cron/reconcile-microsoft-purchases.js"
+]) {
+  try { await access(resolve(root, file)); } catch { errors.push(`Missing conversion tracking file: ${file}`); }
 }
 
 const sharedStyles = await readFile(resolve(root, "assets/site.css"), "utf8");
