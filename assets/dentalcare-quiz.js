@@ -453,7 +453,7 @@
   /**
    * Handle Option Selection
    */
-  function handleOptionSelect(cardEl, stepNum, autoAdvance = true) {
+  function handleOptionSelect(cardEl, stepNum) {
     if (!cardEl) return;
 
     const currentStepNum = stepNum || state.currentStep;
@@ -488,15 +488,6 @@
 
     updateNavControls();
     persistState();
-
-    // Optional smooth auto-advance after brief delay
-    if (autoAdvance) {
-      setTimeout(() => {
-        if (state.currentStep === currentStepNum) {
-          goNextStep();
-        }
-      }, 260);
-    }
   }
 
   /**
@@ -511,7 +502,6 @@
     if (state.currentStep < TOTAL_STEPS) {
       state.currentStep += 1;
       renderActiveStep();
-      window.scrollTo({ top: 0, behavior: "smooth" });
     } else {
       // Finished Step 5 -> Run Profile Algorithm & Calculate Results
       runPersonalisationEngine();
@@ -530,7 +520,6 @@
     if (state.currentStep > 1) {
       state.currentStep -= 1;
       renderActiveStep();
-      window.scrollTo({ top: 0, behavior: "smooth" });
     }
   }
 
@@ -877,6 +866,11 @@
       sessionStorage.removeItem(STORAGE_KEY);
     } catch (_) {}
 
+    // Uncheck all radio inputs
+    $$("input[type=radio]", document).forEach((r) => {
+      r.checked = false;
+    });
+
     // Deselect all cards
     $$(".quiz-option-card, .quiz-option, [data-option-value]").forEach((card) => {
       card.classList.remove("is-selected", "selected");
@@ -884,7 +878,6 @@
     });
 
     renderActiveStep();
-    window.scrollTo({ top: 0, behavior: "smooth" });
   }
 
   /**
@@ -897,11 +890,11 @@
       if (card) {
         const stepContainer = card.closest(".quiz-step, [data-quiz-step], [data-step]");
         const stepNum = stepContainer ? parseInt(stepContainer.getAttribute("data-quiz-step") || stepContainer.getAttribute("data-step") || state.currentStep, 10) : state.currentStep;
-        handleOptionSelect(card, stepNum, true);
+        handleOptionSelect(card, stepNum);
         return;
       }
 
-      // Next button click
+      // Next / Continue button click
       const nextBtn = e.target.closest(".quiz-btn-next, [data-quiz-next], #quiz-next-btn");
       if (nextBtn && !nextBtn.disabled) {
         e.preventDefault();
@@ -917,9 +910,9 @@
         return;
       }
 
-      // Retake button click
-      const retakeBtn = e.target.closest(".quiz-retake-btn, #quiz-retake-btn, [data-quiz-retake]");
-      if (retakeBtn) {
+      // Reset / Retake button click
+      const resetOrRetakeBtn = e.target.closest(".quiz-reset-btn, #quiz-reset-btn, [data-quiz-reset], .quiz-retake-btn, #quiz-retake-btn, [data-quiz-retake]");
+      if (resetOrRetakeBtn) {
         e.preventDefault();
         retakeQuiz();
         return;
@@ -934,7 +927,7 @@
           e.preventDefault();
           const stepContainer = card.closest(".quiz-step, [data-quiz-step], [data-step]");
           const stepNum = stepContainer ? parseInt(stepContainer.getAttribute("data-quiz-step") || stepContainer.getAttribute("data-step") || state.currentStep, 10) : state.currentStep;
-          handleOptionSelect(card, stepNum, true);
+          handleOptionSelect(card, stepNum);
         }
       }
     });

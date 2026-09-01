@@ -11,14 +11,18 @@
   /* Core Miroooo Palette */
   --quiz-bg: #080909;
   --quiz-bg-elevated: #0f1010;
-  --quiz-card-bg: #141515;
-  --quiz-card-hover: #181919;
-  --quiz-card-selected: #1a1c1c;
+  
+  /* Quiz container matching policy page card */
+  --quiz-card-container-bg: #e6e6e6;
+  --quiz-card-container-text: #111111;
+  --quiz-card-bg: #ffffff;
+  --quiz-card-hover: #fafafa;
+  --quiz-card-selected: #ffffff;
   
   --quiz-porcelain: #f4f4f1;
-  --quiz-mineral: #a6a8a4;
+  --quiz-mineral: #555555;
   --quiz-silver: #d9dad8;
-  --quiz-ink: #080909;
+  --quiz-ink: #111111;
   
   --quiz-signal: #22c55e;
   --quiz-signal-glow: rgba(34, 197, 94, 0.22);
@@ -26,10 +30,10 @@
   --quiz-signal-badge-bg: #18371f;
   --quiz-signal-badge-text: #4ade80;
   
-  --quiz-border: rgba(255, 255, 255, 0.08);
-  --quiz-border-hover: rgba(255, 255, 255, 0.18);
-  --quiz-border-selected: #ffffff;
-  --quiz-border-strong: rgba(255, 255, 255, 0.24);
+  --quiz-border: rgba(0, 0, 0, 0.12);
+  --quiz-border-hover: rgba(0, 0, 0, 0.32);
+  --quiz-border-selected: #000000;
+  --quiz-border-strong: rgba(0, 0, 0, 0.2);
   
   /* Geometry & Physics */
   --quiz-radius-card: 16px;
@@ -37,8 +41,9 @@
   --quiz-radius-sm: 12px;
   --quiz-radius-lg: 24px;
   
-  --quiz-shadow-card: 0 14px 40px rgba(0, 0, 0, 0.45);
-  --quiz-shadow-selected: 0 0 0 1.5px #ffffff, 0 16px 48px rgba(0, 0, 0, 0.6);
+  --quiz-shadow-container: 0 20px 60px -15px rgba(0, 0, 0, 0.35);
+  --quiz-shadow-card: 0 2px 8px rgba(0, 0, 0, 0.04);
+  --quiz-shadow-selected: 0 6px 20px rgba(0, 0, 0, 0.12);
   --quiz-shadow-glow: 0 0 32px rgba(34, 197, 94, 0.16);
   
   --quiz-easing: cubic-bezier(0.16, 1, 0.3, 1);
@@ -87,7 +92,7 @@ body[data-page="dentalcare-quiz"] {
   text-align: center !important;
   position: relative !important;
   overflow: hidden !important;
-  border-bottom: 1px solid var(--quiz-border) !important;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08) !important;
 }
 
 .quiz-hero .eyebrow,
@@ -118,12 +123,12 @@ body[data-page="dentalcare-quiz"] {
   max-width: 620px !important;
   margin: 0 auto !important;
   font-size: clamp(0.95rem, 1.4vw, 1.125rem) !important;
-  color: var(--quiz-mineral) !important;
+  color: #a6a8a4 !important;
   line-height: 1.6 !important;
 }
 
 /* --------------------------------------------------------------------------
-   QUIZ SECTION & CONTAINER
+   QUIZ SECTION & CONTAINER (Policy Page Container Theme: #e6e6e6 & Black Text)
    -------------------------------------------------------------------------- */
 .quiz-section {
   background: var(--quiz-bg) !important;
@@ -136,10 +141,12 @@ body[data-page="dentalcare-quiz"] {
 .quiz-container {
   max-width: var(--quiz-max-width) !important;
   margin: 0 auto !important;
-  background: var(--quiz-card-bg) !important;
-  border: 1px solid var(--quiz-border) !important;
-  border-radius: var(--quiz-radius-card) !important;
-  box-shadow: var(--quiz-shadow-card) !important;
+  background-color: #e6e6e6 !important;
+  background: #e6e6e6 !important;
+  color: #111111 !important;
+  border: 1px solid rgba(0, 0, 0, 0.08) !important;
+  border-radius: 24px !important;
+  box-shadow: 0 20px 60px -15px rgba(0, 0, 0, 0.35) !important;
   padding: clamp(24px, 4.5vw, 44px) !important;
   position: relative !important;
   transition: all var(--quiz-duration-norm) var(--quiz-easing) !important;
@@ -161,26 +168,52 @@ body[data-page="dentalcare-quiz"] {
   font-weight: 700 !important;
   letter-spacing: 0.12em !important;
   text-transform: uppercase !important;
-  color: var(--quiz-mineral) !important;
+  color: #555555 !important;
+}
+
+.quiz-progress-meta-actions {
+  display: flex !important;
+  align-items: center !important;
+  gap: 14px !important;
 }
 
 .quiz-step-indicator {
-  color: var(--quiz-porcelain) !important;
-  background: rgba(255, 255, 255, 0.06) !important;
+  color: #111111 !important;
+  background: rgba(0, 0, 0, 0.06) !important;
   padding: 4px 10px !important;
   border-radius: 999px !important;
-  border: 1px solid var(--quiz-border) !important;
+  border: 1px solid rgba(0, 0, 0, 0.12) !important;
   font-weight: 700 !important;
 }
 
 .quiz-progress-percent {
-  color: var(--quiz-mineral) !important;
+  color: #555555 !important;
+}
+
+.quiz-reset-btn {
+  background: transparent !important;
+  border: none !important;
+  color: #666666 !important;
+  font-size: 0.75rem !important;
+  font-weight: 600 !important;
+  letter-spacing: 0.04em !important;
+  cursor: pointer !important;
+  text-decoration: underline !important;
+  padding: 2px 6px !important;
+  transition: color 0.2s ease !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 4px !important;
+}
+
+.quiz-reset-btn:hover {
+  color: #111111 !important;
 }
 
 .quiz-progress-track {
   width: 100% !important;
   height: 5px !important;
-  background: rgba(255, 255, 255, 0.08) !important;
+  background: rgba(0, 0, 0, 0.1) !important;
   border-radius: 999px !important;
   overflow: hidden !important;
   position: relative !important;
@@ -189,10 +222,10 @@ body[data-page="dentalcare-quiz"] {
 .quiz-progress-bar,
 .quiz-progress-fill {
   height: 100% !important;
-  background: var(--quiz-porcelain) !important;
+  background: #111111 !important;
   border-radius: 999px !important;
   transition: width var(--quiz-duration-slow) var(--quiz-easing) !important;
-  box-shadow: 0 0 12px rgba(255, 255, 255, 0.45) !important;
+  box-shadow: none !important;
 }
 
 /* --------------------------------------------------------------------------
@@ -229,7 +262,7 @@ body[data-page="dentalcare-quiz"] {
   font-weight: 700 !important;
   line-height: 1.2 !important;
   letter-spacing: -0.025em !important;
-  color: var(--quiz-porcelain) !important;
+  color: #111111 !important;
   margin-bottom: 10px !important;
   padding: 0 !important;
   display: block !important;
@@ -239,7 +272,7 @@ body[data-page="dentalcare-quiz"] {
 .quiz-step-desc,
 .quiz-question-desc {
   font-size: 0.9375rem !important;
-  color: var(--quiz-mineral) !important;
+  color: #444444 !important;
   margin-bottom: 28px !important;
   line-height: 1.55 !important;
 }
@@ -275,8 +308,8 @@ body[data-page="dentalcare-quiz"] {
   align-items: flex-start !important;
   gap: 16px !important;
   padding: 20px 22px !important;
-  background: var(--quiz-card-bg) !important;
-  border: 1px solid var(--quiz-border) !important;
+  background: #ffffff !important;
+  border: 1px solid rgba(0, 0, 0, 0.12) !important;
   border-radius: var(--quiz-radius-card) !important;
   cursor: pointer !important;
   transition: all var(--quiz-duration-fast) var(--quiz-easing) !important;
@@ -286,19 +319,20 @@ body[data-page="dentalcare-quiz"] {
   outline: none !important;
   min-height: 94px !important;
   box-sizing: border-box !important;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04) !important;
 }
 
 .quiz-option:hover,
 .quiz-option-card:hover {
-  border-color: var(--quiz-border-hover) !important;
-  background: var(--quiz-card-hover) !important;
+  border-color: rgba(0, 0, 0, 0.32) !important;
+  background: #fafafa !important;
   transform: translateY(-2px) !important;
-  box-shadow: var(--quiz-shadow-card) !important;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08) !important;
 }
 
 .quiz-option:focus-visible,
 .quiz-option-card:focus-visible {
-  outline: 2px solid var(--quiz-porcelain) !important;
+  outline: 2px solid #111111 !important;
   outline-offset: 3px !important;
 }
 
@@ -309,10 +343,10 @@ body[data-page="dentalcare-quiz"] {
 .quiz-option-card.selected,
 .quiz-option:has(input:checked),
 .quiz-option-card:has(input:checked) {
-  border: 1.5px solid var(--quiz-border-selected) !important;
-  background: var(--quiz-card-selected) !important;
-  color: var(--quiz-porcelain) !important;
-  box-shadow: var(--quiz-shadow-selected) !important;
+  border: 2px solid #000000 !important;
+  background: #ffffff !important;
+  color: #111111 !important;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.12) !important;
   transform: translateY(-1px) !important;
 }
 
@@ -323,7 +357,7 @@ body[data-page="dentalcare-quiz"] {
   width: 24px !important;
   height: 24px !important;
   border-radius: 50% !important;
-  border: 1.5px solid rgba(255, 255, 255, 0.22) !important;
+  border: 1.5px solid rgba(0, 0, 0, 0.25) !important;
   flex-shrink: 0 !important;
   display: inline-flex !important;
   align-items: center !important;
@@ -385,21 +419,21 @@ body[data-page="dentalcare-quiz"] {
   font-weight: 650 !important;
   font-size: 1rem !important;
   line-height: 1.35 !important;
-  color: var(--quiz-porcelain) !important;
+  color: #111111 !important;
 }
 
 .quiz-option-subtitle,
 .quiz-option-desc {
   display: block !important;
   font-size: 0.8125rem !important;
-  color: var(--quiz-mineral) !important;
+  color: #555555 !important;
   line-height: 1.45 !important;
   font-weight: 400 !important;
 }
 
 .quiz-option.is-selected .quiz-option-subtitle,
 .quiz-option:has(input:checked) .quiz-option-subtitle {
-  color: rgba(244, 244, 241, 0.78) !important;
+  color: #222222 !important;
 }
 
 /* --------------------------------------------------------------------------
@@ -410,17 +444,52 @@ body[data-page="dentalcare-quiz"] {
   align-items: center !important;
   justify-content: space-between !important;
   gap: 16px !important;
-  border-top: 1px solid var(--quiz-border) !important;
+  border-top: 1px solid rgba(0, 0, 0, 0.1) !important;
   padding-top: 24px !important;
 }
 
 .quiz-btn-prev {
   min-width: 110px !important;
+  background: rgba(0, 0, 0, 0.06) !important;
+  border: 1px solid rgba(0, 0, 0, 0.14) !important;
+  color: #111111 !important;
+}
+
+.quiz-btn-prev:hover {
+  background: rgba(0, 0, 0, 0.12) !important;
+  color: #000000 !important;
 }
 
 .quiz-btn-next {
   min-width: 160px !important;
   margin-left: auto !important;
+  background-color: #000000 !important;
+  background: #000000 !important;
+  border: 2px solid #000000 !important;
+  color: #ffffff !important;
+}
+
+.quiz-btn-next .btn-fill {
+  background-color: #ffffff !important;
+  background: #ffffff !important;
+}
+
+.quiz-btn-next .btn-text {
+  color: #ffffff !important;
+}
+
+.quiz-btn-next:hover .btn-text,
+.quiz-btn-next:focus-visible .btn-text {
+  color: #000000 !important;
+}
+
+.quiz-btn-next:disabled {
+  opacity: 0.38 !important;
+  background: #000000 !important;
+  border-color: #000000 !important;
+  color: #ffffff !important;
+  cursor: not-allowed !important;
+  pointer-events: none !important;
 }
 
 /* Primary Pill Button */
@@ -432,11 +501,11 @@ body[data-page="dentalcare-quiz"] {
   justify-content: center !important;
   height: 52px !important;
   padding: 0 30px !important;
-  border: 2px solid #ffffff !important;
+  border: 2px solid #000000 !important;
   border-radius: var(--quiz-radius-pill) !important;
-  background-color: #ffffff !important;
-  background: #ffffff !important;
-  color: #000000 !important;
+  background-color: #000000 !important;
+  background: #000000 !important;
+  color: #ffffff !important;
   font-size: 0.95rem !important;
   font-weight: 700 !important;
   cursor: pointer !important;
@@ -458,13 +527,13 @@ body[data-page="dentalcare-quiz"] {
 .button--primary:focus-visible,
 .quiz-btn-primary:hover,
 .quiz-btn-primary:focus-visible {
-  background-color: #ffffff !important;
-  background: #ffffff !important;
-  border-color: #ffffff !important;
-  box-shadow: 0 6px 24px rgba(255, 255, 255, 0.2) !important;
+  background-color: #000000 !important;
+  background: #000000 !important;
+  border-color: #000000 !important;
+  box-shadow: 0 6px 24px rgba(0, 0, 0, 0.15) !important;
 }
 
-/* Upward Expanding Black Fill */
+/* Upward Expanding White Fill for Dark Primary Buttons */
 .button .btn-fill,
 .button--primary .btn-fill,
 .quiz-btn-primary .btn-fill {
@@ -476,8 +545,8 @@ body[data-page="dentalcare-quiz"] {
   top: -50% !important;
   inset-inline-start: -25% !important;
   left: -25% !important;
-  background-color: #000000 !important;
-  background: #000000 !important;
+  background-color: #ffffff !important;
+  background: #ffffff !important;
   pointer-events: none !important;
   z-index: 1 !important;
   transform: translate3d(0, 76%, 0) !important;
@@ -502,7 +571,7 @@ body[data-page="dentalcare-quiz"] {
   align-items: center !important;
   justify-content: center !important;
   gap: 8px !important;
-  color: #000000 !important;
+  color: #ffffff !important;
   transition: color 0.4s var(--quiz-easing) !important;
   pointer-events: none !important;
 }
@@ -513,13 +582,13 @@ body[data-page="dentalcare-quiz"] {
 .button--primary:focus-visible .btn-text,
 .quiz-btn-primary:hover .btn-text,
 .quiz-btn-primary:focus-visible .btn-text {
-  color: #ffffff !important;
+  color: #000000 !important;
 }
 
 .button:disabled,
 .button--primary:disabled,
 .quiz-btn-primary:disabled {
-  opacity: 0.35 !important;
+  opacity: 0.38 !important;
   cursor: not-allowed !important;
   pointer-events: none !important;
   box-shadow: none !important;
@@ -536,9 +605,9 @@ body[data-page="dentalcare-quiz"] {
   height: 52px !important;
   padding: 0 24px !important;
   border-radius: var(--quiz-radius-pill) !important;
-  background: transparent !important;
-  border: 1px solid var(--quiz-border) !important;
-  color: var(--quiz-mineral) !important;
+  background: #ffffff !important;
+  border: 1px solid rgba(0, 0, 0, 0.15) !important;
+  color: #111111 !important;
   font-size: 0.9375rem !important;
   font-weight: 600 !important;
   cursor: pointer !important;
@@ -552,9 +621,9 @@ body[data-page="dentalcare-quiz"] {
 .button--secondary:hover,
 .button--outline:hover,
 .quiz-btn-secondary:hover {
-  background: rgba(255, 255, 255, 0.06) !important;
-  border-color: var(--quiz-border-strong) !important;
-  color: var(--quiz-porcelain) !important;
+  background: #000000 !important;
+  border-color: #000000 !important;
+  color: #ffffff !important;
 }
 
 /* --------------------------------------------------------------------------
@@ -595,7 +664,7 @@ body[data-page="dentalcare-quiz"] {
 .calc-waveform-icon {
   width: 36px !important;
   height: 36px !important;
-  stroke: var(--quiz-porcelain) !important;
+  stroke: #111111 !important;
   position: relative !important;
   z-index: 2 !important;
 }
@@ -610,13 +679,13 @@ body[data-page="dentalcare-quiz"] {
   font-family: 'Montserrat', Inter, sans-serif !important;
   font-size: clamp(1.25rem, 2.2vw, 1.6rem) !important;
   font-weight: 700 !important;
-  color: var(--quiz-porcelain) !important;
+  color: #111111 !important;
   margin: 0 0 10px !important;
 }
 
 .quiz-calc-subtitle {
   font-size: 0.9375rem !important;
-  color: var(--quiz-mineral) !important;
+  color: #444444 !important;
   max-width: 480px !important;
   margin: 0 auto 24px !important;
   line-height: 1.5 !important;
@@ -625,7 +694,7 @@ body[data-page="dentalcare-quiz"] {
 .calc-progress-bar-wrap {
   width: 240px !important;
   height: 4px !important;
-  background: rgba(255, 255, 255, 0.08) !important;
+  background: rgba(0, 0, 0, 0.1) !important;
   border-radius: 999px !important;
   margin: 0 auto !important;
   overflow: hidden !important;
@@ -696,13 +765,13 @@ body[data-page="dentalcare-quiz"] {
   font-weight: 800 !important;
   letter-spacing: -0.025em !important;
   line-height: 1.15 !important;
-  color: var(--quiz-porcelain) !important;
+  color: #111111 !important;
   margin: 0 0 12px !important;
 }
 
 .results-main-desc {
   font-size: 1rem !important;
-  color: var(--quiz-mineral) !important;
+  color: #444444 !important;
   max-width: 600px !important;
   margin: 0 auto !important;
   line-height: 1.55 !important;
@@ -710,12 +779,13 @@ body[data-page="dentalcare-quiz"] {
 
 /* Results Stack Cards */
 .results-card {
-  background: var(--quiz-card-bg) !important;
-  border: 1px solid var(--quiz-border) !important;
+  background: #ffffff !important;
+  border: 1px solid rgba(0, 0, 0, 0.08) !important;
   border-radius: var(--quiz-radius-card) !important;
-  box-shadow: var(--quiz-shadow-card) !important;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04) !important;
   padding: clamp(24px, 4vw, 40px) !important;
   margin-bottom: 24px !important;
+  color: #111111 !important;
 }
 
 .results-card-header {
@@ -723,27 +793,27 @@ body[data-page="dentalcare-quiz"] {
   align-items: center !important;
   gap: 12px !important;
   margin-bottom: 24px !important;
-  border-bottom: 1px solid var(--quiz-border) !important;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.08) !important;
   padding-bottom: 16px !important;
 }
 
 .results-step-pill {
-  background: rgba(255, 255, 255, 0.08) !important;
-  color: var(--quiz-porcelain) !important;
+  background: rgba(0, 0, 0, 0.06) !important;
+  color: #111111 !important;
   font-size: 0.6875rem !important;
   font-weight: 800 !important;
   letter-spacing: 0.1em !important;
   padding: 4px 10px !important;
   border-radius: 6px !important;
   text-transform: uppercase !important;
-  border: 1px solid var(--quiz-border) !important;
+  border: 1px solid rgba(0, 0, 0, 0.1) !important;
 }
 
 .results-card-title {
   font-family: 'Montserrat', Inter, sans-serif !important;
   font-size: clamp(1.15rem, 1.8vw, 1.35rem) !important;
   font-weight: 700 !important;
-  color: var(--quiz-porcelain) !important;
+  color: #111111 !important;
   margin: 0 !important;
 }
 
@@ -755,8 +825,8 @@ body[data-page="dentalcare-quiz"] {
 }
 
 .diagnostic-item {
-  background: rgba(255, 255, 255, 0.03) !important;
-  border: 1px solid var(--quiz-border) !important;
+  background: #f8f8f8 !important;
+  border: 1px solid rgba(0, 0, 0, 0.06) !important;
   border-radius: var(--quiz-radius-sm) !important;
   padding: 20px !important;
 }
@@ -766,7 +836,7 @@ body[data-page="dentalcare-quiz"] {
   font-weight: 700 !important;
   letter-spacing: 0.1em !important;
   text-transform: uppercase !important;
-  color: var(--quiz-mineral) !important;
+  color: #666666 !important;
   margin-bottom: 6px !important;
 }
 
@@ -774,14 +844,14 @@ body[data-page="dentalcare-quiz"] {
   font-family: 'Montserrat', Inter, sans-serif !important;
   font-weight: 700 !important;
   font-size: 1.05rem !important;
-  color: var(--quiz-porcelain) !important;
+  color: #111111 !important;
   margin-bottom: 6px !important;
   line-height: 1.3 !important;
 }
 
 .diagnostic-desc {
   font-size: 0.8125rem !important;
-  color: var(--quiz-mineral) !important;
+  color: #444444 !important;
   margin: 0 !important;
   line-height: 1.45 !important;
 }
@@ -795,8 +865,8 @@ body[data-page="dentalcare-quiz"] {
 }
 
 .instrument-media-card {
-  background: var(--quiz-bg) !important;
-  border: 1px solid var(--quiz-border) !important;
+  background: #f8f8f8 !important;
+  border: 1px solid rgba(0, 0, 0, 0.08) !important;
   border-radius: var(--quiz-radius-card) !important;
   padding: 24px !important;
   text-align: center !important;
@@ -810,7 +880,7 @@ body[data-page="dentalcare-quiz"] {
   margin: 0 auto !important;
   border-radius: 12px !important;
   object-fit: cover !important;
-  filter: drop-shadow(0 16px 32px rgba(0,0,0,0.6)) !important;
+  filter: drop-shadow(0 10px 24px rgba(0,0,0,0.15)) !important;
 }
 
 .instrument-color-tag {
@@ -818,7 +888,7 @@ body[data-page="dentalcare-quiz"] {
   bottom: 14px !important;
   left: 50% !important;
   transform: translateX(-50%) !important;
-  background: rgba(255, 255, 255, 0.14) !important;
+  background: rgba(0, 0, 0, 0.75) !important;
   backdrop-filter: blur(10px) !important;
   -webkit-backdrop-filter: blur(10px) !important;
   color: #ffffff !important;
@@ -835,7 +905,7 @@ body[data-page="dentalcare-quiz"] {
   font-weight: 700 !important;
   letter-spacing: 0.12em !important;
   text-transform: uppercase !important;
-  color: var(--quiz-signal) !important;
+  color: #16a34a !important;
   margin-bottom: 4px !important;
 }
 
@@ -843,13 +913,13 @@ body[data-page="dentalcare-quiz"] {
   font-family: 'Montserrat', Inter, sans-serif !important;
   font-size: clamp(1.5rem, 2.5vw, 2rem) !important;
   font-weight: 800 !important;
-  color: var(--quiz-porcelain) !important;
+  color: #111111 !important;
   margin: 0 0 8px !important;
 }
 
 .instrument-subtitle {
   font-size: 0.9375rem !important;
-  color: var(--quiz-mineral) !important;
+  color: #444444 !important;
   margin-bottom: 16px !important;
   line-height: 1.5 !important;
 }
@@ -860,9 +930,9 @@ body[data-page="dentalcare-quiz"] {
   gap: 12px !important;
   margin-bottom: 20px !important;
   padding: 12px 16px !important;
-  background: rgba(255, 255, 255, 0.03) !important;
+  background: #f8f8f8 !important;
   border-radius: 12px !important;
-  border: 1px solid var(--quiz-border) !important;
+  border: 1px solid rgba(0, 0, 0, 0.08) !important;
   flex-wrap: wrap !important;
 }
 
@@ -870,12 +940,12 @@ body[data-page="dentalcare-quiz"] {
   font-family: 'Montserrat', Inter, sans-serif !important;
   font-size: 1.75rem !important;
   font-weight: 800 !important;
-  color: var(--quiz-porcelain) !important;
+  color: #111111 !important;
 }
 
 .matched-price-compare {
   font-size: 1.1rem !important;
-  color: var(--quiz-mineral) !important;
+  color: #777777 !important;
   text-decoration: line-through !important;
 }
 
@@ -904,11 +974,11 @@ body[data-page="dentalcare-quiz"] {
   gap: 10px !important;
   font-size: 0.875rem !important;
   line-height: 1.45 !important;
-  color: var(--quiz-mineral) !important;
+  color: #333333 !important;
 }
 
 .matched-benefits-list li strong {
-  color: var(--quiz-porcelain) !important;
+  color: #111111 !important;
 }
 
 .matched-benefits-list svg {
@@ -927,8 +997,8 @@ body[data-page="dentalcare-quiz"] {
 }
 
 .routine-card {
-  background: rgba(255, 255, 255, 0.03) !important;
-  border: 1px solid var(--quiz-border) !important;
+  background: #f8f8f8 !important;
+  border: 1px solid rgba(0, 0, 0, 0.06) !important;
   border-radius: var(--quiz-radius-sm) !important;
   padding: 20px !important;
   position: relative !important;
@@ -939,7 +1009,7 @@ body[data-page="dentalcare-quiz"] {
   font-weight: 700 !important;
   letter-spacing: 0.1em !important;
   text-transform: uppercase !important;
-  color: var(--quiz-signal) !important;
+  color: #16a34a !important;
   margin-bottom: 6px !important;
 }
 
@@ -947,13 +1017,13 @@ body[data-page="dentalcare-quiz"] {
   font-family: 'Montserrat', Inter, sans-serif !important;
   font-size: 1rem !important;
   font-weight: 700 !important;
-  color: var(--quiz-porcelain) !important;
+  color: #111111 !important;
   margin: 0 0 8px !important;
 }
 
 .routine-card p {
   font-size: 0.8125rem !important;
-  color: var(--quiz-mineral) !important;
+  color: #444444 !important;
   margin: 0 !important;
   line-height: 1.5 !important;
 }
@@ -970,29 +1040,29 @@ body[data-page="dentalcare-quiz"] {
   align-items: center !important;
   gap: 12px !important;
   padding: 12px 14px !important;
-  background: rgba(255, 255, 255, 0.03) !important;
-  border: 1px solid var(--quiz-border) !important;
+  background: #f8f8f8 !important;
+  border: 1px solid rgba(0, 0, 0, 0.06) !important;
   border-radius: 12px !important;
 }
 
 .box-feature-icon {
   width: 22px !important;
   height: 22px !important;
-  stroke: var(--quiz-porcelain) !important;
+  stroke: #111111 !important;
   flex-shrink: 0 !important;
 }
 
 .box-feature-text strong {
   display: block !important;
   font-size: 0.8125rem !important;
-  color: var(--quiz-porcelain) !important;
+  color: #111111 !important;
   line-height: 1.2 !important;
 }
 
 .box-feature-text span {
   display: block !important;
   font-size: 0.6875rem !important;
-  color: var(--quiz-mineral) !important;
+  color: #555555 !important;
 }
 
 /* Results CTA Actions */
@@ -1010,6 +1080,10 @@ body[data-page="dentalcare-quiz"] {
   height: 58px !important;
   padding: 0 36px !important;
   min-width: 280px !important;
+  background-color: #000000 !important;
+  background: #000000 !important;
+  border: 2px solid #000000 !important;
+  color: #ffffff !important;
 }
 
 .results-secondary-row {
@@ -1017,6 +1091,39 @@ body[data-page="dentalcare-quiz"] {
   gap: 12px !important;
   flex-wrap: wrap !important;
   justify-content: center !important;
+}
+
+.results-secondary-row .button,
+.results-secondary-row .button--secondary,
+#quiz-retake-btn {
+  background: #ffffff !important;
+  color: #111111 !important;
+  border: 1.5px solid rgba(0, 0, 0, 0.18) !important;
+}
+
+.results-secondary-row .button .btn-fill,
+.results-secondary-row .button--secondary .btn-fill,
+#quiz-retake-btn .btn-fill {
+  background: #000000 !important;
+}
+
+.results-secondary-row .button .btn-text,
+.results-secondary-row .button--secondary .btn-text,
+#quiz-retake-btn .btn-text {
+  color: #111111 !important;
+}
+
+.results-secondary-row .button:hover .btn-text,
+.results-secondary-row .button--secondary:hover .btn-text,
+#quiz-retake-btn:hover .btn-text {
+  color: #ffffff !important;
+}
+
+.results-secondary-row .button:hover,
+.results-secondary-row .button--secondary:hover,
+#quiz-retake-btn:hover {
+  background: #000000 !important;
+  border-color: #000000 !important;
 }
 
 /* --------------------------------------------------------------------------

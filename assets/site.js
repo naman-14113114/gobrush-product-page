@@ -709,8 +709,9 @@
       }, 350);
     }
 
-    triggers.forEach((trigger) => {
-      trigger.addEventListener("click", (e) => {
+    document.addEventListener("click", (e) => {
+      const trigger = e.target.closest("#ShopDrawerTrigger, [aria-controls='ShopDrawer'], .header__shop-drawer-btn, [data-shop-drawer-toggle]");
+      if (trigger) {
         e.preventDefault();
         e.stopPropagation();
         if (shopDrawer.classList.contains("is-open")) {
@@ -718,8 +719,8 @@
         } else {
           openShopDrawer();
         }
-      });
-    });
+      }
+    }, true);
 
     closeBtns.forEach((btn) => {
       btn.addEventListener("click", (e) => {
