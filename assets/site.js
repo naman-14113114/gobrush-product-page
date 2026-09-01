@@ -147,10 +147,8 @@
                     </li>
                   </ul>
                 </li>
-                <li><a class="drawer__menu-item block heading text-2xl leading-none tracking-tight" href="/smile-coach">Smile Coach</a></li>
                 <li><a class="drawer__menu-item block heading text-2xl leading-none tracking-tight" href="/about-us">About Us</a></li>
                 <li><a class="drawer__menu-item block heading text-2xl leading-none tracking-tight" href="/dentalcare-quiz">Dentalcare Quiz</a></li>
-                <li><a class="drawer__menu-item block heading text-2xl leading-none tracking-tight" href="/guides">Guides</a></li>
                 <li><a class="drawer__menu-item block heading text-2xl leading-none tracking-tight" href="/contact">Contact Us</a></li>
                 <li><a class="drawer__menu-item block heading text-2xl leading-none tracking-tight" href="/faq">FAQs</a></li>
               </ul>
@@ -191,7 +189,6 @@
                       <span class="btn-text btn-duplicate flex items-center">Shop ${chevronDownIcon}</span>
                     </button>
                   </li>
-                  ${menuPill("/smile-coach", "Smile Coach", ["smile-coach"])}
                   ${menuPill("/about-us", "About Us", ["about", "about-us"])}
                   ${menuPill("/dentalcare-quiz", "Dentalcare Quiz", ["dentalcare-quiz", "quiz"])}
                 </ul>
@@ -208,7 +205,6 @@
               <nav class="header__menu site-nav site-nav--right hidden lg:flex" role="navigation" aria-label="Secondary">
                 <ul class="flex flex-wrap list-menu with-block">
                   ${menuPill("/contact", "Contact Us", ["contact"])}
-                  ${menuPill("/guides", "Guides", ["guides", "guide"])}
                   ${menuPill("/faq", "FAQs", ["faq"])}
                 </ul>
               </nav>
