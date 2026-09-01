@@ -4338,104 +4338,103 @@ theme.variantStrings = {
         display: none !important;
       }
       .x2-comp-mobile {
-        display: flex !important;
-        flex-direction: column;
+        display: block !important;
         width: 100%;
         box-sizing: border-box;
       }
 
-      /* Mobile 2-Column Product Headers */
+      .x2-comp-m-table {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        position: relative;
+        box-sizing: border-box;
+        margin-top: 8px;
+      }
+
+      /* 2-Column Product Headers */
       .x2-comp-m-head-row {
         display: flex;
+        align-items: flex-end;
         width: 100%;
-        gap: 8px;
-        margin-top: 14px;
-        margin-bottom: 8px;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+        padding-bottom: 10px;
         box-sizing: border-box;
       }
-      .x2-comp-m-head-card {
+
+      .x2-comp-m-head-col {
         flex: 1;
         width: 50%;
         display: flex;
         flex-direction: column;
         align-items: center;
         text-align: center;
-        padding: 14px 6px 8px 6px;
-        border-radius: 12px;
+        padding: 8px 6px 0 6px;
         box-sizing: border-box;
         position: relative;
       }
-      .x2-comp-m-head-card--winner {
+
+      .x2-comp-m-head-col--winner {
         background: #ffffff;
         color: #000000;
-        border: 2px solid #22c55e;
-        padding: 14px 6px 0 6px;
-        box-shadow: 0 6px 20px rgba(0,0,0,0.5), 0 0 14px rgba(34, 197, 94, 0.25);
-        overflow: visible;
-      }
-      .x2-comp-m-head-card--standard {
-        background: #111111;
-        border: 1px solid rgba(255, 255, 255, 0.08);
+        border-top-left-radius: 16px;
+        border-top-right-radius: 16px;
+        box-shadow: 0 4px 18px rgba(0, 0, 0, 0.35);
+        padding-top: 14px;
+        padding-bottom: 0;
       }
 
       .x2-comp-m-badge {
-        position: absolute;
-        top: -10px;
-        left: 50%;
-        transform: translateX(-50%);
+        display: inline-block;
         background: #22c55e;
         color: #000000;
-        font-size: 0.6rem;
+        font-size: 0.62rem;
         font-weight: 800;
         letter-spacing: 0.04em;
         padding: 2px 8px;
         border-radius: 9999px;
         text-transform: uppercase;
-        box-shadow: 0 2px 8px rgba(34, 197, 94, 0.35);
-        white-space: nowrap;
-        z-index: 10;
+        margin-bottom: 4px;
+        box-shadow: 0 2px 6px rgba(34, 197, 94, 0.3);
       }
-      .x2-comp-m-title {
+
+      .x2-comp-m-brand-name {
         font-family: var(--font-heading-family, 'Inter', -apple-system, sans-serif);
-        font-size: 0.9rem;
+        font-size: 0.92rem;
         font-weight: 800;
-        margin: 1px 0;
-        line-height: 1.2;
-      }
-      .x2-comp-m-head-card--winner .x2-comp-m-title {
-        color: #000000;
-      }
-      .x2-comp-m-head-card--standard .x2-comp-m-title {
         color: #ffffff;
+        line-height: 1.2;
+        margin-bottom: 2px;
+      }
+
+      .x2-comp-m-head-col--winner .x2-comp-m-brand-name {
+        color: #000000;
       }
 
       .x2-comp-m-tag {
-        font-size: 0.64rem;
+        font-size: 0.66rem;
         font-weight: 600;
         color: rgba(255, 255, 255, 0.5);
-        margin-bottom: 4px;
+        margin-bottom: 6px;
       }
-      .x2-comp-m-head-card--winner .x2-comp-m-tag {
+
+      .x2-comp-m-head-col--winner .x2-comp-m-tag {
         color: #16a34a;
         font-weight: 700;
       }
 
-      .x2-comp-m-img-wrap {
-        height: 76px;
+      .x2-comp-m-head-img-wrap {
+        height: 72px;
         width: 100%;
         display: flex;
         align-items: flex-end;
         justify-content: center;
         margin-top: auto;
-        margin-bottom: 0;
-        padding-bottom: 0;
         line-height: 0;
       }
-      .x2-comp-m-head-card--winner .x2-comp-m-img-wrap {
-        background: #ffffff;
-      }
-      .x2-comp-m-head-card--winner .x2-comp-m-img-wrap img {
-        max-height: 76px;
+
+      .x2-comp-m-head-img {
+        max-height: 72px;
         width: auto;
         object-fit: contain;
         object-position: bottom center;
@@ -4443,130 +4442,122 @@ theme.variantStrings = {
         margin: 0 auto;
         padding: 0;
         vertical-align: bottom;
-        filter: none !important;
-      }
-      .x2-comp-m-head-card--standard .x2-comp-m-img-wrap img {
-        max-height: 76px;
-        width: auto;
-        object-fit: contain;
-        object-position: bottom center;
-        display: block;
-        margin: 0 auto;
-        padding: 0;
-        vertical-align: bottom;
-        filter: none !important;
       }
 
-      /* Mobile Rows */
-      .x2-comp-m-row-card {
-        background: #0d0d0d;
-        border: 1px solid rgba(255, 255, 255, 0.07);
-        border-radius: 10px;
-        padding: 7px 7px 7px 7px;
-        margin-bottom: 5px;
+      /* Feature rows */
+      .x2-comp-m-row-group {
+        display: flex;
+        flex-direction: column;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+        padding: 9px 0 7px 0;
         box-sizing: border-box;
       }
-      .x2-comp-m-row-card--price {
-        background: #111111;
-        border: 1px solid rgba(34, 197, 94, 0.35);
-        margin-top: 2px;
+
+      .x2-comp-m-row-group--last {
+        border-bottom: none;
+        padding-bottom: 0;
       }
 
-      .x2-comp-m-feature-name {
+      .x2-comp-m-feature-title {
         font-family: var(--font-body-family, 'Inter', -apple-system, sans-serif);
-        font-size: 0.7rem;
-        font-weight: 700;
-        color: rgba(255, 255, 255, 0.5);
-        text-transform: uppercase;
-        letter-spacing: 0.05em;
-        text-align: center;
-        margin-bottom: 4px;
+        font-size: 0.82rem;
+        font-weight: 600;
+        color: rgba(255, 255, 255, 0.95);
+        padding: 0 4px 4px 4px;
+        text-align: left;
+        line-height: 1.3;
       }
 
-      .x2-comp-m-split {
+      .x2-comp-m-values-row {
         display: flex;
-        width: 100%;
-        gap: 6px;
         align-items: stretch;
+        width: 100%;
       }
 
-      .x2-comp-m-val-box {
+      .x2-comp-m-val-cell {
         flex: 1;
         width: 50%;
-        border-radius: 6px;
-        padding: 5px 4px;
+        min-height: 42px;
         display: flex;
         flex-direction: column;
         align-items: center;
         justify-content: center;
         text-align: center;
+        font-family: var(--font-body-family, 'Inter', -apple-system, sans-serif);
+        font-size: 0.8rem;
+        font-weight: 600;
+        color: rgba(255, 255, 255, 0.65);
+        padding: 4px 6px;
         box-sizing: border-box;
+        line-height: 1.25;
       }
 
-      .x2-comp-m-val-box--winner {
-        background: rgba(34, 197, 94, 0.1);
-        border: 1px solid rgba(34, 197, 94, 0.3);
-        color: #ffffff;
+      .x2-comp-m-val-cell--winner {
+        background: #ffffff;
+        color: #000000 !important;
+        font-weight: 700;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
       }
-      .x2-comp-m-val-box--standard {
-        background: rgba(255, 255, 255, 0.03);
-        border: 1px solid rgba(255, 255, 255, 0.05);
-        color: rgba(255, 255, 255, 0.7);
+
+      .x2-comp-m-val-cell--winner-last {
+        border-bottom-left-radius: 16px;
+        border-bottom-right-radius: 16px;
+        padding-bottom: 12px;
       }
 
       .x2-comp-m-val-main {
-        font-size: 0.78rem;
+        font-size: 0.82rem;
         font-weight: 700;
         line-height: 1.2;
       }
-      .x2-comp-m-val-box--winner .x2-comp-m-val-main {
-        color: #4ade80;
+
+      .x2-comp-m-val-cell--winner .x2-comp-m-val-main {
+        color: #000000;
         font-weight: 800;
+        display: inline-flex;
+        align-items: center;
+        gap: 4px;
       }
 
       .x2-comp-m-val-sub {
-        font-size: 0.64rem;
+        font-size: 0.66rem;
         color: rgba(255, 255, 255, 0.5);
-        margin-top: 1px;
+        margin-top: 2px;
         line-height: 1.15;
       }
-      .x2-comp-m-val-box--winner .x2-comp-m-val-sub {
-        color: rgba(255, 255, 255, 0.75);
-      }
 
-      /* Mobile Price Box */
-      .x2-comp-m-price-box {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-      }
-      .x2-comp-m-old-price {
-        font-size: 0.72rem;
-        color: #94a3b8;
-        text-decoration: line-through;
+      .x2-comp-m-val-cell--winner .x2-comp-m-val-sub {
+        color: #4b5563;
         font-weight: 600;
       }
-      .x2-comp-m-price-val {
-        font-size: 1.15rem;
+
+      .x2-comp-m-tick {
+        color: #16a34a;
         font-weight: 900;
-        color: #22c55e;
-        line-height: 1;
+        font-size: 0.85rem;
       }
-      .x2-comp-m-price-val-standard {
+
+      /* Mobile Price in Last Row */
+      .x2-comp-m-price-winner {
+        color: #15803d !important;
+        font-size: 1.2rem;
+        font-weight: 900;
+        line-height: 1.1;
+      }
+
+      .x2-comp-m-price-old {
+        font-size: 0.72rem;
+        color: #64748b;
+        font-weight: 700;
+        text-decoration: line-through;
+        display: block;
+        margin-top: 1px;
+      }
+
+      .x2-comp-m-price-standard {
+        color: rgba(255, 255, 255, 0.85);
         font-size: 1.1rem;
         font-weight: 800;
-        color: #ffffff;
-        line-height: 1;
-      }
-      .x2-comp-m-price-note {
-        font-size: 0.58rem;
-        font-weight: 700;
-        color: #22c55e;
-        margin-top: 1px;
-        background: rgba(34, 197, 94, 0.15);
-        padding: 1px 5px;
-        border-radius: 9999px;
       }
     }
   </style>
@@ -4710,152 +4701,152 @@ theme.variantStrings = {
     <!-- ==================== MOBILE COMPARISON LAYOUT (<768px) ==================== -->
     <!-- Guaranteed strictly ZERO horizontal scrolling on all phone viewports -->
     <div class="x2-comp-mobile">
+      <div class="x2-comp-m-table">
 
-      <!-- Mobile Headers (Side-by-Side) -->
-      <div class="x2-comp-m-head-row">
-        <!-- Left: Brush X2 (Winner) -->
-        <div class="x2-comp-m-head-card x2-comp-m-head-card--winner">
-          <div class="x2-comp-m-badge">★ Flagship</div>
-          <h3 class="x2-comp-m-title">Brush X2</h3>
-          <span class="x2-comp-m-tag">Next-Gen Flagship</span>
-          <div class="x2-comp-m-img-wrap">
-            <img src="/assets_ref/x2/gallery/miroooo-x2-sonic-electric-toothbrush-silver-upright-grip.webp" alt="Brush X2" />
-          </div>
-        </div>
-        <!-- Right: Brush X1 (Standard) -->
-        <div class="x2-comp-m-head-card x2-comp-m-head-card--standard">
-          <h3 class="x2-comp-m-title">Brush X1</h3>
-          <span class="x2-comp-m-tag">Standard Model</span>
-          <div class="x2-comp-m-img-wrap">
-            <img src="/assets_ref/x/miroooo-x-sonic-electric-toothbrush-silver-upright-grip.webp" alt="Brush X1" />
-          </div>
-        </div>
-      </div>
-
-      <!-- Feature 1: Battery Life -->
-      <div class="x2-comp-m-row-card">
-        <div class="x2-comp-m-feature-name">1. Battery Life</div>
-        <div class="x2-comp-m-split">
-          <div class="x2-comp-m-val-box x2-comp-m-val-box--winner">
-            <span class="x2-comp-m-val-main">✓ 90+ Days</span>
-            <span class="x2-comp-m-val-sub">High-Density Cell</span>
-          </div>
-          <div class="x2-comp-m-val-box x2-comp-m-val-box--standard">
-            <span class="x2-comp-m-val-main">60 Days</span>
-            <span class="x2-comp-m-val-sub">Standard Battery</span>
-          </div>
-        </div>
-      </div>
-
-      <!-- Feature 2: VPM -->
-      <div class="x2-comp-m-row-card">
-        <div class="x2-comp-m-feature-name">2. Motor Power (VPM)</div>
-        <div class="x2-comp-m-split">
-          <div class="x2-comp-m-val-box x2-comp-m-val-box--winner">
-            <span class="x2-comp-m-val-main">✓ 40,000 VPM</span>
-            <span class="x2-comp-m-val-sub">High-Torque Acoustic</span>
-          </div>
-          <div class="x2-comp-m-val-box x2-comp-m-val-box--standard">
-            <span class="x2-comp-m-val-main">32,000 VPM</span>
-            <span class="x2-comp-m-val-sub">Standard Sonic</span>
-          </div>
-        </div>
-      </div>
-
-      <!-- Feature 3: Cleaning Motion -->
-      <div class="x2-comp-m-row-card">
-        <div class="x2-comp-m-feature-name">3. Cleaning Motion</div>
-        <div class="x2-comp-m-split">
-          <div class="x2-comp-m-val-box x2-comp-m-val-box--winner">
-            <span class="x2-comp-m-val-main">✓ 45° Bass Sweep</span>
-            <span class="x2-comp-m-val-sub">Dentist-Recommended</span>
-          </div>
-          <div class="x2-comp-m-val-box x2-comp-m-val-box--standard">
-            <span class="x2-comp-m-val-main">Micro-Vibration</span>
-            <span class="x2-comp-m-val-sub">0° Linear</span>
-          </div>
-        </div>
-      </div>
-
-      <!-- Feature 4: Cleaning Modes -->
-      <div class="x2-comp-m-row-card">
-        <div class="x2-comp-m-feature-name">4. Cleaning Modes</div>
-        <div class="x2-comp-m-split">
-          <div class="x2-comp-m-val-box x2-comp-m-val-box--winner">
-            <span class="x2-comp-m-val-main">✓ 3 Modes</span>
-            <span class="x2-comp-m-val-sub">Clean, White, Deep</span>
-          </div>
-          <div class="x2-comp-m-val-box x2-comp-m-val-box--standard">
-            <span class="x2-comp-m-val-main">Everyday Clean</span>
-            <span class="x2-comp-m-val-sub">Standard Mode</span>
-          </div>
-        </div>
-      </div>
-
-      <!-- Feature 5: Charging & Travel -->
-      <div class="x2-comp-m-row-card">
-        <div class="x2-comp-m-feature-name">5. Charging &amp; Travel</div>
-        <div class="x2-comp-m-split">
-          <div class="x2-comp-m-val-box x2-comp-m-val-box--winner">
-            <span class="x2-comp-m-val-main">✓ Direct USB-C</span>
-            <span class="x2-comp-m-val-sub">No Bulky Dock Needed</span>
-          </div>
-          <div class="x2-comp-m-val-box x2-comp-m-val-box--standard">
-            <span class="x2-comp-m-val-main">Charging Dock</span>
-            <span class="x2-comp-m-val-sub">Requires Bulky Base</span>
-          </div>
-        </div>
-      </div>
-
-      <!-- Feature 6: Body Material -->
-      <div class="x2-comp-m-row-card">
-        <div class="x2-comp-m-feature-name">6. Body Material</div>
-        <div class="x2-comp-m-split">
-          <div class="x2-comp-m-val-box x2-comp-m-val-box--winner">
-            <span class="x2-comp-m-val-main">✓ Aerospace Aluminium</span>
-            <span class="x2-comp-m-val-sub">CNC Precision Handle</span>
-          </div>
-          <div class="x2-comp-m-val-box x2-comp-m-val-box--standard">
-            <span class="x2-comp-m-val-main">Aerospace Aluminium</span>
-            <span class="x2-comp-m-val-sub">CNC Precision Handle</span>
-          </div>
-        </div>
-      </div>
-
-      <!-- Feature 7: Higher Warranty -->
-      <div class="x2-comp-m-row-card">
-        <div class="x2-comp-m-feature-name">7. Warranty Coverage</div>
-        <div class="x2-comp-m-split">
-          <div class="x2-comp-m-val-box x2-comp-m-val-box--winner">
-            <span class="x2-comp-m-val-main">✓ 3-Year Warranty</span>
-            <span class="x2-comp-m-val-sub">Full Replacement</span>
-          </div>
-          <div class="x2-comp-m-val-box x2-comp-m-val-box--standard">
-            <span class="x2-comp-m-val-main">2-Year Standard</span>
-            <span class="x2-comp-m-val-sub">Standard Guarantee</span>
-          </div>
-        </div>
-      </div>
-
-      <!-- Feature 8: Price Comparison -->
-      <div class="x2-comp-m-row-card x2-comp-m-row-card--price">
-        <div class="x2-comp-m-feature-name" style="color: #22c55e;">8. Price Comparison</div>
-        <div class="x2-comp-m-split">
-          <div class="x2-comp-m-val-box x2-comp-m-val-box--winner" style="background: rgba(34, 197, 94, 0.15);">
-            <div class="x2-comp-m-price-box">
-              <span class="x2-comp-m-old-price">£99</span>
-              <span class="x2-comp-m-price-val">£69</span>
-              <span class="x2-comp-m-price-note">(for today only)</span>
+        <!-- Mobile Headers (Side-by-Side) -->
+        <div class="x2-comp-m-head-row">
+          <!-- Left: Brush X2 (Winner Spotlight) -->
+          <div class="x2-comp-m-head-col x2-comp-m-head-col--winner">
+            <span class="x2-comp-m-badge">★ Flagship</span>
+            <span class="x2-comp-m-brand-name">Brush X2</span>
+            <span class="x2-comp-m-tag">Next-Gen Flagship</span>
+            <div class="x2-comp-m-head-img-wrap">
+              <img src="/assets_ref/x2/gallery/miroooo-x2-sonic-electric-toothbrush-silver-upright-grip.webp" alt="Brush X2" class="x2-comp-m-head-img" />
             </div>
           </div>
-          <div class="x2-comp-m-val-box x2-comp-m-val-box--standard">
-            <div class="x2-comp-m-price-box">
-              <span class="x2-comp-m-price-val-standard">£69</span>
+          <!-- Right: Brush X1 (Standard) -->
+          <div class="x2-comp-m-head-col">
+            <span class="x2-comp-m-brand-name">Brush X1</span>
+            <span class="x2-comp-m-tag">Standard Model</span>
+            <div class="x2-comp-m-head-img-wrap">
+              <img src="/assets_ref/x/miroooo-x-sonic-electric-toothbrush-silver-upright-grip.webp" alt="Brush X1" class="x2-comp-m-head-img" />
             </div>
           </div>
         </div>
-      </div>
 
+        <!-- Feature 1: Battery Life -->
+        <div class="x2-comp-m-row-group">
+          <div class="x2-comp-m-feature-title">Battery Life</div>
+          <div class="x2-comp-m-values-row">
+            <div class="x2-comp-m-val-cell x2-comp-m-val-cell--winner">
+              <span class="x2-comp-m-val-main"><span class="x2-comp-m-tick">✓</span> 90+ Days</span>
+              <span class="x2-comp-m-val-sub">High-Density Cell</span>
+            </div>
+            <div class="x2-comp-m-val-cell">
+              <span class="x2-comp-m-val-main">60 Days</span>
+              <span class="x2-comp-m-val-sub">Standard Battery</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Feature 2: Motor Power (VPM) -->
+        <div class="x2-comp-m-row-group">
+          <div class="x2-comp-m-feature-title">Motor Power (VPM)</div>
+          <div class="x2-comp-m-values-row">
+            <div class="x2-comp-m-val-cell x2-comp-m-val-cell--winner">
+              <span class="x2-comp-m-val-main"><span class="x2-comp-m-tick">✓</span> 40,000 VPM</span>
+              <span class="x2-comp-m-val-sub">High-Torque Acoustic</span>
+            </div>
+            <div class="x2-comp-m-val-cell">
+              <span class="x2-comp-m-val-main">32,000 VPM</span>
+              <span class="x2-comp-m-val-sub">Standard Sonic</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Feature 3: Cleaning Motion -->
+        <div class="x2-comp-m-row-group">
+          <div class="x2-comp-m-feature-title">Cleaning Motion</div>
+          <div class="x2-comp-m-values-row">
+            <div class="x2-comp-m-val-cell x2-comp-m-val-cell--winner">
+              <span class="x2-comp-m-val-main"><span class="x2-comp-m-tick">✓</span> 45° Bass Sweep</span>
+              <span class="x2-comp-m-val-sub">Dentist-Recommended</span>
+            </div>
+            <div class="x2-comp-m-val-cell">
+              <span class="x2-comp-m-val-main">Micro-Vibration</span>
+              <span class="x2-comp-m-val-sub">0° Linear</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Feature 4: Cleaning Modes -->
+        <div class="x2-comp-m-row-group">
+          <div class="x2-comp-m-feature-title">Cleaning Modes</div>
+          <div class="x2-comp-m-values-row">
+            <div class="x2-comp-m-val-cell x2-comp-m-val-cell--winner">
+              <span class="x2-comp-m-val-main"><span class="x2-comp-m-tick">✓</span> 3 Modes</span>
+              <span class="x2-comp-m-val-sub">Clean, White, Deep</span>
+            </div>
+            <div class="x2-comp-m-val-cell">
+              <span class="x2-comp-m-val-main">Everyday Clean</span>
+              <span class="x2-comp-m-val-sub">Standard Mode</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Feature 5: Charging & Travel -->
+        <div class="x2-comp-m-row-group">
+          <div class="x2-comp-m-feature-title">Charging &amp; Travel</div>
+          <div class="x2-comp-m-values-row">
+            <div class="x2-comp-m-val-cell x2-comp-m-val-cell--winner">
+              <span class="x2-comp-m-val-main"><span class="x2-comp-m-tick">✓</span> Direct USB-C</span>
+              <span class="x2-comp-m-val-sub">No Bulky Dock Needed</span>
+            </div>
+            <div class="x2-comp-m-val-cell">
+              <span class="x2-comp-m-val-main">Charging Dock</span>
+              <span class="x2-comp-m-val-sub">Requires Bulky Base</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Feature 6: Body Material -->
+        <div class="x2-comp-m-row-group">
+          <div class="x2-comp-m-feature-title">Body Material</div>
+          <div class="x2-comp-m-values-row">
+            <div class="x2-comp-m-val-cell x2-comp-m-val-cell--winner">
+              <span class="x2-comp-m-val-main"><span class="x2-comp-m-tick">✓</span> Aerospace Aluminium</span>
+              <span class="x2-comp-m-val-sub">CNC Precision Handle</span>
+            </div>
+            <div class="x2-comp-m-val-cell">
+              <span class="x2-comp-m-val-main">Aerospace Aluminium</span>
+              <span class="x2-comp-m-val-sub">CNC Precision Handle</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Feature 7: Warranty Coverage -->
+        <div class="x2-comp-m-row-group">
+          <div class="x2-comp-m-feature-title">Warranty Coverage</div>
+          <div class="x2-comp-m-values-row">
+            <div class="x2-comp-m-val-cell x2-comp-m-val-cell--winner">
+              <span class="x2-comp-m-val-main"><span class="x2-comp-m-tick">✓</span> 3-Year Warranty</span>
+              <span class="x2-comp-m-val-sub">Full Replacement</span>
+            </div>
+            <div class="x2-comp-m-val-cell">
+              <span class="x2-comp-m-val-main">2-Year Standard</span>
+              <span class="x2-comp-m-val-sub">Standard Guarantee</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Feature 8: Price -->
+        <div class="x2-comp-m-row-group x2-comp-m-row-group--last">
+          <div class="x2-comp-m-feature-title">Price</div>
+          <div class="x2-comp-m-values-row">
+            <div class="x2-comp-m-val-cell x2-comp-m-val-cell--winner x2-comp-m-val-cell--winner-last">
+              <div>
+                <div class="x2-comp-m-price-winner">£69</div>
+                <span class="x2-comp-m-price-old">£99</span>
+                <span style="font-size: 0.58rem; color: #15803d; font-weight: 700; display: block; line-height: 1; margin-top: 1px;">(for today only)</span>
+              </div>
+            </div>
+            <div class="x2-comp-m-val-cell">
+              <span class="x2-comp-m-price-standard">£69</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
     </div>
 
   </div>
