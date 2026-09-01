@@ -149,6 +149,7 @@
                 </li>
                 <li><a class="drawer__menu-item block heading text-2xl leading-none tracking-tight" href="/smile-coach">Smile Coach</a></li>
                 <li><a class="drawer__menu-item block heading text-2xl leading-none tracking-tight" href="/about-us">About Us</a></li>
+                <li><a class="drawer__menu-item block heading text-2xl leading-none tracking-tight" href="/guides">Guides</a></li>
                 <li><a class="drawer__menu-item block heading text-2xl leading-none tracking-tight" href="/contact">Contact Us</a></li>
                 <li><a class="drawer__menu-item block heading text-2xl leading-none tracking-tight" href="/faq">FAQs</a></li>
               </ul>
@@ -205,6 +206,7 @@
               <nav class="header__menu site-nav site-nav--right hidden lg:flex" role="navigation" aria-label="Secondary">
                 <ul class="flex flex-wrap list-menu with-block">
                   ${menuPill("/contact", "Contact Us", ["contact"])}
+                  ${menuPill("/guides", "Guides", ["guides", "guide"])}
                   ${menuPill("/faq", "FAQs", ["faq"])}
                 </ul>
               </nav>
@@ -289,8 +291,8 @@
           <div class="service-strip__item">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" class="service-strip__icon" aria-hidden="true"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
             <div>
-              <strong>Two-year warranty</strong>
-              <span>Made for daily use</span>
+              <strong>Up to three-year warranty</strong>
+              <span>Model-specific cover</span>
             </div>
           </div>
         </aside>
@@ -330,6 +332,7 @@
                 <li><a href="/contact">Contact Us</a></li>
                 <li><a href="https://miroooo.us/pages/order-tracking">Order Tracking</a></li>
                 <li><a href="/about-us">About Us</a></li>
+                <li><a href="/guides">Oral Care Guides</a></li>
                 <li><a href="/faq">FAQs</a></li>
                 <li><a href="/cookies-policy">Cookies Policy</a></li>
               </ul>
@@ -817,6 +820,34 @@
     });
   }
 
+  function initDeferredVideos() {
+    const videos = document.querySelectorAll("video[data-src]");
+    if (!videos.length) return;
+
+    const loadVideo = (video) => {
+      if (!video.dataset.src) return;
+      video.src = video.dataset.src;
+      video.removeAttribute("data-src");
+      video.load();
+      const playback = video.play();
+      if (playback && typeof playback.catch === "function") playback.catch(() => {});
+    };
+
+    if (!("IntersectionObserver" in window)) {
+      videos.forEach(loadVideo);
+      return;
+    }
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (!entry.isIntersecting) return;
+        loadVideo(entry.target);
+        observer.unobserve(entry.target);
+      });
+    }, { rootMargin: "400px 0px" });
+    videos.forEach((video) => observer.observe(video));
+  }
+
   // Render components immediately
   renderGlobalHeader();
   renderGlobalFooter();
@@ -824,6 +855,7 @@
   initShopDrawer();
   initHeaderDropdowns();
   initGlobalUKCountdown();
+  initDeferredVideos();
 
   // Authentic GoBrush Magnet Spring Hover Physics
   const initMagnet = () => {
@@ -930,6 +962,7 @@
       initMagnet();
       initHoverButtons();
       initSlideGalleries();
+      initDeferredVideos();
     });
   } else {
     initMagnet();
