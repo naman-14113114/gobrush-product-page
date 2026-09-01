@@ -796,6 +796,14 @@ p {
   border: 1px solid var(--line);
   border-radius: var(--radius-md);
   background: var(--paper);
+  color: var(--ink);
+}
+
+.care-card h3,
+.value-card h3 {
+  color: var(--ink);
+  margin-top: 0;
+  margin-bottom: 10px;
 }
 
 .care-card__number {
@@ -814,12 +822,15 @@ p {
 .care-card p,
 .value-card p {
   color: var(--mineral);
+  margin-bottom: 0;
 }
 
 .value-card svg {
   width: 30px;
   height: 30px;
   margin-bottom: 44px;
+  color: var(--ink);
+  stroke: var(--ink);
 }
 
 .cta-panel {
