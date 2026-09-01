@@ -142,7 +142,7 @@ module.exports = async function handler(req, res) {
 
   try {
     const body = typeof req.body === "string" ? JSON.parse(req.body) : req.body || {};
-    const discountCode = body.discountCode || "";
+    const rawDiscountCode = String(body.discountCode || "").trim().toUpperCase();
     const attribution = body.attribution || {};
 
     let items = [];
@@ -169,6 +169,9 @@ module.exports = async function handler(req, res) {
         },
       ];
     }
+
+    const hasX2 = items.some((it) => String(it.productId) === "1000000675072187" || String(it.productId) === "1000000664011618" || it.productId === "miroooo-x2");
+    const discountCode = (rawDiscountCode === "MIROOOO10" && hasX2) ? "MIROOOO10" : "";
 
     const checkout = await createPlusbaseCheckout(items, attribution);
     const finalUrl = appendDiscountCodeToUrl(checkout.checkoutUrl, discountCode);

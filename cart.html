@@ -1619,7 +1619,11 @@
       ];
 
       // 4. CART STATE MANAGEMENT
-      let appliedPromoCode = localStorage.getItem("miroooo_promo_code") || "";
+      let appliedPromoCode = (localStorage.getItem("miroooo_promo_code") || "").trim().toUpperCase();
+      if (appliedPromoCode !== "MIROOOO10") {
+        appliedPromoCode = "";
+        try { localStorage.removeItem("miroooo_promo_code"); } catch (_) {}
+      }
 
       function normalizeColor(color) {
         if (!color) return "Grey";
@@ -1701,6 +1705,10 @@
       }
 
       let cartState = loadCartState();
+      if (cartState && cartState.productId !== "miroooo-x2" && appliedPromoCode) {
+        appliedPromoCode = "";
+        try { localStorage.removeItem("miroooo_promo_code"); } catch (_) {}
+      }
 
       function persistCart(state) {
         if (!state || state.quantity <= 0) {
@@ -1756,8 +1764,11 @@
         }
 
         let promoDiscount = 0;
-        if (appliedPromoCode) {
+        if (isX2 && appliedPromoCode === "MIROOOO10") {
           promoDiscount = Math.round(subtotal * 0.10);
+        } else if (!isX2 && appliedPromoCode) {
+          appliedPromoCode = "";
+          try { localStorage.removeItem("miroooo_promo_code"); } catch (_) {}
         }
 
         const finalSubtotal = Math.max(0, Math.round(subtotal - promoDiscount));
@@ -2129,11 +2140,14 @@
           }
         }
 
-        if (totals.promoDiscount > 0) {
+        const isX2 = cartState && cartState.productId === "miroooo-x2";
+        const hasValidPromo = isX2 && appliedPromoCode === "MIROOOO10" && totals.promoDiscount > 0;
+
+        if (hasValidPromo) {
           if (breakdownPromoRow) breakdownPromoRow.style.display = "flex";
           if (breakdownPromoLabel) breakdownPromoLabel.innerHTML = `
             <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7.01" y2="7"></line></svg>
-            PROMO (${appliedPromoCode})
+            PROMO (MIROOOO10)
           `;
           if (breakdownPromoVal) breakdownPromoVal.textContent = `-£${Math.round(totals.promoDiscount)}`;
         } else {
@@ -2147,10 +2161,10 @@
         const appliedBadge = document.getElementById("cart-promo-applied-badge");
         const appliedName = document.getElementById("applied-promo-name");
 
-        if (appliedPromoCode) {
+        if (isX2 && appliedPromoCode === "MIROOOO10") {
           if (promoForm) promoForm.style.display = "none";
           if (appliedBadge) appliedBadge.style.display = "flex";
-          if (appliedName) appliedName.textContent = appliedPromoCode;
+          if (appliedName) appliedName.textContent = "MIROOOO10";
         } else {
           if (promoForm) promoForm.style.display = "flex";
           if (appliedBadge) appliedBadge.style.display = "none";
@@ -2205,6 +2219,7 @@
           const productId = product.productId;
           const isHeads = cartState.productId === "miroooo-x2-heads";
           const isX2 = cartState.productId === "miroooo-x2";
+          const validDiscountCode = (isX2 && appliedPromoCode === "MIROOOO10") ? "MIROOOO10" : "";
 
           let items = [];
           if (isHeads) {
@@ -2270,7 +2285,7 @@
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({
                   items: items,
-                  discountCode: appliedPromoCode,
+                  discountCode: validDiscountCode,
                   attribution: attribution
                 })
               });
@@ -2326,8 +2341,8 @@
               }
 
               checkoutUrl = `https://miroooo.us/checkouts/${checkoutToken}`;
-              if (appliedPromoCode) {
-                checkoutUrl += `?discount=${encodeURIComponent(appliedPromoCode)}`;
+              if (validDiscountCode) {
+                checkoutUrl += `?discount=${encodeURIComponent(validDiscountCode)}`;
               }
             }
 
@@ -2348,7 +2363,7 @@
               allowed.forEach(k => {
                 if (attribution[k]) bridgeUrl.searchParams.set(k, attribution[k]);
               });
-              if (appliedPromoCode) bridgeUrl.searchParams.set("discount", appliedPromoCode);
+              if (validDiscountCode) bridgeUrl.searchParams.set("discount", validDiscountCode);
               window.location.href = bridgeUrl.toString();
             } catch (_) {
               resetCheckoutButtons();
@@ -2370,29 +2385,51 @@
         const promoMsg = document.getElementById("promo-status-msg");
         const removeBtn = document.getElementById("remove-promo-btn");
 
+        if (promoInput) {
+          promoInput.addEventListener("input", function() {
+            if (promoMsg) {
+              promoMsg.style.display = "none";
+            }
+          });
+        }
+
         if (promoForm && promoInput) {
           promoForm.addEventListener("submit", function(e) {
             e.preventDefault();
             const code = promoInput.value.trim().toUpperCase();
             if (!code) return;
 
-            // Valid promo code acceptance
-            appliedPromoCode = code;
-            localStorage.setItem("miroooo_promo_code", code);
-            promoInput.value = "";
-            if (promoMsg) {
-              promoMsg.className = "cart-promo-msg cart-promo-msg--success";
-              promoMsg.textContent = "✓ Promo code applied successfully.";
-              promoMsg.style.display = "block";
+            const isX2 = cartState && cartState.productId === "miroooo-x2" && cartState.quantity > 0;
+
+            // ONLY MIROOOO10 is valid, and ONLY for X2
+            if (code === "MIROOOO10" && isX2) {
+              appliedPromoCode = "MIROOOO10";
+              try { localStorage.setItem("miroooo_promo_code", "MIROOOO10"); } catch (_) {}
+              promoInput.value = "";
+              if (promoMsg) {
+                promoMsg.className = "cart-promo-msg cart-promo-msg--success";
+                promoMsg.textContent = "Promo code applied successfully.";
+                promoMsg.style.display = "block";
+              }
+              renderCartView();
+            } else {
+              // Invalid promo code (exact message from Muuhu: "Invalid promo code.")
+              appliedPromoCode = "";
+              try { localStorage.removeItem("miroooo_promo_code"); } catch (_) {}
+              if (promoMsg) {
+                promoMsg.className = "cart-promo-msg cart-promo-msg--error";
+                promoMsg.textContent = "Invalid promo code.";
+                promoMsg.style.display = "block";
+              }
+              renderCartView();
             }
-            renderCartView();
           });
         }
 
         if (removeBtn) {
           removeBtn.addEventListener("click", function() {
             appliedPromoCode = "";
-            localStorage.removeItem("miroooo_promo_code");
+            try { localStorage.removeItem("miroooo_promo_code"); } catch (_) {}
             if (promoMsg) {
               promoMsg.style.display = "none";
             }

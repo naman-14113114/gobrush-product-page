@@ -1146,6 +1146,10 @@
     const attribution = readCapturedAttribution();
     Object.assign(attribution, extraParams);
 
+    const storedPromo = (localStorage.getItem("miroooo_promo_code") || "").trim().toUpperCase();
+    const validDiscount = (isX2 && storedPromo === "MIROOOO10") ? "MIROOOO10" : "";
+    const discountCode = extraParams.discount || validDiscount;
+
     // 1. Serverless prepare route
     try {
       const response = await fetch("/api/checkout/prepare", {
@@ -1153,7 +1157,7 @@
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           items: items,
-          discountCode: extraParams.discount || localStorage.getItem("miroooo_promo_code") || "",
+          discountCode: discountCode,
           attribution: attribution,
         }),
       });
@@ -1205,9 +1209,8 @@
         }
 
         let target = `https://miroooo.us/checkouts/${checkoutToken}`;
-        const discount = extraParams.discount || localStorage.getItem("miroooo_promo_code") || "";
-        if (discount) {
-          target += `?discount=${encodeURIComponent(discount)}`;
+        if (discountCode) {
+          target += `?discount=${encodeURIComponent(discountCode)}`;
         }
         return target;
       }
