@@ -2323,6 +2323,9 @@
               }
             }
 
+            window.dispatchEvent(new CustomEvent("miroooo:started-checkout", {
+              detail: { checkoutUrl: checkoutUrl }
+            }));
             window.location.href = checkoutUrl;
           } catch (error) {
             console.error("Checkout redirection failed, redirecting to PlusBase checkout:", error);

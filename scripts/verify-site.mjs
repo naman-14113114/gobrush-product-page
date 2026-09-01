@@ -6,7 +6,7 @@ const required = [
   "index.html", "shop.html", "miroooo-x.html", "miroooo-x2.html", "cart.html", "about.html", "about-us.html", "faq.html",
   "contact.html", "delivery-returns.html", "warranty.html", "order-tracking.html", "privacy.html",
   "terms.html", "return-policy.html", "shipping-policy.html", "refund-policy.html", "cookies-policy.html",
-  "404.html", "assets/site.css", "assets/site.js", "assets/microsoft-ads.js", "vercel.json", "sitemap.xml",
+  "404.html", "assets/site.css", "assets/site.js", "assets/microsoft-ads.js", "assets/klaviyo.js", "vercel.json", "sitemap.xml",
   "robots.txt", "llms.txt"
 ];
 const errors = [];
@@ -61,6 +61,17 @@ for (const marker of ["211072489", "355060364", "shoppingUetq", "miroooo_attribu
 const buildScript = await readFile(resolve(root, "scripts/build.mjs"), "utf8");
 if (!buildScript.includes("/assets/microsoft-ads.js?v=20260901")) {
   errors.push("scripts/build.mjs: Microsoft Ads browser tracking is not injected into built pages");
+}
+if (!buildScript.includes("/assets/klaviyo.js?v=20260901")) {
+  errors.push("scripts/build.mjs: Klaviyo browser tracking is not injected into built pages");
+}
+
+const klaviyoScript = await readFile(resolve(root, "assets/klaviyo.js"), "utf8");
+for (const marker of ["TQtq2j", "Viewed Product", "Added to Cart", "Started Checkout", "data-miroooo-klaviyo"]) {
+  if (!klaviyoScript.includes(marker)) errors.push(`assets/klaviyo.js: missing ${marker}`);
+}
+if (!klaviyoScript.includes("static.klaviyo.com/onsite/js/")) {
+  errors.push("assets/klaviyo.js: missing current Klaviyo onsite loader");
 }
 
 for (const file of [

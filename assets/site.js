@@ -1141,6 +1141,7 @@
         cart.items.push(newItem);
       }
 
+      window.dispatchEvent(new CustomEvent("miroooo:added-to-cart", { detail: newItem }));
       this.saveCart(cart);
       this.renderCartDrawer();
       this.openCart();

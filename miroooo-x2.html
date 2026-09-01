@@ -7047,6 +7047,15 @@ function handleAddToCartAndRedirect() {
     window.MirooooCart.updateHeaderBadges();
   }
 
+  window.dispatchEvent(new CustomEvent('miroooo:added-to-cart', {
+    detail: {
+      productHandle: 'miroooo-x2',
+      quantity: tier.count,
+      colors: choices,
+      value: tier.priceNum
+    }
+  }));
+
   const targetCartUrl = window.location.pathname.endsWith('.html') ? '/cart.html' : '/cart';
   setTimeout(resetAllButtonStates, 1200);
   window.location.href = targetCartUrl;

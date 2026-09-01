@@ -34,6 +34,7 @@ try {
 } catch (_) {}
 
 const microsoftTrackingScript = '<script src="/assets/microsoft-ads.js?v=20260901" defer></script>';
+const klaviyoTrackingScript = '<script src="/assets/klaviyo.js?v=20260901" defer></script>';
 const outputHtmlFiles = [
   ...(await readdir(output)).filter((name) => name.endsWith(".html")).map((name) => resolve(output, name)),
   ...(await readdir(resolve(output, "products"))).filter((name) => name.endsWith(".html")).map((name) => resolve(output, "products", name))
@@ -41,8 +42,15 @@ const outputHtmlFiles = [
 
 for (const htmlFile of outputHtmlFiles) {
   const html = await readFile(htmlFile, "utf8");
-  if (!html.includes("/assets/microsoft-ads.js")) {
-    await writeFile(htmlFile, html.replace("</body>", `  ${microsoftTrackingScript}\n</body>`), "utf8");
+  let instrumentedHtml = html;
+  if (!instrumentedHtml.includes("/assets/microsoft-ads.js")) {
+    instrumentedHtml = instrumentedHtml.replace("</body>", `  ${microsoftTrackingScript}\n</body>`);
+  }
+  if (!instrumentedHtml.includes("/assets/klaviyo.js")) {
+    instrumentedHtml = instrumentedHtml.replace("</body>", `  ${klaviyoTrackingScript}\n</body>`);
+  }
+  if (instrumentedHtml !== html) {
+    await writeFile(htmlFile, instrumentedHtml, "utf8");
   }
 }
 

@@ -3265,6 +3265,15 @@ theme.variantStrings = {
       window.MirooooCart.updateHeaderBadges();
     }
 
+    window.dispatchEvent(new CustomEvent('miroooo:added-to-cart', {
+      detail: {
+        productHandle: 'miroooo-x2-heads',
+        quantity: currentQty,
+        colors: ['Default'],
+        value: currentQty * 15
+      }
+    }));
+
     const isHtmlRoute = window.location.pathname.endsWith('.html');
     const targetCartUrl = (isHtmlRoute ? '/cart.html' : '/cart') + '?product=miroooo-x2-heads&quantity=' + currentQty;
     window.location.href = targetCartUrl;
