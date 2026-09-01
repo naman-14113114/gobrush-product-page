@@ -2120,14 +2120,21 @@
 }
 
 #hero-cta:hover .btn-fill,
+#hero-cta.is-hovered .btn-fill,
 #hero-cta:focus-visible .btn-fill,
 #sticky-bar-cta-btn:hover .btn-fill,
+#sticky-bar-cta-btn.is-hovered .btn-fill,
 #sticky-bar-cta-btn:focus-visible .btn-fill,
 .proxy-bundle-btn:hover .btn-fill,
+.proxy-bundle-btn.is-hovered .btn-fill,
 .proxy-bundle-btn:focus-visible .btn-fill,
 .miroooo-sticky-btn:hover .btn-fill,
+.miroooo-sticky-btn.is-hovered .btn-fill,
 .miroooo-sticky-btn:focus-visible .btn-fill,
 .button:hover .btn-fill,
+.button.is-hovered .btn-fill,
+.button--primary:hover .btn-fill,
+.button--primary.is-hovered .btn-fill,
 .button:focus-visible .btn-fill {
   transform: translate3d(0, 0%, 0) !important;
 }
@@ -2136,7 +2143,8 @@
 #sticky-bar-cta-btn .btn-text,
 .proxy-bundle-btn .btn-text,
 .miroooo-sticky-btn .btn-text,
-.button .btn-text {
+.button .btn-text,
+.button--primary .btn-text {
   position: relative !important;
   z-index: 2 !important;
   display: inline-flex !important;
@@ -2149,14 +2157,21 @@
 }
 
 #hero-cta:hover .btn-text,
+#hero-cta.is-hovered .btn-text,
 #hero-cta:focus-visible .btn-text,
 #sticky-bar-cta-btn:hover .btn-text,
+#sticky-bar-cta-btn.is-hovered .btn-text,
 #sticky-bar-cta-btn:focus-visible .btn-text,
 .proxy-bundle-btn:hover .btn-text,
+.proxy-bundle-btn.is-hovered .btn-text,
 .proxy-bundle-btn:focus-visible .btn-text,
 .miroooo-sticky-btn:hover .btn-text,
+.miroooo-sticky-btn.is-hovered .btn-text,
 .miroooo-sticky-btn:focus-visible .btn-text,
 .button:hover .btn-text,
+.button.is-hovered .btn-text,
+.button--primary:hover .btn-text,
+.button--primary.is-hovered .btn-text,
 .button:focus-visible .btn-text {
   color: #ffffff !important;
 }

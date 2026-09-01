@@ -3024,7 +3024,38 @@ theme.variantStrings = {
       #hero-cta:hover {
         animation-play-state: paused !important;
       }
-      #hero-cta:hover .btn-text { color: #ffffff !important; }
+      #hero-cta:hover .btn-text,
+      #hero-cta.is-hovered .btn-text,
+      .button:hover .btn-text,
+      .button.is-hovered .btn-text,
+      .button--primary:hover .btn-text,
+      .button--primary.is-hovered .btn-text { 
+        color: #ffffff !important; 
+      }
+      #hero-cta:hover .btn-text svg,
+      #hero-cta.is-hovered .btn-text svg,
+      .button:hover .btn-text svg,
+      .button.is-hovered .btn-text svg,
+      .button--primary:hover .btn-text svg,
+      .button--primary.is-hovered .btn-text svg { 
+        color: #ffffff !important;
+        stroke: #ffffff !important;
+        fill: none !important;
+      }
+      #hero-cta:hover .btn-text svg path,
+      #hero-cta.is-hovered .btn-text svg path,
+      .button:hover .btn-text svg path,
+      .button.is-hovered .btn-text svg path,
+      .button--primary:hover .btn-text svg path,
+      .button--primary.is-hovered .btn-text svg path { 
+        stroke: #ffffff !important;
+      }
+      .button:hover .btn-fill,
+      .button.is-hovered .btn-fill,
+      .button--primary:hover .btn-fill,
+      .button--primary.is-hovered .btn-fill {
+        transform: translate3d(0, 0%, 0) !important;
+      }
     </style>
     <button
       type="button"
@@ -3374,12 +3405,32 @@ theme.variantStrings = {
         <p style="margin: 0 0 16px 0; color: rgba(255, 255, 255, 0.85);">
           100% private and account-free: all your progress is saved locally to your device with zero sign-up or app store downloads required. Open the web app anytime on mobile or desktop to master consistent, dentist-grade brushing technique.
         </p>
-        <div>
-          <a href="/smile-coach" class="button button--primary" is="hover-button" style="display: inline-flex; align-items: center; justify-content: center; text-decoration: none; padding: 11px 22px; font-size: 13.5px; font-weight: 700; border: none !important; box-shadow: none !important; border-radius: 9999px; background: #ffffff !important; color: #000000 !important; cursor: pointer;">
+        <div style="margin-top: 14px;">
+          <style>
+            .smile-coach-btn:hover .btn-text,
+            .smile-coach-btn.is-hovered .btn-text {
+              color: #ffffff !important;
+            }
+            .smile-coach-btn:hover .btn-text svg,
+            .smile-coach-btn.is-hovered .btn-text svg {
+              color: #ffffff !important;
+              stroke: #ffffff !important;
+              fill: none !important;
+            }
+            .smile-coach-btn:hover .btn-text svg path,
+            .smile-coach-btn.is-hovered .btn-text svg path {
+              stroke: #ffffff !important;
+            }
+            .smile-coach-btn:hover .btn-fill,
+            .smile-coach-btn.is-hovered .btn-fill {
+              transform: translate3d(0, 0%, 0) !important;
+            }
+          </style>
+          <a href="/smile-coach" class="button button--primary smile-coach-btn" is="hover-button">
             <span class="btn-fill" data-fill></span>
-            <span class="btn-text" style="display: inline-flex; align-items: center; gap: 8px; font-size: 13.5px; font-weight: 700; color: #000000 !important;">
+            <span class="btn-text">
               Open Smile Coach
-              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" style="width: 15px; height: 15px; display: inline-block; vertical-align: middle;"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
             </span>
           </a>
         </div>
