@@ -151,8 +151,14 @@ Append-only memory for the `gobrush-product-page` repository. Do not delete or s
     - Suppressed compare price display for heads in `renderCartDrawer()` and hid discount toggle accordion when total discount is 0.
   - `assets/klaviyo.js`:
     - Updated `miroooo-x2-heads` product catalog price to 10 and compare price to 10, and cart snapshot calculation to `quantity * 10`.
+  - `llms-full.txt`:
+    - Updated display price recorded for Miroooo X2 replacement heads to `GBP 10`.
+  - Cache-busting version bump:
+    - Updated `/assets/site.js?v=20260901b` and `/assets/site.css?v=20260901b` across all 26 HTML pages to ensure CDNs and browsers immediately load the updated Shop Drawer showing `£10` without cached compare prices.
   - Verification:
-    - Executed `npm run build` -> `verify-site.mjs` passed with 0 errors and all static pages updated in `public/`.
+    - Executed forensic repo scan using subagent across all HTML, JS, JSON, and MD files.
+    - Executed `npm run build` -> `verify-site.mjs` passed with 0 errors and all static pages rebuilt in `public/`.
+
 
 
 
