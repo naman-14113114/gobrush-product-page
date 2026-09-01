@@ -27,7 +27,7 @@
         {
           "type": "header",
           "key": "x-vercel-ip-country",
-          "value": "(?i)^(VN|HK|CN|SG|US)$"
+          "value": "(?i)^(VN|HK|CN|SG)$"
         }
       ],
       "destination": "https://miroooo.us",
