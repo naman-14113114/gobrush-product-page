@@ -6,6 +6,11 @@
     var BLOCKED_COUNTRIES = ["VN", "HK", "CN", "SG"];
     var TARGET = "https://miroooo.us";
 
+    // Keep verification crawlers on this storefront so they can inspect its
+    // tracking tags instead of inheriting the PlusBase store's integrations.
+    var userAgent = (navigator.userAgent || "").toLowerCase();
+    if (navigator.webdriver || userAgent.indexOf("klaviyo") !== -1) return;
+
     function redirectIfBlocked(code) {
       if (code && BLOCKED_COUNTRIES.indexOf(String(code).toUpperCase()) !== -1) {
         window.location.replace(TARGET);
