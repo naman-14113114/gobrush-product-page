@@ -35,8 +35,8 @@
       ImageURL: "https://www.trymiroooo.com/assets_ref/x2/heads/B1.webp",
       URL: "https://www.trymiroooo.com/products/miroooo-x2-heads",
       Brand: "MIROOOO",
-      Price: 15,
-      CompareAtPrice: 30
+      Price: 10,
+      CompareAtPrice: 10
     }
   };
 
@@ -76,7 +76,7 @@
       var quantity = Math.max(1, Math.round(Number(stored.quantity) || 1));
       var product = PRODUCTS[stored.productId];
       var totalValue;
-      if (stored.productId === "miroooo-x2-heads") totalValue = quantity * 15;
+      if (stored.productId === "miroooo-x2-heads") totalValue = quantity * 10;
       else if (quantity === 1) totalValue = 69;
       else if (quantity === 2) totalValue = 128;
       else if (quantity === 3) totalValue = 177;

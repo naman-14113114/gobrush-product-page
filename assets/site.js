@@ -650,7 +650,7 @@
                     <div class="shop-drawer__info">
                       <span class="shop-drawer__eyebrow">Replacement</span>
                       <h3 class="shop-drawer__product-title">2x Brush X2 Heads</h3>
-                      <span class="shop-drawer__price">£15 <s class="shop-drawer__compare">£30</s></span>
+                      <span class="shop-drawer__price">£10</span>
                     </div>
                     <svg class="shop-drawer__arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:16px!important;height:16px!important;min-width:16px!important;max-width:16px!important;min-height:16px!important;max-height:16px!important;flex-shrink:0!important;"><polyline points="9 18 15 12 9 6"></polyline></svg>
                   </a>
@@ -1289,8 +1289,8 @@
             let unlockedGifts = 3;
 
             if (isHeads) {
-              unitPrice = qty * 15;
-              comparePrice = qty * 30;
+              unitPrice = qty * 10;
+              comparePrice = qty * 10;
               image = "/assets_ref/x2/heads/B1.webp";
               unlockedGifts = 0;
             } else if (isX2) {
@@ -1610,8 +1610,8 @@
 
           const unitPriceInt = Math.round(Number(item.unitPrice || 0));
           const unitPriceDisplay = `£${unitPriceInt}`;
-          const comparePriceInt = item.comparePrice ? Math.round(Number(item.comparePrice)) : (unitPriceInt * 2);
-          const comparePriceDisplay = comparePriceInt > unitPriceInt ? `£${comparePriceInt}` : "";
+          const comparePriceInt = item.comparePrice ? Math.round(Number(item.comparePrice)) : (isHeads ? unitPriceInt : unitPriceInt * 2);
+          const comparePriceDisplay = (!isHeads && comparePriceInt > unitPriceInt) ? `£${comparePriceInt}` : "";
 
           itemsHtml += `
             <div class="miroooo-cart-item" data-item-id="${item.id}">
@@ -1664,7 +1664,7 @@
         const isHeads = item.productHandle === "miroooo-x2-heads";
         const qty = item.quantity || 1;
         const unitPrice = Math.round(Number(item.unitPrice || 0));
-        const comparePrice = item.comparePrice ? Math.round(Number(item.comparePrice)) : unitPrice * 2;
+        const comparePrice = item.comparePrice ? Math.round(Number(item.comparePrice)) : (isHeads ? unitPrice : unitPrice * 2);
         subtotal += unitPrice * qty;
         compareTotal += comparePrice * qty;
         if (!isHeads) {
@@ -1682,6 +1682,11 @@
       const totalDiscountNum = bundleSavings + totalGiftValueNum;
 
       // Update Summary Values
+      const discountToggle = document.getElementById("cart-discount-toggle");
+      if (discountToggle) {
+        discountToggle.style.display = totalDiscountNum > 0 ? "block" : "none";
+      }
+
       const subtotalValEl = document.getElementById("cart-subtotal-val");
       const totalValEl = document.getElementById("cart-total-val");
       const discountValEl = document.getElementById("cart-discount-val");

@@ -127,4 +127,33 @@ Append-only memory for the `gobrush-product-page` repository. Do not delete or s
   - Preserved all routing URLs (`/products/miroooo-x`), physical file names (`miroooo-x.html`), media paths (`/assets_ref/x/...`), and PlusBase checkout parameters (`source: "miroooo"`).
   - Built static storefront with `npm run build` (`Miroooo verification passed: 25 required files and 17 storefront pages checked`).
 
+## 2026-09-01 19:12:00 +05:30 - Updated 2x Brush X2 Heads Price to £10 (No Compare Price / 50% Off)
+
+- User request: Change price of X2 head on its page and on cart to 10 instead of 15; don't show any 50% off or compare price. Change locally only (do not touch PlusBase).
+- Changes made:
+  - `miroooo-x2-heads.html`:
+    - Updated display price from £15 to £10.
+    - Removed compare price (£30) and 50% OFF discount badge from product price section.
+    - Updated quantity selector subtitle from `£15 per 2-head pack` to `£10 per 2-head pack`.
+    - Updated sticky add-to-cart bar price to `£10`.
+    - Updated Product JSON-LD structured data price to `10.00`.
+    - Updated page script `BASE_PRICE = 10`, removed `totalCompare` from `updatePricingDisplays()`, and updated added-to-cart event value to `currentQty * 10`.
+  - `cart.html`:
+    - Updated `PRODUCTS_CONFIG["miroooo-x2-heads"]` pricing function to return `price: count * 10`, `compareAt: count * 10`, `bundleSavings: 0`.
+    - Removed compare-at strike price `<s>` from the `miroooo-x2-heads` cart line item rendering.
+    - Hidden discount toggle accordion, panel, and bundle row when heads are in cart or total savings is 0.
+    - Updated complimentary extra Brush X2 heads gift value in `calculateTotals` from `extraBrushHeadSets * 15` to `extraBrushHeadSets * 10`.
+    - Updated complimentary extra Brush X2 heads line item compare price from `<s>£${sets * 15}</s>` to `<s>£${sets * 10}</s>`.
+    - Updated complimentary extra Brush X2 heads discount amount in order summary breakdown panel from `-£${totals.extraBrushHeadSets * 15}` to `-£${totals.extraBrushHeadSets * 10}`.
+  - `assets/site.js`:
+    - Updated Shop Drawer replacement heads card to display clean `£10` with compare price removed.
+    - Updated `MirooooCart.getCart()` for `isHeads` to `unitPrice = qty * 10`, `comparePrice = qty * 10`.
+    - Suppressed compare price display for heads in `renderCartDrawer()` and hid discount toggle accordion when total discount is 0.
+  - `assets/klaviyo.js`:
+    - Updated `miroooo-x2-heads` product catalog price to 10 and compare price to 10, and cart snapshot calculation to `quantity * 10`.
+  - Verification:
+    - Executed `npm run build` -> `verify-site.mjs` passed with 0 errors and all static pages updated in `public/`.
+
+
+
 

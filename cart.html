@@ -1593,7 +1593,7 @@
           },
           getPricing(qty) {
             const count = Math.max(1, qty);
-            return { price: count * 15, compareAt: count * 30, bundleSavings: count * 15 };
+            return { price: count * 10, compareAt: count * 10, bundleSavings: 0 };
           }
         }
       };
@@ -1760,7 +1760,7 @@
           unlockedGiftsCount = 0;
         } else if (isX2) {
           // X2 has NO free gift unlock section (Case, App removed). Only extra free brush heads on Buy 2+
-          giftsValue = extraBrushHeadSets * 15;
+          giftsValue = extraBrushHeadSets * 10;
           unlockedGiftsCount = extraBrushHeadSets > 0 ? 1 : 0;
         }
 
@@ -1847,7 +1847,6 @@
                       </div>
                       <div class="cart-line-item__pricing">
                         <span class="cart-line-item__price">£${itemPrice}</span>
-                        <s class="cart-line-item__compare">£${itemCompare}</s>
                       </div>
                     </div>
                   </div>
@@ -1946,7 +1945,7 @@
                 const heads = sets * 2;
                 const title = `${heads}x Extra Free Brush Heads (${sets} ${sets > 1 ? "Sets" : "Set"})`;
                 const subtitle = `${sets} complimentary ${sets > 1 ? "sets contain" : "set contains"} ${heads} DuPont precision replacement heads for Brush X2.`;
-                const compareVal = sets * 15;
+                const compareVal = sets * 10;
                 const badgeText = `UNLOCKED ${sets} ${sets > 1 ? "SETS" : "SET"} (${heads} BRUSH HEADS)`;
                 const giftImage = "/assets_ref/x2/heads/B1.webp";
                 const giftAlt = `Complimentary ${heads}x DuPont Precision Replacement Brush Heads for Miroooo Brush X2`;
@@ -2089,13 +2088,25 @@
         const breakdownPromoVal = document.getElementById("breakdown-promo-val");
         const summarySubtotalPrice = document.getElementById("summary-subtotal-price");
 
+        const discountToggleBtn = document.getElementById("discount-toggle-btn");
+        const discountPanel = document.getElementById("discount-details-panel");
+        const breakdownBundleRow = document.getElementById("breakdown-bundle-row");
+
         if (summarySavingsEl) summarySavingsEl.textContent = `-£${Math.round(totals.totalSavings)}`;
         if (breakdownBundleVal) breakdownBundleVal.textContent = `-£${Math.round(totals.bundleSavings)}`;
         
-        if (totals.isHeads) {
+        if (totals.isHeads || totals.totalSavings <= 0) {
+          if (discountToggleBtn) discountToggleBtn.style.display = "none";
+          if (discountPanel) discountPanel.style.display = "none";
+          if (breakdownBundleRow) breakdownBundleRow.style.display = "none";
           if (breakdownGiftCase) breakdownGiftCase.style.display = "none";
           if (breakdownGiftHeads) breakdownGiftHeads.style.display = "none";
-        } else if (totals.isX2) {
+        } else {
+          if (discountToggleBtn) discountToggleBtn.style.display = "flex";
+          if (breakdownBundleRow) breakdownBundleRow.style.display = "flex";
+        }
+
+        if (totals.isX2 && !totals.isHeads) {
           if (breakdownGiftCase) breakdownGiftCase.style.display = "none";
 
           if (totals.extraBrushHeadSets > 0) {
@@ -2109,7 +2120,7 @@
                 `;
               }
               const headsVal = breakdownGiftHeads.querySelector("span:last-child");
-              if (headsVal) headsVal.textContent = `-£${totals.extraBrushHeadSets * 15}`;
+              if (headsVal) headsVal.textContent = `-£${totals.extraBrushHeadSets * 10}`;
             }
           } else {
             if (breakdownGiftHeads) breakdownGiftHeads.style.display = "none";
