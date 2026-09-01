@@ -184,7 +184,7 @@
               <nav class="header__menu site-nav hidden lg:flex" role="navigation" aria-label="Primary">
                 <ul class="flex flex-wrap list-menu with-block">
                   <li>
-                    <button type="button" id="ShopDrawerTrigger" class="menu__item nav-link header__shop-drawer-btn flex items-center font-medium z-2 relative cursor-pointer" aria-haspopup="dialog" aria-expanded="false" aria-controls="ShopDrawer" aria-label="Open Shop drawer" is="magnet-link" data-magnet="0"${["product-x", "product-x2", "product-x2-heads", "shop"].includes(currentPage) ? ' aria-current="page"' : ""}>
+                    <button type="button" id="ShopDrawerTrigger" class="menu__item nav-link header__shop-drawer-btn flex items-center font-medium z-2 relative cursor-pointer" style="border: none; outline: none; box-shadow: none; background: transparent; background-color: transparent;" aria-haspopup="dialog" aria-expanded="false" aria-controls="ShopDrawer" aria-label="Open Shop drawer" is="magnet-link" data-magnet="0"${["product-x", "product-x2", "product-x2-heads", "shop"].includes(currentPage) ? ' aria-current="page"' : ""}>
                       <span class="btn-text flex items-center" data-text="Shop">Shop ${chevronDownIcon}</span>
                       <span class="btn-text btn-duplicate flex items-center">Shop ${chevronDownIcon}</span>
                     </button>

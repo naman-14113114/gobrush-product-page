@@ -41,7 +41,7 @@
       badgeText: "99% Optimal Match",
       pillClass: "quiz-pill-badge",
       title: "Miroooo Brush X2 Flagship",
-      subtitle: "45° Bass Sweep & Smart Red Halo Pressure Defense",
+      subtitle: "Ultra-Lightweight 51g Aerospace Aluminium, 90+ Day Battery Life, Whisper-Quiet & Travel-Ready",
       price: "£69",
       priceNumber: 69,
       comparePrice: "£139",
@@ -52,20 +52,20 @@
       ctaText: "Add Brush X2 to Cart · £69",
       bullets: [
         {
-          strong: "45° Bass Sweeping Oscillation:",
-          text: "Engineered to reach 2–3mm under the gingival margin, actively reversing plaque buildup and soothing bleeding gums."
-        },
-        {
-          strong: "Smart Red Halo Pressure Ring:",
-          text: "Real-time visual feedback stops hard scrubbing instantly to protect receding gums and sensitive enamel."
-        },
-        {
-          strong: "IPX7 Immersion Waterproof:",
-          text: "Seamless aerospace aluminium unibody allows safe, effortless brushing in the shower."
+          strong: "Ultra-Lightweight 51g Aerospace Aluminium:",
+          text: "Featherweight precision unibody weighs less than half of bulky legacy electric toothbrushes for effortless control."
         },
         {
           strong: "90+ Day Battery Endurance:",
-          text: "High-density lithium cell requires only a single 2-hour USB-C charge every quarter."
+          text: "High-density lithium cell requires only a single 2-hour USB-C charge every quarter — zero counter clutter."
+        },
+        {
+          strong: "Whisper-Quiet Sonic Motor (<50 dB):",
+          text: "Discreet, powerful acoustic vibration for seamless morning routines without disturbing anyone."
+        },
+        {
+          strong: "Travel Case & Wall-Mounted Storage:",
+          text: "Includes slim ventilated travel case and wall-mounted storage right inside the box for a clutter-free bathroom."
         }
       ],
       routine: [
@@ -93,7 +93,7 @@
       badgeText: "98% Optimal Match",
       pillClass: "quiz-pill-badge",
       title: "Miroooo Brush X2 Flagship",
-      subtitle: "High-Frequency Acoustic Micro-Polish & Stain Removal",
+      subtitle: "Ultra-Lightweight 51g Aerospace Aluminium, 90+ Day Battery Life, Whisper-Quiet & Enamel Polish",
       price: "£69",
       priceNumber: 69,
       comparePrice: "£139",
@@ -104,20 +104,20 @@
       ctaText: "Add Brush X2 to Cart · £69",
       bullets: [
         {
-          strong: "Dynamic Whitening Polish (38,000 VPM):",
+          strong: "Ultra-Lightweight 51g Aerospace Aluminium:",
+          text: "Featherweight precision instrument balance gives exact control for targeted front-incisor polishing."
+        },
+        {
+          strong: "90+ Day Battery Endurance:",
+          text: "High-density lithium cell requires only a single 2-hour USB-C charge every quarter — zero counter clutter."
+        },
+        {
+          strong: "Whisper-Quiet Sonic Motor (<50 dB):",
           text: "High-velocity acoustic vibrations lift stubborn tannins, coffee, and tea stains without harsh enamel abrasion."
         },
         {
-          strong: "DuPont Diamond-Cut Rounded Bristles:",
-          text: "Micro-sculpted nylon tips buff tooth surfaces to a glossy natural radiance while shielding dental enamel."
-        },
-        {
-          strong: "3 Halo LED Preset Modes:",
-          text: "Seamlessly switch between Clean, Soft, and High-Intensity Whitening Polish with the tactile unibody switch."
-        },
-        {
-          strong: "51g Aerospace Aluminium Body:",
-          text: "Featherweight precision instrument balance gives exact control for targeted front-incisor polishing."
+          strong: "Travel Case & Wall-Mounted Storage:",
+          text: "Includes slim ventilated travel case and wall-mounted storage right inside the box for a clutter-free bathroom."
         }
       ],
       routine: [
@@ -164,12 +164,12 @@
           text: "Charge just 6 times a year with direct USB-C fast charging — zero proprietary charging docks to pack."
         },
         {
-          strong: "Magnetic Wall Dock & Travel Case:",
-          text: "Includes slim ventilated travel case and magnetic wall mount dock right inside the box."
-        },
-        {
           strong: "Whisper-Quiet Sonic Motor (<50 dB):",
           text: "Discreet, powerful acoustic vibration for seamless hotel, commute, and home morning routines."
+        },
+        {
+          strong: "Travel Case & Wall-Mounted Storage:",
+          text: "Includes slim ventilated travel case and wall-mounted storage right inside the box for a clutter-free bathroom."
         }
       ],
       routine: [
@@ -208,27 +208,27 @@
       ctaText: "Add Duo Set + Free Heads to Cart · £128",
       bullets: [
         {
-          strong: "2x Brush X2 Aerospace Sonic Toothbrushes:",
-          text: "Two precision instruments (Silver & Pink / Grey combinations) for complete household oral wellness."
+          strong: "2x Ultra-Lightweight 51g Aerospace Instruments:",
+          text: "Two precision aluminium unibody toothbrushes (Silver & Pink / Grey combinations) for complete household oral wellness."
         },
         {
-          strong: "2x Free DuPont Replacement Brush Heads:",
-          text: "Includes 2 complimentary DuPont micro-diamond brush heads (£15 value) added free in box."
-        },
-        {
-          strong: "Dual 90+ Day Endurance:",
+          strong: "Dual 90+ Day Battery Endurance:",
           text: "Charge each brush only 4 times per year across the entire household with universal USB-C."
         },
         {
-          strong: "Independent Halo Pressure Rings:",
-          text: "Dedicated red halo sensors ensure personalised pressure feedback tailored to each user's gumline."
+          strong: "Whisper-Quiet Sonic Motors (<50 dB):",
+          text: "Both instruments run silent enough for peaceful morning routines without disturbing anyone in the household."
+        },
+        {
+          strong: "2x Travel Cases & Wall-Mounted Storage:",
+          text: "Includes 2 slim ventilated travel cases and wall-mounted storage for a sleek, wire-free bathroom for two."
         }
       ],
       routine: [
         {
           phase: "Phase 1 (Days 1–7)",
           title: "Dual Station Setup",
-          desc: "Mount the dual magnetic wall docks for a sleek, wire-free bathroom sanctuary for two."
+          desc: "Mount the dual wall-mounted storage units for a sleek, wire-free bathroom sanctuary for two."
         },
         {
           phase: "Phase 2 (Days 8–14)",

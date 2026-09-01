@@ -3205,6 +3205,34 @@ body.nav-open .miroooo-sticky-cart-wrap {
   text-align: left !important;
 }
 
+.header__menu > ul.with-block .menu__item,
+#ShopDrawerTrigger,
+.header__shop-drawer-btn {
+  position: relative !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  overflow: hidden !important;
+  height: 40px !important;
+  padding: 0 20px !important;
+  border-radius: 9999px !important;
+  border: none !important;
+  border-width: 0 !important;
+  outline: none !important;
+  box-shadow: none !important;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif !important;
+  font-size: 16px !important;
+  font-weight: 500 !important;
+  letter-spacing: 0.02em !important;
+  text-decoration: none !important;
+  cursor: pointer !important;
+  background: transparent !important;
+  background-color: transparent !important;
+  color: #ffffff !important;
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1) !important;
+  will-change: transform;
+}
+
 .dropdown-menu__eyebrow {
   font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif !important;
   font-size: 10.5px !important;

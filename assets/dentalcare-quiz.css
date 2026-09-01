@@ -865,8 +865,8 @@ body[data-page="dentalcare-quiz"] {
 }
 
 .instrument-media-card {
-  background: #f8f8f8 !important;
-  border: 1px solid rgba(0, 0, 0, 0.08) !important;
+  background: transparent !important;
+  border: none !important;
   border-radius: var(--quiz-radius-card) !important;
   padding: 24px !important;
   text-align: center !important;

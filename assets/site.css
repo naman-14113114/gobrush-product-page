@@ -79,6 +79,13 @@ select {
   font: inherit;
 }
 
+button {
+  border: none;
+  background: transparent;
+  padding: 0;
+  margin: 0;
+}
+
 button,
 a {
   -webkit-tap-highlight-color: transparent;
@@ -2907,7 +2914,7 @@ body.is-ready [data-hero-reveal] {
 
 .gb-coach-promo {
   display: grid;
-  grid-template-columns: minmax(0, 1.06fr) minmax(420px, 0.94fr);
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
   min-height: 720px;
   background: #151816;
   color: #f4f2ec;
@@ -3453,6 +3460,7 @@ body.is-ready [data-hero-reveal] {
 
   .gb-coach-promo__media {
     min-height: 72vw;
+    order: -1;
   }
 
   .gb-story__media {
@@ -3988,7 +3996,9 @@ body[data-page="cart"] .site-header--cart .header__logo {
 }
 
 .site-header .menu__item,
-.header__menu > ul.with-block .menu__item {
+.header__menu > ul.with-block .menu__item,
+#ShopDrawerTrigger,
+.header__shop-drawer-btn {
   position: relative !important;
   display: inline-flex !important;
   align-items: center !important;
@@ -3997,6 +4007,10 @@ body[data-page="cart"] .site-header--cart .header__logo {
   height: 40px !important;
   padding: 0 20px !important;
   border-radius: 9999px !important;
+  border: none !important;
+  border-width: 0 !important;
+  outline: none !important;
+  box-shadow: none !important;
   font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif !important;
   font-size: 16px !important;
   font-weight: 500 !important;
@@ -4004,6 +4018,8 @@ body[data-page="cart"] .site-header--cart .header__logo {
   text-decoration: none !important;
   cursor: pointer !important;
   background: transparent !important;
+  background-color: transparent !important;
+  color: #ffffff !important;
   transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1) !important;
   will-change: transform;
 }
