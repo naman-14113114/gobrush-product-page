@@ -1,9 +1,9 @@
 (function () {
   "use strict";
 
-  // Geo Redirection Guard: VN, HK, CN, SG, US -> https://miroooo.us
+  // Geo Redirection Guard: VN, HK, CN, SG -> https://miroooo.us
   (function enforceGeoRedirection() {
-    var BLOCKED_COUNTRIES = ["VN", "HK", "CN", "SG", "US"];
+    var BLOCKED_COUNTRIES = ["VN", "HK", "CN", "SG"];
     var TARGET = "https://miroooo.us";
 
     function redirectIfBlocked(code) {
@@ -22,15 +22,7 @@
         tz.indexOf("singapore") !== -1 ||
         tz.indexOf("hong_kong") !== -1 ||
         tz.indexOf("shanghai") !== -1 ||
-        tz.indexOf("beijing") !== -1 ||
-        tz.indexOf("new_york") !== -1 ||
-        tz.indexOf("chicago") !== -1 ||
-        tz.indexOf("los_angeles") !== -1 ||
-        tz.indexOf("denver") !== -1 ||
-        tz.indexOf("phoenix") !== -1 ||
-        tz.indexOf("anchorage") !== -1 ||
-        tz.indexOf("honolulu") !== -1 ||
-        tz.indexOf("america/") === 0
+        tz.indexOf("beijing") !== -1
       ) {
         window.location.replace(TARGET);
         return;

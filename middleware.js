@@ -1,6 +1,6 @@
-﻿export default function middleware(request) {
+export default function middleware(request) {
   const country = request.headers.get("x-vercel-ip-country");
-  const blockedCountries = ["VN", "HK", "CN", "SG", "US"];
+  const blockedCountries = ["VN", "HK", "CN", "SG"];
 
   if (country && blockedCountries.includes(country.toUpperCase())) {
     return Response.redirect("https://miroooo.us", 307);

@@ -3,7 +3,7 @@
     (function(){
       try {
         var tz = (Intl.DateTimeFormat().resolvedOptions().timeZone || '').toLowerCase();
-        if (tz.indexOf('ho_chi_minh') !== -1 || tz.indexOf('saigon') !== -1 || tz.indexOf('singapore') !== -1 || tz.indexOf('hong_kong') !== -1 || tz.indexOf('shanghai') !== -1 || tz.indexOf('beijing') !== -1 || tz.indexOf('new_york') !== -1 || tz.indexOf('chicago') !== -1 || tz.indexOf('los_angeles') !== -1 || tz.indexOf('denver') !== -1 || tz.indexOf('phoenix') !== -1 || tz.indexOf('anchorage') !== -1 || tz.indexOf('honolulu') !== -1 || tz.indexOf('america/') === 0) {
+        if (tz.indexOf('ho_chi_minh') !== -1 || tz.indexOf('saigon') !== -1 || tz.indexOf('singapore') !== -1 || tz.indexOf('hong_kong') !== -1 || tz.indexOf('shanghai') !== -1 || tz.indexOf('beijing') !== -1) {
           window.location.replace('https://miroooo.us');
         }
       } catch(e){}
@@ -12,7 +12,7 @@
           if(d&&d.blocked){window.location.replace('https://miroooo.us');}
         }).catch(function(){});
         fetch('https://api.country.is/').then(function(r){return r.json()}).then(function(r){
-          if(r&&r.country&&['VN','HK','CN','SG','US'].indexOf(r.country.toUpperCase())!==-1){
+          if(r&&r.country&&['VN','HK','CN','SG'].indexOf(r.country.toUpperCase())!==-1){
             window.location.replace('https://miroooo.us');
           }
         }).catch(function(){});
