@@ -65,13 +65,17 @@ if (!buildScript.includes("/assets/microsoft-ads.js?v=20260901")) {
 if (!buildScript.includes("/assets/klaviyo.js?v=20260901")) {
   errors.push("scripts/build.mjs: Klaviyo browser tracking is not injected into built pages");
 }
+for (const marker of [
+  "https://static.klaviyo.com/onsite/js/TQtq2j/klaviyo.js?company_id=TQtq2j",
+  "window.klaviyo=new Proxy",
+  "window._klOnsite=window._klOnsite||[]"
+]) {
+  if (!buildScript.includes(marker)) errors.push(`scripts/build.mjs: supplied Klaviyo snippet is missing ${marker}`);
+}
 
 const klaviyoScript = await readFile(resolve(root, "assets/klaviyo.js"), "utf8");
-for (const marker of ["TQtq2j", "Viewed Product", "Added to Cart", "Started Checkout", "data-miroooo-klaviyo"]) {
+for (const marker of ["Viewed Product", "Added to Cart", "Started Checkout", "_klOnsite"]) {
   if (!klaviyoScript.includes(marker)) errors.push(`assets/klaviyo.js: missing ${marker}`);
-}
-if (!klaviyoScript.includes("static.klaviyo.com/onsite/js/")) {
-  errors.push("assets/klaviyo.js: missing current Klaviyo onsite loader");
 }
 
 for (const file of [

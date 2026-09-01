@@ -1,7 +1,6 @@
 (function () {
   "use strict";
 
-  var KLAVIYO_PUBLIC_API_KEY = "TQtq2j";
   var SOURCE_SITE = "trymiroooo.com";
   var MARKET = "United Kingdom";
   var CURRENCY = "GBP";
@@ -190,14 +189,6 @@
   }
 
   window._klOnsite = window._klOnsite || [];
-
-  if (!document.querySelector("script[data-miroooo-klaviyo='true']")) {
-    var script = document.createElement("script");
-    script.async = true;
-    script.dataset.mirooooKlaviyo = "true";
-    script.src = "https://static.klaviyo.com/onsite/js/" + encodeURIComponent(KLAVIYO_PUBLIC_API_KEY) + "/klaviyo.js";
-    document.head.appendChild(script);
-  }
 
   track("Viewed Page", {
     PageName: document.title,

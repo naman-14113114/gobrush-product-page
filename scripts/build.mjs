@@ -34,6 +34,11 @@ try {
 } catch (_) {}
 
 const microsoftTrackingScript = '<script src="/assets/microsoft-ads.js?v=20260901" defer></script>';
+const klaviyoOnsiteSnippet = `<script async type='text/javascript' src='https://static.klaviyo.com/onsite/js/TQtq2j/klaviyo.js?company_id=TQtq2j'></script>
+  <script type="text/javascript">
+  //Initialize Klaviyo object on page load
+  !function(){if(!window.klaviyo){window._klOnsite=window._klOnsite||[];try{window.klaviyo=new Proxy({},{get:function(n,i){return"push"===i?function(){var n;(n=window._klOnsite).push.apply(n,arguments)}:function(){for(var n=arguments.length,o=new Array(n),w=0;w<n;w++)o[w]=arguments[w];var t="function"==typeof o[o.length-1]?o.pop():void 0,e=new Promise((function(n){window._klOnsite.push([i].concat(o,[function(i){t&&t(i),n(i)}]))}));return e}}})}catch(n){window.klaviyo=window.klaviyo||[],window.klaviyo.push=function(){var n;(n=window._klOnsite).push.apply(n,arguments)}}}}();
+  </script>`;
 const klaviyoTrackingScript = '<script src="/assets/klaviyo.js?v=20260901" defer></script>';
 const outputHtmlFiles = [
   ...(await readdir(output)).filter((name) => name.endsWith(".html")).map((name) => resolve(output, name)),
@@ -45,6 +50,9 @@ for (const htmlFile of outputHtmlFiles) {
   let instrumentedHtml = html;
   if (!instrumentedHtml.includes("/assets/microsoft-ads.js")) {
     instrumentedHtml = instrumentedHtml.replace("</body>", `  ${microsoftTrackingScript}\n</body>`);
+  }
+  if (!instrumentedHtml.includes("static.klaviyo.com/onsite/js/TQtq2j/klaviyo.js?company_id=TQtq2j")) {
+    instrumentedHtml = instrumentedHtml.replace("</body>", `  ${klaviyoOnsiteSnippet}\n</body>`);
   }
   if (!instrumentedHtml.includes("/assets/klaviyo.js")) {
     instrumentedHtml = instrumentedHtml.replace("</body>", `  ${klaviyoTrackingScript}\n</body>`);
