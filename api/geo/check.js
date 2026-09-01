@@ -1,6 +1,6 @@
 ﻿export default function handler(req, res) {
   const country = (req.headers["x-vercel-ip-country"] || "").toUpperCase();
-  const blockedCountries = ["VN", "HK", "CN", "SG", "US"];
+  const blockedCountries = ["VN", "HK", "CN", "SG"];
   const isBlocked = blockedCountries.includes(country);
 
   res.setHeader("Cache-Control", "no-store, max-age=0");
