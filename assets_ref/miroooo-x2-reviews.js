@@ -15,9 +15,9 @@
     distribution: {
       5: { count: 3933, percent: 92 },
       4: { count: 256, percent: 6 },
-      3: { count: 3, percent: 1 },
-      2: { count: 2, percent: 0.5 },
-      1: { count: 3, percent: 0.5 }
+      3: { count: 1, percent: 0.3 },
+      2: { count: 3, percent: 0.7 },
+      1: { count: 2, percent: 0.5 }
     }
   };
 
@@ -511,154 +511,116 @@
     },
     {
       id: 'x2-18',
-      name: 'Lucas Van Dijk',
+      name: 'Jack Robinson',
       country: 'Manchester, UK',
       rating: 3,
-      date: '2026-04-16',
-      displayDate: '16 April 2026',
-      variant: 'Grey / Single',
-      title: 'Royal Mail delivery was delayed by 4 days, brush itself is solid',
-      body: 'The Miroooo X2 device is well made and cleans thoroughly, but the tracked shipping took nearly a week to arrive in Manchester when 48-hour delivery was expected at checkout.',
-      images: [],
-      helpful: 9,
-      verified: true,
-      merchantReply: {
-        author: 'Response from Miroooo Customer Care',
-        date: '17 April 2026',
-        text: 'Hi Lucas, we sincerely apologize for the regional postal carrier bottleneck in April. We have since upgraded our UK dispatch logistics to priority tracked Royal Mail 24/48 to ensure every Miroooo X2 arrives on schedule.'
-      }
-    },
-    {
-      id: 'x2-19',
-      name: 'Grace O\'Connor',
-      country: 'Dublin / Belfast',
-      rating: 3,
-      date: '2026-04-06',
-      displayDate: '6 April 2026',
-      variant: 'Pink / Single',
-      title: 'Very intense vibration for people with hyper-receding gums',
-      body: 'The sweep motion is definitely effective at clearing plaque, but even with the pressure sensor I found the deep cleaning mode a bit powerful for my exposed root sensitivity. I have to use light featherweight contact on Standard mode.',
-      images: [],
-      helpful: 15,
-      verified: true,
-      merchantReply: {
-        author: 'Response from Miroooo Customer Care',
-        date: '7 April 2026',
-        text: 'Thank you for the detailed feedback Grace. For sensitive gingival tissue or exposed dentin, we recommend starting with our ultra-soft micro-diamond head and keeping the unit on Mode 1 (Standard Clean) where the swept oscillation operates with maximum damping.'
-      }
-    },
-    {
-      id: 'x2-20',
-      name: 'Arthur Pendelton',
-      country: 'Southampton, UK',
-      rating: 2,
-      date: '2026-03-28',
-      displayDate: '28 March 2026',
-      variant: 'Silver / Travel Edition',
-      title: 'Outer shipping box was crushed upon delivery',
-      body: 'The delivery driver squeezed the package through the letterbox which creased the outer retail carton. Fortunately the internal foam and hard travel case kept the X2 undamaged, but for a premium £79 device the external shipping packaging should be more rigid.',
-      images: [],
-      helpful: 18,
-      verified: true,
-      merchantReply: {
-        author: 'Response from Miroooo Customer Care',
-        date: '29 March 2026',
-        text: 'Hi Arthur, thank you for bringing this to our attention. While we are glad the internal protective casing kept your Miroooo X2 in pristine working order, we have forwarded your feedback to our fulfillment warehouse to introduce reinforced corrugated outer mailers.'
-      }
-    },
-    {
-      id: 'x2-21',
-      name: 'Dominic H. Walsh',
-      country: 'Nottingham, UK',
-      rating: 1,
-      date: '2026-03-24',
-      displayDate: '24 March 2026',
-      variant: 'Grey / Double Pack',
-      title: 'Mistakenly received single head instead of replacement 2-pack in bundle',
-      body: 'Ordered the double bundle with replacement heads but the courier box was missing the secondary accessory pack upon opening. Contacted support.',
-      images: [],
-      helpful: 21,
-      verified: true,
-      merchantReply: {
-        author: 'Response from Miroooo Customer Care',
-        date: '25 March 2026',
-        text: 'Hello Dominic, we investigated your order record and dispatched a complimentary replacement multi-pack with priority overnight courier on the same day. Please reach out to support@buudy.com if there is anything further we can assist you with.'
-      }
-    },
-    {
-      id: 'x2-40',
-      name: 'Toby Armstrong',
-      country: 'Newcastle, UK',
-      rating: 1,
-      date: '2026-03-12',
-      displayDate: '12 March 2026',
+      date: '2026-03-10',
+      displayDate: '10 March 2026',
       variant: 'Silver / Single',
-      title: 'Tracking link took 48 hours to activate after dispatch notification',
-      body: 'Received a shipment notification email on Friday but the tracking number did not scan into the Royal Mail system until Monday afternoon.',
+      title: '',
+      body: "I bought it for £99 and totally regret it seeing they are giving it for £69 right now. If you want an electric toothbrush definitely grab it, it's honestly the best brush and best deal in the market but I'm gutted I didn't wait.",
       images: [],
       helpful: 19,
       verified: true,
       merchantReply: {
-        author: 'Response from Miroooo Customer Care',
-        date: '13 March 2026',
-        text: 'Hi Toby, apologies for the carrier tracking sync latency over the dispatch window. Our automated system has been upgraded to provide live instantaneous GPS parcel tracking.'
+        author: 'Miroooo Customer Care',
+        date: '11 March 2026',
+        text: 'Hi Jack, thank you for your candid review! We are thrilled you find the Brush X2 to be the best electric toothbrush on the market. We run limited promotional offers to welcome new customers to the brand, and our team has credited a complimentary 2-pack of DuPont replacement heads to your account.'
       }
     },
     {
-      id: 'x2-38',
-      name: 'Chloe Davenport',
-      country: 'Bristol, UK',
-      rating: 3,
-      date: '2026-02-28',
-      displayDate: '28 February 2026',
-      variant: 'Pink / Single',
-      title: 'Slightly louder than expected on Deep Clean mode',
-      body: 'The sweep motion is definitely effective at clearing plaque, but the deep cleansing mode creates a noticeable resonant hum in a small tiled bathroom.',
-      images: [],
-      helpful: 11,
-      verified: true,
-      merchantReply: {
-        author: 'Response from Miroooo Customer Care',
-        date: '1 March 2026',
-        text: 'Hi Chloe, the high-torque dual-bearing motor delivers 42,000 swept micro-oscillations in Deep Cleansing mode, creating higher resonant acoustic pitch. Mode 1 (Standard Clean) offers whisper-quiet operation under 48dB for late-night brushing.'
-      }
-    },
-    {
-      id: 'x2-41',
-      name: 'Rachel Davies',
-      country: 'Cardiff, UK',
-      rating: 1,
-      date: '2026-02-18',
-      displayDate: '18 February 2026',
-      variant: 'Pink / Single',
-      title: 'Courier delivered parcel to neighboring building during storm',
-      body: 'The local courier left my delivery outside the wrong entrance down the road. Contacted customer support who resolved the delivery issue.',
-      images: [],
-      helpful: 16,
-      verified: true,
-      merchantReply: {
-        author: 'Response from Miroooo Customer Care',
-        date: '19 February 2026',
-        text: 'Hello Rachel, we deeply regret the courier misplacement. Our team immediately intervened with the carrier supervisor and sent a priority replacement package. We are glad you received it safely.'
-      }
-    },
-    {
-      id: 'x2-39',
-      name: 'Simon Fletcher',
-      country: 'Leeds, UK',
+      id: 'x2-19',
+      name: 'Sophie Bennett',
+      country: 'London, UK',
       rating: 2,
-      date: '2026-02-11',
-      displayDate: '11 February 2026',
-      variant: 'Grey / Double Pack',
-      title: 'Postal service left the parcel on doorstep in the rain',
-      body: 'The delivery courier dumped the box outside without ringing the bell during a heavy rain shower. Thankfully the waterproof product packaging saved the toothbrush.',
+      date: '2026-03-04',
+      displayDate: '4 March 2026',
+      variant: 'Grey / Single',
+      title: '',
+      body: "Their support hours are only 9 to 5 so when I sent a message on Friday night nobody replied over the weekend. A brand this good should have off-hours support. Nothing wrong with how they handled the query though, they solved it immediately once they came back online on Monday.",
+      images: [],
+      helpful: 15,
+      verified: true,
+      merchantReply: {
+        author: 'Miroooo Customer Experience Team',
+        date: '5 March 2026',
+        text: 'Hello Sophie, thank you for your honest feedback. We are glad our desk resolved your inquiry first thing on Monday morning, but we hear you on weekend coverage. We are currently expanding our dedicated UK customer care desk to include extended weekend support hours.'
+      }
+    },
+    {
+      id: 'x2-20',
+      name: 'Oliver Chapman',
+      country: 'Bristol, UK',
+      rating: 2,
+      date: '2026-02-22',
+      displayDate: '22 February 2026',
+      variant: 'Silver / Single',
+      title: '',
+      body: "I wasn't at home when it arrived so the delivery driver just left my parcel right on the front door step. I really didn't like that at all since anyone could have taken it. Toothbrush itself is fine but courier shouldn't leave deliveries exposed outside.",
       images: [],
       helpful: 14,
       verified: true,
       merchantReply: {
-        author: 'Response from Miroooo Customer Care',
-        date: '12 February 2026',
-        text: 'Hi Simon, we are terribly sorry for the delivery driver\'s handling. We\'ve filed a formal complaint with the carrier and reinforced all dispatch protocols to require signed delivery.'
+        author: 'Miroooo Customer Care',
+        date: '23 February 2026',
+        text: 'Hi Oliver, we are sorry for the courier driver’s decision to leave your delivery unattended on the doorstep. While we are glad the Brush X2 reached you safely, we have logged a formal complaint with the carrier depot to enforce signature confirmation on all future orders.'
+      }
+    },
+    {
+      id: 'x2-39',
+      name: 'Liam O\'Connor',
+      country: 'Leeds, UK',
+      rating: 2,
+      date: '2026-02-15',
+      displayDate: '15 February 2026',
+      variant: 'Grey / Double Pack',
+      title: '',
+      body: "The 2 extra free replacement heads you get when you buy 2 came in a completely separate package on the same day, not inside the main box. I thought they were missing at first until the second parcel was handed over. Let people know they ship in other package!",
+      images: [],
+      helpful: 17,
+      verified: true,
+      merchantReply: {
+        author: 'Miroooo Customer Care',
+        date: '16 February 2026',
+        text: 'Hi Liam, thank you for pointing this out! To protect the presentation packaging, complimentary DuPont replacement head bundles are fulfilled in a separate sealed package dispatched alongside the main unit. We have added a clear fulfillment note on the cart page so customers know both packages arrive simultaneously.'
+      }
+    },
+    {
+      id: 'x2-21',
+      name: 'Emma Davies',
+      country: 'Birmingham, UK',
+      rating: 1,
+      date: '2026-02-08',
+      displayDate: '8 February 2026',
+      variant: 'Pink / Single',
+      title: '',
+      body: "The delivery boy was incredibly rude when dropping off the parcel. Literally threw the package towards the porch and walked off shouting when I asked him to hand it over properly. Disgraceful courier behaviour.",
+      images: [],
+      helpful: 24,
+      verified: true,
+      merchantReply: {
+        author: 'Miroooo Customer Care',
+        date: '9 February 2026',
+        text: 'Hello Emma, we are appalled to hear about the delivery driver’s unacceptable behaviour. We take courier conduct extremely seriously and have escalated this incident directly to the regional carrier branch manager for immediate disciplinary action. Our support team has also reached out directly with a complimentary gift.'
+      }
+    },
+    {
+      id: 'x2-40',
+      name: 'Daniel Morgan',
+      country: 'Edinburgh, UK',
+      rating: 1,
+      date: '2026-02-02',
+      displayDate: '2 February 2026',
+      variant: 'Grey / Single',
+      title: '',
+      body: "I bought it for £99 but now they are giving it for £69! The product is genuinely good and cleans brilliantly, but I completely regret buying early. Why should I have rushed when I could have saved £30 if I waited.",
+      images: [],
+      helpful: 28,
+      verified: true,
+      merchantReply: {
+        author: 'Miroooo Customer Care',
+        date: '3 February 2026',
+        text: 'Dear Daniel, we completely understand your frustration regarding promotional timing. We love that the Brush X2 is providing you with an exceptional clean, and our team has added a complimentary 4-pack of DuPont replacement heads to your account to ensure you receive unbeatable value.'
       }
     }
   ];
@@ -848,7 +810,7 @@
         ${galleryHTML}
 
         <!-- Title -->
-        <h4 class="miroooo-card-title">${review.title}</h4>
+        ${review.title ? `<h4 class="miroooo-card-title">${review.title}</h4>` : ''}
 
         <!-- Body with 4-line clamping -->
         <p class="miroooo-card-body miroooo-card-text">${review.body}</p>
@@ -1389,7 +1351,15 @@
       variantEl.textContent = '';
       variantEl.style.display = 'none';
     }
-    if (titleEl) titleEl.textContent = activeLightboxReview.title;
+    if (titleEl) {
+      if (activeLightboxReview.title) {
+        titleEl.textContent = activeLightboxReview.title;
+        titleEl.style.display = 'block';
+      } else {
+        titleEl.textContent = '';
+        titleEl.style.display = 'none';
+      }
+    }
     if (bodyEl) bodyEl.textContent = activeLightboxReview.body;
     if (nameEl) nameEl.textContent = activeLightboxReview.name;
     if (avatarEl) {
