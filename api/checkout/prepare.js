@@ -25,11 +25,20 @@ function buildPlusbaseAttributionProperties(attribution) {
   return properties;
 }
 
-function appendDiscountCodeToUrl(href, discountCode) {
-  if (!discountCode) return href;
+function appendDiscountAndAttributionToUrl(href, discountCode, attribution) {
   try {
     const url = new URL(href);
-    url.searchParams.set("discount", discountCode);
+    if (discountCode && !url.searchParams.has("discount")) {
+      url.searchParams.set("discount", discountCode);
+    }
+    if (attribution && typeof attribution === "object") {
+      passthroughAttributionKeys.forEach((key) => {
+        const val = attribution[key];
+        if (val && !url.searchParams.has(key)) {
+          url.searchParams.set(key, String(val));
+        }
+      });
+    }
     return url.toString();
   } catch {
     return href;
@@ -174,7 +183,7 @@ module.exports = async function handler(req, res) {
     const discountCode = (rawDiscountCode === "MIROOOO10" && hasX2) ? "MIROOOO10" : "";
 
     const checkout = await createPlusbaseCheckout(items, attribution);
-    const finalUrl = appendDiscountCodeToUrl(checkout.checkoutUrl, discountCode);
+    const finalUrl = appendDiscountAndAttributionToUrl(checkout.checkoutUrl, discountCode, attribution);
 
     return res.status(200).json({
       checkoutToken: checkout.checkoutToken,

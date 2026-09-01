@@ -1229,6 +1229,33 @@
       color: #ffffff;
     }
 
+    .cart-empty-actions {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .cart-empty-quiz-hint {
+      margin: 8px 0 0;
+      font-size: 0.92rem;
+      color: #888888;
+      line-height: 1.5;
+    }
+
+    .cart-empty-quiz-link {
+      color: #ffffff;
+      text-decoration: underline;
+      text-underline-offset: 4px;
+      font-weight: 600;
+      transition: color 0.2s ease, opacity 0.2s ease;
+    }
+
+    .cart-empty-quiz-link:hover {
+      color: #cccccc;
+      opacity: 0.9;
+    }
+
     .cart-minimal-footer a:hover {
       color: #ffffff !important;
     }
@@ -1468,10 +1495,15 @@
         <p class="cart-empty-desc">
           Add the Brush X1 or Brush X2 to unlock current bundle offers, complimentary DuPont brush heads, and free tracked UK delivery.
         </p>
-        <a href="/shop" class="cart-empty-shop-btn" is="hover-button">
-          <span class="btn-fill" data-fill></span>
-          <span class="btn-text">Shop Miroooo</span>
-        </a>
+        <div class="cart-empty-actions">
+          <a href="/shop" class="cart-empty-shop-btn" is="hover-button">
+            <span class="btn-fill" data-fill></span>
+            <span class="btn-text">Shop Miroooo</span>
+          </a>
+          <p class="cart-empty-quiz-hint">
+            Undecided which brush is right for you? <a href="/dentalcare-quiz" class="cart-empty-quiz-link">Take the Dentalcare Quiz &rarr;</a>
+          </p>
+        </div>
       </section>
 
     </div>

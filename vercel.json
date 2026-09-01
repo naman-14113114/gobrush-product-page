@@ -19,10 +19,13 @@
     {"source":"/pages/contact-us","destination":"/contact.html"},
     {"source":"/app","destination":"/smile-coach.html"},
     {"source":"/about-us","destination":"/about-us.html"},
-    {"source":"/guides","destination":"/guides/index.html"}
+    {"source":"/guides","destination":"/guides/index.html"},
+    {"source":"/dentalcare-quiz","destination":"/dentalcare-quiz.html"},
+    {"source":"/quiz","destination":"/dentalcare-quiz.html"}
   ],
   "redirects": [
     {"source":"/about","destination":"/about-us","permanent":true},
+    {"source":"/quiz","destination":"/dentalcare-quiz","permanent":true},
     {
       "source": "/(.*)",
       "has": [

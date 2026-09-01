@@ -62,7 +62,7 @@
   const warrantyIcon = '<svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>';
 
   const userMenuIcon = '<svg class="dropdown-item__icon" viewBox="0 0 24 24" stroke="currentColor" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>';
-  const currentPage = document.body.dataset.page || "";
+  const currentPage = document.body.dataset.page || (window.location.pathname.includes("dentalcare-quiz") ? "dentalcare-quiz" : (window.location.pathname.includes("quiz") ? "quiz" : ""));
   const current = (pages) => pages.includes(currentPage) ? ' aria-current="page"' : "";
   const flipLabel = (label) => `<span class="nav-link__flip"><span>${label}</span><span aria-hidden="true">${label}</span></span>`;
   const chevronDownIcon = '<svg class="dropdown-chevron" viewBox="0 0 10 6" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M1 1l4 4 4-4"/></svg>';
@@ -149,6 +149,7 @@
                 </li>
                 <li><a class="drawer__menu-item block heading text-2xl leading-none tracking-tight" href="/smile-coach">Smile Coach</a></li>
                 <li><a class="drawer__menu-item block heading text-2xl leading-none tracking-tight" href="/about-us">About Us</a></li>
+                <li><a class="drawer__menu-item block heading text-2xl leading-none tracking-tight" href="/dentalcare-quiz">Dentalcare Quiz</a></li>
                 <li><a class="drawer__menu-item block heading text-2xl leading-none tracking-tight" href="/guides">Guides</a></li>
                 <li><a class="drawer__menu-item block heading text-2xl leading-none tracking-tight" href="/contact">Contact Us</a></li>
                 <li><a class="drawer__menu-item block heading text-2xl leading-none tracking-tight" href="/faq">FAQs</a></li>
@@ -192,6 +193,7 @@
                   </li>
                   ${menuPill("/smile-coach", "Smile Coach", ["smile-coach"])}
                   ${menuPill("/about-us", "About Us", ["about", "about-us"])}
+                  ${menuPill("/dentalcare-quiz", "Dentalcare Quiz", ["dentalcare-quiz", "quiz"])}
                 </ul>
               </nav>
             </div>
@@ -329,6 +331,7 @@
               <h4 class="site-footer__heading">SUPPORT</h4>
               <ul class="site-footer__links">
                 <li><a href="/smile-coach">Free Smile Coach App</a></li>
+                <li><a href="/dentalcare-quiz">Dentalcare Quiz</a></li>
                 <li><a href="/contact">Contact Us</a></li>
                 <li><a href="https://miroooo.us/pages/order-tracking">Order Tracking</a></li>
                 <li><a href="/about-us">About Us</a></li>
@@ -974,7 +977,7 @@
     node.textContent = new Date().getFullYear();
   });
 
-  const allowedAttribution = ["msclkid", "gclid", "fbclid", "utm_source", "utm_medium", "utm_campaign", "utm_term", "utm_content"];
+  const allowedAttribution = ["msclkid", "gclid", "fbclid", "utm_source", "utm_medium", "utm_campaign", "utm_term", "utm_content", "source"];
   const incoming = new URLSearchParams(window.location.search);
   const captured = {};
 
@@ -983,29 +986,41 @@
     if (value) captured[key] = value;
   });
 
-  if (Object.keys(captured).length) {
+  let existingStored = {};
+  try {
+    const fromSession = JSON.parse(sessionStorage.getItem("miroooo_attribution") || "{}");
+    const fromLocal = JSON.parse(localStorage.getItem("miroooo_attribution") || "{}");
+    existingStored = Object.assign({}, fromLocal, fromSession);
+  } catch (_) {}
+
+  const mergedAttribution = Object.assign({}, existingStored, captured);
+
+  if (Object.keys(mergedAttribution).length) {
     try {
-      sessionStorage.setItem("miroooo_attribution", JSON.stringify(captured));
-    } catch (_) {
-      // Navigation must never depend on storage access.
-    }
+      sessionStorage.setItem("miroooo_attribution", JSON.stringify(mergedAttribution));
+    } catch (_) {}
+    try {
+      localStorage.setItem("miroooo_attribution", JSON.stringify(mergedAttribution));
+    } catch (_) {}
   }
 
-  let attribution = captured;
-  if (!Object.keys(attribution).length) {
-    try {
-      attribution = JSON.parse(sessionStorage.getItem("miroooo_attribution") || "{}");
-    } catch (_) {
-      attribution = {};
-    }
-  }
+  const attribution = mergedAttribution;
 
-  document.querySelectorAll("a[data-product-link]").forEach((link) => {
+  function decorateAttributionLinks(root) {
     if (!Object.keys(attribution).length) return;
-    const target = new URL(link.href, window.location.origin);
-    Object.entries(attribution).forEach(([key, value]) => target.searchParams.set(key, value));
-    link.href = target.toString();
-  });
+    const scope = root && root.querySelectorAll ? root : document;
+    scope.querySelectorAll("a[data-product-link], a[data-quiz-cta], a.quiz-cta, [data-product-link] a").forEach((link) => {
+      try {
+        const target = new URL(link.href, window.location.origin);
+        Object.entries(attribution).forEach(([key, value]) => {
+          if (value && typeof value === "string") target.searchParams.set(key, value);
+        });
+        link.href = target.toString();
+      } catch (_) {}
+    });
+  }
+
+  decorateAttributionLinks();
 
   const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   const revealItems = document.querySelectorAll(".reveal");
@@ -1124,11 +1139,43 @@
       if (val) captured[key] = val;
     });
 
+    let stored = {};
     try {
-      const stored = JSON.parse(sessionStorage.getItem(ATTRIBUTION_STORAGE_KEY) || localStorage.getItem(ATTRIBUTION_STORAGE_KEY) || "{}");
-      return { ...stored, ...captured };
+      const fromSession = JSON.parse(sessionStorage.getItem(ATTRIBUTION_STORAGE_KEY) || "{}");
+      const fromLocal = JSON.parse(localStorage.getItem(ATTRIBUTION_STORAGE_KEY) || "{}");
+      stored = Object.assign({}, fromLocal, fromSession);
     } catch (_) {
-      return captured;
+      stored = {};
+    }
+
+    const merged = Object.assign({}, stored, captured);
+    if (Object.keys(merged).length) {
+      try {
+        sessionStorage.setItem(ATTRIBUTION_STORAGE_KEY, JSON.stringify(merged));
+      } catch (_) {}
+      try {
+        localStorage.setItem(ATTRIBUTION_STORAGE_KEY, JSON.stringify(merged));
+      } catch (_) {}
+    }
+    return merged;
+  }
+
+  function decorateCheckoutUrl(urlStr, attribution, discountCode) {
+    if (!urlStr) return urlStr;
+    try {
+      const u = new URL(urlStr, window.location.origin);
+      if (discountCode && !u.searchParams.has("discount")) {
+        u.searchParams.set("discount", discountCode);
+      }
+      const allowed = ["utm_source", "utm_medium", "utm_campaign", "utm_term", "utm_content", "msclkid", "gclid", "fbclid", "source"];
+      allowed.forEach((key) => {
+        if (attribution && attribution[key] && !u.searchParams.has(key)) {
+          u.searchParams.set(key, String(attribution[key]));
+        }
+      });
+      return u.toString();
+    } catch (_) {
+      return urlStr;
     }
   }
 
@@ -1179,6 +1226,17 @@
     const attribution = readCapturedAttribution();
     Object.assign(attribution, extraParams);
 
+    if (window.__mirooooMicrosoftAds && typeof window.__mirooooMicrosoftAds.trackCheckout === "function") {
+      try {
+        window.__mirooooMicrosoftAds.trackCheckout({
+          content_type: "product",
+          content_name: item?.title || (isX2 ? "Miroooo Brush X2" : "Miroooo Brush X1"),
+          currency: "GBP",
+          value: item?.unitPrice || (isX2 ? 79 : 59)
+        });
+      } catch (_) {}
+    }
+
     const storedPromo = (localStorage.getItem("miroooo_promo_code") || "").trim().toUpperCase();
     const validDiscount = (isX2 && storedPromo === "MIROOOO10") ? "MIROOOO10" : "";
     const discountCode = extraParams.discount || validDiscount;
@@ -1196,7 +1254,7 @@
       });
       if (response.ok) {
         const data = await response.json();
-        if (data?.checkoutUrl) return data.checkoutUrl;
+        if (data?.checkoutUrl) return decorateCheckoutUrl(data.checkoutUrl, attribution, discountCode);
       }
     } catch (err) {
       console.warn("Server prepare fallback", err);
@@ -1241,17 +1299,13 @@
           });
         }
 
-        let target = `https://miroooo.us/checkouts/${checkoutToken}`;
-        if (discountCode) {
-          target += `?discount=${encodeURIComponent(discountCode)}`;
-        }
-        return target;
+        return decorateCheckoutUrl(`https://miroooo.us/checkouts/${checkoutToken}`, attribution, discountCode);
       }
     } catch (directErr) {
       console.error("Direct PlusBase session creation failed", directErr);
     }
 
-    return "https://miroooo.us/checkouts";
+    return decorateCheckoutUrl("https://miroooo.us/checkouts", attribution, discountCode);
   }
 
   const MirooooCart = {
@@ -1574,6 +1628,9 @@
               <a href="/shop" class="miroooo-empty-shop-btn" onclick="window.MirooooCart.closeCart()">
                 Shop Miroooo
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+              </a>
+              <a href="/dentalcare-quiz" class="miroooo-empty-quiz-link" onclick="window.MirooooCart.closeCart()">
+                Undecided? Take the Dentalcare Quiz &rarr;
               </a>
             </div>
           `;
@@ -2000,6 +2057,57 @@
       btn._loaderTimer = null;
     }, 900);
   });
+
+  // Quiz CTA ("Claim My Personalised Match") & Dynamic Attribution Preservation Interceptor
+  document.addEventListener("click", (e) => {
+    const target = e.target;
+    if (!target) return;
+
+    const btn = target.closest("a, button, [role='button']");
+    if (!btn) return;
+
+    const btnText = (btn.textContent || "").trim();
+    const isQuizMatchCta =
+      /claim\s+my\s+personalised\s+match/i.test(btnText) ||
+      /claim\s+my\s+match/i.test(btnText) ||
+      btn.hasAttribute("data-quiz-cta") ||
+      btn.classList.contains("quiz-cta") ||
+      btn.getAttribute("data-action") === "claim-match";
+
+    const isProductOrCheckoutLink =
+      btn.tagName === "A" &&
+      (btn.hasAttribute("data-product-link") ||
+        isQuizMatchCta ||
+        /^\/products\//.test(btn.getAttribute("href") || "") ||
+        /^\/cart/.test(btn.getAttribute("href") || "") ||
+        /checkouts/.test(btn.getAttribute("href") || ""));
+
+    if (isQuizMatchCta || isProductOrCheckoutLink) {
+      const attr = readCapturedAttribution();
+      if (Object.keys(attr).length && btn.tagName === "A" && btn.href) {
+        try {
+          const dest = new URL(btn.href, window.location.origin);
+          const allowed = ["utm_source", "utm_medium", "utm_campaign", "utm_term", "utm_content", "msclkid", "gclid", "fbclid", "source"];
+          allowed.forEach((key) => {
+            if (attr[key] && !dest.searchParams.has(key)) {
+              dest.searchParams.set(key, String(attr[key]));
+            }
+          });
+          btn.href = dest.toString();
+        } catch (_) {}
+      }
+
+      if (isQuizMatchCta && window.__mirooooMicrosoftAds?.trackCheckout) {
+        try {
+          window.__mirooooMicrosoftAds.trackCheckout({
+            content_type: "product",
+            content_name: "Quiz Personalised Match",
+            currency: "GBP"
+          });
+        } catch (_) {}
+      }
+    }
+  }, true);
 
   // Close on Escape key
   document.addEventListener("keydown", (e) => {

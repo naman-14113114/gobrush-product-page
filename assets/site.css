@@ -6668,6 +6668,21 @@ body.nav-open .miroooo-sticky-cart-wrap {
   opacity: 0.92;
 }
 
+.miroooo-empty-quiz-link {
+  margin-top: 10px;
+  font-size: 0.85rem;
+  color: #666666;
+  text-decoration: underline;
+  text-underline-offset: 4px;
+  font-weight: 500;
+  display: inline-block;
+  transition: color 0.2s ease;
+}
+
+.miroooo-empty-quiz-link:hover {
+  color: #000000;
+}
+
 /* Line Items */
 .miroooo-cart-items {
   display: flex;

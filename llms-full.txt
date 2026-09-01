@@ -33,6 +33,14 @@
 - Contents: two replacement heads made for Brush X2
 - Display price recorded on 1 September 2026: GBP 10; verify on the product page before quoting
 
+## Dentalcare Quiz
+
+- Canonical page: https://www.trymiroooo.com/dentalcare-quiz
+- Interactive routine matching tool analysing oral sensitivity, gum care goals, travel frequency and brushing style
+- Recommends tailored brush configuration (Brush X1 or Brush X2) and personalised daily oral care routines
+- Client-side calculation with zero sign-up required; responses stay private in the user's browser
+- Recommendations are educational and do not replace clinical or dental diagnosis
+
 ## Smile Coach
 
 - Canonical page: https://www.trymiroooo.com/smile-coach

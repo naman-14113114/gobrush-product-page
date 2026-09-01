@@ -26,7 +26,9 @@
 
   function persistAttribution() {
     var params = new URLSearchParams(window.location.search);
-    var stored = readStoredAttribution(window.localStorage);
+    var localStored = readStoredAttribution(window.localStorage);
+    var sessionStored = readStoredAttribution(window.sessionStorage);
+    var stored = Object.assign({}, localStored, sessionStored);
 
     ATTRIBUTION_KEYS.forEach(function (key) {
       var value = params.get(key);
@@ -45,6 +47,26 @@
     } catch (_) {}
 
     return stored;
+  }
+
+  function getAttribution() {
+    return persistAttribution();
+  }
+
+  function appendAttribution(urlStr) {
+    if (!urlStr) return urlStr;
+    try {
+      var parsed = new URL(urlStr, window.location.origin);
+      var currentAttr = persistAttribution();
+      ATTRIBUTION_KEYS.forEach(function (key) {
+        if (currentAttr[key] && !parsed.searchParams.has(key)) {
+          parsed.searchParams.set(key, currentAttr[key]);
+        }
+      });
+      return parsed.toString();
+    } catch (_) {
+      return urlStr;
+    }
   }
 
   function initialiseUetQueue(queueName, tagId) {
@@ -76,12 +98,66 @@
   window.__mirooooMicrosoftAds = {
     primaryTagId: PRIMARY_UET_TAG_ID,
     purchaseTagId: PURCHASE_UET_TAG_ID,
+    getAttribution: getAttribution,
+    appendAttribution: appendAttribution,
     trackCheckout: function (details) {
       var payload = details || {};
       window.uetq.push("event", "begin_checkout", payload);
       window.shoppingUetq.push("event", "begin_checkout", payload);
     }
   };
+
+  // Quiz CTA ("Claim My Personalised Match") and data-product-link click handler
+  document.addEventListener("click", function (event) {
+    var target = event.target;
+    if (!target) return;
+
+    var btn = target.closest("a, button, [role='button']");
+    if (!btn) return;
+
+    var text = (btn.textContent || "").trim();
+    var isQuizMatchCta =
+      /claim\s+my\s+personalised\s+match/i.test(text) ||
+      /claim\s+my\s+match/i.test(text) ||
+      btn.hasAttribute("data-quiz-cta") ||
+      btn.classList.contains("quiz-cta") ||
+      btn.getAttribute("data-action") === "claim-match";
+
+    if (isQuizMatchCta) {
+      var attr = persistAttribution();
+
+      if (btn.tagName === "A" && btn.href) {
+        try {
+          var dest = new URL(btn.href, window.location.origin);
+          ATTRIBUTION_KEYS.forEach(function (key) {
+            if (attr[key] && !dest.searchParams.has(key)) {
+              dest.searchParams.set(key, attr[key]);
+            }
+          });
+          btn.href = dest.toString();
+        } catch (_) {}
+      }
+
+      window.__mirooooMicrosoftAds.trackCheckout({
+        content_type: "product",
+        content_name: "Quiz Personalised Match",
+        currency: "GBP"
+      });
+    }
+
+    if (btn.tagName === "A" && (btn.hasAttribute("data-product-link") || isQuizMatchCta)) {
+      try {
+        var linkUrl = new URL(btn.href, window.location.origin);
+        var activeAttr = persistAttribution();
+        ATTRIBUTION_KEYS.forEach(function (key) {
+          if (activeAttr[key] && !linkUrl.searchParams.has(key)) {
+            linkUrl.searchParams.set(key, activeAttr[key]);
+          }
+        });
+        btn.href = linkUrl.toString();
+      } catch (_) {}
+    }
+  }, true);
 
   if (typeof window.UET === "function") {
     initialiseMicrosoftAds();

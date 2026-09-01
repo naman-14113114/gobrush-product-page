@@ -252,6 +252,7 @@
     if (/pages\/(privacybeleid|privacy-policy)/.test(href)) link.href = "/privacy";
     if (/pages\/(retouren-garantie|shipping-policy|returns)/.test(href)) link.href = "/delivery-returns";
     if (/pages\/(reviews|terms)/.test(href)) link.href = "/terms";
+    if (/pages\/(dentalcare-quiz|quiz)/.test(href)) link.href = "/dentalcare-quiz";
   });
   const footerGroup = document.querySelector("footer-group");
   if (footerGroup) {
@@ -320,6 +321,7 @@
               <li><a href="/contact">Contact Us</a></li>
               <li><a href="https://miroooo.us/pages/order-tracking">Order Tracking</a></li>
               <li><a href="/about-us">About Us</a></li>
+              <li><a href="/dentalcare-quiz">Dentalcare Quiz</a></li>
               <li><a href="/faq">FAQs</a></li>
               <li><a href="/cookies-policy">Cookies Policy</a></li>
             </ul>
@@ -372,14 +374,28 @@
       </footer>`;
   }
 
-  const allowedAttribution = ["msclkid", "gclid", "utm_source", "utm_medium", "utm_campaign", "utm_term", "utm_content"];
+  const allowedAttribution = ["msclkid", "gclid", "fbclid", "utm_source", "utm_medium", "utm_campaign", "utm_term", "utm_content", "source"];
   const query = new URLSearchParams(location.search);
-  document.querySelectorAll('a[href*="/checkouts"], a[href*="cart"]').forEach((link) => {
+  let storedAttribution = {};
+  try {
+    const fromSession = JSON.parse(sessionStorage.getItem("miroooo_attribution") || "{}");
+    const fromLocal = JSON.parse(localStorage.getItem("miroooo_attribution") || "{}");
+    storedAttribution = Object.assign({}, fromLocal, fromSession);
+  } catch (_) {}
+
+  const capturedShellAttr = {};
+  allowedAttribution.forEach((key) => {
+    const value = query.get(key);
+    if (value) capturedShellAttr[key] = value;
+  });
+  const shellAttribution = Object.assign({}, storedAttribution, capturedShellAttr);
+
+  document.querySelectorAll('a[href*="/checkouts"], a[href*="cart"], a[data-product-link], a[data-quiz-cta], a.quiz-cta').forEach((link) => {
     try {
       const target = new URL(link.href, window.location.origin);
       allowedAttribution.forEach((key) => {
-        const value = query.get(key);
-        if (value) target.searchParams.set(key, value);
+        const value = shellAttribution[key];
+        if (value && !target.searchParams.has(key)) target.searchParams.set(key, value);
       });
       link.href = target.toString();
     } catch (_) {}

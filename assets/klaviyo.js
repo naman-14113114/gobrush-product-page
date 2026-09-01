@@ -41,18 +41,24 @@
   };
 
   function callKlaviyo(method) {
-    var args = Array.prototype.slice.call(arguments, 1);
-    if (window.klaviyo && typeof window.klaviyo[method] === "function") {
-      window.klaviyo[method].apply(window.klaviyo, args);
-      return;
-    }
+    try {
+      var args = Array.prototype.slice.call(arguments, 1);
+      if (window.klaviyo && typeof window.klaviyo[method] === "function") {
+        window.klaviyo[method].apply(window.klaviyo, args);
+        return;
+      }
 
-    window._klOnsite = window._klOnsite || [];
-    window._klOnsite.push([method].concat(args));
+      window._klOnsite = window._klOnsite || [];
+      if (typeof window._klOnsite.push === "function") {
+        window._klOnsite.push([method].concat(args));
+      }
+    } catch (_) {}
   }
 
   function track(eventName, payload) {
-    callKlaviyo("track", eventName, payload);
+    try {
+      callKlaviyo("track", eventName, payload);
+    } catch (_) {}
   }
 
   function productHandleFromPath() {
@@ -188,6 +194,43 @@
     });
   }
 
+  function trackViewedQuiz() {
+    try {
+      var body = document.body || document.documentElement;
+      var pageAttr = body ? (body.getAttribute("data-page") || (body.dataset && body.dataset.page)) : "";
+      var isQuizPage = pageAttr === "dentalcare-quiz" ||
+        (document.querySelector && Boolean(document.querySelector('[data-page="dentalcare-quiz"]'))) ||
+        window.location.pathname.indexOf("dentalcare-quiz") !== -1;
+
+      if (!isQuizPage) return;
+
+      track("Viewed Quiz Page", {
+        PageName: document.title || "Dentalcare Quiz",
+        URL: window.location.href,
+        Path: window.location.pathname,
+        Market: MARKET,
+        SourceSite: SOURCE_SITE
+      });
+    } catch (_) {}
+  }
+
+  function handleQuizCompleted(event) {
+    try {
+      var detail = (event && event.detail) || {};
+      var result = detail.result || detail;
+      var matchedModel = detail.matchedModel || detail.model || (result && (result.model || result.matchedModel)) || "";
+      var profile = detail.profile || detail.profileTitle || (result && (result.profileTitle || result.profile)) || "";
+
+      track("Completed Dentalcare Quiz", {
+        $event_id: "miroooo-quiz-" + Date.now(),
+        matchedModel: matchedModel,
+        profile: profile,
+        Market: MARKET,
+        SourceSite: SOURCE_SITE
+      });
+    } catch (_) {}
+  }
+
   window._klOnsite = window._klOnsite || [];
 
   track("Viewed Page", {
@@ -198,7 +241,19 @@
     SourceSite: SOURCE_SITE
   });
   trackViewedProduct();
+  trackViewedQuiz();
 
   window.addEventListener("miroooo:added-to-cart", handleAddedToCart);
   window.addEventListener("miroooo:started-checkout", handleStartedCheckout);
+  window.addEventListener("miroooo:quiz-completed", handleQuizCompleted);
+  window.addEventListener("miroooo:dentalcare-quiz-completed", handleQuizCompleted);
+  window.addEventListener("quiz:completed", handleQuizCompleted);
+  window.addEventListener("dentalcare-quiz:completed", handleQuizCompleted);
+
+  window.__mirooooKlaviyo = {
+    track: track,
+    trackQuizCompleted: function (result) {
+      handleQuizCompleted({ detail: result });
+    }
+  };
 })();

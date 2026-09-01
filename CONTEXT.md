@@ -156,10 +156,36 @@ Append-only memory for the `gobrush-product-page` repository. Do not delete or s
   - Cache-busting version bump:
     - Updated `/assets/site.js?v=20260901b` and `/assets/site.css?v=20260901b` across all 26 HTML pages to ensure CDNs and browsers immediately load the updated Shop Drawer showing `£10` without cached compare prices.
   - Verification:
-    - Executed forensic repo scan using subagent across all HTML, JS, JSON, and MD files.
-    - Executed `npm run build` -> `verify-site.mjs` passed with 0 errors and all static pages rebuilt in `public/`.
+## 2026-09-01 21:30:00 +05:30 - Added Miroooo Personalised Dentalcare Quiz & Header Navigation Link
 
-
-
-
-
+- User request: Create a personalised Dentalcare Quiz for the website, following the Miroooo dark luxury theme ("The Quiet Instrument"), with tailored 5-step diagnostic questions and dynamic results engine. Add navigation link in the header beside About Us with name "Dentalcare Quiz". Check visually by opening browser whether everything is correctly working, then push clean code to GitHub.
+- Implementation:
+  - Created `dentalcare-quiz.html`:
+    - Clean luxury structure with Schema.org `Quiz` / `WebPage` structured data, OpenGraph, Twitter Cards, preconnected fonts, skip links, and semantic sections.
+    - 5 Diagnostic Steps: 1. Primary Oral Focus (Sensitive gums, Enamel stains, Plaque biofilm, Daily routine), 2. Current Setup (Manual, Bulky electric, Slim sonic, Restart), 3. Pressure & Sensitivity (Heavy/bleeding, Moderate, Deep clean, Active feedback), 4. Lifestyle & Routine (Travel/commute, Shower brushing, Minimalist bathroom, Quiet routine), 5. Finish & Setup (Matte Silver, Space Grey, Rose Pink, Bundle for Two).
+    - 1.2s acoustic calibration loading state with pulsing rings, waveform graphic, and multi-step diagnostic analysis items.
+    - Dynamic Results Engine:
+      - Profile 1: Gum Defense Flagship X2 (£69, compare £139, 50% OFF) with 45° Bass sweep & smart red halo pressure defense.
+      - Profile 2: Stain Defense & Enamel Polish X2 (£69, compare £139, 50% OFF) with 38,000 VPM acoustic micro-polish.
+      - Profile 3: Ultralight Travel & Minimalist X1 (£59, compare £119, 50% OFF) with 51g unibody & 60-day single charge freedom.
+      - Profile 4: Duo Household Set (£128, compare £278, 54% OFF) with 2x instruments + 2x Free DuPont heads.
+      - Diagnostics breakdown, matched instrument card with live color thumbnail swatches, prescribed 28-day routine protocol (Phase 1, Phase 2, Smile Coach App sync), in-the-box peace-of-mind guarantee specs, retake quiz button, and direct PlusBase cart integration.
+  - Created `assets/dentalcare-quiz.css`:
+    - Full Miroooo dark luxury palette (`#080909`, `#141515`, `#f4f4f1`, `#a6a8a4`, `#22c55e`).
+    - Tactile 2x2 option cards with micro-haptic scale, smooth green checkmark badges, active border glows, upward expanding `.btn-fill` buttons matching `site.css`, and accessible focus outlines.
+  - Created `assets/dentalcare-quiz.js`:
+    - SessionStorage persistence, smooth auto-advance, keyboard accessibility, weighted scoring profile engine, custom event dispatching (`Completed Dentalcare Quiz`), and integration with `window.MirooooCart.addItem` and PlusBase checkout bridge.
+  - Navigation & Storefront Synchronization:
+    - Added `Dentalcare Quiz` magnet link / pill directly beside `About Us` in desktop header and inside mobile menu drawer (`#MenuDrawer`) staggered items across `assets/site.js`, `assets/product-shell.js`, `miroooo-x.html`, `miroooo-x2.html`, and `miroooo-x2-heads.html`.
+    - Added `Dentalcare Quiz` link under SUPPORT in global footer and product footers.
+    - Added quiz discoverability cards and links on `shop.html`, `faq.html`, `cart.html`, `smile-coach.html`, and `404.html`.
+    - Updated `vercel.json` with `/dentalcare-quiz` and `/quiz` rewrites, `sitemap.xml` with priority 0.9, and `llms.txt` / `llms-full.txt` documentation.
+    - Updated `assets/klaviyo.js` and `assets/microsoft-ads.js` with quiz event tracking and attribution preservation.
+    - Updated `scripts/verify-site.mjs` and `scripts/build.mjs` with clean URL directory builds (`public/dentalcare-quiz/index.html`).
+  - Verification:
+    - Rebuilt static storefront (`npm run build` and `npm run verify` passed with 0 errors across all 43 files and 17 pages).
+    - Tested live in browser via local HTTP server and Chrome DevTools MCP:
+      - Visually verified desktop header shows `Dentalcare Quiz` beside `About Us`.
+      - Visually verified mobile drawer shows `Dentalcare Quiz` directly under `About Us`.
+      - Executed full 5-step interactive quiz flow with real-time selection, smooth progress bar updates, calculating animation, and clean results generation for Brush X2, Brush X1, and Duo Bundle.
+      - Captured full-page screenshots of question steps, results screen, PDP desktop header, and mobile menu drawer.

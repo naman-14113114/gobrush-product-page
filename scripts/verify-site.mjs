@@ -9,6 +9,7 @@ const required = [
   "404.html", "assets/site.css", "assets/site.js", "assets/microsoft-ads.js", "assets/klaviyo.js", "vercel.json", "sitemap.xml",
   "robots.txt", "llms.txt", "smile-coach.html", "assets/smile-coach.css", "assets/smile-coach.js",
   "smile-coach.webmanifest", "smile-coach-sw.js", "assets/app/miroooo-smile-coach-lifestyle.png",
+  "dentalcare-quiz.html", "assets/dentalcare-quiz.css", "assets/dentalcare-quiz.js",
   "assets/guides.css", "llms-full.txt", "guides/index.html", "guides/sonic-vs-oscillating-electric-toothbrush.html",
   "guides/how-often-replace-electric-toothbrush-head.html", "guides/electric-toothbrush-travel-guide.html",
   "guides/how-to-use-two-minute-toothbrush-timer.html"
@@ -30,7 +31,7 @@ const internalRoutes = new Set([
   "/shipping-policy", "/refund-policy", "/cookies-policy", "/policies/privacy-policy",
   "/policies/return-policy", "/policies/shipping-policy", "/policies/refund-policy",
   "/policies/terms-of-service", "/policies/cookies-policy", "/pages/order-tracking",
-  "/pages/contact-us", "/smile-coach"
+  "/pages/contact-us", "/smile-coach", "/dentalcare-quiz", "/quiz"
   , "/guides", "/guides/sonic-vs-oscillating-electric-toothbrush",
   "/guides/how-often-replace-electric-toothbrush-head", "/guides/electric-toothbrush-travel-guide",
   "/guides/how-to-use-two-minute-toothbrush-timer"
@@ -196,7 +197,7 @@ for (const [file, route, schemaType] of guidePages) {
   }
 }
 
-for (const file of ["index.html", "miroooo-x.html", "miroooo-x2.html", "miroooo-x2-heads.html", "smile-coach.html", ...guidePages.map(([file]) => file)]) {
+for (const file of ["index.html", "miroooo-x.html", "miroooo-x2.html", "miroooo-x2-heads.html", "smile-coach.html", "dentalcare-quiz.html", ...guidePages.map(([file]) => file)]) {
   const html = await readFile(resolve(root, file), "utf8");
   for (const match of html.matchAll(/<script[^>]+type=["']application\/ld\+json["'][^>]*>([\s\S]*?)<\/script>/gi)) {
     try { JSON.parse(match[1]); } catch (error) { errors.push(`${file}: malformed JSON-LD (${error.message})`); }
@@ -215,7 +216,7 @@ if (!config.redirects?.some((rule) => rule.source === "/about" && rule.destinati
 }
 
 const sitemap = await readFile(resolve(root, "sitemap.xml"), "utf8");
-for (const route of ["/shop", "/products/miroooo-x", "/products/miroooo-x2", "/products/miroooo-x2-heads", "/smile-coach", "/guides", "/guides/sonic-vs-oscillating-electric-toothbrush", "/guides/how-often-replace-electric-toothbrush-head", "/guides/electric-toothbrush-travel-guide", "/guides/how-to-use-two-minute-toothbrush-timer", "/delivery-returns", "/privacy", "/terms"]) {
+for (const route of ["/shop", "/products/miroooo-x", "/products/miroooo-x2", "/products/miroooo-x2-heads", "/dentalcare-quiz", "/smile-coach", "/guides", "/guides/sonic-vs-oscillating-electric-toothbrush", "/guides/how-often-replace-electric-toothbrush-head", "/guides/electric-toothbrush-travel-guide", "/guides/how-to-use-two-minute-toothbrush-timer", "/delivery-returns", "/privacy", "/terms"]) {
   if (!sitemap.includes(`<loc>https://www.trymiroooo.com${route}</loc>`)) errors.push(`sitemap.xml: missing ${route}`);
 }
 if (sitemap.includes("https://trymiroooo.com") || /<loc>https:\/\/www\.trymiroooo\.com\/(?:cart|about)<\/loc>/.test(sitemap)) errors.push("sitemap.xml: redirecting, non-canonical or noindex URL remains");

@@ -16,7 +16,7 @@ const verification = spawnSync(process.execPath, [resolve(root, "scripts/verify-
 });
 if (verification.status !== 0) process.exit(verification.status || 1);
 
-await rm(output, { recursive: true, force: true });
+await rm(output, { recursive: true, force: true, maxRetries: 5, retryDelay: 100 });
 await mkdir(output, { recursive: true });
 await mkdir(resolve(output, "products"), { recursive: true });
 
@@ -34,6 +34,27 @@ await cp(resolve(root, "miroooo-x2.html"), resolve(output, "products", "miroooo-
 try {
   await cp(resolve(root, "miroooo-x2-heads.html"), resolve(output, "products", "miroooo-x2-heads.html"));
 } catch (_) {}
+
+// Clean URL folder copies for local server and static preview
+for (const [src, destDir] of [
+  ["miroooo-x.html", "products/miroooo-x"],
+  ["miroooo-x2.html", "products/miroooo-x2"],
+  ["miroooo-x2-heads.html", "products/miroooo-x2-heads"],
+  ["shop.html", "shop"],
+  ["about-us.html", "about-us"],
+  ["about.html", "about"],
+  ["faq.html", "faq"],
+  ["contact.html", "contact"],
+  ["smile-coach.html", "smile-coach"],
+  ["cart.html", "cart"],
+  ["dentalcare-quiz.html", "dentalcare-quiz"]
+]) {
+  try {
+    await mkdir(resolve(output, destDir), { recursive: true });
+    await cp(resolve(root, src), resolve(output, destDir, "index.html"));
+  } catch (_) {}
+}
+
 await cp(resolve(root, "guides"), resolve(output, "guides"), { recursive: true });
 
 const microsoftTrackingScript = '<script src="/assets/microsoft-ads.js?v=20260901" defer></script>';
@@ -56,6 +77,10 @@ const outputHtmlFiles = [
   ...(await readdir(resolve(output, "products"))).filter((name) => name.endsWith(".html")).map((name) => resolve(output, "products", name)),
   ...(await readdir(resolve(output, "guides"))).filter((name) => name.endsWith(".html")).map((name) => resolve(output, "guides", name))
 ];
+try {
+  const quizDirFiles = (await readdir(resolve(output, "dentalcare-quiz"))).filter((name) => name.endsWith(".html")).map((name) => resolve(output, "dentalcare-quiz", name));
+  outputHtmlFiles.push(...quizDirFiles);
+} catch (_) {}
 
 for (const htmlFile of outputHtmlFiles) {
   const html = await readFile(htmlFile, "utf8");
