@@ -185,22 +185,11 @@
             <div class="header__navigation hidden lg:flex lg:gap-5 lg:justify-start">
               <nav class="header__menu site-nav hidden lg:flex" role="navigation" aria-label="Primary">
                 <ul class="flex flex-wrap list-menu with-block">
-                  <li class="header__dropdown relative" data-dropdown>
-                    <button type="button" class="menu__item nav-link header__dropdown-toggle flex items-center font-medium z-2 relative cursor-pointer" aria-expanded="false" aria-haspopup="true" is="magnet-link" data-magnet="0"${["product-x", "product-x2", "product-x2-heads", "shop"].includes(currentPage) ? ' aria-current="page"' : ""}>
+                  <li>
+                    <button type="button" id="ShopDrawerTrigger" class="menu__item nav-link header__shop-drawer-btn flex items-center font-medium z-2 relative cursor-pointer" aria-haspopup="dialog" aria-expanded="false" aria-controls="ShopDrawer" aria-label="Open Shop drawer" is="magnet-link" data-magnet="0"${["product-x", "product-x2", "product-x2-heads", "shop"].includes(currentPage) ? ' aria-current="page"' : ""}>
                       <span class="btn-text flex items-center" data-text="Shop">Shop ${chevronDownIcon}</span>
                       <span class="btn-text btn-duplicate flex items-center">Shop ${chevronDownIcon}</span>
                     </button>
-                    <div class="dropdown-menu" role="menu">
-                      <a href="/products/miroooo-x" class="dropdown-item" role="menuitem">
-                        <div class="dropdown-item__title">Brush X1</div>
-                      </a>
-                      <a href="/products/miroooo-x2" class="dropdown-item" role="menuitem">
-                        <div class="dropdown-item__title">Brush X2</div>
-                      </a>
-                      <a href="/products/miroooo-x2-heads" class="dropdown-item" role="menuitem">
-                        <div class="dropdown-item__title">2x Brush X2 Heads</div>
-                      </a>
-                    </div>
                   </li>
                   ${menuPill("/about-us", "About Us", ["about", "about-us"])}
                 </ul>
@@ -589,11 +578,252 @@
     });
   }
 
+  // Shop Sidebar Drawer Handler (Strict Click-to-Open Only)
+  function ensureShopDrawer() {
+    let drawer = document.getElementById("ShopDrawer");
+    if (!drawer) {
+      drawer = document.createElement("div");
+      drawer.id = "ShopDrawer";
+      drawer.className = "shop-drawer";
+      drawer.setAttribute("aria-hidden", "true");
+      drawer.setAttribute("role", "dialog");
+      drawer.setAttribute("aria-modal", "true");
+      drawer.setAttribute("aria-label", "Shop oral care collection");
+      drawer.innerHTML = `
+        <div class="shop-drawer__overlay" data-shop-drawer-close aria-label="Close Shop drawer" tabindex="-1"></div>
+        <aside class="shop-drawer__inner">
+          <div class="shop-drawer__header">
+            <h2 class="shop-drawer__title">Shop</h2>
+            <button type="button" class="shop-drawer__close" data-shop-drawer-close aria-label="Close Shop drawer">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:18px!important;height:18px!important;flex-shrink:0!important;">
+                <line x1="18" y1="6" x2="6" y2="18"></line>
+                <line x1="6" y1="6" x2="18" y2="18"></line>
+              </svg>
+            </button>
+          </div>
+          <div class="shop-drawer__body">
+            <!-- Section 1: Brushes -->
+            <div class="shop-drawer__section">
+              <span class="shop-drawer__section-title">Brushes</span>
+              <ul class="shop-drawer__list">
+                <li>
+                  <a href="/products/miroooo-x" class="shop-drawer__card" data-shop-item="brush-x1">
+                    <div class="shop-drawer__thumb">
+                      <img src="/assets_ref/x/gallery/Miroooo_x_Pink-1.webp" alt="Brush X1" width="140" height="140" loading="lazy" />
+                    </div>
+                    <div class="shop-drawer__info">
+                      <span class="shop-drawer__eyebrow">The Essential</span>
+                      <h3 class="shop-drawer__product-title">Brush X1</h3>
+                      <span class="shop-drawer__price">£69 <s class="shop-drawer__compare">£139</s></span>
+                    </div>
+                    <svg class="shop-drawer__arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:16px!important;height:16px!important;min-width:16px!important;max-width:16px!important;min-height:16px!important;max-height:16px!important;flex-shrink:0!important;"><polyline points="9 18 15 12 9 6"></polyline></svg>
+                  </a>
+                </li>
+                <li>
+                  <a href="/products/miroooo-x2" class="shop-drawer__card" data-shop-item="brush-x2">
+                    <div class="shop-drawer__thumb">
+                      <img src="/assets_ref/x2/gallery/miroooo-x2-sonic-electric-toothbrush-upright-grip.webp" alt="Brush X2" width="140" height="140" loading="lazy" />
+                    </div>
+                    <div class="shop-drawer__info">
+                      <span class="shop-drawer__eyebrow">Flagship Pro</span>
+                      <h3 class="shop-drawer__product-title">Brush X2</h3>
+                      <span class="shop-drawer__price">£69 <s class="shop-drawer__compare">£139</s></span>
+                    </div>
+                    <svg class="shop-drawer__arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:16px!important;height:16px!important;min-width:16px!important;max-width:16px!important;min-height:16px!important;max-height:16px!important;flex-shrink:0!important;"><polyline points="9 18 15 12 9 6"></polyline></svg>
+                  </a>
+                </li>
+              </ul>
+            </div>
+
+            <!-- Section 2: Accessories -->
+            <div class="shop-drawer__section">
+              <span class="shop-drawer__section-title">Accessories</span>
+              <ul class="shop-drawer__list">
+                <li>
+                  <a href="/products/miroooo-x2-heads" class="shop-drawer__card" data-shop-item="brush-x2-heads">
+                    <div class="shop-drawer__thumb">
+                      <img src="/assets_ref/x2/heads/B1.webp" alt="2x Brush X2 Heads" width="140" height="140" loading="lazy" />
+                    </div>
+                    <div class="shop-drawer__info">
+                      <span class="shop-drawer__eyebrow">Replacement</span>
+                      <h3 class="shop-drawer__product-title">2x Brush X2 Heads</h3>
+                      <span class="shop-drawer__price">£15 <s class="shop-drawer__compare">£30</s></span>
+                    </div>
+                    <svg class="shop-drawer__arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:16px!important;height:16px!important;min-width:16px!important;max-width:16px!important;min-height:16px!important;max-height:16px!important;flex-shrink:0!important;"><polyline points="9 18 15 12 9 6"></polyline></svg>
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </aside>
+      `;
+      document.body.appendChild(drawer);
+    }
+  }
+
+  function initShopDrawer() {
+    ensureShopDrawer();
+    const shopDrawer = document.getElementById("ShopDrawer");
+    if (!shopDrawer) return;
+
+    const overlay = shopDrawer.querySelector(".shop-drawer__overlay, [data-shop-drawer-close]");
+    const closeBtns = shopDrawer.querySelectorAll(".shop-drawer__close, [data-shop-drawer-close]");
+    const triggers = document.querySelectorAll("#ShopDrawerTrigger, [aria-controls='ShopDrawer'], .header__shop-drawer-btn, [data-shop-drawer-toggle]");
+    const itemLinks = shopDrawer.querySelectorAll("a");
+
+    function openShopDrawer() {
+      const cartDrawer = document.getElementById("CartDrawer");
+      if (cartDrawer && typeof window.MirooooCart?.closeCart === "function") {
+        window.MirooooCart.closeCart();
+      }
+      const menuDrawer = document.getElementById("MenuDrawer");
+      if (menuDrawer && menuDrawer.hasAttribute("active")) {
+        menuDrawer.removeAttribute("active");
+        menuDrawer.removeAttribute("open");
+      }
+
+      shopDrawer.removeAttribute("hidden");
+      requestAnimationFrame(() => {
+        shopDrawer.classList.add("is-open");
+        shopDrawer.setAttribute("active", "");
+        document.body.classList.add("shop-drawer-open", "has-modal-open");
+        triggers.forEach((btn) => btn.setAttribute("aria-expanded", "true"));
+      });
+    }
+
+    function closeShopDrawer() {
+      shopDrawer.classList.remove("is-open");
+      shopDrawer.removeAttribute("active");
+      document.body.classList.remove("shop-drawer-open", "has-modal-open");
+      triggers.forEach((btn) => btn.setAttribute("aria-expanded", "false"));
+      setTimeout(() => {
+        if (!shopDrawer.classList.contains("is-open")) {
+          shopDrawer.setAttribute("hidden", "");
+        }
+      }, 350);
+    }
+
+    triggers.forEach((trigger) => {
+      trigger.addEventListener("click", (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        if (shopDrawer.classList.contains("is-open")) {
+          closeShopDrawer();
+        } else {
+          openShopDrawer();
+        }
+      });
+    });
+
+    closeBtns.forEach((btn) => {
+      btn.addEventListener("click", (e) => {
+        e.preventDefault();
+        closeShopDrawer();
+      });
+    });
+
+    overlay?.addEventListener("click", (e) => {
+      e.preventDefault();
+      closeShopDrawer();
+    });
+
+    itemLinks.forEach((link) => {
+      link.addEventListener("click", () => {
+        closeShopDrawer();
+      });
+    });
+
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "Escape" && shopDrawer.classList.contains("is-open")) {
+        closeShopDrawer();
+      }
+    });
+
+    window.ShopDrawer = {
+      open: openShopDrawer,
+      close: closeShopDrawer,
+      toggle: () => (shopDrawer.classList.contains("is-open") ? closeShopDrawer() : openShopDrawer())
+    };
+  }
+
+  // Live UK Midnight Countdown Engine (Europe/London timezone)
+  function initGlobalUKCountdown() {
+    const timerElements = document.querySelectorAll("#x2CountdownTimer, #x2UkCountdown, .x2-uk-countdown");
+    if (!timerElements.length) return;
+
+    const getUKMidnightRemaining = () => {
+      try {
+        const now = new Date();
+        const dtf = new Intl.DateTimeFormat('en-GB', {
+          timeZone: 'Europe/London',
+          hour: '2-digit',
+          minute: '2-digit',
+          second: '2-digit',
+          hour12: false
+        });
+        const parts = dtf.formatToParts(now);
+        const getVal = (type) => parseInt(parts.find(p => p.type === type)?.value || '0', 10);
+
+        const hours = getVal('hour') % 24;
+        const minutes = getVal('minute');
+        const seconds = getVal('second');
+
+        const elapsedSeconds = hours * 3600 + minutes * 60 + seconds;
+        const totalDaySeconds = 86400; // 24 hours
+        let remSeconds = totalDaySeconds - elapsedSeconds;
+
+        if (remSeconds <= 0) {
+          remSeconds = totalDaySeconds; // Reset at midnight
+        }
+
+        const h = Math.floor(remSeconds / 3600);
+        const m = Math.floor((remSeconds % 3600) / 60);
+        const s = remSeconds % 60;
+        const pad = (n) => String(n).padStart(2, '0');
+
+        const dayProgress = elapsedSeconds / totalDaySeconds;
+        const fillPercent = Math.max(35, Math.min(95, Math.round(95 - (dayProgress * 60))));
+
+        return {
+          formatted: `${pad(h)}:${pad(m)}:${pad(s)}`,
+          fillPercent,
+          remSeconds
+        };
+      } catch (e) {
+        const localNow = new Date();
+        const rem = 86400 - (localNow.getHours() * 3600 + localNow.getMinutes() * 60 + localNow.getSeconds());
+        const h = String(Math.floor(rem / 3600)).padStart(2, '0');
+        const m = String(Math.floor((rem % 3600) / 60)).padStart(2, '0');
+        const s = String(rem % 60).padStart(2, '0');
+        return { formatted: `${h}:${m}:${s}`, fillPercent: 75, remSeconds: rem };
+      }
+    };
+
+    const updateAll = () => {
+      const data = getUKMidnightRemaining();
+      timerElements.forEach((el) => {
+        el.textContent = data.formatted;
+      });
+      const timelineFill = document.getElementById("x2TimelineFill");
+      if (timelineFill) {
+        timelineFill.style.width = `${data.fillPercent}%`;
+      }
+    };
+
+    updateAll();
+    setInterval(updateAll, 1000);
+    document.addEventListener("visibilitychange", () => {
+      if (document.visibilityState === "visible") updateAll();
+    });
+  }
+
   // Render components immediately
   renderGlobalHeader();
   renderGlobalFooter();
   initMobileMenuDrawer();
+  initShopDrawer();
   initHeaderDropdowns();
+  initGlobalUKCountdown();
 
   // Authentic GoBrush Magnet Spring Hover Physics
   const initMagnet = () => {

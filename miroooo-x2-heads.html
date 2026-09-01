@@ -2146,22 +2146,11 @@ theme.variantStrings = {
 <div class="header__navigation hidden lg:flex lg:gap-5 lg:justify-start">
     <nav class="header__menu site-nav hidden lg:flex" role="navigation" aria-label="Primary">
       <ul class="flex flex-wrap list-menu with-block">
-        <li class="header__dropdown relative" data-dropdown>
-          <button type="button" class="menu__item nav-link header__dropdown-toggle flex items-center font-medium z-2 relative cursor-pointer" aria-expanded="false" aria-haspopup="true" is="magnet-link" data-magnet="0" aria-current="page">
+        <li>
+          <button type="button" id="ShopDrawerTrigger" class="menu__item nav-link header__shop-drawer-btn flex items-center font-medium z-2 relative cursor-pointer" aria-haspopup="dialog" aria-expanded="false" aria-controls="ShopDrawer" aria-label="Open Shop drawer" is="magnet-link" data-magnet="0" aria-current="page">
             <span class="btn-text flex items-center" data-text="Shop">Shop <svg class="dropdown-chevron" viewBox="0 0 10 6" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M1 1l4 4 4-4"/></svg></span>
             <span class="btn-text btn-duplicate flex items-center">Shop <svg class="dropdown-chevron" viewBox="0 0 10 6" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M1 1l4 4 4-4"/></svg></span>
           </button>
-          <div class="dropdown-menu" role="menu">
-            <a href="/products/miroooo-x" class="dropdown-item" role="menuitem">
-              <div class="dropdown-item__title">Brush X1</div>
-            </a>
-            <a href="/products/miroooo-x2" class="dropdown-item" role="menuitem">
-              <div class="dropdown-item__title">Brush X2</div>
-            </a>
-            <a href="/products/miroooo-x2-heads" class="dropdown-item" role="menuitem">
-              <div class="dropdown-item__title">2x Brush X2 Heads</div>
-            </a>
-          </div>
         </li>
         <li>
           <a href="/about-us" class="menu__item text-sm-lg flex items-center font-medium z-2 relative cursor-pointer" is="magnet-link" data-magnet="0">
@@ -2438,12 +2427,12 @@ theme.variantStrings = {
   data-update-url="true"
 >
   <div class="product__title">
-    <h1 class="heading leading-none product-title-sm mobile:product-title-sm col-span-full font-bold" id="main-product-title" style="font-size: 23px; font-weight: 700; line-height: 1.1; letter-spacing: -0.03em; margin: 4px 0 8px 0; color: #ffffff;">
+    <h1 class="heading leading-none product-title-sm mobile:product-title-sm col-span-full font-bold" id="main-product-title" style="font-size: 40px !important; font-weight: 700 !important; line-height: 1.08 !important; letter-spacing: -0.03em !important; margin: 4px 0 2px 0 !important; color: #ffffff !important;">
       2x Brush X2 heads
     </h1>
   </div>
 
-  <div class="product__price grid gap-2 mt-2" id="main-product-price-section">
+  <div class="product__price grid gap-2 mt-1" id="main-product-price-section">
     <div class="flex flex-wrap items-baseline gap-2" style="display: flex; align-items: baseline; gap: 8px;">
       <span class="text-2xl sm:text-3xl font-extrabold text-white" id="main-price-display" style="font-size: 1.85rem; font-weight: 800; color: #ffffff;">£15</span>
       <span class="text-base sm:text-lg price-compare-strike" id="main-compare-price-display" style="color: rgba(255, 255, 255, 0.55); font-size: 1.15rem;">£30</span>
