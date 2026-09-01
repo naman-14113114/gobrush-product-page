@@ -1,19 +1,29 @@
 # Miroooo
 
-Miroooo is a UK-focused electric toothbrush brand offering two models: Brush X1 and Brush X2. The store uses UK English and prices products in GBP.
+> Miroooo is a UK-focused electric toothbrush brand offering Brush X1, Brush X2, replacement heads and the free Smile Coach web app. The store uses UK English and displays prices in GBP.
 
 ## Primary pages
 
-- [Homepage](https://trymiroooo.com/): Brand and product overview.
-- [Shop](https://trymiroooo.com/shop): Model comparison and buying routes.
-- [Brush X1](https://trymiroooo.com/products/miroooo-x): Lightweight model with three modes and 60+ days of battery life.
-- [Brush X2](https://trymiroooo.com/products/miroooo-x2): Guided model with pressure feedback, IPX7 water resistance and up to 90 days of battery life.
-- [FAQs](https://trymiroooo.com/faq): Product, care, delivery and return answers.
-- [Delivery and returns](https://trymiroooo.com/delivery-returns): UK fulfilment estimates and the risk-free home trial.
-- [Warranty](https://trymiroooo.com/warranty): Two-year limited warranty terms.
+- [Homepage](https://www.trymiroooo.com/): Brand and product overview.
+- [Shop](https://www.trymiroooo.com/shop): Model comparison and buying routes.
+- [Brush X1](https://www.trymiroooo.com/products/miroooo-x): Lightweight model with three modes and 60+ days of battery life.
+- [Brush X2](https://www.trymiroooo.com/products/miroooo-x2): Guided model with pressure feedback, IPX7 water resistance and up to 90 days of battery life.
+- [X2 replacement heads](https://www.trymiroooo.com/products/miroooo-x2-heads): A model-specific two-pack for Brush X2.
+- [Smile Coach](https://www.trymiroooo.com/smile-coach): Free browser-based 28-day routine with guided two-minute sessions; it does not connect to brush sensors or diagnose dental conditions.
+- [Oral care guides](https://www.trymiroooo.com/guides): Source-backed educational content about electric toothbrushes, brush-head care, travel and two-minute brushing.
+- [FAQs](https://www.trymiroooo.com/faq): Product, care, delivery and return answers.
+- [Delivery and returns](https://www.trymiroooo.com/delivery-returns): UK fulfilment estimates and the risk-free home trial.
+- [Warranty](https://www.trymiroooo.com/warranty): Model-specific limited warranty terms for X1 and X2.
+- [About Miroooo](https://www.trymiroooo.com/about-us): Brand principles and company contact details.
+- [Contact](https://www.trymiroooo.com/contact): Customer-support routes and operating hours.
 
 ## Important context
 
 - Product information supports general oral-care routines and does not replace advice from a dentist or hygienist.
 - Delivery dates and battery durations are estimates that vary with circumstances and use.
 - The final price, bundle contents and availability shown at checkout control an order.
+- Health-related guide passages cite their source pages and state when those sources were checked.
+
+## Additional machine-readable context
+
+- [Expanded Miroooo facts](https://www.trymiroooo.com/llms-full.txt)

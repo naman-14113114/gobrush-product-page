@@ -8,7 +8,10 @@ const required = [
   "terms.html", "return-policy.html", "shipping-policy.html", "refund-policy.html", "cookies-policy.html",
   "404.html", "assets/site.css", "assets/site.js", "assets/microsoft-ads.js", "assets/klaviyo.js", "vercel.json", "sitemap.xml",
   "robots.txt", "llms.txt", "smile-coach.html", "assets/smile-coach.css", "assets/smile-coach.js",
-  "smile-coach.webmanifest", "smile-coach-sw.js", "assets/app/miroooo-smile-coach-lifestyle.png"
+  "smile-coach.webmanifest", "smile-coach-sw.js", "assets/app/miroooo-smile-coach-lifestyle.png",
+  "assets/guides.css", "llms-full.txt", "guides/index.html", "guides/sonic-vs-oscillating-electric-toothbrush.html",
+  "guides/how-often-replace-electric-toothbrush-head.html", "guides/electric-toothbrush-travel-guide.html",
+  "guides/how-to-use-two-minute-toothbrush-timer.html"
 ];
 const errors = [];
 
@@ -28,6 +31,9 @@ const internalRoutes = new Set([
   "/policies/return-policy", "/policies/shipping-policy", "/policies/refund-policy",
   "/policies/terms-of-service", "/policies/cookies-policy", "/pages/order-tracking",
   "/pages/contact-us", "/smile-coach"
+  , "/guides", "/guides/sonic-vs-oscillating-electric-toothbrush",
+  "/guides/how-often-replace-electric-toothbrush-head", "/guides/electric-toothbrush-travel-guide",
+  "/guides/how-to-use-two-minute-toothbrush-timer"
 ]);
 for (const file of newPages) {
   const html = await readFile(resolve(root, file), "utf8");
@@ -36,11 +42,11 @@ for (const file of newPages) {
   if (!html.includes("/assets/site.js")) errors.push(`${file}: missing shared script`);
   if (!html.includes("https://www.clarity.ms/tag/") || !html.includes("ybadbatujm")) errors.push(`${file}: missing Microsoft Clarity snippet (ybadbatujm)`);
   if (/(?:go)brush|Miroooo\.nl|https?:\/\/miroooo\.com|hello@domain\.com/i.test(html)) errors.push(`${file}: inherited or placeholder brand reference`);
-  if (file !== "404.html" && !html.includes("https://trymiroooo.com/")) errors.push(`${file}: missing trymiroooo.com canonical or metadata`);
+  if (file !== "404.html" && !html.includes("https://www.trymiroooo.com/")) errors.push(`${file}: missing trymiroooo.com canonical or metadata`);
   for (const [, href] of html.matchAll(/href="([^"]+)"/g)) {
     if (!href.startsWith("/") || href.startsWith("//")) continue;
     if (href.startsWith("/assets/") || href === "/favicon.svg" || href === "/favicon.png" || href === "/site.webmanifest") continue;
-    const pathname = new URL(href, "https://trymiroooo.com").pathname.replace(/\/$/, "") || "/";
+    const pathname = new URL(href, "https://www.trymiroooo.com").pathname.replace(/\/$/, "") || "/";
     if (!internalRoutes.has(pathname)) errors.push(`${file}: unresolved internal link ${href}`);
   }
 }
@@ -48,6 +54,12 @@ for (const file of newPages) {
 const homepage = await readFile(resolve(root, "index.html"), "utf8");
 for (const marker of ["gb-hero", "gb-video-feature-section", "gb-story", "gb-coach-promo", "/smile-coach"]) {
   if (!homepage.includes(marker)) errors.push(`index.html: missing redesigned homepage marker ${marker}`);
+}
+if (!homepage.includes("Miroooo Electric Toothbrushes | Brush X1 &amp; X2 UK")) {
+  errors.push("index.html: homepage title does not target the electric-toothbrush category");
+}
+if (homepage.includes("/assets/app/miroooo-smile-coach-lifestyle.png")) {
+  errors.push("index.html: oversized Smile Coach PNG remains in page content");
 }
 
 const sharedScript = await readFile(resolve(root, "assets/site.js"), "utf8");
@@ -58,7 +70,7 @@ for (const marker of ["nav-link__flip", "mobile-panel__close", "service-strip", 
 const coachPage = await readFile(resolve(root, "smile-coach.html"), "utf8");
 for (const marker of [
   '<html lang="en-GB">',
-  'rel="canonical" href="https://trymiroooo.com/smile-coach"',
+  'rel="canonical" href="https://www.trymiroooo.com/smile-coach"',
   '/smile-coach.webmanifest',
   '/assets/smile-coach.css',
   '/assets/smile-coach.js',
@@ -69,6 +81,7 @@ for (const marker of [
 ]) {
   if (!coachPage.includes(marker)) errors.push(`smile-coach.html: missing ${marker}`);
 }
+if (!coachPage.includes('"@type":"WebApplication"')) errors.push("smile-coach.html: missing WebApplication schema");
 
 const coachScript = await readFile(resolve(root, "assets/smile-coach.js"), "utf8");
 for (const marker of ["miroooo_smile_coach_v1", "SESSION_SECONDS = 120", "PLAN_DAYS = 28", "localStorage", "beforeinstallprompt", "serviceWorker"]) {
@@ -86,6 +99,9 @@ for (const marker of ["211072489", "355060364", "shoppingUetq", "miroooo_attribu
 const buildScript = await readFile(resolve(root, "scripts/build.mjs"), "utf8");
 if (!buildScript.includes("/assets/microsoft-ads.js?v=20260901")) {
   errors.push("scripts/build.mjs: Microsoft Ads browser tracking is not injected into built pages");
+}
+if (!buildScript.includes('cp(resolve(root, "guides"), resolve(output, "guides"), { recursive: true })')) {
+  errors.push("scripts/build.mjs: guide directory is not copied to the build output");
 }
 if (!buildScript.includes("/assets/klaviyo.js?v=20260901")) {
   errors.push("scripts/build.mjs: Klaviyo browser tracking is not injected into built pages");
@@ -137,21 +153,78 @@ try {
 for (const [file, route] of productPagesToCheck) {
   const html = await readFile(resolve(root, file), "utf8");
   if (!/<html[^>]+lang="en-GB"/.test(html)) errors.push(`${file}: missing en-GB language`);
-  if (!html.includes(`rel="canonical" href="https://trymiroooo.com${route}"`)) errors.push(`${file}: incorrect canonical`);
+  if (!html.includes(`rel="canonical" href="https://www.trymiroooo.com${route}"`)) errors.push(`${file}: incorrect canonical`);
   if (!html.includes("/assets/product-shell.css") || !html.includes("/assets/product-shell.js")) errors.push(`${file}: missing shared product shell`);
   if (!html.includes("https://www.clarity.ms/tag/") || !html.includes("ybadbatujm")) errors.push(`${file}: missing Microsoft Clarity snippet (ybadbatujm)`);
   if (/(?:go)brush|Miroooo\.nl|https?:\/\/miroooo\.com|hello@domain\.com|lang="nl"/i.test(html)) errors.push(`${file}: inherited store contamination remains`);
   if (/€|\bEUR\b/.test(html)) errors.push(`${file}: non-GBP currency remains`);
   if (/delivery tomorrow|Order within[^<]*(?:\d{1,2}:\d{2})/i.test(html)) errors.push(`${file}: unsupported urgency or delivery promise remains`);
+  if (!/loading="lazy"/.test(html)) errors.push(`${file}: product gallery images are not lazy-loaded`);
 }
+
+const x1Page = await readFile(resolve(root, "miroooo-x.html"), "utf8");
+if (x1Page.includes('preload="auto"')) errors.push("miroooo-x.html: non-critical videos still use preload=auto");
+for (const [file, expectedTitle] of [
+  ["miroooo-x.html", "Miroooo Brush X1 Sonic Electric Toothbrush"],
+  ["miroooo-x2.html", "Miroooo Brush X2 Sonic Electric Toothbrush"],
+  ["miroooo-x2-heads.html", "Miroooo X2 Replacement Brush Heads"]
+]) {
+  const html = await readFile(resolve(root, file), "utf8");
+  if (!html.includes(expectedTitle)) errors.push(`${file}: missing descriptive search title or product name`);
+}
+
+const guidePages = [
+  ["guides/index.html", "/guides", "CollectionPage"],
+  ["guides/sonic-vs-oscillating-electric-toothbrush.html", "/guides/sonic-vs-oscillating-electric-toothbrush", "Article"],
+  ["guides/how-often-replace-electric-toothbrush-head.html", "/guides/how-often-replace-electric-toothbrush-head", "Article"],
+  ["guides/electric-toothbrush-travel-guide.html", "/guides/electric-toothbrush-travel-guide", "Article"],
+  ["guides/how-to-use-two-minute-toothbrush-timer.html", "/guides/how-to-use-two-minute-toothbrush-timer", "Article"]
+];
+for (const [file, route, schemaType] of guidePages) {
+  const html = await readFile(resolve(root, file), "utf8");
+  if (!/<html lang="en-GB">/.test(html)) errors.push(`${file}: missing en-GB language`);
+  if (!html.includes(`rel="canonical" href="https://www.trymiroooo.com${route}"`)) errors.push(`${file}: incorrect canonical`);
+  if (!html.includes("/assets/site.css") || !html.includes("/assets/guides.css") || !html.includes("/assets/site.js")) errors.push(`${file}: missing guide assets`);
+  if (!html.includes(`\"@type\":\"${schemaType}\"`)) errors.push(`${file}: missing ${schemaType} schema`);
+  for (const [, href] of html.matchAll(/href="([^"]+)"/g)) {
+    if (!href.startsWith("/") || href.startsWith("//") || href.startsWith("/assets/") || href === "/favicon.png") continue;
+    const pathname = new URL(href, "https://www.trymiroooo.com").pathname.replace(/\/$/, "") || "/";
+    if (!internalRoutes.has(pathname)) errors.push(`${file}: unresolved internal link ${href}`);
+  }
+  if (schemaType === "Article" && (!html.includes("guide-sources") || !/https:\/\/(?:www\.)?(?:nhs\.uk|ada\.org|cochrane\.org|caa\.co\.uk|iata\.org)/.test(html))) {
+    errors.push(`${file}: missing visible authoritative sources`);
+  }
+}
+
+for (const file of ["index.html", "miroooo-x.html", "miroooo-x2.html", "miroooo-x2-heads.html", "smile-coach.html", ...guidePages.map(([file]) => file)]) {
+  const html = await readFile(resolve(root, file), "utf8");
+  for (const match of html.matchAll(/<script[^>]+type=["']application\/ld\+json["'][^>]*>([\s\S]*?)<\/script>/gi)) {
+    try { JSON.parse(match[1]); } catch (error) { errors.push(`${file}: malformed JSON-LD (${error.message})`); }
+  }
+  if (html.includes("https://trymiroooo.com")) errors.push(`${file}: non-www canonical host remains`);
+}
+
+const cartPage = await readFile(resolve(root, "cart.html"), "utf8");
+if (!cartPage.includes('<meta name="robots" content="noindex,follow">')) errors.push("cart.html: cart must be noindex,follow");
 
 const config = JSON.parse(await readFile(resolve(root, "vercel.json"), "utf8"));
 if (config.cleanUrls !== true) errors.push("vercel.json: cleanUrls must remain enabled");
 if (!config.outputDirectory || config.outputDirectory !== "public") errors.push("vercel.json: outputDirectory must be public");
+if (!config.redirects?.some((rule) => rule.source === "/about" && rule.destination === "/about-us" && rule.permanent === true)) {
+  errors.push("vercel.json: /about must permanently redirect to /about-us");
+}
 
 const sitemap = await readFile(resolve(root, "sitemap.xml"), "utf8");
-for (const route of ["/shop", "/products/miroooo-x", "/products/miroooo-x2", "/products/miroooo-x2-heads", "/smile-coach", "/delivery-returns", "/privacy", "/terms", "/cart"]) {
-  if (!sitemap.includes(`https://trymiroooo.com${route}`)) errors.push(`sitemap.xml: missing ${route}`);
+for (const route of ["/shop", "/products/miroooo-x", "/products/miroooo-x2", "/products/miroooo-x2-heads", "/smile-coach", "/guides", "/guides/sonic-vs-oscillating-electric-toothbrush", "/guides/how-often-replace-electric-toothbrush-head", "/guides/electric-toothbrush-travel-guide", "/guides/how-to-use-two-minute-toothbrush-timer", "/delivery-returns", "/privacy", "/terms"]) {
+  if (!sitemap.includes(`<loc>https://www.trymiroooo.com${route}</loc>`)) errors.push(`sitemap.xml: missing ${route}`);
+}
+if (sitemap.includes("https://trymiroooo.com") || /<loc>https:\/\/www\.trymiroooo\.com\/(?:cart|about)<\/loc>/.test(sitemap)) errors.push("sitemap.xml: redirecting, non-canonical or noindex URL remains");
+
+const robots = await readFile(resolve(root, "robots.txt"), "utf8");
+if (!robots.includes("Sitemap: https://www.trymiroooo.com/sitemap.xml")) errors.push("robots.txt: sitemap host does not match the canonical host");
+const llms = await readFile(resolve(root, "llms.txt"), "utf8");
+for (const marker of ["> Miroooo", "/smile-coach", "/guides", "/llms-full.txt"]) {
+  if (!llms.includes(marker)) errors.push(`llms.txt: missing ${marker}`);
 }
 
 if (errors.length) {

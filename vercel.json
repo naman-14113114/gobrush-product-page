@@ -18,10 +18,11 @@
     {"source":"/pages/order-tracking","destination":"/order-tracking.html"},
     {"source":"/pages/contact-us","destination":"/contact.html"},
     {"source":"/app","destination":"/smile-coach.html"},
-    {"source":"/about","destination":"/about-us.html"},
-    {"source":"/about-us","destination":"/about-us.html"}
+    {"source":"/about-us","destination":"/about-us.html"},
+    {"source":"/guides","destination":"/guides/index.html"}
   ],
   "redirects": [
+    {"source":"/about","destination":"/about-us","permanent":true},
     {
       "source": "/(.*)",
       "has": [

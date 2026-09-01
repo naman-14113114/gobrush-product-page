@@ -34,6 +34,7 @@ await cp(resolve(root, "miroooo-x2.html"), resolve(output, "products", "miroooo-
 try {
   await cp(resolve(root, "miroooo-x2-heads.html"), resolve(output, "products", "miroooo-x2-heads.html"));
 } catch (_) {}
+await cp(resolve(root, "guides"), resolve(output, "guides"), { recursive: true });
 
 const microsoftTrackingScript = '<script src="/assets/microsoft-ads.js?v=20260901" defer></script>';
 const klaviyoOnsiteSnippet = `<script async type='text/javascript' src='https://static.klaviyo.com/onsite/js/TQtq2j/klaviyo.js?company_id=TQtq2j'></script>
@@ -52,7 +53,8 @@ const claritySnippet = `  <!-- Microsoft Clarity -->
   </script>`;
 const outputHtmlFiles = [
   ...(await readdir(output)).filter((name) => name.endsWith(".html")).map((name) => resolve(output, name)),
-  ...(await readdir(resolve(output, "products"))).filter((name) => name.endsWith(".html")).map((name) => resolve(output, "products", name))
+  ...(await readdir(resolve(output, "products"))).filter((name) => name.endsWith(".html")).map((name) => resolve(output, "products", name)),
+  ...(await readdir(resolve(output, "guides"))).filter((name) => name.endsWith(".html")).map((name) => resolve(output, "guides", name))
 ];
 
 for (const htmlFile of outputHtmlFiles) {

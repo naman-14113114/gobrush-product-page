@@ -12,6 +12,7 @@ __pycache__/
 *.txt
 !robots.txt
 !llms.txt
+!llms-full.txt
 scraped_page.html
 miroshine_page.html
 brush-one-grey.json
