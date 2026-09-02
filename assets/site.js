@@ -1196,19 +1196,19 @@
   }
 
   async function createPlusbaseCheckoutSession(item, extraParams = {}) {
-    const isX1Heads = item?.productHandle === "miroooo-x1-heads" || item?.productHandle === "miroooo-x-heads" || (item?.productId === "1000000675113473" && item?.variantId === "1000020700958564");
+    const isX1Heads = item?.productHandle === "miroooo-x1-heads" || item?.productHandle === "miroooo-x-heads" || (item?.productId === "1000000675471182" && item?.variantId === "1000020710139724") || (item?.productId === "1000000675113473" && item?.variantId === "1000020700958564");
     const isX2Heads = item?.productHandle === "miroooo-x2-heads" || (item?.productId === "1000000675072187" && item?.variantId === "1000020700182881");
     const isHeads = isX1Heads || isX2Heads;
     const isX2 = item?.productHandle === "miroooo-x2" || (item?.title && item.title.includes("X2"));
     let productId = "1000000675113473";
     if (isX2Heads || isX2) productId = "1000000675072187";
-    else if (isX1Heads) productId = "1000000675113473";
+    else if (isX1Heads) productId = "1000000675471182";
 
     let items = [];
     if (isHeads) {
       const qty = item?.quantity || item?.bundleCount || 1;
-      const headProductId = isX1Heads ? "1000000675113473" : "1000000675072187";
-      const headVariantId = isX1Heads ? "1000020700958564" : "1000020700182881";
+      const headProductId = isX1Heads ? "1000000675471182" : "1000000675072187";
+      const headVariantId = isX1Heads ? "1000020710139724" : "1000020700182881";
       items = [{
         productId: headProductId,
         variantId: headVariantId,
@@ -1404,7 +1404,7 @@
               items: [
                 {
                   id: `${parsed.productId}-${qty}`,
-                  productId: (isX2Heads || isX2) ? "1000000675072187" : "1000000675113473",
+                  productId: (isX2Heads || isX2) ? "1000000675072187" : (isX1Heads ? "1000000675471182" : "1000000675113473"),
                   productHandle: productHandle,
                   title: (qty > 1 && !isHeads) ? `${title} (Buy ${qty})` : (isHeads && qty > 1 ? `${title} (Qty: ${qty})` : title),
                   quantity: 1,
