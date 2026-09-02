@@ -32,6 +32,9 @@ await cp(resolve(root, "smile-coach-sw.js"), resolve(output, "smile-coach-sw.js"
 await cp(resolve(root, "miroooo-x.html"), resolve(output, "products", "miroooo-x.html"));
 await cp(resolve(root, "miroooo-x2.html"), resolve(output, "products", "miroooo-x2.html"));
 try {
+  await cp(resolve(root, "miroooo-x1-heads.html"), resolve(output, "products", "miroooo-x1-heads.html"));
+} catch (_) {}
+try {
   await cp(resolve(root, "miroooo-x2-heads.html"), resolve(output, "products", "miroooo-x2-heads.html"));
 } catch (_) {}
 
@@ -39,6 +42,7 @@ try {
 for (const [src, destDir] of [
   ["miroooo-x.html", "products/miroooo-x"],
   ["miroooo-x2.html", "products/miroooo-x2"],
+  ["miroooo-x1-heads.html", "products/miroooo-x1-heads"],
   ["miroooo-x2-heads.html", "products/miroooo-x2-heads"],
   ["shop.html", "shop"],
   ["about-us.html", "about-us"],

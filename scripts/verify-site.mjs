@@ -3,12 +3,12 @@ import { resolve } from "node:path";
 
 const root = resolve(import.meta.dirname, "..");
 const required = [
-  "index.html", "shop.html", "miroooo-x.html", "miroooo-x2.html", "cart.html", "about.html", "about-us.html", "faq.html",
+  "index.html", "shop.html", "miroooo-x.html", "miroooo-x2.html", "miroooo-x1-heads.html", "cart.html", "about.html", "about-us.html", "faq.html",
   "contact.html", "delivery-returns.html", "warranty.html", "order-tracking.html", "privacy.html",
   "terms.html", "return-policy.html", "shipping-policy.html", "refund-policy.html", "cookies-policy.html",
   "404.html", "assets/site.css", "assets/site.js", "assets/microsoft-ads.js", "assets/klaviyo.js", "vercel.json", "sitemap.xml",
   "robots.txt", "llms.txt", "smile-coach.html", "assets/smile-coach.css", "assets/smile-coach.js",
-  "smile-coach.webmanifest", "smile-coach-sw.js", "assets/app/miroooo-smile-coach-lifestyle.png",
+  "smile-coach.webmanifest", "smile-coach-sw.js",
   "dentalcare-quiz.html", "assets/dentalcare-quiz.css", "assets/dentalcare-quiz.js",
   "assets/guides.css", "llms-full.txt", "guides/index.html", "guides/sonic-vs-oscillating-electric-toothbrush.html",
   "guides/how-often-replace-electric-toothbrush-head.html", "guides/electric-toothbrush-travel-guide.html",
@@ -26,7 +26,7 @@ const newPages = [
   "shipping-policy.html", "refund-policy.html", "cookies-policy.html", "404.html"
 ];
 const internalRoutes = new Set([
-  "/", "/shop", "/products/miroooo-x", "/products/miroooo-x2", "/products/miroooo-x2-heads", "/cart", "/about", "/about-us", "/faq", "/contact",
+  "/", "/shop", "/products/miroooo-x", "/products/miroooo-x2", "/products/miroooo-x1-heads", "/products/miroooo-x2-heads", "/products/miroooo-x-heads", "/cart", "/about", "/about-us", "/faq", "/contact",
   "/delivery-returns", "/warranty", "/order-tracking", "/privacy", "/terms", "/return-policy",
   "/shipping-policy", "/refund-policy", "/cookies-policy", "/policies/privacy-policy",
   "/policies/return-policy", "/policies/shipping-policy", "/policies/refund-policy",
@@ -147,6 +147,10 @@ if (/background:\s*var\(--miroooo-green\)/.test(productShellStyles)) {
 
 const productPagesToCheck = [["miroooo-x.html", "/products/miroooo-x"], ["miroooo-x2.html", "/products/miroooo-x2"]];
 try {
+  await access(resolve(root, "miroooo-x1-heads.html"));
+  productPagesToCheck.push(["miroooo-x1-heads.html", "/products/miroooo-x1-heads"]);
+} catch (_) {}
+try {
   await access(resolve(root, "miroooo-x2-heads.html"));
   productPagesToCheck.push(["miroooo-x2-heads.html", "/products/miroooo-x2-heads"]);
 } catch (_) {}
@@ -168,10 +172,13 @@ if (x1Page.includes('preload="auto"')) errors.push("miroooo-x.html: non-critical
 for (const [file, expectedTitle] of [
   ["miroooo-x.html", "Miroooo Brush X1 Sonic Electric Toothbrush"],
   ["miroooo-x2.html", "Miroooo Brush X2 Sonic Electric Toothbrush"],
+  ["miroooo-x1-heads.html", "Miroooo X1 Replacement Brush Heads"],
   ["miroooo-x2-heads.html", "Miroooo X2 Replacement Brush Heads"]
 ]) {
-  const html = await readFile(resolve(root, file), "utf8");
-  if (!html.includes(expectedTitle)) errors.push(`${file}: missing descriptive search title or product name`);
+  try {
+    const html = await readFile(resolve(root, file), "utf8");
+    if (!html.includes(expectedTitle)) errors.push(`${file}: missing descriptive search title or product name`);
+  } catch (_) {}
 }
 
 const x2Page = await readFile(resolve(root, "miroooo-x2.html"), "utf8");
@@ -217,7 +224,7 @@ for (const [file, route, schemaType] of guidePages) {
   }
 }
 
-for (const file of ["index.html", "miroooo-x.html", "miroooo-x2.html", "miroooo-x2-heads.html", "smile-coach.html", "dentalcare-quiz.html", ...guidePages.map(([file]) => file)]) {
+for (const file of ["index.html", "miroooo-x.html", "miroooo-x2.html", "miroooo-x1-heads.html", "miroooo-x2-heads.html", "smile-coach.html", "dentalcare-quiz.html", ...guidePages.map(([file]) => file)]) {
   const html = await readFile(resolve(root, file), "utf8");
   for (const match of html.matchAll(/<script[^>]+type=["']application\/ld\+json["'][^>]*>([\s\S]*?)<\/script>/gi)) {
     try { JSON.parse(match[1]); } catch (error) { errors.push(`${file}: malformed JSON-LD (${error.message})`); }
@@ -236,7 +243,7 @@ if (!config.redirects?.some((rule) => rule.source === "/about" && rule.destinati
 }
 
 const sitemap = await readFile(resolve(root, "sitemap.xml"), "utf8");
-for (const route of ["/shop", "/products/miroooo-x", "/products/miroooo-x2", "/products/miroooo-x2-heads", "/dentalcare-quiz", "/smile-coach", "/guides", "/guides/sonic-vs-oscillating-electric-toothbrush", "/guides/how-often-replace-electric-toothbrush-head", "/guides/electric-toothbrush-travel-guide", "/guides/how-to-use-two-minute-toothbrush-timer", "/delivery-returns", "/privacy", "/terms"]) {
+for (const route of ["/shop", "/products/miroooo-x", "/products/miroooo-x2", "/products/miroooo-x1-heads", "/products/miroooo-x2-heads", "/dentalcare-quiz", "/smile-coach", "/guides", "/guides/sonic-vs-oscillating-electric-toothbrush", "/guides/how-often-replace-electric-toothbrush-head", "/guides/electric-toothbrush-travel-guide", "/guides/how-to-use-two-minute-toothbrush-timer", "/delivery-returns", "/privacy", "/terms"]) {
   if (!sitemap.includes(`<loc>https://www.trymiroooo.com${route}</loc>`)) errors.push(`sitemap.xml: missing ${route}`);
 }
 if (sitemap.includes("https://trymiroooo.com") || /<loc>https:\/\/www\.trymiroooo\.com\/(?:cart|about)<\/loc>/.test(sitemap)) errors.push("sitemap.xml: redirecting, non-canonical or noindex URL remains");

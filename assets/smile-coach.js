@@ -655,7 +655,7 @@
   });
 
   if ("serviceWorker" in navigator && window.isSecureContext) {
-    window.addEventListener("load", () => navigator.serviceWorker.register("/smile-coach-sw.js").catch(() => {}));
+    window.addEventListener("load", () => navigator.serviceWorker.register("/smile-coach-sw.js", { scope: "/smile-coach" }).catch(() => {}));
   }
 
   const headDate = $('input[name="headInstalled"]');

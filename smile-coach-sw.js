@@ -1,14 +1,11 @@
-const CACHE_NAME = "miroooo-smile-coach-v1";
+const CACHE_NAME = "miroooo-smile-coach-v2";
 const APP_SHELL = [
   "/smile-coach",
   "/smile-coach.html",
   "/smile-coach.webmanifest",
-  "/assets/smile-coach.css?v=1",
-  "/assets/smile-coach.js?v=1",
-  "/favicon.png",
-  "/assets_ref/x/gallery/Miroooo_x_Silver-1.webp",
-  "/assets_ref/x2/gallery/miroooo-x2-sonic-electric-toothbrush-silver-upright-grip.webp",
-  "/assets_ref/x2/gallery/miroooo-x2-sonic-electric-toothbrush-dupont-bristle-head-macro.webp"
+  "/assets/smile-coach.css?v=20260902",
+  "/assets/smile-coach.js?v=20260902",
+  "/favicon.png"
 ];
 
 self.addEventListener("install", (event) => {
@@ -19,7 +16,7 @@ self.addEventListener("install", (event) => {
 self.addEventListener("activate", (event) => {
   event.waitUntil(
     caches.keys()
-      .then((names) => Promise.all(names.filter((name) => name.startsWith("miroooo-smile-coach-") && name !== CACHE_NAME).map((name) => caches.delete(name))))
+      .then((names) => Promise.all(names.filter((name) => name !== CACHE_NAME).map((name) => caches.delete(name))))
       .then(() => self.clients.claim())
   );
 });
@@ -30,6 +27,7 @@ self.addEventListener("fetch", (event) => {
   const url = new URL(request.url);
   if (url.origin !== self.location.origin) return;
 
+  // Only handle requests specifically within the /smile-coach app scope
   if (request.mode === "navigate" && url.pathname.startsWith("/smile-coach")) {
     event.respondWith(
       fetch(request)
@@ -43,13 +41,16 @@ self.addEventListener("fetch", (event) => {
     return;
   }
 
-  if (url.pathname.startsWith("/assets/smile-coach") || url.pathname.startsWith("/assets_ref/")) {
+  // Only cache and handle smile-coach dedicated assets, never global storefront assets
+  if (url.pathname.startsWith("/assets/smile-coach")) {
     event.respondWith(
-      caches.match(request).then((cached) => cached || fetch(request).then((response) => {
-        const copy = response.clone();
-        caches.open(CACHE_NAME).then((cache) => cache.put(request, copy));
-        return response;
-      }))
+      fetch(request)
+        .then((response) => {
+          const copy = response.clone();
+          caches.open(CACHE_NAME).then((cache) => cache.put(request, copy));
+          return response;
+        })
+        .catch(() => caches.match(request))
     );
   }
 });

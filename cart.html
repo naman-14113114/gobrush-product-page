@@ -1537,7 +1537,7 @@
   </footer>
 
   <script src="/assets/lottie.min.js" defer></script>
-  <script src="/assets/site.js?v=20260901b" defer></script>
+  <script src="/assets/site.js?v=20260902" defer></script>
 
   <script>
     (function() {
@@ -1623,6 +1623,22 @@
             return { price: count * 59, compareAt: count * 139, bundleSavings: (count * 139) - (count * 59) };
           }
         },
+        "miroooo-x1-heads": {
+          id: "miroooo-x1-heads",
+          name: "2x Brush X1 heads",
+          productId: "1000000675113473",
+          source: "miroooo-x1-heads",
+          subtitle: "DuPont Ultra-Soft Replacement Heads (2-Pack) for Brush X1.",
+          image: "/assets_ref/x/heads/B1.webp",
+          alt: "Miroooo Brush X1 Precision DuPont Replacement Heads 2-Pack",
+          variants: {
+            "Default": { variantId: "1000020700958564", image: "/assets_ref/x/heads/B1.webp", alt: "Miroooo Brush X1 Precision DuPont Replacement Heads 2-Pack" }
+          },
+          getPricing(qty) {
+            const count = Math.max(1, qty);
+            return { price: count * 10, compareAt: count * 10, bundleSavings: 0 };
+          }
+        },
         "miroooo-x2-heads": {
           id: "miroooo-x2-heads",
           name: "2x Brush X2 heads",
@@ -1697,13 +1713,15 @@
           try {
             const parsed = JSON.parse(stored);
             if (parsed) {
-              const isHeads = parsed.productId === "miroooo-x2-heads";
+              const isX1Heads = parsed.productId === "miroooo-x1-heads" || parsed.productId === "miroooo-x-heads";
+              const isX2Heads = parsed.productId === "miroooo-x2-heads";
+              const isHeads = isX1Heads || isX2Heads;
               let colors = [];
               if (isHeads) {
                 const qty = Math.max(1, parseInt(parsed.quantity || "1", 10));
                 colors = Array(qty).fill("Default");
                 return {
-                  productId: "miroooo-x2-heads",
+                  productId: isX1Heads ? "miroooo-x1-heads" : "miroooo-x2-heads",
                   quantity: qty,
                   colors: colors
                 };
@@ -1735,11 +1753,13 @@
         // Check URL params
         const params = new URLSearchParams(window.location.search);
         const prodParam = params.get("product");
-        if (prodParam && PRODUCTS_CONFIG[prodParam]) {
-          const isHeads = prodParam === "miroooo-x2-heads";
+        if (prodParam && (PRODUCTS_CONFIG[prodParam] || prodParam === "miroooo-x-heads")) {
+          const isX1Heads = prodParam === "miroooo-x1-heads" || prodParam === "miroooo-x-heads";
+          const isX2Heads = prodParam === "miroooo-x2-heads";
+          const isHeads = isX1Heads || isX2Heads;
           const qty = Math.max(1, parseInt(params.get("quantity") || params.get("count") || "1", 10));
           if (isHeads) {
-            return { productId: "miroooo-x2-heads", quantity: qty, colors: Array(qty).fill("Default") };
+            return { productId: isX1Heads ? "miroooo-x1-heads" : "miroooo-x2-heads", quantity: qty, colors: Array(qty).fill("Default") };
           }
           let colors = (params.get("colors") || params.get("color") || "Grey").split(",").map(normalizeColor);
           while (colors.length < qty) {
@@ -1799,8 +1819,10 @@
         }
 
         const isX2 = state.productId === "miroooo-x2";
-        const isHeads = state.productId === "miroooo-x2-heads";
-        const product = PRODUCTS_CONFIG[state.productId] || PRODUCTS_CONFIG["miroooo-x"];
+        const isX1Heads = state.productId === "miroooo-x1-heads" || state.productId === "miroooo-x-heads";
+        const isX2Heads = state.productId === "miroooo-x2-heads";
+        const isHeads = isX1Heads || isX2Heads;
+        const product = PRODUCTS_CONFIG[state.productId] || (isX1Heads ? PRODUCTS_CONFIG["miroooo-x1-heads"] : PRODUCTS_CONFIG["miroooo-x"]);
 
         let subtotal = 0;
         let compareAt = 0;
@@ -1887,6 +1909,8 @@
           finalSubtotal: finalSubtotal,
           isX2: isX2,
           isHeads: isHeads,
+          isX1Heads: isX1Heads,
+          isX2Heads: isX2Heads,
           extraBrushHeadSets: extraBrushHeadSets
         };
       }
@@ -1932,7 +1956,7 @@
 
             html += `
               <!-- Brush Heads Item -->
-              <div class="cart-line-item" data-product="miroooo-x2-heads">
+              <div class="cart-line-item" data-product="${cartState.productId}">
                 <div class="cart-line-item__media">
                   <img src="${itemImage}" alt="${product.alt || itemTitle}" />
                 </div>
@@ -2111,7 +2135,7 @@
           // Attach Stepper & Remove Events per color item
           lineItemsWrap.querySelectorAll('button[data-action="plus"]').forEach(btn => {
             btn.addEventListener("click", () => {
-              if (cartState.productId === "miroooo-x2-heads") {
+              if (cartState.productId === "miroooo-x2-heads" || cartState.productId === "miroooo-x1-heads" || cartState.productId === "miroooo-x-heads") {
                 cartState.quantity = (cartState.quantity || 1) + 1;
                 cartState.colors = Array(cartState.quantity).fill("Default");
               } else {
@@ -2130,7 +2154,7 @@
 
           lineItemsWrap.querySelectorAll('button[data-action="minus"]').forEach(btn => {
             btn.addEventListener("click", () => {
-              if (cartState.productId === "miroooo-x2-heads") {
+              if (cartState.productId === "miroooo-x2-heads" || cartState.productId === "miroooo-x1-heads" || cartState.productId === "miroooo-x-heads") {
                 cartState.quantity = (cartState.quantity || 1) - 1;
                 if (cartState.quantity <= 0) {
                   cartState = null;
@@ -2165,7 +2189,7 @@
 
           lineItemsWrap.querySelectorAll('button[data-action="remove"]').forEach(btn => {
             btn.addEventListener("click", () => {
-              if (cartState.productId === "miroooo-x2-heads") {
+              if (cartState.productId === "miroooo-x2-heads" || cartState.productId === "miroooo-x1-heads" || cartState.productId === "miroooo-x-heads") {
                 cartState = null;
                 persistCart(null);
               } else {
@@ -2358,7 +2382,9 @@
 
           const product = PRODUCTS_CONFIG[cartState.productId] || PRODUCTS_CONFIG["miroooo-x"];
           const productId = product.productId;
-          const isHeads = cartState.productId === "miroooo-x2-heads";
+          const isX1Heads = cartState.productId === "miroooo-x1-heads" || cartState.productId === "miroooo-x-heads";
+          const isX2Heads = cartState.productId === "miroooo-x2-heads";
+          const isHeads = isX1Heads || isX2Heads;
           const isX2 = cartState.productId === "miroooo-x2";
           const validDiscountCode = (isX2 && appliedPromoCodes.length > 0)
             ? (appliedPromoCodes.includes("MIROOOO10") ? "MIROOOO10" : appliedPromoCodes[0])
@@ -2367,8 +2393,8 @@
           let items = [];
           if (isHeads) {
             items = [{
-              productId: "1000000675072187",
-              variantId: "1000020700182881",
+              productId: isX1Heads ? "1000000675113473" : "1000000675072187",
+              variantId: isX1Heads ? "1000020700958564" : "1000020700182881",
               quantity: cartState.quantity
             }];
           } else {

@@ -27,6 +27,17 @@
       Price: 69,
       CompareAtPrice: 139
     },
+    "miroooo-x1-heads": {
+      ProductName: "2x Brush X1 heads",
+      ProductID: "1000000675113473",
+      SKU: "MIROOOO-X1-HEADS-2PK",
+      Categories: ["Replacement Brush Heads", "Oral Care"],
+      ImageURL: "https://www.trymiroooo.com/assets_ref/x/heads/B1.webp",
+      URL: "https://www.trymiroooo.com/products/miroooo-x1-heads",
+      Brand: "MIROOOO",
+      Price: 10,
+      CompareAtPrice: 10
+    },
     "miroooo-x2-heads": {
       ProductName: "2x Brush X2 heads",
       ProductID: "1000000675072187",
@@ -62,7 +73,7 @@
   }
 
   function productHandleFromPath() {
-    var match = window.location.pathname.match(/(?:^|\/)(?:products\/)?(miroooo-x2-heads|miroooo-x2|miroooo-x)(?:\.html)?\/?$/i);
+    var match = window.location.pathname.match(/(?:^|\/)(?:products\/)?(miroooo-x1-heads|miroooo-x2-heads|miroooo-x2|miroooo-x)(?:\.html)?\/?$/i);
     return match ? match[1].toLowerCase() : null;
   }
 
@@ -82,7 +93,7 @@
       var quantity = Math.max(1, Math.round(Number(stored.quantity) || 1));
       var product = PRODUCTS[stored.productId];
       var totalValue;
-      if (stored.productId === "miroooo-x2-heads") totalValue = quantity * 10;
+      if (stored.productId === "miroooo-x1-heads" || stored.productId === "miroooo-x2-heads") totalValue = quantity * 10;
       else if (quantity === 1) totalValue = 69;
       else if (quantity === 2) totalValue = 128;
       else if (quantity === 3) totalValue = 177;

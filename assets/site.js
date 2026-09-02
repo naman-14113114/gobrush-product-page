@@ -141,6 +141,11 @@
                       </a>
                     </li>
                     <li>
+                      <a class="drawer__submenu-item flex flex-col" href="/products/miroooo-x1-heads">
+                        <span class="drawer__submenu-title">2x Brush X1 Heads</span>
+                      </a>
+                    </li>
+                    <li>
                       <a class="drawer__submenu-item flex flex-col" href="/products/miroooo-x2-heads">
                         <span class="drawer__submenu-title">2x Brush X2 Heads</span>
                       </a>
@@ -184,7 +189,7 @@
               <nav class="header__menu site-nav hidden lg:flex" role="navigation" aria-label="Primary">
                 <ul class="flex flex-wrap list-menu with-block">
                   <li>
-                    <button type="button" id="ShopDrawerTrigger" class="menu__item nav-link header__shop-drawer-btn flex items-center font-medium z-2 relative cursor-pointer" style="border: none; outline: none; box-shadow: none; background: transparent; background-color: transparent;" aria-haspopup="dialog" aria-expanded="false" aria-controls="ShopDrawer" aria-label="Open Shop drawer" is="magnet-link" data-magnet="0"${["product-x", "product-x2", "product-x2-heads", "shop"].includes(currentPage) ? ' aria-current="page"' : ""}>
+                    <button type="button" id="ShopDrawerTrigger" class="menu__item nav-link header__shop-drawer-btn flex items-center font-medium z-2 relative cursor-pointer" style="border: none; outline: none; box-shadow: none; background: transparent; background-color: transparent;" aria-haspopup="dialog" aria-expanded="false" aria-controls="ShopDrawer" aria-label="Open Shop drawer" is="magnet-link" data-magnet="0"${["product-x", "product-x2", "product-x2-heads", "product-x1-heads", "shop"].includes(currentPage) ? ' aria-current="page"' : ""}>
                       <span class="btn-text flex items-center" data-text="Shop">Shop ${chevronDownIcon}</span>
                       <span class="btn-text btn-duplicate flex items-center">Shop ${chevronDownIcon}</span>
                     </button>
@@ -313,6 +318,7 @@
                 <li><a href="/">Home</a></li>
                 <li><a href="/products/miroooo-x" data-product-link>Brush X1</a></li>
                 <li><a href="/products/miroooo-x2" data-product-link>Brush X2</a></li>
+                <li><a href="/products/miroooo-x1-heads" data-product-link>2x Brush X1 Heads</a></li>
                 <li><a href="/products/miroooo-x2-heads" data-product-link>2x Brush X2 Heads</a></li>
                 <li><a href="/privacy">Privacy Policy</a></li>
                 <li><a href="/return-policy">Return Policy</a></li>
@@ -641,6 +647,19 @@
             <div class="shop-drawer__section">
               <span class="shop-drawer__section-title">Accessories</span>
               <ul class="shop-drawer__list">
+                <li>
+                  <a href="/products/miroooo-x1-heads" class="shop-drawer__card" data-shop-item="brush-x1-heads">
+                    <div class="shop-drawer__thumb">
+                      <img src="/assets_ref/x/heads/B1.webp" alt="2x Brush X1 Heads" width="140" height="140" loading="lazy" />
+                    </div>
+                    <div class="shop-drawer__info">
+                      <span class="shop-drawer__eyebrow">Replacement</span>
+                      <h3 class="shop-drawer__product-title">2x Brush X1 Heads</h3>
+                      <span class="shop-drawer__price">£10</span>
+                    </div>
+                    <svg class="shop-drawer__arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:16px!important;height:16px!important;min-width:16px!important;max-width:16px!important;min-height:16px!important;max-height:16px!important;flex-shrink:0!important;"><polyline points="9 18 15 12 9 6"></polyline></svg>
+                  </a>
+                </li>
                 <li>
                   <a href="/products/miroooo-x2-heads" class="shop-drawer__card" data-shop-item="brush-x2-heads">
                     <div class="shop-drawer__thumb">
@@ -1177,17 +1196,22 @@
   }
 
   async function createPlusbaseCheckoutSession(item, extraParams = {}) {
-    const isHeads = item?.productHandle === "miroooo-x2-heads" || item?.productId === "1000000675072187" && item?.variantId === "1000020700182881";
+    const isX1Heads = item?.productHandle === "miroooo-x1-heads" || item?.productHandle === "miroooo-x-heads" || (item?.productId === "1000000675113473" && item?.variantId === "1000020700958564");
+    const isX2Heads = item?.productHandle === "miroooo-x2-heads" || (item?.productId === "1000000675072187" && item?.variantId === "1000020700182881");
+    const isHeads = isX1Heads || isX2Heads;
     const isX2 = item?.productHandle === "miroooo-x2" || (item?.title && item.title.includes("X2"));
     let productId = "1000000675113473";
-    if (isHeads || isX2) productId = "1000000675072187";
+    if (isX2Heads || isX2) productId = "1000000675072187";
+    else if (isX1Heads) productId = "1000000675113473";
 
     let items = [];
     if (isHeads) {
       const qty = item?.quantity || item?.bundleCount || 1;
+      const headProductId = isX1Heads ? "1000000675113473" : "1000000675072187";
+      const headVariantId = isX1Heads ? "1000020700958564" : "1000020700182881";
       items = [{
-        productId: "1000000675072187",
-        variantId: "1000020700182881",
+        productId: headProductId,
+        variantId: headVariantId,
         quantity: qty
       }];
     } else {
@@ -1324,11 +1348,16 @@
         if (storedStandard) {
           const parsed = JSON.parse(storedStandard);
           if (parsed && parsed.quantity > 0) {
-            const isHeads = parsed.productId === "miroooo-x2-heads";
+            const isX1Heads = parsed.productId === "miroooo-x1-heads" || parsed.productId === "miroooo-x-heads";
+            const isX2Heads = parsed.productId === "miroooo-x2-heads";
+            const isHeads = isX1Heads || isX2Heads;
             const isX2 = parsed.productId === "miroooo-x2";
             let productHandle = "miroooo-x";
             let title = "Brush X1";
-            if (isHeads) {
+            if (isX1Heads) {
+              productHandle = "miroooo-x1-heads";
+              title = "2x Brush X1 heads";
+            } else if (isX2Heads) {
               productHandle = "miroooo-x2-heads";
               title = "2x Brush X2 heads";
             } else if (isX2) {
@@ -1347,7 +1376,7 @@
             if (isHeads) {
               unitPrice = qty * 10;
               comparePrice = qty * 10;
-              image = "/assets_ref/x2/heads/B1.webp";
+              image = isX1Heads ? "/assets_ref/x/heads/B1.webp" : "/assets_ref/x2/heads/B1.webp";
               unlockedGifts = 0;
             } else if (isX2) {
               unlockedGifts = qty >= 2 ? (qty - 1) : 0;
@@ -1375,7 +1404,7 @@
               items: [
                 {
                   id: `${parsed.productId}-${qty}`,
-                  productId: (isHeads || isX2) ? "1000000675072187" : "1000000675113473",
+                  productId: (isX2Heads || isX2) ? "1000000675072187" : "1000000675113473",
                   productHandle: productHandle,
                   title: (qty > 1 && !isHeads) ? `${title} (Buy ${qty})` : (isHeads && qty > 1 ? `${title} (Qty: ${qty})` : title),
                   quantity: 1,
@@ -1408,10 +1437,13 @@
         localStorage.setItem(CART_STORAGE_KEY, JSON.stringify(cart));
         if (cart && Array.isArray(cart.items) && cart.items.length > 0) {
           const item = cart.items[0];
-          const isHeads = item.productHandle === "miroooo-x2-heads";
+          const isX1Heads = item.productHandle === "miroooo-x1-heads" || item.productHandle === "miroooo-x-heads";
+          const isX2Heads = item.productHandle === "miroooo-x2-heads";
+          const isHeads = isX1Heads || isX2Heads;
           const isX2 = item.productHandle === "miroooo-x2" || item.productId === "1000000675072187" || item.productId === "1000000664011618";
           let productId = "miroooo-x";
-          if (isHeads) productId = "miroooo-x2-heads";
+          if (isX1Heads) productId = "miroooo-x1-heads";
+          else if (isX2Heads) productId = "miroooo-x2-heads";
           else if (isX2) productId = "miroooo-x2";
 
           localStorage.setItem("miroooo_cart", JSON.stringify({
@@ -1477,11 +1509,14 @@
           this.clearCart();
         } else {
           const item = cart.items[index];
-          const isHeads = item.productHandle === "miroooo-x2-heads";
+          const isX1Heads = item.productHandle === "miroooo-x1-heads" || item.productHandle === "miroooo-x-heads";
+          const isX2Heads = item.productHandle === "miroooo-x2-heads";
+          const isHeads = isX1Heads || isX2Heads;
           const isX2 = item.productHandle === "miroooo-x2" || item.productId === "1000000675072187" || item.productId === "1000000664011618";
           const newQty = Math.max(1, quantity);
           let productId = "miroooo-x";
-          if (isHeads) productId = "miroooo-x2-heads";
+          if (isX1Heads) productId = "miroooo-x1-heads";
+          else if (isX2Heads) productId = "miroooo-x2-heads";
           else if (isX2) productId = "miroooo-x2";
 
           let colors = ["Default"];
@@ -1693,7 +1728,9 @@
 
       if (footer) footer.style.display = "flex";
 
-      const isHeads = rawCart?.productId === "miroooo-x2-heads";
+      const isX1Heads = rawCart?.productId === "miroooo-x1-heads" || rawCart?.productId === "miroooo-x-heads";
+      const isX2Heads = rawCart?.productId === "miroooo-x2-heads";
+      const isHeads = isX1Heads || isX2Heads;
       const isX2 = rawCart?.productId === "miroooo-x2";
       const totalQty = Math.max(1, rawCart?.quantity || 1);
       const rawColors = Array.isArray(rawCart?.colors) && rawCart.colors.length > 0 ? rawCart.colors : ["Grey"];
@@ -1737,16 +1774,22 @@
         let itemsHtml = "";
 
         if (isHeads) {
+          const headTitle = isX1Heads ? "2x Brush X1 heads" : "2x Brush X2 heads";
+          const headDesc = isX1Heads
+            ? "DuPont Ultra-Soft Replacement Heads (2-Pack) for Brush X1."
+            : "DuPont Ultra-Soft Replacement Heads (2-Pack) for Brush X2.";
+          const headImg = isX1Heads ? "/assets_ref/x/heads/B1.webp" : "/assets_ref/x2/heads/B1.webp";
+
           itemsHtml += `
             <div class="miroooo-cart-item">
               <div class="miroooo-cart-item-thumb">
-                <img src="/assets_ref/x2/heads/B1.webp" alt="2x Brush X2 heads" />
+                <img src="${headImg}" alt="${headTitle}" />
               </div>
               <div class="miroooo-cart-item-content">
                 <div class="miroooo-cart-item-top">
                   <div>
-                    <h4 class="miroooo-cart-item-title">2x Brush X2 heads</h4>
-                    <p class="miroooo-cart-item-desc" style="font-size: 0.76rem; color: #555555; margin: 3px 0 0; line-height: 1.35;">DuPont Ultra-Soft Replacement Heads (2-Pack) for Brush X2.</p>
+                    <h4 class="miroooo-cart-item-title">${headTitle}</h4>
+                    <p class="miroooo-cart-item-desc" style="font-size: 0.76rem; color: #555555; margin: 3px 0 0; line-height: 1.35;">${headDesc}</p>
                   </div>
                   <div class="miroooo-cart-item-pricing">
                     <span class="miroooo-cart-item-price">£${subtotal}</span>
