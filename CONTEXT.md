@@ -189,3 +189,39 @@ Append-only memory for the `gobrush-product-page` repository. Do not delete or s
       - Visually verified mobile drawer shows `Dentalcare Quiz` directly under `About Us`.
       - Executed full 5-step interactive quiz flow with real-time selection, smooth progress bar updates, calculating animation, and clean results generation for Brush X2, Brush X1, and Duo Bundle.
       - Captured full-page screenshots of question steps, results screen, PDP desktop header, and mobile menu drawer.
+
+## 2026-09-02 20:55:00 +05:30 - Product Naming Rules Update: Brush X1 Heads & Brush X2 Heads
+
+- User request:
+  1. Check review responses or text where merchant replies or reviews reference heads. If merchant replies mention "complimentary 2-pack of DuPont replacement heads", check if it's natural customer dialogue or if any product name has "2x Brush X2 Heads" -> ensure product names are "Brush X2 Heads" and "Brush X1 Heads".
+  2. Update CONTEXT.md with the latest product naming rules: "Brush X1 Heads" and "Brush X2 Heads" (removing "2x" prefix and "Replacement" from product names).
+- Reviews & Dialogues Audit:
+  - Inspected `assets_ref/miroooo-reviews.js` and `assets_ref/miroooo-x2-reviews.js`.
+  - Verified merchant replies in `assets_ref/miroooo-x2-reviews.js` (lines 766, 823, 861) and `assets_ref/miroooo-reviews.js` (lines 343, 1308): confirmed that mentions such as "complimentary 2-pack of DuPont replacement heads" / "complimentary 4-pack of DuPont replacement heads" represent natural UK customer care dialogues and resolution text in response to customer feedback.
+  - Confirmed no product title within the review datasets contains erroneous strings like "2x Brush X2 Heads" or "2x Brush X1 Heads".
+- Product Naming Rules Standardized:
+  - **Brush X1 Heads**: Standard product name for Brush X1 DuPont replacement head packs (slug `/products/miroooo-x1-heads`, removing "2x" prefix and "Replacement" from the product name).
+  - **Brush X2 Heads**: Standard product name for Brush X2 DuPont replacement head packs (slug `/products/miroooo-x2-heads`, removing "2x" prefix and "Replacement" from the product name).
+  - Main brush instruments remain **Brush X1** and **Brush X2**.
+
+## 2026-09-02 20:56:00 +05:30 - Guides Replacement Heads Links and Mentions Update
+
+- Task:
+  1. Searched all files in `guides/` for "2x Brush X1", "2x Brush X2", "replacement heads", etc.
+  2. Updated links and mentions:
+     - In `guides/how-often-replace-electric-toothbrush-head.html`:
+       - Updated Section "Choosing the correct Miroooo head" to reference both `<a href="/products/miroooo-x1-heads">Brush X1 Heads</a>` and `<a href="/products/miroooo-x2-heads">Brush X2 Heads</a>` with clean canonical links.
+       - Updated Aside card title from `X2 replacement heads` to `Brush X2 Heads` with link to `/products/miroooo-x2-heads` and updated label `View Brush X2 Heads →`.
+  3. Verified `verify-site.mjs` and executed `npm run build` which passed with 0 errors, rebuilding the static output in `public/`.
+
+## 2026-09-02 20:57:00 +05:30 - About & About Us Pages Audit and Verification
+
+- Task:
+  1. Searched `about.html` and `about-us.html` for any occurrences of "2x Brush X1", "2x Brush X2", "replacement heads", etc.
+  2. Verified `#MenuDrawer`, `#ShopDrawer`, body copy, and footer:
+     - In `#MenuDrawer` (`assets/site.js`): Verified "Brush X1 Heads" and "Brush X2 Heads".
+     - In `#ShopDrawer` (`assets/site.js`): Verified "Brush X1 Heads" and "Brush X2 Heads" across image alt and product titles.
+     - In footer (`assets/site.js`): Verified "Brush X1 Heads" and "Brush X2 Heads" links.
+     - In body copy (`about.html` & `about-us.html`): Verified Customer Support section copy ("questions about your brush, replacement heads, or orders"), confirming it is clean, natural general customer service copy.
+     - In cart helper & drawer item title: Updated helper titles to "Brush X1 Heads" and "Brush X2 Heads".
+  3. Verified clean state across all files.

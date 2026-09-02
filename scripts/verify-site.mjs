@@ -172,8 +172,8 @@ if (x1Page.includes('preload="auto"')) errors.push("miroooo-x.html: non-critical
 for (const [file, expectedTitle] of [
   ["miroooo-x.html", "Miroooo Brush X1 Sonic Electric Toothbrush"],
   ["miroooo-x2.html", "Miroooo Brush X2 Sonic Electric Toothbrush"],
-  ["miroooo-x1-heads.html", "Miroooo X1 Replacement Brush Heads"],
-  ["miroooo-x2-heads.html", "Miroooo X2 Replacement Brush Heads"]
+  ["miroooo-x1-heads.html", "Miroooo Brush X1 Heads"],
+  ["miroooo-x2-heads.html", "Miroooo Brush X2 Heads"]
 ]) {
   try {
     const html = await readFile(resolve(root, file), "utf8");

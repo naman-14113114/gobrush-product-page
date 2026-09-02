@@ -142,12 +142,12 @@
                     </li>
                     <li>
                       <a class="drawer__submenu-item flex flex-col" href="/products/miroooo-x1-heads">
-                        <span class="drawer__submenu-title">2x Brush X1 Heads</span>
+                        <span class="drawer__submenu-title">Brush X1 Heads</span>
                       </a>
                     </li>
                     <li>
                       <a class="drawer__submenu-item flex flex-col" href="/products/miroooo-x2-heads">
-                        <span class="drawer__submenu-title">2x Brush X2 Heads</span>
+                        <span class="drawer__submenu-title">Brush X2 Heads</span>
                       </a>
                     </li>
                   </ul>
@@ -318,8 +318,8 @@
                 <li><a href="/">Home</a></li>
                 <li><a href="/products/miroooo-x" data-product-link>Brush X1</a></li>
                 <li><a href="/products/miroooo-x2" data-product-link>Brush X2</a></li>
-                <li><a href="/products/miroooo-x1-heads" data-product-link>2x Brush X1 Heads</a></li>
-                <li><a href="/products/miroooo-x2-heads" data-product-link>2x Brush X2 Heads</a></li>
+                <li><a href="/products/miroooo-x1-heads" data-product-link>Brush X1 Heads</a></li>
+                <li><a href="/products/miroooo-x2-heads" data-product-link>Brush X2 Heads</a></li>
                 <li><a href="/privacy">Privacy Policy</a></li>
                 <li><a href="/return-policy">Return Policy</a></li>
                 <li><a href="/shipping-policy">Shipping Policy</a></li>
@@ -650,11 +650,11 @@
                 <li>
                   <a href="/products/miroooo-x1-heads" class="shop-drawer__card" data-shop-item="brush-x1-heads">
                     <div class="shop-drawer__thumb">
-                      <img src="/assets_ref/x/heads/B1.webp" alt="2x Brush X1 Heads" width="140" height="140" loading="lazy" />
+                      <img src="/assets_ref/x/heads/B1.webp" alt="Brush X1 Heads" width="140" height="140" loading="lazy" />
                     </div>
                     <div class="shop-drawer__info">
                       <span class="shop-drawer__eyebrow">Replacement</span>
-                      <h3 class="shop-drawer__product-title">2x Brush X1 Heads</h3>
+                      <h3 class="shop-drawer__product-title">Brush X1 Heads</h3>
                       <span class="shop-drawer__price">£10</span>
                     </div>
                     <svg class="shop-drawer__arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:16px!important;height:16px!important;min-width:16px!important;max-width:16px!important;min-height:16px!important;max-height:16px!important;flex-shrink:0!important;"><polyline points="9 18 15 12 9 6"></polyline></svg>
@@ -663,11 +663,11 @@
                 <li>
                   <a href="/products/miroooo-x2-heads" class="shop-drawer__card" data-shop-item="brush-x2-heads">
                     <div class="shop-drawer__thumb">
-                      <img src="/assets_ref/x2/heads/B1.webp" alt="2x Brush X2 Heads" width="140" height="140" loading="lazy" />
+                      <img src="/assets_ref/x2/heads/B1.webp" alt="Brush X2 Heads" width="140" height="140" loading="lazy" />
                     </div>
                     <div class="shop-drawer__info">
                       <span class="shop-drawer__eyebrow">Replacement</span>
-                      <h3 class="shop-drawer__product-title">2x Brush X2 Heads</h3>
+                      <h3 class="shop-drawer__product-title">Brush X2 Heads</h3>
                       <span class="shop-drawer__price">£10</span>
                     </div>
                     <svg class="shop-drawer__arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:16px!important;height:16px!important;min-width:16px!important;max-width:16px!important;min-height:16px!important;max-height:16px!important;flex-shrink:0!important;"><polyline points="9 18 15 12 9 6"></polyline></svg>
@@ -1356,10 +1356,10 @@
             let title = "Brush X1";
             if (isX1Heads) {
               productHandle = "miroooo-x1-heads";
-              title = "2x Brush X1 heads";
+              title = "Brush X1 Heads";
             } else if (isX2Heads) {
               productHandle = "miroooo-x2-heads";
-              title = "2x Brush X2 heads";
+              title = "Brush X2 Heads";
             } else if (isX2) {
               productHandle = "miroooo-x2";
               title = "Brush X2";
@@ -1774,10 +1774,10 @@
         let itemsHtml = "";
 
         if (isHeads) {
-          const headTitle = isX1Heads ? "2x Brush X1 heads" : "2x Brush X2 heads";
+          const headTitle = isX1Heads ? "Brush X1 Heads" : "Brush X2 Heads";
           const headDesc = isX1Heads
-            ? "DuPont Ultra-Soft Replacement Heads (2-Pack) for Brush X1."
-            : "DuPont Ultra-Soft Replacement Heads (2-Pack) for Brush X2.";
+            ? "DuPont Ultra-Soft Heads (2-Pack) for Brush X1."
+            : "DuPont Ultra-Soft Heads (2-Pack) for Brush X2.";
           const headImg = isX1Heads ? "/assets_ref/x/heads/B1.webp" : "/assets_ref/x2/heads/B1.webp";
 
           itemsHtml += `
@@ -1896,8 +1896,8 @@
           if (isX2 && extraBrushHeadSets > 0) {
             const sets = extraBrushHeadSets;
             const heads = sets * 2;
-            const title = `${heads}x Extra Free Brush Heads (${sets} ${sets > 1 ? "Sets" : "Set"})`;
-            const subtitle = `${sets} complimentary ${sets > 1 ? "sets contain" : "set contains"} ${heads} DuPont precision replacement heads for Brush X2.`;
+            const title = `Free Brush X2 Heads (${sets} ${sets > 1 ? "Sets" : "Set"})`;
+            const subtitle = `${sets} complimentary ${sets > 1 ? "sets contain" : "set contains"} ${heads} DuPont precision heads for Brush X2.`;
             const compareVal = sets * 10;
             itemsHtml += `
               <div class="miroooo-cart-item">

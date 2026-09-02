@@ -28,10 +28,10 @@
       CompareAtPrice: 139
     },
     "miroooo-x1-heads": {
-      ProductName: "2x Brush X1 heads",
+      ProductName: "Brush X1 Heads",
       ProductID: "1000000675471182",
       SKU: "MIROOOO-X1-HEADS-2PK",
-      Categories: ["Replacement Brush Heads", "Oral Care"],
+      Categories: ["Brush Heads", "Oral Care"],
       ImageURL: "https://www.trymiroooo.com/assets_ref/x/heads/B1.webp",
       URL: "https://www.trymiroooo.com/products/miroooo-x1-heads",
       Brand: "MIROOOO",
@@ -39,10 +39,10 @@
       CompareAtPrice: 10
     },
     "miroooo-x2-heads": {
-      ProductName: "2x Brush X2 heads",
+      ProductName: "Brush X2 Heads",
       ProductID: "1000000675072187",
       SKU: "MIROOOO-X2-HEADS-2PK",
-      Categories: ["Replacement Brush Heads", "Oral Care"],
+      Categories: ["Brush Heads", "Oral Care"],
       ImageURL: "https://www.trymiroooo.com/assets_ref/x2/heads/B1.webp",
       URL: "https://www.trymiroooo.com/products/miroooo-x2-heads",
       Brand: "MIROOOO",

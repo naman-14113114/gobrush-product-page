@@ -1378,7 +1378,7 @@
               <div class="cart-discount-breakdown-row" id="breakdown-gift-heads-row">
                 <span class="flex items-center gap-1.5 uppercase">
                   <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7.01" y2="7"></line></svg>
-                  Free 2x Extra Brush Heads
+                  Free Brush X1 Heads
                 </span>
                 <span>-£20</span>
               </div>
@@ -1625,14 +1625,14 @@
         },
         "miroooo-x1-heads": {
           id: "miroooo-x1-heads",
-          name: "2x Brush X1 heads",
+          name: "Brush X1 Heads",
           productId: "1000000675471182",
           source: "miroooo-x1-heads",
-          subtitle: "DuPont Ultra-Soft Replacement Heads (2-Pack) for Brush X1.",
+          subtitle: "DuPont precision heads for Brush X1.",
           image: "/assets_ref/x/heads/B1.webp",
-          alt: "Miroooo Brush X1 Precision DuPont Replacement Heads 2-Pack",
+          alt: "Miroooo Brush X1 Precision DuPont Heads 2-Pack",
           variants: {
-            "Default": { variantId: "1000020710139724", image: "/assets_ref/x/heads/B1.webp", alt: "Miroooo Brush X1 Precision DuPont Replacement Heads 2-Pack" }
+            "Default": { variantId: "1000020710139724", image: "/assets_ref/x/heads/B1.webp", alt: "Miroooo Brush X1 Precision DuPont Heads 2-Pack" }
           },
           getPricing(qty) {
             const count = Math.max(1, qty);
@@ -1641,14 +1641,14 @@
         },
         "miroooo-x2-heads": {
           id: "miroooo-x2-heads",
-          name: "2x Brush X2 heads",
+          name: "Brush X2 Heads",
           productId: "1000000675072187",
           source: "miroooo-x2-heads",
-          subtitle: "DuPont Ultra-Soft Replacement Heads (2-Pack) for Brush X2.",
+          subtitle: "DuPont precision heads for Brush X2.",
           image: "/assets_ref/x2/heads/B1.webp",
-          alt: "Miroooo Brush X2 Precision DuPont Replacement Heads 2-Pack",
+          alt: "Miroooo Brush X2 Precision DuPont Heads 2-Pack",
           variants: {
-            "Default": { variantId: "1000020700182881", image: "/assets_ref/x2/heads/B1.webp", alt: "Miroooo Brush X2 Precision DuPont Replacement Heads 2-Pack" }
+            "Default": { variantId: "1000020700182881", image: "/assets_ref/x2/heads/B1.webp", alt: "Miroooo Brush X2 Precision DuPont Heads 2-Pack" }
           },
           getPricing(qty) {
             const count = Math.max(1, qty);
@@ -1660,8 +1660,8 @@
       const GIFTS_DATA = [
         {
           id: "brush-heads",
-          name: "2x Extra Brush Heads",
-          desc: "Ultra-soft DuPont bristles for superior plaque removal.",
+          name: "Brush X1 Heads",
+          desc: "DuPont precision heads for Brush X1.",
           comparePrice: 20,
           image: "/assets_ref/x/gallery/Miroooo_x_Grey-4.webp",
           minQty: 1,
@@ -2065,12 +2065,12 @@
               if (totals.extraBrushHeadSets > 0) {
                 const sets = totals.extraBrushHeadSets;
                 const heads = sets * 2;
-                const title = `${heads}x Extra Free Brush Heads (${sets} ${sets > 1 ? "Sets" : "Set"})`;
-                const subtitle = `${sets} complimentary ${sets > 1 ? "sets contain" : "set contains"} ${heads} DuPont precision replacement heads for Brush X2.`;
+                const title = "Brush X2 Heads";
+                const subtitle = `${sets} complimentary ${sets > 1 ? "sets contain" : "set contains"} ${heads} DuPont precision heads for Brush X2.`;
                 const compareVal = sets * 10;
                 const badgeText = `UNLOCKED ${sets} ${sets > 1 ? "SETS" : "SET"} (${heads} BRUSH HEADS)`;
                 const giftImage = "/assets_ref/x2/heads/B1.webp";
-                const giftAlt = `Complimentary ${heads}x DuPont Precision Replacement Brush Heads for Miroooo Brush X2`;
+                const giftAlt = `Complimentary ${heads}x DuPont Precision Brush Heads for Miroooo Brush X2`;
 
                 html += `
                   <div class="cart-line-item">
@@ -2250,7 +2250,7 @@
               if (headsLabel) {
                 headsLabel.innerHTML = `
                   <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7.01" y2="7"></line></svg>
-                  Free ${totals.extraBrushHeadSets * 2}x Extra Brush Heads (${totals.extraBrushHeadSets} ${totals.extraBrushHeadSets > 1 ? "Sets" : "Set"})
+                  Free Brush X2 Heads (${totals.extraBrushHeadSets} ${totals.extraBrushHeadSets > 1 ? "Sets" : "Set"})
                 `;
               }
               const headsVal = breakdownGiftHeads.querySelector("span:last-child");
@@ -2278,7 +2278,7 @@
             if (headsLabel) {
               headsLabel.innerHTML = `
                 <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7.01" y2="7"></line></svg>
-                Free 2x Extra Brush Heads
+                Free Brush X1 Heads
               `;
             }
             const headsVal = breakdownGiftHeads.querySelector("span:last-child");
