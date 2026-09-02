@@ -4057,7 +4057,7 @@ theme.variantStrings = {
       transform: scale(0.96);
     }
 
-    /* Modal / Lightbox Dialog */
+    /* Modal / Lightbox Dialog — matches gallery lightbox exactly */
     .x2-story-modal {
       position: fixed !important;
       inset: 0 !important;
@@ -4072,11 +4072,15 @@ theme.variantStrings = {
       display: flex !important;
       align-items: center !important;
       justify-content: center !important;
-      padding: clamp(16px, 3vw, 32px) !important;
+      background: rgba(255, 255, 255, 0.75) !important;
+      backdrop-filter: blur(16px) !important;
+      -webkit-backdrop-filter: blur(16px) !important;
       opacity: 0 !important;
       visibility: hidden !important;
       pointer-events: none !important;
       transition: opacity 0.25s cubic-bezier(0.16, 1, 0.3, 1), visibility 0.25s ease !important;
+      user-select: none !important;
+      -webkit-user-select: none !important;
       box-sizing: border-box !important;
     }
     .x2-story-modal.is-active,
@@ -4088,7 +4092,13 @@ theme.variantStrings = {
     .x2-story-modal-backdrop {
       position: absolute !important;
       inset: 0 !important;
-      background: rgba(0, 0, 0, 0.82) !important;
+      top: 0 !important;
+      left: 0 !important;
+      right: 0 !important;
+      bottom: 0 !important;
+      width: 100% !important;
+      height: 100% !important;
+      background: rgba(255, 255, 255, 0.75) !important;
       backdrop-filter: blur(16px) !important;
       -webkit-backdrop-filter: blur(16px) !important;
       cursor: pointer !important;
@@ -4103,16 +4113,17 @@ theme.variantStrings = {
       max-height: 90vh !important;
       max-height: 90dvh !important;
       overflow-y: auto !important;
-      box-shadow: 0 25px 60px rgba(0, 0, 0, 0.8) !important;
-      border: 1px solid rgba(255, 255, 255, 0.2) !important;
+      box-shadow: 0 25px 60px rgba(0, 0, 0, 0.25) !important;
+      border: 1px solid rgba(0, 0, 0, 0.1) !important;
       display: grid !important;
       grid-template-columns: 1fr 1fr !important;
       transform: scale(0.94) !important;
       opacity: 0 !important;
       transition: transform 0.28s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.25s ease !important;
       color: #111111 !important;
-      z-index: 10 !important;
+      z-index: 2 !important;
       box-sizing: border-box !important;
+      pointer-events: auto !important;
     }
     .x2-story-modal.is-active .x2-story-modal-card,
     .x2-story-modal.is-open .x2-story-modal-card {
@@ -4128,6 +4139,8 @@ theme.variantStrings = {
       align-items: center;
       justify-content: center;
       position: relative;
+      border-top-left-radius: 24px;
+      border-bottom-left-radius: 24px;
     }
     .x2-story-modal-img {
       width: 100%;
@@ -4142,83 +4155,84 @@ theme.variantStrings = {
       justify-content: space-between;
       gap: 16px;
     }
+    /* Close button — fixed to viewport top-right (like gallery lightbox) */
     .x2-story-modal-close {
-      position: absolute !important;
-      top: 16px !important;
-      right: 16px !important;
-      width: 38px !important;
-      height: 38px !important;
+      position: fixed !important;
+      top: 24px !important;
+      right: 24px !important;
+      width: 46px !important;
+      height: 46px !important;
       border-radius: 50% !important;
-      background: rgba(0, 0, 0, 0.65) !important;
-      backdrop-filter: blur(8px) !important;
-      -webkit-backdrop-filter: blur(8px) !important;
-      color: #ffffff !important;
-      border: 1px solid rgba(255, 255, 255, 0.15) !important;
+      background: rgba(247, 241, 232, 0.94) !important;
+      color: #000000 !important;
+      border: 1px solid rgba(0, 0, 0, 0.15) !important;
+      cursor: pointer !important;
       display: flex !important;
       align-items: center !important;
       justify-content: center !important;
-      cursor: pointer !important;
-      z-index: 20 !important;
+      transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1), background 0.2s ease, box-shadow 0.2s ease !important;
+      z-index: 1000000001 !important;
       padding: 0 !important;
       outline: none !important;
-      transition: background 0.2s ease, transform 0.2s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.2s ease !important;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3) !important;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15) !important;
     }
     .x2-story-modal-close:hover {
-      background: rgba(0, 0, 0, 0.85) !important;
+      background: #ffffff !important;
       transform: scale(1.08) !important;
-      color: #ffffff !important;
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2) !important;
     }
     .x2-story-modal-close:active {
       transform: scale(0.95) !important;
     }
     .x2-story-modal-close svg {
       display: block;
-      stroke: #ffffff;
-      width: 18px;
-      height: 18px;
+      stroke: #000000;
+      width: 20px;
+      height: 20px;
     }
+    /* Navigation arrows — fixed to viewport left/right (like gallery lightbox) */
     .x2-story-modal-nav-btn {
-      position: absolute !important;
+      position: fixed !important;
       top: 50% !important;
       transform: translateY(-50%) !important;
-      width: 38px !important;
-      height: 38px !important;
+      width: 50px !important;
+      height: 50px !important;
       border-radius: 50% !important;
-      background: rgba(0, 0, 0, 0.6) !important;
+      background: rgba(247, 241, 232, 0.94) !important;
       backdrop-filter: blur(8px) !important;
       -webkit-backdrop-filter: blur(8px) !important;
-      color: #ffffff !important;
-      border: 1px solid rgba(255, 255, 255, 0.15) !important;
+      color: #000000 !important;
+      border: 1px solid rgba(0, 0, 0, 0.15) !important;
+      cursor: pointer !important;
       display: flex !important;
       align-items: center !important;
       justify-content: center !important;
-      cursor: pointer !important;
-      z-index: 15 !important;
+      transition: background 0.2s ease, transform 0.2s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.2s ease, box-shadow 0.2s ease !important;
+      z-index: 1000000001 !important;
       padding: 0 !important;
       outline: none !important;
-      transition: background 0.2s ease, transform 0.2s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.2s ease !important;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3) !important;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12) !important;
     }
     .x2-story-modal-nav-btn.x2-modal-prev {
-      left: 12px !important;
+      left: 24px !important;
     }
     .x2-story-modal-nav-btn.x2-modal-next {
-      right: 12px !important;
+      right: 24px !important;
     }
     .x2-story-modal-nav-btn:hover {
-      background: rgba(0, 0, 0, 0.85) !important;
+      background: #ffffff !important;
+      border-color: rgba(0, 0, 0, 0.22) !important;
       transform: translateY(-50%) scale(1.08) !important;
-      color: #ffffff !important;
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.18) !important;
     }
     .x2-story-modal-nav-btn:active {
       transform: translateY(-50%) scale(0.95) !important;
     }
     .x2-story-modal-nav-btn svg {
       display: block;
-      stroke: #ffffff;
-      width: 18px;
-      height: 18px;
+      stroke: #000000;
+      width: 24px;
+      height: 24px;
     }
     .x2-story-modal-btn {
       display: inline-flex;
@@ -4243,6 +4257,27 @@ theme.variantStrings = {
         grid-template-columns: 1fr !important;
         max-height: 85vh !important;
         max-height: 85dvh !important;
+      }
+      .x2-story-modal-img-wrap {
+        border-top-left-radius: 24px;
+        border-top-right-radius: 24px;
+        border-bottom-left-radius: 0;
+      }
+      .x2-story-modal-close {
+        top: 16px !important;
+        right: 16px !important;
+        width: 44px !important;
+        height: 44px !important;
+      }
+      .x2-story-modal-nav-btn {
+        width: 44px !important;
+        height: 44px !important;
+      }
+      .x2-story-modal-nav-btn.x2-modal-prev {
+        left: 12px !important;
+      }
+      .x2-story-modal-nav-btn.x2-modal-next {
+        right: 12px !important;
       }
     }
   </style>
@@ -4832,19 +4867,20 @@ theme.variantStrings = {
 <!-- Story Lightbox Modal -->
 <div class="x2-story-modal" id="X2StoryModal" aria-hidden="true" role="dialog" aria-modal="true" aria-label="Customer Review Story">
   <div class="x2-story-modal-backdrop" id="X2StoryModalBackdrop" aria-hidden="true"></div>
+  <!-- Close button — fixed to viewport top-right (outside card) -->
+  <button class="x2-story-modal-close" id="X2StoryModalClose" aria-label="Close story modal" type="button">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+  </button>
+  <!-- Navigation arrows — fixed to viewport left/right (outside card) -->
+  <button class="x2-story-modal-nav-btn x2-modal-prev" id="X2ModalPrev" aria-label="Previous story" type="button">
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"></polyline></svg>
+  </button>
+  <button class="x2-story-modal-nav-btn x2-modal-next" id="X2ModalNext" aria-label="Next story" type="button">
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
+  </button>
   <div class="x2-story-modal-card">
-    <button class="x2-story-modal-close" id="X2StoryModalClose" aria-label="Close story modal" type="button">
-      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
-    </button>
     <div class="x2-story-modal-img-wrap">
       <img id="X2StoryModalImg" src="" alt="Miroooo customer review story" class="x2-story-modal-img" />
-      <!-- Modal Internal Arrows -->
-      <button class="x2-story-modal-nav-btn x2-modal-prev" id="X2ModalPrev" aria-label="Previous story" type="button">
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"></polyline></svg>
-      </button>
-      <button class="x2-story-modal-nav-btn x2-modal-next" id="X2ModalNext" aria-label="Next story" type="button">
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
-      </button>
     </div>
     <div class="x2-story-modal-body">
       <div>

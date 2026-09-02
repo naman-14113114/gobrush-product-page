@@ -127,7 +127,7 @@
       variant: 'Grey / Single',
       title: '51g featherweight and whisper quiet vs heavy Philips',
       body: 'So light to use! Not like my previous Philips Sonicare which was heavy in the hand and so noisy as well. This Miroooo Brush X2 is whisper quiet, lightweight at only 51g, and cleans effortlessly without vibrating your entire hand.',
-      images: [],
+      images: ['/assets_ref/reviews/miroooo-x2-review-oliver-harrison.png'],
       helpful: 58,
       verified: true
     },
