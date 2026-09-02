@@ -180,7 +180,8 @@ module.exports = async function handler(req, res) {
     }
 
     const hasX2 = items.some((it) => String(it.productId) === "1000000675072187" || String(it.productId) === "1000000664011618" || it.productId === "miroooo-x2");
-    const discountCode = (rawDiscountCode === "MIROOOO10" && hasX2) ? "MIROOOO10" : "";
+    const validCodes = ["MIROOOO10", "FREE2HEADS", "FREE4HEADS"];
+    const discountCode = (hasX2 && validCodes.includes(rawDiscountCode)) ? rawDiscountCode : "";
 
     const checkout = await createPlusbaseCheckout(items, attribution);
     const finalUrl = appendDiscountAndAttributionToUrl(checkout.checkoutUrl, discountCode, attribution);

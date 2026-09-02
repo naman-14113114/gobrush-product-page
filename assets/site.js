@@ -1235,7 +1235,12 @@
     }
 
     const storedPromo = (localStorage.getItem("miroooo_promo_code") || "").trim().toUpperCase();
-    const validDiscount = (isX2 && storedPromo === "MIROOOO10") ? "MIROOOO10" : "";
+    const validCodes = ["MIROOOO10", "FREE2HEADS", "FREE4HEADS"];
+    let autoCoupon = "";
+    if (isX2 && bundleCount === 2) autoCoupon = "FREE2HEADS";
+    else if (isX2 && bundleCount >= 3) autoCoupon = "FREE4HEADS";
+
+    const validDiscount = (isX2 && validCodes.includes(storedPromo)) ? storedPromo : autoCoupon;
     const discountCode = extraParams.discount || validDiscount;
 
     // 1. Serverless prepare route
@@ -1334,8 +1339,8 @@
             const colors = isHeads ? ["Default"] : (Array.isArray(parsed.colors) && parsed.colors.length > 0 ? parsed.colors : ["Grey"]);
             const qty = Math.max(1, parsed.quantity || colors.length);
 
-            let unitPrice = 59;
-            let comparePrice = 119;
+            let unitPrice = 69;
+            let comparePrice = 139;
             let image = "/assets_ref/x/gallery/Miroooo_x_Grey-2.webp";
             let unlockedGifts = 3;
 
@@ -1345,10 +1350,10 @@
               image = "/assets_ref/x2/heads/B1.webp";
               unlockedGifts = 0;
             } else if (isX2) {
-              unlockedGifts = 0;
-              if (qty === 1) { unitPrice = 79; comparePrice = 159; }
-              else if (qty === 2) { unitPrice = 148; comparePrice = 318; }
-              else { unitPrice = qty * 66; comparePrice = qty * 159; }
+              unlockedGifts = qty >= 2 ? (qty - 1) : 0;
+              if (qty === 1) { unitPrice = 69; comparePrice = 139; }
+              else if (qty === 2) { unitPrice = 128; comparePrice = 278; }
+              else { unitPrice = (qty * 69) - (30 + (qty - 3) * 10); comparePrice = qty * 139; }
 
               const firstColor = (colors[0] || "").toLowerCase();
               image = "/assets_ref/x2/gallery/miroooo-x2-sonic-electric-toothbrush-grey-checkout.webp";
@@ -1356,9 +1361,9 @@
               else if (firstColor.includes("silver")) image = "/assets_ref/x2/gallery/miroooo-x2-sonic-electric-toothbrush-silver-checkout.webp";
               else if (firstColor.includes("grey") || firstColor.includes("gray")) image = "/assets_ref/x2/gallery/miroooo-x2-sonic-electric-toothbrush-grey-checkout.webp";
             } else {
-              if (qty === 1) { unitPrice = 59; comparePrice = 119; }
-              else if (qty === 2) { unitPrice = 110; comparePrice = 238; }
-              else { unitPrice = qty * 49; comparePrice = qty * 119; }
+              if (qty === 1) { unitPrice = 69; comparePrice = 139; }
+              else if (qty === 2) { unitPrice = 128; comparePrice = 278; }
+              else { unitPrice = (qty * 69) - (30 + (qty - 3) * 10); comparePrice = qty * 139; }
 
               const firstColor = (colors[0] || "").toLowerCase();
               if (firstColor.includes("pink") || firstColor.includes("rose")) image = "/assets_ref/x/gallery/Miroooo_x_Pink-1.webp";
@@ -1503,6 +1508,69 @@
       }
     },
 
+    updateColorQuantity(color, quantity) {
+      let rawCart = null;
+      try {
+        rawCart = JSON.parse(localStorage.getItem("miroooo_cart") || "null");
+      } catch (_) {}
+      if (!rawCart) return;
+
+      const norm = String(color || "Grey").trim();
+      let colors = Array.isArray(rawCart.colors) ? [...rawCart.colors] : ["Grey"];
+      const currentCount = colors.filter(c => String(c).trim().toLowerCase() === norm.toLowerCase()).length;
+
+      if (quantity > currentCount) {
+        for (let i = 0; i < quantity - currentCount; i++) {
+          colors.push(norm);
+        }
+      } else if (quantity < currentCount) {
+        let toRemove = currentCount - quantity;
+        colors = colors.filter(c => {
+          if (String(c).trim().toLowerCase() === norm.toLowerCase() && toRemove > 0) {
+            toRemove--;
+            return false;
+          }
+          return true;
+        });
+      }
+
+      if (colors.length <= 0) {
+        this.clearCart();
+      } else {
+        rawCart.colors = colors;
+        rawCart.quantity = colors.length;
+        try {
+          localStorage.setItem("miroooo_cart", JSON.stringify(rawCart));
+          localStorage.removeItem("miroooo_cart_empty");
+        } catch (_) {}
+        this.updateHeaderBadges();
+        this.renderCartDrawer();
+      }
+    },
+
+    removeColor(color) {
+      let rawCart = null;
+      try {
+        rawCart = JSON.parse(localStorage.getItem("miroooo_cart") || "null");
+      } catch (_) {}
+      if (!rawCart) return;
+
+      const norm = String(color || "Grey").trim();
+      let colors = Array.isArray(rawCart.colors) ? rawCart.colors.filter(c => String(c).trim().toLowerCase() !== norm.toLowerCase()) : [];
+      if (colors.length <= 0) {
+        this.clearCart();
+      } else {
+        rawCart.colors = colors;
+        rawCart.quantity = colors.length;
+        try {
+          localStorage.setItem("miroooo_cart", JSON.stringify(rawCart));
+          localStorage.removeItem("miroooo_cart_empty");
+        } catch (_) {}
+        this.updateHeaderBadges();
+        this.renderCartDrawer();
+      }
+    },
+
     removeItem(itemId) {
       this.clearCart();
     },
@@ -1602,99 +1670,99 @@
 
     renderCartDrawer() {
       this.ensureCartDrawer();
-      const cart = this.getCart();
-      const items = cart.items || [];
-      const hasItems = items.length > 0;
-
-      const footer = document.getElementById("cart-drawer-footer");
       const itemsList = document.getElementById("cart-items-list");
+      const footer = document.getElementById("cart-drawer-footer");
 
-      if (!hasItems) {
+      if (!itemsList) return;
+
+      let rawCart = null;
+      try {
+        rawCart = JSON.parse(localStorage.getItem("miroooo_cart") || "null");
+      } catch (_) {}
+
+      if (!rawCart || (rawCart.quantity <= 0)) {
         if (footer) footer.style.display = "none";
-
-        if (itemsList) {
-          itemsList.innerHTML = `
-            <div class="miroooo-cart-empty">
-              <svg class="miroooo-empty-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path>
-                <line x1="3" y1="6" x2="21" y2="6"></line>
-                <path d="M16 10a4 4 0 0 1-8 0"></path>
-              </svg>
-              <h3 class="miroooo-empty-title">Your shopping bag is empty.</h3>
-              <p class="miroooo-empty-text">Add the Brush X1 or Brush X2 to unlock current offers and free shipping.</p>
-              <a href="/shop" class="miroooo-empty-shop-btn" onclick="window.MirooooCart.closeCart()">
-                Shop Miroooo
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
-              </a>
-              <a href="/dentalcare-quiz" class="miroooo-empty-quiz-link" onclick="window.MirooooCart.closeCart()">
-              Undecided? Take the Dental Care Quiz &rarr;
-              </a>
-            </div>
-          `;
-        }
+        itemsList.innerHTML = `
+          <div class="miroooo-cart-empty">
+            <h3 class="miroooo-empty-title">Your shopping bag is empty.</h3>
+            <a href="/shop" class="miroooo-empty-shop-btn" onclick="window.MirooooCart.closeCart()">Shop Miroooo</a>
+          </div>
+        `;
         return;
       }
 
       if (footer) footer.style.display = "flex";
 
-      // Render Line Items
+      const isHeads = rawCart?.productId === "miroooo-x2-heads";
+      const isX2 = rawCart?.productId === "miroooo-x2";
+      const totalQty = Math.max(1, rawCart?.quantity || 1);
+      const rawColors = Array.isArray(rawCart?.colors) && rawCart.colors.length > 0 ? rawCart.colors : ["Grey"];
+
+      let subtotal = 0;
+      let compareTotal = 0;
+      let bundleSavings = 0;
+      let totalGiftValueNum = 0;
+      let extraBrushHeadSets = 0;
+
+      if (isHeads) {
+        subtotal = totalQty * 10;
+        compareTotal = totalQty * 10;
+        bundleSavings = 0;
+      } else if (isX2) {
+        compareTotal = totalQty * 139;
+        extraBrushHeadSets = totalQty >= 2 ? (totalQty - 1) : 0;
+        totalGiftValueNum = extraBrushHeadSets * 10;
+        let bundleDiscount = 0;
+        if (totalQty === 1) bundleDiscount = 0;
+        else if (totalQty === 2) bundleDiscount = 10;
+        else if (totalQty >= 3) bundleDiscount = 30 + (totalQty - 3) * 10;
+        subtotal = (totalQty * 69) - bundleDiscount;
+        bundleSavings = compareTotal - subtotal;
+      } else {
+        // Brush X1
+        compareTotal = totalQty * 139;
+        let bundleDiscount = 0;
+        if (totalQty === 1) bundleDiscount = 0;
+        else if (totalQty === 2) bundleDiscount = 10;
+        else if (totalQty >= 3) bundleDiscount = 30 + (totalQty - 3) * 10;
+        subtotal = (totalQty * 69) - bundleDiscount;
+        bundleSavings = compareTotal - subtotal;
+        totalGiftValueNum = 36; // Travel Case + Brush Heads
+      }
+
+      const totalDiscountNum = bundleSavings + totalGiftValueNum;
+
+      // Render Line Items in Drawer List
       if (itemsList) {
         let itemsHtml = "";
-        items.forEach((item) => {
-          const isHeads = item.productHandle === "miroooo-x2-heads";
-          const isX2 = item.productHandle === "miroooo-x2" || (item.title && item.title.toLowerCase().includes("x2")) || item.productId === "1000000675072187" || item.productId === "1000000664011618";
-          const quantity = item.bundleCount || item.quantity || 1;
-          let extraHeadsNote = "";
-          if (isX2 && !isHeads && quantity >= 2) {
-            const extraSets = quantity - 1;
-            const extraHeads = extraSets * 2;
-            extraHeadsNote = ` + ${extraHeads} Extra Free Brush Heads (${extraSets} ${extraSets > 1 ? "Sets" : "Set"})`;
-          }
 
-          let description = "Ultra-precise acoustic motor, 60-day battery, and 3 brushing modes with travel case.";
-          if (isHeads) {
-            description = "DuPont Ultra-Soft Replacement Heads (2-Pack) for Brush X2.";
-          } else if (isX2) {
-            description = `Includes free luxury travel case, wall-mounted storage & 90-day battery life${extraHeadsNote}.`;
-          }
-
-          const colorsLabel = (!isHeads && item.choices && item.choices.length > 0)
-            ? `Colors: ${item.choices.join(" + ")}`
-            : (!isHeads && item.color ? `Color: ${item.color}` : "");
-
-          const unitPriceInt = Math.round(Number(item.unitPrice || 0));
-          const unitPriceDisplay = `£${unitPriceInt}`;
-          const comparePriceInt = item.comparePrice ? Math.round(Number(item.comparePrice)) : (isHeads ? unitPriceInt : unitPriceInt * 2);
-          const comparePriceDisplay = (!isHeads && comparePriceInt > unitPriceInt) ? `£${comparePriceInt}` : "";
-
+        if (isHeads) {
           itemsHtml += `
-            <div class="miroooo-cart-item" data-item-id="${item.id}">
+            <div class="miroooo-cart-item">
               <div class="miroooo-cart-item-thumb">
-                <img src="${item.image}" alt="${item.title}" />
+                <img src="/assets_ref/x2/heads/B1.webp" alt="2x Brush X2 heads" />
               </div>
               <div class="miroooo-cart-item-content">
                 <div class="miroooo-cart-item-top">
                   <div>
-                    <h4 class="miroooo-cart-item-title">${item.title}</h4>
-                    <p class="miroooo-cart-item-desc" style="font-size: 0.76rem; color: #555555; margin: 3px 0 0; line-height: 1.35;">${description}</p>
-                    ${colorsLabel ? `<p class="miroooo-cart-item-colors" style="font-size: 0.78rem; color: #555555; font-weight: 500; margin: 3px 0 0; line-height: 1.35;">${colorsLabel}</p>` : ""}
+                    <h4 class="miroooo-cart-item-title">2x Brush X2 heads</h4>
+                    <p class="miroooo-cart-item-desc" style="font-size: 0.76rem; color: #555555; margin: 3px 0 0; line-height: 1.35;">DuPont Ultra-Soft Replacement Heads (2-Pack) for Brush X2.</p>
                   </div>
                   <div class="miroooo-cart-item-pricing">
-                    <span class="miroooo-cart-item-price">${unitPriceDisplay}</span>
-                    ${comparePriceDisplay ? `<span class="miroooo-cart-item-compare">${comparePriceDisplay}</span>` : ""}
+                    <span class="miroooo-cart-item-price">£${subtotal}</span>
                   </div>
                 </div>
                 <div class="miroooo-cart-item-bottom">
                   <div class="miroooo-cart-stepper">
-                    <button type="button" class="miroooo-stepper-btn" aria-label="Decrease quantity" onclick="window.MirooooCart.updateQuantity('${item.id}', ${quantity - 1})">
+                    <button type="button" class="miroooo-stepper-btn" aria-label="Decrease quantity" onclick="window.MirooooCart.updateQuantity('heads', ${totalQty - 1})">
                       <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="5" y1="12" x2="19" y2="12"></line></svg>
                     </button>
-                    <span class="miroooo-stepper-val">${quantity}</span>
-                    <button type="button" class="miroooo-stepper-btn" aria-label="Increase quantity" onclick="window.MirooooCart.updateQuantity('${item.id}', ${quantity + 1})">
+                    <span class="miroooo-stepper-val">${totalQty}</span>
+                    <button type="button" class="miroooo-stepper-btn" aria-label="Increase quantity" onclick="window.MirooooCart.updateQuantity('heads', ${totalQty + 1})">
                       <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
                     </button>
                   </div>
-                  <button type="button" class="miroooo-cart-remove-btn" aria-label="Remove item" onclick="window.MirooooCart.removeItem('${item.id}')">
+                  <button type="button" class="miroooo-cart-remove-btn" aria-label="Remove item" onclick="window.MirooooCart.removeItem('heads')">
                     <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                       <polyline points="3 6 5 6 21 6"></polyline>
                       <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
@@ -1705,35 +1773,116 @@
               </div>
             </div>
           `;
-        });
+        } else {
+          // Group colors
+          const colorGroups = [];
+          const colorCounts = {};
+          rawColors.forEach(c => {
+            const color = String(c || "Grey").trim();
+            if (!colorCounts[color]) {
+              colorCounts[color] = 0;
+              colorGroups.push(color);
+            }
+            colorCounts[color]++;
+          });
+
+          const prodName = isX2 ? "Brush X2" : "Brush X1";
+          const prodDesc = isX2
+            ? "Includes free luxury travel case, magnetic USB-C dock & 90-day battery life."
+            : "Electric Toothbrush with 32,000 VPM acoustic motor & 60-day battery.";
+
+          colorGroups.forEach(color => {
+            const count = colorCounts[color];
+            const itemTitle = count > 1 ? `${prodName} (Buy ${count} - ${color})` : `${prodName} (${color})`;
+            const itemPrice = 69 * count;
+            const itemCompare = 139 * count;
+            const lower = color.toLowerCase();
+
+            let itemImg = isX2
+              ? "/assets_ref/x2/gallery/miroooo-x2-sonic-electric-toothbrush-grey-checkout.webp"
+              : "/assets_ref/x/gallery/Miroooo_x_Grey-2.webp";
+
+            if (isX2) {
+              if (lower.includes("pink") || lower.includes("rose")) itemImg = "/assets_ref/x2/gallery/miroooo-x2-sonic-electric-toothbrush-pink-checkout.webp";
+              else if (lower.includes("silver")) itemImg = "/assets_ref/x2/gallery/miroooo-x2-sonic-electric-toothbrush-silver-checkout.webp";
+            } else {
+              if (lower.includes("pink") || lower.includes("rose")) itemImg = "/assets_ref/x/gallery/Miroooo_x_Pink-1.webp";
+              else if (lower.includes("silver")) itemImg = "/assets_ref/x/gallery/Miroooo_x_Silver-1.webp";
+            }
+
+            itemsHtml += `
+              <div class="miroooo-cart-item" data-color="${color}">
+                <div class="miroooo-cart-item-thumb">
+                  <img src="${itemImg}" alt="${itemTitle}" />
+                </div>
+                <div class="miroooo-cart-item-content">
+                  <div class="miroooo-cart-item-top">
+                    <div>
+                      <h4 class="miroooo-cart-item-title">${itemTitle}</h4>
+                      <p class="miroooo-cart-item-desc" style="font-size: 0.76rem; color: #555555; margin: 3px 0 0; line-height: 1.35;">${prodDesc}</p>
+                    </div>
+                    <div class="miroooo-cart-item-pricing">
+                      <span class="miroooo-cart-item-price">£${itemPrice}</span>
+                      <span class="miroooo-cart-item-compare">£${itemCompare}</span>
+                    </div>
+                  </div>
+                  <div class="miroooo-cart-item-bottom">
+                    <div class="miroooo-cart-stepper">
+                      <button type="button" class="miroooo-stepper-btn" aria-label="Decrease quantity" onclick="window.MirooooCart.updateColorQuantity('${color}', ${count - 1})">
+                        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+                      </button>
+                      <span class="miroooo-stepper-val">${count}</span>
+                      <button type="button" class="miroooo-stepper-btn" aria-label="Increase quantity" onclick="window.MirooooCart.updateColorQuantity('${color}', ${count + 1})">
+                        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+                      </button>
+                    </div>
+                    <button type="button" class="miroooo-cart-remove-btn" aria-label="Remove item" onclick="window.MirooooCart.removeColor('${color}')">
+                      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <polyline points="3 6 5 6 21 6"></polyline>
+                        <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
+                      </svg>
+                      Remove
+                    </button>
+                  </div>
+                </div>
+              </div>
+            `;
+          });
+
+          // Render Free Extra Brush Heads item in drawer for X2 Buy 2+
+          if (isX2 && extraBrushHeadSets > 0) {
+            const sets = extraBrushHeadSets;
+            const heads = sets * 2;
+            const title = `${heads}x Extra Free Brush Heads (${sets} ${sets > 1 ? "Sets" : "Set"})`;
+            const subtitle = `${sets} complimentary ${sets > 1 ? "sets contain" : "set contains"} ${heads} DuPont precision replacement heads for Brush X2.`;
+            const compareVal = sets * 10;
+            itemsHtml += `
+              <div class="miroooo-cart-item">
+                <div class="miroooo-cart-item-thumb">
+                  <img src="/assets_ref/x2/heads/B1.webp" alt="${title}" />
+                </div>
+                <div class="miroooo-cart-item-content">
+                  <div class="miroooo-cart-item-top">
+                    <div>
+                      <h4 class="miroooo-cart-item-title">${title}</h4>
+                      <p class="miroooo-cart-item-desc" style="font-size: 0.76rem; color: #555555; margin: 3px 0 0; line-height: 1.35;">${subtitle}</p>
+                    </div>
+                    <div class="miroooo-cart-item-pricing">
+                      <span class="miroooo-cart-item-price" style="color: #22c55e; font-weight: 700;">Free</span>
+                      <span class="miroooo-cart-item-compare">£${compareVal}</span>
+                    </div>
+                  </div>
+                  <div class="miroooo-cart-item-bottom">
+                    <span style="font-size: 0.72rem; font-weight: 700; color: #22c55e; letter-spacing: 0.05em;">UNLOCKED FREE GIFT</span>
+                  </div>
+                </div>
+              </div>
+            `;
+          }
+        }
+
         itemsList.innerHTML = itemsHtml;
       }
-
-      // Calculate totals & savings (integers only)
-      let subtotal = 0;
-      let compareTotal = 0;
-      let maxUnlockedGifts = 0;
-
-      items.forEach((item) => {
-        const isHeads = item.productHandle === "miroooo-x2-heads";
-        const qty = item.quantity || 1;
-        const unitPrice = Math.round(Number(item.unitPrice || 0));
-        const comparePrice = item.comparePrice ? Math.round(Number(item.comparePrice)) : (isHeads ? unitPrice : unitPrice * 2);
-        subtotal += unitPrice * qty;
-        compareTotal += comparePrice * qty;
-        if (!isHeads) {
-          const itemGifts = item.unlockedGifts !== undefined ? item.unlockedGifts : (item.bundleCount === 3 ? 3 : item.bundleCount === 2 ? 2 : 1);
-          if (itemGifts > maxUnlockedGifts) maxUnlockedGifts = itemGifts;
-        }
-      });
-
-      const unlockedGiftsList = [];
-      if (maxUnlockedGifts >= 1) unlockedGiftsList.push(GIFTS_DATABASE.case);
-      if (maxUnlockedGifts >= 2) unlockedGiftsList.push(GIFTS_DATABASE.heads);
-
-      const totalGiftValueNum = unlockedGiftsList.reduce((sum, g) => sum + Math.round(Number(g.valueNum || 0)), 0);
-      const bundleSavings = Math.max(0, compareTotal - subtotal);
-      const totalDiscountNum = bundleSavings + totalGiftValueNum;
 
       // Update Summary Values
       const discountToggle = document.getElementById("cart-discount-toggle");
