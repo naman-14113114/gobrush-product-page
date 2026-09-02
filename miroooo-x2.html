@@ -5449,22 +5449,6 @@ theme.variantStrings = {
       max-width: 680px;
       margin: 0 auto clamp(1.5rem, 3vw, 2.25rem) auto;
     }
-    .x2-comp-eyebrow {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      background: rgba(34, 197, 94, 0.12);
-      border: 1px solid rgba(34, 197, 94, 0.35);
-      color: #22c55e;
-      font-family: var(--font-body-family, 'Inter', -apple-system, sans-serif);
-      font-size: 0.72rem;
-      font-weight: 700;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      padding: 4px 12px;
-      border-radius: 9999px;
-      margin-bottom: 10px;
-    }
     .x2-comp-title {
       font-family: var(--font-heading-family, 'Inter', -apple-system, sans-serif);
       font-size: clamp(1.8rem, 3.4vw, 2.6rem);
@@ -5501,6 +5485,19 @@ theme.variantStrings = {
       line-height: 1.45;
     }
 
+    /* Single Color Table Container (Pure White #ffffff) */
+    .x2-comp-card-container {
+      background: #ffffff;
+      border: 1.5px solid rgba(0, 0, 0, 0.08);
+      border-radius: 18px;
+      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.25);
+      overflow: hidden;
+      color: #111111;
+      width: 100%;
+      box-sizing: border-box;
+      margin-top: 18px;
+    }
+
     /* Desktop Table Grid (>= 768px) */
     .x2-comp-desktop {
       display: block;
@@ -5509,62 +5506,44 @@ theme.variantStrings = {
     }
     .x2-comp-grid {
       display: grid;
-      grid-template-columns: 200px 1fr 1fr;
+      grid-template-columns: 210px 1fr 1fr;
       gap: 0;
       position: relative;
       width: 100%;
-      margin-top: 18px;
-      border-radius: 16px;
       box-sizing: border-box;
+      background: #ffffff;
     }
 
     /* Column Styles */
     .x2-comp-col {
       display: flex;
       flex-direction: column;
-      background: #111111;
-      border-top: 1px solid rgba(255, 255, 255, 0.08);
-      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-      border-right: 1px solid rgba(255, 255, 255, 0.08);
       position: relative;
       box-sizing: border-box;
-    }
-
-    .x2-comp-col--features {
-      background: #000000;
-      border-left: 1px solid rgba(255, 255, 255, 0.08);
-      border-top-left-radius: 16px;
-      border-bottom-left-radius: 16px;
-      z-index: 1;
-    }
-
-    /* Winner Spotlight Column (Brush X2) - Positioned on the LEFT of Brush X1 */
-    .x2-comp-col--winner {
       background: #ffffff;
-      color: #000000;
-      border: 1px solid transparent;
-      border-radius: 16px;
-      z-index: 10;
-      box-shadow: 0 0 0 2px #22c55e, 0 10px 30px rgba(0, 0, 0, 0.5);
     }
-
-    .x2-comp-col--standard {
-      border-top-right-radius: 16px;
-      border-bottom-right-radius: 16px;
-      z-index: 2;
+    .x2-comp-col--features {
+      border-right: 1px solid #f1f5f9;
+    }
+    .x2-comp-col--x2 {
+      border-right: 1px solid #f1f5f9;
+    }
+    .x2-comp-col--x1 {
+      /* Rightmost column */
     }
 
     /* Header Cells */
     .x2-comp-cell--head {
-      height: 180px;
-      min-height: 180px;
-      padding: 16px 14px 0 14px;
+      height: 205px;
+      min-height: 205px;
+      padding: 18px 14px 0 14px;
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: flex-start;
       text-align: center;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      border-bottom: 1.5px solid #e5e7eb;
+      background: #ffffff;
       box-sizing: border-box;
       position: relative;
     }
@@ -5572,62 +5551,45 @@ theme.variantStrings = {
       align-items: flex-start;
       text-align: left;
       justify-content: flex-end;
-      padding: 16px 16px 18px 16px;
-    }
-    .x2-comp-col--winner .x2-comp-cell--head {
-      border-bottom: 1px solid #e5e7eb;
-      background: #ffffff;
-      border-top-left-radius: 14px;
-      border-top-right-radius: 14px;
-      padding: 16px 14px 0 14px;
-      overflow: visible;
+      padding: 18px 18px 24px 18px;
     }
 
-    .x2-comp-badge-top {
-      position: absolute;
-      top: -12px;
-      left: 50%;
-      transform: translateX(-50%);
-      background: #22c55e;
-      color: #000000;
-      font-size: 0.66rem;
+    .x2-comp-badge-pill {
+      display: inline-block;
+      background: #16a34a;
+      color: #ffffff;
+      font-size: 0.64rem;
       font-weight: 800;
-      letter-spacing: 0.06em;
-      padding: 3px 10px;
+      letter-spacing: 0.04em;
+      padding: 2px 9px;
       border-radius: 9999px;
       text-transform: uppercase;
-      box-shadow: 0 4px 12px rgba(34, 197, 94, 0.45);
-      white-space: nowrap;
-      z-index: 20;
+      margin-bottom: 4px;
+      box-shadow: 0 2px 6px rgba(22, 163, 74, 0.25);
     }
 
     .x2-comp-head-title {
       font-family: var(--font-heading-family, 'Inter', -apple-system, sans-serif);
-      font-size: 1.05rem;
+      font-size: 1.12rem;
       font-weight: 800;
-      margin: 2px 0 1px 0;
+      color: #111111;
+      margin: 1px 0 1px 0;
       line-height: 1.2;
-    }
-    .x2-comp-col--winner .x2-comp-head-title {
-      color: #000000;
-    }
-    .x2-comp-col--standard .x2-comp-head-title {
-      color: #ffffff;
     }
 
     .x2-comp-head-tag {
       font-size: 0.72rem;
-      font-weight: 600;
-      color: rgba(255, 255, 255, 0.5);
+      font-weight: 700;
+      color: #15803d;
       margin-bottom: 6px;
     }
-    .x2-comp-col--winner .x2-comp-head-tag {
-      color: #16a34a;
-      font-weight: 700;
+    .x2-comp-col--x1 .x2-comp-head-tag {
+      color: #666666;
+      font-weight: 600;
     }
 
     .x2-comp-head-img-wrap {
-      height: 110px;
+      height: 120px;
       width: 100%;
       display: flex;
       align-items: flex-end;
@@ -5637,23 +5599,10 @@ theme.variantStrings = {
       padding-bottom: 0;
       line-height: 0;
       box-sizing: border-box;
-    }
-    .x2-comp-col--winner .x2-comp-head-img-wrap {
       background: #ffffff;
     }
-    .x2-comp-col--winner .x2-comp-head-img-wrap img {
-      max-height: 110px;
-      width: auto;
-      object-fit: contain;
-      object-position: bottom center;
-      display: block;
-      margin: 0 auto;
-      padding: 0;
-      vertical-align: bottom;
-      filter: none !important;
-    }
-    .x2-comp-col--standard .x2-comp-head-img-wrap img {
-      max-height: 110px;
+    .x2-comp-head-img-wrap img {
+      max-height: 120px;
       width: auto;
       object-fit: contain;
       object-position: bottom center;
@@ -5664,47 +5613,48 @@ theme.variantStrings = {
       filter: none !important;
     }
 
-    /* Regular Cells */
+    /* Regular Table Cells */
     .x2-comp-cell {
       height: 52px;
       min-height: 52px;
-      padding: 0 12px;
+      padding: 0 14px;
       display: flex;
       align-items: center;
       justify-content: center;
       text-align: center;
-      font-size: 0.84rem;
-      color: rgba(255, 255, 255, 0.75);
-      border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+      font-size: 0.86rem;
+      color: #333333;
+      border-bottom: 1px solid #f1f5f9;
       box-sizing: border-box;
       line-height: 1.3;
+      background: #ffffff;
+    }
+    .x2-comp-cell:nth-child(even) {
+      background: #f9fafb;
     }
     .x2-comp-col--features .x2-comp-cell {
       justify-content: flex-start;
       text-align: left;
-      font-size: 0.85rem;
-      font-weight: 700;
-      color: #ffffff;
-      padding-left: 16px;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.06);
-    }
-    .x2-comp-col--winner .x2-comp-cell {
-      color: #000000 !important;
-      font-weight: 700;
       font-size: 0.86rem;
-      border-bottom: 1px solid #e5e7eb;
-      background: #ffffff;
+      font-weight: 700;
+      color: #111111;
+      padding-left: 18px;
     }
-    .x2-comp-col--winner .x2-comp-cell:nth-child(even) {
-      background: #fbfbfb;
+    .x2-comp-col--x2 .x2-comp-cell {
+      color: #111111;
+      font-weight: 700;
+    }
+    .x2-comp-col--x1 .x2-comp-cell {
+      color: #4b5563;
+      font-weight: 500;
     }
 
     .x2-comp-val-highlight {
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      gap: 5px;
-      font-weight: 800;
+      gap: 6px;
+      font-weight: 700;
     }
     .x2-comp-tick-icon {
       display: inline-flex;
@@ -5713,7 +5663,7 @@ theme.variantStrings = {
       width: 15px;
       height: 15px;
       border-radius: 50%;
-      background: #22c55e;
+      background: #16a34a;
       color: #ffffff;
       font-size: 9px;
       font-weight: 900;
@@ -5722,8 +5672,8 @@ theme.variantStrings = {
 
     /* Price Cell (Last Row) */
     .x2-comp-cell--price {
-      height: 72px;
-      min-height: 72px;
+      height: 74px;
+      min-height: 74px;
       padding: 8px 12px;
       border-bottom: none !important;
       box-sizing: border-box;
@@ -5733,16 +5683,7 @@ theme.variantStrings = {
     }
     .x2-comp-col--features .x2-comp-cell--price {
       justify-content: flex-start;
-      padding-left: 16px;
-      border-bottom-left-radius: 16px;
-    }
-    .x2-comp-col--winner .x2-comp-cell--price {
-      background: #f0fdf4 !important;
-      border-bottom-left-radius: 14px;
-      border-bottom-right-radius: 14px;
-    }
-    .x2-comp-col--standard .x2-comp-cell--price {
-      border-bottom-right-radius: 16px;
+      padding-left: 18px;
     }
 
     .x2-price-wrap {
@@ -5758,34 +5699,34 @@ theme.variantStrings = {
       gap: 5px;
     }
     .x2-price-old {
-      font-size: 0.86rem;
-      color: #94a3b8;
+      font-size: 0.85rem;
+      color: #64748b;
       text-decoration: line-through;
       font-weight: 600;
     }
     .x2-price-val {
-      font-size: 1.3rem;
+      font-size: 1.32rem;
       font-weight: 900;
       color: #15803d;
       line-height: 1;
     }
     .x2-price-val-standard {
-      font-size: 1.25rem;
+      font-size: 1.22rem;
       font-weight: 800;
-      color: #ffffff;
+      color: #111111;
       line-height: 1;
     }
     .x2-price-note {
-      font-size: 0.66rem;
+      font-size: 0.65rem;
       font-weight: 700;
-      color: #16a34a;
-      background: rgba(34, 197, 94, 0.15);
+      color: #15803d;
+      background: rgba(22, 163, 74, 0.12);
       padding: 1px 7px;
       border-radius: 9999px;
       letter-spacing: 0.02em;
     }
 
-    /* Mobile Comparison Layout (< 768px) - Strictly NO horizontal scroll */
+    /* Mobile Comparison Layout (< 768px) */
     .x2-comp-mobile {
       display: none;
       width: 100%;
@@ -5808,7 +5749,8 @@ theme.variantStrings = {
         flex-direction: column;
         position: relative;
         box-sizing: border-box;
-        margin-top: 8px;
+        padding: 4px 6px;
+        background: #ffffff;
       }
 
       /* 2-Column Product Headers */
@@ -5816,9 +5758,10 @@ theme.variantStrings = {
         display: flex;
         align-items: flex-end;
         width: 100%;
-        border-bottom: 1px solid rgba(255, 255, 255, 0.12);
-        padding-bottom: 10px;
+        border-bottom: 1.5px solid #e5e7eb;
+        padding-bottom: 12px;
         box-sizing: border-box;
+        background: #ffffff;
       }
 
       .x2-comp-m-head-col {
@@ -5828,72 +5771,62 @@ theme.variantStrings = {
         flex-direction: column;
         align-items: center;
         text-align: center;
-        padding: 8px 6px 0 6px;
+        padding: 6px 4px 0 4px;
         box-sizing: border-box;
         position: relative;
-      }
-
-      .x2-comp-m-head-col--winner {
         background: #ffffff;
-        color: #000000;
-        border-top-left-radius: 16px;
-        border-top-right-radius: 16px;
-        box-shadow: 0 4px 18px rgba(0, 0, 0, 0.35);
-        padding-top: 14px;
-        padding-bottom: 0;
+      }
+      .x2-comp-m-head-col:first-child {
+        border-right: 1px solid #f1f5f9;
       }
 
       .x2-comp-m-badge {
         display: inline-block;
-        background: #22c55e;
-        color: #000000;
-        font-size: 0.62rem;
+        background: #16a34a;
+        color: #ffffff;
+        font-size: 0.6rem;
         font-weight: 800;
         letter-spacing: 0.04em;
         padding: 2px 8px;
         border-radius: 9999px;
         text-transform: uppercase;
         margin-bottom: 4px;
-        box-shadow: 0 2px 6px rgba(34, 197, 94, 0.3);
+        box-shadow: 0 2px 5px rgba(22, 163, 74, 0.25);
       }
 
       .x2-comp-m-brand-name {
         font-family: var(--font-heading-family, 'Inter', -apple-system, sans-serif);
-        font-size: 0.92rem;
+        font-size: 0.96rem;
         font-weight: 800;
-        color: #ffffff;
+        color: #111111;
         line-height: 1.2;
-        margin-bottom: 2px;
-      }
-
-      .x2-comp-m-head-col--winner .x2-comp-m-brand-name {
-        color: #000000;
+        margin-bottom: 1px;
       }
 
       .x2-comp-m-tag {
-        font-size: 0.66rem;
-        font-weight: 600;
-        color: rgba(255, 255, 255, 0.5);
+        font-size: 0.68rem;
+        font-weight: 700;
+        color: #15803d;
         margin-bottom: 6px;
       }
-
-      .x2-comp-m-head-col--winner .x2-comp-m-tag {
-        color: #16a34a;
-        font-weight: 700;
+      .x2-comp-m-tag--x1 {
+        color: #666666;
+        font-weight: 600;
       }
 
       .x2-comp-m-head-img-wrap {
-        height: 72px;
+        height: 85px;
         width: 100%;
         display: flex;
         align-items: flex-end;
         justify-content: center;
         margin-top: auto;
         line-height: 0;
+        background: #ffffff;
       }
 
       .x2-comp-m-head-img {
-        max-height: 72px;
+        max-height: 85px;
         width: auto;
         object-fit: contain;
         object-position: bottom center;
@@ -5907,24 +5840,31 @@ theme.variantStrings = {
       .x2-comp-m-row-group {
         display: flex;
         flex-direction: column;
-        border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-        padding: 9px 0 7px 0;
+        border-bottom: 1px solid #f1f5f9;
+        padding: 8px 0 6px 0;
         box-sizing: border-box;
+      }
+
+      .x2-comp-m-row-group:nth-child(even) {
+        background: #f9fafb;
+        border-radius: 6px;
       }
 
       .x2-comp-m-row-group--last {
         border-bottom: none;
-        padding-bottom: 0;
+        padding-bottom: 4px;
       }
 
       .x2-comp-m-feature-title {
         font-family: var(--font-body-family, 'Inter', -apple-system, sans-serif);
-        font-size: 0.82rem;
-        font-weight: 600;
-        color: rgba(255, 255, 255, 0.95);
-        padding: 0 4px 4px 4px;
+        font-size: 0.78rem;
+        font-weight: 700;
+        color: #111111;
+        padding: 0 4px 3px 4px;
         text-align: left;
-        line-height: 1.3;
+        line-height: 1.2;
+        text-transform: uppercase;
+        letter-spacing: 0.03em;
       }
 
       .x2-comp-m-values-row {
@@ -5936,42 +5876,37 @@ theme.variantStrings = {
       .x2-comp-m-val-cell {
         flex: 1;
         width: 50%;
-        min-height: 42px;
+        min-height: 38px;
         display: flex;
         flex-direction: column;
         align-items: center;
         justify-content: center;
         text-align: center;
         font-family: var(--font-body-family, 'Inter', -apple-system, sans-serif);
-        font-size: 0.8rem;
+        font-size: 0.78rem;
         font-weight: 600;
-        color: rgba(255, 255, 255, 0.65);
-        padding: 4px 6px;
+        color: #4b5563;
+        padding: 3px 6px;
         box-sizing: border-box;
         line-height: 1.25;
       }
-
-      .x2-comp-m-val-cell--winner {
-        background: #ffffff;
-        color: #000000 !important;
-        font-weight: 700;
-        box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
+      .x2-comp-m-val-cell:first-child {
+        border-right: 1px solid #f1f5f9;
       }
 
-      .x2-comp-m-val-cell--winner-last {
-        border-bottom-left-radius: 16px;
-        border-bottom-right-radius: 16px;
-        padding-bottom: 12px;
+      .x2-comp-m-val-cell--x2 {
+        color: #111111 !important;
+        font-weight: 700;
       }
 
       .x2-comp-m-val-main {
-        font-size: 0.82rem;
+        font-size: 0.8rem;
         font-weight: 700;
         line-height: 1.2;
       }
 
-      .x2-comp-m-val-cell--winner .x2-comp-m-val-main {
-        color: #000000;
+      .x2-comp-m-val-cell--x2 .x2-comp-m-val-main {
+        color: #111111;
         font-weight: 800;
         display: inline-flex;
         align-items: center;
@@ -5979,14 +5914,14 @@ theme.variantStrings = {
       }
 
       .x2-comp-m-val-sub {
-        font-size: 0.66rem;
-        color: rgba(255, 255, 255, 0.5);
-        margin-top: 2px;
+        font-size: 0.65rem;
+        color: #666666;
+        margin-top: 1px;
         line-height: 1.15;
       }
 
-      .x2-comp-m-val-cell--winner .x2-comp-m-val-sub {
-        color: #4b5563;
+      .x2-comp-m-val-cell--x2 .x2-comp-m-val-sub {
+        color: #374151;
         font-weight: 600;
       }
 
@@ -5999,7 +5934,7 @@ theme.variantStrings = {
       /* Mobile Price in Last Row */
       .x2-comp-m-price-winner {
         color: #15803d !important;
-        font-size: 1.2rem;
+        font-size: 1.18rem;
         font-weight: 900;
         line-height: 1.1;
       }
@@ -6014,7 +5949,7 @@ theme.variantStrings = {
       }
 
       .x2-comp-m-price-standard {
-        color: rgba(255, 255, 255, 0.85);
+        color: #111111;
         font-size: 1.1rem;
         font-weight: 800;
       }
@@ -6023,289 +5958,291 @@ theme.variantStrings = {
 
   <div class="x2-comp-section">
 
-    <!-- Section Header -->
+    <!-- Section Header (Clean Title & Subtitle, No Eyebrow) -->
     <div class="x2-comp-header">
-      <div class="x2-comp-eyebrow">
-        <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-        <span>Model Comparison</span>
-      </div>
       <h2 class="x2-comp-title"><span class="x2-comp-model">X1</span> <span class="x2-comp-vs">vs</span> <span class="x2-comp-model">X2</span></h2>
       <p class="x2-comp-subtitle">Compare cleaning technology, power, and design across Brush X1 and Brush X2.</p>
     </div>
 
-    <!-- ==================== DESKTOP COMPARISON TABLE ==================== -->
-    <div class="x2-comp-desktop">
-      <div class="x2-comp-grid">
+    <!-- Single Color Table Container (Pure White Aesthetic #ffffff) -->
+    <div class="x2-comp-card-container">
 
-        <!-- Column 1: Feature Labels -->
-        <div class="x2-comp-col x2-comp-col--features">
-          <div class="x2-comp-cell--head">
-            <span style="font-size: 1rem; font-weight: 800; color: #ffffff;">Key Features</span>
-          </div>
-          <div class="x2-comp-cell">Battery Life</div>
-          <div class="x2-comp-cell">Motor Power (VPM)</div>
-          <div class="x2-comp-cell">Cleaning Motion</div>
-          <div class="x2-comp-cell">Cleaning Modes</div>
-          <div class="x2-comp-cell">Charging &amp; Travel</div>
-          <div class="x2-comp-cell">Body Material</div>
-          <div class="x2-comp-cell">Warranty Coverage</div>
-          <div class="x2-comp-cell x2-comp-cell--price">Price</div>
-        </div>
+      <!-- ==================== DESKTOP COMPARISON TABLE ==================== -->
+      <div class="x2-comp-desktop">
+        <div class="x2-comp-grid">
 
-        <!-- Column 2: Brush X2 (LEFT - Winner Spotlight) -->
-        <div class="x2-comp-col x2-comp-col--winner">
-          <div class="x2-comp-badge-top">★ Flagship Choice</div>
-          <div class="x2-comp-cell--head">
-            <h3 class="x2-comp-head-title">Brush X2</h3>
-            <span class="x2-comp-head-tag">Next-Gen Flagship</span>
-            <div class="x2-comp-head-img-wrap">
-              <img src="/assets_ref/x2/gallery/miroooo-x2-sonic-electric-toothbrush-silver-upright-grip.webp" alt="Miroooo Brush X2 Sonic Electric Toothbrush" loading="lazy" decoding="async" />
+          <!-- Column 1: Feature Labels -->
+          <div class="x2-comp-col x2-comp-col--features">
+            <div class="x2-comp-cell--head">
+              <span style="font-size: 1rem; font-weight: 800; color: #111111;">Key Features</span>
             </div>
+            <div class="x2-comp-cell">Battery Life</div>
+            <div class="x2-comp-cell">Motor Power (VPM)</div>
+            <div class="x2-comp-cell">Cleaning Motion</div>
+            <div class="x2-comp-cell">Cleaning Modes</div>
+            <div class="x2-comp-cell">Charging &amp; Travel</div>
+            <div class="x2-comp-cell">Body Material</div>
+            <div class="x2-comp-cell">Warranty Coverage</div>
+            <div class="x2-comp-cell x2-comp-cell--price">Price</div>
           </div>
-          <!-- 1. Battery Life -->
-          <div class="x2-comp-cell">
-            <span class="x2-comp-val-highlight">
-              <span class="x2-comp-tick-icon">✓</span>
-              <strong>90+ Days</strong>
-            </span>
-          </div>
-          <!-- 2. VPM -->
-          <div class="x2-comp-cell">
-            <span class="x2-comp-val-highlight">
-              <span class="x2-comp-tick-icon">✓</span>
-              <strong>40,000 VPM</strong> High-Torque Motor
-            </span>
-          </div>
-          <!-- 3. Cleaning Motion -->
-          <div class="x2-comp-cell">
-            <span class="x2-comp-val-highlight">
-              <span class="x2-comp-tick-icon">✓</span>
-              <strong>45° Bass Sweep</strong> (Dentist Motion)
-            </span>
-          </div>
-          <!-- 4. Cleaning Modes -->
-          <div class="x2-comp-cell">
-            <span class="x2-comp-val-highlight">
-              <span class="x2-comp-tick-icon">✓</span>
-              <strong>3 Modes</strong> (Clean, White, Deep)
-            </span>
-          </div>
-          <!-- 5. Charging & Travel -->
-          <div class="x2-comp-cell">
-            <span class="x2-comp-val-highlight">
-              <span class="x2-comp-tick-icon">✓</span>
-              <strong>Direct USB-C</strong> (No Bulky Dock)
-            </span>
-          </div>
-          <!-- 6. Body Material -->
-          <div class="x2-comp-cell">
-            <span class="x2-comp-val-highlight">
-              <span class="x2-comp-tick-icon">✓</span>
-              <strong>Aerospace Aluminium</strong>
-            </span>
-          </div>
-          <!-- 7. Warranty -->
-          <div class="x2-comp-cell">
-            <span class="x2-comp-val-highlight">
-              <span class="x2-comp-tick-icon">✓</span>
-              <strong>3-Year Warranty</strong> (Full Replacement)
-            </span>
-          </div>
-          <!-- 8. Price -->
-          <div class="x2-comp-cell x2-comp-cell--price">
-            <div class="x2-price-wrap">
-              <div class="x2-price-line">
-                <span class="x2-price-old">£99</span>
-                <span class="x2-price-val">£69</span>
-              </div>
-              <span class="x2-price-note">(for today only)</span>
-            </div>
-          </div>
-        </div>
 
-        <!-- Column 3: Brush X1 (RIGHT - Standard Model) -->
-        <div class="x2-comp-col x2-comp-col--standard">
-          <div class="x2-comp-cell--head">
-            <h3 class="x2-comp-head-title">Brush X1</h3>
-            <span class="x2-comp-head-tag">Standard Model</span>
-            <div class="x2-comp-head-img-wrap">
-              <img src="/assets_ref/x/miroooo-x-sonic-electric-toothbrush-silver-upright-grip.webp" alt="Miroooo Brush X1 Sonic Electric Toothbrush" loading="lazy" decoding="async" />
-            </div>
-          </div>
-          <!-- 1. Battery Life -->
-          <div class="x2-comp-cell">60 Days</div>
-          <!-- 2. VPM -->
-          <div class="x2-comp-cell">32,000 VPM Sonic Motor</div>
-          <!-- 3. Cleaning Motion -->
-          <div class="x2-comp-cell">Standard Micro-Vibration (0°)</div>
-          <!-- 4. Cleaning Modes -->
-          <div class="x2-comp-cell">Everyday Clean</div>
-          <!-- 5. Charging & Travel -->
-          <div class="x2-comp-cell">Bulky Charging Dock</div>
-          <!-- 6. Body Material -->
-          <div class="x2-comp-cell">Aerospace Aluminium</div>
-          <!-- 7. Warranty -->
-          <div class="x2-comp-cell">2-Year Standard Warranty</div>
-          <!-- 8. Price -->
-          <div class="x2-comp-cell x2-comp-cell--price">
-            <div class="x2-price-wrap">
-              <span class="x2-price-val-standard">£69</span>
-            </div>
-          </div>
-        </div>
-
-      </div>
-    </div>
-
-    <!-- ==================== MOBILE COMPARISON LAYOUT (<768px) ==================== -->
-    <!-- Guaranteed strictly ZERO horizontal scrolling on all phone viewports -->
-    <div class="x2-comp-mobile">
-      <div class="x2-comp-m-table">
-
-        <!-- Mobile Headers (Side-by-Side) -->
-        <div class="x2-comp-m-head-row">
-          <!-- Left: Brush X2 (Winner Spotlight) -->
-          <div class="x2-comp-m-head-col x2-comp-m-head-col--winner">
-            <span class="x2-comp-m-badge">★ Flagship</span>
-            <span class="x2-comp-m-brand-name">Brush X2</span>
-            <span class="x2-comp-m-tag">Next-Gen Flagship</span>
-            <div class="x2-comp-m-head-img-wrap">
-              <img src="/assets_ref/x2/gallery/miroooo-x2-sonic-electric-toothbrush-silver-upright-grip.webp" alt="Brush X2" class="x2-comp-m-head-img" loading="lazy" decoding="async" />
-            </div>
-          </div>
-          <!-- Right: Brush X1 (Standard) -->
-          <div class="x2-comp-m-head-col">
-            <span class="x2-comp-m-brand-name">Brush X1</span>
-            <span class="x2-comp-m-tag">Standard Model</span>
-            <div class="x2-comp-m-head-img-wrap">
-              <img src="/assets_ref/x/miroooo-x-sonic-electric-toothbrush-silver-upright-grip.webp" alt="Brush X1" class="x2-comp-m-head-img" loading="lazy" decoding="async" />
-            </div>
-          </div>
-        </div>
-
-        <!-- Feature 1: Battery Life -->
-        <div class="x2-comp-m-row-group">
-          <div class="x2-comp-m-feature-title">Battery Life</div>
-          <div class="x2-comp-m-values-row">
-            <div class="x2-comp-m-val-cell x2-comp-m-val-cell--winner">
-              <span class="x2-comp-m-val-main"><span class="x2-comp-m-tick">✓</span> 90+ Days</span>
-              <span class="x2-comp-m-val-sub">High-Density Cell</span>
-            </div>
-            <div class="x2-comp-m-val-cell">
-              <span class="x2-comp-m-val-main">60 Days</span>
-              <span class="x2-comp-m-val-sub">Standard Battery</span>
-            </div>
-          </div>
-        </div>
-
-        <!-- Feature 2: Motor Power (VPM) -->
-        <div class="x2-comp-m-row-group">
-          <div class="x2-comp-m-feature-title">Motor Power (VPM)</div>
-          <div class="x2-comp-m-values-row">
-            <div class="x2-comp-m-val-cell x2-comp-m-val-cell--winner">
-              <span class="x2-comp-m-val-main"><span class="x2-comp-m-tick">✓</span> 40,000 VPM</span>
-              <span class="x2-comp-m-val-sub">High-Torque Acoustic</span>
-            </div>
-            <div class="x2-comp-m-val-cell">
-              <span class="x2-comp-m-val-main">32,000 VPM</span>
-              <span class="x2-comp-m-val-sub">Standard Sonic</span>
-            </div>
-          </div>
-        </div>
-
-        <!-- Feature 3: Cleaning Motion -->
-        <div class="x2-comp-m-row-group">
-          <div class="x2-comp-m-feature-title">Cleaning Motion</div>
-          <div class="x2-comp-m-values-row">
-            <div class="x2-comp-m-val-cell x2-comp-m-val-cell--winner">
-              <span class="x2-comp-m-val-main"><span class="x2-comp-m-tick">✓</span> 45° Bass Sweep</span>
-              <span class="x2-comp-m-val-sub">Dentist-Recommended</span>
-            </div>
-            <div class="x2-comp-m-val-cell">
-              <span class="x2-comp-m-val-main">Micro-Vibration</span>
-              <span class="x2-comp-m-val-sub">0° Linear</span>
-            </div>
-          </div>
-        </div>
-
-        <!-- Feature 4: Cleaning Modes -->
-        <div class="x2-comp-m-row-group">
-          <div class="x2-comp-m-feature-title">Cleaning Modes</div>
-          <div class="x2-comp-m-values-row">
-            <div class="x2-comp-m-val-cell x2-comp-m-val-cell--winner">
-              <span class="x2-comp-m-val-main"><span class="x2-comp-m-tick">✓</span> 3 Modes</span>
-              <span class="x2-comp-m-val-sub">Clean, White, Deep</span>
-            </div>
-            <div class="x2-comp-m-val-cell">
-              <span class="x2-comp-m-val-main">Everyday Clean</span>
-              <span class="x2-comp-m-val-sub">Standard Mode</span>
-            </div>
-          </div>
-        </div>
-
-        <!-- Feature 5: Charging & Travel -->
-        <div class="x2-comp-m-row-group">
-          <div class="x2-comp-m-feature-title">Charging &amp; Travel</div>
-          <div class="x2-comp-m-values-row">
-            <div class="x2-comp-m-val-cell x2-comp-m-val-cell--winner">
-              <span class="x2-comp-m-val-main"><span class="x2-comp-m-tick">✓</span> Direct USB-C</span>
-              <span class="x2-comp-m-val-sub">No Bulky Dock Needed</span>
-            </div>
-            <div class="x2-comp-m-val-cell">
-              <span class="x2-comp-m-val-main">Charging Dock</span>
-              <span class="x2-comp-m-val-sub">Requires Bulky Base</span>
-            </div>
-          </div>
-        </div>
-
-        <!-- Feature 6: Body Material -->
-        <div class="x2-comp-m-row-group">
-          <div class="x2-comp-m-feature-title">Body Material</div>
-          <div class="x2-comp-m-values-row">
-            <div class="x2-comp-m-val-cell x2-comp-m-val-cell--winner">
-              <span class="x2-comp-m-val-main"><span class="x2-comp-m-tick">✓</span> Aerospace Aluminium</span>
-              <span class="x2-comp-m-val-sub">CNC Precision Handle</span>
-            </div>
-            <div class="x2-comp-m-val-cell">
-              <span class="x2-comp-m-val-main">Aerospace Aluminium</span>
-              <span class="x2-comp-m-val-sub">CNC Precision Handle</span>
-            </div>
-          </div>
-        </div>
-
-        <!-- Feature 7: Warranty Coverage -->
-        <div class="x2-comp-m-row-group">
-          <div class="x2-comp-m-feature-title">Warranty Coverage</div>
-          <div class="x2-comp-m-values-row">
-            <div class="x2-comp-m-val-cell x2-comp-m-val-cell--winner">
-              <span class="x2-comp-m-val-main"><span class="x2-comp-m-tick">✓</span> 3-Year Warranty</span>
-              <span class="x2-comp-m-val-sub">Full Replacement</span>
-            </div>
-            <div class="x2-comp-m-val-cell">
-              <span class="x2-comp-m-val-main">2-Year Standard</span>
-              <span class="x2-comp-m-val-sub">Standard Guarantee</span>
-            </div>
-          </div>
-        </div>
-
-        <!-- Feature 8: Price -->
-        <div class="x2-comp-m-row-group x2-comp-m-row-group--last">
-          <div class="x2-comp-m-feature-title">Price</div>
-          <div class="x2-comp-m-values-row">
-            <div class="x2-comp-m-val-cell x2-comp-m-val-cell--winner x2-comp-m-val-cell--winner-last">
-              <div>
-                <div class="x2-comp-m-price-winner">£69</div>
-                <span class="x2-comp-m-price-old">£99</span>
-                <span style="font-size: 0.58rem; color: #15803d; font-weight: 700; display: block; line-height: 1; margin-top: 1px;">(for today only)</span>
+          <!-- Column 2: Brush X2 (LEFT - Winner Spotlight) -->
+          <div class="x2-comp-col x2-comp-col--x2">
+            <div class="x2-comp-cell--head">
+              <span class="x2-comp-badge-pill">★ Flagship Choice</span>
+              <h3 class="x2-comp-head-title">Brush X2</h3>
+              <span class="x2-comp-head-tag">Next-Gen Flagship</span>
+              <div class="x2-comp-head-img-wrap">
+                <img src="/assets_ref/x2/miroooo-x2-sonic-electric-toothbrush-model-comparison.webp" alt="Miroooo Brush X2 Sonic Electric Toothbrush with 45° Bass Sweep - Flagship Model" loading="lazy" decoding="async" />
               </div>
             </div>
-            <div class="x2-comp-m-val-cell">
-              <span class="x2-comp-m-price-standard">£69</span>
+            <!-- 1. Battery Life -->
+            <div class="x2-comp-cell">
+              <span class="x2-comp-val-highlight">
+                <span class="x2-comp-tick-icon">✓</span>
+                <strong>90+ Days</strong>
+              </span>
+            </div>
+            <!-- 2. VPM -->
+            <div class="x2-comp-cell">
+              <span class="x2-comp-val-highlight">
+                <span class="x2-comp-tick-icon">✓</span>
+                <strong>40,000 VPM</strong> High-Torque Motor
+              </span>
+            </div>
+            <!-- 3. Cleaning Motion -->
+            <div class="x2-comp-cell">
+              <span class="x2-comp-val-highlight">
+                <span class="x2-comp-tick-icon">✓</span>
+                <strong>45° Bass Sweep</strong> (Dentist Motion)
+              </span>
+            </div>
+            <!-- 4. Cleaning Modes -->
+            <div class="x2-comp-cell">
+              <span class="x2-comp-val-highlight">
+                <span class="x2-comp-tick-icon">✓</span>
+                <strong>3 Modes</strong> (Clean, White, Deep)
+              </span>
+            </div>
+            <!-- 5. Charging & Travel -->
+            <div class="x2-comp-cell">
+              <span class="x2-comp-val-highlight">
+                <span class="x2-comp-tick-icon">✓</span>
+                <strong>Direct USB-C</strong> (No Bulky Dock)
+              </span>
+            </div>
+            <!-- 6. Body Material -->
+            <div class="x2-comp-cell">
+              <span class="x2-comp-val-highlight">
+                <span class="x2-comp-tick-icon">✓</span>
+                <strong>Aerospace Aluminium</strong>
+              </span>
+            </div>
+            <!-- 7. Warranty -->
+            <div class="x2-comp-cell">
+              <span class="x2-comp-val-highlight">
+                <span class="x2-comp-tick-icon">✓</span>
+                <strong>3-Year Warranty</strong> (Full Replacement)
+              </span>
+            </div>
+            <!-- 8. Price -->
+            <div class="x2-comp-cell x2-comp-cell--price">
+              <div class="x2-price-wrap">
+                <div class="x2-price-line">
+                  <span class="x2-price-old">£99</span>
+                  <span class="x2-price-val">£69</span>
+                </div>
+                <span class="x2-price-note">(for today only)</span>
+              </div>
             </div>
           </div>
-        </div>
 
+          <!-- Column 3: Brush X1 (RIGHT - Standard Model) -->
+          <div class="x2-comp-col x2-comp-col--x1">
+            <div class="x2-comp-cell--head">
+              <span class="x2-comp-badge-pill" style="visibility: hidden;">Placeholder</span>
+              <h3 class="x2-comp-head-title">Brush X1</h3>
+              <span class="x2-comp-head-tag">Standard Model</span>
+              <div class="x2-comp-head-img-wrap">
+                <img src="/assets_ref/x/miroooo-x1-sonic-electric-toothbrush-model-comparison.webp" alt="Miroooo Brush X1 Sonic Electric Toothbrush - Standard Model" loading="lazy" decoding="async" />
+              </div>
+            </div>
+            <!-- 1. Battery Life -->
+            <div class="x2-comp-cell">60 Days</div>
+            <!-- 2. VPM -->
+            <div class="x2-comp-cell">32,000 VPM Sonic Motor</div>
+            <!-- 3. Cleaning Motion -->
+            <div class="x2-comp-cell">Standard Micro-Vibration (0°)</div>
+            <!-- 4. Cleaning Modes -->
+            <div class="x2-comp-cell">Everyday Clean</div>
+            <!-- 5. Charging & Travel -->
+            <div class="x2-comp-cell">Bulky Charging Dock</div>
+            <!-- 6. Body Material -->
+            <div class="x2-comp-cell">Aerospace Aluminium</div>
+            <!-- 7. Warranty -->
+            <div class="x2-comp-cell">2-Year Standard Warranty</div>
+            <!-- 8. Price -->
+            <div class="x2-comp-cell x2-comp-cell--price">
+              <div class="x2-price-wrap">
+                <span class="x2-price-val-standard">£69</span>
+              </div>
+            </div>
+          </div>
+
+        </div>
       </div>
+
+      <!-- ==================== MOBILE COMPARISON LAYOUT (<768px) ==================== -->
+      <div class="x2-comp-mobile">
+        <div class="x2-comp-m-table">
+
+          <!-- Mobile Headers (Side-by-Side) -->
+          <div class="x2-comp-m-head-row">
+            <!-- Left: Brush X2 (Winner Spotlight) -->
+            <div class="x2-comp-m-head-col">
+              <span class="x2-comp-m-badge">★ Flagship</span>
+              <span class="x2-comp-m-brand-name">Brush X2</span>
+              <span class="x2-comp-m-tag">Next-Gen Flagship</span>
+              <div class="x2-comp-m-head-img-wrap">
+                <img src="/assets_ref/x2/miroooo-x2-sonic-electric-toothbrush-model-comparison.webp" alt="Miroooo Brush X2 Sonic Electric Toothbrush with 45° Bass Sweep - Flagship Model" class="x2-comp-m-head-img" loading="lazy" decoding="async" />
+              </div>
+            </div>
+            <!-- Right: Brush X1 (Standard) -->
+            <div class="x2-comp-m-head-col">
+              <span class="x2-comp-m-badge" style="visibility: hidden;">Placeholder</span>
+              <span class="x2-comp-m-brand-name">Brush X1</span>
+              <span class="x2-comp-m-tag x2-comp-m-tag--x1">Standard Model</span>
+              <div class="x2-comp-m-head-img-wrap">
+                <img src="/assets_ref/x/miroooo-x1-sonic-electric-toothbrush-model-comparison.webp" alt="Miroooo Brush X1 Sonic Electric Toothbrush - Standard Model" class="x2-comp-m-head-img" loading="lazy" decoding="async" />
+              </div>
+            </div>
+          </div>
+
+          <!-- Feature 1: Battery Life -->
+          <div class="x2-comp-m-row-group">
+            <div class="x2-comp-m-feature-title">Battery Life</div>
+            <div class="x2-comp-m-values-row">
+              <div class="x2-comp-m-val-cell x2-comp-m-val-cell--x2">
+                <span class="x2-comp-m-val-main"><span class="x2-comp-m-tick">✓</span> 90+ Days</span>
+                <span class="x2-comp-m-val-sub">High-Density Cell</span>
+              </div>
+              <div class="x2-comp-m-val-cell">
+                <span class="x2-comp-m-val-main">60 Days</span>
+                <span class="x2-comp-m-val-sub">Standard Battery</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Feature 2: Motor Power (VPM) -->
+          <div class="x2-comp-m-row-group">
+            <div class="x2-comp-m-feature-title">Motor Power (VPM)</div>
+            <div class="x2-comp-m-values-row">
+              <div class="x2-comp-m-val-cell x2-comp-m-val-cell--x2">
+                <span class="x2-comp-m-val-main"><span class="x2-comp-m-tick">✓</span> 40,000 VPM</span>
+                <span class="x2-comp-m-val-sub">High-Torque Acoustic</span>
+              </div>
+              <div class="x2-comp-m-val-cell">
+                <span class="x2-comp-m-val-main">32,000 VPM</span>
+                <span class="x2-comp-m-val-sub">Standard Sonic</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Feature 3: Cleaning Motion -->
+          <div class="x2-comp-m-row-group">
+            <div class="x2-comp-m-feature-title">Cleaning Motion</div>
+            <div class="x2-comp-m-values-row">
+              <div class="x2-comp-m-val-cell x2-comp-m-val-cell--x2">
+                <span class="x2-comp-m-val-main"><span class="x2-comp-m-tick">✓</span> 45° Bass Sweep</span>
+                <span class="x2-comp-m-val-sub">Dentist-Recommended</span>
+              </div>
+              <div class="x2-comp-m-val-cell">
+                <span class="x2-comp-m-val-main">Micro-Vibration</span>
+                <span class="x2-comp-m-val-sub">0° Linear</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Feature 4: Cleaning Modes -->
+          <div class="x2-comp-m-row-group">
+            <div class="x2-comp-m-feature-title">Cleaning Modes</div>
+            <div class="x2-comp-m-values-row">
+              <div class="x2-comp-m-val-cell x2-comp-m-val-cell--x2">
+                <span class="x2-comp-m-val-main"><span class="x2-comp-m-tick">✓</span> 3 Modes</span>
+                <span class="x2-comp-m-val-sub">Clean, White, Deep</span>
+              </div>
+              <div class="x2-comp-m-val-cell">
+                <span class="x2-comp-m-val-main">Everyday Clean</span>
+                <span class="x2-comp-m-val-sub">Standard Mode</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Feature 5: Charging & Travel -->
+          <div class="x2-comp-m-row-group">
+            <div class="x2-comp-m-feature-title">Charging &amp; Travel</div>
+            <div class="x2-comp-m-values-row">
+              <div class="x2-comp-m-val-cell x2-comp-m-val-cell--x2">
+                <span class="x2-comp-m-val-main"><span class="x2-comp-m-tick">✓</span> Direct USB-C</span>
+                <span class="x2-comp-m-val-sub">No Bulky Dock Needed</span>
+              </div>
+              <div class="x2-comp-m-val-cell">
+                <span class="x2-comp-m-val-main">Charging Dock</span>
+                <span class="x2-comp-m-val-sub">Requires Bulky Base</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Feature 6: Body Material -->
+          <div class="x2-comp-m-row-group">
+            <div class="x2-comp-m-feature-title">Body Material</div>
+            <div class="x2-comp-m-values-row">
+              <div class="x2-comp-m-val-cell x2-comp-m-val-cell--x2">
+                <span class="x2-comp-m-val-main"><span class="x2-comp-m-tick">✓</span> Aerospace Aluminium</span>
+                <span class="x2-comp-m-val-sub">CNC Precision Handle</span>
+              </div>
+              <div class="x2-comp-m-val-cell">
+                <span class="x2-comp-m-val-main">Aerospace Aluminium</span>
+                <span class="x2-comp-m-val-sub">CNC Precision Handle</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Feature 7: Warranty Coverage -->
+          <div class="x2-comp-m-row-group">
+            <div class="x2-comp-m-feature-title">Warranty Coverage</div>
+            <div class="x2-comp-m-values-row">
+              <div class="x2-comp-m-val-cell x2-comp-m-val-cell--x2">
+                <span class="x2-comp-m-val-main"><span class="x2-comp-m-tick">✓</span> 3-Year Warranty</span>
+                <span class="x2-comp-m-val-sub">Full Replacement</span>
+              </div>
+              <div class="x2-comp-m-val-cell">
+                <span class="x2-comp-m-val-main">2-Year Standard</span>
+                <span class="x2-comp-m-val-sub">Standard Guarantee</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Feature 8: Price -->
+          <div class="x2-comp-m-row-group x2-comp-m-row-group--last">
+            <div class="x2-comp-m-feature-title">Price</div>
+            <div class="x2-comp-m-values-row">
+              <div class="x2-comp-m-val-cell x2-comp-m-val-cell--x2">
+                <div>
+                  <div class="x2-comp-m-price-winner">£69</div>
+                  <span class="x2-comp-m-price-old">£99</span>
+                  <span style="font-size: 0.58rem; color: #15803d; font-weight: 700; display: block; line-height: 1; margin-top: 1px;">(for today only)</span>
+                </div>
+              </div>
+              <div class="x2-comp-m-val-cell">
+                <span class="x2-comp-m-price-standard">£69</span>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
     </div>
 
   </div>
