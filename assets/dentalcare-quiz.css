@@ -127,6 +127,14 @@ body[data-page="dentalcare-quiz"] {
   line-height: 1.6 !important;
 }
 
+.quiz-health-note {
+  max-width: 720px;
+  margin: 18px auto 0;
+  color: rgba(255, 255, 255, 0.62);
+  font-size: 0.82rem;
+  line-height: 1.55;
+}
+
 /* --------------------------------------------------------------------------
    QUIZ SECTION & CONTAINER (Policy Page Container Theme: #e6e6e6 & Black Text)
    -------------------------------------------------------------------------- */

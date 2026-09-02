@@ -1,5 +1,6 @@
 # Logs and caches
 *.log
+.codex-tmp/
 __pycache__/
 .tempmediaStorage/
 .user_uploaded/

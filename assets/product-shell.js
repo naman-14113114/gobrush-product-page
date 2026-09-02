@@ -321,7 +321,7 @@
               <li><a href="/contact">Contact Us</a></li>
               <li><a href="https://miroooo.us/pages/order-tracking">Order Tracking</a></li>
               <li><a href="/about-us">About Us</a></li>
-              <li><a href="/dentalcare-quiz">Dentalcare Quiz</a></li>
+              <li><a href="/dentalcare-quiz">Dental Care Quiz</a></li>
               <li><a href="/faq">FAQs</a></li>
               <li><a href="/cookies-policy">Cookies Policy</a></li>
             </ul>

@@ -174,6 +174,26 @@ for (const [file, expectedTitle] of [
   if (!html.includes(expectedTitle)) errors.push(`${file}: missing descriptive search title or product name`);
 }
 
+const x2Page = await readFile(resolve(root, "miroooo-x2.html"), "utf8");
+if (!x2Page.includes('id="main-price-display"') || !x2Page.includes('>£69</span>') || !x2Page.includes('"price":"69.00"')) {
+  errors.push("miroooo-x2.html: visible X2 price and Product schema must agree at GBP 69");
+}
+
+const dentalCareQuiz = await readFile(resolve(root, "dentalcare-quiz.html"), "utf8");
+const dentalCareQuizScript = await readFile(resolve(root, "assets/dentalcare-quiz.js"), "utf8");
+for (const marker of [
+  '<title>Dental Care Quiz | Find Your Toothbrush Routine | Miroooo</title>',
+  'rel="canonical" href="https://www.trymiroooo.com/dentalcare-quiz"',
+  '"@type": "WebApplication"',
+  'quiz-health-note',
+  'not a dental diagnosis'
+]) {
+  if (!dentalCareQuiz.includes(marker)) errors.push(`dentalcare-quiz.html: missing ${marker}`);
+}
+if (/Based on your diagnostic|Oral Health Diagnostic|Prescribed 28-Day|\d{2,3}% (?:Optimal|Comprehensive) Match|zero bleeding|prevent bleeding|tartar removal|clinic-grade sheen/i.test(`${dentalCareQuiz}\n${dentalCareQuizScript}`)) {
+  errors.push("Dental Care Quiz: unsupported diagnostic, prescription, outcome, or fake-precision claim remains");
+}
+
 const guidePages = [
   ["guides/index.html", "/guides", "CollectionPage"],
   ["guides/sonic-vs-oscillating-electric-toothbrush.html", "/guides/sonic-vs-oscillating-electric-toothbrush", "Article"],

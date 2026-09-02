@@ -25,7 +25,7 @@
 - Canonical page: https://www.trymiroooo.com/products/miroooo-x2
 - Type: guided sonic electric toothbrush
 - Public features: pressure feedback, IPX7 water resistance, travel case, USB-C charging, free Smile Coach access, and stated battery life of up to 90 days
-- Display price recorded on 1 September 2026: GBP 79; verify on the product page before quoting
+- Display price recorded on 2 September 2026: GBP 69; verify on the product page before quoting
 
 ### Miroooo X2 replacement heads
 
@@ -33,13 +33,13 @@
 - Contents: two replacement heads made for Brush X2
 - Display price recorded on 1 September 2026: GBP 10; verify on the product page before quoting
 
-## Dentalcare Quiz
+## Dental Care Quiz
 
 - Canonical page: https://www.trymiroooo.com/dentalcare-quiz
-- Interactive routine matching tool analysing oral sensitivity, gum care goals, travel frequency and brushing style
-- Recommends tailored brush configuration (Brush X1 or Brush X2) and personalised daily oral care routines
+- Interactive preference-matching tool covering sensitivity, routine goals, travel frequency and brushing style
+- Compares Brush X1 and Brush X2 and suggests a personalised daily brushing routine
 - Client-side calculation with zero sign-up required; responses stay private in the user's browser
-- Recommendations are educational and do not replace clinical or dental diagnosis
+- Recommendations are general product guidance and do not replace clinical or dental diagnosis
 
 ## Smile Coach
 

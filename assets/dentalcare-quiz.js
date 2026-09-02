@@ -12,7 +12,7 @@
   const TOTAL_STEPS = 5;
   const CALCULATION_DURATION_MS = 1200;
 
-  // Diagnostic checklist step timings (ms)
+  // Preference-matching checklist step timings (ms)
   const CHECKLIST_STEPS = [
     { delay: 250, index: 0 },
     { delay: 650, index: 1 },
@@ -33,12 +33,12 @@
     }
   };
 
-  // Profile Prescriptions
+  // Preference-based routine profiles
   const PROFILES = {
     gum_defense: {
       id: "gum_defense",
       model: "x2",
-      badgeText: "99% Optimal Match",
+      badgeText: "Recommended Routine Match",
       pillClass: "quiz-pill-badge",
       title: "Miroooo Brush X2 Flagship",
       subtitle: "Ultra-Lightweight 51g Aerospace Aluminium, 90+ Day Battery Life, Whisper-Quiet & Travel-Ready",
@@ -71,18 +71,18 @@
       routine: [
         {
           phase: "Phase 1 (Days 1–7)",
-          title: "Gingival Soothing & Zone Pacing",
-          desc: "Use Soft Mode at a 45° angle. Follow the 30-second quad-pacer to gently stimulate gum tissue without mechanical pressure."
+          title: "Gentle Mode & Zone Pacing",
+          desc: "Start with Soft Mode and guide the head slowly. Follow the 30-second quad-pacer to divide two minutes across four zones."
         },
         {
           phase: "Phase 2 (Days 8–14)",
-          title: "Acoustic Plaque Flushing",
-          desc: "Advance to Clean Mode. Let the 38,000 VPM acoustic micro-bubbles flush interdental pockets while maintaining a featherlight grip."
+          title: "Consistent Surface Coverage",
+          desc: "If it feels comfortable, try Clean Mode while maintaining a light grip and covering outer, inner and chewing surfaces."
         },
         {
           phase: "Phase 3 (Days 15–28)",
-          title: "Complete Gum Fortification",
-          desc: "Noticeably firmer, healthier gums with zero bleeding and automated 2-minute daily compliance."
+          title: "Review & Repeat",
+          desc: "Repeat the routine that feels comfortable. Contact a dentist if bleeding, pain or sensitivity persists."
         }
       ]
     },
@@ -90,7 +90,7 @@
     stain_defense: {
       id: "stain_defense",
       model: "x2",
-      badgeText: "98% Optimal Match",
+      badgeText: "Recommended Routine Match",
       pillClass: "quiz-pill-badge",
       title: "Miroooo Brush X2 Flagship",
       subtitle: "Ultra-Lightweight 51g Aerospace Aluminium, 90+ Day Battery Life, Whisper-Quiet & Enamel Polish",
@@ -113,7 +113,7 @@
         },
         {
           strong: "Whisper-Quiet Sonic Motor (<50 dB):",
-          text: "High-velocity acoustic vibrations lift stubborn tannins, coffee, and tea stains without harsh enamel abrasion."
+          text: "Whitening Mode provides a repeatable powered routine for everyday surface-stain care; cosmetic results vary."
         },
         {
           strong: "Travel Case & Wall-Mounted Storage:",
@@ -123,18 +123,18 @@
       routine: [
         {
           phase: "Phase 1 (Days 1–7)",
-          title: "Surface Film Dissolution",
-          desc: "Morning Whitening Mode + Evening Clean Mode to dislodge daily tannin adhesion before it calcifies."
+          title: "Consistent Mode Choice",
+          desc: "Use Whitening Mode in the morning and Clean Mode in the evening if both feel comfortable."
         },
         {
           phase: "Phase 2 (Days 8–14)",
-          title: "Targeted Front-Incisor Buffing",
-          desc: "Incorporate a 30-second bonus front polish after morning coffee or tea using the diamond-cut DuPont head."
+          title: "Even Surface Coverage",
+          desc: "Keep the two-minute routine balanced across every zone instead of repeatedly brushing only the visible front teeth."
         },
         {
           phase: "Phase 3 (Days 15–28)",
-          title: "High-Gloss Enamel Radiance",
-          desc: "Silky smooth enamel that repels future stains throughout the day, verified with clinic-grade sheen."
+          title: "Review Your Routine",
+          desc: "Keep the routine that is comfortable and sustainable; toothpaste, diet and professional care also affect visible staining."
         }
       ]
     },
@@ -142,7 +142,7 @@
     travel_minimalist: {
       id: "travel_minimalist",
       model: "x1",
-      badgeText: "97% Optimal Match",
+      badgeText: "Recommended Routine Match",
       pillClass: "quiz-pill-badge",
       title: "Miroooo Brush X1 Essential",
       subtitle: "Ultralight 51g Acoustic Precision & 60-Day Travel Freedom",
@@ -175,8 +175,8 @@
       routine: [
         {
           phase: "Phase 1 (Days 1–7)",
-          title: "Manual-to-Acoustic Transition",
-          desc: "Shift from manual abrasive scrubbing to effortless acoustic glide. Let the 32,000 VPM motor do the work."
+          title: "Manual-to-Powered Transition",
+          desc: "Guide the powered head slowly rather than adding vigorous manual scrubbing."
         },
         {
           phase: "Phase 2 (Days 8–14)",
@@ -185,8 +185,8 @@
         },
         {
           phase: "Phase 3 (Days 15–28)",
-          title: "Effortless Minimalist Care",
-          desc: "Enjoy pristine oral hygiene with zero bathroom countertop wire clutter or travel luggage weight."
+          title: "Repeatable Minimalist Care",
+          desc: "Keep a consistent two-minute routine with less charging equipment to pack."
         }
       ]
     },
@@ -194,7 +194,7 @@
     couple_bundle: {
       id: "couple_bundle",
       model: "x2",
-      badgeText: "100% Comprehensive Match",
+      badgeText: "Recommended Household Match",
       pillClass: "quiz-pill-badge",
       title: "Brush X2 Duo Bundle (Set of 2)",
       subtitle: "Complete 2-Person Precision Set + 2x Free DuPont Heads",
@@ -209,11 +209,11 @@
       bullets: [
         {
           strong: "2x Ultra-Lightweight 51g Aerospace Instruments:",
-          text: "Two precision aluminium unibody toothbrushes (Silver & Pink / Grey combinations) for complete household oral wellness."
+          text: "Two aluminium unibody toothbrushes (Silver and Pink or Grey combinations) for two separate daily routines."
         },
         {
           strong: "Dual 90+ Day Battery Endurance:",
-          text: "Charge each brush only 4 times per year across the entire household with universal USB-C."
+          text: "Each brush has stated battery life of up to 90 days, with real-world duration varying by use."
         },
         {
           strong: "Whisper-Quiet Sonic Motors (<50 dB):",
@@ -232,13 +232,13 @@
         },
         {
           phase: "Phase 2 (Days 8–14)",
-          title: "Bespoke Preset Customisation",
-          desc: "Each user personalises their preferred mode (Soft, Clean, or Whitening) to match their oral profile."
+          title: "Individual Mode Choice",
+          desc: "Each person can choose Soft, Clean or Whitening Mode based on comfort and preference."
         },
         {
           phase: "Phase 3 (Days 15–28)",
-          title: "Shared Oral Vitality",
-          desc: "Synchronised 2-minute quad-pacer compliance and automated 90-day brush head replacement hygiene."
+          title: "Two Consistent Routines",
+          desc: "Use the two-minute quad-pacer and set separate brush-head replacement reminders for each user."
         }
       ]
     }
@@ -677,10 +677,10 @@
     if (titleEl) titleEl.textContent = profile.title;
 
     const headlineEl = $("#results-headline", resultsEl);
-    if (headlineEl) headlineEl.textContent = "Your Calibrated " + profile.title + " Routine";
+    if (headlineEl) headlineEl.textContent = "Your Personalised " + profile.title + " Routine";
 
     const summaryEl = $("#results-summary", resultsEl);
-    if (summaryEl) summaryEl.textContent = "Based on your diagnostic profile, we have calibrated your acoustic speed, bristle motion, and pressure feedback for optimal oral wellness.";
+    if (summaryEl) summaryEl.textContent = "Based on your preferences, we have matched a Miroooo model and a practical two-minute routine.";
 
     const subtitleEl = $("#matched-tagline, .quiz-recommendation-details .quiz-subtitle, #quiz-result-subtitle, [data-quiz-result-subtitle]", resultsEl);
     if (subtitleEl) subtitleEl.textContent = profile.subtitle;
@@ -712,13 +712,13 @@
     const priceSaveEl = $("#matched-discount-tag, .quiz-price-save, #quiz-result-save, [data-quiz-result-save]", resultsEl);
     if (priceSaveEl) priceSaveEl.textContent = profile.saveText;
 
-    // 5. Diagnostics breakdown updates
+    // 5. Preference breakdown updates
     const diagPriority = $("#diag-priority", resultsEl);
     if (diagPriority) {
-      if (profile.id === "gum_defense") diagPriority.textContent = "Gumline Biofilm Defence & Sensitivity";
-      else if (profile.id === "stain_defense") diagPriority.textContent = "Tannin Lifting & Natural Enamel Polish";
-      else if (profile.id === "travel_minimalist") diagPriority.textContent = "Ultralight Daily Acoustic Habituation";
-      else diagPriority.textContent = "Dual Household Oral Health Alignment";
+      if (profile.id === "gum_defense") diagPriority.textContent = "Gentler Gumline Routine & Sensitivity";
+      else if (profile.id === "stain_defense") diagPriority.textContent = "Everyday Surface-Stain Care";
+      else if (profile.id === "travel_minimalist") diagPriority.textContent = "Lightweight Daily Travel Routine";
+      else diagPriority.textContent = "Two Separate Household Routines";
     }
 
     // 6. Specs / Rationale Bullets

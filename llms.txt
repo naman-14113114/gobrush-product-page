@@ -9,7 +9,7 @@
 - [Brush X1](https://www.trymiroooo.com/products/miroooo-x): Lightweight model with three modes and 60+ days of battery life.
 - [Brush X2](https://www.trymiroooo.com/products/miroooo-x2): Guided model with pressure feedback, IPX7 water resistance and up to 90 days of battery life.
 - [X2 replacement heads](https://www.trymiroooo.com/products/miroooo-x2-heads): A model-specific two-pack for Brush X2.
-- [Dentalcare Quiz](https://www.trymiroooo.com/dentalcare-quiz): Interactive oral care diagnostic tool for personalised routine matching, model selection (Brush X1 vs X2), and sensitivity-tailored recommendations.
+- [Dental Care Quiz](https://www.trymiroooo.com/dentalcare-quiz): Free preference-based tool for comparing Brush X1 and X2 and building a personalised two-minute routine; it is not a dental diagnostic tool.
 - [Smile Coach](https://www.trymiroooo.com/smile-coach): Free browser-based 28-day routine with guided two-minute sessions; it does not connect to brush sensors or diagnose dental conditions.
 - [Oral care guides](https://www.trymiroooo.com/guides): Source-backed educational content about electric toothbrushes, brush-head care, travel and two-minute brushing.
 - [FAQs](https://www.trymiroooo.com/faq): Product, care, delivery and return answers.
