@@ -1493,14 +1493,15 @@ video::-webkit-media-controls-enclosure {
   aspect-ratio: auto !important;
   height: auto !important;
   max-height: 85vh !important;
-  min-height: 440px !important;
+  min-height: auto !important;
+  align-items: stretch !important;
 }
 
 .miroooo-lightbox-dialog.has-media .miroooo-lightbox-media-container {
   display: flex !important;
   width: 44% !important;
   flex: 0 0 44% !important;
-  height: 100% !important;
+  height: auto !important;
   min-height: 100% !important;
   max-height: none !important;
   background: #dcdcdc !important;
@@ -1510,14 +1511,16 @@ video::-webkit-media-controls-enclosure {
   overflow: hidden !important;
   border-right: 1px solid rgba(0, 0, 0, 0.08) !important;
   border-bottom: none !important;
+  border-radius: 20px 0 0 20px !important;
   margin: 0 !important;
 }
 
 .miroooo-lightbox-dialog.has-media .miroooo-lightbox-img {
   width: 100% !important;
   height: 100% !important;
-  object-fit: contain !important;
+  object-fit: cover !important;
   display: block !important;
+  border-radius: 20px 0 0 20px !important;
 }
 
 .miroooo-lightbox-dialog.has-media .miroooo-lightbox-sidebar {

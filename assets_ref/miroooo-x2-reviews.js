@@ -239,7 +239,7 @@
       variant: 'Pink / Double Pack',
       title: '2-hour magnetic fast charge lasts for months',
       body: 'Charged it for 2 hours using my phone\'s USB-C cable when it arrived 10 weeks ago and haven\'t touched the dock since. The cobalt cell battery endurance is truly groundbreaking.',
-      images: [],
+      images: ['/assets_ref/reviews/miroooo-x2-customer-review-rose-pink-in-hand.webp'],
       helpful: 31,
       verified: true
     },
@@ -295,7 +295,7 @@
       variant: 'Pink / Single',
       title: 'Flush capacitive power switch solves hygiene issues',
       body: 'Traditional electric brushes get that nasty black sludge around the rubber power button. The capacitive button on the X2 is completely flush and wipes clean with a cloth in two seconds.',
-      images: [],
+      images: ['/assets_ref/reviews/miroooo-x2-customer-review-flush-capacitive-switch-led-halo.webp'],
       helpful: 24,
       verified: true
     },
@@ -393,7 +393,7 @@
       variant: 'Grey / Double Pack',
       title: 'Smooth tongue-test polish all day long',
       body: 'When you run your tongue across your teeth after brushing, they feel like polished glass. Even hours after eating, plaque struggles to stick to the enamel.',
-      images: [],
+      images: ['/assets_ref/reviews/miroooo-x2-customer-review-wall-mounted-storage.webp'],
       helpful: 17,
       verified: true
     },
