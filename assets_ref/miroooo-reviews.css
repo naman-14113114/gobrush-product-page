@@ -1528,18 +1528,55 @@ video::-webkit-media-controls-enclosure {
 @media (max-width: 640px) {
   .miroooo-lightbox-dialog.has-media {
     flex-direction: column !important;
-    max-height: 90vh !important;
+    max-height: 92vh !important;
+    height: auto !important;
+    overflow-y: auto !important;
+    -webkit-overflow-scrolling: touch !important;
   }
   .miroooo-lightbox-dialog.has-media .miroooo-lightbox-media-container {
     width: 100% !important;
-    height: 180px !important;
-    flex: 0 0 180px !important;
+    height: auto !important;
+    min-height: 0 !important;
+    max-height: none !important;
+    flex: 0 0 auto !important;
+    background: transparent !important;
     border-right: none !important;
-    border-bottom: 1px solid rgba(0, 0, 0, 0.08) !important;
+    border-bottom: none !important;
+    padding: 16px 16px 0 16px !important;
+    box-sizing: border-box !important;
+    overflow: visible !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+  }
+  .miroooo-lightbox-dialog.has-media .miroooo-lightbox-video {
+    width: auto !important;
+    max-width: 100% !important;
+    height: auto !important;
+    max-height: 46vh !important;
+    object-fit: contain !important;
+    display: block !important;
+    margin: 0 auto !important;
+    border-radius: 16px !important;
+    background: #000000 !important;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15) !important;
+  }
+  .miroooo-lightbox-dialog.has-media .miroooo-lightbox-img {
+    width: auto !important;
+    max-width: 100% !important;
+    height: auto !important;
+    max-height: 38vh !important;
+    object-fit: contain !important;
+    display: block !important;
+    margin: 0 auto !important;
+    border-radius: 16px !important;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1) !important;
   }
   .miroooo-lightbox-dialog.has-media .miroooo-lightbox-sidebar {
     width: 100% !important;
     flex: 1 1 auto !important;
+    overflow-y: visible !important;
+    padding-top: 8px !important;
   }
 }
 

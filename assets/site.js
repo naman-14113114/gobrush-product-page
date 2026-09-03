@@ -51,6 +51,35 @@
     } catch (e) {}
   })();
 
+  // Automatic Client-Side Version Check & Cache Invalidation
+  (function enforceClientCacheInvalidation() {
+    var CURRENT_VERSION = "20260903_v1";
+    try {
+      var storedVersion = localStorage.getItem("miroooo_client_version");
+      if (storedVersion !== CURRENT_VERSION) {
+        if ("caches" in window) {
+          caches.keys().then(function (names) {
+            names.forEach(function (name) {
+              if (name !== "miroooo-smile-coach-v2") {
+                caches.delete(name);
+              }
+            });
+          }).catch(function () {});
+        }
+        if (document.cookie) {
+          var cookies = document.cookie.split(";");
+          for (var i = 0; i < cookies.length; i++) {
+            var cName = cookies[i].split("=")[0].trim();
+            if (cName.indexOf("miroooo_cache") !== -1 || cName.indexOf("stale_") !== -1 || cName.indexOf("sw_") !== -1) {
+              document.cookie = cName + "=;expires=Thu, 01 Jan 1970 00:00:00 GMT;path=/";
+            }
+          }
+        }
+        localStorage.setItem("miroooo_client_version", CURRENT_VERSION);
+      }
+    } catch (e) {}
+  })();
+
   const arrowIcon = '<svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.65"><path d="M5 12h14M13 6l6 6-6 6"/></svg>';
   const accountIcon = '<svg class="icon icon-account icon-lg" viewBox="0 0 24 24" stroke="currentColor" fill="none" xmlns="http://www.w3.org/2000/svg"><rect width="10.5" height="10.5" x="6.75" y="1.75" rx="5.25"></rect><path stroke-linecap="round" d="M12 15.5c1.5 0 4 .333 4.5.5.5.167 3.7.8 4.5 2 1 1.5 1 2 1 4m-10-6.5c-1.5 0-4 .333-4.5.5-.5.167-3.7.8-4.5 2-1 1.5-1 2-1 4"></path></svg>';
   const bagIcon = '<svg class="icon icon-cart icon-lg" viewBox="0 0 24 24" stroke="currentColor" fill="none" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" d="M1 1h.5v0c.226 0 .339 0 .44.007a3 3 0 0 1 2.62 1.976c.034.095.065.204.127.42l.17.597m0 0 1.817 6.358c.475 1.664.713 2.496 1.198 3.114a4 4 0 0 0 1.633 1.231c.727.297 1.592.297 3.322.297h2.285c1.75 0 2.626 0 3.359-.302a4 4 0 0 0 1.64-1.253c.484-.627.715-1.472 1.175-3.161l.06-.221c.563-2.061.844-3.092.605-3.906a3 3 0 0 0-1.308-1.713C19.92 4 18.853 4 16.716 4H4.857ZM12 20a2 2 0 1 1-4 0 2 2 0 0 1 4 0Zm8 0a2 2 0 1 1-4 0 2 2 0 0 1 4 0Z"></path></svg>';
@@ -129,6 +158,7 @@
               <ul class="drawer__scrollable drawer__menu relative w-full h-full" role="list" data-parent>
                 <li class="drawer__menu-item--group">
                   <div class="drawer__group-label">Shop</div>
+                  <div class="drawer__subgroup-label">Brushes</div>
                   <ul class="drawer__submenu" role="list">
                     <li>
                       <a class="drawer__submenu-item flex flex-col" href="/products/miroooo-x">
@@ -140,6 +170,9 @@
                         <span class="drawer__submenu-title">Brush X2</span>
                       </a>
                     </li>
+                  </ul>
+                  <div class="drawer__subgroup-label">Accessories</div>
+                  <ul class="drawer__submenu" role="list">
                     <li>
                       <a class="drawer__submenu-item flex flex-col" href="/products/miroooo-x1-heads">
                         <span class="drawer__submenu-title">Brush X1 Heads</span>
@@ -160,7 +193,7 @@
             </nav>
             <div class="drawer__footer grid w-full">
               <div class="drawer__footer-bottom flex items-center justify-between gap-6">
-                <a href="/order-tracking" class="button button--primary icon-with-text" style="background-color: #000000 !important; border: 1.5px solid #000000 !important; color: #ffffff !important;" is="hover-button" rel="nofollow" aria-label="Account">
+                <a href="/order-tracking" class="button button--primary icon-with-text" style="background-color: #000000 !important; border: none !important; outline: none !important; color: #ffffff !important; box-shadow: none !important;" is="hover-button" rel="nofollow" aria-label="Account">
                   <span class="btn-fill" data-fill></span>
                   <span class="btn-text">
                     <svg class="icon icon-account-alt icon-xs" viewBox="0 0 16 17" stroke="#ffffff" fill="none" style="stroke: #ffffff !important; color: #ffffff !important;" xmlns="http://www.w3.org/2000/svg">

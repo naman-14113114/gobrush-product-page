@@ -44,7 +44,9 @@
   "headers": [
     {"source":"/(.*)","headers":[{"key":"X-Content-Type-Options","value":"nosniff"},{"key":"Referrer-Policy","value":"strict-origin-when-cross-origin"},{"key":"Permissions-Policy","value":"camera=(), microphone=(), geolocation=()"}]},
     {"source":"/smile-coach-sw.js","headers":[{"key":"Cache-Control","value":"public, max-age=0, no-cache, no-store, must-revalidate"}]},
+    {"source":"/(.*)\\.(jpg|jpeg|png|webp|svg|woff2?|mp4|webm)","headers":[{"key":"Cache-Control","value":"public, max-age=31536000, immutable"}]},
+    {"source":"/(.*)\\.(css|js|json)","headers":[{"key":"Cache-Control","value":"public, max-age=0, must-revalidate"}]},
     {"source":"/(.*)\\.html","headers":[{"key":"Cache-Control","value":"public, max-age=0, must-revalidate"}]},
-    {"source":"/(.*)\\.(jpg|jpeg|png|webp|svg|woff2?|css|js|mp4|webm|json)","headers":[{"key":"Cache-Control","value":"public, max-age=31536000, immutable"}]}
+    {"source":"/((?!.*\\.[a-zA-Z0-9]+$).*)","headers":[{"key":"Cache-Control","value":"public, max-age=0, must-revalidate"}]}
   ]
 }

@@ -1749,7 +1749,7 @@ theme.variantStrings = {
       padding: 0 !important;
     }
     #MenuDrawer .drawer__menu-item,
-    #MenuDrawer .drawer__menu a {
+    #MenuDrawer .drawer__menu > li > a {
       color: #000000 !important;
       font-size: 26px !important;
       font-weight: 600 !important;
@@ -1762,8 +1762,18 @@ theme.variantStrings = {
       transition: opacity 0.2s ease, transform var(--animation-primary) !important;
     }
     #MenuDrawer .drawer__menu-item:hover,
-    #MenuDrawer .drawer__menu a:hover {
+    #MenuDrawer .drawer__menu > li > a:hover {
       opacity: 0.7 !important;
+    }
+    #MenuDrawer .drawer__submenu-item {
+      display: flex !important;
+      flex-direction: column !important;
+      padding: 10px 18px !important;
+      padding-left: 18px !important;
+      background: rgba(0, 0, 0, 0.04) !important;
+      border-radius: 12px !important;
+      text-decoration: none !important;
+      font-size: 18px !important;
     }
     #MenuDrawer .drawer__footer {
       background: transparent !important;
@@ -1782,7 +1792,10 @@ theme.variantStrings = {
       background: #000000 !important;
       background-color: #000000 !important;
       color: #ffffff !important;
-      border: 1.5px solid #000000 !important;
+      border: none !important;
+      border-width: 0 !important;
+      outline: none !important;
+      outline-offset: 0 !important;
       border-radius: 60px !important;
       padding: 10px 20px !important;
       width: 56px !important;
@@ -1790,7 +1803,32 @@ theme.variantStrings = {
       display: inline-flex !important;
       align-items: center !important;
       justify-content: center !important;
-      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15) !important;
+      box-shadow: none !important;
+      -webkit-tap-highlight-color: transparent !important;
+    }
+    #MenuDrawer .drawer__footer-bottom a:focus,
+    #MenuDrawer .drawer__footer-bottom a:focus-visible,
+    #MenuDrawer .drawer__footer-bottom a:active,
+    #MenuDrawer .drawer__footer-bottom a:hover,
+    #MenuDrawer .drawer__footer-bottom a.button--primary:focus,
+    #MenuDrawer .drawer__footer-bottom a.button--primary:focus-visible,
+    #MenuDrawer .drawer__footer-bottom a.button--primary:active,
+    #MenuDrawer .drawer__footer-bottom a.button--primary:hover {
+      outline: none !important;
+      outline-offset: 0 !important;
+      border: none !important;
+      box-shadow: none !important;
+      -webkit-tap-highlight-color: transparent !important;
+    }
+    #MenuDrawer .drawer__footer-bottom a::before,
+    #MenuDrawer .drawer__footer-bottom a::after,
+    #MenuDrawer .drawer__footer-bottom a.button::before,
+    #MenuDrawer .drawer__footer-bottom a.button::after {
+      display: none !important;
+      content: none !important;
+      border: none !important;
+      box-shadow: none !important;
+      outline: none !important;
     }
     #MenuDrawer .drawer__footer-bottom a svg {
       stroke: #ffffff !important;
@@ -1824,6 +1862,7 @@ theme.variantStrings = {
         <ul class="drawer__scrollable drawer__menu relative w-full h-full" role="list" data-parent>
           <li class="drawer__menu-item--group">
             <div class="drawer__group-label">Shop</div>
+            <div class="drawer__subgroup-label">Brushes</div>
             <ul class="drawer__submenu" role="list">
               <li>
                 <a class="drawer__submenu-item flex flex-col" href="/products/miroooo-x">
@@ -1835,6 +1874,9 @@ theme.variantStrings = {
                   <span class="drawer__submenu-title">Brush X2</span>
                 </a>
               </li>
+            </ul>
+            <div class="drawer__subgroup-label">Accessories</div>
+            <ul class="drawer__submenu" role="list">
               <li>
                 <a class="drawer__submenu-item flex flex-col" href="/products/miroooo-x1-heads">
                   <span class="drawer__submenu-title">Brush X1 Heads</span>
@@ -1853,7 +1895,7 @@ theme.variantStrings = {
           <li><a class="drawer__menu-item block heading text-2xl leading-none tracking-tight" href="/faq">FAQs</a></li>
         </ul>
       </nav>
-      <div class="drawer__footer grid w-full"><div class="drawer__footer-bottom flex items-center justify-between gap-6"><a href="/order-tracking" class="button button--primary icon-with-text" style="background-color: #000000 !important; border: 1.5px solid #000000 !important; color: #ffffff !important;" is="hover-link" rel="nofollow" aria-label="Account">
+      <div class="drawer__footer grid w-full"><div class="drawer__footer-bottom flex items-center justify-between gap-6"><a href="/order-tracking" class="button button--primary icon-with-text" style="background-color: #000000 !important; border: none !important; outline: none !important; color: #ffffff !important; box-shadow: none !important;" is="hover-link" rel="nofollow" aria-label="Account">
               <span class="btn-fill" data-fill></span>
               <span class="btn-text"><svg class="icon icon-account-alt icon-xs" viewBox="0 0 16 17" stroke="#ffffff" fill="none" style="stroke: #ffffff !important; color: #ffffff !important;" xmlns="http://www.w3.org/2000/svg">
       <rect width="6.5" height="6.5" x="4.75" y="1.917" rx="3.25" stroke="#ffffff"></rect>
@@ -2277,7 +2319,7 @@ theme.variantStrings = {
       <img src="/assets/star.png" alt="★" width="16" height="15" style="width: 16px; height: 15px; display: block; object-fit: contain;" loading="lazy" decoding="async" />
       <img src="/assets/star.png" alt="★" width="16" height="15" style="width: 16px; height: 15px; display: block; object-fit: contain;" loading="lazy" decoding="async" />
     </div>
-    <span style="color: rgba(255, 255, 255, 0.9); font-size: 13px; font-weight: 700; letter-spacing: 0.04em; text-transform: uppercase;">4.9 · TRUSTED BY 40,000+ CUSTOMERS</span>
+    <span class="product__reviews-text" style="color: rgba(255, 255, 255, 0.9); font-size: 13px; font-weight: 700; letter-spacing: 0.04em; text-transform: uppercase;">4.9 · TRUSTED BY 40,000+ CUSTOMERS</span>
   </a>
   <h1 class="heading leading-none product-title-sm mobile:product-title-sm col-span-full font-bold" id="main-product-title" style="font-size: 40px !important; font-weight: 700 !important; line-height: 1.08 !important; letter-spacing: -0.03em !important; margin: 4px 0 2px 0 !important; color: #ffffff !important;">
     Brush X1 - Pink
@@ -4442,12 +4484,15 @@ theme.variantStrings = {
       }
 
       .miroooo-comp-m-feature-title {
+        display: block !important;
+        width: 100% !important;
+        box-sizing: border-box;
+        text-align: center !important;
         font-family: var(--font-body-family, 'Inter', -apple-system, sans-serif);
         font-size: 0.82rem;
         font-weight: 600;
         color: rgba(255, 255, 255, 0.95);
         padding: 0 4px 4px 4px;
-        text-align: left;
         line-height: 1.3;
       }
 
