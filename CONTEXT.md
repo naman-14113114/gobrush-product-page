@@ -427,3 +427,39 @@ Append-only memory for the `gobrush-product-page` repository. Do not delete or s
   - Tested `/api/checkout/prepare` with Buy 2 (`2-BRUSH-BUNDLE-SPECIAL`, `FREE2HEADS`) and Buy 3 (`2-BRUSH-BUNDLE-SPECIAL`, `FREE2HEADS`, `MIROOOO10`). Verified `checkoutUrl` contains raw unencoded commas `,` without any `%2c`.
   - `npm run build` and `npm run verify` passed cleanly (43 files, 17 pages).
 
+## 2026-09-03 17:38:21 +05:30 - Permanent PlusBase Multi-Promo Checkout State Fix
+
+- Repository state before work: `E:\1st YEAR DTU\New folder\gobrush-product-page`, branch `main`, HEAD `ff114d1b0ef548baab5af23529defb4099b3be0c`, upstream `origin/main`, ahead/behind `0/0` after `git fetch --all --prune`; the worktree was clean. The intended storefront is `https://www.trymiroooo.com` / `https://trymiroooo.com`, and the public checkout domain is `https://miroooo.us`.
+- User request and practical meaning: refresh from the latest local and GitHub state, then fix the checkout so every promo selected or auto-applied in the cart remains applied and visibly listed on PlusBase checkout. X2 Buy 2 and Buy 3 combinations were the priority, including a manual `MIROOOO10` stacked with the bundle and free-head offer. The user supplied private PlusBase credentials in chat; no secret was copied into source, logs, context, or environment files.
+- Scope and protected areas: changed only GoBrush checkout preparation, promo handoff, and checkout failure fallbacks. Product layouts, product content, imagery, prices, product/variant IDs, cart calculations, tracking integrations, SEO, policy routes, and PlusBase Admin settings were not changed. `Juujo-Vercel` and `Buudy-Vercel` were inspected read-only and were not edited.
+- Current-state reconciliation:
+  - GoBrush `main` and `origin/main` both resolved to `ff114d1`; no pull was required.
+  - `Juujo-Vercel` was clean/current at `b08e5707e99038e2adb32dc5eb8e10169ee81337`, ahead/behind `0/0`.
+  - `Buudy-Vercel` was clean/current at `fdafb3bd0393d5859c24892d5a9ff9c10555a184`, ahead/behind `0/0`.
+- Files and routes inspected: workspace and repository `AGENTS.md`/`CONTEXT.md` files; GoBrush `README.md`, `PRODUCT.md`, `DESIGN.md`, `DESIGN.json`, `api/checkout/prepare.js`, `cart.html`, `assets/site.js`, `vercel.json`, and `package.json`; Juujo US checkout prepare/cart files; Buudy UK checkout prepare/cart files; live PlusBase checkout UI; checkout JavaScript at `https://cdn.thesitebase.net/next/app/37993/assets/app.js`; and live requests under `https://miroooo.us/api/checkout/<token>/...`.
+- Root cause and corrected understanding:
+  - A checkout URL accepts one `discount` value; comma-separated or repeated `discount` query parameters do not reliably apply several codes. Raw commas versus `%2C` was not the root cause. A live URL-only probe applied only the first code.
+  - GoBrush called legacy `/api/checkout/<token>/apply-coupon.json`, initialized/verified through legacy `/info.json`, and sent `is_coupon_from_share_able_link: true`. Those coupon calls could return HTTP 200 / `result: true` while the final checkout still omitted a code, so the previous success signal was false.
+  - Playwright network inspection of an actual successful manual checkout apply showed PlusBase currently uses `POST /api/checkout/<token>/next/apply-coupon.json` with `{ code, is_coupon_from_share_able_link: false }`, followed by `GET /api/checkout/<token>/next/new-info.json?fields=total,discounts,items,shipping,tipping...`.
+  - The `result.discounts` array from `next/new-info.json` is the authoritative multi-discount state. Applying each missing code sequentially and refreshing that endpoint after each apply retained all requested codes. Store-side discount combination settings already allowed the tested combinations; no Admin mutation was required.
+- Files changed:
+  - `api/checkout/prepare.js`
+  - `cart.html`
+  - `assets/site.js`
+  - append-only `CONTEXT.md`
+- Implementation details:
+  - `api/checkout/prepare.js` now initializes and refreshes checkout state via `next/new-info.json`, extracts active codes from `result.discounts`, skips codes already active automatically, applies missing codes one at a time through `next/apply-coupon.json` with the live checkout request body, and refreshes authoritative state after every accepted call.
+  - The prepare route returns HTTP 502 instead of a false success when any requested code is absent after verification. Successful responses contain diagnostics and a clean checkout URL carrying attribution only, with no comma-separated `discount` replay.
+  - `cart.html` and `assets/site.js` trust the verified server URL without re-appending multiple promo codes. Their direct client fallback permits at most one URL coupon; when several promos need applying and server verification fails, checkout stops with a retry message instead of silently redirecting with a partial discount set.
+  - Corrected the cart's copied emergency bridge domain from `https://buudy.com/pages/add-to-cart` to `https://miroooo.us/pages/add-to-cart` for the single/no-promo fallback path.
+- Verification performed:
+  - `node --check api/checkout/prepare.js` and `node --check assets/site.js` passed.
+  - Live X2 Buy 2 prepare probe with two brushes, one X2-head set, `2-BRUSH-BUNDLE-SPECIAL`, `FREE2HEADS`, and `MIROOOO10` returned HTTP 200; authoritative state contained all three requested codes and the returned URL had no `discount` query.
+  - Playwright opened that clean checkout URL and visibly confirmed three separate applied discount pills/rows: `2-brush-bundle-special`, `FREE2HEADS`, and `MIROOOO10`; total discount was shown as the sum of all three.
+  - Live X2 Buy 3 prepare probe with three brushes, two X2-head sets, `3-BRUSH-BUNDLE-OFFER`, `FREE4HEADS`, and `MIROOOO10` returned HTTP 200. Playwright visibly confirmed all three requested discounts on checkout.
+  - Live X1 probe confirmed `MIROOOO10` remained active through the same route.
+  - `npm run build` passed and regenerated ignored `public/` output; `npm run verify` passed with 43 required files and 17 storefront pages; `git diff --check` passed apart from expected Git line-ending notices.
+  - No customer details or payment information were entered, and no order was created.
+- Mistakes and corrections during investigation: the first hypothesis focused on endpoint naming and timing alone. Live browser/network evidence refined this: the decisive missing pieces were the `next/new-info.json` initialization/refresh contract, `result.discounts` verification, the `/next/apply-coupon.json` route, and the shareable-link flag value. Two attempts to remove the generated Playwright directory with PowerShell were blocked before execution; the eight agent-generated text artifacts were then removed with `apply_patch`, leaving no generated test files in Git status.
+- Git/deployment state after work: branch remains `main` at HEAD `ff114d1`, upstream remains `origin/main` at the same commit, and the intended source changes are unstaged in `api/checkout/prepare.js`, `cart.html`, `assets/site.js`, plus this appended context entry. No commit, push, branch, pull request, deployment, promotion, PlusBase Admin change, or production-setting change was made.
+- Remaining uncertainty: local source and live PlusBase behavior are verified, but production `trymiroooo.com` will continue running the previous implementation until the user explicitly requests a commit/push/deploy or deploys the updated working tree through their normal workflow.

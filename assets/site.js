@@ -1203,11 +1203,11 @@
     try {
       const u = new URL(urlStr, window.location.origin);
       if (discountCode) {
-        const codes = Array.isArray(discountCode)
-          ? discountCode.map(c => String(c).trim().toUpperCase()).filter(Boolean).join(",")
+        const code = Array.isArray(discountCode)
+          ? discountCode.map(c => String(c).trim().toUpperCase()).filter(Boolean).pop() || ""
           : String(discountCode || "").trim();
-        if (codes && !u.searchParams.has("discount")) {
-          u.searchParams.set("discount", codes);
+        if (code && !u.searchParams.has("discount")) {
+          u.searchParams.set("discount", code);
         }
       }
       const allowed = ["utm_source", "utm_medium", "utm_campaign", "utm_term", "utm_content", "msclkid", "gclid", "fbclid", "source"];
@@ -1216,7 +1216,7 @@
           u.searchParams.set(key, String(attribution[key]));
         }
       });
-      return u.toString().replace(/%2c/gi, ",");
+      return u.toString();
     } catch (_) {
       return urlStr;
     }
@@ -1320,6 +1320,7 @@
     const discountCode = extraParams.discount || validDiscount;
 
     // 1. Serverless prepare route
+    let prepareError = null;
     try {
       const response = await fetch("/api/checkout/prepare", {
         method: "POST",
@@ -1333,10 +1334,16 @@
       });
       if (response.ok) {
         const data = await response.json();
-        if (data?.checkoutUrl) return decorateCheckoutUrl(data.checkoutUrl, attribution, discountCode);
+        if (data?.checkoutUrl) return decorateCheckoutUrl(data.checkoutUrl, attribution, "");
       }
+      prepareError = new Error("Server checkout preparation did not apply every promo code.");
     } catch (err) {
+      prepareError = err;
       console.warn("Server prepare fallback", err);
+    }
+
+    if (promoList.length > 1) {
+      throw prepareError || new Error("Could not apply every promo code to checkout.");
     }
 
     // 2. Direct client-side PlusBase session creation
@@ -1378,13 +1385,15 @@
           });
         }
 
-        return decorateCheckoutUrl(`https://miroooo.us/checkouts/${checkoutToken}`, attribution, discountCode);
+        const fallbackDiscountCode = promoList[promoList.length - 1] || "";
+        return decorateCheckoutUrl(`https://miroooo.us/checkouts/${checkoutToken}`, attribution, fallbackDiscountCode);
       }
     } catch (directErr) {
       console.error("Direct PlusBase session creation failed", directErr);
     }
 
-    return decorateCheckoutUrl("https://miroooo.us/checkouts", attribution, discountCode);
+    const fallbackDiscountCode = promoList[promoList.length - 1] || "";
+    return decorateCheckoutUrl("https://miroooo.us/checkouts", attribution, fallbackDiscountCode);
   }
 
   const MirooooCart = {

@@ -2568,7 +2568,7 @@
               if (prepRes.ok) {
                 const prepData = await prepRes.json();
                 if (prepData && prepData.checkoutUrl) {
-                  checkoutUrl = prepData.checkoutUrl.replace(/%2c/gi, ",");
+                  checkoutUrl = prepData.checkoutUrl;
                 }
               }
             } catch (err) {
@@ -2577,6 +2577,10 @@
 
             // Step 2: Direct Client Fallback if API route unavailable
             if (!checkoutUrl) {
+              if (validDiscountCodes.length > 1) {
+                throw new Error("Could not apply every promo code to checkout.");
+              }
+
               const createRes = await fetch("https://muuhu.onshopbase.com/api/checkout/next/cart.json", {
                 method: "POST",
                 headers: { "Accept": "application/json" }
@@ -2617,8 +2621,8 @@
               }
 
               checkoutUrl = `https://miroooo.us/checkouts/${checkoutToken}`;
-              if (validDiscountCodes.length > 0) {
-                checkoutUrl += `?discount=${validDiscountCodes.join(",")}`;
+              if (checkoutUrlFallbackPromo) {
+                checkoutUrl += `?discount=${encodeURIComponent(checkoutUrlFallbackPromo)}`;
               }
               const allowedParams = new URLSearchParams();
               allowed.forEach(k => {
@@ -2628,7 +2632,6 @@
               if (allowedStr) {
                 checkoutUrl += (checkoutUrl.includes("?") ? "&" : "?") + allowedStr;
               }
-              checkoutUrl = checkoutUrl.replace(/%2c/gi, ",");
             }
 
             window.dispatchEvent(new CustomEvent("miroooo:started-checkout", {
@@ -2637,10 +2640,16 @@
             window.location.href = checkoutUrl;
           } catch (error) {
             console.error("Checkout redirection failed, redirecting to PlusBase checkout:", error);
+            if (validDiscountCodes.length > 1) {
+              resetCheckoutButtons();
+              window.alert("We couldn't apply every promo code. Please try checkout again.");
+              return;
+            }
+
             try {
               const defaultVariantId = isHeads ? "1000020700182881" : (isX2 ? "1000020700182883" : "1000020700958564");
               const firstVariantId = items[0]?.variantId || defaultVariantId;
-              const bridgeUrl = new URL("https://buudy.com/pages/add-to-cart");
+              const bridgeUrl = new URL("https://miroooo.us/pages/add-to-cart");
               bridgeUrl.searchParams.set("product_id", productId);
               bridgeUrl.searchParams.set("variant_id", firstVariantId);
               bridgeUrl.searchParams.set("quantity", String(cartState.quantity));
@@ -2648,8 +2657,8 @@
               allowed.forEach(k => {
                 if (attribution[k]) bridgeUrl.searchParams.set(k, attribution[k]);
               });
-              if (validDiscountCodes.length > 0) bridgeUrl.searchParams.set("discount", validDiscountCodes.join(","));
-              window.location.href = bridgeUrl.toString().replace(/%2c/gi, ",");
+              if (checkoutUrlFallbackPromo) bridgeUrl.searchParams.set("discount", checkoutUrlFallbackPromo);
+              window.location.href = bridgeUrl.toString();
             } catch (_) {
               resetCheckoutButtons();
               window.location.href = "https://miroooo.us/checkouts";

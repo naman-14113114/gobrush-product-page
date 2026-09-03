@@ -26,17 +26,9 @@ function buildPlusbaseAttributionProperties(attribution) {
   return properties;
 }
 
-function appendDiscountAndAttributionToUrl(href, discountCodes, attribution) {
+function appendAttributionToUrl(href, attribution) {
   try {
     const url = new URL(href);
-    const codes = Array.isArray(discountCodes)
-      ? discountCodes.map(c => String(c).trim().toUpperCase()).filter(Boolean).join(",")
-      : typeof discountCodes === "string"
-        ? discountCodes.trim()
-        : "";
-    if (codes && !url.searchParams.has("discount")) {
-      url.searchParams.set("discount", codes);
-    }
     if (attribution && typeof attribution === "object") {
       passthroughAttributionKeys.forEach((key) => {
         const val = attribution[key];
@@ -45,7 +37,7 @@ function appendDiscountAndAttributionToUrl(href, discountCodes, attribution) {
         }
       });
     }
-    return url.toString().replace(/%2c/gi, ",");
+    return url.toString();
   } catch {
     return href;
   }
@@ -71,16 +63,22 @@ function collectRequestedDiscountCodes(body) {
   return [...new Set(matchedCodes)];
 }
 
-function selectCheckoutUrlFallbackDiscount(discountCodes) {
-  return Array.isArray(discountCodes) && discountCodes.length > 0
-    ? discountCodes[discountCodes.length - 1]
-    : "";
-}
-
 async function fetchCheckoutInfo(checkoutToken) {
-  const response = await fetch(`${publicCheckoutDomain}/api/checkout/${encodeURIComponent(checkoutToken)}/info.json`, {
+  const url = new URL(
+    `/api/checkout/${encodeURIComponent(checkoutToken)}/next/new-info.json`,
+    publicCheckoutDomain
+  );
+  url.searchParams.set("fields", "total,discounts,items,shipping,tipping");
+  url.searchParams.set("country", "");
+  url.searchParams.set("province", "");
+  url.searchParams.set("zip_code", "null");
+
+  const response = await fetch(url, {
     headers: {
       accept: "application/json",
+      "x-lang": "en-us",
+      "x-shopbase-checkout-token": checkoutToken,
+      "x-source-page": "checkout",
     },
   });
   const data = await response.json().catch(() => null);
@@ -93,7 +91,8 @@ async function fetchCheckoutInfo(checkoutToken) {
 }
 
 function extractActiveDiscountCodes(infoResponse) {
-  const info = infoResponse?.result?.info || {};
+  const result = infoResponse?.result || {};
+  const info = result.info || {};
   const codes = [];
 
   [
@@ -106,6 +105,7 @@ function extractActiveDiscountCodes(infoResponse) {
   });
 
   [
+    result.discounts,
     info.applied_discounts,
     info.discount_applications,
     info.discounts,
@@ -123,19 +123,39 @@ function extractActiveDiscountCodes(infoResponse) {
 async function applyDiscountCodesToCheckout(checkoutToken, discountCodes) {
   const results = [];
   if (!discountCodes.length) {
-    return { initialized: false, results, activeDiscountCodes: [] };
+    return { initialized: false, results, activeDiscountCodes: [], missingDiscountCodes: [] };
   }
 
-  let initialized = true;
+  let checkoutInfo;
   try {
-    await fetchCheckoutInfo(checkoutToken);
-  } catch (_) {
-    initialized = false;
+    checkoutInfo = await fetchCheckoutInfo(checkoutToken);
+  } catch (error) {
+    return {
+      initialized: false,
+      results,
+      activeDiscountCodes: [],
+      missingDiscountCodes: [...discountCodes],
+      initializationError: error?.message || "CHECKOUT_INITIALIZATION_FAILED",
+    };
   }
+
+  let activeDiscountCodes = extractActiveDiscountCodes(checkoutInfo);
 
   for (const code of discountCodes) {
+    if (activeDiscountCodes.includes(code)) {
+      results.push({
+        code,
+        applied: true,
+        status: 200,
+        plusbaseCode: 200,
+        errorCode: "",
+        alreadyActive: true,
+      });
+      continue;
+    }
+
     try {
-      const response = await fetch(`${publicCheckoutDomain}/api/checkout/${encodeURIComponent(checkoutToken)}/apply-coupon.json`, {
+      const response = await fetch(`${publicCheckoutDomain}/api/checkout/${encodeURIComponent(checkoutToken)}/next/apply-coupon.json`, {
         method: "POST",
         headers: {
           accept: "application/json",
@@ -146,16 +166,21 @@ async function applyDiscountCodesToCheckout(checkoutToken, discountCodes) {
         },
         body: JSON.stringify({
           code,
-          is_coupon_from_share_able_link: true,
+          is_coupon_from_share_able_link: false,
         }),
       });
       const data = await response.json().catch(() => null);
       const errorCode = data?.error_code || data?.result?.error_code || "";
-      const applied = response.ok && (data?.code === 200 || data?.code === 0) && data?.result !== false && !errorCode;
+      const accepted = response.ok && data?.code === 200 && data?.result === true && !errorCode;
+
+      if (accepted) {
+        checkoutInfo = await fetchCheckoutInfo(checkoutToken);
+        activeDiscountCodes = extractActiveDiscountCodes(checkoutInfo);
+      }
 
       results.push({
         code,
-        applied,
+        applied: accepted && activeDiscountCodes.includes(code),
         status: response.status,
         plusbaseCode: data?.code ?? null,
         errorCode,
@@ -171,12 +196,18 @@ async function applyDiscountCodesToCheckout(checkoutToken, discountCodes) {
     }
   }
 
-  let activeDiscountCodes = [];
   try {
     activeDiscountCodes = extractActiveDiscountCodes(await fetchCheckoutInfo(checkoutToken));
   } catch (_) {}
 
-  return { initialized, results, activeDiscountCodes };
+  const missingDiscountCodes = discountCodes.filter((code) => !activeDiscountCodes.includes(code));
+
+  return {
+    initialized: true,
+    results,
+    activeDiscountCodes,
+    missingDiscountCodes,
+  };
 }
 
 function appendCookies(current, response) {
@@ -316,7 +347,19 @@ module.exports = async function handler(req, res) {
 
     const checkout = await createPlusbaseCheckout(items, attribution);
     const discountApplication = await applyDiscountCodesToCheckout(checkout.checkoutToken, discountCodes);
-    const finalUrl = appendDiscountAndAttributionToUrl(checkout.checkoutUrl, discountCodes, attribution);
+    const finalUrl = appendAttributionToUrl(checkout.checkoutUrl, attribution);
+
+    if (discountApplication.missingDiscountCodes.length > 0) {
+      return res.status(502).json({
+        error: "Could not apply every promo code to PlusBase checkout.",
+        checkoutToken: checkout.checkoutToken,
+        requestedDiscountCodes: discountCodes,
+        appliedDiscountCodes: discountApplication.activeDiscountCodes,
+        missingDiscountCodes: discountApplication.missingDiscountCodes,
+        discountApplyResults: discountApplication.results,
+        discountApplyInitialized: discountApplication.initialized,
+      });
+    }
 
     return res.status(200).json({
       checkoutToken: checkout.checkoutToken,
