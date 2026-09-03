@@ -1885,7 +1885,7 @@
 
           const prodName = isX2 ? "Brush X2" : "Brush X1";
           const prodDesc = isX2
-            ? "Includes free luxury travel case, magnetic USB-C dock & 90-day battery life."
+            ? "Includes free luxury travel case, wall-mounted storage & 90-day battery life."
             : "Electric Toothbrush with 32,000 VPM acoustic motor & 60-day battery.";
 
           colorGroups.forEach(color => {
