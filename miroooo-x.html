@@ -7,6 +7,50 @@
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <script>
     (function(){
+      if (window.location.hash) return;
+      if (window.matchMedia && !window.matchMedia('(min-width: 1024px)').matches) return;
+
+      var getProductStart = function(){
+        var productGrid = document.querySelector('#shopify-section-template--24203751129433__main-product .featured-product.product');
+        if (!productGrid) return 0;
+        return Math.max(0, Math.round(productGrid.getBoundingClientRect().top + window.pageYOffset - 12));
+      };
+
+      // Desktop product entries should land on the product grid, not a restored bundle-card scroll position.
+      var resetProductScroll = function(){
+        var targetTop = getProductStart();
+        window.scrollTo(0, targetTop);
+        document.documentElement.scrollTop = targetTop;
+        if (document.body) document.body.scrollTop = targetTop;
+      };
+
+      window.__mirooooProductResetScroll = resetProductScroll;
+
+      try {
+        if ('scrollRestoration' in window.history) {
+          window.history.scrollRestoration = 'manual';
+        }
+      } catch(e) {}
+
+      resetProductScroll();
+      document.addEventListener('DOMContentLoaded', function(){
+        resetProductScroll();
+        window.requestAnimationFrame(resetProductScroll);
+        window.setTimeout(resetProductScroll, 120);
+      }, { once: true });
+      window.addEventListener('load', function(){
+        resetProductScroll();
+        window.requestAnimationFrame(resetProductScroll);
+        window.setTimeout(resetProductScroll, 240);
+      }, { once: true });
+      window.addEventListener('pageshow', function(){
+        resetProductScroll();
+        window.requestAnimationFrame(resetProductScroll);
+      });
+    })();
+  </script>
+  <script>
+    (function(){
       try {
         var tz = (Intl.DateTimeFormat().resolvedOptions().timeZone || '').toLowerCase();
         if (tz.indexOf('ho_chi_minh') !== -1 || tz.indexOf('saigon') !== -1 || tz.indexOf('singapore') !== -1 || tz.indexOf('hong_kong') !== -1 || tz.indexOf('shanghai') !== -1 || tz.indexOf('beijing') !== -1) {
