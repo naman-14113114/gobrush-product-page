@@ -885,19 +885,8 @@
       if (playback && typeof playback.catch === "function") playback.catch(() => {});
     };
 
-    if (!("IntersectionObserver" in window)) {
-      videos.forEach(loadVideo);
-      return;
-    }
-
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach((entry) => {
-        if (!entry.isIntersecting) return;
-        loadVideo(entry.target);
-        observer.unobserve(entry.target);
-      });
-    }, { rootMargin: "400px 0px" });
-    videos.forEach((video) => observer.observe(video));
+    // Immediate top-to-bottom priority eager loading: do not defer until scroll intersection
+    videos.forEach(loadVideo);
   }
 
   // Render components immediately

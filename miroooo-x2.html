@@ -1901,7 +1901,7 @@ theme.variantStrings = {
   <link rel="stylesheet" href="/assets/product-shell.css?v=20260902">
 </head>
 
-<body class="template-product" data-rounded-button="round" data-rounded-input="round" data-rounded-block="round" data-rounded-card="round" data-button-hover="standard" data-lazy-image data-title-animation data-page-rendering>
+<body class="template-product" data-rounded-button="round" data-rounded-input="round" data-rounded-block="round" data-rounded-card="round" data-button-hover="standard" data-title-animation>
   <a class="sr-only skip-link" href="#MainContent">Skip to content</a><loading-bar class="loading-bar fixed top-0 left-0 w-full h-full overflow-hidden pointer-events-none"><svg class="icon icon-spinner icon-lg absolute animate-spin" viewBox="0 0 24 24" stroke="currentColor" fill="none" xmlns="http://www.w3.org/2000/svg">
       <path stroke-linecap="round" stroke-linejoin="round" d="M2 12C2 17.5228 6.47715 22 12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2"></path>
     </svg></loading-bar>
@@ -2444,9 +2444,9 @@ theme.variantStrings = {
     <main class="main-content relative" id="MainContent" role="main">
       <div id="shopify-section-template--24203751129433__main-product" class="shopify-section"><style>
   #shopify-section-template--24203751129433__main-product {
-    --section-padding-top: 16px;
+    --section-padding-top: 20px;
     --section-padding-bottom: 0px;
-    padding-top: 16px !important;
+    padding-top: 20px !important;
     margin-top: 0px !important;
     padding-bottom: 0px !important;
     margin-bottom: 0px !important;
@@ -2462,7 +2462,7 @@ theme.variantStrings = {
     .product__gallery,
     media-gallery.product__gallery {
       position: sticky !important;
-      top: 24px !important;
+      top: clamp(20px, 2.5vw, 32px) !important;
       align-self: flex-start !important;
       z-index: 10;
     }
@@ -2497,6 +2497,34 @@ theme.variantStrings = {
       font-size: clamp(10.5px, 2.85vw, 12px) !important;
       letter-spacing: 0.02em !important;
     }
+  }
+
+  /* Miroooo Description Media & Video Shimmer Placeholder Animation */
+  @keyframes mirooooMediaShimmer {
+    0% { background-position: -200% 0; }
+    100% { background-position: 200% 0; }
+  }
+  .desc-media-loading,
+  .x2-story-media:not(.is-loaded),
+  .split-section-media:not(.is-loaded),
+  .function-img-wrap:not(.is-loaded),
+  .x2-mode-visual:not(.is-loaded) {
+    position: relative;
+    background-color: #121212 !important;
+    background-image: linear-gradient(
+      90deg,
+      rgba(255, 255, 255, 0.02) 0%,
+      rgba(255, 255, 255, 0.08) 50%,
+      rgba(255, 255, 255, 0.02) 100%
+    ) !important;
+    background-size: 200% 100% !important;
+    animation: mirooooMediaShimmer 1.8s ease-in-out infinite !important;
+  }
+  .x2-story-img,
+  .split-section-media img,
+  .function-img-wrap img,
+  .x2-mode-visual img {
+    transition: opacity 0.3s cubic-bezier(0.16, 1, 0.3, 1);
   }</style>
 <style>
   /* ==========================================================================
@@ -2752,7 +2780,7 @@ theme.variantStrings = {
           aria-label="Miroooo X2 Silver Upright Hand Grip"
           aria-current="true"
         >
-          <div class="thumb-inner"><img src="/assets_ref/x2/gallery/miroooo-x2-sonic-electric-toothbrush-silver-upright-grip.webp" alt="Miroooo X2 Sonic Electric Toothbrush Silver Upright Grip in Hand" loading="lazy" decoding="async" /></div>
+          <div class="thumb-inner"><img src="/assets_ref/x2/gallery/miroooo-x2-sonic-electric-toothbrush-silver-upright-grip.webp" alt="Miroooo X2 Sonic Electric Toothbrush Silver Upright Grip in Hand" loading="eager" decoding="async" /></div>
         </button>
 
         <!-- 0: Video thumbnail (Second item) -->
@@ -2766,7 +2794,7 @@ theme.variantStrings = {
           aria-current="false"
         >
           <div class="thumb-inner thumb-video-inner">
-            <img id="thumb-video-img" alt="Video thumbnail" src="/assets_ref/x2/gallery/miroooo-x2-sonic-electric-toothbrush-video-thumbnail.webp" loading="lazy" decoding="async" />
+            <img id="thumb-video-img" alt="Video thumbnail" src="/assets_ref/x2/gallery/miroooo-x2-sonic-electric-toothbrush-video-thumbnail.webp" loading="eager" decoding="async" />
             <span class="thumb-play-icon" aria-hidden="true">
               <svg viewBox="0 0 24 24" fill="currentColor">
                 <path d="M8 5v14l11-7z"/>
@@ -2777,46 +2805,46 @@ theme.variantStrings = {
 
         <!-- 2..14: Image thumbnails (Matching re-ordered Silver sequence) -->
         <button type="button" class="miroooo-gallery__thumb" data-index="2" aria-label="Miroooo X2 Complete Set Presentation Packaging">
-          <div class="thumb-inner"><img src="/assets_ref/x2/gallery/miroooo-x2-sonic-electric-toothbrush-complete-set-packaging.webp" alt="Miroooo X2 Complete Set Presentation Packaging with Box, Travel Case and Accessories" loading="lazy" decoding="async" /></div>
+          <div class="thumb-inner"><img src="/assets_ref/x2/gallery/miroooo-x2-sonic-electric-toothbrush-complete-set-packaging.webp" alt="Miroooo X2 Complete Set Presentation Packaging with Box, Travel Case and Accessories" loading="eager" decoding="async" /></div>
         </button>
         <button type="button" class="miroooo-gallery__thumb" data-index="3" aria-label="Miroooo X2 Wall-Mounted Storage Dock Cradle">
-          <div class="thumb-inner"><img src="/assets_ref/x2/gallery/miroooo-x2-sonic-electric-toothbrush-wall-mounted-dock-storage.webp" alt="Miroooo X2 Sonic Electric Toothbrush Wall-Mounted Storage Dock Cradle" loading="lazy" decoding="async" /></div>
+          <div class="thumb-inner"><img src="/assets_ref/x2/gallery/miroooo-x2-sonic-electric-toothbrush-wall-mounted-dock-storage.webp" alt="Miroooo X2 Sonic Electric Toothbrush Wall-Mounted Storage Dock Cradle" loading="eager" decoding="async" /></div>
         </button>
         <button type="button" class="miroooo-gallery__thumb" data-index="4" aria-label="Miroooo X2 Luxury Travel Case Lifestyle Presentation">
-          <div class="thumb-inner"><img src="/assets_ref/x2/gallery/miroooo-x2-sonic-electric-toothbrush-luxury-travel-case-lifestyle.webp" alt="Miroooo X2 Sonic Electric Toothbrush Luxury Travel Case Lifestyle Presentation" loading="lazy" decoding="async" /></div>
+          <div class="thumb-inner"><img src="/assets_ref/x2/gallery/miroooo-x2-sonic-electric-toothbrush-luxury-travel-case-lifestyle.webp" alt="Miroooo X2 Sonic Electric Toothbrush Luxury Travel Case Lifestyle Presentation" loading="eager" decoding="async" /></div>
         </button>
         <button type="button" class="miroooo-gallery__thumb" data-index="5" aria-label="Miroooo X2 IPX7 Full Immersion Waterproof Design">
-          <div class="thumb-inner"><img src="/assets_ref/x2/gallery/miroooo-x2-sonic-electric-toothbrush-ipx7-waterproof-submersion.webp" alt="Miroooo X2 Sonic Electric Toothbrush IPX7 Full Immersion Waterproof Design" loading="lazy" decoding="async" /></div>
+          <div class="thumb-inner"><img src="/assets_ref/x2/gallery/miroooo-x2-sonic-electric-toothbrush-ipx7-waterproof-submersion.webp" alt="Miroooo X2 Sonic Electric Toothbrush IPX7 Full Immersion Waterproof Design" loading="eager" decoding="async" /></div>
         </button>
         <button type="button" class="miroooo-gallery__thumb" data-index="6" aria-label="Miroooo X2 45-Degree Bass Sweep Method Sonic Vibration">
-          <div class="thumb-inner"><img src="/assets_ref/x2/gallery/miroooo-x2-sonic-electric-toothbrush-45-degree-bass-sweep-action.webp" alt="Miroooo X2 Sonic Electric Toothbrush 45-Degree Bass Sweep Method Sonic Vibration" loading="lazy" decoding="async" /></div>
+          <div class="thumb-inner"><img src="/assets_ref/x2/gallery/miroooo-x2-sonic-electric-toothbrush-45-degree-bass-sweep-action.webp" alt="Miroooo X2 Sonic Electric Toothbrush 45-Degree Bass Sweep Method Sonic Vibration" loading="eager" decoding="async" /></div>
         </button>
         <button type="button" class="miroooo-gallery__thumb" data-index="7" aria-label="Miroooo X2 Concealed USB-C Fast Charging Port">
-          <div class="thumb-inner"><img src="/assets_ref/x2/gallery/miroooo-x2-sonic-electric-toothbrush-usbc-fast-charging-port.webp" alt="Miroooo X2 Sonic Electric Toothbrush Concealed USB-C Fast Charging Port" loading="lazy" decoding="async" /></div>
+          <div class="thumb-inner"><img src="/assets_ref/x2/gallery/miroooo-x2-sonic-electric-toothbrush-usbc-fast-charging-port.webp" alt="Miroooo X2 Sonic Electric Toothbrush Concealed USB-C Fast Charging Port" loading="eager" decoding="async" /></div>
         </button>
         <button type="button" class="miroooo-gallery__thumb" data-index="8" aria-label="Miroooo X2 Aerospace Grade Aluminum Body">
-          <div class="thumb-inner"><img src="/assets_ref/x2/gallery/miroooo-x2-sonic-electric-toothbrush-aerospace-aluminum-body.webp" alt="Miroooo X2 Sonic Electric Toothbrush Aerospace Grade Aluminum Alloy Finish" loading="lazy" decoding="async" /></div>
+          <div class="thumb-inner"><img src="/assets_ref/x2/gallery/miroooo-x2-sonic-electric-toothbrush-aerospace-aluminum-body.webp" alt="Miroooo X2 Sonic Electric Toothbrush Aerospace Grade Aluminum Alloy Finish" loading="eager" decoding="async" /></div>
         </button>
         <button type="button" class="miroooo-gallery__thumb" data-index="9" aria-label="Miroooo X2 Portable Luxury Travel Case in Handbag">
-          <div class="thumb-inner"><img src="/assets_ref/x2/gallery/miroooo-x2-sonic-electric-toothbrush-handbag-travel-case.webp" alt="Miroooo X2 Sonic Electric Toothbrush Portable Luxury Travel Case in Handbag" loading="lazy" decoding="async" /></div>
+          <div class="thumb-inner"><img src="/assets_ref/x2/gallery/miroooo-x2-sonic-electric-toothbrush-handbag-travel-case.webp" alt="Miroooo X2 Sonic Electric Toothbrush Portable Luxury Travel Case in Handbag" loading="eager" decoding="async" /></div>
         </button>
         <button type="button" class="miroooo-gallery__thumb" data-index="10" aria-label="Miroooo X2 Ventilated Protective Travel Case">
-          <div class="thumb-inner"><img src="/assets_ref/x2/gallery/miroooo-x2-sonic-electric-toothbrush-ventilated-travel-case.webp" alt="Miroooo X2 Sonic Electric Toothbrush Ventilated Protective Travel Case" loading="lazy" decoding="async" /></div>
+          <div class="thumb-inner"><img src="/assets_ref/x2/gallery/miroooo-x2-sonic-electric-toothbrush-ventilated-travel-case.webp" alt="Miroooo X2 Sonic Electric Toothbrush Ventilated Protective Travel Case" loading="eager" decoding="async" /></div>
         </button>
         <button type="button" class="miroooo-gallery__thumb" data-index="11" aria-label="Miroooo X2 Intelligent Microprocessor Architecture">
-          <div class="thumb-inner"><img src="/assets_ref/x2/gallery/miroooo-x2-sonic-electric-toothbrush-smart-microchip-architecture.webp" alt="Miroooo X2 Sonic Electric Toothbrush Intelligent Microprocessor and Internal Circuitry" loading="lazy" decoding="async" /></div>
+          <div class="thumb-inner"><img src="/assets_ref/x2/gallery/miroooo-x2-sonic-electric-toothbrush-smart-microchip-architecture.webp" alt="Miroooo X2 Sonic Electric Toothbrush Intelligent Microprocessor and Internal Circuitry" loading="eager" decoding="async" /></div>
         </button>
         <button type="button" class="miroooo-gallery__thumb" data-index="12" aria-label="Miroooo X2 Precision Bristle Head and LED Halo Ring">
-          <div class="thumb-inner"><img src="/assets_ref/x2/gallery/miroooo-x2-sonic-electric-toothbrush-precision-bristle-head-halo-ring.webp" alt="Miroooo X2 Sonic Electric Toothbrush Precision DuPont Bristle Head and LED Halo Ring" loading="lazy" decoding="async" /></div>
+          <div class="thumb-inner"><img src="/assets_ref/x2/gallery/miroooo-x2-sonic-electric-toothbrush-precision-bristle-head-halo-ring.webp" alt="Miroooo X2 Sonic Electric Toothbrush Precision DuPont Bristle Head and LED Halo Ring" loading="eager" decoding="async" /></div>
         </button>
         <button type="button" class="miroooo-gallery__thumb" data-index="13" aria-label="Miroooo X2 DuPont Replacement Bristle Head Macro Detail">
-          <div class="thumb-inner"><img src="/assets_ref/x2/gallery/miroooo-x2-sonic-electric-toothbrush-dupont-bristle-head-macro.webp" alt="Miroooo X2 Sonic Electric Toothbrush DuPont Multi-Action Replacement Bristle Head" loading="lazy" decoding="async" /></div>
+          <div class="thumb-inner"><img src="/assets_ref/x2/gallery/miroooo-x2-sonic-electric-toothbrush-dupont-bristle-head-macro.webp" alt="Miroooo X2 Sonic Electric Toothbrush DuPont Multi-Action Replacement Bristle Head" loading="eager" decoding="async" /></div>
         </button>
         <button type="button" class="miroooo-gallery__thumb" data-index="14" aria-label="Miroooo X2 Silver Dynamic Grip in Hand">
-          <div class="thumb-inner"><img src="/assets_ref/x2/gallery/miroooo-x2-sonic-electric-toothbrush-silver-in-hand.webp" alt="Miroooo X2 Sonic Electric Toothbrush Silver Dynamic Grip in Hand" loading="lazy" decoding="async" /></div>
+          <div class="thumb-inner"><img src="/assets_ref/x2/gallery/miroooo-x2-sonic-electric-toothbrush-silver-in-hand.webp" alt="Miroooo X2 Sonic Electric Toothbrush Silver Dynamic Grip in Hand" loading="eager" decoding="async" /></div>
         </button>
         <button type="button" class="miroooo-gallery__thumb" data-index="15" aria-label="Miroooo X2 Sonic Electric Toothbrush and Smile Coach Companion App on Smartphone">
-          <div class="thumb-inner"><img src="/assets_ref/x2/gallery/miroooo-x2-sonic-electric-toothbrush-smile-coach-app.webp" alt="Miroooo X2 Sonic Electric Toothbrush and Smile Coach Companion App on Smartphone" loading="lazy" decoding="async" /></div>
+          <div class="thumb-inner"><img src="/assets_ref/x2/gallery/miroooo-x2-sonic-electric-toothbrush-smile-coach-app.webp" alt="Miroooo X2 Sonic Electric Toothbrush and Smile Coach Companion App on Smartphone" loading="eager" decoding="async" /></div>
         </button>
       </div>
 
@@ -2873,53 +2901,53 @@ theme.variantStrings = {
                 playsinline
                 disablepictureinpicture
                 controlslist="nodownload nofullscreen noremoteplayback"
-                preload="none"
+                preload="auto"
               ></video>
             </div>
           </div>
 
           <!-- Slides 2..14: Images (Matching re-ordered Silver sequence) -->
           <div class="miroooo-gallery__slide" data-media-type="image" data-index="2">
-            <img src="/assets_ref/x2/gallery/miroooo-x2-sonic-electric-toothbrush-complete-set-packaging.webp" alt="Miroooo X2 Complete Set Presentation Packaging with Box, Travel Case and Accessories" width="1000" height="1000" loading="lazy" decoding="async" />
+            <img src="/assets_ref/x2/gallery/miroooo-x2-sonic-electric-toothbrush-complete-set-packaging.webp" alt="Miroooo X2 Complete Set Presentation Packaging with Box, Travel Case and Accessories" width="1000" height="1000" loading="eager" decoding="async" />
           </div>
           <div class="miroooo-gallery__slide" data-media-type="image" data-index="3">
-            <img src="/assets_ref/x2/gallery/miroooo-x2-sonic-electric-toothbrush-wall-mounted-dock-storage.webp" alt="Miroooo X2 Sonic Electric Toothbrush Wall-Mounted Storage Dock Cradle" width="1000" height="1000" loading="lazy" decoding="async" />
+            <img src="/assets_ref/x2/gallery/miroooo-x2-sonic-electric-toothbrush-wall-mounted-dock-storage.webp" alt="Miroooo X2 Sonic Electric Toothbrush Wall-Mounted Storage Dock Cradle" width="1000" height="1000" loading="eager" decoding="async" />
           </div>
           <div class="miroooo-gallery__slide" data-media-type="image" data-index="4">
-            <img src="/assets_ref/x2/gallery/miroooo-x2-sonic-electric-toothbrush-luxury-travel-case-lifestyle.webp" alt="Miroooo X2 Sonic Electric Toothbrush Luxury Travel Case Lifestyle Presentation" width="1000" height="1000" loading="lazy" decoding="async" />
+            <img src="/assets_ref/x2/gallery/miroooo-x2-sonic-electric-toothbrush-luxury-travel-case-lifestyle.webp" alt="Miroooo X2 Sonic Electric Toothbrush Luxury Travel Case Lifestyle Presentation" width="1000" height="1000" loading="eager" decoding="async" />
           </div>
           <div class="miroooo-gallery__slide" data-media-type="image" data-index="5">
-            <img src="/assets_ref/x2/gallery/miroooo-x2-sonic-electric-toothbrush-ipx7-waterproof-submersion.webp" alt="Miroooo X2 Sonic Electric Toothbrush IPX7 Full Immersion Waterproof Design" width="1000" height="1000" loading="lazy" decoding="async" />
+            <img src="/assets_ref/x2/gallery/miroooo-x2-sonic-electric-toothbrush-ipx7-waterproof-submersion.webp" alt="Miroooo X2 Sonic Electric Toothbrush IPX7 Full Immersion Waterproof Design" width="1000" height="1000" loading="eager" decoding="async" />
           </div>
           <div class="miroooo-gallery__slide" data-media-type="image" data-index="6">
-            <img src="/assets_ref/x2/gallery/miroooo-x2-sonic-electric-toothbrush-45-degree-bass-sweep-action.webp" alt="Miroooo X2 Sonic Electric Toothbrush 45-Degree Bass Sweep Method Sonic Vibration" width="1000" height="1000" loading="lazy" decoding="async" />
+            <img src="/assets_ref/x2/gallery/miroooo-x2-sonic-electric-toothbrush-45-degree-bass-sweep-action.webp" alt="Miroooo X2 Sonic Electric Toothbrush 45-Degree Bass Sweep Method Sonic Vibration" width="1000" height="1000" loading="eager" decoding="async" />
           </div>
           <div class="miroooo-gallery__slide" data-media-type="image" data-index="7">
-            <img src="/assets_ref/x2/gallery/miroooo-x2-sonic-electric-toothbrush-usbc-fast-charging-port.webp" alt="Miroooo X2 Sonic Electric Toothbrush Concealed USB-C Fast Charging Port" width="1000" height="1000" loading="lazy" decoding="async" />
+            <img src="/assets_ref/x2/gallery/miroooo-x2-sonic-electric-toothbrush-usbc-fast-charging-port.webp" alt="Miroooo X2 Sonic Electric Toothbrush Concealed USB-C Fast Charging Port" width="1000" height="1000" loading="eager" decoding="async" />
           </div>
           <div class="miroooo-gallery__slide" data-media-type="image" data-index="8">
-            <img src="/assets_ref/x2/gallery/miroooo-x2-sonic-electric-toothbrush-aerospace-aluminum-body.webp" alt="Miroooo X2 Sonic Electric Toothbrush Aerospace Grade Aluminum Alloy Finish" width="1000" height="1000" loading="lazy" decoding="async" />
+            <img src="/assets_ref/x2/gallery/miroooo-x2-sonic-electric-toothbrush-aerospace-aluminum-body.webp" alt="Miroooo X2 Sonic Electric Toothbrush Aerospace Grade Aluminum Alloy Finish" width="1000" height="1000" loading="eager" decoding="async" />
           </div>
           <div class="miroooo-gallery__slide" data-media-type="image" data-index="9">
-            <img src="/assets_ref/x2/gallery/miroooo-x2-sonic-electric-toothbrush-handbag-travel-case.webp" alt="Miroooo X2 Sonic Electric Toothbrush Portable Luxury Travel Case in Handbag" width="1000" height="1000" loading="lazy" decoding="async" />
+            <img src="/assets_ref/x2/gallery/miroooo-x2-sonic-electric-toothbrush-handbag-travel-case.webp" alt="Miroooo X2 Sonic Electric Toothbrush Portable Luxury Travel Case in Handbag" width="1000" height="1000" loading="eager" decoding="async" />
           </div>
           <div class="miroooo-gallery__slide" data-media-type="image" data-index="10">
-            <img src="/assets_ref/x2/gallery/miroooo-x2-sonic-electric-toothbrush-ventilated-travel-case.webp" alt="Miroooo X2 Sonic Electric Toothbrush Ventilated Protective Travel Case" width="1000" height="1000" loading="lazy" decoding="async" />
+            <img src="/assets_ref/x2/gallery/miroooo-x2-sonic-electric-toothbrush-ventilated-travel-case.webp" alt="Miroooo X2 Sonic Electric Toothbrush Ventilated Protective Travel Case" width="1000" height="1000" loading="eager" decoding="async" />
           </div>
           <div class="miroooo-gallery__slide" data-media-type="image" data-index="11">
-            <img src="/assets_ref/x2/gallery/miroooo-x2-sonic-electric-toothbrush-smart-microchip-architecture.webp" alt="Miroooo X2 Sonic Electric Toothbrush Intelligent Microprocessor and Internal Circuitry" width="1000" height="1000" loading="lazy" decoding="async" />
+            <img src="/assets_ref/x2/gallery/miroooo-x2-sonic-electric-toothbrush-smart-microchip-architecture.webp" alt="Miroooo X2 Sonic Electric Toothbrush Intelligent Microprocessor and Internal Circuitry" width="1000" height="1000" loading="eager" decoding="async" />
           </div>
           <div class="miroooo-gallery__slide" data-media-type="image" data-index="12">
-            <img src="/assets_ref/x2/gallery/miroooo-x2-sonic-electric-toothbrush-precision-bristle-head-halo-ring.webp" alt="Miroooo X2 Sonic Electric Toothbrush Precision DuPont Bristle Head and LED Halo Ring" width="1000" height="1000" loading="lazy" decoding="async" />
+            <img src="/assets_ref/x2/gallery/miroooo-x2-sonic-electric-toothbrush-precision-bristle-head-halo-ring.webp" alt="Miroooo X2 Sonic Electric Toothbrush Precision DuPont Bristle Head and LED Halo Ring" width="1000" height="1000" loading="eager" decoding="async" />
           </div>
           <div class="miroooo-gallery__slide" data-media-type="image" data-index="13">
-            <img src="/assets_ref/x2/gallery/miroooo-x2-sonic-electric-toothbrush-dupont-bristle-head-macro.webp" alt="Miroooo X2 Sonic Electric Toothbrush DuPont Multi-Action Replacement Bristle Head" width="1000" height="1000" loading="lazy" decoding="async" />
+            <img src="/assets_ref/x2/gallery/miroooo-x2-sonic-electric-toothbrush-dupont-bristle-head-macro.webp" alt="Miroooo X2 Sonic Electric Toothbrush DuPont Multi-Action Replacement Bristle Head" width="1000" height="1000" loading="eager" decoding="async" />
           </div>
           <div class="miroooo-gallery__slide" data-media-type="image" data-index="14">
-            <img src="/assets_ref/x2/gallery/miroooo-x2-sonic-electric-toothbrush-silver-in-hand.webp" alt="Miroooo X2 Sonic Electric Toothbrush Silver Dynamic Grip in Hand" width="1000" height="1000" loading="lazy" decoding="async" />
+            <img src="/assets_ref/x2/gallery/miroooo-x2-sonic-electric-toothbrush-silver-in-hand.webp" alt="Miroooo X2 Sonic Electric Toothbrush Silver Dynamic Grip in Hand" width="1000" height="1000" loading="eager" decoding="async" />
           </div>
           <div class="miroooo-gallery__slide" data-media-type="image" data-index="15">
-            <img src="/assets_ref/x2/gallery/miroooo-x2-sonic-electric-toothbrush-smile-coach-app.webp" alt="Miroooo X2 Sonic Electric Toothbrush and Smile Coach Companion App on Smartphone" width="1000" height="1000" loading="lazy" decoding="async" />
+            <img src="/assets_ref/x2/gallery/miroooo-x2-sonic-electric-toothbrush-smile-coach-app.webp" alt="Miroooo X2 Sonic Electric Toothbrush and Smile Coach Companion App on Smartphone" width="1000" height="1000" loading="eager" decoding="async" />
           </div>
         </div>
 
@@ -2967,11 +2995,11 @@ theme.variantStrings = {
   <div class="product__title">
     <a href="#shopify-section-template--24203751129433__reviews" class="product__reviews-badge inline-flex items-center gap-2 mb-2 no-underline hover:opacity-80 transition-opacity cursor-pointer" style="display: inline-flex; align-items: center; gap: 8px; margin-bottom: 8px; text-decoration: none;">
       <div style="display: inline-flex; align-items: center; gap: 3px;" aria-hidden="true">
-        <img src="/assets/star.png" alt="★" width="16" height="15" style="width: 16px; height: 15px; display: block; object-fit: contain;" loading="lazy" decoding="async" />
-        <img src="/assets/star.png" alt="★" width="16" height="15" style="width: 16px; height: 15px; display: block; object-fit: contain;" loading="lazy" decoding="async" />
-        <img src="/assets/star.png" alt="★" width="16" height="15" style="width: 16px; height: 15px; display: block; object-fit: contain;" loading="lazy" decoding="async" />
-        <img src="/assets/star.png" alt="★" width="16" height="15" style="width: 16px; height: 15px; display: block; object-fit: contain;" loading="lazy" decoding="async" />
-        <img src="/assets/star.png" alt="★" width="16" height="15" style="width: 16px; height: 15px; display: block; object-fit: contain;" loading="lazy" decoding="async" />
+        <img src="/assets/star.png" alt="★" width="16" height="15" style="width: 16px; height: 15px; display: block; object-fit: contain;" loading="eager" fetchpriority="high" decoding="async" />
+        <img src="/assets/star.png" alt="★" width="16" height="15" style="width: 16px; height: 15px; display: block; object-fit: contain;" loading="eager" fetchpriority="high" decoding="async" />
+        <img src="/assets/star.png" alt="★" width="16" height="15" style="width: 16px; height: 15px; display: block; object-fit: contain;" loading="eager" fetchpriority="high" decoding="async" />
+        <img src="/assets/star.png" alt="★" width="16" height="15" style="width: 16px; height: 15px; display: block; object-fit: contain;" loading="eager" fetchpriority="high" decoding="async" />
+        <img src="/assets/star.png" alt="★" width="16" height="15" style="width: 16px; height: 15px; display: block; object-fit: contain;" loading="eager" fetchpriority="high" decoding="async" />
       </div>
       <span class="product__reviews-text" style="color: rgba(255, 255, 255, 0.9); font-size: 13px; font-weight: 700; letter-spacing: 0.04em; text-transform: uppercase;">4.9 · TRUSTED BY 40,000+ CUSTOMERS</span>
     </a>
@@ -3651,8 +3679,8 @@ theme.variantStrings = {
           <li style="margin: 0;">1x USB-C fast charging cable (power adapter not included)</li>
           <li style="margin: 0;">1x Luxury gift packaging box &amp; user manual</li>
         </ul>
-        <div style="margin-top: 14px; border-radius: 12px; overflow: hidden; background: #000000; border: 1px solid rgba(255,255,255,0.08);">
-          <img src="/assets_ref/x2/gallery/miroooo-x2-sonic-electric-toothbrush-complete-set-packaging.webp" alt="Brush X2 Package Contents &amp; Gift Box" style="width: 100%; height: auto; display: block; border-radius: 12px; margin: 0;" loading="lazy" decoding="async" />
+        <div class="desc-media-loading" style="margin-top: 14px; border-radius: 12px; overflow: hidden; background: #000000; border: 1px solid rgba(255,255,255,0.08);">
+          <img src="/assets_ref/x2/gallery/miroooo-x2-sonic-electric-toothbrush-complete-set-packaging.webp" alt="Brush X2 Package Contents &amp; Gift Box" style="width: 100%; height: auto; display: block; border-radius: 12px; margin: 0;" loading="eager" decoding="async" />
         </div>
       </div>
     </details>
@@ -4551,7 +4579,7 @@ theme.variantStrings = {
       <!-- Story 1: Eleanor H. -->
       <article class="x2-story-card" data-story-id="1">
         <div class="x2-story-img-wrap">
-          <img src="/assets_ref/x2/stories/miroooo-x2-customer-review-story-1.webp" alt="Miroooo Brush X2 review by Eleanor H." class="x2-story-img" loading="lazy" decoding="async" />
+          <img src="/assets_ref/x2/stories/miroooo-x2-customer-review-story-1.webp" alt="Miroooo Brush X2 review by Eleanor H." class="x2-story-img" loading="eager" decoding="async" />
           <span class="x2-story-badge-overlay">Whitening Mode</span>
           <div class="x2-story-zoom-icon" aria-hidden="true">
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line><line x1="11" y1="8" x2="11" y2="14"></line><line x1="8" y1="11" x2="14" y2="11"></line></svg>
@@ -4577,7 +4605,7 @@ theme.variantStrings = {
       <!-- Story 2: Gemma W. -->
       <article class="x2-story-card" data-story-id="2">
         <div class="x2-story-img-wrap">
-          <img src="/assets_ref/x2/stories/miroooo-x2-customer-review-story-2.webp" alt="Miroooo Brush X2 review by Gemma W." class="x2-story-img" loading="lazy" decoding="async" />
+          <img src="/assets_ref/x2/stories/miroooo-x2-customer-review-story-2.webp" alt="Miroooo Brush X2 review by Gemma W." class="x2-story-img" loading="eager" decoding="async" />
           <span class="x2-story-badge-overlay">Pressure Sensor</span>
           <div class="x2-story-zoom-icon" aria-hidden="true">
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line><line x1="11" y1="8" x2="11" y2="14"></line><line x1="8" y1="11" x2="14" y2="11"></line></svg>
@@ -4603,7 +4631,7 @@ theme.variantStrings = {
       <!-- Story 3: Sophie T. -->
       <article class="x2-story-card" data-story-id="3">
         <div class="x2-story-img-wrap">
-          <img src="/assets_ref/x2/stories/miroooo-x2-customer-review-story-3.webp" alt="Miroooo Brush X2 review by Sophie T." class="x2-story-img" loading="lazy" decoding="async" />
+          <img src="/assets_ref/x2/stories/miroooo-x2-customer-review-story-3.webp" alt="Miroooo Brush X2 review by Sophie T." class="x2-story-img" loading="eager" decoding="async" />
           <span class="x2-story-badge-overlay">Deep Clean</span>
           <div class="x2-story-zoom-icon" aria-hidden="true">
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line><line x1="11" y1="8" x2="11" y2="14"></line><line x1="8" y1="11" x2="14" y2="11"></line></svg>
@@ -4629,7 +4657,7 @@ theme.variantStrings = {
       <!-- Story 4: Dr. Alistair M. -->
       <article class="x2-story-card" data-story-id="4">
         <div class="x2-story-img-wrap">
-          <img src="/assets_ref/x2/stories/miroooo-x2-customer-review-story-4.webp" alt="Miroooo Brush X2 review by Dr. Alistair M." class="x2-story-img" loading="lazy" decoding="async" />
+          <img src="/assets_ref/x2/stories/miroooo-x2-customer-review-story-4.webp" alt="Miroooo Brush X2 review by Dr. Alistair M." class="x2-story-img" loading="eager" decoding="async" />
           <span class="x2-story-badge-overlay">90-Day Battery</span>
           <div class="x2-story-zoom-icon" aria-hidden="true">
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line><line x1="11" y1="8" x2="11" y2="14"></line><line x1="8" y1="11" x2="14" y2="11"></line></svg>
@@ -4655,7 +4683,7 @@ theme.variantStrings = {
       <!-- Story 5: Charlotte K. -->
       <article class="x2-story-card" data-story-id="5">
         <div class="x2-story-img-wrap">
-          <img src="/assets_ref/x2/stories/miroooo-x2-customer-review-story-5.webp" alt="Miroooo Brush X2 review by Charlotte K." class="x2-story-img" loading="lazy" decoding="async" />
+          <img src="/assets_ref/x2/stories/miroooo-x2-customer-review-story-5.webp" alt="Miroooo Brush X2 review by Charlotte K." class="x2-story-img" loading="eager" decoding="async" />
           <span class="x2-story-badge-overlay">DuPont Bristles</span>
           <div class="x2-story-zoom-icon" aria-hidden="true">
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line><line x1="11" y1="8" x2="11" y2="14"></line><line x1="8" y1="11" x2="14" y2="11"></line></svg>
@@ -4681,7 +4709,7 @@ theme.variantStrings = {
       <!-- Story 6: Hannah P. -->
       <article class="x2-story-card" data-story-id="6">
         <div class="x2-story-img-wrap">
-          <img src="/assets_ref/x2/stories/miroooo-x2-customer-review-story-6.webp" alt="Miroooo Brush X2 Rose Pink Sonic Electric Toothbrush verified customer review by Hannah P." class="x2-story-img" loading="lazy" decoding="async" />
+          <img src="/assets_ref/x2/stories/miroooo-x2-customer-review-story-6.webp" alt="Miroooo Brush X2 Rose Pink Sonic Electric Toothbrush verified customer review by Hannah P." class="x2-story-img" loading="eager" decoding="async" />
           <span class="x2-story-badge-overlay">&lt;50 dB Quiet</span>
           <div class="x2-story-zoom-icon" aria-hidden="true">
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line><line x1="11" y1="8" x2="11" y2="14"></line><line x1="8" y1="11" x2="14" y2="11"></line></svg>
@@ -4707,7 +4735,7 @@ theme.variantStrings = {
       <!-- Story 7: James B. -->
       <article class="x2-story-card" data-story-id="7">
         <div class="x2-story-img-wrap">
-          <img src="/assets_ref/x2/stories/miroooo-x2-customer-review-story-7.webp" alt="Miroooo Brush X2 review by James B." class="x2-story-img" loading="lazy" decoding="async" />
+          <img src="/assets_ref/x2/stories/miroooo-x2-customer-review-story-7.webp" alt="Miroooo Brush X2 review by James B." class="x2-story-img" loading="eager" decoding="async" />
           <span class="x2-story-badge-overlay">Gum Defence</span>
           <div class="x2-story-zoom-icon" aria-hidden="true">
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line><line x1="11" y1="8" x2="11" y2="14"></line><line x1="8" y1="11" x2="14" y2="11"></line></svg>
@@ -4734,7 +4762,7 @@ theme.variantStrings = {
       <!-- Story 1 (Clone) -->
       <article class="x2-story-card" data-story-id="1">
         <div class="x2-story-img-wrap">
-          <img src="/assets_ref/x2/stories/miroooo-x2-customer-review-story-1.webp" alt="Miroooo Brush X2 review by Eleanor H." class="x2-story-img" loading="lazy" decoding="async" />
+          <img src="/assets_ref/x2/stories/miroooo-x2-customer-review-story-1.webp" alt="Miroooo Brush X2 review by Eleanor H." class="x2-story-img" loading="eager" decoding="async" />
           <span class="x2-story-badge-overlay">Whitening Mode</span>
           <div class="x2-story-zoom-icon" aria-hidden="true">
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line><line x1="11" y1="8" x2="11" y2="14"></line><line x1="8" y1="11" x2="14" y2="11"></line></svg>
@@ -4760,7 +4788,7 @@ theme.variantStrings = {
       <!-- Story 2 (Clone) -->
       <article class="x2-story-card" data-story-id="2">
         <div class="x2-story-img-wrap">
-          <img src="/assets_ref/x2/stories/miroooo-x2-customer-review-story-2.webp" alt="Miroooo Brush X2 review by Gemma W." class="x2-story-img" loading="lazy" decoding="async" />
+          <img src="/assets_ref/x2/stories/miroooo-x2-customer-review-story-2.webp" alt="Miroooo Brush X2 review by Gemma W." class="x2-story-img" loading="eager" decoding="async" />
           <span class="x2-story-badge-overlay">Pressure Sensor</span>
           <div class="x2-story-zoom-icon" aria-hidden="true">
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line><line x1="11" y1="8" x2="11" y2="14"></line><line x1="8" y1="11" x2="14" y2="11"></line></svg>
@@ -4786,7 +4814,7 @@ theme.variantStrings = {
       <!-- Story 3 (Clone) -->
       <article class="x2-story-card" data-story-id="3">
         <div class="x2-story-img-wrap">
-          <img src="/assets_ref/x2/stories/miroooo-x2-customer-review-story-3.webp" alt="Miroooo Brush X2 review by Sophie T." class="x2-story-img" loading="lazy" decoding="async" />
+          <img src="/assets_ref/x2/stories/miroooo-x2-customer-review-story-3.webp" alt="Miroooo Brush X2 review by Sophie T." class="x2-story-img" loading="eager" decoding="async" />
           <span class="x2-story-badge-overlay">Deep Clean</span>
           <div class="x2-story-zoom-icon" aria-hidden="true">
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line><line x1="11" y1="8" x2="11" y2="14"></line><line x1="8" y1="11" x2="14" y2="11"></line></svg>
@@ -4812,7 +4840,7 @@ theme.variantStrings = {
       <!-- Story 4 (Clone) -->
       <article class="x2-story-card" data-story-id="4">
         <div class="x2-story-img-wrap">
-          <img src="/assets_ref/x2/stories/miroooo-x2-customer-review-story-4.webp" alt="Miroooo Brush X2 review by Dr. Alistair M." class="x2-story-img" loading="lazy" decoding="async" />
+          <img src="/assets_ref/x2/stories/miroooo-x2-customer-review-story-4.webp" alt="Miroooo Brush X2 review by Dr. Alistair M." class="x2-story-img" loading="eager" decoding="async" />
           <span class="x2-story-badge-overlay">90-Day Battery</span>
           <div class="x2-story-zoom-icon" aria-hidden="true">
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line><line x1="11" y1="8" x2="11" y2="14"></line><line x1="8" y1="11" x2="14" y2="11"></line></svg>
@@ -4838,7 +4866,7 @@ theme.variantStrings = {
       <!-- Story 5 (Clone) -->
       <article class="x2-story-card" data-story-id="5">
         <div class="x2-story-img-wrap">
-          <img src="/assets_ref/x2/stories/miroooo-x2-customer-review-story-5.webp" alt="Miroooo Brush X2 review by Charlotte K." class="x2-story-img" loading="lazy" decoding="async" />
+          <img src="/assets_ref/x2/stories/miroooo-x2-customer-review-story-5.webp" alt="Miroooo Brush X2 review by Charlotte K." class="x2-story-img" loading="eager" decoding="async" />
           <span class="x2-story-badge-overlay">DuPont Bristles</span>
           <div class="x2-story-zoom-icon" aria-hidden="true">
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line><line x1="11" y1="8" x2="11" y2="14"></line><line x1="8" y1="11" x2="14" y2="11"></line></svg>
@@ -4864,7 +4892,7 @@ theme.variantStrings = {
       <!-- Story 6 (Clone) -->
       <article class="x2-story-card" data-story-id="6">
         <div class="x2-story-img-wrap">
-          <img src="/assets_ref/x2/stories/miroooo-x2-customer-review-story-6.webp" alt="Miroooo Brush X2 Rose Pink Sonic Electric Toothbrush verified customer review by Hannah P." class="x2-story-img" loading="lazy" decoding="async" />
+          <img src="/assets_ref/x2/stories/miroooo-x2-customer-review-story-6.webp" alt="Miroooo Brush X2 Rose Pink Sonic Electric Toothbrush verified customer review by Hannah P." class="x2-story-img" loading="eager" decoding="async" />
           <span class="x2-story-badge-overlay">&lt;50 dB Quiet</span>
           <div class="x2-story-zoom-icon" aria-hidden="true">
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line><line x1="11" y1="8" x2="11" y2="14"></line><line x1="8" y1="11" x2="14" y2="11"></line></svg>
@@ -4890,7 +4918,7 @@ theme.variantStrings = {
       <!-- Story 7 (Clone) -->
       <article class="x2-story-card" data-story-id="7">
         <div class="x2-story-img-wrap">
-          <img src="/assets_ref/x2/stories/miroooo-x2-customer-review-story-7.webp" alt="Miroooo Brush X2 review by James B." class="x2-story-img" loading="lazy" decoding="async" />
+          <img src="/assets_ref/x2/stories/miroooo-x2-customer-review-story-7.webp" alt="Miroooo Brush X2 review by James B." class="x2-story-img" loading="eager" decoding="async" />
           <span class="x2-story-badge-overlay">Gum Defence</span>
           <div class="x2-story-zoom-icon" aria-hidden="true">
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line><line x1="11" y1="8" x2="11" y2="14"></line><line x1="8" y1="11" x2="14" y2="11"></line></svg>
@@ -4917,7 +4945,7 @@ theme.variantStrings = {
       <!-- Story 1 (Clone 2) -->
       <article class="x2-story-card" data-story-id="1">
         <div class="x2-story-img-wrap">
-          <img src="/assets_ref/x2/stories/miroooo-x2-customer-review-story-1.webp" alt="Miroooo Brush X2 review by Eleanor H." class="x2-story-img" loading="lazy" decoding="async" />
+          <img src="/assets_ref/x2/stories/miroooo-x2-customer-review-story-1.webp" alt="Miroooo Brush X2 review by Eleanor H." class="x2-story-img" loading="eager" decoding="async" />
           <span class="x2-story-badge-overlay">Whitening Mode</span>
           <div class="x2-story-zoom-icon" aria-hidden="true">
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line><line x1="11" y1="8" x2="11" y2="14"></line><line x1="8" y1="11" x2="14" y2="11"></line></svg>
@@ -4943,7 +4971,7 @@ theme.variantStrings = {
       <!-- Story 2 (Clone 2) -->
       <article class="x2-story-card" data-story-id="2">
         <div class="x2-story-img-wrap">
-          <img src="/assets_ref/x2/stories/miroooo-x2-customer-review-story-2.webp" alt="Miroooo Brush X2 review by Gemma W." class="x2-story-img" loading="lazy" decoding="async" />
+          <img src="/assets_ref/x2/stories/miroooo-x2-customer-review-story-2.webp" alt="Miroooo Brush X2 review by Gemma W." class="x2-story-img" loading="eager" decoding="async" />
           <span class="x2-story-badge-overlay">Pressure Sensor</span>
           <div class="x2-story-zoom-icon" aria-hidden="true">
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line><line x1="11" y1="8" x2="11" y2="14"></line><line x1="8" y1="11" x2="14" y2="11"></line></svg>
@@ -4969,7 +4997,7 @@ theme.variantStrings = {
       <!-- Story 3 (Clone 2) -->
       <article class="x2-story-card" data-story-id="3">
         <div class="x2-story-img-wrap">
-          <img src="/assets_ref/x2/stories/miroooo-x2-customer-review-story-3.webp" alt="Miroooo Brush X2 review by Sophie T." class="x2-story-img" loading="lazy" decoding="async" />
+          <img src="/assets_ref/x2/stories/miroooo-x2-customer-review-story-3.webp" alt="Miroooo Brush X2 review by Sophie T." class="x2-story-img" loading="eager" decoding="async" />
           <span class="x2-story-badge-overlay">Deep Clean</span>
           <div class="x2-story-zoom-icon" aria-hidden="true">
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line><line x1="11" y1="8" x2="11" y2="14"></line><line x1="8" y1="11" x2="14" y2="11"></line></svg>
@@ -4995,7 +5023,7 @@ theme.variantStrings = {
       <!-- Story 4 (Clone 2) -->
       <article class="x2-story-card" data-story-id="4">
         <div class="x2-story-img-wrap">
-          <img src="/assets_ref/x2/stories/miroooo-x2-customer-review-story-4.webp" alt="Miroooo Brush X2 review by Dr. Alistair M." class="x2-story-img" loading="lazy" decoding="async" />
+          <img src="/assets_ref/x2/stories/miroooo-x2-customer-review-story-4.webp" alt="Miroooo Brush X2 review by Dr. Alistair M." class="x2-story-img" loading="eager" decoding="async" />
           <span class="x2-story-badge-overlay">90-Day Battery</span>
           <div class="x2-story-zoom-icon" aria-hidden="true">
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line><line x1="11" y1="8" x2="11" y2="14"></line><line x1="8" y1="11" x2="14" y2="11"></line></svg>
@@ -5021,7 +5049,7 @@ theme.variantStrings = {
       <!-- Story 5 (Clone 2) -->
       <article class="x2-story-card" data-story-id="5">
         <div class="x2-story-img-wrap">
-          <img src="/assets_ref/x2/stories/miroooo-x2-customer-review-story-5.webp" alt="Miroooo Brush X2 review by Charlotte K." class="x2-story-img" loading="lazy" decoding="async" />
+          <img src="/assets_ref/x2/stories/miroooo-x2-customer-review-story-5.webp" alt="Miroooo Brush X2 review by Charlotte K." class="x2-story-img" loading="eager" decoding="async" />
           <span class="x2-story-badge-overlay">DuPont Bristles</span>
           <div class="x2-story-zoom-icon" aria-hidden="true">
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line><line x1="11" y1="8" x2="11" y2="14"></line><line x1="8" y1="11" x2="14" y2="11"></line></svg>
@@ -5047,7 +5075,7 @@ theme.variantStrings = {
       <!-- Story 6 (Clone 2) -->
       <article class="x2-story-card" data-story-id="6">
         <div class="x2-story-img-wrap">
-          <img src="/assets_ref/x2/stories/miroooo-x2-customer-review-story-6.webp" alt="Miroooo Brush X2 Rose Pink Sonic Electric Toothbrush verified customer review by Hannah P." class="x2-story-img" loading="lazy" decoding="async" />
+          <img src="/assets_ref/x2/stories/miroooo-x2-customer-review-story-6.webp" alt="Miroooo Brush X2 Rose Pink Sonic Electric Toothbrush verified customer review by Hannah P." class="x2-story-img" loading="eager" decoding="async" />
           <span class="x2-story-badge-overlay">&lt;50 dB Quiet</span>
           <div class="x2-story-zoom-icon" aria-hidden="true">
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line><line x1="11" y1="8" x2="11" y2="14"></line><line x1="8" y1="11" x2="14" y2="11"></line></svg>
@@ -5073,7 +5101,7 @@ theme.variantStrings = {
       <!-- Story 7 (Clone 2) -->
       <article class="x2-story-card" data-story-id="7">
         <div class="x2-story-img-wrap">
-          <img src="/assets_ref/x2/stories/miroooo-x2-customer-review-story-7.webp" alt="Miroooo Brush X2 review by James B." class="x2-story-img" loading="lazy" decoding="async" />
+          <img src="/assets_ref/x2/stories/miroooo-x2-customer-review-story-7.webp" alt="Miroooo Brush X2 review by James B." class="x2-story-img" loading="eager" decoding="async" />
           <span class="x2-story-badge-overlay">Gum Defence</span>
           <div class="x2-story-zoom-icon" aria-hidden="true">
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line><line x1="11" y1="8" x2="11" y2="14"></line><line x1="8" y1="11" x2="14" y2="11"></line></svg>
@@ -5484,8 +5512,8 @@ theme.variantStrings = {
 
       <!-- Image 1 (Right on Desktop, Top on Phone) -->
       <div style="flex: 1; width: 100%; box-sizing: border-box;">
-        <div style="position: relative; width: 100%; border-radius: 20px; overflow: hidden; background: #0d0d0d; border: 1px solid rgba(255,255,255,0.1); box-shadow: 0 20px 50px rgba(0,0,0,0.8);">
-          <img src="/assets_ref/x2/miroooo-x2-sonic-electric-toothbrush-portable-luxury-travel-case.webp" alt="Miroooo Brush X2 Sonic Electric Toothbrush Portable Luxury Travel Case with Magnetic Closure" style="width: 100%; height: auto; display: block; object-fit: cover;" loading="lazy" decoding="async" />
+        <div class="desc-media-loading" style="position: relative; width: 100%; border-radius: 20px; overflow: hidden; background: #0d0d0d; border: 1px solid rgba(255,255,255,0.1); box-shadow: 0 20px 50px rgba(0,0,0,0.8);">
+          <img src="/assets_ref/x2/miroooo-x2-sonic-electric-toothbrush-portable-luxury-travel-case.webp" alt="Miroooo Brush X2 Sonic Electric Toothbrush Portable Luxury Travel Case with Magnetic Closure" style="width: 100%; height: auto; display: block; object-fit: cover;" loading="eager" decoding="async" />
         </div>
       </div>
 
@@ -5505,8 +5533,8 @@ theme.variantStrings = {
 
       <!-- Image 2 (Left on Desktop, Top on Phone) -->
       <div style="flex: 1; width: 100%; box-sizing: border-box;">
-        <div style="position: relative; width: 100%; border-radius: 20px; overflow: hidden; background: #0d0d0d; border: 1px solid rgba(255,255,255,0.1); box-shadow: 0 20px 50px rgba(0,0,0,0.8);">
-          <img src="/assets_ref/x2/miroooo-x2-sonic-electric-toothbrush-instant-energy-boost.webp" alt="Miroooo Brush X2 Sonic Electric Toothbrush Instant Energy Boost 90-Day Long Battery Life" style="width: 100%; height: auto; display: block; object-fit: cover;" loading="lazy" decoding="async" />
+        <div class="desc-media-loading" style="position: relative; width: 100%; border-radius: 20px; overflow: hidden; background: #0d0d0d; border: 1px solid rgba(255,255,255,0.1); box-shadow: 0 20px 50px rgba(0,0,0,0.8);">
+          <img src="/assets_ref/x2/miroooo-x2-sonic-electric-toothbrush-instant-energy-boost.webp" alt="Miroooo Brush X2 Sonic Electric Toothbrush Instant Energy Boost 90-Day Long Battery Life" style="width: 100%; height: auto; display: block; object-fit: cover;" loading="eager" decoding="async" />
         </div>
       </div>
 
@@ -5573,7 +5601,7 @@ theme.variantStrings = {
 <!-- <div id="x2-section-ipx7" class="shopify-section" style="background: #000000; color: #ffffff; width: 100%; overflow: hidden; padding: clamp(2rem, 4vw, 4rem) 0; box-sizing: border-box; border-top: 1px solid rgba(255,255,255,0.06);">
   <div style="max-width: 1320px; margin: 0 auto; padding: 0 clamp(16px, 4vw, 40px); box-sizing: border-box;">
     <div style="position: relative; width: 100%; border-radius: 20px; overflow: hidden; background: #000000; box-shadow: 0 20px 50px rgba(0,0,0,0.8);">
-      <img src="/assets_ref/x2/pure_black/x2_ipx7.jpg" alt="Miroooo X2 IPX7 Waterproof" style="width: 100%; height: auto; display: block; object-fit: contain;" loading="lazy" decoding="async" />
+      <img src="/assets_ref/x2/pure_black/x2_ipx7.jpg" alt="Miroooo X2 IPX7 Waterproof" style="width: 100%; height: auto; display: block; object-fit: contain;" loading="eager" decoding="async" />
     </div>
   </div>
 </div> -->
@@ -5798,7 +5826,7 @@ theme.variantStrings = {
             <div class="x2-mode-card-media">
               <picture>
                 <source srcset="/assets_ref/x2/miroooo-x2-whitening-mode-blue.webp" type="image/webp" />
-                <img class="x2-mode-img" src="/assets_ref/x2/miroooo-x2-whitening-mode-blue.png" alt="Brush X2 Whitening Mode High Frequency Sonic Blue LED" loading="lazy" decoding="async" />
+                <img class="x2-mode-img" src="/assets_ref/x2/miroooo-x2-whitening-mode-blue.png" alt="Brush X2 Whitening Mode High Frequency Sonic Blue LED" loading="eager" decoding="async" />
               </picture>
             </div>
           </div>
@@ -5823,7 +5851,7 @@ theme.variantStrings = {
             <div class="x2-mode-card-media">
               <picture>
                 <source srcset="/assets_ref/x2/miroooo-x2-standard-mode-purple.webp" type="image/webp" />
-                <img class="x2-mode-img" src="/assets_ref/x2/miroooo-x2-standard-mode-purple.png" alt="Brush X2 Standard Mode Gentle Plaque Removal Purple LED" loading="lazy" decoding="async" />
+                <img class="x2-mode-img" src="/assets_ref/x2/miroooo-x2-standard-mode-purple.png" alt="Brush X2 Standard Mode Gentle Plaque Removal Purple LED" loading="eager" decoding="async" />
               </picture>
             </div>
           </div>
@@ -5848,7 +5876,7 @@ theme.variantStrings = {
             <div class="x2-mode-card-media">
               <picture>
                 <source srcset="/assets_ref/x2/miroooo-x2-deepclean-mode-green.webp" type="image/webp" />
-                <img class="x2-mode-img" src="/assets_ref/x2/miroooo-x2-deepclean-mode-green.png" alt="Brush X2 Deep Clean Intensive Ultrasonic Green LED" loading="lazy" decoding="async" />
+                <img class="x2-mode-img" src="/assets_ref/x2/miroooo-x2-deepclean-mode-green.png" alt="Brush X2 Deep Clean Intensive Ultrasonic Green LED" loading="eager" decoding="async" />
               </picture>
             </div>
           </div>
@@ -5949,7 +5977,7 @@ theme.variantStrings = {
       <!-- Function 1: STANDARD -->
       <div class="function-item" style="display: flex; flex-direction: column; align-items: center; text-align: center; gap: 1.25rem;">
         <div style="width: clamp(140px, 18vw, 220px); height: clamp(140px, 18vw, 220px); border-radius: 50%; overflow: hidden; background: #111111; display: flex; align-items: center; justify-content: center; box-shadow: 0 10px 30px rgba(0,0,0,0.6); border: 1px solid rgba(255,255,255,0.08); transition: transform 0.3s ease;">
-          <img id="x2-mode-img-standard" src="/assets_ref/x2/modes/miroooo-x2-sonic-standard-cleaning-mode-green-led.webp" alt="Miroooo Brush X2 Sonic Electric Toothbrush Standard Cleaning Mode with Green LED Halo Ring" style="width: 100%; height: 100%; object-fit: cover; display: block;" loading="lazy" decoding="async" />
+          <img id="x2-mode-img-standard" src="/assets_ref/x2/modes/miroooo-x2-sonic-standard-cleaning-mode-green-led.webp" alt="Miroooo Brush X2 Sonic Electric Toothbrush Standard Cleaning Mode with Green LED Halo Ring" style="width: 100%; height: 100%; object-fit: cover; display: block;" loading="eager" decoding="async" />
         </div>
         <div>
           <h3 style="font-family: 'GFS Didot', 'Playfair Display', Georgia, serif; font-size: clamp(1.1rem, 1.4vw, 1.35rem); font-weight: 600; color: #ffffff; letter-spacing: 0.08em; text-transform: uppercase; margin: 0 0 0.75rem 0;">
@@ -5964,7 +5992,7 @@ theme.variantStrings = {
       <!-- Function 2: WHITENING -->
       <div class="function-item" style="display: flex; flex-direction: column; align-items: center; text-align: center; gap: 1.25rem;">
         <div style="width: clamp(140px, 18vw, 220px); height: clamp(140px, 18vw, 220px); border-radius: 50%; overflow: hidden; background: #111111; display: flex; align-items: center; justify-content: center; box-shadow: 0 10px 30px rgba(0,0,0,0.6); border: 1px solid rgba(255,255,255,0.08); transition: transform 0.3s ease;">
-          <img id="x2-mode-img-whitening" src="/assets_ref/x2/modes/miroooo-x2-sonic-whitening-mode-purple-led.webp" alt="Miroooo Brush X2 Sonic Electric Toothbrush Whitening Mode with Purple LED Halo Ring" style="width: 100%; height: 100%; object-fit: cover; display: block;" loading="lazy" decoding="async" />
+          <img id="x2-mode-img-whitening" src="/assets_ref/x2/modes/miroooo-x2-sonic-whitening-mode-purple-led.webp" alt="Miroooo Brush X2 Sonic Electric Toothbrush Whitening Mode with Purple LED Halo Ring" style="width: 100%; height: 100%; object-fit: cover; display: block;" loading="eager" decoding="async" />
         </div>
         <div>
           <h3 style="font-family: 'GFS Didot', 'Playfair Display', Georgia, serif; font-size: clamp(1.1rem, 1.4vw, 1.35rem); font-weight: 600; color: #ffffff; letter-spacing: 0.08em; text-transform: uppercase; margin: 0 0 0.75rem 0;">
@@ -5979,7 +6007,7 @@ theme.variantStrings = {
       <!-- Function 3: DEEP CLEANSING -->
       <div class="function-item" style="display: flex; flex-direction: column; align-items: center; text-align: center; gap: 1.25rem;">
         <div style="width: clamp(140px, 18vw, 220px); height: clamp(140px, 18vw, 220px); border-radius: 50%; overflow: hidden; background: #111111; display: flex; align-items: center; justify-content: center; box-shadow: 0 10px 30px rgba(0,0,0,0.6); border: 1px solid rgba(255,255,255,0.08); transition: transform 0.3s ease;">
-          <img id="x2-mode-img-deep-clean" src="/assets_ref/x2/modes/miroooo-x2-sonic-deep-cleansing-mode-blue-led.webp" alt="Miroooo Brush X2 Sonic Electric Toothbrush Deep Cleansing Mode with Blue LED Halo Ring" style="width: 100%; height: 100%; object-fit: cover; display: block;" loading="lazy" decoding="async" />
+          <img id="x2-mode-img-deep-clean" src="/assets_ref/x2/modes/miroooo-x2-sonic-deep-cleansing-mode-blue-led.webp" alt="Miroooo Brush X2 Sonic Electric Toothbrush Deep Cleansing Mode with Blue LED Halo Ring" style="width: 100%; height: 100%; object-fit: cover; display: block;" loading="eager" decoding="async" />
         </div>
         <div>
           <h3 style="font-family: 'GFS Didot', 'Playfair Display', Georgia, serif; font-size: clamp(1.1rem, 1.4vw, 1.35rem); font-weight: 600; color: #ffffff; letter-spacing: 0.08em; text-transform: uppercase; margin: 0 0 0.75rem 0;">
@@ -6001,12 +6029,12 @@ theme.variantStrings = {
 <div id="x2-section-button-architecture" class="shopify-section" style="background: #000000; color: #ffffff; width: 100%; overflow: hidden; padding: clamp(2rem, 4vw, 4rem) 0; box-sizing: border-box;">
   <div style="max-width: 1320px; margin: 0 auto; padding: 0 clamp(16px, 4vw, 40px); box-sizing: border-box; display: flex; flex-direction: column; gap: clamp(2rem, 4vw, 3.5rem);">
     <!--<div style="position: relative; width: 100%; border-radius: 20px; overflow: hidden; background: #000000; box-shadow: 0 20px 50px rgba(0,0,0,0.8);">
-      <img src="/assets_ref/x2/pure_black/x2_button_glow.jpg" alt="Miroooo X2 Integrated Pressure-Sensitive Button" style="width: 100%; height: auto; display: block; object-fit: contain;" loading="lazy" decoding="async" />
+      <img src="/assets_ref/x2/pure_black/x2_button_glow.jpg" alt="Miroooo X2 Integrated Pressure-Sensitive Button" style="width: 100%; height: auto; display: block; object-fit: contain;" loading="eager" decoding="async" />
     </div>-->
     <div style="position: relative; width: 100%; border-radius: 20px; overflow: hidden; background: #000000; box-shadow: 0 20px 50px rgba(0,0,0,0.8);">
       <picture>
         <source media="(max-width: 767px)" srcset="/assets_ref/x2/pure_black/miroooo-x2-sonic-electric-toothbrush-engineering-architecture-mobile.webp" />
-        <img src="/assets_ref/x2/pure_black/x2_architecture.jpg" alt="Miroooo Brush X2 Sonic Electric Toothbrush Engineering Architecture, Smart Sensor Chip, High-Performance Motor and IPX7 Waterproof Body" style="width: 100%; height: auto; display: block; object-fit: contain;" loading="lazy" decoding="async" />
+        <img src="/assets_ref/x2/pure_black/x2_architecture.jpg" alt="Miroooo Brush X2 Sonic Electric Toothbrush Engineering Architecture, Smart Sensor Chip, High-Performance Motor and IPX7 Waterproof Body" style="width: 100%; height: auto; display: block; object-fit: contain;" loading="eager" decoding="async" />
       </picture>
     </div>
   </div>
@@ -6020,11 +6048,11 @@ theme.variantStrings = {
     <div style="position: relative; width: 100%; border-radius: 20px; overflow: hidden; background: #000000; box-shadow: 0 20px 50px rgba(0,0,0,0.8);">
       <picture>
         <source media="(max-width: 767px)" srcset="/assets_ref/x2/pure_black/miroooo-x2-sonic-electric-toothbrush-45-degree-wide-angle-sweep-vibration-mobile.webp" />
-        <img src="/assets_ref/x2/pure_black/x2_sweep_vibration.jpg" alt="Miroooo Brush X2 Sonic Electric Toothbrush 45° Wide-Angle Sweep Vibration Acoustic Motor Technology" style="width: 100%; height: auto; display: block; object-fit: contain;" loading="lazy" decoding="async" />
+        <img src="/assets_ref/x2/pure_black/x2_sweep_vibration.jpg" alt="Miroooo Brush X2 Sonic Electric Toothbrush 45° Wide-Angle Sweep Vibration Acoustic Motor Technology" style="width: 100%; height: auto; display: block; object-fit: contain;" loading="eager" decoding="async" />
       </picture>
     </div>
     <!--<div style="position: relative; width: 100%; border-radius: 20px; overflow: hidden; background: #000000; box-shadow: 0 20px 50px rgba(0,0,0,0.8);">
-      <img src="/assets_ref/x2/pure_black/x2_storage.jpg" alt="Miroooo X2 Dual Storage System" style="width: 100%; height: auto; display: block; object-fit: contain;" loading="lazy" decoding="async" />
+      <img src="/assets_ref/x2/pure_black/x2_storage.jpg" alt="Miroooo X2 Dual Storage System" style="width: 100%; height: auto; display: block; object-fit: contain;" loading="eager" decoding="async" />
     </div>-->
   </div>
 </div>
@@ -6595,7 +6623,7 @@ theme.variantStrings = {
               <h3 class="x2-comp-head-title">Brush X2</h3>
               <span class="x2-comp-head-tag">Next-Gen Flagship</span>
               <div class="x2-comp-head-img-wrap">
-                <img src="/assets_ref/x2/miroooo-x2-sonic-electric-toothbrush-model-comparison.webp" alt="Miroooo Brush X2 Sonic Electric Toothbrush with 45° Bass Sweep - Flagship Model" loading="lazy" decoding="async" />
+                <img src="/assets_ref/x2/miroooo-x2-sonic-electric-toothbrush-model-comparison.webp" alt="Miroooo Brush X2 Sonic Electric Toothbrush with 45° Bass Sweep - Flagship Model" loading="eager" decoding="async" />
               </div>
             </div>
             <!-- 1. Battery Life -->
@@ -6666,7 +6694,7 @@ theme.variantStrings = {
               <h3 class="x2-comp-head-title">Brush X1</h3>
               <span class="x2-comp-head-tag">Standard Model</span>
               <div class="x2-comp-head-img-wrap">
-                <img src="/assets_ref/x/miroooo-x1-sonic-electric-toothbrush-model-comparison.webp" alt="Miroooo Brush X1 Sonic Electric Toothbrush - Standard Model" loading="lazy" decoding="async" />
+                <img src="/assets_ref/x/miroooo-x1-sonic-electric-toothbrush-model-comparison.webp" alt="Miroooo Brush X1 Sonic Electric Toothbrush - Standard Model" loading="eager" decoding="async" />
               </div>
             </div>
             <!-- 1. Battery Life -->
@@ -6706,7 +6734,7 @@ theme.variantStrings = {
               <span class="x2-comp-m-brand-name">Brush X2</span>
               <span class="x2-comp-m-tag">Next-Gen Flagship</span>
               <div class="x2-comp-m-head-img-wrap">
-                <img src="/assets_ref/x2/miroooo-x2-sonic-electric-toothbrush-model-comparison.webp" alt="Miroooo Brush X2 Sonic Electric Toothbrush with 45° Bass Sweep - Flagship Model" class="x2-comp-m-head-img" loading="lazy" decoding="async" />
+                <img src="/assets_ref/x2/miroooo-x2-sonic-electric-toothbrush-model-comparison.webp" alt="Miroooo Brush X2 Sonic Electric Toothbrush with 45° Bass Sweep - Flagship Model" class="x2-comp-m-head-img" loading="eager" decoding="async" />
               </div>
             </div>
             <!-- Right: Brush X1 (Standard) -->
@@ -6715,7 +6743,7 @@ theme.variantStrings = {
               <span class="x2-comp-m-brand-name">Brush X1</span>
               <span class="x2-comp-m-tag x2-comp-m-tag--x1">Standard Model</span>
               <div class="x2-comp-m-head-img-wrap">
-                <img src="/assets_ref/x/miroooo-x1-sonic-electric-toothbrush-model-comparison.webp" alt="Miroooo Brush X1 Sonic Electric Toothbrush - Standard Model" class="x2-comp-m-head-img" loading="lazy" decoding="async" />
+                <img src="/assets_ref/x/miroooo-x1-sonic-electric-toothbrush-model-comparison.webp" alt="Miroooo Brush X1 Sonic Electric Toothbrush - Standard Model" class="x2-comp-m-head-img" loading="eager" decoding="async" />
               </div>
             </div>
           </div>
@@ -6864,11 +6892,11 @@ theme.variantStrings = {
       <!-- Section Header Eyebrow -->
       <div class="miroooo-section-eyebrow" style="display: flex; align-items: center; justify-content: center; gap: 8px;">
         <div style="display: inline-flex; align-items: center; gap: 3px;" aria-hidden="true">
-          <img src="/assets/star.png" alt="★" width="14" height="13" style="width: 14px; height: 13px; display: block; object-fit: contain;" loading="lazy" decoding="async" />
-          <img src="/assets/star.png" alt="★" width="14" height="13" style="width: 14px; height: 13px; display: block; object-fit: contain;" loading="lazy" decoding="async" />
-          <img src="/assets/star.png" alt="★" width="14" height="13" style="width: 14px; height: 13px; display: block; object-fit: contain;" loading="lazy" decoding="async" />
-          <img src="/assets/star.png" alt="★" width="14" height="13" style="width: 14px; height: 13px; display: block; object-fit: contain;" loading="lazy" decoding="async" />
-          <img src="/assets/star.png" alt="★" width="14" height="13" style="width: 14px; height: 13px; display: block; object-fit: contain;" loading="lazy" decoding="async" />
+          <img src="/assets/star.png" alt="★" width="14" height="13" style="width: 14px; height: 13px; display: block; object-fit: contain;" loading="eager" decoding="async" />
+          <img src="/assets/star.png" alt="★" width="14" height="13" style="width: 14px; height: 13px; display: block; object-fit: contain;" loading="eager" decoding="async" />
+          <img src="/assets/star.png" alt="★" width="14" height="13" style="width: 14px; height: 13px; display: block; object-fit: contain;" loading="eager" decoding="async" />
+          <img src="/assets/star.png" alt="★" width="14" height="13" style="width: 14px; height: 13px; display: block; object-fit: contain;" loading="eager" decoding="async" />
+          <img src="/assets/star.png" alt="★" width="14" height="13" style="width: 14px; height: 13px; display: block; object-fit: contain;" loading="eager" decoding="async" />
         </div>
         <span>Verified Customer Feedback</span>
       </div>
@@ -6882,11 +6910,11 @@ theme.variantStrings = {
           <div class="miroooo-score-col">
             <div class="miroooo-score-number">4.9</div>
             <div class="miroooo-score-stars" aria-label="4.9 out of 5 stars" style="display: inline-flex; align-items: center; gap: 4px;">
-              <img src="/assets/star.png" alt="★" width="22" height="21" class="miroooo-star-img" style="width: 22px; height: 21px; display: block; object-fit: contain;" loading="lazy" decoding="async" />
-              <img src="/assets/star.png" alt="★" width="22" height="21" class="miroooo-star-img" style="width: 22px; height: 21px; display: block; object-fit: contain;" loading="lazy" decoding="async" />
-              <img src="/assets/star.png" alt="★" width="22" height="21" class="miroooo-star-img" style="width: 22px; height: 21px; display: block; object-fit: contain;" loading="lazy" decoding="async" />
-              <img src="/assets/star.png" alt="★" width="22" height="21" class="miroooo-star-img" style="width: 22px; height: 21px; display: block; object-fit: contain;" loading="lazy" decoding="async" />
-              <img src="/assets/star.png" alt="★" width="22" height="21" class="miroooo-star-img" style="width: 22px; height: 21px; display: block; object-fit: contain;" loading="lazy" decoding="async" />
+              <img src="/assets/star.png" alt="★" width="22" height="21" class="miroooo-star-img" style="width: 22px; height: 21px; display: block; object-fit: contain;" loading="eager" decoding="async" />
+              <img src="/assets/star.png" alt="★" width="22" height="21" class="miroooo-star-img" style="width: 22px; height: 21px; display: block; object-fit: contain;" loading="eager" decoding="async" />
+              <img src="/assets/star.png" alt="★" width="22" height="21" class="miroooo-star-img" style="width: 22px; height: 21px; display: block; object-fit: contain;" loading="eager" decoding="async" />
+              <img src="/assets/star.png" alt="★" width="22" height="21" class="miroooo-star-img" style="width: 22px; height: 21px; display: block; object-fit: contain;" loading="eager" decoding="async" />
+              <img src="/assets/star.png" alt="★" width="22" height="21" class="miroooo-star-img" style="width: 22px; height: 21px; display: block; object-fit: contain;" loading="eager" decoding="async" />
             </div>
             <div class="miroooo-archive-count">Based on <strong>4,275</strong> verified reviews</div>
             <div class="miroooo-badge-guarantee">
@@ -6899,7 +6927,7 @@ theme.variantStrings = {
           <div class="miroooo-breakdown-col">
             <!-- 5 Star Row -->
             <button type="button" class="miroooo-breakdown-row" data-star="5" aria-label="Show 5 star reviews">
-              <span class="miroooo-row-label">5 <img src="/assets/star.png" alt="★" width="13" height="12" style="width: 13px; height: 12px; display: inline-block; vertical-align: middle; object-fit: contain;" loading="lazy" decoding="async" /></span>
+              <span class="miroooo-row-label">5 <img src="/assets/star.png" alt="★" width="13" height="12" style="width: 13px; height: 12px; display: inline-block; vertical-align: middle; object-fit: contain;" loading="eager" decoding="async" /></span>
               <div class="miroooo-progress-track">
                 <div class="miroooo-progress-bar" data-target-width="92%" style="width: 92%;"></div>
               </div>
@@ -6907,7 +6935,7 @@ theme.variantStrings = {
             </button>
             <!-- 4 Star Row -->
             <button type="button" class="miroooo-breakdown-row" data-star="4" aria-label="Show 4 star reviews">
-              <span class="miroooo-row-label">4 <img src="/assets/star.png" alt="★" width="13" height="12" style="width: 13px; height: 12px; display: inline-block; vertical-align: middle; object-fit: contain;" loading="lazy" decoding="async" /></span>
+              <span class="miroooo-row-label">4 <img src="/assets/star.png" alt="★" width="13" height="12" style="width: 13px; height: 12px; display: inline-block; vertical-align: middle; object-fit: contain;" loading="eager" decoding="async" /></span>
               <div class="miroooo-progress-track">
                 <div class="miroooo-progress-bar" data-target-width="6%" style="width: 6%;"></div>
               </div>
@@ -6915,7 +6943,7 @@ theme.variantStrings = {
             </button>
             <!-- 3 Star Row -->
             <button type="button" class="miroooo-breakdown-row" data-star="3" aria-label="Show 3 star reviews">
-              <span class="miroooo-row-label">3 <img src="/assets/star.png" alt="★" width="13" height="12" style="width: 13px; height: 12px; display: inline-block; vertical-align: middle; object-fit: contain;" loading="lazy" decoding="async" /></span>
+              <span class="miroooo-row-label">3 <img src="/assets/star.png" alt="★" width="13" height="12" style="width: 13px; height: 12px; display: inline-block; vertical-align: middle; object-fit: contain;" loading="eager" decoding="async" /></span>
               <div class="miroooo-progress-track">
                 <div class="miroooo-progress-bar" data-target-width="0.3%" style="width: 0.3%;"></div>
               </div>
@@ -6923,7 +6951,7 @@ theme.variantStrings = {
             </button>
             <!-- 2 Star Row -->
             <button type="button" class="miroooo-breakdown-row" data-star="2" aria-label="Show 2 star reviews">
-              <span class="miroooo-row-label">2 <img src="/assets/star.png" alt="★" width="13" height="12" style="width: 13px; height: 12px; display: inline-block; vertical-align: middle; object-fit: contain;" loading="lazy" decoding="async" /></span>
+              <span class="miroooo-row-label">2 <img src="/assets/star.png" alt="★" width="13" height="12" style="width: 13px; height: 12px; display: inline-block; vertical-align: middle; object-fit: contain;" loading="eager" decoding="async" /></span>
               <div class="miroooo-progress-track">
                 <div class="miroooo-progress-bar" data-target-width="0.7%" style="width: 0.7%;"></div>
               </div>
@@ -6931,7 +6959,7 @@ theme.variantStrings = {
             </button>
             <!-- 1 Star Row -->
             <button type="button" class="miroooo-breakdown-row" data-star="1" aria-label="Show 1 star reviews">
-              <span class="miroooo-row-label">1 <img src="/assets/star.png" alt="★" width="13" height="12" style="width: 13px; height: 12px; display: inline-block; vertical-align: middle; object-fit: contain;" loading="lazy" decoding="async" /></span>
+              <span class="miroooo-row-label">1 <img src="/assets/star.png" alt="★" width="13" height="12" style="width: 13px; height: 12px; display: inline-block; vertical-align: middle; object-fit: contain;" loading="eager" decoding="async" /></span>
               <div class="miroooo-progress-track">
                 <div class="miroooo-progress-bar" data-target-width="0.5%" style="width: 0.5%;"></div>
               </div>
@@ -7042,7 +7070,7 @@ theme.variantStrings = {
       <button type="button" class="miroooo-modal-close" id="miroooo-lightbox-close" aria-label="Close modal">✕</button>
 
       <div class="miroooo-lightbox-media-container" style="display: none;">
-        <img id="miroooo-lightbox-img" class="miroooo-lightbox-img" alt="" loading="lazy" decoding="async" />
+        <img id="miroooo-lightbox-img" class="miroooo-lightbox-img" alt="" loading="eager" decoding="async" />
       </div>
 
       <div class="miroooo-lightbox-sidebar">
@@ -7619,7 +7647,7 @@ theme.variantStrings = {
               <span style="font-size: 1.25rem; font-weight: 800; color: #000000; white-space: nowrap;">Brush X2</span>
             </div>
             <div class="miroooo-comp-head-img-wrap">
-              <img src="/assets_ref/x2/gallery/miroooo-x2-sonic-electric-toothbrush-silver-upright-grip.webp" alt="Brush X2 Electric Toothbrush" style="height: 140px; object-fit: contain; object-position: bottom center; display: block; margin: 0 auto; vertical-align: bottom; padding: 0;" loading="lazy" decoding="async" />
+              <img src="/assets_ref/x2/gallery/miroooo-x2-sonic-electric-toothbrush-silver-upright-grip.webp" alt="Brush X2 Electric Toothbrush" style="height: 140px; object-fit: contain; object-position: bottom center; display: block; margin: 0 auto; vertical-align: bottom; padding: 0;" loading="eager" decoding="async" />
             </div>
           </div>
           <div class="miroooo-comp-cell">
@@ -7667,7 +7695,7 @@ theme.variantStrings = {
               <span style="font-size: 1.12rem; font-weight: 700; color: #ffffff; white-space: nowrap;">Oral-B iO6</span>
             </div>
             <div class="miroooo-comp-head-img-wrap">
-              <img src="/assets_ref/x/compare-oralb.webp" alt="Oral-B iO6" style="height: 130px; object-fit: contain; filter: drop-shadow(0 4px 10px rgba(0,0,0,0.5));" loading="lazy" decoding="async" />
+              <img src="/assets_ref/x/compare-oralb.webp" alt="Oral-B iO6" style="height: 130px; object-fit: contain; filter: drop-shadow(0 4px 10px rgba(0,0,0,0.5));" loading="eager" decoding="async" />
             </div>
           </div>
           <div class="miroooo-comp-cell">
@@ -7707,7 +7735,7 @@ theme.variantStrings = {
               <span style="font-size: 0.94rem; font-weight: 700; color: #ffffff; white-space: nowrap; letter-spacing: -0.01em;">Philips Sonicare 9000</span>
             </div>
             <div class="miroooo-comp-head-img-wrap">
-              <img src="/assets_ref/x/compare-philips.webp" alt="Philips Sonicare 9000" style="height: 130px; object-fit: contain; filter: drop-shadow(0 4px 10px rgba(0,0,0,0.5));" loading="lazy" decoding="async" />
+              <img src="/assets_ref/x/compare-philips.webp" alt="Philips Sonicare 9000" style="height: 130px; object-fit: contain; filter: drop-shadow(0 4px 10px rgba(0,0,0,0.5));" loading="eager" decoding="async" />
             </div>
           </div>
           <div class="miroooo-comp-cell">
@@ -7747,7 +7775,7 @@ theme.variantStrings = {
               <span style="font-size: 1.12rem; font-weight: 700; color: #ffffff; white-space: nowrap;">Suri 2.0</span>
             </div>
             <div class="miroooo-comp-head-img-wrap">
-              <img src="/assets_ref/x/compare-suri.webp" alt="Suri 2.0 Toothbrush" style="height: 130px; object-fit: contain; filter: drop-shadow(0 4px 10px rgba(0,0,0,0.5));" loading="lazy" decoding="async" />
+              <img src="/assets_ref/x/compare-suri.webp" alt="Suri 2.0 Toothbrush" style="height: 130px; object-fit: contain; filter: drop-shadow(0 4px 10px rgba(0,0,0,0.5));" loading="eager" decoding="async" />
             </div>
           </div>
           <div class="miroooo-comp-cell">
@@ -7790,19 +7818,19 @@ theme.variantStrings = {
         <div class="miroooo-comp-m-head-row">
           <div class="miroooo-comp-m-head-col miroooo-comp-m-head-col--winner">
             <span class="miroooo-comp-m-brand-name">Brush X2</span>
-            <img src="/assets_ref/x2/gallery/miroooo-x2-sonic-electric-toothbrush-silver-upright-grip.webp" alt="Brush X2" class="miroooo-comp-m-head-img" loading="lazy" decoding="async" />
+            <img src="/assets_ref/x2/gallery/miroooo-x2-sonic-electric-toothbrush-silver-upright-grip.webp" alt="Brush X2" class="miroooo-comp-m-head-img" loading="eager" decoding="async" />
           </div>
           <div class="miroooo-comp-m-head-col">
             <span class="miroooo-comp-m-brand-name">Oral-B iO6</span>
-            <img src="/assets_ref/x/compare-oralb.webp" alt="Oral-B iO6" class="miroooo-comp-m-head-img" style="filter: drop-shadow(0 4px 10px rgba(0,0,0,0.5));" loading="lazy" decoding="async" />
+            <img src="/assets_ref/x/compare-oralb.webp" alt="Oral-B iO6" class="miroooo-comp-m-head-img" style="filter: drop-shadow(0 4px 10px rgba(0,0,0,0.5));" loading="eager" decoding="async" />
           </div>
           <div class="miroooo-comp-m-head-col">
             <span class="miroooo-comp-m-brand-name">Philips 9000</span>
-            <img src="/assets_ref/x/compare-philips.webp" alt="Philips Sonicare 9000" class="miroooo-comp-m-head-img" style="filter: drop-shadow(0 4px 10px rgba(0,0,0,0.5));" loading="lazy" decoding="async" />
+            <img src="/assets_ref/x/compare-philips.webp" alt="Philips Sonicare 9000" class="miroooo-comp-m-head-img" style="filter: drop-shadow(0 4px 10px rgba(0,0,0,0.5));" loading="eager" decoding="async" />
           </div>
           <div class="miroooo-comp-m-head-col">
             <span class="miroooo-comp-m-brand-name">Suri 2.0</span>
-            <img src="/assets_ref/x/compare-suri.webp" alt="Suri 2.0" class="miroooo-comp-m-head-img" style="filter: drop-shadow(0 4px 10px rgba(0,0,0,0.5));" loading="lazy" decoding="async" />
+            <img src="/assets_ref/x/compare-suri.webp" alt="Suri 2.0" class="miroooo-comp-m-head-img" style="filter: drop-shadow(0 4px 10px rgba(0,0,0,0.5));" loading="eager" decoding="async" />
           </div>
         </div>
 
@@ -8013,8 +8041,8 @@ theme.variantStrings = {
 
       <!-- Image Left on Desktop, Top on Phone - 1:1 Aspect Ratio Matching default master asset with 20px border radius -->
       <div style="flex: 1; width: 100%; box-sizing: border-box;">
-        <div style="position: relative; width: 100%; aspect-ratio: 1 / 1; border-radius: 20px; overflow: hidden; background: #0d0d0d; border: 1px solid rgba(255, 255, 255, 0.1); box-shadow: 0 20px 50px rgba(0, 0, 0, 0.8);">
-          <img id="package-contents-section-img" src="/assets_ref/x2/gallery/miroooo-x2-sonic-electric-toothbrush-complete-set-packaging.webp" alt="Miroooo Brush X2 Complete Set Presentation Packaging" style="width: 100%; height: 100%; display: block; object-fit: cover;" loading="lazy" decoding="async" />
+        <div class="desc-media-loading" style="position: relative; width: 100%; aspect-ratio: 1 / 1; border-radius: 20px; overflow: hidden; background: #0d0d0d; border: 1px solid rgba(255, 255, 255, 0.1); box-shadow: 0 20px 50px rgba(0, 0, 0, 0.8);">
+          <img id="package-contents-section-img" src="/assets_ref/x2/gallery/miroooo-x2-sonic-electric-toothbrush-complete-set-packaging.webp" alt="Miroooo Brush X2 Complete Set Presentation Packaging" style="width: 100%; height: 100%; display: block; object-fit: cover;" loading="eager" decoding="async" />
         </div>
       </div>
 
@@ -9672,6 +9700,41 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   };
   initX2UrgencyBanner();
+
+  // Initialize Description Media Loading Shimmer Dismissal
+  const initDescriptionMediaLoaders = () => {
+    const markLoaded = (media) => {
+      const wrap = media.closest('.desc-media-loading, .x2-story-media, .x2-story-img-wrap, .split-section-media, .function-img-wrap, .x2-mode-visual, .video-wrapper');
+      if (wrap) {
+        wrap.classList.add('is-loaded');
+      }
+    };
+
+    document.querySelectorAll('.desc-media-loading img, .x2-story-img-wrap img, .split-section-grid img, .function-item img, .x2-mode-card-media img, .video-wrapper video').forEach((media) => {
+      if (media.tagName === 'IMG') {
+        if (media.complete && media.naturalWidth > 0) {
+          markLoaded(media);
+        } else {
+          media.addEventListener('load', () => markLoaded(media), { once: true });
+          media.addEventListener('error', () => markLoaded(media), { once: true });
+        }
+      } else if (media.tagName === 'VIDEO') {
+        if (media.readyState >= 2) {
+          markLoaded(media);
+        } else {
+          media.addEventListener('loadeddata', () => markLoaded(media), { once: true });
+          media.addEventListener('canplay', () => markLoaded(media), { once: true });
+          media.addEventListener('error', () => markLoaded(media), { once: true });
+        }
+      }
+    });
+  };
+  initDescriptionMediaLoaders();
+
+  if (!window.location.hash && history.scrollRestoration) {
+    history.scrollRestoration = 'manual';
+    window.scrollTo(0, 0);
+  }
 });
 </script>
 

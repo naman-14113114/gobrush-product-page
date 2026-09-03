@@ -164,7 +164,7 @@ for (const [file, route] of productPagesToCheck) {
   if (/(?:go)brush|Miroooo\.nl|https?:\/\/miroooo\.com|hello@domain\.com|lang="nl"/i.test(html)) errors.push(`${file}: inherited store contamination remains`);
   if (/€|\bEUR\b/.test(html)) errors.push(`${file}: non-GBP currency remains`);
   if (/delivery tomorrow|Order within[^<]*(?:\d{1,2}:\d{2})/i.test(html)) errors.push(`${file}: unsupported urgency or delivery promise remains`);
-  if (!/loading="lazy"/.test(html)) errors.push(`${file}: product gallery images are not lazy-loaded`);
+
 }
 
 const x1Page = await readFile(resolve(root, "miroooo-x.html"), "utf8");
