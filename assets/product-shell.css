@@ -193,10 +193,14 @@
 /* =========================================================
    PRODUCT INFO & PREVIEW STICKY OFFSET FIX
    ========================================================= */
-.product__info.sticky,
 .product__preview.sticky {
   top: 24px !important;
   inset-block-start: 24px !important;
+}
+.product__info.sticky,
+.product__info {
+  top: 0 !important;
+  inset-block-start: 0 !important;
 }
 
 @media (max-width: 990px) {
@@ -3047,6 +3051,7 @@ body.nav-open .miroooo-sticky-cart-wrap {
   color: #dc2626;
   background: rgba(220, 38, 38, 0.08);
 }
+
 
 /* =========================================================
    Cart Footer & Summary Card
