@@ -311,3 +311,64 @@ Append-only memory for the `gobrush-product-page` repository. Do not delete or s
 - Git state after source verification and before this context append: `## main...origin/main` with modified tracked files `miroooo-x.html` and `miroooo-x2.html`, plus untracked `output/`. Ahead/behind remained `0/0` against `origin/main` at HEAD `b71c48064feb486d15718270cbd963b492db2953`.
 - Publishing state: no commit, push, pull, branch, pull request, deployment, Vercel promotion, production setting, checkout, payment, order, Klaviyo change, Microsoft Ads change, or PlusBase action occurred.
 - Remaining follow-up: if the user wants the live site updated, commit/push/deploy must be explicitly authorized, then re-check production first on `https://www.trymiroooo.com/products/miroooo-x2` in Edge/Bing and Chrome desktop, followed by `/products/miroooo-x`.
+
+## 2026-09-03 12:51:00 +05:30 - X2 Dynamic Bundle Special Promo Codes & Dropdown Discount Naming
+
+- User request: Implement dynamic bundle special promo codes and discount naming on cart for Brush X2.
+  - Buy 2: `2-brush-bundle-special` discount name in total discount dropdown, auto-applied promo code `2-BRUSH-BUNDLE-SPECIAL` displaying as truncated pill `2-BRUSH-B...`.
+  - Buy 3: `3-brush-bundle-special` discount name in total discount dropdown, auto-applied promo code `3-BRUSH-BUNDLE-SPECIAL` displaying as truncated pill `3-BRUSH-B...`.
+  - Mutual exclusion & validation: If user has Buy 2 and attempts `3-brush-bundle-special`, return `"Invalid promo code."` error message. If user has Buy 3 and attempts `2-brush-bundle-special`, return `"Invalid promo code."` error message. Keep other promos (`MIROOOO10`, `FREE2HEADS`, `FREE4HEADS`) intact.
+  - Minimal changes strictly for X2, without affecting Codex work.
+- Implementation:
+  - `cart.html`:
+    - Updated `VALID_PROMOS` to include `"2-BRUSH-BUNDLE-SPECIAL"` and `"3-BRUSH-BUNDLE-SPECIAL"`.
+    - Updated `computeTotals()` for X2 to auto-apply `2-BRUSH-BUNDLE-SPECIAL` for quantity 2 and `3-BRUSH-BUNDLE-SPECIAL` for quantity >= 3, automatically filtering out the non-matching bundle promo.
+    - Updated `renderCartView()` to dynamically label `#breakdown-bundle-row` as `2-brush-bundle-special` (Buy 2) or `3-brush-bundle-special` (Buy 3+) for X2 while preserving `Bundle Special Offer` for X1.
+    - Added `formatPromoCodeDisplay()` helper truncating `2-BRUSH-BUNDLE-SPECIAL` to `2-BRUSH-B...` and `3-BRUSH-BUNDLE-SPECIAL` to `3-BRUSH-B...` in applied promo pill badges.
+    - Updated stepper and remove handlers to reset coupon dismissal states and update badges.
+    - Updated `initPromoCodeHandler()` to validate bundle codes strictly by cart item count and reject mismatched bundle promos.
+  - `assets/site.js`:
+    - Updated `initDirectPlusbaseCheckout()` `validCodes` to include `"2-BRUSH-BUNDLE-SPECIAL"` and `"3-BRUSH-BUNDLE-SPECIAL"`.
+    - Updated `renderCartDrawer()` to dynamically update `#cart-bundle-discount-row` label to `2-brush-bundle-special` / `3-brush-bundle-special`.
+  - `api/checkout/prepare.js`:
+    - Updated `validCodes` to include `"2-BRUSH-BUNDLE-SPECIAL"` and `"3-BRUSH-BUNDLE-SPECIAL"`.
+- Verification:
+  - Rebuilt static site via `npm run build` and ran `npm run verify` (43 files, 17 pages checked, 0 errors).
+  - Verified via local preview server and Chrome DevTools MCP: Buy 2 renders `2-BRUSH-B...` + `FREE2HEADS` and `2-brush-bundle-special` (-£150, subtotal £128); Buy 3 renders `3-BRUSH-B...` + `FREE4HEADS` and `3-brush-bundle-special` (-£240, subtotal £177); mismatched promo entries properly produce `"Invalid promo code."`; stackable `MIROOOO10` works as expected. Captured visual proof screenshots.
+
+## 2026-09-03 12:57:00 +05:30 - Full Multi-Promo Checkout URL Parameter Passing
+
+- User request: Ensure every single applied promo (both default bundle/head promos and manually entered promos like MIROOOO10) is forwarded and applied to the checkout URL `discount` query parameter.
+- Implementation:
+  - `cart.html`:
+    - Updated `localStorage.setItem("miroooo_promo_code", ...)` everywhere to save all applied promo codes joined by comma (`appliedPromoCodes.join(",")`) instead of only the first code.
+    - In `handleCheckout()`: Collects all valid active promo codes (`validDiscountCodes`), joins them by comma, and passes both `discountCode` (string) and `discountCodes` (array) to the `/api/checkout/prepare` route and direct checkout URL fallbacks (`?discount=CODE1,CODE2`).
+  - `assets/site.js`:
+    - In `createPlusbaseCheckoutSession()`: Collects all valid applied promo codes (e.g. `2-BRUSH-BUNDLE-SPECIAL,FREE2HEADS` or with `MIROOOO10`), dedupes them, and passes them to `/api/checkout/prepare` and `decorateCheckoutUrl()`.
+  - `api/checkout/prepare.js`:
+    - Updated to parse single or comma-separated `discountCode` string as well as `discountCodes` array, filtering each against `validCodes`, deduplicating, and appending all valid codes joined by comma into the final PlusBase checkout URL `?discount=CODE1,CODE2`.
+- Verification:
+  - Unit tested `api/checkout/prepare.js` with multi-promo payloads:
+    - Buy 2: `https://miroooo.us/checkouts/<token>?discount=2-BRUSH-BUNDLE-SPECIAL%2CFREE2HEADS`
+    - Buy 3 with MIROOOO10: `https://miroooo.us/checkouts/<token>?discount=3-BRUSH-BUNDLE-SPECIAL%2CFREE4HEADS%2CMIROOOO10`
+  - Browser verification on cart page: Intercepted `prepare` request payload on checkout click confirming all active promo codes are passed in full.
+  - `npm run build` and `npm run verify` passed cleanly with 0 errors.
+
+## 2026-09-03 13:08:00 +05:30 - Separate Base 50% Compare Savings & Bundle Promo Breakdown Rows
+
+- User request: In the Total discount dropdown, separate the base 50% compare-at savings (e.g. £140 for Buy 2, £210 for Buy 3) as `Bundle Special Offer` and display the extra bundle promo discount (e.g. £10 for `2-brush-bundle-special`, £30 for `3-brush-bundle-special`) on a dedicated line below it.
+- Implementation:
+  - `cart.html`:
+    - Added `#breakdown-bundle-promo-row` into `#discount-details-panel`.
+    - In `computeTotals()`: `bundleSavings` calculates the base 50% compare discount (`qty * (139 - 69)` = £140 for Buy 2, £210 for Buy 3). `bundlePromoDiscount` calculates the promo code discount (£10 for Buy 2, £30 for Buy 3).
+    - In `renderCartView()`: `#breakdown-bundle-row` shows `Bundle Special Offer` with `-£140` (Buy 2) / `-£210` (Buy 3). `#breakdown-bundle-promo-row` shows `2-brush-bundle-special` `-£10` (Buy 2) / `3-brush-bundle-special` `-£30` (Buy 3).
+  - `assets/site.js`:
+    - Added `#cart-bundle-promo-row` to drawer HTML and separated base compare discount from extra bundle promo discount in `renderCartDrawer()`.
+- Verification:
+  - Rebuilt static storefront via `npm run build` and ran `npm run verify` with 0 errors.
+  - Verified via local preview server:
+    - Buy 2: `Bundle Special Offer -£140`, `2-brush-bundle-special -£10`, `Free Brush X2 Heads (1 Set) -£10`, `PROMO (MIROOOO10) -£13`, Subtotal `£115`, Total discount `-£173`.
+    - Buy 3: `Bundle Special Offer -£210`, `3-brush-bundle-special -£30`, `Free Brush X2 Heads (2 Sets) -£20`, `PROMO (MIROOOO10) -£18`, Subtotal `£159`, Total discount `-£278`.
+  - Captured visual screenshots confirming layout and arithmetic.
+
+

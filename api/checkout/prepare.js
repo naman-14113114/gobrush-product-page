@@ -180,8 +180,22 @@ module.exports = async function handler(req, res) {
     }
 
     const hasX2 = items.some((it) => String(it.productId) === "1000000675072187" || String(it.productId) === "1000000664011618" || it.productId === "miroooo-x2");
-    const validCodes = ["MIROOOO10", "FREE2HEADS", "FREE4HEADS"];
-    const discountCode = (hasX2 && validCodes.includes(rawDiscountCode)) ? rawDiscountCode : "";
+    const validCodes = ["MIROOOO10", "FREE2HEADS", "FREE4HEADS", "2-BRUSH-BUNDLE-SPECIAL", "3-BRUSH-BUNDLE-SPECIAL"];
+
+    let candidateCodes = [];
+    if (Array.isArray(body.discountCodes) && body.discountCodes.length > 0) {
+      candidateCodes = body.discountCodes;
+    } else if (typeof body.discountCode === "string" && body.discountCode.trim()) {
+      candidateCodes = body.discountCode.split(",");
+    } else if (rawDiscountCode) {
+      candidateCodes = rawDiscountCode.split(",");
+    }
+
+    const matchedCodes = candidateCodes
+      .map((c) => String(c).trim().toUpperCase())
+      .filter((c) => validCodes.includes(c));
+    const uniqueCodes = [...new Set(matchedCodes)];
+    const discountCode = hasX2 && uniqueCodes.length > 0 ? uniqueCodes.join(",") : "";
 
     const checkout = await createPlusbaseCheckout(items, attribution);
     const finalUrl = appendDiscountAndAttributionToUrl(checkout.checkoutUrl, discountCode, attribution);

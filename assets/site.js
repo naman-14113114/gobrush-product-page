@@ -1280,13 +1280,38 @@
       } catch (_) {}
     }
 
-    const storedPromo = (localStorage.getItem("miroooo_promo_code") || "").trim().toUpperCase();
-    const validCodes = ["MIROOOO10", "FREE2HEADS", "FREE4HEADS"];
-    let autoCoupon = "";
-    if (isX2 && bundleCount === 2) autoCoupon = "FREE2HEADS";
-    else if (isX2 && bundleCount >= 3) autoCoupon = "FREE4HEADS";
+    const validCodes = ["MIROOOO10", "FREE2HEADS", "FREE4HEADS", "2-BRUSH-BUNDLE-SPECIAL", "3-BRUSH-BUNDLE-SPECIAL"];
+    let promoList = [];
+    try {
+      const storedArr = JSON.parse(localStorage.getItem("miroooo_promo_codes") || "[]");
+      if (Array.isArray(storedArr)) {
+        promoList = storedArr.map((c) => String(c).trim().toUpperCase()).filter((c) => validCodes.includes(c));
+      }
+    } catch (_) {}
+    if (promoList.length === 0) {
+      const single = (localStorage.getItem("miroooo_promo_code") || "").trim().toUpperCase();
+      if (single) {
+        single.split(",").forEach((c) => {
+          const trimmed = c.trim();
+          if (validCodes.includes(trimmed)) promoList.push(trimmed);
+        });
+      }
+    }
 
-    const validDiscount = (isX2 && validCodes.includes(storedPromo)) ? storedPromo : autoCoupon;
+    if (isX2) {
+      if (bundleCount === 2) {
+        promoList = promoList.filter((c) => c !== "3-BRUSH-BUNDLE-SPECIAL" && c !== "FREE4HEADS");
+        if (!promoList.includes("2-BRUSH-BUNDLE-SPECIAL")) promoList.unshift("2-BRUSH-BUNDLE-SPECIAL");
+        if (!promoList.includes("FREE2HEADS")) promoList.push("FREE2HEADS");
+      } else if (bundleCount >= 3) {
+        promoList = promoList.filter((c) => c !== "2-BRUSH-BUNDLE-SPECIAL" && c !== "FREE2HEADS");
+        if (!promoList.includes("3-BRUSH-BUNDLE-SPECIAL")) promoList.unshift("3-BRUSH-BUNDLE-SPECIAL");
+        if (!promoList.includes("FREE4HEADS")) promoList.push("FREE4HEADS");
+      }
+    }
+
+    promoList = [...new Set(promoList)];
+    const validDiscount = (isX2 && promoList.length > 0) ? promoList.join(",") : "";
     const discountCode = extraParams.discount || validDiscount;
 
     // 1. Serverless prepare route
@@ -1297,6 +1322,7 @@
         body: JSON.stringify({
           items: items,
           discountCode: discountCode,
+          discountCodes: promoList,
           attribution: attribution,
         }),
       });
@@ -1685,6 +1711,10 @@
                     <span>Bundle Special Offer</span>
                     <span id="cart-bundle-discount-val">-£0</span>
                   </div>
+                  <div class="miroooo-discount-detail-item" id="cart-bundle-promo-row" style="display: none;">
+                    <span id="cart-bundle-promo-label">2-brush-bundle-special</span>
+                    <span id="cart-bundle-promo-val">-£0</span>
+                  </div>
                   <div class="miroooo-discount-detail-item" id="cart-gift-discount-row">
                     <span>Unlocked Free Gifts</span>
                     <span id="cart-gift-discount-val">-£0</span>
@@ -1763,6 +1793,7 @@
       let totalGiftValueNum = 0;
       let extraBrushHeadSets = 0;
 
+      let bundlePromoDiscount = 0;
       if (isHeads) {
         subtotal = totalQty * 10;
         compareTotal = totalQty * 10;
@@ -1775,8 +1806,9 @@
         if (totalQty === 1) bundleDiscount = 0;
         else if (totalQty === 2) bundleDiscount = 10;
         else if (totalQty >= 3) bundleDiscount = 30 + (totalQty - 3) * 10;
+        bundlePromoDiscount = bundleDiscount;
         subtotal = (totalQty * 69) - bundleDiscount;
-        bundleSavings = compareTotal - subtotal;
+        bundleSavings = totalQty * (139 - 69);
       } else {
         // Brush X1
         compareTotal = totalQty * 139;
@@ -1789,7 +1821,7 @@
         totalGiftValueNum = 36; // Travel Case + Brush Heads
       }
 
-      const totalDiscountNum = bundleSavings + totalGiftValueNum;
+      const totalDiscountNum = bundleSavings + bundlePromoDiscount + totalGiftValueNum;
 
       // Render Line Items in Drawer List
       if (itemsList) {
@@ -1960,6 +1992,26 @@
       const discountValEl = document.getElementById("cart-discount-val");
       const bundleDiscountValEl = document.getElementById("cart-bundle-discount-val");
       const giftDiscountValEl = document.getElementById("cart-gift-discount-val");
+
+      const bundleDiscountRow = document.getElementById("cart-bundle-discount-row");
+      const bundlePromoRow = document.getElementById("cart-bundle-promo-row");
+      const bundlePromoLabelEl = document.getElementById("cart-bundle-promo-label");
+      const bundlePromoValEl = document.getElementById("cart-bundle-promo-val");
+
+      if (bundleDiscountRow) {
+        const bundleLabel = bundleDiscountRow.querySelector("span:first-child");
+        if (bundleLabel) bundleLabel.textContent = "Bundle Special Offer";
+      }
+
+      if (isX2 && bundlePromoDiscount > 0) {
+        if (bundlePromoRow) {
+          bundlePromoRow.style.display = "flex";
+          if (bundlePromoLabelEl) bundlePromoLabelEl.textContent = (totalQty === 2 ? "2-brush-bundle-special" : "3-brush-bundle-special");
+          if (bundlePromoValEl) bundlePromoValEl.textContent = `-£${Math.round(bundlePromoDiscount)}`;
+        }
+      } else {
+        if (bundlePromoRow) bundlePromoRow.style.display = "none";
+      }
 
       if (subtotalValEl) subtotalValEl.textContent = `£${Math.round(subtotal)}`;
       if (totalValEl) totalValEl.textContent = `£${Math.round(subtotal)}`;
