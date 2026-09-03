@@ -1,6 +1,7 @@
 // Vercel Serverless Function: /api/checkout/prepare
 const plusbaseOrigin = "https://muuhu.onshopbase.com";
 const publicCheckoutDomain = "https://miroooo.us";
+const validDiscountCodes = ["MIROOOO10", "FREE2HEADS", "FREE4HEADS", "2-BRUSH-BUNDLE-SPECIAL", "3-BRUSH-BUNDLE-OFFER"];
 
 const passthroughAttributionKeys = [
   "utm_source",
@@ -25,11 +26,16 @@ function buildPlusbaseAttributionProperties(attribution) {
   return properties;
 }
 
-function appendDiscountAndAttributionToUrl(href, discountCode, attribution) {
+function appendDiscountAndAttributionToUrl(href, discountCodes, attribution) {
   try {
     const url = new URL(href);
-    if (discountCode && !url.searchParams.has("discount")) {
-      url.searchParams.set("discount", discountCode);
+    const codes = Array.isArray(discountCodes)
+      ? discountCodes.map(c => String(c).trim().toUpperCase()).filter(Boolean).join(",")
+      : typeof discountCodes === "string"
+        ? discountCodes.trim()
+        : "";
+    if (codes && !url.searchParams.has("discount")) {
+      url.searchParams.set("discount", codes);
     }
     if (attribution && typeof attribution === "object") {
       passthroughAttributionKeys.forEach((key) => {
@@ -39,10 +45,138 @@ function appendDiscountAndAttributionToUrl(href, discountCode, attribution) {
         }
       });
     }
-    return url.toString();
+    return url.toString().replace(/%2c/gi, ",");
   } catch {
     return href;
   }
+}
+
+function normalizeDiscountCode(code) {
+  return String(code || "").trim().toUpperCase();
+}
+
+function collectRequestedDiscountCodes(body) {
+  const candidates = [];
+  if (Array.isArray(body.discountCodes)) {
+    candidates.push(...body.discountCodes);
+  }
+  if (typeof body.discountCode === "string" && body.discountCode.trim()) {
+    candidates.push(...body.discountCode.split(","));
+  }
+
+  const matchedCodes = candidates
+    .map(normalizeDiscountCode)
+    .filter((code) => validDiscountCodes.includes(code));
+
+  return [...new Set(matchedCodes)];
+}
+
+function selectCheckoutUrlFallbackDiscount(discountCodes) {
+  return Array.isArray(discountCodes) && discountCodes.length > 0
+    ? discountCodes[discountCodes.length - 1]
+    : "";
+}
+
+async function fetchCheckoutInfo(checkoutToken) {
+  const response = await fetch(`${publicCheckoutDomain}/api/checkout/${encodeURIComponent(checkoutToken)}/info.json`, {
+    headers: {
+      accept: "application/json",
+    },
+  });
+  const data = await response.json().catch(() => null);
+
+  if (!response.ok || data?.code !== 200) {
+    throw new Error("Could not read PlusBase checkout info.");
+  }
+
+  return data;
+}
+
+function extractActiveDiscountCodes(infoResponse) {
+  const info = infoResponse?.result?.info || {};
+  const codes = [];
+
+  [
+    info.discount_code,
+    info.discount?.code,
+    info.applied_discount?.code,
+  ].forEach((code) => {
+    const normalized = normalizeDiscountCode(code);
+    if (normalized) codes.push(normalized);
+  });
+
+  [
+    info.applied_discounts,
+    info.discount_applications,
+    info.discounts,
+  ].forEach((list) => {
+    if (!Array.isArray(list)) return;
+    list.forEach((item) => {
+      const normalized = normalizeDiscountCode(item?.code || item?.discount_code || item?.title);
+      if (normalized) codes.push(normalized);
+    });
+  });
+
+  return [...new Set(codes)];
+}
+
+async function applyDiscountCodesToCheckout(checkoutToken, discountCodes) {
+  const results = [];
+  if (!discountCodes.length) {
+    return { initialized: false, results, activeDiscountCodes: [] };
+  }
+
+  let initialized = true;
+  try {
+    await fetchCheckoutInfo(checkoutToken);
+  } catch (_) {
+    initialized = false;
+  }
+
+  for (const code of discountCodes) {
+    try {
+      const response = await fetch(`${publicCheckoutDomain}/api/checkout/${encodeURIComponent(checkoutToken)}/apply-coupon.json`, {
+        method: "POST",
+        headers: {
+          accept: "application/json",
+          "content-type": "application/json",
+          "x-lang": "en-us",
+          "x-shopbase-checkout-token": checkoutToken,
+          "x-source-page": "checkout",
+        },
+        body: JSON.stringify({
+          code,
+          is_coupon_from_share_able_link: true,
+        }),
+      });
+      const data = await response.json().catch(() => null);
+      const errorCode = data?.error_code || data?.result?.error_code || "";
+      const applied = response.ok && (data?.code === 200 || data?.code === 0) && data?.result !== false && !errorCode;
+
+      results.push({
+        code,
+        applied,
+        status: response.status,
+        plusbaseCode: data?.code ?? null,
+        errorCode,
+      });
+    } catch (error) {
+      results.push({
+        code,
+        applied: false,
+        status: 0,
+        plusbaseCode: null,
+        errorCode: error?.message || "NETWORK_ERROR",
+      });
+    }
+  }
+
+  let activeDiscountCodes = [];
+  try {
+    activeDiscountCodes = extractActiveDiscountCodes(await fetchCheckoutInfo(checkoutToken));
+  } catch (_) {}
+
+  return { initialized, results, activeDiscountCodes };
 }
 
 function appendCookies(current, response) {
@@ -151,7 +285,6 @@ module.exports = async function handler(req, res) {
 
   try {
     const body = typeof req.body === "string" ? JSON.parse(req.body) : req.body || {};
-    const rawDiscountCode = String(body.discountCode || "").trim().toUpperCase();
     const attribution = body.attribution || {};
 
     let items = [];
@@ -179,30 +312,19 @@ module.exports = async function handler(req, res) {
       ];
     }
 
-    const hasX2 = items.some((it) => String(it.productId) === "1000000675072187" || String(it.productId) === "1000000664011618" || it.productId === "miroooo-x2");
-    const validCodes = ["MIROOOO10", "FREE2HEADS", "FREE4HEADS", "2-BRUSH-BUNDLE-SPECIAL", "3-BRUSH-BUNDLE-SPECIAL"];
-
-    let candidateCodes = [];
-    if (Array.isArray(body.discountCodes) && body.discountCodes.length > 0) {
-      candidateCodes = body.discountCodes;
-    } else if (typeof body.discountCode === "string" && body.discountCode.trim()) {
-      candidateCodes = body.discountCode.split(",");
-    } else if (rawDiscountCode) {
-      candidateCodes = rawDiscountCode.split(",");
-    }
-
-    const matchedCodes = candidateCodes
-      .map((c) => String(c).trim().toUpperCase())
-      .filter((c) => validCodes.includes(c));
-    const uniqueCodes = [...new Set(matchedCodes)];
-    const discountCode = hasX2 && uniqueCodes.length > 0 ? uniqueCodes.join(",") : "";
+    const discountCodes = collectRequestedDiscountCodes(body);
 
     const checkout = await createPlusbaseCheckout(items, attribution);
-    const finalUrl = appendDiscountAndAttributionToUrl(checkout.checkoutUrl, discountCode, attribution);
+    const discountApplication = await applyDiscountCodesToCheckout(checkout.checkoutToken, discountCodes);
+    const finalUrl = appendDiscountAndAttributionToUrl(checkout.checkoutUrl, discountCodes, attribution);
 
     return res.status(200).json({
       checkoutToken: checkout.checkoutToken,
       checkoutUrl: finalUrl,
+      requestedDiscountCodes: discountCodes,
+      appliedDiscountCodes: discountApplication.activeDiscountCodes,
+      discountApplyResults: discountApplication.results,
+      discountApplyInitialized: discountApplication.initialized,
     });
   } catch (error) {
     console.error("PlusBase checkout preparation failed:", error);

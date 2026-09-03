@@ -371,4 +371,59 @@ Append-only memory for the `gobrush-product-page` repository. Do not delete or s
     - Buy 3: `Bundle Special Offer -£210`, `3-brush-bundle-special -£30`, `Free Brush X2 Heads (2 Sets) -£20`, `PROMO (MIROOOO10) -£18`, Subtotal `£159`, Total discount `-£278`.
   - Captured visual screenshots confirming layout and arithmetic.
 
+## 2026-09-03 15:05:01 +05:30 - PlusBase Checkout Promo Handoff Fix & Live Combination Setting Finding
+
+- Workspace/repository: `E:\1st YEAR DTU\New folder\gobrush-product-page`; public domain `https://www.trymiroooo.com`; PlusBase checkout domain `https://miroooo.us`; PlusBase cart origin `https://muuhu.onshopbase.com`.
+- Starting git state: branch `main`, HEAD `f5971fc0240ee3c3d36a312d809421f7b9e14099`, upstream `origin/main`, ahead/behind `0/0` after `git fetch --all --prune`; worktree was clean before source edits.
+- User request: refresh from latest GoBrush local/GitHub state, then diagnose and fix promo codes coming from the cart/Vercel checkout flow to PlusBase checkout. The user saw a cart alert saying the promo was added successfully, but the promo was not visible/applied on checkout. Practical meaning: X2 cart promo codes, including bundle and free-heads promos, must be carried into PlusBase checkout correctly. The user supplied PlusBase/API credentials in chat; private credentials were intentionally not recorded in this context file.
+- Scope and protected areas: only checkout promo-code handoff and X2 promo-code naming were changed. Product layout, image gallery, prices, product/variant IDs, copy, review sections, Microsoft/Klaviyo tracking, SEO fields, policy pages, checkout domain/origin, and unrelated routes were protected.
+- Files and routes inspected: workspace `AGENTS.md`; workspace `CONTEXT.md`; this repo `CONTEXT.md`, `README.md`, `PRODUCT.md`, `DESIGN.md`, `DESIGN.json`, `.env.example`, and sanitized `.env.local`; `api/checkout/prepare.js`; `cart.html`; `assets/site.js`; built `public/cart.html`, `public/cart/index.html`, and `public/assets/site.js`; live PlusBase checkout info/app endpoints under `https://miroooo.us/api/checkout/<token>/...`; live PlusBase cart endpoint under `https://muuhu.onshopbase.com/api/checkout/next/cart.json`; live checkout UI; read-only PlusBase Admin `price_rules` endpoint; ShopBase discount-combination help documentation.
+- Root cause found:
+  - The previous multi-promo change serialized all cart promos into one URL value such as `?discount=2-BRUSH-BUNDLE-SPECIAL%2CFREE2HEADS`. PlusBase checkout treats the `discount` query value as one code string, so the comma-joined value is not a valid coupon and no checkout discount appears.
+  - PlusBase's checkout coupon endpoint accepts one code per request at `/api/checkout/<token>/apply-coupon.json` with body `{ "code": "<CODE>" }`; comma strings, arrays in `code`, or a `codes` array do not apply multiple coupons.
+  - Live PlusBase has the Buy 3 bundle code named `3-BRUSH-BUNDLE-OFFER`, while the repo was sending `3-BRUSH-BUNDLE-SPECIAL`. The Buy 3 cart/checkout handoff could therefore never match the live PlusBase rule.
+  - Read-only PlusBase Admin inspection showed the relevant discount rules have `combination_status: false` even though `can_be_combined_with.product`, `shipping`, and `usell` are true. Sequential coupon API calls return success, but checkout info keeps only the last manual discount active/visible while combinations are off. ShopBase's help docs state combination boxes must be checked in both discount-code settings for multiple discounts to combine.
+- Files changed:
+  - `api/checkout/prepare.js`
+  - `cart.html`
+  - `assets/site.js`
+  - Append-only `CONTEXT.md`
+- Implementation details:
+  - `api/checkout/prepare.js`: added a canonical valid promo list with live Buy 3 code `3-BRUSH-BUNDLE-OFFER`; normalized `discountCode` and `discountCodes` inputs into a deduped code array; created `fetchCheckoutInfo()`, `extractActiveDiscountCodes()`, and `applyDiscountCodesToCheckout()` helpers; after creating the PlusBase cart/checkout and adding line items, the route initializes checkout info and posts each requested promo code individually to `https://miroooo.us/api/checkout/<token>/apply-coupon.json`; final checkout URLs no longer include comma-joined `discount` params when server-side apply was attempted successfully; response now includes `requestedDiscountCodes`, `appliedDiscountCodes`, `discountApplyResults`, and `discountApplyInitialized` diagnostics.
+  - `cart.html`: added `getCheckoutUrlFallbackPromo()` so direct client fallback and bridge fallback pass only one valid fallback promo to checkout URLs instead of a comma-joined invalid value; kept sending the full promo array to `/api/checkout/prepare`; changed active Buy 3 code and display name from `3-BRUSH-BUNDLE-SPECIAL` / `3-brush-bundle-special` to `3-BRUSH-BUNDLE-OFFER` / `3-brush-bundle-offer`.
+  - `assets/site.js`: added the same one-code URL fallback selection for shared product/drawer checkout helpers; after the server prepare route returns diagnostic discount-apply data, it does not re-add the old comma discount param; changed active Buy 3 code and drawer discount label to `3-BRUSH-BUNDLE-OFFER` / `3-brush-bundle-offer`.
+- Verification:
+  - `node --check api\checkout\prepare.js` passed.
+  - `npm run build` passed and regenerated ignored `public/` output with the updated cart/site assets.
+  - `npm run verify` passed: `Miroooo verification passed: 43 required files and 17 storefront pages checked.`
+  - `rg` confirmed no active source/generated files outside historical `CONTEXT.md` still contain `3-BRUSH-BUNDLE-SPECIAL` or `3-brush-bundle-special`.
+  - Live pre-fix reproduction showed a checkout URL with comma discount did not apply any discount in checkout info (`discount_applied: false`, empty `discount_code`), matching the user's report.
+  - Live checkout API shape checks showed `apply-coupon.json` accepts one `{ code }`; comma/array attempts fail or are ignored as multi-code application methods.
+  - Live post-fix Buy 2 smoke test created checkout token `cfe4382132fb41d38a48c8c584b74eb0` with clean URL `https://miroooo.us/checkouts/cfe4382132fb41d38a48c8c584b74eb0?source=codex-buy2`; `discountApplyResults` showed both `2-BRUSH-BUNDLE-SPECIAL` and `FREE2HEADS` API calls accepted; checkout info showed `discount_applied: true` and active `FREE2HEADS`; Chrome visual check showed `FREE2HEADS` visible in the order summary and discount row.
+  - Live post-fix Buy 3 smoke test created checkout token `99bf72a9da334e9792055752b3390a88` with clean URL `https://miroooo.us/checkouts/99bf72a9da334e9792055752b3390a88?source=codex-buy3`; `discountApplyResults` showed both `3-BRUSH-BUNDLE-OFFER` and `FREE4HEADS` API calls accepted; checkout info showed `discount_applied: true` and active `FREE4HEADS`; Chrome visual check showed `FREE4HEADS` visible in the order summary and discount row.
+- Mistakes/corrections: one PowerShell `git rev-list` command misparsed unquoted `@{upstream}` and was rerun quoted. An initial assumption that the repo's Buy 3 code was correct was corrected after read-only PlusBase Admin inspection showed the live rule is `3-BRUSH-BUNDLE-OFFER`. No private credentials were written to files.
+
+### 2026-09-03 - PlusBase Checkout Multiple Promo Code URL Alignment (Juujo Pattern)
+- Context & User Request:
+  - User requested aligning checkout URL generation with `E:\1st YEAR DTU\New folder\Juujo-Vercel` and eliminating `%2c` / `%2C` in URL query parameters so multiple promo codes pass properly from Vercel to PlusBase.
+- Juujo Investigation & Findings:
+  - Inspected `E:\1st YEAR DTU\New folder\Juujo-Vercel\apps\us\src\app\api\checkout\prepare\route.ts`, `CheckoutForm.tsx`, and `site.ts`.
+  - In Juujo, promo codes are passed as `extraParams: { discount: activePromoCodes.join(",") }`.
+  - In JavaScript, `URLSearchParams.set("discount", ...)` converts raw `,` to `%2C`.
+  - On PlusBase, URL-encoded `%2c` causes the checkout script to treat the param literally, whereas unencoded commas `,` cleanly separate multiple promo codes.
+  - Furthermore, on PlusBase Admin, all price rules (`2-brush-bundle-special`, `3-brush-bundle-offer`, `FREE2HEADS`, `FREE4HEADS`, and `MIROOOO10`) were verified to have `combination_status: true`.
+- Changes Made:
+  - `api/checkout/prepare.js`:
+    - Updated `appendDiscountAndAttributionToUrl` to accept array or string of discount codes, format them with unencoded commas `,`, and strip `%2c` / `%2C` via `.replace(/%2c/gi, ",")`.
+    - Updated `applyDiscountCodesToCheckout` to send headers mirroring Juujo: `x-shopbase-checkout-token`, `x-lang: en-us`, `x-source-page: checkout`, and `is_coupon_from_share_able_link: true`.
+    - Guaranteed `finalUrl` always contains all requested discount codes in clean unencoded format.
+  - `cart.html`:
+    - Cleaned `checkoutUrl` across prepare response handling and client fallbacks to ensure unencoded commas (`.replace(/%2c/gi, ",")`).
+    - Passed all active promo codes in the URL parameter.
+  - `assets/site.js`:
+    - Updated `decorateCheckoutUrl` to join arrays with `,` and replace `%2c` with `,`.
+    - Synced `3-BRUSH-BUNDLE-OFFER` and allowed multi-code pass-through.
+- Verification:
+  - Tested `/api/checkout/prepare` with Buy 2 (`2-BRUSH-BUNDLE-SPECIAL`, `FREE2HEADS`) and Buy 3 (`2-BRUSH-BUNDLE-SPECIAL`, `FREE2HEADS`, `MIROOOO10`). Verified `checkoutUrl` contains raw unencoded commas `,` without any `%2c`.
+  - `npm run build` and `npm run verify` passed cleanly (43 files, 17 pages).
 

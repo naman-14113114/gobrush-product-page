@@ -1202,8 +1202,13 @@
     if (!urlStr) return urlStr;
     try {
       const u = new URL(urlStr, window.location.origin);
-      if (discountCode && !u.searchParams.has("discount")) {
-        u.searchParams.set("discount", discountCode);
+      if (discountCode) {
+        const codes = Array.isArray(discountCode)
+          ? discountCode.map(c => String(c).trim().toUpperCase()).filter(Boolean).join(",")
+          : String(discountCode || "").trim();
+        if (codes && !u.searchParams.has("discount")) {
+          u.searchParams.set("discount", codes);
+        }
       }
       const allowed = ["utm_source", "utm_medium", "utm_campaign", "utm_term", "utm_content", "msclkid", "gclid", "fbclid", "source"];
       allowed.forEach((key) => {
@@ -1211,7 +1216,7 @@
           u.searchParams.set(key, String(attribution[key]));
         }
       });
-      return u.toString();
+      return u.toString().replace(/%2c/gi, ",");
     } catch (_) {
       return urlStr;
     }
@@ -1280,7 +1285,7 @@
       } catch (_) {}
     }
 
-    const validCodes = ["MIROOOO10", "FREE2HEADS", "FREE4HEADS", "2-BRUSH-BUNDLE-SPECIAL", "3-BRUSH-BUNDLE-SPECIAL"];
+    const validCodes = ["MIROOOO10", "FREE2HEADS", "FREE4HEADS", "2-BRUSH-BUNDLE-SPECIAL", "3-BRUSH-BUNDLE-OFFER"];
     let promoList = [];
     try {
       const storedArr = JSON.parse(localStorage.getItem("miroooo_promo_codes") || "[]");
@@ -1300,18 +1305,18 @@
 
     if (isX2) {
       if (bundleCount === 2) {
-        promoList = promoList.filter((c) => c !== "3-BRUSH-BUNDLE-SPECIAL" && c !== "FREE4HEADS");
+        promoList = promoList.filter((c) => c !== "3-BRUSH-BUNDLE-OFFER" && c !== "FREE4HEADS");
         if (!promoList.includes("2-BRUSH-BUNDLE-SPECIAL")) promoList.unshift("2-BRUSH-BUNDLE-SPECIAL");
         if (!promoList.includes("FREE2HEADS")) promoList.push("FREE2HEADS");
       } else if (bundleCount >= 3) {
         promoList = promoList.filter((c) => c !== "2-BRUSH-BUNDLE-SPECIAL" && c !== "FREE2HEADS");
-        if (!promoList.includes("3-BRUSH-BUNDLE-SPECIAL")) promoList.unshift("3-BRUSH-BUNDLE-SPECIAL");
+        if (!promoList.includes("3-BRUSH-BUNDLE-OFFER")) promoList.unshift("3-BRUSH-BUNDLE-OFFER");
         if (!promoList.includes("FREE4HEADS")) promoList.push("FREE4HEADS");
       }
     }
 
     promoList = [...new Set(promoList)];
-    const validDiscount = (isX2 && promoList.length > 0) ? promoList.join(",") : "";
+    const validDiscount = promoList.length > 0 ? promoList.join(",") : "";
     const discountCode = extraParams.discount || validDiscount;
 
     // 1. Serverless prepare route
@@ -2006,7 +2011,7 @@
       if (isX2 && bundlePromoDiscount > 0) {
         if (bundlePromoRow) {
           bundlePromoRow.style.display = "flex";
-          if (bundlePromoLabelEl) bundlePromoLabelEl.textContent = (totalQty === 2 ? "2-brush-bundle-special" : "3-brush-bundle-special");
+          if (bundlePromoLabelEl) bundlePromoLabelEl.textContent = (totalQty === 2 ? "2-brush-bundle-special" : "3-brush-bundle-offer");
           if (bundlePromoValEl) bundlePromoValEl.textContent = `-£${Math.round(bundlePromoDiscount)}`;
         }
       } else {
