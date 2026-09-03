@@ -2526,7 +2526,14 @@ theme.variantStrings = {
   }
 
   @media screen and (min-width: 1024px) {
-    #shopify-section-template--24203751129433__main-product {--product-grid: auto / minmax(0, 1.1fr) minmax(0, 0.9fr);
+    #shopify-section-template--24203751129433__main-product {
+      --miroooo-product-column-gap: clamp(var(--sp-12), 4.73vw, var(--sp-23));
+      --miroooo-gallery-rail-offset: 100px;
+      --product-grid: auto / minmax(0, calc((100% - var(--miroooo-product-column-gap) + var(--miroooo-gallery-rail-offset)) / 2)) minmax(0, calc((100% - var(--miroooo-product-column-gap) - var(--miroooo-gallery-rail-offset)) / 2));
+    }
+    #shopify-section-template--24203751129433__main-product .featured-product.product {
+      grid-template-columns: minmax(0, calc((100% - var(--miroooo-product-column-gap) + var(--miroooo-gallery-rail-offset)) / 2)) minmax(0, calc((100% - var(--miroooo-product-column-gap) - var(--miroooo-gallery-rail-offset)) / 2)) !important;
+      column-gap: var(--miroooo-product-column-gap) !important;
     }
   }
   @media screen and (max-width: 767px) {
