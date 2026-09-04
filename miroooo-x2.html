@@ -4191,6 +4191,16 @@ theme.variantStrings = {
       --x2-story-green: #15803d;
       --x2-story-border: rgba(0, 0, 0, 0.08);
     }
+    @media screen and (min-width: 768px) {
+      #shopify-section-template--miroooo-x2-customer-stories {
+        display: none !important;
+      }
+    }
+    @media screen and (max-width: 767px) {
+      #shopify-section-template--miroooo-x2-customer-stories {
+        display: block !important;
+      }
+    }
     .x2-stories-track-wrap {
       position: relative;
       width: 100%;
@@ -4448,18 +4458,20 @@ theme.variantStrings = {
       border: 1px solid rgba(0, 0, 0, 0.1) !important;
       display: grid !important;
       grid-template-columns: 1fr 1fr !important;
-      transform: scale(0.94) !important;
-      opacity: 0 !important;
-      transition: transform 0.28s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.25s ease !important;
+      transform: scale(0.94);
+      opacity: 0;
+      transition: transform 0.28s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.25s ease;
       color: #111111 !important;
       z-index: 2 !important;
       box-sizing: border-box !important;
       pointer-events: auto !important;
+      touch-action: pan-y;
+      will-change: transform, opacity;
     }
     .x2-story-modal.is-active .x2-story-modal-card,
     .x2-story-modal.is-open .x2-story-modal-card {
-      transform: scale(1) !important;
-      opacity: 1 !important;
+      transform: scale(1);
+      opacity: 1;
     }
     .x2-story-modal-img-wrap {
       width: 100%;
@@ -5430,7 +5442,6 @@ theme.variantStrings = {
         }
       }, 100);
 
-      // Auto scroll loop
       const autoInterval = setInterval(() => {
         if (userInteracted || isPaused) return;
         const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -5438,7 +5449,9 @@ theme.variantStrings = {
         customSmoothScroll(getStep(), 700);
       }, 3600);
 
-      // Modal story viewer
+      const modalCard = modal ? modal.querySelector('.x2-story-modal-card') : null;
+      let isTransitioning = false;
+
       function renderModalStory(storyId) {
         const story = storiesData.find(s => s.id === parseInt(storyId, 10));
         if (!story || !modal) return;
@@ -5451,8 +5464,49 @@ theme.variantStrings = {
         modalAuthor.textContent = story.author;
       }
 
+      function transitionStoryCard(targetStoryId, direction) {
+        if (isTransitioning) return;
+        if (!modalCard) {
+          renderModalStory(targetStoryId);
+          return;
+        }
+
+        isTransitioning = true;
+        const outTransform = direction === 'next' ? 'translateX(-100vw)' : 'translateX(100vw)';
+        const inTransform = direction === 'next' ? 'translateX(100vw)' : 'translateX(-100vw)';
+
+        modalCard.style.transition = 'transform 0.22s cubic-bezier(0.2, 0, 0, 1), opacity 0.22s ease';
+        modalCard.style.transform = outTransform;
+        modalCard.style.opacity = '0';
+
+        setTimeout(() => {
+          renderModalStory(targetStoryId);
+          modalCard.style.transition = 'none';
+          modalCard.style.transform = inTransform;
+          modalCard.style.opacity = '0';
+
+          void modalCard.offsetWidth;
+
+          modalCard.style.transition = 'transform 0.28s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.25s ease';
+          modalCard.style.transform = 'translateX(0)';
+          modalCard.style.opacity = '1';
+
+          setTimeout(() => {
+            modalCard.style.transition = '';
+            modalCard.style.transform = '';
+            modalCard.style.opacity = '';
+            isTransitioning = false;
+          }, 290);
+        }, 220);
+      }
+
       function openStoryModal(storyId) {
         renderModalStory(storyId);
+        if (modalCard) {
+          modalCard.style.transition = '';
+          modalCard.style.transform = '';
+          modalCard.style.opacity = '';
+        }
         modal.classList.add('is-active', 'is-open');
         modal.setAttribute('aria-hidden', 'false');
         document.body.style.overflow = 'hidden';
@@ -5465,18 +5519,97 @@ theme.variantStrings = {
         modal.setAttribute('aria-hidden', 'true');
         document.body.style.overflow = '';
         document.documentElement.style.overflow = '';
+        if (modalCard) {
+          setTimeout(() => {
+            modalCard.style.transition = '';
+            modalCard.style.transform = '';
+            modalCard.style.opacity = '';
+          }, 300);
+        }
       }
 
       function nextModalStory() {
+        if (isTransitioning) return;
         let nextId = currentStoryId + 1;
         if (nextId > storiesData.length) nextId = 1;
-        renderModalStory(nextId);
+        transitionStoryCard(nextId, 'next');
       }
 
       function prevModalStory() {
+        if (isTransitioning) return;
         let prevId = currentStoryId - 1;
         if (prevId < 1) prevId = storiesData.length;
-        renderModalStory(prevId);
+        transitionStoryCard(prevId, 'prev');
+      }
+
+      if (modalCard) {
+        let touchStartX = 0;
+        let touchStartY = 0;
+        let touchDiffX = 0;
+        let touchDiffY = 0;
+        let touchStartTime = 0;
+        let isSwiping = false;
+
+        modalCard.addEventListener('touchstart', (e) => {
+          if (isTransitioning || e.touches.length !== 1) return;
+          touchStartX = e.touches[0].clientX;
+          touchStartY = e.touches[0].clientY;
+          touchStartTime = Date.now();
+          touchDiffX = 0;
+          touchDiffY = 0;
+          isSwiping = false;
+        }, { passive: true });
+
+        modalCard.addEventListener('touchmove', (e) => {
+          if (isTransitioning || e.touches.length !== 1) return;
+          touchDiffX = e.touches[0].clientX - touchStartX;
+          touchDiffY = e.touches[0].clientY - touchStartY;
+
+          if (Math.abs(touchDiffX) > Math.abs(touchDiffY)) {
+            if (Math.abs(touchDiffX) > 8) {
+              isSwiping = true;
+            }
+            if (isSwiping) {
+              if (e.cancelable) e.preventDefault();
+              modalCard.style.transition = 'none';
+              const progress = Math.min(Math.abs(touchDiffX) / 320, 1);
+              const opacity = 1 - progress * 0.4;
+              modalCard.style.transform = `translateX(${touchDiffX}px)`;
+              modalCard.style.opacity = opacity;
+            }
+          }
+        }, { passive: false });
+
+        const handleTouchEnd = () => {
+          if (!isSwiping || isTransitioning) return;
+          isSwiping = false;
+          const touchDuration = Date.now() - touchStartTime;
+          const velocity = Math.abs(touchDiffX) / (touchDuration || 1);
+
+          if (touchDiffX < -50 || (touchDiffX < -20 && velocity > 0.35)) {
+            let nextId = currentStoryId + 1;
+            if (nextId > storiesData.length) nextId = 1;
+            transitionStoryCard(nextId, 'next');
+          } else if (touchDiffX > 50 || (touchDiffX > 20 && velocity > 0.35)) {
+            let prevId = currentStoryId - 1;
+            if (prevId < 1) prevId = storiesData.length;
+            transitionStoryCard(prevId, 'prev');
+          } else {
+            modalCard.style.transition = 'transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.25s ease';
+            modalCard.style.transform = 'translateX(0)';
+            modalCard.style.opacity = '1';
+            setTimeout(() => {
+              if (!isTransitioning) {
+                modalCard.style.transition = '';
+                modalCard.style.transform = '';
+                modalCard.style.opacity = '';
+              }
+            }, 260);
+          }
+        };
+
+        modalCard.addEventListener('touchend', handleTouchEnd, { passive: true });
+        modalCard.addEventListener('touchcancel', handleTouchEnd, { passive: true });
       }
 
       track.addEventListener('click', (e) => {
@@ -5669,29 +5802,16 @@ theme.variantStrings = {
        X2 MODES STACKING SCROLL SECTION
        ══════════════════════════════════════════════ */
     #shopify-section-template--miroooo-x2-modes-swipe {
-      display: block;
+      display: block !important;
     }
-    @media screen and (min-width: 768px) {
-      #shopify-section-template--miroooo-x2-modes-swipe {
-        display: none !important;
-      }
-      #shopify-section-template--miroooo-brush-functions {
-        display: block !important;
-      }
+    #shopify-section-template--miroooo-brush-functions {
+      display: none !important;
     }
-    @media screen and (max-width: 767px) {
-      #shopify-section-template--miroooo-x2-modes-swipe {
-        display: block !important;
-      }
-      #shopify-section-template--miroooo-brush-functions {
-        display: none !important;
-      }
-      .x2-modes-swipe-wrapper {
-        padding-bottom: 0 !important;
-      }
-      .x2-mode-card:last-child {
-        margin-bottom: 0 !important;
-      }
+    .x2-modes-swipe-wrapper {
+      padding-bottom: 0 !important;
+    }
+    .x2-mode-card:last-child {
+      margin-bottom: 0 !important;
     }
     .x2-modes-swipe-container {
       width: 100%;
