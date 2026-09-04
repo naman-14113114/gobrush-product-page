@@ -110,10 +110,10 @@
       rating: 5,
       date: '2026-08-30',
       displayDate: '30 August 2026',
-      variant: 'Silver / Double Pack',
-      title: 'Definitely recommend getting the Buy 2 bundle',
-      body: 'Recommend to buy 2! My husband and I both got one in Silver and Grey with the free replacement heads included. The aerospace aluminium unibody feels ultra luxury and getting the bonus DuPont brush heads makes the 2-pack the best value deal around.',
-      images: [],
+      variant: 'Silver / Triple Pack',
+      title: 'Definitely recommend getting the Buy 3 bundle',
+      body: 'Recommend to buy 3! We got one in Silver, Grey, and Pink for the whole family with the free replacement heads included. The aerospace aluminium unibody feels ultra luxury and getting the bonus DuPont brush heads makes the 3-pack bundle the best value deal around.',
+      images: ['/assets_ref/reviews/miroooo-x2-customer-review-3-brush-bundle-boxes-silver-pink-grey.webp'],
       helpful: 63,
       verified: true
     },
@@ -281,7 +281,7 @@
       variant: 'Grey / Single',
       title: 'Ergonomic slim neck reaches posterior wisdom teeth',
       body: 'Standard round electric brushes always made me gag trying to reach my back wisdom teeth. The slim aerospace neck on the X2 maneuvers into deep posterior angles with zero effort.',
-      images: [],
+      images: ['/assets_ref/reviews/miroooo-x2-customer-review-space-grey-unibody-dupont-head.webp'],
       helpful: 25,
       verified: true
     },
@@ -603,7 +603,7 @@
       variant: 'Grey / Double Pack',
       title: 'Free and fast shipping to Cardiff',
       body: 'Arrived within two days in pristine condition. The build quality of the brush is exceptional and teeth feel polished after every brush.',
-      images: [],
+      images: ['/assets_ref/reviews/miroooo-x2-customer-review-unboxing-retail-box.webp'],
       helpful: 9,
       verified: true
     },
