@@ -5807,12 +5807,6 @@ theme.variantStrings = {
     #shopify-section-template--miroooo-brush-functions {
       display: none !important;
     }
-    .x2-modes-swipe-wrapper {
-      padding-bottom: 0 !important;
-    }
-    .x2-mode-card:last-child {
-      margin-bottom: 0 !important;
-    }
     .x2-modes-swipe-container {
       width: 100%;
       position: relative;
@@ -5824,6 +5818,7 @@ theme.variantStrings = {
       display: flex;
       flex-direction: column;
       gap: clamp(40px, 8vh, 80px);
+      padding-bottom: clamp(40px, 8vh, 80px);
       box-sizing: border-box;
     }
     .x2-mode-card {
@@ -5835,9 +5830,6 @@ theme.variantStrings = {
       transform-origin: center top;
       z-index: var(--card-index);
       box-sizing: border-box;
-    }
-    .x2-mode-card:last-child {
-      margin-bottom: 0;
     }
     .x2-mode-card-clipper {
       border-radius: clamp(22px, 3vw, 32px);
@@ -5956,24 +5948,27 @@ theme.variantStrings = {
       .x2-mode-card-content {
         flex-direction: row;
         align-items: center;
+        min-height: clamp(480px, 56vh, 540px);
+        height: 520px;
       }
       .x2-mode-card-inner {
         width: 50%;
-        padding: clamp(40px, 5vw, 72px);
+        padding: clamp(36px, 4.5vw, 64px);
+        box-sizing: border-box;
       }
       .x2-mode-card-media {
         width: 50%;
         height: 100%;
-        min-height: 480px;
-        aspect-ratio: 1.25;
+        min-height: 100%;
+        aspect-ratio: auto;
       }
     }
     @media screen and (min-width: 1200px) {
-      .x2-mode-card-inner {
-        padding: 64px 80px;
+      .x2-mode-card-content {
+        height: 540px;
       }
-      .x2-mode-card-media {
-        min-height: 520px;
+      .x2-mode-card-inner {
+        padding: 48px 64px;
       }
     }
   </style>
