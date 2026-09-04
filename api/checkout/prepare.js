@@ -123,7 +123,13 @@ function extractActiveDiscountCodes(infoResponse) {
 async function applyDiscountCodesToCheckout(checkoutToken, discountCodes) {
   const results = [];
   if (!discountCodes.length) {
-    return { initialized: false, results, activeDiscountCodes: [], missingDiscountCodes: [] };
+    return {
+      initialized: false,
+      results,
+      activeDiscountCodes: [],
+      missingDiscountCodes: [],
+      unexpectedDiscountCodes: [],
+    };
   }
 
   let checkoutInfo;
@@ -135,6 +141,7 @@ async function applyDiscountCodesToCheckout(checkoutToken, discountCodes) {
       results,
       activeDiscountCodes: [],
       missingDiscountCodes: [...discountCodes],
+      unexpectedDiscountCodes: [],
       initializationError: error?.message || "CHECKOUT_INITIALIZATION_FAILED",
     };
   }
@@ -201,12 +208,16 @@ async function applyDiscountCodesToCheckout(checkoutToken, discountCodes) {
   } catch (_) {}
 
   const missingDiscountCodes = discountCodes.filter((code) => !activeDiscountCodes.includes(code));
+  const unexpectedDiscountCodes = activeDiscountCodes.filter(
+    (code) => validDiscountCodes.includes(code) && !discountCodes.includes(code)
+  );
 
   return {
     initialized: true,
     results,
     activeDiscountCodes,
     missingDiscountCodes,
+    unexpectedDiscountCodes,
   };
 }
 
@@ -349,13 +360,17 @@ module.exports = async function handler(req, res) {
     const discountApplication = await applyDiscountCodesToCheckout(checkout.checkoutToken, discountCodes);
     const finalUrl = appendAttributionToUrl(checkout.checkoutUrl, attribution);
 
-    if (discountApplication.missingDiscountCodes.length > 0) {
+    if (
+      discountApplication.missingDiscountCodes.length > 0 ||
+      discountApplication.unexpectedDiscountCodes.length > 0
+    ) {
       return res.status(502).json({
-        error: "Could not apply every promo code to PlusBase checkout.",
+        error: "PlusBase checkout promos did not match the cart.",
         checkoutToken: checkout.checkoutToken,
         requestedDiscountCodes: discountCodes,
         appliedDiscountCodes: discountApplication.activeDiscountCodes,
         missingDiscountCodes: discountApplication.missingDiscountCodes,
+        unexpectedDiscountCodes: discountApplication.unexpectedDiscountCodes,
         discountApplyResults: discountApplication.results,
         discountApplyInitialized: discountApplication.initialized,
       });
@@ -366,6 +381,7 @@ module.exports = async function handler(req, res) {
       checkoutUrl: finalUrl,
       requestedDiscountCodes: discountCodes,
       appliedDiscountCodes: discountApplication.activeDiscountCodes,
+      unexpectedDiscountCodes: discountApplication.unexpectedDiscountCodes,
       discountApplyResults: discountApplication.results,
       discountApplyInitialized: discountApplication.initialized,
     });
