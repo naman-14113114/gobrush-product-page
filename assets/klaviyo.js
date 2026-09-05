@@ -40,7 +40,7 @@
     },
     "miroooo-x2-heads": {
       ProductName: "Brush X2 Heads",
-      ProductID: "1000000675072187",
+      ProductID: "1000000675616058",
       SKU: "MIROOOO-X2-HEADS-2PK",
       Categories: ["Brush Heads", "Oral Care"],
       ImageURL: "https://www.trymiroooo.com/assets_ref/x2/heads/B1.webp",

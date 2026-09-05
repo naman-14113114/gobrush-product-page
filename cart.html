@@ -1649,13 +1649,13 @@
         "miroooo-x2-heads": {
           id: "miroooo-x2-heads",
           name: "Brush X2 Heads",
-          productId: "1000000675072187",
+          productId: "1000000675616058",
           source: "miroooo-x2-heads",
           subtitle: "DuPont precision heads for Brush X2.",
           image: "/assets_ref/x2/heads/B1.webp",
           alt: "Miroooo Brush X2 Precision DuPont Heads 2-Pack",
           variants: {
-            "Default": { variantId: "1000020700182881", image: "/assets_ref/x2/heads/B1.webp", alt: "Miroooo Brush X2 Precision DuPont Heads 2-Pack" }
+            "Default": { variantId: "1000020718937117", image: "/assets_ref/x2/heads/B1.webp", alt: "Miroooo Brush X2 Precision DuPont Heads 2-Pack" }
           },
           getPricing(qty) {
             const count = Math.max(1, qty);
@@ -2499,8 +2499,8 @@
           let items = [];
           if (isHeads) {
             items = [{
-              productId: isX1Heads ? "1000000675471182" : "1000000675072187",
-              variantId: isX1Heads ? "1000020710139724" : "1000020700182881",
+              productId: isX1Heads ? "1000000675471182" : "1000000675616058",
+              variantId: isX1Heads ? "1000020710139724" : "1000020718937117",
               quantity: cartState.quantity
             }];
           } else {
@@ -2531,8 +2531,8 @@
             if (isX2 && cartState.quantity >= 2) {
               const extraBrushHeadSets = cartState.quantity - 1;
               items.push({
-                productId: "1000000675072187",
-                variantId: "1000020700182881",
+                productId: "1000000675616058",
+                variantId: "1000020718937117",
                 quantity: extraBrushHeadSets
               });
             }
@@ -2647,7 +2647,7 @@
             }
 
             try {
-              const defaultVariantId = isHeads ? "1000020700182881" : (isX2 ? "1000020700182883" : "1000020700958564");
+              const defaultVariantId = isHeads ? (isX1Heads ? "1000020710139724" : "1000020718937117") : (isX2 ? "1000020700182883" : "1000020700958564");
               const firstVariantId = items[0]?.variantId || defaultVariantId;
               const bridgeUrl = new URL("https://miroooo.us/pages/add-to-cart");
               bridgeUrl.searchParams.set("product_id", productId);
