@@ -1772,6 +1772,226 @@ theme.variantStrings = {
   display: block;
 }
 
+/* Miroooo X2 Product Gallery Direct-on-Image Editorial Typography */
+.miroooo-infographic-badge,
+.miroooo-infographic-overlay {
+  position: absolute;
+  z-index: 6;
+  pointer-events: none;
+  user-select: none;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 0 !important;
+  background: transparent !important;
+  background-color: transparent !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+  border: none !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+  opacity: 0;
+  box-sizing: border-box;
+  max-width: 260px;
+  will-change: opacity, transform;
+}
+
+/* Left-aligned slides glide in smoothly from Left to Right */
+.miroooo-infographic-badge--top-left,
+.miroooo-infographic-overlay--top-left {
+  top: 26px;
+  left: 26px;
+  align-items: flex-start;
+  text-align: left;
+  transform: translate3d(-36px, 0, 0);
+  transition: opacity 0.65s cubic-bezier(0.16, 1, 0.3, 1), transform 0.65s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.miroooo-infographic-badge--bottom-left,
+.miroooo-infographic-overlay--bottom-left {
+  bottom: 26px;
+  left: 26px;
+  align-items: flex-start;
+  text-align: left;
+  transform: translate3d(-36px, 0, 0);
+  transition: opacity 0.65s cubic-bezier(0.16, 1, 0.3, 1), transform 0.65s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Right-aligned slides glide in smoothly from Right to Left */
+.miroooo-infographic-badge--top-right,
+.miroooo-infographic-overlay--top-right {
+  top: 26px;
+  right: 58px;
+  align-items: flex-end;
+  text-align: right;
+  transform: translate3d(36px, 0, 0);
+  transition: opacity 0.65s cubic-bezier(0.16, 1, 0.3, 1), transform 0.65s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.miroooo-infographic-badge--bottom-right,
+.miroooo-infographic-overlay--bottom-right {
+  bottom: 26px;
+  right: 26px;
+  align-items: flex-end;
+  text-align: right;
+  transform: translate3d(36px, 0, 0);
+  transition: opacity 0.65s cubic-bezier(0.16, 1, 0.3, 1), transform 0.65s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Active Slide & Lightbox Modal Smooth Entrance */
+.miroooo-gallery__slide.is-active .miroooo-infographic-badge,
+.miroooo-gallery__slide.is-active .miroooo-infographic-overlay,
+.miroooo-gallery-lightbox.is-open .miroooo-infographic-badge,
+.miroooo-gallery-lightbox.is-open .miroooo-infographic-overlay,
+.miroooo-gallery-lightbox__media-box .miroooo-infographic-badge,
+.miroooo-gallery-lightbox__media-box .miroooo-infographic-overlay,
+.miroooo-gallery-lightbox-media-box .miroooo-infographic-badge,
+.miroooo-gallery-lightbox-media-box .miroooo-infographic-overlay {
+  opacity: 1;
+  transform: translate3d(0, 0, 0);
+  transition-delay: 0.12s;
+}
+
+.miroooo-infographic-badge__header {
+  display: block;
+  margin: 0;
+  padding: 0;
+}
+
+.miroooo-infographic-badge__dot {
+  display: none !important;
+}
+
+.miroooo-infographic-badge__title,
+.miroooo-infographic-overlay__title {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  font-size: 20px;
+  font-weight: 800;
+  line-height: 1.18;
+  letter-spacing: 0.01em;
+  text-transform: uppercase;
+  color: #111111;
+  text-shadow: 0 1px 2px rgba(255, 255, 255, 0.95), 0 0 12px rgba(255, 255, 255, 0.85);
+  white-space: normal !important;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  margin: 0;
+  display: block;
+}
+
+.miroooo-infographic-badge__sub,
+.miroooo-infographic-overlay__sub {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  font-size: 13.5px;
+  font-weight: 500;
+  line-height: 1.35;
+  letter-spacing: -0.01em;
+  color: #4b5563;
+  text-shadow: 0 1px 2px rgba(255, 255, 255, 0.9);
+  white-space: normal !important;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  margin: 0;
+  margin-top: 2px;
+  display: block;
+  opacity: 0;
+  transform: translate3d(-12px, 0, 0);
+  transition: opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1), transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.miroooo-infographic-badge--top-right .miroooo-infographic-badge__sub,
+.miroooo-infographic-overlay--top-right .miroooo-infographic-overlay__sub,
+.miroooo-infographic-badge--bottom-right .miroooo-infographic-badge__sub,
+.miroooo-infographic-overlay--bottom-right .miroooo-infographic-overlay__sub {
+  transform: translate3d(12px, 0, 0);
+}
+
+.miroooo-gallery__slide.is-active .miroooo-infographic-badge__sub,
+.miroooo-gallery__slide.is-active .miroooo-infographic-overlay__sub,
+.miroooo-gallery-lightbox.is-open .miroooo-infographic-badge__sub,
+.miroooo-gallery-lightbox.is-open .miroooo-infographic-overlay__sub,
+.miroooo-gallery-lightbox__media-box .miroooo-infographic-badge__sub,
+.miroooo-gallery-lightbox__media-box .miroooo-infographic-overlay__sub,
+.miroooo-gallery-lightbox-media-box .miroooo-infographic-badge__sub,
+.miroooo-gallery-lightbox-media-box .miroooo-infographic-overlay__sub {
+  opacity: 1;
+  transform: translate3d(0, 0, 0);
+  transition-delay: 0.22s;
+}
+
+/* Lightbox Modal Specific Overrides */
+.miroooo-gallery-lightbox__media-box .miroooo-infographic-badge,
+.miroooo-gallery-lightbox__media-box .miroooo-infographic-overlay,
+.miroooo-gallery-lightbox-media-box .miroooo-infographic-badge,
+.miroooo-gallery-lightbox-media-box .miroooo-infographic-overlay {
+  max-width: 290px;
+}
+
+.miroooo-gallery-lightbox__media-box .miroooo-infographic-badge--top-right,
+.miroooo-gallery-lightbox__media-box .miroooo-infographic-overlay--top-right,
+.miroooo-gallery-lightbox-media-box .miroooo-infographic-badge--top-right,
+.miroooo-gallery-lightbox-media-box .miroooo-infographic-overlay--top-right {
+  right: 28px;
+}
+
+.miroooo-gallery-lightbox__media-box .miroooo-infographic-badge__title,
+.miroooo-gallery-lightbox__media-box .miroooo-infographic-overlay__title,
+.miroooo-gallery-lightbox-media-box .miroooo-infographic-badge__title,
+.miroooo-gallery-lightbox-media-box .miroooo-infographic-overlay__title {
+  font-size: 22px;
+}
+
+.miroooo-gallery-lightbox__media-box .miroooo-infographic-badge__sub,
+.miroooo-gallery-lightbox__media-box .miroooo-infographic-overlay__sub,
+.miroooo-gallery-lightbox-media-box .miroooo-infographic-badge__sub,
+.miroooo-gallery-lightbox-media-box .miroooo-infographic-overlay__sub {
+  font-size: 15px;
+}
+
+/* Mobile Responsiveness (< 768px) */
+@media screen and (max-width: 767px) {
+  .miroooo-infographic-badge,
+  .miroooo-infographic-overlay {
+    max-width: 175px;
+    gap: 2px;
+  }
+  .miroooo-infographic-badge--top-left,
+  .miroooo-infographic-overlay--top-left {
+    top: 14px;
+    left: 14px;
+    transform: translate3d(-20px, 0, 0);
+  }
+  .miroooo-infographic-badge--bottom-left,
+  .miroooo-infographic-overlay--bottom-left {
+    bottom: 14px;
+    left: 14px;
+    transform: translate3d(-20px, 0, 0);
+  }
+  .miroooo-infographic-badge--top-right,
+  .miroooo-infographic-overlay--top-right {
+    top: 14px;
+    right: 48px;
+    transform: translate3d(20px, 0, 0);
+  }
+  .miroooo-infographic-badge--bottom-right,
+  .miroooo-infographic-overlay--bottom-right {
+    bottom: 14px;
+    right: 14px;
+    transform: translate3d(20px, 0, 0);
+  }
+  .miroooo-infographic-badge__title,
+  .miroooo-infographic-overlay__title {
+    font-size: 14px;
+    line-height: 1.2;
+  }
+  .miroooo-infographic-badge__sub,
+  .miroooo-infographic-overlay__sub {
+    font-size: 11px;
+    line-height: 1.3;
+    margin-top: 1px;
+  }
+}
+
 /* Miroooo Dark Luxury Navigation Chevrons */
 .miroooo-gallery__arrow {
   position: absolute;
@@ -2935,6 +3155,13 @@ theme.variantStrings = {
           <!-- Slide 1: Upright Grip (First slide) -->
           <div class="miroooo-gallery__slide is-active" data-media-type="image" data-index="1">
             <img src="/assets_ref/x2/gallery/miroooo-x2-sonic-electric-toothbrush-silver-upright-grip.webp" alt="Miroooo X2 Sonic Electric Toothbrush Silver Upright Grip in Hand" width="1000" height="1000" fetchpriority="high" decoding="async" />
+            <div class="miroooo-infographic-badge miroooo-infographic-badge--top-left">
+              <div class="miroooo-infographic-badge__header">
+                <span class="miroooo-infographic-badge__dot"></span>
+                <span class="miroooo-infographic-badge__title">Ultra Lightweight (51g)</span>
+              </div>
+              <span class="miroooo-infographic-badge__sub">Ergonomic Aerospace-Grade Body</span>
+            </div>
           </div>
 
           <!-- Slide 0: Video (Second slide) -->
@@ -2966,21 +3193,56 @@ theme.variantStrings = {
           </div>
           <div class="miroooo-gallery__slide" data-media-type="image" data-index="3">
             <img src="/assets_ref/x2/gallery/miroooo-x2-sonic-electric-toothbrush-wall-mounted-dock-storage.webp" alt="Miroooo X2 Sonic Electric Toothbrush Wall-Mounted Storage Dock Cradle" width="1000" height="1000" loading="eager" decoding="async" />
+            <div class="miroooo-infographic-badge miroooo-infographic-badge--top-left">
+              <div class="miroooo-infographic-badge__header">
+                <span class="miroooo-infographic-badge__dot"></span>
+                <span class="miroooo-infographic-badge__title">Free Wall-Mounted Storage</span>
+              </div>
+              <span class="miroooo-infographic-badge__sub">Hygienic Magnetic Floating Storage</span>
+            </div>
           </div>
           <div class="miroooo-gallery__slide" data-media-type="image" data-index="4">
             <img src="/assets_ref/x2/gallery/miroooo-x2-sonic-electric-toothbrush-luxury-travel-case-lifestyle.webp" alt="Miroooo X2 Sonic Electric Toothbrush Luxury Travel Case Lifestyle Presentation" width="1000" height="1000" loading="eager" decoding="async" />
           </div>
           <div class="miroooo-gallery__slide" data-media-type="image" data-index="5">
             <img src="/assets_ref/x2/gallery/miroooo-x2-sonic-electric-toothbrush-ipx7-waterproof-submersion.webp" alt="Miroooo X2 Sonic Electric Toothbrush IPX7 Full Immersion Waterproof Design" width="1000" height="1000" loading="eager" decoding="async" />
+            <div class="miroooo-infographic-badge miroooo-infographic-badge--bottom-right">
+              <div class="miroooo-infographic-badge__header">
+                <span class="miroooo-infographic-badge__dot" style="background:#38bdf8;box-shadow:0 0 8px rgba(56,189,248,0.7);"></span>
+                <span class="miroooo-infographic-badge__title">IPX7 100% Waterproof</span>
+              </div>
+              <span class="miroooo-infographic-badge__sub">Shower-Safe & Fully Submersible</span>
+            </div>
           </div>
           <div class="miroooo-gallery__slide" data-media-type="image" data-index="6">
             <img src="/assets_ref/x2/gallery/miroooo-x2-sonic-electric-toothbrush-45-degree-bass-sweep-action.webp" alt="Miroooo X2 Sonic Electric Toothbrush 45-Degree Bass Sweep Method Sonic Vibration" width="1000" height="1000" loading="eager" decoding="async" />
+            <div class="miroooo-infographic-badge miroooo-infographic-badge--bottom-left">
+              <div class="miroooo-infographic-badge__header">
+                <span class="miroooo-infographic-badge__dot"></span>
+                <span class="miroooo-infographic-badge__title">45° Bass Sweep Motion</span>
+              </div>
+              <span class="miroooo-infographic-badge__sub">Dentist-Approved Gumline Cleaning</span>
+            </div>
           </div>
           <div class="miroooo-gallery__slide" data-media-type="image" data-index="7">
             <img src="/assets_ref/x2/gallery/miroooo-x2-sonic-electric-toothbrush-usbc-fast-charging-port.webp" alt="Miroooo X2 Sonic Electric Toothbrush Concealed USB-C Fast Charging Port" width="1000" height="1000" loading="eager" decoding="async" />
+            <div class="miroooo-infographic-badge miroooo-infographic-badge--top-right">
+              <div class="miroooo-infographic-badge__header">
+                <span class="miroooo-infographic-badge__dot" style="background:#eab308;box-shadow:0 0 8px rgba(234,179,8,0.7);"></span>
+                <span class="miroooo-infographic-badge__title">Fast USB-C Charging</span>
+              </div>
+              <span class="miroooo-infographic-badge__sub">Up to 90 Days On Single Charge</span>
+            </div>
           </div>
           <div class="miroooo-gallery__slide" data-media-type="image" data-index="8">
             <img src="/assets_ref/x2/gallery/miroooo-x2-sonic-electric-toothbrush-aerospace-aluminum-body.webp" alt="Miroooo X2 Sonic Electric Toothbrush Aerospace Grade Aluminum Alloy Finish" width="1000" height="1000" loading="eager" decoding="async" />
+            <div class="miroooo-infographic-badge miroooo-infographic-badge--top-left">
+              <div class="miroooo-infographic-badge__header">
+                <span class="miroooo-infographic-badge__dot" style="background:#a855f7;box-shadow:0 0 8px rgba(168,85,247,0.7);"></span>
+                <span class="miroooo-infographic-badge__title">Aerospace Aluminium Body</span>
+              </div>
+              <span class="miroooo-infographic-badge__sub">Precision CNC Anodized Unibody</span>
+            </div>
           </div>
           <div class="miroooo-gallery__slide" data-media-type="image" data-index="9">
             <img src="/assets_ref/x2/gallery/miroooo-x2-sonic-electric-toothbrush-handbag-travel-case.webp" alt="Miroooo X2 Sonic Electric Toothbrush Portable Luxury Travel Case in Handbag" width="1000" height="1000" loading="eager" decoding="async" />
@@ -2990,15 +3252,43 @@ theme.variantStrings = {
           </div>
           <div class="miroooo-gallery__slide" data-media-type="image" data-index="11">
             <img src="/assets_ref/x2/gallery/miroooo-x2-sonic-electric-toothbrush-smart-microchip-architecture.webp" alt="Miroooo X2 Sonic Electric Toothbrush Intelligent Microprocessor and Internal Circuitry" width="1000" height="1000" loading="eager" decoding="async" />
+            <div class="miroooo-infographic-badge miroooo-infographic-badge--top-left">
+              <div class="miroooo-infographic-badge__header">
+                <span class="miroooo-infographic-badge__dot" style="background:#3b82f6;box-shadow:0 0 8px rgba(59,130,246,0.7);"></span>
+                <span class="miroooo-infographic-badge__title">Smart Pressure Sensor</span>
+              </div>
+              <span class="miroooo-infographic-badge__sub">Intelligent Microchip Protects Gums</span>
+            </div>
           </div>
           <div class="miroooo-gallery__slide" data-media-type="image" data-index="12">
             <img src="/assets_ref/x2/gallery/miroooo-x2-sonic-electric-toothbrush-precision-bristle-head-halo-ring.webp" alt="Miroooo X2 Sonic Electric Toothbrush Precision DuPont Bristle Head and LED Halo Ring" width="1000" height="1000" loading="eager" decoding="async" />
+            <div class="miroooo-infographic-badge miroooo-infographic-badge--top-left">
+              <div class="miroooo-infographic-badge__header">
+                <span class="miroooo-infographic-badge__dot"></span>
+                <span class="miroooo-infographic-badge__title">3 Tailored Clean Modes</span>
+              </div>
+              <span class="miroooo-infographic-badge__sub">Standard, Whitening & Deep Clean</span>
+            </div>
           </div>
           <div class="miroooo-gallery__slide" data-media-type="image" data-index="13">
             <img src="/assets_ref/x2/gallery/miroooo-x2-sonic-electric-toothbrush-dupont-bristle-head-macro.webp" alt="Miroooo X2 Sonic Electric Toothbrush DuPont Multi-Action Replacement Bristle Head" width="1000" height="1000" loading="eager" decoding="async" />
+            <div class="miroooo-infographic-badge miroooo-infographic-badge--top-left">
+              <div class="miroooo-infographic-badge__header">
+                <span class="miroooo-infographic-badge__dot"></span>
+                <span class="miroooo-infographic-badge__title">DuPont™ Premium Bristles</span>
+              </div>
+              <span class="miroooo-infographic-badge__sub">End-Rounded For Gentle Enamel Care</span>
+            </div>
           </div>
           <div class="miroooo-gallery__slide" data-media-type="image" data-index="14">
             <img src="/assets_ref/x2/gallery/miroooo-x2-sonic-electric-toothbrush-silver-in-hand.webp" alt="Miroooo X2 Sonic Electric Toothbrush Silver Dynamic Grip in Hand" width="1000" height="1000" loading="eager" decoding="async" />
+            <div class="miroooo-infographic-badge miroooo-infographic-badge--top-right">
+              <div class="miroooo-infographic-badge__header">
+                <span class="miroooo-infographic-badge__dot"></span>
+                <span class="miroooo-infographic-badge__title">Whisper-Quiet Operation</span>
+              </div>
+              <span class="miroooo-infographic-badge__sub">Sub-50dB Acoustic Sonic Motor</span>
+            </div>
           </div>
           <div class="miroooo-gallery__slide" data-media-type="image" data-index="15">
             <img src="/assets_ref/x2/gallery/miroooo-x2-sonic-electric-toothbrush-smile-coach-app.webp" alt="Miroooo X2 Sonic Electric Toothbrush and Smile Coach Companion App on Smartphone" width="1000" height="1000" loading="eager" decoding="async" />
@@ -9560,6 +9850,172 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     });
   });
+
+  // Miroooo X2 Dedicated Lightbox Controller with Infographic Badges
+  (function initX2LightboxController() {
+    const modal = document.getElementById('MirooooGalleryLightbox');
+    if (!modal) return;
+
+    const mediaBox = document.getElementById('MirooooGalleryLightboxMediaBox');
+    const closeBtn = document.getElementById('MirooooGalleryLightboxClose');
+    const prevBtn = document.getElementById('MirooooGalleryLightboxPrev');
+    const nextBtn = document.getElementById('MirooooGalleryLightboxNext');
+    const currentCountEl = document.getElementById('MirooooGalleryLightboxCurrent');
+    const totalCountEl = document.getElementById('MirooooGalleryLightboxTotal');
+    const backdrop = modal.querySelector('.miroooo-gallery-lightbox__backdrop');
+
+    let currentIdx = 0;
+    let isOpen = false;
+
+    function getSlides() {
+      return [...document.querySelectorAll('#MirooooGallerySlides .miroooo-gallery__slide')].filter(s => s.style.display !== 'none' && !s.classList.contains('hidden'));
+    }
+
+    function renderLightboxSlide(idx) {
+      const slides = getSlides();
+      if (!slides.length) return;
+
+      if (idx < 0) idx = slides.length - 1;
+      if (idx >= slides.length) idx = 0;
+      currentIdx = idx;
+
+      if (currentCountEl) currentCountEl.textContent = String(currentIdx + 1);
+      if (totalCountEl) totalCountEl.textContent = String(slides.length);
+      if (!mediaBox) return;
+
+      const slide = slides[currentIdx];
+      if (!slide) return;
+
+      // Clean up previous video
+      const prevVid = mediaBox.querySelector('video');
+      if (prevVid) {
+        prevVid.pause();
+        prevVid.removeAttribute('src');
+        prevVid.load();
+      }
+      mediaBox.innerHTML = '';
+
+      const video = slide.querySelector('video');
+      if (video || slide.dataset.mediaType === 'video') {
+        const v = document.createElement('video');
+        v.className = 'miroooo-gallery-lightbox__video';
+        v.src = video ? (video.getAttribute('src') || video.currentSrc || video.src) : '/assets_ref/x2/vbj9qc-h264-hd.mp4';
+        v.autoplay = true;
+        v.loop = true;
+        v.muted = true;
+        v.playsInline = true;
+        v.setAttribute('playsinline', '');
+        v.setAttribute('autoplay', '');
+        v.setAttribute('loop', '');
+        v.setAttribute('muted', '');
+        v.setAttribute('controlslist', 'nodownload nofullscreen noremoteplayback');
+        v.setAttribute('disablepictureinpicture', '');
+        mediaBox.appendChild(v);
+        v.play().catch(() => {});
+      } else {
+        const img = slide.querySelector('img');
+        if (img) {
+          const imgEl = document.createElement('img');
+          imgEl.className = 'miroooo-gallery-lightbox__img';
+          imgEl.src = img.getAttribute('src') || img.currentSrc || img.src;
+          imgEl.alt = img.getAttribute('alt') || 'Expanded Product View';
+          imgEl.decoding = 'async';
+          imgEl.loading = 'eager';
+          mediaBox.appendChild(imgEl);
+        }
+
+        const badge = slide.querySelector('.miroooo-infographic-badge, .miroooo-infographic-overlay');
+        if (badge) {
+          const badgeEl = badge.cloneNode(true);
+          mediaBox.appendChild(badgeEl);
+        }
+      }
+    }
+
+    function openLightbox(idx) {
+      isOpen = true;
+      document.body.style.overflow = 'hidden';
+      document.documentElement.style.overflow = 'hidden';
+      document.body.classList.add('overflow-hidden');
+      document.documentElement.classList.add('overflow-hidden');
+
+      renderLightboxSlide(typeof idx === 'number' ? idx : currentGalleryIndex);
+
+      modal.classList.add('is-open');
+      modal.setAttribute('aria-hidden', 'false');
+      closeBtn?.focus();
+    }
+
+    function closeLightbox() {
+      if (!isOpen) return;
+      isOpen = false;
+
+      modal.classList.remove('is-open');
+      modal.setAttribute('aria-hidden', 'true');
+
+      document.body.style.overflow = '';
+      document.documentElement.style.overflow = '';
+      document.body.classList.remove('overflow-hidden');
+      document.documentElement.classList.remove('overflow-hidden');
+
+      if (mediaBox) {
+        const v = mediaBox.querySelector('video');
+        if (v) {
+          v.pause();
+          v.removeAttribute('src');
+          v.load();
+        }
+        mediaBox.innerHTML = '';
+      }
+    }
+
+    closeBtn?.addEventListener('click', (e) => {
+      e.preventDefault();
+      e.stopPropagation();
+      closeLightbox();
+    });
+
+    prevBtn?.addEventListener('click', (e) => {
+      e.preventDefault();
+      e.stopPropagation();
+      renderLightboxSlide(currentIdx - 1);
+    });
+
+    nextBtn?.addEventListener('click', (e) => {
+      e.preventDefault();
+      e.stopPropagation();
+      renderLightboxSlide(currentIdx + 1);
+    });
+
+    backdrop?.addEventListener('click', (e) => {
+      e.preventDefault();
+      e.stopPropagation();
+      closeLightbox();
+    });
+
+    modal.addEventListener('click', (e) => {
+      if (e.target === modal || e.target === backdrop || e.target.classList.contains('miroooo-gallery-lightbox__stage')) {
+        closeLightbox();
+      }
+    });
+
+    document.addEventListener('keydown', (e) => {
+      if (!isOpen) return;
+      if (e.key === 'Escape') {
+        e.preventDefault();
+        closeLightbox();
+      } else if (e.key === 'ArrowRight') {
+        e.preventDefault();
+        renderLightboxSlide(currentIdx + 1);
+      } else if (e.key === 'ArrowLeft') {
+        e.preventDefault();
+        renderLightboxSlide(currentIdx - 1);
+      }
+    });
+
+    window.openMirooooLightbox = openLightbox;
+    window.closeMirooooLightbox = closeLightbox;
+  })();
 
   // Stage click -> opens Lightbox Modal
   const galleryStage = document.getElementById('MirooooGalleryStage');
