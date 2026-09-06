@@ -32,8 +32,8 @@ function buildTemplates() {
   add("welcome-2", "X1 or X2? Make the choice yours.", { preheader: "Two brushes. A few useful differences.", eyebrow: "FIND YOUR FIT", title: "Your routine.<br>Your brush.", intro: "Like things simple? Start with X1. Want the sweeping action and wall storage? Take a closer look at X2.", image: IMG.x1, alt: "Brush X1 in Pink", url: BASE + "/products/miroooo-x", label: "Explore Brush X1", body: p("Brush X1: three brushing modes, an aluminium handle and a travel case.") + p("Brush X2: 45° sweeping motion, USB-C charging, a travel case and wall-mounted storage.") + button(BASE + "/products/miroooo-x2", "Explore Brush X2") + p("Still deciding? " + a(BASE + "/dentalcare-quiz", "Take the dental care quiz") + " for a starting point.") });
   add("welcome-3", "One less thing to overthink", { preheader: "Choose your finish. We can help with the rest.", eyebrow: "HERE TO HELP", title: "Good questions.<br>Clear answers.", intro: "Wondering about delivery, returns, the feel of the handle or replacement heads? Reply to this email and tell us what you need to know.", image: IMG.x2, alt: "Brush X2 in Silver", url: BASE + "/shop", label: "Choose your brush", body: p("Check our " + a(BASE + "/shipping-policy", "delivery information") + " and " + a(BASE + "/return-policy", "returns policy") + " before you decide.") + p("Your welcome code is MIROOOO10 for 10% off an eligible first order. The final offer and total are shown at checkout.") });
   const checkoutCopy = [
-    ["Your {{ event.FirstProductName }} is still in your checkout", "Pick up where you left off.", "Your routine<br>is one step closer.", "You left these items in your checkout. Your link below takes you back to that checkout so you can review the details and finish when you're ready."],
-    ["A question about your {{ event.FirstProductName }}?", "Your selected model, with help if you need it.", "Still thinking<br>it over?", "If something held you back, reply and tell us. We can help with the product, delivery or checkout. Here's the selection you were considering."],
+    ["Your Miroooo checkout is still here", "Pick up where you left off.", "Your routine<br>is one step closer.", "You left these items in your checkout. Your link below takes you back to that checkout so you can review the details and finish when you're ready."],
+    ["A question about your Miroooo?", "Your selected model, with help if you need it.", "Still thinking<br>it over?", "If something held you back, reply and tell us. We can help with the product, delivery or checkout. Here's the selection you were considering."],
     ["Your Miroooo checkout, with 10% off", "Use MIROOOO10 on your eligible order at checkout.", "Your choice.<br>A little extra help.", "Still considering your Miroooo? Use <strong style='color:#f4f4f1'>MIROOOO10</strong> for 10% off an eligible order. Your selected items are below. Enter the code at checkout; eligibility and any combination with other offers are confirmed there."]
   ];
   checkoutCopy.forEach((c, i) => add("checkout-" + (i + 1), c[0], { preheader: c[1], eyebrow: "YOUR CHECKOUT", title: c[2], intro: c[3], url: "{{ event.CheckoutURL }}", label: "Return to my checkout", body: eventItems + p("Please review the final price, currency and delivery details at checkout. Prices and availability can change.") + button("{{ event.CheckoutURL }}", "Continue checkout") }));
@@ -63,7 +63,9 @@ function buildTemplates() {
     .replace(/\n[ \t]+/g, '\n').replace(/\n{3,}/g, '\n\n').trim();
   return templates;
 }
-const groups = (...conditions) => ({ condition_groups: [{ conditions }] });
+// Klaviyo uses AND between condition groups, OR inside each group's conditions.
+const groups = (...conditions) => ({ condition_groups: conditions.map(condition => ({ conditions: [condition] })) });
+const any = (...conditions) => ({ condition_groups: [{ conditions }] });
 const prop = (metric, field, type, operator, value) => ({ type: "metric-property", metric_id: metric, field, filter: { type, operator, value } });
 const zero = (metric, timeframe = { type: "date", operator: "flow-start" }, filters = null) => ({ type: "profile-metric", metric_id: metric, measurement: "count", measurement_filter: { type: "numeric", operator: "equals", value: 0 }, timeframe_filter: timeframe, metric_filters: filters });
 const consent = (subscription = "subscribed") => ({ type: "profile-marketing-consent", consent: { channel: "email", can_receive_marketing: true, consent_status: { subscription, filters: null } } });
@@ -82,11 +84,11 @@ function buildFlows(templateIds, webhookSecret) {
       if (step.webhook) actions.push({ type: "send-webhook", data: { status: "draft", message: { name: step.webhook.kind + " eligibility check", url: BASE + "/api/klaviyo/verify-lifecycle", headers: { "Content-Type": "application/json", "x-miroooo-email-secret": webhookSecret }, body: JSON.stringify(step.webhook) } } });
     }
     actions.forEach((action, i) => { action.temporary_id = "action-" + i; action.links = { next: i + 1 < actions.length ? "action-" + (i + 1) : null }; });
-    flows.push({ name: "MIROOOO | " + name, definition: { triggers: [trigger], profile_filter: filters, reentry_criteria: reentry, actions, entry_action_id: actions[0].temporary_id } });
+    flows.push({ name: "MIROOOO | " + name + " | v2", definition: { triggers: [trigger], profile_filter: filters, reentry_criteria: reentry, actions, entry_action_id: actions[0].temporary_id } });
   }
   const metric = (id, filter = null) => ({ type: "metric", id, trigger_filter: filter });
   const verified = (id, ...conditions) => metric(id, groups(prop(id, "Verified", "boolean", "equals", true), ...conditions));
-  const validItemNames = { condition_groups: CATALOG.map(p => ({ conditions: [prop(M.checkout, "ItemNames", "list", "contains", p.name)] })) };
+  const validItemNames = any(...CATALOG.map(p => prop(M.checkout, "ItemNames", "list", "contains", p.name)));
   flow("Checkout validation • 1h / 24h / 72h", metric(M.checkout, validItemNames), groups(zero(M.purchase)), [1, 23, 48].map((delay, i) => ({ delay, unit: "hours", webhook: { kind: "checkout", stage: i + 1, email: "{{ person.email }}", checkout_url: "{{ event.CheckoutURL }}" } })));
   for (let stage = 1; stage <= 3; stage++) flow("Checkout email " + stage + " • verified exact basket", verified(M.eligible, prop(M.eligible, "Stage", "numeric", "equals", stage)), groups(consent("any"), zero(M.purchase, recent(96, "hour"))), [{ key: "checkout-" + stage, smart: stage !== 1 }], { duration: 1, unit: "day" });
   flow("Welcome • 10% / model choice / support", { type: "list", id: "XwTFrW" }, groups(consent(), zero(M.purchase)), [{ key: "welcome-1", smart: false }, { delay: 2, key: "welcome-2" }, { delay: 3, key: "welcome-3" }], { duration: 1, unit: "alltime" });
@@ -94,7 +96,7 @@ function buildFlows(templateIds, webhookSecret) {
     flow("Browse • " + product.name, metric(M.browse, groups(prop(M.browse, "ProductID", "string", "equals", product.id))), groups(consent(), zero(M.purchase), zero(M.cart, recent(24, "hour")), zero(M.checkout, recent(48, "hour"))), [{ delay: 6, unit: "hours", key: "browse-" + product.key }], { duration: 14, unit: "day" });
     flow("Cart • " + product.name, metric(M.cart, groups(prop(M.cart, "AddedItemProductID", "string", "equals", product.id))), groups(consent(), zero(M.purchase), zero(M.checkout, recent(48, "hour"))), [{ delay: 4, unit: "hours", key: "cart-" + product.key }], { duration: 7, unit: "day" });
   }
-  const purchaseNames = { condition_groups: CATALOG.map(p => ({ conditions: [prop(M.purchase, "ItemNames", "list", "contains", p.name)] })) };
+  const purchaseNames = any(...CATALOG.map(p => prop(M.purchase, "ItemNames", "list", "contains", p.name)));
   flow("Purchase verification • payment / owner / consent", metric(M.purchase, purchaseNames), groups(zero(M.refund), zero(M.cancel)), [{ delay: 5, unit: "minutes", webhook: { kind: "purchase", email: "{{ person.email }}", order_id: "{{ event|lookup:'$event_id' }}" } }], { duration: 0, unit: "alltime" });
   flow("Post-purchase • care / Smile Coach / honest feedback", verified(M.verified, prop(M.verified, "HasBrush", "boolean", "equals", true)), groups(consent("any"), zero(M.refund), zero(M.cancel), zero(M.review)), [{ delay: 1, key: "post-purchase-1" }, { delay: 6, key: "post-purchase-2" }, { delay: 23, key: "post-purchase-3" }], { duration: 30, unit: "day" });
   for (const model of ["X1", "X2"]) {

@@ -68,3 +68,20 @@ test('checkout verifier checks ownership, purchase, consent and idempotency befo
     assert.equal(posted[0].data.attributes.properties.HasX1,false);
   } finally {global.fetch=originalFetch; if(originalKey===undefined) delete process.env.MIROOOO_KLAVIYO_API_KEY; else process.env.MIROOOO_KLAVIYO_API_KEY=originalKey;}
 });
+test('Klaviyo AND-of-OR groups admit exactly one recovery stage and the right owner model', () => {
+  const templates=buildTemplates();
+  const flows=buildFlows(Object.fromEntries(templates.map(t=>[t.key,'test-id'])),'test-secret');
+  const evaluate=(filter, event)=>filter.condition_groups.every(group=>group.conditions.some(c=>c.filter.operator==='contains'?event[c.field]?.includes(c.filter.value):event[c.field]===c.filter.value));
+  const recoveries=flows.filter(f=>f.name.includes('Checkout email'));
+  for(const stage of [1,2,3]) {
+    assert.deepEqual(recoveries.map(f=>evaluate(f.definition.triggers[0].trigger_filter,{Verified:true,Stage:stage})),[1,2,3].map(s=>s===stage));
+    assert.deepEqual(recoveries.map(f=>evaluate(f.definition.triggers[0].trigger_filter,{Verified:false,Stage:stage})),[false,false,false]);
+  }
+  const heads=flows.filter(f=>f.name.includes('Head care and replenishment'));
+  assert.deepEqual(heads.map(f=>evaluate(f.definition.triggers[0].trigger_filter,{Verified:true,HasX1:true,HasX2:false})),[true,false]);
+  assert.deepEqual(heads.map(f=>evaluate(f.definition.triggers[0].trigger_filter,{Verified:true,HasX1:false,HasX2:true})),[false,true]);
+  const checkout=flows.find(f=>f.name.includes('Checkout validation'));
+  assert.equal(evaluate(checkout.definition.triggers[0].trigger_filter,{ItemNames:['Brush X2']}),true);
+  assert.equal(evaluate(checkout.definition.triggers[0].trigger_filter,{ItemNames:['Unrelated brand']}),false);
+  for(const f of flows) for(const group of f.definition.profile_filter.condition_groups) assert.equal(group.conditions.length,1,'Every safety prerequisite must be ANDed: '+f.name);
+});
