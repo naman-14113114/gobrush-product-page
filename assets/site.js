@@ -1286,7 +1286,7 @@
       } catch (_) {}
     }
 
-    const validCodes = ["MIROOOO10", "FREE2HEADS", "FREE4HEADS", "2-BRUSH-BUNDLE-SPECIAL", "3-BRUSH-BUNDLE-OFFER"];
+    const validCodes = ["MIROOOO", "MIROOOO10", "FREE2HEADS", "FREE4HEADS", "2-BRUSH-BUNDLE-SPECIAL", "3-BRUSH-BUNDLE-OFFER"];
     let promoList = [];
     try {
       const storedArr = JSON.parse(localStorage.getItem("miroooo_promo_codes") || "[]");

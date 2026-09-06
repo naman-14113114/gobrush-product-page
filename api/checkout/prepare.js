@@ -1,7 +1,7 @@
 // Vercel Serverless Function: /api/checkout/prepare
 const plusbaseOrigin = "https://muuhu.onshopbase.com";
 const publicCheckoutDomain = "https://miroooo.us";
-const validDiscountCodes = ["MIROOOO10", "FREE2HEADS", "FREE4HEADS", "2-BRUSH-BUNDLE-SPECIAL", "3-BRUSH-BUNDLE-OFFER"];
+const validDiscountCodes = ["MIROOOO", "MIROOOO10", "FREE2HEADS", "FREE4HEADS", "2-BRUSH-BUNDLE-SPECIAL", "3-BRUSH-BUNDLE-OFFER"];
 
 const passthroughAttributionKeys = [
   "utm_source",
