@@ -93,7 +93,7 @@ function buildFlows(templateIds, webhookSecret) {
   flow("Post-purchase • care / Smile Coach / honest feedback", verified(M.verified, prop(M.verified, "HasBrush", "boolean", "equals", true)), groups(consent("any"), zero(M.refund), zero(M.cancel), zero(M.review)), [{ delay: 1, key: "post-purchase-1" }, { delay: 6, key: "post-purchase-2" }, { delay: 23, key: "post-purchase-3" }], { duration: 30, unit: "day" });
   for (const model of ["X1", "X2"]) {
     const headName = "Brush " + model + " Heads";
-    const noNewHeads = zero(M.purchase, undefined, [{ property: "ItemNames", filter: { type: "list", operator: "contains", value: headName } }]);
+    const noNewHeads = zero(M.purchase, undefined, [{ property: "ItemNames", filter: { type: "list", operator: "contains-any", value: [headName] } }]);
     const baseFilters = [consent("any"), zero(M.refund), zero(M.cancel), noNewHeads];
     flow("Head care and replenishment • " + model, verified(M.verified, prop(M.verified, "Has" + model, "boolean", "equals", true)), groups(...baseFilters), [{ delay: 70, key: "heads-care-" + model }, { delay: 80, key: "heads-stock-" + model }, { delay: 15, key: "heads-last-" + model }], { duration: 0, unit: "alltime" });
     flow("Win-back • " + model + " owners", verified(M.verified, prop(M.verified, "Has" + model, "boolean", "equals", true)), groups(consent("any"), zero(M.refund), zero(M.cancel), zero(M.purchase)), [{ delay: 240, key: "winback-" + model }], { duration: 30, unit: "day" });
