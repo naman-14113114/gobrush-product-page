@@ -41,7 +41,7 @@ test('checkout verifier checks ownership, purchase, consent and idempotency befo
   const originalFetch = global.fetch;
   const originalKey = process.env.MIROOOO_KLAVIYO_API_KEY;
   process.env.MIROOOO_KLAVIYO_API_KEY = 'test-only';
-  let checkout = {info:{email:'buyer@example.com',buyer_accepts_marketing:true,is_completed:false}, items:[{variant_id:'1000020700182883',qty:1}],total:{already_paid:0},order:null};
+  let checkout = {info:{email:'buyer@example.com',buyer_accepts_marketing:true,is_completed:false}, items:[{variant_id:'1000020700182883',qty:1}],total:{already_paid:0},order:null,token:{checkout:'structured-api-token'}};
   let consent = 'NEVER_SUBSCRIBED', canReceive = true, purchased = false, posted = [], completedToken = null;
   global.fetch = async (url, opts = {}) => {
     let data;
