@@ -55,6 +55,12 @@ function buildTemplates() {
   // Operational templates are a library. Native ShopBase receipts/status emails remain authoritative.
   add("service-delivery-help", "Help with your Miroooo delivery", { preheader: "Let's check the latest tracking together.", eyebrow: "CUSTOMER CARE", title: "Let's find<br>your delivery.", intro: "If your delivery is taking longer than expected, check the latest carrier update using your tracking details. Reply with your order number if you need us to investigate.", url: "https://miroooo.us/pages/order-tracking", label: "Check order tracking", body: p("We will confirm the order facts before advising you on next steps.") });
   add("service-return-help", "Help with your Miroooo return", { preheader: "The information we need to help you.", eyebrow: "CUSTOMER CARE", title: "Let's get<br>this sorted.", intro: "Reply with your order number, the model you ordered and what happened. Please check the returns policy before sending anything back so we can give you the right instructions.", url: BASE + "/return-policy", label: "Read the returns policy", body: p("This message does not confirm a refund or return approval. We'll confirm the next step after reviewing your order.") });
+  for (const template of templates) template.text = template.html
+    .replace(/<head>[\s\S]*?<\/head>/i, '')
+    .replace(/<a\b[^>]*href="([^"]*)"[^>]*>([\s\S]*?)<\/a>/gi, '$2 ($1)')
+    .replace(/<br\s*\/?\s*>/gi, '\n').replace(/<\/(?:p|h1|h2|div|tr)>/gi, '\n\n')
+    .replace(/<[^>]*>/g, '').replace(/&nbsp;/g, ' ').replace(/&amp;/g, '&')
+    .replace(/\n[ \t]+/g, '\n').replace(/\n{3,}/g, '\n\n').trim();
   return templates;
 }
 const groups = (...conditions) => ({ condition_groups: [{ conditions }] });
