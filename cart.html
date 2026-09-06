@@ -272,6 +272,12 @@
       justify-content: center;
     }
 
+    .cart-line-item__media-link {
+      display: block;
+      width: 100%;
+      height: 100%;
+    }
+
     .cart-line-item__media img {
       width: 100%;
       height: 100%;
@@ -300,6 +306,17 @@
       color: #000000;
       line-height: 1.3;
       margin: 0;
+    }
+
+    .cart-line-item__title-link {
+      color: inherit;
+      text-decoration: none;
+      transition: opacity 0.2s ease;
+    }
+
+    .cart-line-item__title-link:hover {
+      text-decoration: underline;
+      opacity: 0.85;
     }
 
     .cart-line-item__subtitle {
@@ -1592,6 +1609,7 @@
         "miroooo-x": {
           id: "miroooo-x",
           name: "Brush X1",
+          url: "/products/miroooo-x",
           productId: "1000000675113473",
           source: "miroooo",
           subtitle: "Electric Toothbrush with 32,000 VPM acoustic motor & 60-day battery.",
@@ -1613,6 +1631,7 @@
         "miroooo-x2": {
           id: "miroooo-x2",
           name: "Brush X2",
+          url: "/products/miroooo-x2",
           productId: "1000000675072187",
           source: "miroooo-x2",
           subtitle: "Includes free luxury travel case, wall-mounted storage & 90-day battery life.",
@@ -1633,6 +1652,7 @@
         "miroooo-x1-heads": {
           id: "miroooo-x1-heads",
           name: "Brush X1 Heads",
+          url: "/products/miroooo-x1-heads",
           productId: "1000000675471182",
           source: "miroooo-x1-heads",
           subtitle: "DuPont precision heads for Brush X1.",
@@ -1649,6 +1669,7 @@
         "miroooo-x2-heads": {
           id: "miroooo-x2-heads",
           name: "Brush X2 Heads",
+          url: "/products/miroooo-x2-heads",
           productId: "1000000675616058",
           source: "miroooo-x2-heads",
           subtitle: "DuPont precision heads for Brush X2.",
@@ -2011,18 +2032,19 @@
             const itemImage = product.image;
             const itemPrice = Math.round(totals.subtotal);
             const itemCompare = Math.round(totals.compareAt);
+            const itemUrl = product.url || ('/products/' + cartState.productId);
 
             html += `
               <!-- Brush Heads Item -->
               <div class="cart-line-item" data-product="${cartState.productId}">
                 <div class="cart-line-item__media">
-                  <img src="${itemImage}" alt="${product.alt || itemTitle}" />
+                  <a href="${itemUrl}" class="cart-line-item__media-link" aria-label="View ${itemTitle}"><img src="${itemImage}" alt="${product.alt || itemTitle}" /></a>
                 </div>
                 <div class="cart-line-item__content">
                   <div>
                     <div class="cart-line-item__header">
                       <div>
-                        <h2 class="cart-line-item__title">${itemTitle}</h2>
+                        <h2 class="cart-line-item__title"><a href="${itemUrl}" class="cart-line-item__title-link">${itemTitle}</a></h2>
                         <p class="cart-line-item__subtitle">${product.subtitle}</p>
                       </div>
                       <div class="cart-line-item__pricing">
@@ -2076,18 +2098,19 @@
 
               const itemPrice = 69 * count;
               const itemCompare = 139 * count;
+              const itemUrl = `${product.url || '/products/' + product.id}?color=${encodeURIComponent(color)}`;
 
               html += `
                 <!-- Brush Item (${color}) -->
                 <div class="cart-line-item" data-color="${color}">
                   <div class="cart-line-item__media">
-                    <img src="${itemImage}" alt="${itemAlt}" />
+                    <a href="${itemUrl}" class="cart-line-item__media-link" aria-label="View ${itemTitle}"><img src="${itemImage}" alt="${itemAlt}" /></a>
                   </div>
                   <div class="cart-line-item__content">
                     <div>
                       <div class="cart-line-item__header">
                         <div>
-                          <h2 class="cart-line-item__title">${itemTitle}</h2>
+                          <h2 class="cart-line-item__title"><a href="${itemUrl}" class="cart-line-item__title-link">${itemTitle}</a></h2>
                           <p class="cart-line-item__subtitle">${product.subtitle}</p>
                         </div>
                         <div class="cart-line-item__pricing">
@@ -2129,17 +2152,18 @@
                 const badgeText = `UNLOCKED ${sets} ${sets > 1 ? "SETS" : "SET"} (${heads} BRUSH HEADS)`;
                 const giftImage = "/assets_ref/x2/heads/B1.webp";
                 const giftAlt = `Complimentary ${heads}x DuPont Precision Brush Heads for Miroooo Brush X2`;
+                const giftUrl = "/products/miroooo-x2-heads";
 
                 html += `
                   <div class="cart-line-item">
                     <div class="cart-line-item__media">
-                      <img src="${giftImage}" alt="${giftAlt}" />
+                      <a href="${giftUrl}" class="cart-line-item__media-link" aria-label="View ${title}"><img src="${giftImage}" alt="${giftAlt}" /></a>
                     </div>
                     <div class="cart-line-item__content">
                       <div>
                         <div class="cart-line-item__header">
                           <div>
-                            <h3 class="cart-line-item__title">${title}</h3>
+                            <h3 class="cart-line-item__title"><a href="${giftUrl}" class="cart-line-item__title-link">${title}</a></h3>
                             <p class="cart-line-item__subtitle">${subtitle}</p>
                           </div>
                           <div class="cart-line-item__pricing">
@@ -2159,16 +2183,17 @@
             } else {
               const lineItemGifts = GIFTS_DATA.filter(g => g.id === "brush-heads");
               lineItemGifts.forEach(gift => {
+                const giftUrl = "/products/miroooo-x1-heads";
                 html += `
                   <div class="cart-line-item">
                     <div class="cart-line-item__media">
-                      <img src="${gift.image}" alt="${gift.name}" />
+                      <a href="${giftUrl}" class="cart-line-item__media-link" aria-label="View ${gift.name}"><img src="${gift.image}" alt="${gift.name}" /></a>
                     </div>
                     <div class="cart-line-item__content">
                       <div>
                         <div class="cart-line-item__header">
                           <div>
-                            <h3 class="cart-line-item__title">${gift.name}</h3>
+                            <h3 class="cart-line-item__title"><a href="${giftUrl}" class="cart-line-item__title-link">${gift.name}</a></h3>
                             <p class="cart-line-item__subtitle">${gift.desc}</p>
                           </div>
                           <div class="cart-line-item__pricing">

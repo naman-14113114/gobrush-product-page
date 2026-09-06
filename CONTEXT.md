@@ -529,3 +529,21 @@ Append-only memory for the `gobrush-product-page` repository. Do not delete or s
     - Backward compatibility: `MIROOOO10` verified working with identical calculations.
     - Full visual screenshots captured confirming discount accordion breakdown and pill badges.
 
+## 2026-09-06 08:26:00 +05:30 - Review Dates Shift by +4 Days for All Products
+
+- Task: Shift review dates forward by 4 days across all product reviews in `gobrush-product-page`.
+- Script: `update-review-dates.js 4`.
+- Files Modified:
+  - `assets_ref/miroooo-reviews.js`:
+    - 63 ISO dates shifted by +4 days (e.g., `2026-08-31` -> `2026-09-04`).
+    - 63 display dates shifted (e.g., `31 August 2026` -> `4 September 2026`).
+    - 8 merchant reply dates shifted (e.g., `2 July 2026` -> `6 July 2026`).
+    - 1 base timestamp shifted (`2026-09-02T12:00:00Z` -> `2026-09-06T12:00:00Z`).
+  - `assets_ref/miroooo-x2-reviews.js`:
+    - 56 ISO dates shifted by +4 days (e.g., `2026-09-01` -> `2026-09-05`).
+    - 56 display dates shifted (e.g., `1 September 2026` -> `5 September 2026`).
+    - 6 merchant reply dates shifted (e.g., `15 March 2026` -> `19 March 2026`, `7 February 2026` -> `11 February 2026`).
+    - 1 base timestamp shifted (`2026-09-02T12:00:00Z` -> `2026-09-06T12:00:00Z`).
+- Verification:
+  - `npm run verify` passed cleanly (43 required files and 17 storefront pages checked).
+  - `npm run build` completed cleanly, syncing updated review assets to `public/assets_ref/`.
