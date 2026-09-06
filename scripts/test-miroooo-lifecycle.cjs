@@ -42,10 +42,13 @@ test('checkout verifier checks ownership, purchase, consent and idempotency befo
   const originalKey = process.env.MIROOOO_KLAVIYO_API_KEY;
   process.env.MIROOOO_KLAVIYO_API_KEY = 'test-only';
   let checkout = {info:{email:'buyer@example.com',buyer_accepts_marketing:true,is_completed:false}, items:[{variant_id:'1000020700182883',qty:1}],total:{already_paid:0},order:null};
-  let consent = 'NEVER_SUBSCRIBED', canReceive = true, purchased = false, posted = [];
+  let consent = 'NEVER_SUBSCRIBED', canReceive = true, purchased = false, posted = [], completedToken = null;
   global.fetch = async (url, opts = {}) => {
     let data;
-    if (url.includes('/profiles/')) data={data:[{id:'profile-test',attributes:{subscriptions:{email:{marketing:{consent,can_receive_email_marketing:canReceive,suppression:[],list_suppressions:[]}}}}}]};
+    if (url.includes('/profiles/')) {
+      const profile={id:'profile-test',attributes:{properties:{miroooo_recovery_completed_checkout:completedToken},subscriptions:{email:{marketing:{consent,can_receive_email_marketing:canReceive,suppression:[],list_suppressions:[]}}}}};
+      data={data:url.includes('/profiles/profile-test/')?profile:[profile]};
+    }
     else if (url.includes('/next/new-info.json')) data={code:200,result:checkout};
     else if (url.includes('/events/') && opts.method==='POST') {posted.push(JSON.parse(opts.body)); return new Response(null,{status:202});}
     else if(url.includes('/events/')) data={data:purchased?[{id:'purchase'}]:[]};
@@ -66,6 +69,8 @@ test('checkout verifier checks ownership, purchase, consent and idempotency befo
     assert.equal(posted[0].data.attributes.unique_id,posted[1].data.attributes.unique_id);
     assert.equal(posted[0].data.attributes.properties.Items[0].Model,'X2');
     assert.equal(posted[0].data.attributes.properties.HasX1,false);
+    completedToken='a'.repeat(32);
+    assert.equal((await processLifecycle(body)).status,'recovery_already_completed');
   } finally {global.fetch=originalFetch; if(originalKey===undefined) delete process.env.MIROOOO_KLAVIYO_API_KEY; else process.env.MIROOOO_KLAVIYO_API_KEY=originalKey;}
 });
 test('Klaviyo AND-of-OR groups admit exactly one recovery stage and the right owner model', () => {
