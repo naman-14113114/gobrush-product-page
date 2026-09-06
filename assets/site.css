@@ -7190,7 +7190,7 @@ body.nav-open .miroooo-sticky-cart-wrap {
 .product__media img,
 .product__media video,
 .product__thumbnails-list .product__thumbnail {
-  cursor: zoom-in !important;
+  cursor: url("/cursor-zoom-in.svg") 20 20, zoom-in !important;
 }
 
 .miroooo-gallery-lightbox {

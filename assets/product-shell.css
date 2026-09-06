@@ -1643,19 +1643,19 @@
    ========================================================= */
 
 .product__media-list .product__media {
-  cursor: zoom-in !important;
+  cursor: url("/cursor-zoom-in.svg") 20 20, zoom-in !important;
 }
 
 .product__media-list .product__media--video,
 .product__media-list #product-media-video-item {
-  cursor: zoom-in !important;
+  cursor: url("/cursor-zoom-in.svg") 20 20, zoom-in !important;
   pointer-events: auto !important;
 }
 
 .product__media-list #product-media-video-item .video-wrapper,
 .product__media-list #product-media-video-item video {
   pointer-events: auto !important;
-  cursor: zoom-in !important;
+  cursor: url("/cursor-zoom-in.svg") 20 20, zoom-in !important;
 }
 
 .product__thumbnails-list .product__thumbnail {

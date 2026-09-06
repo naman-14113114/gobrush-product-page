@@ -686,7 +686,7 @@
   overflow: hidden;
   background: #e6e6e6;
   box-shadow: 0 6px 24px rgba(0, 0, 0, 0.2);
-  cursor: zoom-in;
+  cursor: url("/cursor-zoom-in.svg") 20 20, zoom-in;
   user-select: none;
   touch-action: pan-y;
 }
@@ -777,40 +777,6 @@
   transform: scale(0.96) translateY(-50%);
 }
 
-.miroooo-gallery__zoom-badge {
-  position: absolute;
-  top: 14px;
-  right: 14px;
-  z-index: 8;
-  width: 36px;
-  height: 36px;
-  border-radius: 50%;
-  background: rgba(14, 14, 14, 0.65);
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
-  border: 1px solid rgba(255, 255, 255, 0.16);
-  color: #ffffff;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  transition: all 0.2s ease;
-  padding: 0;
-  opacity: 0.85;
-}
-
-.miroooo-gallery__zoom-badge svg {
-  width: 18px;
-  height: 18px;
-}
-
-.miroooo-gallery__zoom-badge:hover {
-  opacity: 1;
-  background: #000000;
-  border-color: #ffffff;
-  transform: scale(1.06);
-}
-
 /* Mobile & Tablet Layout (< 1024px) */
 @media screen and (max-width: 1023px) {
   .miroooo-minmun-gallery {
@@ -867,13 +833,6 @@
 
   .miroooo-gallery__arrow--next {
     right: 8px;
-  }
-
-  .miroooo-gallery__zoom-badge {
-    top: 8px;
-    right: 8px;
-    width: 32px;
-    height: 32px;
   }
 }
 </style>
@@ -1552,15 +1511,6 @@
         <button type="button" class="miroooo-gallery__arrow miroooo-gallery__arrow--next" id="MirooooGalleryNextBtn" aria-label="Next product image">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
             <polyline points="9 18 15 12 9 6"></polyline>
-          </svg>
-        </button>
-
-        <button type="button" class="miroooo-gallery__zoom-badge" id="MirooooGalleryZoomBtn" aria-label="Expand image">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
-            <circle cx="11" cy="11" r="8"></circle>
-            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
-            <line x1="11" y1="8" x2="11" y2="14"></line>
-            <line x1="8" y1="11" x2="14" y2="11"></line>
           </svg>
         </button>
       </div>
@@ -2541,9 +2491,7 @@
     if (prevBtn) prevBtn.addEventListener('click', prevGallerySlide);
     if (nextBtn) nextBtn.addEventListener('click', nextGallerySlide);
 
-    const zoomBtn = document.getElementById('MirooooGalleryZoomBtn');
     const stage = document.getElementById('MirooooGalleryStage');
-    if (zoomBtn) zoomBtn.addEventListener('click', () => openLightbox(currentGalleryIndex));
     if (stage) stage.addEventListener('click', (e) => {
       if (!e.target.closest('button')) openLightbox(currentGalleryIndex);
     });

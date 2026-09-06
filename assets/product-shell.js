@@ -707,7 +707,7 @@
     // Attach click listeners to all main gallery media items and thumbnails
     const mainMediaItems = document.querySelectorAll(".product__media-list .product__media");
     mainMediaItems.forEach((mediaEl, idx) => {
-      mediaEl.style.cursor = "zoom-in";
+      mediaEl.style.cursor = "url('/cursor-zoom-in.svg') 20 20, zoom-in";
       mediaEl.style.pointerEvents = "auto";
       const vidWrap = mediaEl.querySelector(".video-wrapper");
       if (vidWrap) vidWrap.style.pointerEvents = "auto";
