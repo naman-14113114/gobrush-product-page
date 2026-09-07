@@ -1084,56 +1084,66 @@
 }
 
 .tier-addon-checkbox-wrap {
-  position: relative;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  margin: 0;
-  padding: 0;
-  flex-shrink: 0;
+  position: relative !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  cursor: pointer !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  flex-shrink: 0 !important;
+  width: 16px !important;
+  height: 16px !important;
 }
 
 .tier-addon-checkbox {
-  position: absolute;
-  opacity: 0;
-  width: 0;
-  height: 0;
-  margin: 0;
-  pointer-events: none;
+  position: absolute !important;
+  inset: 0 !important;
+  opacity: 0 !important;
+  width: 100% !important;
+  height: 100% !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  pointer-events: auto !important;
+  cursor: pointer !important;
+  z-index: 2 !important;
 }
 
 .tier-addon-custom-check {
-  width: 17px;
-  height: 17px;
-  border-radius: 4px;
-  border: 1.5px solid #555555;
-  background: #ffffff;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  transition: all 0.18s ease;
-  box-sizing: border-box;
+  position: absolute !important;
+  inset: 0 !important;
+  width: 16px !important;
+  height: 16px !important;
+  border-radius: 4px !important;
+  border: 1.5px solid #555555 !important;
+  background: #ffffff !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  transition: all 0.18s ease !important;
+  box-sizing: border-box !important;
+  pointer-events: none !important;
+  z-index: 1 !important;
 }
 
 .tier-addon-custom-check svg {
-  width: 11px;
-  height: 11px;
-  stroke: #ffffff;
-  stroke-width: 3.5;
-  opacity: 0;
-  transform: scale(0.6);
-  transition: all 0.18s cubic-bezier(0.16, 1, 0.3, 1);
+  width: 11px !important;
+  height: 11px !important;
+  stroke: #ffffff !important;
+  stroke-width: 3.5 !important;
+  opacity: 0 !important;
+  transform: scale(0.6) !important;
+  transition: all 0.18s cubic-bezier(0.16, 1, 0.3, 1) !important;
 }
 
 .tier-addon-checkbox:checked + .tier-addon-custom-check {
-  background: #000000;
-  border-color: #000000;
+  background: #000000 !important;
+  border-color: #000000 !important;
 }
 
 .tier-addon-checkbox:checked + .tier-addon-custom-check svg {
-  opacity: 1;
-  transform: scale(1);
+  opacity: 1 !important;
+  transform: scale(1) !important;
 }
 
 .tier-addon-price-tag {
@@ -9874,25 +9884,39 @@ function toggleBuy1HeadsAddon(event) {
   if (event) event.stopPropagation();
   const checkbox = document.getElementById('buy1-heads-checkbox');
   if (checkbox) {
-    checkbox.checked = !checkbox.checked;
+    if (activeTierId !== 'single') {
+      checkbox.checked = true;
+    } else {
+      checkbox.checked = !checkbox.checked;
+    }
     handleBuy1HeadsToggle(checkbox.checked);
   }
 }
 
 function handleBuy1HeadsToggle(isChecked) {
-  if (activeTierId === 'single') {
-    const mainCtaText = document.getElementById('main-cta-text');
-    if (mainCtaText) {
-      mainCtaText.textContent = isChecked ? 'Add to Cart + Brush X2 Heads' : 'Add to Cart';
-    }
-    updateStickyBar();
+  if (activeTierId !== 'single') {
+    selectBundleTier('single');
   }
+  const checkbox = document.getElementById('buy1-heads-checkbox');
+  if (checkbox) checkbox.checked = isChecked;
+
+  const mainCtaText = document.getElementById('main-cta-text');
+  if (mainCtaText) {
+    mainCtaText.textContent = isChecked ? 'Add to Cart + Brush X2 Heads' : 'Add to Cart';
+  }
+  updateStickyBar();
 }
 
 function selectBundleTier(tierId) {
   if (!TIERS[tierId]) return;
   activeTierId = tierId;
   const tier = TIERS[tierId];
+
+  // If selecting Buy 2 or Buy 3, reset Buy 1 heads add-on checkbox
+  if (tierId === 'bundle-2' || tierId === 'bundle-3') {
+    const checkbox = document.getElementById('buy1-heads-checkbox');
+    if (checkbox) checkbox.checked = false;
+  }
 
   // 1. Update Bundle Cards Styling
   document.querySelectorAll('.bundle-tier-card').forEach(card => {
