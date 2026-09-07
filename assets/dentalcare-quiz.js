@@ -797,10 +797,10 @@
     // Construct Cart Item matching MirooooCart architecture
     const cartItem = {
       id: isBundle ? "miroooo-x2-2" : (isX1 ? "miroooo-x-1" : "miroooo-x2-1"),
-      productId: isX1 ? "1000000675113473" : "1000000664011618",
+      productId: isX1 ? "1000000675113473" : "1000000675072187",
       productHandle: isX1 ? "miroooo-x" : "miroooo-x2",
       title: isBundle ? "Brush X2 (Buy 2)" : (isX1 ? `Brush X1 (${selectedColor})` : `Brush X2 (${selectedColor})`),
-      quantity: 1,
+      quantity: isBundle ? 2 : 1,
       bundleCount: isBundle ? 2 : 1,
       choices: isBundle ? ["Silver", "Pink"] : [selectedColor],
       color: selectedColor,

@@ -88,23 +88,67 @@
   function readCartSnapshot() {
     try {
       var stored = JSON.parse(window.localStorage.getItem("miroooo_cart") || "null");
-      if (!stored || !PRODUCTS[stored.productId]) return null;
+      if (!stored) return null;
 
-      var quantity = Math.max(1, Math.round(Number(stored.quantity) || 1));
-      var product = PRODUCTS[stored.productId];
-      var totalValue;
-      if (stored.productId === "miroooo-x1-heads" || stored.productId === "miroooo-x2-heads") totalValue = quantity * 10;
-      else if (quantity === 1) totalValue = 69;
-      else if (quantity === 2) totalValue = 128;
-      else if (quantity === 3) totalValue = 177;
-      else totalValue = quantity * 59;
+      var items = [];
+      if (Array.isArray(stored.items) && stored.items.length > 0) {
+        items = stored.items;
+      } else if (stored.productId && PRODUCTS[stored.productId]) {
+        var h = stored.productId;
+        var qty = Math.max(1, Math.round(Number(stored.quantity) || 1));
+        var colors = Array.isArray(stored.colors) ? stored.colors : ["Grey"];
+        items.push({
+          productHandle: h,
+          productId: PRODUCTS[h].ProductID,
+          quantity: qty,
+          color: colors[0] || "Grey",
+          title: PRODUCTS[h].ProductName
+        });
+      }
+
+      if (!items.length) return null;
+
+      var totalValue = 0;
+      var itemPayloads = [];
+      var itemNames = [];
+      var allCategories = [];
+
+      items.forEach(function (i) {
+        var h = i.productHandle || "miroooo-x";
+        var prod = PRODUCTS[h] || PRODUCTS["miroooo-x"];
+        var qty = Math.max(1, Math.round(Number(i.quantity) || 1));
+        var lineVal = 0;
+        if (h === "miroooo-x1-heads" || h === "miroooo-x2-heads") {
+          lineVal = qty * 10;
+        } else {
+          lineVal = qty === 1 ? 69 : (qty === 2 ? 128 : (qty === 3 ? 177 : qty * 59));
+        }
+        totalValue += lineVal;
+        if (itemNames.indexOf(prod.ProductName) === -1) itemNames.push(prod.ProductName);
+        if (prod.Categories) {
+          prod.Categories.forEach(function (c) {
+            if (allCategories.indexOf(c) === -1) allCategories.push(c);
+          });
+        }
+        itemPayloads.push({
+          ProductID: prod.ProductID,
+          SKU: prod.SKU,
+          ProductName: prod.ProductName,
+          Quantity: qty,
+          ItemPrice: Number((lineVal / qty).toFixed(2)),
+          RowTotal: lineVal,
+          ProductURL: prod.URL,
+          ImageURL: i.image || prod.ImageURL,
+          ProductCategories: prod.Categories,
+          VariantNames: [i.color || "Default"]
+        });
+      });
 
       return {
-        handle: stored.productId,
-        product: product,
-        quantity: quantity,
-        colors: Array.isArray(stored.colors) ? stored.colors : [],
-        totalValue: totalValue
+        totalValue: totalValue,
+        itemNames: itemNames,
+        categories: allCategories,
+        items: itemPayloads
       };
     } catch (_) {
       return null;
@@ -112,18 +156,22 @@
   }
 
   function itemPayload(snapshot) {
-    return {
-      ProductID: snapshot.product.ProductID,
-      SKU: snapshot.product.SKU,
-      ProductName: snapshot.product.ProductName,
-      Quantity: snapshot.quantity,
-      ItemPrice: Number((snapshot.totalValue / snapshot.quantity).toFixed(2)),
-      RowTotal: snapshot.totalValue,
-      ProductURL: snapshot.product.URL,
-      ImageURL: snapshot.product.ImageURL,
-      ProductCategories: snapshot.product.Categories,
-      VariantNames: snapshot.colors
-    };
+    if (snapshot.items && snapshot.items[0]) return snapshot.items[0];
+    if (snapshot.product) {
+      return {
+        ProductID: snapshot.product.ProductID,
+        SKU: snapshot.product.SKU,
+        ProductName: snapshot.product.ProductName,
+        Quantity: snapshot.quantity,
+        ItemPrice: Number((snapshot.totalValue / snapshot.quantity).toFixed(2)),
+        RowTotal: snapshot.totalValue,
+        ProductURL: snapshot.product.URL,
+        ImageURL: snapshot.product.ImageURL,
+        ProductCategories: snapshot.product.Categories,
+        VariantNames: snapshot.colors
+      };
+    }
+    return {};
   }
 
   function trackViewedProduct() {
@@ -195,10 +243,10 @@
     track("Started Checkout", {
       $event_id: "miroooo-checkout-" + Date.now(),
       $value: snapshot.totalValue,
-      ItemNames: [snapshot.product.ProductName],
+      ItemNames: snapshot.itemNames,
       CheckoutURL: checkoutUrl || "https://www.trymiroooo.com/cart",
-      Categories: snapshot.product.Categories,
-      Items: [itemPayload(snapshot)],
+      Categories: snapshot.categories,
+      Items: snapshot.items,
       Currency: CURRENCY,
       Market: MARKET,
       SourceSite: SOURCE_SITE

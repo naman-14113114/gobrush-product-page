@@ -9922,12 +9922,71 @@ function handleAddToCartAndRedirect() {
     : (activeTierId === 'single' ? [activeSelectedColor || 'Silver'] : ['Silver', 'Grey']);
 
   try {
-    localStorage.setItem('miroooo_cart', JSON.stringify({
-      productId: 'miroooo-x2',
-      quantity: tier.count,
-      colors: choices
-    }));
-    localStorage.removeItem('miroooo_cart_empty');
+    let cart = window.MirooooCart ? window.MirooooCart.getCart() : null;
+    if (!cart || !Array.isArray(cart.items)) {
+      cart = { version: 2, items: [] };
+      const stored = localStorage.getItem('miroooo_cart');
+      if (stored && localStorage.getItem('miroooo_cart_empty') !== 'true') {
+        try {
+          const parsed = JSON.parse(stored);
+          if (Array.isArray(parsed.items)) cart.items = parsed.items;
+        } catch (_) {}
+      }
+    }
+
+    const colorCounts = {};
+    choices.forEach(c => {
+      const norm = (c === 'Pink' || c === 'Silver') ? c : 'Grey';
+      colorCounts[norm] = (colorCounts[norm] || 0) + 1;
+    });
+
+    Object.keys(colorCounts).forEach(color => {
+      const count = colorCounts[color];
+      const variantId = color === 'Pink' ? '1000020700182882' : (color === 'Silver' ? '1000020700182884' : '1000020700182883');
+      const img = color === 'Pink'
+        ? '/assets_ref/x2/gallery/miroooo-x2-sonic-electric-toothbrush-pink-checkout.webp'
+        : (color === 'Silver'
+          ? '/assets_ref/x2/gallery/miroooo-x2-sonic-electric-toothbrush-silver-checkout.webp'
+          : '/assets_ref/x2/gallery/miroooo-x2-sonic-electric-toothbrush-grey-checkout.webp');
+
+      const existingIndex = cart.items.findIndex(i => i.productHandle === 'miroooo-x2' && i.color === color);
+      if (existingIndex > -1) {
+        cart.items[existingIndex].quantity = (cart.items[existingIndex].quantity || 0) + count;
+      } else {
+        cart.items.push({
+          id: `miroooo-x2:${color}`,
+          productHandle: 'miroooo-x2',
+          productId: '1000000675072187',
+          variantId: variantId,
+          title: 'Brush X2',
+          subtitle: 'Includes free luxury travel case, wall-mounted storage & 90-day battery life.',
+          color: color,
+          quantity: count,
+          unitPrice: 69,
+          comparePrice: 139,
+          image: img,
+          url: '/products/miroooo-x2'
+        });
+      }
+    });
+
+    if (window.MirooooCart && typeof window.MirooooCart.saveCart === 'function') {
+      window.MirooooCart.saveCart(cart);
+    } else {
+      const totalQty = cart.items.reduce((s, i) => s + (i.quantity || 1), 0);
+      const allColors = [];
+      cart.items.forEach(i => {
+        for (let q = 0; q < (i.quantity || 1); q++) allColors.push(i.color || 'Grey');
+      });
+      localStorage.setItem('miroooo_cart', JSON.stringify({
+        version: 2,
+        items: cart.items,
+        productId: 'miroooo-x2',
+        quantity: totalQty,
+        colors: allColors
+      }));
+      localStorage.removeItem('miroooo_cart_empty');
+    }
   } catch (e) {}
 
   if (window.MirooooCart) {

@@ -2345,12 +2345,51 @@
 
   function handleAddToCartAndRedirect() {
     try {
-      localStorage.setItem('miroooo_cart', JSON.stringify({
-        productId: 'miroooo-x1-heads',
-        quantity: currentQty,
-        color: 'Standard'
-      }));
-      localStorage.removeItem('miroooo_cart_empty');
+      let cart = window.MirooooCart ? window.MirooooCart.getCart() : null;
+      if (!cart || !Array.isArray(cart.items)) {
+        cart = { version: 2, items: [] };
+        const stored = localStorage.getItem('miroooo_cart');
+        if (stored && localStorage.getItem('miroooo_cart_empty') !== 'true') {
+          try {
+            const parsed = JSON.parse(stored);
+            if (Array.isArray(parsed.items)) cart.items = parsed.items;
+          } catch (_) {}
+        }
+      }
+
+      const existingIndex = cart.items.findIndex(i => i.productHandle === 'miroooo-x1-heads');
+      if (existingIndex > -1) {
+        cart.items[existingIndex].quantity = (cart.items[existingIndex].quantity || 0) + currentQty;
+      } else {
+        cart.items.push({
+          id: 'miroooo-x1-heads:Default',
+          productHandle: 'miroooo-x1-heads',
+          productId: '1000000675471182',
+          variantId: '1000020710139724',
+          title: 'Brush X1 Heads',
+          subtitle: 'DuPont precision heads for Brush X1.',
+          color: 'Default',
+          quantity: currentQty,
+          unitPrice: 10,
+          comparePrice: 10,
+          image: '/assets_ref/x/heads/B1.webp',
+          url: '/products/miroooo-x1-heads'
+        });
+      }
+
+      if (window.MirooooCart && typeof window.MirooooCart.saveCart === 'function') {
+        window.MirooooCart.saveCart(cart);
+      } else {
+        const totalQty = cart.items.reduce((s, i) => s + (i.quantity || 1), 0);
+        localStorage.setItem('miroooo_cart', JSON.stringify({
+          version: 2,
+          items: cart.items,
+          productId: 'miroooo-x1-heads',
+          quantity: totalQty,
+          colors: []
+        }));
+        localStorage.removeItem('miroooo_cart_empty');
+      }
     } catch (e) {}
 
     if (window.MirooooCart) {
@@ -2367,7 +2406,7 @@
     }));
 
     const isHtmlRoute = window.location.pathname.endsWith('.html');
-    const targetCartUrl = (isHtmlRoute ? '/cart.html' : '/cart') + '?product=miroooo-x1-heads&quantity=' + currentQty;
+    const targetCartUrl = isHtmlRoute ? '/cart.html' : '/cart';
     window.location.href = targetCartUrl;
   }
 
