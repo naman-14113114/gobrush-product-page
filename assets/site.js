@@ -101,9 +101,9 @@
   const CURRENCY_CONFIGS = {
     GBP: { code: "GBP", symbol: "£", rate: 1.0 },
     USD: { code: "USD", symbol: "$", rate: 1.30 },
-    AUD: { code: "AUD", symbol: "A$", rate: 1.95 },
-    CAD: { code: "CAD", symbol: "C$", rate: 1.78 },
-    NZD: { code: "NZD", symbol: "NZ$", rate: 2.12 },
+    AUD: { code: "AUD", symbol: "$", rate: 1.95 },
+    CAD: { code: "CAD", symbol: "$", rate: 1.78 },
+    NZD: { code: "NZD", symbol: "$", rate: 2.12 },
     EUR: { code: "EUR", symbol: "€", rate: 1.17 },
     CHF: { code: "CHF", symbol: "CHF ", rate: 1.13 },
     SEK: { code: "SEK", symbol: "kr ", rate: 13.50 },
