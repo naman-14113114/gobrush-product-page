@@ -236,6 +236,229 @@
       }
     }
 
+    /* Left Column Stack & Recommendation Upsell Card */
+    .cart-left-column {
+      display: flex;
+      flex-direction: column;
+      gap: 1.25rem;
+    }
+
+    .cart-upsell-card {
+      padding: 1.25rem;
+      border-radius: 1rem;
+      background: #e6e6e6;
+      border: 1px solid rgba(0, 0, 0, 0.08);
+      box-shadow: 0 12px 32px rgba(0, 0, 0, 0.15);
+    }
+
+    @media (min-width: 640px) {
+      .cart-upsell-card {
+        padding: 1.5rem;
+      }
+    }
+
+    .cart-upsell-header {
+      margin-bottom: 0.85rem;
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+    }
+
+    .cart-upsell-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 4px 12px;
+      border-radius: 9999px;
+      background: rgba(0, 0, 0, 0.07);
+      border: 1px solid rgba(0, 0, 0, 0.12);
+      color: #111111;
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+    }
+
+    .cart-upsell-badge svg {
+      color: #111111;
+      fill: #111111;
+    }
+
+    .cart-upsell-body {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .cart-upsell-media {
+      width: 72px;
+      height: 72px;
+      aspect-ratio: 1 / 1;
+      flex-shrink: 0;
+      border-radius: 12px;
+      overflow: hidden;
+      background: #d8d8d8;
+      border: 1px solid rgba(0, 0, 0, 0.08);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .cart-upsell-media-link {
+      display: block;
+      width: 100%;
+      height: 100%;
+    }
+
+    .cart-upsell-media img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .cart-upsell-content {
+      flex: 1;
+      min-width: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    @media (min-width: 640px) {
+      .cart-upsell-content {
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+        gap: 1rem;
+      }
+    }
+
+    .cart-upsell-info {
+      flex: 1;
+      min-width: 0;
+    }
+
+    .cart-upsell-title {
+      font-size: 0.98rem;
+      font-weight: 700;
+      color: #000000;
+      line-height: 1.3;
+      margin: 0;
+    }
+
+    .cart-upsell-title-link {
+      color: inherit;
+      text-decoration: none;
+      transition: opacity 0.2s ease;
+    }
+
+    .cart-upsell-title-link:hover {
+      text-decoration: underline;
+      opacity: 0.85;
+    }
+
+    .cart-upsell-subtitle {
+      font-size: 0.78rem;
+      color: #555555;
+      margin: 3px 0 0;
+      line-height: 1.35;
+    }
+
+    .cart-upsell-action-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      flex-shrink: 0;
+    }
+
+    @media (min-width: 640px) {
+      .cart-upsell-action-row {
+        justify-content: flex-end;
+      }
+    }
+
+    .cart-upsell-price-wrap {
+      text-align: right;
+    }
+
+    .cart-upsell-price {
+      font-size: 1.1rem;
+      font-weight: 800;
+      color: #000000;
+      line-height: 1;
+    }
+
+    /* Add to Cart Button with Luxury Hover Physics */
+    .cart-upsell-add-btn {
+      position: relative;
+      overflow: hidden;
+      isolation: isolate;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      height: 38px;
+      padding: 0 18px;
+      border-radius: 9999px;
+      background: #000000;
+      background-color: #000000;
+      color: #ffffff;
+      border: 2px solid #000000;
+      font-size: 0.82rem;
+      font-weight: 700;
+      cursor: pointer;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+      transition: border-color 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .cart-upsell-add-btn:hover,
+    .cart-upsell-add-btn:focus,
+    .cart-upsell-add-btn:active {
+      background-color: #000000;
+      background: #000000;
+      border-color: #000000;
+    }
+
+    .cart-upsell-add-btn .btn-fill {
+      position: absolute;
+      border-radius: 50%;
+      width: 150%;
+      height: 200%;
+      inset-block-start: -50%;
+      top: -50%;
+      inset-inline-start: -25%;
+      left: -25%;
+      background-color: #ffffff;
+      background: #ffffff;
+      pointer-events: none;
+      z-index: 1;
+      transform: translate3d(0, 76%, 0);
+      transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .cart-upsell-add-btn:hover .btn-fill,
+    .cart-upsell-add-btn:focus-visible .btn-fill {
+      transform: translate3d(0, 0%, 0);
+    }
+
+    .cart-upsell-add-btn .btn-text {
+      position: relative;
+      z-index: 2;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      color: #ffffff;
+      transition: color 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+      pointer-events: none;
+    }
+
+    .cart-upsell-add-btn:hover .btn-text,
+    .cart-upsell-add-btn:focus-visible .btn-text {
+      color: #000000;
+    }
+
     /* 4. Left Column: Line Items */
     .cart-items-container {
       display: flex;
@@ -1352,11 +1575,63 @@
       <!-- 2. POPULATED CART TWO-COLUMN GRID -->
       <div id="cart-active-grid" class="cart-main-grid">
         
-        <!-- Left Column: Line Items Container Card -->
+        <!-- Left Column: Line Items Container Card & Recommendation Card -->
         <div class="cart-left-column">
           <div class="cart-luxury-card">
             <div id="cart-line-items-wrapper" class="cart-items-container">
               <!-- Rendered Dynamically via JS -->
+            </div>
+          </div>
+
+          <!-- Recommended Add-On Upsell Card -->
+          <div class="cart-luxury-card cart-upsell-card" id="cart-upsell-container">
+            <div class="cart-upsell-header">
+              <div class="cart-upsell-badge">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+                </svg>
+                <span>Recommended Add-On</span>
+              </div>
+            </div>
+
+            <div class="cart-upsell-body">
+              <div class="cart-upsell-media">
+                <a href="/products/miroooo-x2-heads" class="cart-upsell-media-link" aria-label="View Brush X2 Heads">
+                  <img src="/assets_ref/x2/heads/B1.webp" alt="Miroooo Brush X2 Precision Replacement Heads 2-Pack" loading="lazy" />
+                </a>
+              </div>
+              
+              <div class="cart-upsell-content">
+                <div class="cart-upsell-info">
+                  <h3 class="cart-upsell-title">
+                    <a href="/products/miroooo-x2-heads" class="cart-upsell-title-link">Brush X2 Heads (2-Pack)</a>
+                  </h3>
+                  <p class="cart-upsell-subtitle">DuPont precision replacement heads for Brush X2.</p>
+                </div>
+
+                <div class="cart-upsell-action-row">
+                  <div class="cart-upsell-price-wrap">
+                    <span class="cart-upsell-price" id="cart-upsell-price-display">£10.00</span>
+                  </div>
+
+                  <button
+                    type="button"
+                    class="cart-upsell-add-btn"
+                    id="cart-upsell-add-btn"
+                    is="hover-button"
+                    aria-label="Add Brush X2 Heads (2-Pack) to cart"
+                  >
+                    <span class="btn-fill" data-fill></span>
+                    <span class="btn-text">
+                      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                        <line x1="12" y1="5" x2="12" y2="19"></line>
+                        <line x1="5" y1="12" x2="19" y2="12"></line>
+                      </svg>
+                      <span>Add</span>
+                    </span>
+                  </button>
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -2501,6 +2776,12 @@
             badgesContainer.style.display = "none";
           }
         }
+
+        // Update Upsell Card Price Display
+        const upsellPriceEl = document.getElementById("cart-upsell-price-display");
+        if (upsellPriceEl) {
+          upsellPriceEl.textContent = MirooooCurrency ? MirooooCurrency.format(10) : ('£' + formatMoney(10));
+        }
       }
 
       // 7. CHECKOUT REDIRECTION (Direct PlusBase Checkout Handshake)
@@ -2902,6 +3183,36 @@
         });
       }
 
+      // 11. RECOMMENDATION / UPSELL ADD-ON HANDLER
+      function initUpsellHandler() {
+        const addBtn = document.getElementById("cart-upsell-add-btn");
+        if (!addBtn) return;
+
+        addBtn.addEventListener("click", function(e) {
+          e.preventDefault();
+          if (!cartState || !Array.isArray(cartState.items)) {
+            cartState = { version: 2, items: [] };
+          }
+          const targetHandle = "miroooo-x2-heads";
+          const existingItem = cartState.items.find(i => i.productHandle === targetHandle);
+
+          if (existingItem) {
+            existingItem.quantity = (existingItem.quantity || 1) + 1;
+          } else {
+            const newItem = createItemObject(targetHandle, "Default", 1);
+            cartState.items.push(newItem);
+          }
+
+          persistCart(cartState);
+
+          window.dispatchEvent(new CustomEvent("miroooo:added-to-cart", {
+            detail: { productHandle: targetHandle, quantity: 1 }
+          }));
+
+          renderCartView();
+        });
+      }
+
       // DOM Initialization
       function init() {
         initCountdown();
@@ -2911,6 +3222,7 @@
         initPromoCodeHandler();
         initDiscountToggle();
         initGiftMessage();
+        initUpsellHandler();
 
         // Dynamic Currency & Rate Listeners
         window.addEventListener("miroooo:currency-updated", renderCartView);
