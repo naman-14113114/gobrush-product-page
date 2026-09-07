@@ -2242,8 +2242,8 @@
         const itemCompare = item.comparePrice * count;
         const isBrush = item.productHandle === "miroooo-x2" || item.productHandle === "miroooo-x";
         const displayTitle = isBrush
-          ? (count > 1 ? `${item.title} (Buy ${count} - ${item.color})` : `${item.title} (${item.color})`)
-          : (count > 1 ? `${item.title} (Qty: ${count})` : item.title);
+          ? (item.color ? `${item.title} (${item.color})` : item.title)
+          : item.title;
 
         itemsHtml += `
           <div class="miroooo-cart-item" data-id="${item.id}">

@@ -2175,8 +2175,8 @@
             const itemUrl = item.url || `/products/${item.productHandle}`;
             const isBrush = item.productHandle === "miroooo-x2" || item.productHandle === "miroooo-x";
             const displayTitle = isBrush
-              ? (count > 1 ? `${item.title} (Buy ${count} - ${item.color})` : `${item.title} (${item.color})`)
-              : (count > 1 ? `${item.title} (Qty: ${count})` : item.title);
+              ? (item.color ? `${item.title} (${item.color})` : item.title)
+              : item.title;
 
             html += `
               <div class="cart-line-item" data-id="${item.id}" data-handle="${item.productHandle}" data-color="${item.color}">

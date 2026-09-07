@@ -1078,6 +1078,71 @@
   text-transform: uppercase;
 }
 
+/* Tier 1 Add-on Checkbox Strip */
+.tier-addon-strip {
+  cursor: pointer;
+}
+
+.tier-addon-checkbox-wrap {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  margin: 0;
+  padding: 0;
+  flex-shrink: 0;
+}
+
+.tier-addon-checkbox {
+  position: absolute;
+  opacity: 0;
+  width: 0;
+  height: 0;
+  margin: 0;
+  pointer-events: none;
+}
+
+.tier-addon-custom-check {
+  width: 17px;
+  height: 17px;
+  border-radius: 4px;
+  border: 1.5px solid #555555;
+  background: #ffffff;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.18s ease;
+  box-sizing: border-box;
+}
+
+.tier-addon-custom-check svg {
+  width: 11px;
+  height: 11px;
+  stroke: #ffffff;
+  stroke-width: 3.5;
+  opacity: 0;
+  transform: scale(0.6);
+  transition: all 0.18s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.tier-addon-checkbox:checked + .tier-addon-custom-check {
+  background: #000000;
+  border-color: #000000;
+}
+
+.tier-addon-checkbox:checked + .tier-addon-custom-check svg {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.tier-addon-price-tag {
+  font-size: 11.5px;
+  font-weight: 700;
+  color: #111111;
+  letter-spacing: -0.01em;
+}
+
 @media (max-width: 480px) {
   .tier-gift-strip {
     padding: 9px 14px;
@@ -3738,6 +3803,23 @@ theme.variantStrings = {
             <button type="button" class="color-swatch-btn swatch-pink" title="Pink" aria-label="Pink" onclick="setBrushChoice('single', 0, 'Pink', event)"></button>
             <button type="button" class="color-swatch-btn swatch-silver is-active" title="Silver" aria-label="Silver" onclick="setBrushChoice('single', 0, 'Silver', event)"></button>
           </div>
+        </div>
+      </div>
+      <!-- Embedded Bottom Add-on Strip (Buy 1) -->
+      <div class="tier-gift-strip tier-addon-strip" id="buy1-heads-addon-strip" onclick="toggleBuy1HeadsAddon(event)" title="Add Brush X2 Heads">
+        <div class="tier-gift-strip-left">
+          <label class="tier-addon-checkbox-wrap" onclick="event.stopPropagation();">
+            <input type="checkbox" id="buy1-heads-checkbox" class="tier-addon-checkbox" onchange="handleBuy1HeadsToggle(this.checked)" />
+            <span class="tier-addon-custom-check" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="20 6 9 17 4 12"></polyline>
+              </svg>
+            </span>
+          </label>
+          <span class="tier-gift-strip-title">+ Brush X2 Heads</span>
+        </div>
+        <div class="tier-gift-strip-right">
+          <span class="tier-addon-price-tag" id="tier-single-heads-price">+£10.00</span>
         </div>
       </div>
     </div>
@@ -9544,11 +9626,13 @@ function updateDynamicPrices() {
   if (heroPriceEl) heroPriceEl.textContent = format(69);
   if (heroCompareEl) heroCompareEl.textContent = format(139);
 
-  // 2. Tier 1 (Buy 1): Base 69, Compare 139
+  // 2. Tier 1 (Buy 1): Base 69, Compare 139, Heads add-on 10
   const t1Price = document.getElementById('tier-single-price');
   const t1Comp = document.getElementById('tier-single-compare-price');
+  const t1Heads = document.getElementById('tier-single-heads-price');
   if (t1Price) t1Price.textContent = format(69);
   if (t1Comp) t1Comp.textContent = format(139);
+  if (t1Heads) t1Heads.textContent = `+${format(10)}`;
 
   // 3. Tier 2 (Buy 2): Price 128, Compare 278, Each 64, Discount 10 OFF, Gift 10
   const t2Price = document.getElementById('tier-bundle-2-price');
@@ -9771,6 +9855,25 @@ function selectStandaloneColor(colorName) {
   updateStickyBar();
 }
 
+function toggleBuy1HeadsAddon(event) {
+  if (event) event.stopPropagation();
+  const checkbox = document.getElementById('buy1-heads-checkbox');
+  if (checkbox) {
+    checkbox.checked = !checkbox.checked;
+    handleBuy1HeadsToggle(checkbox.checked);
+  }
+}
+
+function handleBuy1HeadsToggle(isChecked) {
+  if (activeTierId === 'single') {
+    const mainCtaText = document.getElementById('main-cta-text');
+    if (mainCtaText) {
+      mainCtaText.textContent = isChecked ? 'Add to Cart + Brush X2 Heads' : 'Add to Cart';
+    }
+    updateStickyBar();
+  }
+}
+
 function selectBundleTier(tierId) {
   if (!TIERS[tierId]) return;
   activeTierId = tierId;
@@ -9799,7 +9902,8 @@ function selectBundleTier(tierId) {
     if (tierId === 'bundle-2' || tierId === 'bundle-3') {
       mainCtaText.textContent = 'Add to Cart + Free Brush X2 Heads';
     } else {
-      mainCtaText.textContent = 'Add to Cart';
+      const isHeadsChecked = Boolean(document.getElementById('buy1-heads-checkbox')?.checked);
+      mainCtaText.textContent = isHeadsChecked ? 'Add to Cart + Brush X2 Heads' : 'Add to Cart';
     }
   }
 
@@ -9838,12 +9942,13 @@ function updateStickyBar() {
   const choices = choicesState[activeTierId] || (activeTierId === 'single' ? [activeSelectedColor || 'Silver'] : ['Silver', 'Grey']);
   const firstColor = choices[0] || 'Silver';
   const activeChoices = choices.slice(0, tier.count);
+  const isBuy1HeadsChecked = (activeTierId === 'single') && Boolean(document.getElementById('buy1-heads-checkbox')?.checked);
 
   // 1. Sticky Title
   const stickyTitle = document.getElementById('sticky-bar-title');
   if (stickyTitle) {
     if (activeTierId === 'single') {
-      stickyTitle.textContent = `Brush X2 - ${firstColor}`;
+      stickyTitle.textContent = isBuy1HeadsChecked ? `Brush X2 - ${firstColor} + Heads` : `Brush X2 - ${firstColor}`;
     } else {
       stickyTitle.textContent = `${tier.label} - Brush X2 (${activeChoices.join(' + ')})`;
     }
@@ -9852,7 +9957,17 @@ function updateStickyBar() {
   // 2. Sticky Price
   const stickyPrice = document.getElementById('sticky-bar-price');
   if (stickyPrice) {
-    stickyPrice.textContent = tier.priceDisplay;
+    if (isBuy1HeadsChecked) {
+      const format = (amt) => {
+        if (window.MirooooCurrency && typeof window.MirooooCurrency.format === 'function') {
+          return window.MirooooCurrency.format(amt);
+        }
+        return '£' + (Number(amt) || 0).toFixed(2);
+      };
+      stickyPrice.textContent = format(79);
+    } else {
+      stickyPrice.textContent = tier.priceDisplay;
+    }
   }
 
   // 3. Sticky CTA Button Text
@@ -9861,7 +9976,7 @@ function updateStickyBar() {
     if (activeTierId === 'bundle-2' || activeTierId === 'bundle-3') {
       stickyCtaText.textContent = 'Add to Cart + Free Brush X2 Heads';
     } else {
-      stickyCtaText.textContent = 'Add to Cart';
+      stickyCtaText.textContent = isBuy1HeadsChecked ? 'Add to Cart + Brush X2 Heads' : 'Add to Cart';
     }
   }
 
@@ -9875,13 +9990,21 @@ function updateStickyBar() {
       'Grey': '/assets_ref/x2/gallery/miroooo-x2-sonic-electric-toothbrush-grey-checkout.webp',
       'Gray': '/assets_ref/x2/gallery/miroooo-x2-sonic-electric-toothbrush-grey-checkout.webp'
     };
-    imgStack.innerHTML = activeChoices.map((color, idx) => {
+    let thumbsHtml = activeChoices.map((color, idx) => {
       const variantData = VARIANTS_DATA[color];
       const imgSrc = (variantData && variantData.checkoutImage) || colorImages[color] || colorImages['Silver'];
       return `<div class="miroooo-sticky-img-thumb" style="z-index: ${idx + 1};">
         <img src="${imgSrc}" alt="Miroooo Brush X2 - ${color}" width="50" height="50" loading="eager" decoding="async">
       </div>`;
     }).join('');
+
+    if (isBuy1HeadsChecked) {
+      thumbsHtml += `<div class="miroooo-sticky-img-thumb" style="z-index: 2;">
+        <img src="/assets_ref/x2/heads/B1.webp" alt="Brush X2 Heads" width="50" height="50" loading="eager" decoding="async">
+      </div>`;
+    }
+
+    imgStack.innerHTML = thumbsHtml;
   }
 }
 
@@ -9970,6 +10093,29 @@ function handleAddToCartAndRedirect() {
       }
     });
 
+    const isBuy1HeadsChecked = (activeTierId === 'single') && Boolean(document.getElementById('buy1-heads-checkbox')?.checked);
+    if (isBuy1HeadsChecked) {
+      const headsExistingIndex = cart.items.findIndex(i => i.productHandle === 'miroooo-x2-heads');
+      if (headsExistingIndex > -1) {
+        cart.items[headsExistingIndex].quantity = (cart.items[headsExistingIndex].quantity || 0) + 1;
+      } else {
+        cart.items.push({
+          id: 'miroooo-x2-heads:Default',
+          productHandle: 'miroooo-x2-heads',
+          productId: '1000000675616058',
+          variantId: '1000020718937117',
+          title: 'Brush X2 Heads',
+          subtitle: 'DuPont precision heads for Brush X2.',
+          color: 'Default',
+          quantity: 1,
+          unitPrice: 10,
+          comparePrice: 10,
+          image: '/assets_ref/x2/heads/B1.webp',
+          url: '/products/miroooo-x2-heads'
+        });
+      }
+    }
+
     if (window.MirooooCart && typeof window.MirooooCart.saveCart === 'function') {
       window.MirooooCart.saveCart(cart);
     } else {
@@ -9993,12 +10139,13 @@ function handleAddToCartAndRedirect() {
     window.MirooooCart.updateHeaderBadges();
   }
 
+  const isBuy1HeadsCheckedEvent = (activeTierId === 'single') && Boolean(document.getElementById('buy1-heads-checkbox')?.checked);
   window.dispatchEvent(new CustomEvent('miroooo:added-to-cart', {
     detail: {
       productHandle: 'miroooo-x2',
       quantity: tier.count,
       colors: choices,
-      value: tier.priceNum
+      value: isBuy1HeadsCheckedEvent ? (tier.priceNum + 10) : tier.priceNum
     }
   }));
 
