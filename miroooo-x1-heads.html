@@ -1535,7 +1535,7 @@
 
   <div class="product__price grid gap-2 mt-1" id="main-product-price-section">
     <div class="flex flex-wrap items-baseline gap-2" style="display: flex; align-items: baseline; gap: 8px;">
-      <span class="text-2xl sm:text-3xl font-extrabold text-white" id="main-price-display" style="font-size: 1.85rem; font-weight: 800; color: #ffffff;">£10</span>
+      <span class="text-2xl sm:text-3xl font-extrabold text-white" id="main-price-display" style="font-size: 1.85rem; font-weight: 800; color: #ffffff;">£10.00</span>
     </div>
   </div>
 
@@ -1628,7 +1628,7 @@
     </style>
     <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
       <span style="color: rgba(255, 255, 255, 0.7); font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em;">QUANTITY:</span>
-      <span style="color: rgba(255, 255, 255, 0.5); font-size: 12px;">£10 per 2-head pack</span>
+      <span id="heads-unit-price-label" style="color: rgba(255, 255, 255, 0.5); font-size: 12px;">£10.00 per 2-head pack</span>
     </div>
     <div class="quantity-counter-box">
       <button type="button" class="qty-stepper-btn" id="qty-minus-btn" onclick="setQuantity(currentQty - 1)" aria-label="Decrease quantity" disabled aria-disabled="true">
@@ -2011,7 +2011,7 @@
           <div class="miroooo-sticky-info">
             <p class="miroooo-sticky-title" id="sticky-bar-title">Brush X1 Heads</p>
             <p class="miroooo-sticky-sub" id="sticky-bar-subtitle">
-              <span id="sticky-bar-price" style="font-weight: 700; color: #ffffff;">£10</span>
+              <span id="sticky-bar-price" style="font-weight: 700; color: #ffffff;">£10.00</span>
               <span class="miroooo-sticky-bullet">·</span>
               <span id="sticky-bar-gifts" class="miroooo-sticky-gifts-tag" style="color: rgba(255,255,255,0.7); font-weight: 500;">2-Pack Replacement</span>
             </p>
@@ -2308,12 +2308,20 @@
 
   function updatePricingDisplays() {
     const totalPrice = BASE_PRICE * currentQty;
+    const format = (amt) => {
+      if (window.MirooooCurrency && typeof window.MirooooCurrency.format === 'function') {
+        return window.MirooooCurrency.format(amt);
+      }
+      return '£' + (Number(amt) || 0).toFixed(2);
+    };
 
     const priceDisplay = document.getElementById('main-price-display');
+    const unitPriceLabel = document.getElementById('heads-unit-price-label');
     const qtyDisplay = document.getElementById('qty-display');
     const minusBtn = document.getElementById('qty-minus-btn');
 
-    if (priceDisplay) priceDisplay.textContent = '£' + totalPrice;
+    if (priceDisplay) priceDisplay.textContent = format(totalPrice);
+    if (unitPriceLabel) unitPriceLabel.textContent = `${format(BASE_PRICE)} per 2-head pack`;
     if (qtyDisplay) qtyDisplay.textContent = String(currentQty);
     if (minusBtn) {
       minusBtn.disabled = currentQty <= 1;
@@ -2321,7 +2329,13 @@
     }
 
     const stickyPrice = document.getElementById('sticky-bar-price');
-    if (stickyPrice) stickyPrice.textContent = '£' + totalPrice;
+    if (stickyPrice) stickyPrice.textContent = format(totalPrice);
+  }
+
+  document.addEventListener('miroooo:currency-updated', updatePricingDisplays);
+  document.addEventListener('miroooo:currency-change', updatePricingDisplays);
+  if (window.MirooooCurrency && typeof window.MirooooCurrency.onCurrencyChange === 'function') {
+    window.MirooooCurrency.onCurrencyChange(updatePricingDisplays);
   }
 
   function setQuantity(newQty) {
@@ -2454,6 +2468,7 @@
   }
 
   document.addEventListener('DOMContentLoaded', () => {
+    updatePricingDisplays();
     // Delivery Date
     const dateEl = document.getElementById('bundle-delivery-date');
     if (dateEl) {

@@ -1397,14 +1397,14 @@
                   <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7.01" y2="7"></line></svg>
                   Free Luxury Travel Case
                 </span>
-                <span>-£16.00</span>
+                <span id="breakdown-gift-case-val">-£16.00</span>
               </div>
               <div class="cart-discount-breakdown-row" id="breakdown-gift-heads-row">
                 <span class="flex items-center gap-1.5 uppercase">
                   <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7.01" y2="7"></line></svg>
                   Free Brush X1 Heads
                 </span>
-                <span>-£20.00</span>
+                <span id="breakdown-gift-heads-val">-£20.00</span>
               </div>
               <div class="cart-discount-breakdown-row" id="breakdown-promo-row" style="display: none;">
                 <span class="flex items-center gap-1.5 uppercase" id="breakdown-promo-label">
@@ -1843,6 +1843,13 @@
         return (Number(amount) || 0).toFixed(2);
       }
 
+      function formatPrice(amount) {
+        const MirooooCurrency = window.MirooooCurrency;
+        return MirooooCurrency && typeof MirooooCurrency.format === "function"
+          ? MirooooCurrency.format(amount)
+          : ("£" + formatMoney(amount));
+      }
+
       // 5. TOTALS CALCULATION
       function computeTotals(state) {
         if (!state || state.quantity <= 0) {
@@ -2021,6 +2028,7 @@
 
         const product = PRODUCTS_CONFIG[cartState.productId] || PRODUCTS_CONFIG["miroooo-x"];
         const totals = computeTotals(cartState);
+        const MirooooCurrency = window.MirooooCurrency;
 
         // Update header count badges
         document.querySelectorAll("cart-count").forEach(el => {
@@ -2054,7 +2062,7 @@
                         <p class="cart-line-item__subtitle">${product.subtitle}</p>
                       </div>
                       <div class="cart-line-item__pricing">
-                        <span class="cart-line-item__price">£${formatMoney(itemPrice)}</span>
+                        <span class="cart-line-item__price">${MirooooCurrency ? MirooooCurrency.format(itemPrice) : ('£' + formatMoney(itemPrice))}</span>
                       </div>
                     </div>
                   </div>
@@ -2120,8 +2128,8 @@
                           <p class="cart-line-item__subtitle">${product.subtitle}</p>
                         </div>
                         <div class="cart-line-item__pricing">
-                          <span class="cart-line-item__price">£${formatMoney(itemPrice)}</span>
-                          <s class="cart-line-item__compare">£${formatMoney(itemCompare)}</s>
+                          <span class="cart-line-item__price">${MirooooCurrency ? MirooooCurrency.format(itemPrice) : ('£' + formatMoney(itemPrice))}</span>
+                          <s class="cart-line-item__compare">${MirooooCurrency ? MirooooCurrency.format(itemCompare) : ('£' + formatMoney(itemCompare))}</s>
                         </div>
                       </div>
                     </div>
@@ -2174,7 +2182,7 @@
                           </div>
                           <div class="cart-line-item__pricing">
                             <span class="cart-line-item__price">Free</span>
-                            <s class="cart-line-item__compare">£${formatMoney(compareVal)}</s>
+                            <s class="cart-line-item__compare">${MirooooCurrency ? MirooooCurrency.format(compareVal) : ('£' + formatMoney(compareVal))}</s>
                           </div>
                         </div>
                       </div>
@@ -2204,7 +2212,7 @@
                           </div>
                           <div class="cart-line-item__pricing">
                             <span class="cart-line-item__price">Free</span>
-                            <s class="cart-line-item__compare">£${formatMoney(gift.comparePrice)}</s>
+                            <s class="cart-line-item__compare">${MirooooCurrency ? MirooooCurrency.format(gift.comparePrice) : ('£' + formatMoney(gift.comparePrice))}</s>
                           </div>
                         </div>
                       </div>
@@ -2336,8 +2344,8 @@
         const discountToggleBtn = document.getElementById("discount-toggle-btn");
         const discountPanel = document.getElementById("discount-details-panel");
 
-        if (summarySavingsEl) summarySavingsEl.textContent = `-£${formatMoney(totals.totalSavings)}`;
-        if (breakdownBundleVal) breakdownBundleVal.textContent = `-£${formatMoney(totals.bundleSavings)}`;
+        if (summarySavingsEl) summarySavingsEl.textContent = '-' + (MirooooCurrency ? MirooooCurrency.format(totals.totalSavings) : ('£' + formatMoney(totals.totalSavings)));
+        if (breakdownBundleVal) breakdownBundleVal.textContent = '-' + (MirooooCurrency ? MirooooCurrency.format(totals.bundleSavings) : ('£' + formatMoney(totals.bundleSavings)));
         
         if (totals.isHeads || totals.totalSavings <= 0) {
           if (discountToggleBtn) discountToggleBtn.style.display = "none";
@@ -2371,7 +2379,7 @@
               `;
             }
             if (breakdownBundlePromoVal) {
-              breakdownBundlePromoVal.textContent = `-£${formatMoney(totals.bundlePromoDiscount)}`;
+              breakdownBundlePromoVal.textContent = '-' + (MirooooCurrency ? MirooooCurrency.format(totals.bundlePromoDiscount) : ('£' + formatMoney(totals.bundlePromoDiscount)));
             }
           }
         } else {
@@ -2392,7 +2400,7 @@
                 `;
               }
               const headsVal = breakdownGiftHeads.querySelector("span:last-child");
-              if (headsVal) headsVal.textContent = `-£${formatMoney(totals.extraBrushHeadSets * 10)}`;
+              if (headsVal) headsVal.textContent = '-' + (MirooooCurrency ? MirooooCurrency.format(totals.extraBrushHeadSets * 10) : ('£' + formatMoney(totals.extraBrushHeadSets * 10)));
             }
           } else {
             if (breakdownGiftHeads) breakdownGiftHeads.style.display = "none";
@@ -2408,7 +2416,7 @@
               `;
             }
             const caseVal = breakdownGiftCase.querySelector("span:last-child");
-            if (caseVal) caseVal.textContent = "-£16.00";
+            if (caseVal) caseVal.textContent = '-' + (MirooooCurrency ? MirooooCurrency.format(16) : ('£' + formatMoney(16)));
           }
           if (breakdownGiftHeads) {
             breakdownGiftHeads.style.display = "flex";
@@ -2420,7 +2428,7 @@
               `;
             }
             const headsVal = breakdownGiftHeads.querySelector("span:last-child");
-            if (headsVal) headsVal.textContent = "-£20.00";
+            if (headsVal) headsVal.textContent = '-' + (MirooooCurrency ? MirooooCurrency.format(20) : ('£' + formatMoney(20)));
           }
         }
 
@@ -2434,12 +2442,12 @@
               PROMO (${promoName})
             `;
           }
-          if (breakdownPromoVal) breakdownPromoVal.textContent = `-£${formatMoney(totals.promoDiscount)}`;
+          if (breakdownPromoVal) breakdownPromoVal.textContent = '-' + (MirooooCurrency ? MirooooCurrency.format(totals.promoDiscount) : ('£' + formatMoney(totals.promoDiscount)));
         } else {
           if (breakdownPromoRow) breakdownPromoRow.style.display = "none";
         }
 
-        if (summarySubtotalPrice) summarySubtotalPrice.textContent = `£${formatMoney(totals.finalSubtotal)}`;
+        if (summarySubtotalPrice) summarySubtotalPrice.textContent = MirooooCurrency ? MirooooCurrency.format(totals.finalSubtotal) : ('£' + formatMoney(totals.finalSubtotal));
 
         function formatPromoCodeDisplay(code) {
           if (!code) return "";
@@ -2912,6 +2920,15 @@
         initPromoCodeHandler();
         initDiscountToggle();
         initGiftMessage();
+
+        // Dynamic Currency & Rate Listeners
+        window.addEventListener("miroooo:currency-updated", renderCartView);
+        window.addEventListener("miroooo:currency-change", renderCartView);
+        document.addEventListener("miroooo:currency-updated", renderCartView);
+        document.addEventListener("miroooo:currency-change", renderCartView);
+        if (window.MirooooCurrency && typeof window.MirooooCurrency.onCurrencyChange === "function") {
+          window.MirooooCurrency.onCurrencyChange(renderCartView);
+        }
       }
 
       if (document.readyState === "loading") {

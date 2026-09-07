@@ -312,8 +312,8 @@
           <div class="gb-product-card__meta">
             <h3 class="gb-product-card__name"><a href="/products/miroooo-x2?color=Pink">Brush X2 Pink</a></h3>
             <div class="gb-product-card__price-wrap">
-              <strong class="gb-product-card__price">£69</strong>
-              <span class="gb-product-card__compare">£139</span>
+              <strong class="gb-product-card__price" data-price-gbp="69">£69</strong>
+              <span class="gb-product-card__compare" data-price-compare-gbp="139">£139</span>
             </div>
           </div>
         </article>
@@ -352,8 +352,8 @@
           <div class="gb-product-card__meta">
             <h3 class="gb-product-card__name"><a href="/products/miroooo-x2?color=Grey">Brush X2 Grey</a></h3>
             <div class="gb-product-card__price-wrap">
-              <strong class="gb-product-card__price">£69</strong>
-              <span class="gb-product-card__compare">£139</span>
+              <strong class="gb-product-card__price" data-price-gbp="69">£69</strong>
+              <span class="gb-product-card__compare" data-price-compare-gbp="139">£139</span>
             </div>
           </div>
         </article>
@@ -392,8 +392,8 @@
           <div class="gb-product-card__meta">
             <h3 class="gb-product-card__name"><a href="/products/miroooo-x2?color=Silver">Brush X2 Silver</a></h3>
             <div class="gb-product-card__price-wrap">
-              <strong class="gb-product-card__price">£69</strong>
-              <span class="gb-product-card__compare">£139</span>
+              <strong class="gb-product-card__price" data-price-gbp="69">£69</strong>
+              <span class="gb-product-card__compare" data-price-compare-gbp="139">£139</span>
             </div>
           </div>
         </article>
@@ -594,8 +594,8 @@
           <div class="gb-product-card__meta">
             <h3 class="gb-product-card__name"><a href="/products/miroooo-x?color=Pink">Brush X1 Pink</a></h3>
             <div class="gb-product-card__price-wrap">
-              <strong class="gb-product-card__price">£69</strong>
-              <span class="gb-product-card__compare">£139</span>
+              <strong class="gb-product-card__price" data-price-gbp="69">£69</strong>
+              <span class="gb-product-card__compare" data-price-compare-gbp="139">£139</span>
             </div>
           </div>
         </article>
@@ -634,8 +634,8 @@
           <div class="gb-product-card__meta">
             <h3 class="gb-product-card__name"><a href="/products/miroooo-x?color=Grey">Brush X1 Grey</a></h3>
             <div class="gb-product-card__price-wrap">
-              <strong class="gb-product-card__price">£69</strong>
-              <span class="gb-product-card__compare">£139</span>
+              <strong class="gb-product-card__price" data-price-gbp="69">£69</strong>
+              <span class="gb-product-card__compare" data-price-compare-gbp="139">£139</span>
             </div>
           </div>
         </article>
@@ -674,8 +674,8 @@
           <div class="gb-product-card__meta">
             <h3 class="gb-product-card__name"><a href="/products/miroooo-x?color=Silver">Brush X1 Silver</a></h3>
             <div class="gb-product-card__price-wrap">
-              <strong class="gb-product-card__price">£69</strong>
-              <span class="gb-product-card__compare">£139</span>
+              <strong class="gb-product-card__price" data-price-gbp="69">£69</strong>
+              <span class="gb-product-card__compare" data-price-compare-gbp="139">£139</span>
             </div>
           </div>
         </article>
@@ -720,5 +720,31 @@
 
   <div data-site-footer></div>
   <script src="/assets/site.js?v=20260902" defer></script>
+  <script>
+    (function() {
+      function updateHomePrices() {
+        if (!window.MirooooCurrency) return;
+        document.querySelectorAll('.gb-product-card__price[data-price-gbp], [data-price-gbp]').forEach(function(el) {
+          var gbp = parseFloat(el.getAttribute('data-price-gbp'));
+          if (!isNaN(gbp)) {
+            el.textContent = window.MirooooCurrency.format(gbp);
+          }
+        });
+        document.querySelectorAll('.gb-product-card__compare[data-price-compare-gbp], [data-price-compare-gbp]').forEach(function(el) {
+          var gbp = parseFloat(el.getAttribute('data-price-compare-gbp'));
+          if (!isNaN(gbp)) {
+            el.textContent = window.MirooooCurrency.format(gbp);
+          }
+        });
+      }
+
+      document.addEventListener('DOMContentLoaded', updateHomePrices);
+      document.addEventListener('miroooo:currency-updated', updateHomePrices);
+      document.addEventListener('miroooo:currency-change', updateHomePrices);
+      if (document.readyState !== 'loading') {
+        updateHomePrices();
+      }
+    })();
+  </script>
 </body>
 </html>

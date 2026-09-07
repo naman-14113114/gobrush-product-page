@@ -80,6 +80,386 @@
     } catch (e) {}
   })();
 
+  // =========================================================================
+  // MIROOOO MULTI-CURRENCY LOCALIZATION ENGINE
+  // =========================================================================
+  const ASIA_COUNTRIES = [
+    "IN", "CN", "JP", "SG", "MY", "TH", "VN", "ID", "PH", "PK",
+    "BD", "LK", "HK", "TW", "KR", "AE", "SA", "QA", "KW", "OM",
+    "BH", "IL", "TR", "KZ", "UZ", "NP", "MM", "KH", "LA", "MN",
+    "LB", "JO", "IQ", "IR", "AF", "YE", "SY", "GE", "AM", "AZ",
+    "MV", "BN", "BT", "TL", "MO"
+  ];
+
+  const UK_COUNTRIES = ["GB", "UK", "IM", "JE", "GG"];
+
+  const EUROZONE_COUNTRIES = [
+    "DE", "FR", "IT", "ES", "NL", "BE", "IE", "AT", "PT", "FI",
+    "GR", "LU", "EE", "LV", "LT", "SK", "SI", "CY", "MT"
+  ];
+
+  const CURRENCY_CONFIGS = {
+    GBP: { code: "GBP", symbol: "£", rate: 1.0 },
+    USD: { code: "USD", symbol: "$", rate: 1.30 },
+    AUD: { code: "AUD", symbol: "A$", rate: 1.95 },
+    CAD: { code: "CAD", symbol: "C$", rate: 1.78 },
+    NZD: { code: "NZD", symbol: "NZ$", rate: 2.12 },
+    EUR: { code: "EUR", symbol: "€", rate: 1.17 },
+    CHF: { code: "CHF", symbol: "CHF ", rate: 1.13 },
+    SEK: { code: "SEK", symbol: "kr ", rate: 13.50 },
+    NOK: { code: "NOK", symbol: "kr ", rate: 13.80 },
+    DKK: { code: "DKK", symbol: "kr. ", rate: 8.75 }
+  };
+
+  function resolveCurrencyByCountry(countryCode) {
+    if (!countryCode) return { ...CURRENCY_CONFIGS.GBP, isUK: true, isAsia: false };
+    const code = String(countryCode).trim().toUpperCase();
+
+    if (UK_COUNTRIES.includes(code)) {
+      return { ...CURRENCY_CONFIGS.GBP, isUK: true, isAsia: false };
+    }
+    if (ASIA_COUNTRIES.includes(code)) {
+      return { ...CURRENCY_CONFIGS.GBP, isUK: false, isAsia: true };
+    }
+    if (code === "US") {
+      return { ...CURRENCY_CONFIGS.USD, isUK: false, isAsia: false };
+    }
+    if (code === "AU") {
+      return { ...CURRENCY_CONFIGS.AUD, isUK: false, isAsia: false };
+    }
+    if (code === "CA") {
+      return { ...CURRENCY_CONFIGS.CAD, isUK: false, isAsia: false };
+    }
+    if (code === "NZ") {
+      return { ...CURRENCY_CONFIGS.NZD, isUK: false, isAsia: false };
+    }
+    if (EUROZONE_COUNTRIES.includes(code)) {
+      return { ...CURRENCY_CONFIGS.EUR, isUK: false, isAsia: false };
+    }
+    if (code === "CH") {
+      return { ...CURRENCY_CONFIGS.CHF, isUK: false, isAsia: false };
+    }
+    if (code === "SE") {
+      return { ...CURRENCY_CONFIGS.SEK, isUK: false, isAsia: false };
+    }
+    if (code === "NO") {
+      return { ...CURRENCY_CONFIGS.NOK, isUK: false, isAsia: false };
+    }
+    if (code === "DK") {
+      return { ...CURRENCY_CONFIGS.DKK, isUK: false, isAsia: false };
+    }
+
+    // Other non-Asia default to USD
+    return { ...CURRENCY_CONFIGS.USD, isUK: false, isAsia: false };
+  }
+
+  const currencyListeners = [];
+  let activeCurrency = { ...CURRENCY_CONFIGS.GBP, isUK: true, isAsia: false };
+
+  // 1. Check URL parameters (?currency=USD or ?country=US)
+  let initialResolved = false;
+  try {
+    const urlParams = new URLSearchParams(window.location.search);
+    const paramCurr = (urlParams.get("currency") || "").toUpperCase();
+    const paramCountry = (urlParams.get("country") || "").toUpperCase();
+
+    if (paramCurr && CURRENCY_CONFIGS[paramCurr]) {
+      const isAsia = paramCurr === "GBP" && paramCountry ? ASIA_COUNTRIES.includes(paramCountry) : false;
+      const isUK = paramCurr === "GBP" && !isAsia;
+      activeCurrency = {
+        ...CURRENCY_CONFIGS[paramCurr],
+        isUK: isUK,
+        isAsia: isAsia
+      };
+      initialResolved = true;
+      try {
+        localStorage.setItem("miroooo_currency", paramCurr);
+        if (paramCountry) localStorage.setItem("miroooo_user_country", paramCountry);
+      } catch (_) {}
+    } else if (paramCountry) {
+      activeCurrency = resolveCurrencyByCountry(paramCountry);
+      initialResolved = true;
+      try {
+        localStorage.setItem("miroooo_user_country", paramCountry);
+        localStorage.setItem("miroooo_currency", activeCurrency.code);
+      } catch (_) {}
+    }
+  } catch (_) {}
+
+  // 2. Check localStorage if not resolved via URL
+  if (!initialResolved) {
+    try {
+      const storedCountry = localStorage.getItem("miroooo_user_country");
+      const storedCurr = localStorage.getItem("miroooo_currency");
+      if (storedCountry) {
+        activeCurrency = resolveCurrencyByCountry(storedCountry);
+        initialResolved = true;
+      } else if (storedCurr && CURRENCY_CONFIGS[storedCurr]) {
+        activeCurrency = {
+          ...CURRENCY_CONFIGS[storedCurr],
+          isUK: storedCurr === "GBP",
+          isAsia: false
+        };
+        initialResolved = true;
+      }
+    } catch (_) {}
+  }
+
+  function notifyCurrencyChange() {
+    const info = {
+      code: activeCurrency.code,
+      symbol: activeCurrency.symbol,
+      rate: activeCurrency.rate,
+      isAsia: Boolean(activeCurrency.isAsia),
+      isUK: Boolean(activeCurrency.isUK)
+    };
+    currencyListeners.forEach((fn) => {
+      try { fn(info); } catch (e) { console.error("Currency listener error:", e); }
+    });
+    document.dispatchEvent(new CustomEvent("miroooo:currency-change", { detail: info }));
+    document.dispatchEvent(new CustomEvent("miroooo:currency-updated", { detail: info }));
+    window.dispatchEvent(new CustomEvent("miroooo:currency-change", { detail: info }));
+    window.dispatchEvent(new CustomEvent("miroooo:currency-updated", { detail: info }));
+  }
+
+  const MirooooCurrency = {
+    getCurrency() {
+      return {
+        code: activeCurrency.code,
+        symbol: activeCurrency.symbol,
+        rate: activeCurrency.rate,
+        isAsia: Boolean(activeCurrency.isAsia),
+        isUK: Boolean(activeCurrency.isUK)
+      };
+    },
+
+    convert(gbpAmount) {
+      const num = Number(gbpAmount) || 0;
+      if (activeCurrency.isAsia || activeCurrency.isUK) {
+        return num;
+      }
+      return Number((num * activeCurrency.rate).toFixed(2));
+    },
+
+    format(gbpAmount) {
+      const num = Number(gbpAmount) || 0;
+      if (activeCurrency.isAsia || activeCurrency.isUK || activeCurrency.code === "GBP") {
+        return Number.isInteger(num) ? "£" + num : "£" + num.toFixed(2);
+      }
+      const converted = Number((num * activeCurrency.rate).toFixed(2));
+      return activeCurrency.symbol + converted.toFixed(2);
+    },
+
+    formatConverted(convertedAmount) {
+      const num = Number(convertedAmount) || 0;
+      if (activeCurrency.isAsia || activeCurrency.isUK || activeCurrency.code === "GBP") {
+        return Number.isInteger(num) ? "£" + num : "£" + num.toFixed(2);
+      }
+      return activeCurrency.symbol + num.toFixed(2);
+    },
+
+    onCurrencyChange(fn) {
+      if (typeof fn === "function") {
+        currencyListeners.push(fn);
+      }
+    },
+
+    setCurrency(currencyCode) {
+      const code = String(currencyCode || "").trim().toUpperCase();
+      if (CURRENCY_CONFIGS[code]) {
+        activeCurrency = {
+          ...CURRENCY_CONFIGS[code],
+          isUK: code === "GBP",
+          isAsia: false
+        };
+        try {
+          localStorage.setItem("miroooo_currency", code);
+        } catch (_) {}
+        this.updateAllElements();
+        notifyCurrencyChange();
+        if (typeof window.MirooooCart?.renderCartDrawer === "function") {
+          window.MirooooCart.renderCartDrawer();
+        }
+      }
+    },
+
+    setCountry(countryCode) {
+      if (!countryCode) return;
+      const code = String(countryCode).trim().toUpperCase();
+      activeCurrency = resolveCurrencyByCountry(code);
+      try {
+        localStorage.setItem("miroooo_user_country", code);
+        localStorage.setItem("miroooo_currency", activeCurrency.code);
+      } catch (_) {}
+      this.updateAllElements();
+      notifyCurrencyChange();
+      if (typeof window.MirooooCart?.renderCartDrawer === "function") {
+        window.MirooooCart.renderCartDrawer();
+      }
+    },
+
+    updateAllElements() {
+      document.querySelectorAll("[data-price-gbp]").forEach((el) => {
+        const gbp = parseFloat(el.getAttribute("data-price-gbp"));
+        if (!isNaN(gbp)) {
+          el.textContent = this.format(gbp);
+        }
+      });
+      document.querySelectorAll("[data-price-compare-gbp]").forEach((el) => {
+        const gbp = parseFloat(el.getAttribute("data-price-compare-gbp"));
+        if (!isNaN(gbp)) {
+          el.textContent = this.format(gbp);
+        }
+      });
+    }
+  };
+
+  window.MirooooCurrency = MirooooCurrency;
+
+  // Exchange Rates Cache & Live Fetch Engine
+  const RATES_CACHE_KEY = "miroooo_rates_cache";
+  const RATES_CACHE_TTL = 12 * 60 * 60 * 1000; // 12 hours
+
+  function applyRates(rates) {
+    if (!rates || typeof rates !== "object") return;
+    let rateChanged = false;
+    Object.keys(CURRENCY_CONFIGS).forEach((code) => {
+      if (code !== "GBP" && typeof rates[code] === "number" && rates[code] > 0) {
+        CURRENCY_CONFIGS[code].rate = rates[code];
+        if (activeCurrency.code === code) {
+          activeCurrency.rate = rates[code];
+          rateChanged = true;
+        }
+      }
+    });
+    if (rateChanged) {
+      MirooooCurrency.updateAllElements();
+      notifyCurrencyChange();
+      if (typeof window.MirooooCart?.renderCartDrawer === "function") {
+        window.MirooooCart.renderCartDrawer();
+      }
+    }
+  }
+
+  // Load from cache initially
+  try {
+    const cachedData = localStorage.getItem(RATES_CACHE_KEY);
+    if (cachedData) {
+      const parsed = JSON.parse(cachedData);
+      if (parsed && parsed.rates) {
+        applyRates(parsed.rates);
+      }
+    }
+  } catch (_) {}
+
+  // Live Exchange Rate Fetching
+  function fetchLiveRates() {
+    let shouldFetch = true;
+    try {
+      const cachedData = localStorage.getItem(RATES_CACHE_KEY);
+      if (cachedData) {
+        const parsed = JSON.parse(cachedData);
+        if (parsed && parsed.timestamp && (Date.now() - parsed.timestamp < RATES_CACHE_TTL) && parsed.rates) {
+          shouldFetch = false;
+        }
+      }
+    } catch (_) {}
+
+    if (!shouldFetch) return;
+
+    fetch("https://open.er-api.com/v6/latest/GBP")
+      .then(function (res) {
+        if (!res.ok) throw new Error("Primary rates API error");
+        return res.json();
+      })
+      .then(function (data) {
+        if (data && data.rates) {
+          applyRates(data.rates);
+          try {
+            localStorage.setItem(RATES_CACHE_KEY, JSON.stringify({
+              timestamp: Date.now(),
+              rates: data.rates
+            }));
+          } catch (_) {}
+        } else {
+          throw new Error("Invalid primary rates format");
+        }
+      })
+      .catch(function () {
+        fetch("https://api.exchangerate-api.com/v4/latest/GBP")
+          .then(function (res) {
+            if (!res.ok) throw new Error("Fallback rates API error");
+            return res.json();
+          })
+          .then(function (data) {
+            if (data && data.rates) {
+              applyRates(data.rates);
+              try {
+                localStorage.setItem(RATES_CACHE_KEY, JSON.stringify({
+                  timestamp: Date.now(),
+                  rates: data.rates
+                }));
+              } catch (_) {}
+            }
+          })
+          .catch(function (err) {
+            console.warn("Live exchange rate fetch failed; using fallback rates.", err);
+          });
+      });
+  }
+
+  fetchLiveRates();
+
+  // Asynchronous Geo Background Detection (if not explicitly overridden via query param)
+  (function detectUserGeoCurrency() {
+    try {
+      const urlParams = new URLSearchParams(window.location.search);
+      if (urlParams.get("currency") || urlParams.get("country")) return;
+    } catch (_) {}
+
+    function applyDetectedCountry(country) {
+      if (!country) return;
+      const resolved = resolveCurrencyByCountry(country);
+      try {
+        localStorage.setItem("miroooo_user_country", country);
+        localStorage.setItem("miroooo_currency", resolved.code);
+      } catch (_) {}
+      if (resolved.code !== activeCurrency.code || resolved.isAsia !== activeCurrency.isAsia || resolved.isUK !== activeCurrency.isUK) {
+        activeCurrency = resolved;
+        MirooooCurrency.updateAllElements();
+        notifyCurrencyChange();
+        if (typeof window.MirooooCart?.renderCartDrawer === "function") {
+          window.MirooooCart.renderCartDrawer();
+        }
+      }
+    }
+
+    try {
+      fetch("/api/geo/check")
+        .then(function (r) { return r.json(); })
+        .then(function (data) {
+          if (data && data.country) {
+            applyDetectedCountry(data.country);
+          } else {
+            fetch("https://api.country.is/")
+              .then(function (r) { return r.json(); })
+              .then(function (r) {
+                if (r && r.country) applyDetectedCountry(r.country);
+              })
+              .catch(function () {});
+          }
+        })
+        .catch(function () {
+          fetch("https://api.country.is/")
+            .then(function (r) { return r.json(); })
+            .then(function (r) {
+              if (r && r.country) applyDetectedCountry(r.country);
+            })
+            .catch(function () {});
+        });
+    } catch (_) {}
+  })();
+
   const arrowIcon = '<svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.65"><path d="M5 12h14M13 6l6 6-6 6"/></svg>';
   const accountIcon = '<svg class="icon icon-account icon-lg" viewBox="0 0 24 24" stroke="currentColor" fill="none" xmlns="http://www.w3.org/2000/svg"><rect width="10.5" height="10.5" x="6.75" y="1.75" rx="5.25"></rect><path stroke-linecap="round" d="M12 15.5c1.5 0 4 .333 4.5.5.5.167 3.7.8 4.5 2 1 1.5 1 2 1 4m-10-6.5c-1.5 0-4 .333-4.5.5-.5.167-3.7.8-4.5 2-1 1.5-1 2-1 4"></path></svg>';
   const bagIcon = '<svg class="icon icon-cart icon-lg" viewBox="0 0 24 24" stroke="currentColor" fill="none" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" d="M1 1h.5v0c.226 0 .339 0 .44.007a3 3 0 0 1 2.62 1.976c.034.095.065.204.127.42l.17.597m0 0 1.817 6.358c.475 1.664.713 2.496 1.198 3.114a4 4 0 0 0 1.633 1.231c.727.297 1.592.297 3.322.297h2.285c1.75 0 2.626 0 3.359-.302a4 4 0 0 0 1.64-1.253c.484-.627.715-1.472 1.175-3.161l.06-.221c.563-2.061.844-3.092.605-3.906a3 3 0 0 0-1.308-1.713C19.92 4 18.853 4 16.716 4H4.857ZM12 20a2 2 0 1 1-4 0 2 2 0 0 1 4 0Zm8 0a2 2 0 1 1-4 0 2 2 0 0 1 4 0Z"></path></svg>';
@@ -655,7 +1035,7 @@
                     <div class="shop-drawer__info">
                       <span class="shop-drawer__eyebrow">The Essential</span>
                       <h3 class="shop-drawer__product-title">Brush X1</h3>
-                      <span class="shop-drawer__price">£69 <s class="shop-drawer__compare">£139</s></span>
+                      <span class="shop-drawer__price"><span data-price-gbp="69">${MirooooCurrency.format(69)}</span> <s class="shop-drawer__compare" data-price-compare-gbp="139">${MirooooCurrency.format(139)}</s></span>
                     </div>
                     <svg class="shop-drawer__arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:16px!important;height:16px!important;min-width:16px!important;max-width:16px!important;min-height:16px!important;max-height:16px!important;flex-shrink:0!important;"><polyline points="9 18 15 12 9 6"></polyline></svg>
                   </a>
@@ -668,7 +1048,7 @@
                     <div class="shop-drawer__info">
                       <span class="shop-drawer__eyebrow">Flagship Pro</span>
                       <h3 class="shop-drawer__product-title">Brush X2</h3>
-                      <span class="shop-drawer__price">£69 <s class="shop-drawer__compare">£139</s></span>
+                      <span class="shop-drawer__price"><span data-price-gbp="69">${MirooooCurrency.format(69)}</span> <s class="shop-drawer__compare" data-price-compare-gbp="139">${MirooooCurrency.format(139)}</s></span>
                     </div>
                     <svg class="shop-drawer__arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:16px!important;height:16px!important;min-width:16px!important;max-width:16px!important;min-height:16px!important;max-height:16px!important;flex-shrink:0!important;"><polyline points="9 18 15 12 9 6"></polyline></svg>
                   </a>
@@ -688,7 +1068,7 @@
                     <div class="shop-drawer__info">
                       <span class="shop-drawer__eyebrow">Replacement</span>
                       <h3 class="shop-drawer__product-title">Brush X1 Heads</h3>
-                      <span class="shop-drawer__price">£10</span>
+                      <span class="shop-drawer__price" data-price-gbp="10">${MirooooCurrency.format(10)}</span>
                     </div>
                     <svg class="shop-drawer__arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:16px!important;height:16px!important;min-width:16px!important;max-width:16px!important;min-height:16px!important;max-height:16px!important;flex-shrink:0!important;"><polyline points="9 18 15 12 9 6"></polyline></svg>
                   </a>
@@ -701,7 +1081,7 @@
                     <div class="shop-drawer__info">
                       <span class="shop-drawer__eyebrow">Replacement</span>
                       <h3 class="shop-drawer__product-title">Brush X2 Heads</h3>
-                      <span class="shop-drawer__price">£10</span>
+                      <span class="shop-drawer__price" data-price-gbp="10">${MirooooCurrency.format(10)}</span>
                     </div>
                     <svg class="shop-drawer__arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:16px!important;height:16px!important;min-width:16px!important;max-width:16px!important;min-height:16px!important;max-height:16px!important;flex-shrink:0!important;"><polyline points="9 18 15 12 9 6"></polyline></svg>
                   </a>
@@ -1719,20 +2099,20 @@
                     Total discount
                     <svg class="miroooo-chevron-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
                   </span>
-                  <span class="miroooo-discount-amount" id="cart-discount-val">-£0.00</span>
+                  <span class="miroooo-discount-amount" id="cart-discount-val">-${MirooooCurrency.format(0)}</span>
                 </div>
                 <div class="miroooo-discount-details" id="cart-discount-details">
                   <div class="miroooo-discount-detail-item" id="cart-bundle-discount-row">
                     <span>Bundle Special Offer</span>
-                    <span id="cart-bundle-discount-val">-£0.00</span>
+                    <span id="cart-bundle-discount-val">-${MirooooCurrency.format(0)}</span>
                   </div>
                   <div class="miroooo-discount-detail-item" id="cart-bundle-promo-row" style="display: none;">
                     <span id="cart-bundle-promo-label">2-brush-bundle-special</span>
-                    <span id="cart-bundle-promo-val">-£0.00</span>
+                    <span id="cart-bundle-promo-val">-${MirooooCurrency.format(0)}</span>
                   </div>
                   <div class="miroooo-discount-detail-item" id="cart-gift-discount-row">
                     <span>Unlocked Free Gifts</span>
-                    <span id="cart-gift-discount-val">-£0.00</span>
+                    <span id="cart-gift-discount-val">-${MirooooCurrency.format(0)}</span>
                   </div>
                 </div>
               </div>
@@ -1741,7 +2121,7 @@
                   <span class="cart-subtotal-label" style="font-size: 0.88rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.06em; color: #000000; display: block;">SUBTOTAL</span>
                   <span class="cart-subtotal-sub" style="font-size: 0.75rem; color: #666666; display: block; margin-top: 2px;">Includes all taxes.</span>
                 </div>
-                <div class="cart-subtotal-amount" id="cart-subtotal-val" style="font-size: 1.85rem; font-weight: 800; color: #000000; line-height: 1; letter-spacing: -0.02em;">£0.00</div>
+                <div class="cart-subtotal-amount" id="cart-subtotal-val" style="font-size: 1.85rem; font-weight: 800; color: #000000; line-height: 1; letter-spacing: -0.02em;">${MirooooCurrency.format(0)}</div>
               </div>
               <div class="miroooo-checkout-btn-wrap">
                 <a href="/cart" class="cart-checkout-cta-btn miroooo-checkout-btn" is="hover-button" style="text-decoration: none;" onclick="window.MirooooCart.closeCart()">
@@ -1861,7 +2241,7 @@
                     <p class="miroooo-cart-item-desc" style="font-size: 0.76rem; color: #555555; margin: 3px 0 0; line-height: 1.35;">${headDesc}</p>
                   </div>
                   <div class="miroooo-cart-item-pricing">
-                    <span class="miroooo-cart-item-price">£${Number(subtotal).toFixed(2)}</span>
+                    <span class="miroooo-cart-item-price">${MirooooCurrency.format(subtotal)}</span>
                   </div>
                 </div>
                 <div class="miroooo-cart-item-bottom">
@@ -1934,8 +2314,8 @@
                       <p class="miroooo-cart-item-desc" style="font-size: 0.76rem; color: #555555; margin: 3px 0 0; line-height: 1.35;">${prodDesc}</p>
                     </div>
                     <div class="miroooo-cart-item-pricing">
-                      <span class="miroooo-cart-item-price">£${Number(itemPrice).toFixed(2)}</span>
-                      <span class="miroooo-cart-item-compare">£${Number(itemCompare).toFixed(2)}</span>
+                      <span class="miroooo-cart-item-price">${MirooooCurrency.format(itemPrice)}</span>
+                      <span class="miroooo-cart-item-compare">${MirooooCurrency.format(itemCompare)}</span>
                     </div>
                   </div>
                   <div class="miroooo-cart-item-bottom">
@@ -1981,7 +2361,7 @@
                     </div>
                     <div class="miroooo-cart-item-pricing">
                       <span class="miroooo-cart-item-price" style="color: #22c55e; font-weight: 700;">Free</span>
-                      <span class="miroooo-cart-item-compare">£${Number(compareVal).toFixed(2)}</span>
+                      <span class="miroooo-cart-item-compare">${MirooooCurrency.format(compareVal)}</span>
                     </div>
                   </div>
                   <div class="miroooo-cart-item-bottom">
@@ -2022,17 +2402,17 @@
         if (bundlePromoRow) {
           bundlePromoRow.style.display = "flex";
           if (bundlePromoLabelEl) bundlePromoLabelEl.textContent = (totalQty === 2 ? "2-brush-bundle-special" : "3-brush-bundle-offer");
-          if (bundlePromoValEl) bundlePromoValEl.textContent = `-£${Number(bundlePromoDiscount).toFixed(2)}`;
+          if (bundlePromoValEl) bundlePromoValEl.textContent = `-${MirooooCurrency.format(bundlePromoDiscount)}`;
         }
       } else {
         if (bundlePromoRow) bundlePromoRow.style.display = "none";
       }
 
-      if (subtotalValEl) subtotalValEl.textContent = `£${Number(subtotal).toFixed(2)}`;
-      if (totalValEl) totalValEl.textContent = `£${Number(subtotal).toFixed(2)}`;
-      if (discountValEl) discountValEl.textContent = `-£${Number(totalDiscountNum).toFixed(2)}`;
-      if (bundleDiscountValEl) bundleDiscountValEl.textContent = `-£${Number(bundleSavings).toFixed(2)}`;
-      if (giftDiscountValEl) giftDiscountValEl.textContent = `-£${Number(totalGiftValueNum).toFixed(2)}`;
+      if (subtotalValEl) subtotalValEl.textContent = MirooooCurrency.format(subtotal);
+      if (totalValEl) totalValEl.textContent = MirooooCurrency.format(subtotal);
+      if (discountValEl) discountValEl.textContent = `-${MirooooCurrency.format(totalDiscountNum)}`;
+      if (bundleDiscountValEl) bundleDiscountValEl.textContent = `-${MirooooCurrency.format(bundleSavings)}`;
+      if (giftDiscountValEl) giftDiscountValEl.textContent = `-${MirooooCurrency.format(totalGiftValueNum)}`;
     },
 
     startTimer() {

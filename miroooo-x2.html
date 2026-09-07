@@ -3646,8 +3646,8 @@ theme.variantStrings = {
   <!-- 2. Price Display (£) -->
   <div class="product__price grid gap-2 mt-1" id="main-product-price-section">
     <div class="flex flex-wrap items-baseline gap-2" style="display: flex; align-items: baseline; gap: 8px;">
-      <span class="text-2xl sm:text-3xl font-extrabold text-white" id="main-price-display" style="font-size: 1.85rem; font-weight: 800; color: #ffffff;">£69</span>
-      <span class="text-base sm:text-lg price-compare-strike" id="main-compare-price-display" style="color: rgba(255, 255, 255, 0.55); font-size: 1.15rem;">£139</span>
+      <span class="text-2xl sm:text-3xl font-extrabold text-white" id="main-price-display" style="font-size: 1.85rem; font-weight: 800; color: #ffffff;">£69.00</span>
+      <span class="text-base sm:text-lg price-compare-strike" id="main-compare-price-display" style="color: rgba(255, 255, 255, 0.55); font-size: 1.15rem;">£139.00</span>
       <span class="inline-block px-2.5 py-0.5 rounded-full text-xs font-bold uppercase tracking-wider" id="main-discount-badge" style="background: #e6e6e6; color: #111111; font-size: 11px; font-weight: 800; padding: 3px 10px; border-radius: 9999px; letter-spacing: 0.05em; display: inline-flex; align-items: center;">50% OFF</span>
     </div>
   </div>
@@ -3722,8 +3722,8 @@ theme.variantStrings = {
           </div>
           <div class="text-right" style="text-align: right; display: flex; flex-direction: column; align-items: flex-end; justify-content: flex-start; flex-shrink: 0;">
             <div class="flex items-baseline gap-1.5 justify-end" style="display: flex; align-items: baseline; justify-content: flex-end; gap: 6px;">
-              <span class="font-bold text-base sm:text-lg" style="font-weight: 700; font-size: 1.1rem; color: #111111;">£69</span>
-              <span class="text-xs sm:text-sm price-compare-strike" style="font-size: 12px; color: #777777;">£139</span>
+              <span class="font-bold text-base sm:text-lg" id="tier-single-price" style="font-weight: 700; font-size: 1.1rem; color: #111111;">£69.00</span>
+              <span class="text-xs sm:text-sm price-compare-strike" id="tier-single-compare-price" style="font-size: 12px; color: #777777;">£139.00</span>
             </div>
             <span class="tier-badge-pill mt-0.5" style="background: rgba(0, 0, 0, 0.08); color: #111111; font-size: 10.5px; font-weight: 800; padding: 2px 8px; border-radius: 9999px; display: inline-block;">50% OFF</span>
           </div>
@@ -3760,17 +3760,17 @@ theme.variantStrings = {
           <div>
             <div class="flex items-center gap-2">
               <span class="font-extrabold text-sm sm:text-base uppercase tracking-tight" style="color: #111111;">Buy 2</span>
-              <span class="tier-badge-pill" style="background: rgba(0, 0, 0, 0.08); color: #111111;">£10 OFF</span>
+              <span class="tier-badge-pill" id="tier-bundle-2-discount-badge" style="background: rgba(0, 0, 0, 0.08); color: #111111;">£10.00 OFF</span>
             </div>
             <p class="text-xs sm:text-sm mt-0.5" style="color: #555555; line-height: 1.4;">Includes 2 Brush X2 sets</p>
           </div>
           <div class="text-right" style="text-align: right; display: flex; flex-direction: column; align-items: flex-end; justify-content: flex-start; flex-shrink: 0; margin-top: 14px;">
             <div class="flex items-baseline gap-1.5 justify-end" style="display: flex; align-items: baseline; justify-content: flex-end; gap: 6px;">
-              <span class="font-bold text-base sm:text-lg" style="font-weight: 700; font-size: 1.1rem; color: #111111;">£128</span>
-              <span class="text-xs sm:text-sm price-compare-strike" style="font-size: 12px; color: #777777;">£278</span>
+              <span class="font-bold text-base sm:text-lg" id="tier-bundle-2-price" style="font-weight: 700; font-size: 1.1rem; color: #111111;">£128.00</span>
+              <span class="text-xs sm:text-sm price-compare-strike" id="tier-bundle-2-compare-price" style="font-size: 12px; color: #777777;">£278.00</span>
             </div>
             <div class="flex items-baseline gap-1 mt-0.5 justify-end" style="display: flex; align-items: baseline; justify-content: flex-end; gap: 4px;">
-              <span class="font-bold text-xs sm:text-sm" style="color: #111111; font-weight: 700; font-size: 11.5px;">(£64 each)</span>
+              <span class="font-bold text-xs sm:text-sm" id="tier-bundle-2-each-price" style="color: #111111; font-weight: 700; font-size: 11.5px;">(£64.00 each)</span>
             </div>
           </div>
         </div>
@@ -3810,7 +3810,7 @@ theme.variantStrings = {
           <span class="tier-gift-strip-title">+ Brush X2 Heads</span>
         </div>
         <div class="tier-gift-strip-right">
-          <span class="tier-gift-original-price">£10</span>
+          <span class="tier-gift-original-price" id="tier-bundle-2-gift-price">£10.00</span>
           <span class="tier-gift-free-badge">FREE</span>
         </div>
       </div>
@@ -3829,17 +3829,17 @@ theme.variantStrings = {
           <div>
             <div class="flex items-center gap-2">
               <span class="font-extrabold text-sm sm:text-base uppercase tracking-tight" style="color: #111111;">Buy 3</span>
-              <span class="tier-badge-pill" style="background: rgba(0, 0, 0, 0.08); color: #111111;">£30 OFF</span>
+              <span class="tier-badge-pill" id="tier-bundle-3-discount-badge" style="background: rgba(0, 0, 0, 0.08); color: #111111;">£30.00 OFF</span>
             </div>
             <p class="text-xs sm:text-sm mt-0.5" style="color: #555555; line-height: 1.4;">Includes 3 Brush X2 sets</p>
           </div>
           <div class="text-right" style="text-align: right; display: flex; flex-direction: column; align-items: flex-end; justify-content: flex-start; flex-shrink: 0;">
             <div class="flex items-baseline gap-1.5 justify-end" style="display: flex; align-items: baseline; justify-content: flex-end; gap: 6px;">
-              <span class="font-bold text-base sm:text-lg" style="font-weight: 700; font-size: 1.1rem; color: #111111;">£177</span>
-              <span class="text-xs sm:text-sm price-compare-strike" style="font-size: 12px; color: #777777;">£417</span>
+              <span class="font-bold text-base sm:text-lg" id="tier-bundle-3-price" style="font-weight: 700; font-size: 1.1rem; color: #111111;">£177.00</span>
+              <span class="text-xs sm:text-sm price-compare-strike" id="tier-bundle-3-compare-price" style="font-size: 12px; color: #777777;">£417.00</span>
             </div>
             <div class="flex items-baseline gap-1 mt-0.5 justify-end" style="display: flex; align-items: baseline; justify-content: flex-end; gap: 4px;">
-              <span class="font-bold text-xs sm:text-sm" style="color: #111111; font-weight: 700; font-size: 11.5px;">(£59 each)</span>
+              <span class="font-bold text-xs sm:text-sm" id="tier-bundle-3-each-price" style="color: #111111; font-weight: 700; font-size: 11.5px;">(£59.00 each)</span>
             </div>
           </div>
         </div>
@@ -3888,7 +3888,7 @@ theme.variantStrings = {
           <span class="tier-gift-strip-title">+ Brush X2 Heads</span>
         </div>
         <div class="tier-gift-strip-right">
-          <span class="tier-gift-original-price">£20</span>
+          <span class="tier-gift-original-price" id="tier-bundle-3-gift-price">£20.00</span>
           <span class="tier-gift-free-badge">FREE</span>
         </div>
       </div>
@@ -4719,7 +4719,7 @@ theme.variantStrings = {
           <div class="miroooo-sticky-info">
             <p class="miroooo-sticky-title" id="sticky-bar-title">Buy 2 - Brush X2 (Silver + Silver)</p>
             <p class="miroooo-sticky-sub" id="sticky-bar-subtitle">
-              <span id="sticky-bar-price" style="font-weight: 700; color: #ffffff;">£128</span>
+              <span id="sticky-bar-price" style="font-weight: 700; color: #ffffff;">£128.00</span>
             </p>
           </div>
         </div>
@@ -9485,8 +9485,9 @@ const TIERS = {
     label: 'Buy 1',
     count: 1,
     priceNum: 69,
-    priceDisplay: '£69',
-    compareDisplay: '£139',
+    compareNum: 139,
+    priceDisplay: '£69.00',
+    compareDisplay: '£139.00',
     saveDisplay: '50% OFF',
     ctaText: 'Add To Cart'
   },
@@ -9495,9 +9496,13 @@ const TIERS = {
     label: 'Buy 2',
     count: 2,
     priceNum: 128,
-    priceDisplay: '£128',
-    compareDisplay: '£278',
-    saveDisplay: '£10 OFF',
+    compareNum: 278,
+    eachNum: 64,
+    discountNum: 10,
+    giftNum: 10,
+    priceDisplay: '£128.00',
+    compareDisplay: '£278.00',
+    saveDisplay: '£10.00 OFF',
     ctaText: 'Add To Cart'
   },
   'bundle-3': {
@@ -9505,9 +9510,13 @@ const TIERS = {
     label: 'Buy 3',
     count: 3,
     priceNum: 177,
-    priceDisplay: '£177',
-    compareDisplay: '£417',
-    saveDisplay: '£30 OFF',
+    compareNum: 417,
+    eachNum: 59,
+    discountNum: 30,
+    giftNum: 20,
+    priceDisplay: '£177.00',
+    compareDisplay: '£417.00',
+    saveDisplay: '£30.00 OFF',
     ctaText: 'Add To Cart'
   }
 };
@@ -9520,6 +9529,87 @@ const choicesState = {
   'bundle-2': ['Silver', 'Silver'],
   'bundle-3': ['Silver', 'Grey', 'Pink']
 };
+
+function updateDynamicPrices() {
+  const format = (amt) => {
+    if (window.MirooooCurrency && typeof window.MirooooCurrency.format === 'function') {
+      return window.MirooooCurrency.format(amt);
+    }
+    return '£' + (Number(amt) || 0).toFixed(2);
+  };
+
+  // 1. Hero Price Display
+  const heroPriceEl = document.getElementById('main-price-display');
+  const heroCompareEl = document.getElementById('main-compare-price-display');
+  if (heroPriceEl) heroPriceEl.textContent = format(69);
+  if (heroCompareEl) heroCompareEl.textContent = format(139);
+
+  // 2. Tier 1 (Buy 1): Base 69, Compare 139
+  const t1Price = document.getElementById('tier-single-price');
+  const t1Comp = document.getElementById('tier-single-compare-price');
+  if (t1Price) t1Price.textContent = format(69);
+  if (t1Comp) t1Comp.textContent = format(139);
+
+  // 3. Tier 2 (Buy 2): Price 128, Compare 278, Each 64, Discount 10 OFF, Gift 10
+  const t2Price = document.getElementById('tier-bundle-2-price');
+  const t2Comp = document.getElementById('tier-bundle-2-compare-price');
+  const t2Each = document.getElementById('tier-bundle-2-each-price');
+  const t2Disc = document.getElementById('tier-bundle-2-discount-badge');
+  const t2Gift = document.getElementById('tier-bundle-2-gift-price');
+  if (t2Price) t2Price.textContent = format(128);
+  if (t2Comp) t2Comp.textContent = format(278);
+  if (t2Each) t2Each.textContent = `(${format(64)} each)`;
+  if (t2Disc) t2Disc.textContent = `${format(10)} OFF`;
+  if (t2Gift) t2Gift.textContent = format(10);
+
+  // 4. Tier 3 (Buy 3): Price 177, Compare 417, Each 59, Discount 30 OFF, Gift 20
+  const t3Price = document.getElementById('tier-bundle-3-price');
+  const t3Comp = document.getElementById('tier-bundle-3-compare-price');
+  const t3Each = document.getElementById('tier-bundle-3-each-price');
+  const t3Disc = document.getElementById('tier-bundle-3-discount-badge');
+  const t3Gift = document.getElementById('tier-bundle-3-gift-price');
+  if (t3Price) t3Price.textContent = format(177);
+  if (t3Comp) t3Comp.textContent = format(417);
+  if (t3Each) t3Each.textContent = `(${format(59)} each)`;
+  if (t3Disc) t3Disc.textContent = `${format(30)} OFF`;
+  if (t3Gift) t3Gift.textContent = format(20);
+
+  // 5. Update TIERS object dynamic displays
+  if (TIERS['single']) {
+    TIERS['single'].priceDisplay = format(69);
+    TIERS['single'].compareDisplay = format(139);
+  }
+  if (TIERS['bundle-2']) {
+    TIERS['bundle-2'].priceDisplay = format(128);
+    TIERS['bundle-2'].compareDisplay = format(278);
+    TIERS['bundle-2'].saveDisplay = `${format(10)} OFF`;
+  }
+  if (TIERS['bundle-3']) {
+    TIERS['bundle-3'].priceDisplay = format(177);
+    TIERS['bundle-3'].compareDisplay = format(417);
+    TIERS['bundle-3'].saveDisplay = `${format(30)} OFF`;
+  }
+
+  // 6. Sticky Buy Bar
+  updateStickyBar();
+
+  // 7. Comparison Table if present
+  document.querySelectorAll('.x2-price-val, .x2-comp-m-price-winner').forEach(el => {
+    el.textContent = format(69);
+  });
+  document.querySelectorAll('.x2-price-old, .x2-comp-m-price-old').forEach(el => {
+    el.textContent = format(99);
+  });
+  document.querySelectorAll('.x2-price-val-standard, .x2-comp-m-price-standard').forEach(el => {
+    el.textContent = format(69);
+  });
+}
+
+document.addEventListener('miroooo:currency-updated', updateDynamicPrices);
+document.addEventListener('miroooo:currency-change', updateDynamicPrices);
+if (window.MirooooCurrency && typeof window.MirooooCurrency.onCurrencyChange === 'function') {
+  window.MirooooCurrency.onCurrencyChange(updateDynamicPrices);
+}
 
 function updateGalleryForVariant(colorName) {
   const data = VARIANTS_DATA[colorName];
@@ -9713,8 +9803,8 @@ function selectBundleTier(tierId) {
     }
   }
 
-  // 4. Update Sticky Bar
-  updateStickyBar();
+  // 4. Update Dynamic Prices & Sticky Bar
+  updateDynamicPrices();
 }
 
 function setBrushChoice(tierId, index, colorName, event) {
@@ -10005,7 +10095,8 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-  // Initial Bundle Tier selection (pre-select Buy 2)
+  // Initial Dynamic Prices & Bundle Tier selection (pre-select Buy 2)
+  updateDynamicPrices();
   selectBundleTier('bundle-2');
 
   const urlParams = new URLSearchParams(window.location.search);
