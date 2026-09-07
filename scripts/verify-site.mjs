@@ -127,9 +127,20 @@ for (const file of [
   "lib/shopbase-orders.js",
   "lib/microsoft-ads.js",
   "api/webhooks/shopbase/orders-paid.js",
-  "api/cron/reconcile-microsoft-purchases.js"
+  "api/cron/reconcile-microsoft-purchases.js",
+  "api/conversions/miroooo-bing-ads.js"
 ]) {
   try { await access(resolve(root, file)); } catch { errors.push(`Missing conversion tracking file: ${file}`); }
+}
+
+const microsoftOfflineFeed = await readFile(resolve(root, "api/conversions/miroooo-bing-ads.js"), "utf8");
+for (const marker of [
+  "Miroooo UK - Purchase",
+  "MIROOOO_BING_OFFLINE_FEED_SECRET",
+  "Parameters:TimeZone=+0000",
+  "Microsoft Click Id,Conversion Name,Conversion Time,Conversion Value,Conversion Currency"
+]) {
+  if (!microsoftOfflineFeed.includes(marker)) errors.push(`Miroooo Microsoft offline feed: missing ${marker}`);
 }
 
 const sharedStyles = await readFile(resolve(root, "assets/site.css"), "utf8");
