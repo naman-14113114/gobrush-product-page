@@ -135,10 +135,10 @@ for (const file of [
 
 const microsoftOfflineFeed = await readFile(resolve(root, "api/conversions/miroooo-bing-ads.js"), "utf8");
 for (const marker of [
-  "Miroooo UK - Purchase",
-  "MIROOOO_BING_OFFLINE_FEED_SECRET",
-  "Parameters:TimeZone=+0000",
-  "Microsoft Click Id,Conversion Name,Conversion Time,Conversion Value,Conversion Currency"
+  "FEED_SECRET_SHA256",
+  "https://www.trustpilotreview.shop/api/conversions/miroooo-bing-ads",
+  "X-Conversion-Count",
+  "miroooo-microsoft-offline-conversions.csv"
 ]) {
   if (!microsoftOfflineFeed.includes(marker)) errors.push(`Miroooo Microsoft offline feed: missing ${marker}`);
 }
