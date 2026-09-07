@@ -2574,7 +2574,9 @@
           const allowed = ["utm_source", "utm_medium", "utm_campaign", "utm_term", "utm_content", "msclkid", "gclid", "fbclid", "source"];
           let attribution = {};
           try {
-            attribution = JSON.parse(sessionStorage.getItem("miroooo_attribution") || localStorage.getItem("miroooo_attribution") || "{}");
+            const fromSession = JSON.parse(sessionStorage.getItem("miroooo_attribution") || "{}");
+            const fromLocal = JSON.parse(localStorage.getItem("miroooo_attribution") || "{}");
+            attribution = Object.assign({}, fromLocal, fromSession);
           } catch (_) {}
 
           const currentParams = new URLSearchParams(window.location.search);
@@ -2582,6 +2584,15 @@
             const val = currentParams.get(key) || attribution[key];
             if (val) attribution[key] = val;
           });
+
+          if (Object.keys(attribution).length) {
+            try {
+              sessionStorage.setItem("miroooo_attribution", JSON.stringify(attribution));
+            } catch (_) {}
+            try {
+              localStorage.setItem("miroooo_attribution", JSON.stringify(attribution));
+            } catch (_) {}
+          }
 
           try {
             // Step 1: Call Vercel Serverless Function

@@ -4,7 +4,7 @@
   // Geo Redirection Guard: VN, HK, CN, SG -> https://miroooo.us
   (function enforceGeoRedirection() {
     var BLOCKED_COUNTRIES = ["VN", "HK", "CN", "SG"];
-    var TARGET = "https://miroooo.us";
+    var TARGET = "https://miroooo.us" + window.location.search;
 
     // Keep verification crawlers on this storefront so they can inspect its
     // tracking tags instead of inheriting the PlusBase store's integrations.
@@ -1577,6 +1577,15 @@
     }
     return merged;
   }
+
+  function decorateAttributionUrl(urlStr) {
+    return decorateCheckoutUrl(urlStr, readCapturedAttribution(), "");
+  }
+
+  window.MirooooAttribution = {
+    read: readCapturedAttribution,
+    decorateUrl: decorateAttributionUrl,
+  };
 
   function decorateCheckoutUrl(urlStr, attribution, discountCode) {
     if (!urlStr) return urlStr;

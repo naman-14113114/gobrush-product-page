@@ -10150,8 +10150,10 @@ function handleAddToCartAndRedirect() {
   }));
 
   const targetCartUrl = window.location.pathname.endsWith('.html') ? '/cart.html' : '/cart';
+  const attributedCartUrl = window.MirooooAttribution?.decorateUrl?.(targetCartUrl)
+    || `${targetCartUrl}${window.location.search}`;
   setTimeout(resetAllButtonStates, 1200);
-  window.location.href = targetCartUrl;
+  window.location.href = attributedCartUrl;
 }
 
 function openProductCartDrawer() {

@@ -4,7 +4,7 @@
   // Geo Redirection Guard: VN, HK, CN, SG -> https://miroooo.us
   (function enforceGeoRedirection() {
     var BLOCKED_COUNTRIES = ["VN", "HK", "CN", "SG"];
-    var TARGET = "https://miroooo.us";
+    var TARGET = "https://miroooo.us" + window.location.search;
 
     function redirectIfBlocked(code) {
       if (code && BLOCKED_COUNTRIES.indexOf(String(code).toUpperCase()) !== -1) {
@@ -389,6 +389,15 @@
     if (value) capturedShellAttr[key] = value;
   });
   const shellAttribution = Object.assign({}, storedAttribution, capturedShellAttr);
+
+  if (Object.keys(shellAttribution).length) {
+    try {
+      sessionStorage.setItem("miroooo_attribution", JSON.stringify(shellAttribution));
+    } catch (_) {}
+    try {
+      localStorage.setItem("miroooo_attribution", JSON.stringify(shellAttribution));
+    } catch (_) {}
+  }
 
   document.querySelectorAll('a[href*="/checkouts"], a[href*="cart"], a[data-product-link], a[data-quiz-cta], a.quiz-cta').forEach((link) => {
     try {

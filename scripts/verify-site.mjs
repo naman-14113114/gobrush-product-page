@@ -67,6 +67,14 @@ const sharedScript = await readFile(resolve(root, "assets/site.js"), "utf8");
 for (const marker of ["nav-link__flip", "mobile-panel__close", "service-strip", "data-drag-scroll"]) {
   if (!sharedScript.includes(marker)) errors.push(`assets/site.js: missing shared theme behaviour ${marker}`);
 }
+for (const marker of ["window.MirooooAttribution", "decorateUrl: decorateAttributionUrl", '"https://miroooo.us" + window.location.search']) {
+  if (!sharedScript.includes(marker)) errors.push(`assets/site.js: missing durable attribution handoff ${marker}`);
+}
+
+const productShellScript = await readFile(resolve(root, "assets/product-shell.js"), "utf8");
+for (const marker of ['sessionStorage.setItem("miroooo_attribution"', 'localStorage.setItem("miroooo_attribution"', '"https://miroooo.us" + window.location.search']) {
+  if (!productShellScript.includes(marker)) errors.push(`assets/product-shell.js: missing durable attribution capture ${marker}`);
+}
 
 const coachPage = await readFile(resolve(root, "smile-coach.html"), "utf8");
 for (const marker of [
@@ -176,6 +184,21 @@ for (const [file, route] of productPagesToCheck) {
   if (/€|\bEUR\b/.test(html)) errors.push(`${file}: non-GBP currency remains`);
   if (/delivery tomorrow|Order within[^<]*(?:\d{1,2}:\d{2})/i.test(html)) errors.push(`${file}: unsupported urgency or delivery promise remains`);
 
+  if (["miroooo-x.html", "miroooo-x2.html"].includes(file) && !html.includes("MirooooAttribution?.decorateUrl?.(targetCartUrl)")) {
+    errors.push(`${file}: product-to-cart navigation drops attribution query parameters`);
+  }
+
+}
+
+const attributionCartPage = await readFile(resolve(root, "cart.html"), "utf8");
+for (const marker of [
+  'JSON.parse(sessionStorage.getItem("miroooo_attribution") || "{}")',
+  'JSON.parse(localStorage.getItem("miroooo_attribution") || "{}")',
+  "attribution = Object.assign({}, fromLocal, fromSession)",
+  'sessionStorage.setItem("miroooo_attribution", JSON.stringify(attribution))',
+  'localStorage.setItem("miroooo_attribution", JSON.stringify(attribution))',
+]) {
+  if (!attributionCartPage.includes(marker)) errors.push(`cart.html: missing durable checkout attribution marker ${marker}`);
 }
 
 const x1Page = await readFile(resolve(root, "miroooo-x.html"), "utf8");
