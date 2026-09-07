@@ -1719,20 +1719,20 @@
                     Total discount
                     <svg class="miroooo-chevron-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
                   </span>
-                  <span class="miroooo-discount-amount" id="cart-discount-val">-£0</span>
+                  <span class="miroooo-discount-amount" id="cart-discount-val">-£0.00</span>
                 </div>
                 <div class="miroooo-discount-details" id="cart-discount-details">
                   <div class="miroooo-discount-detail-item" id="cart-bundle-discount-row">
                     <span>Bundle Special Offer</span>
-                    <span id="cart-bundle-discount-val">-£0</span>
+                    <span id="cart-bundle-discount-val">-£0.00</span>
                   </div>
                   <div class="miroooo-discount-detail-item" id="cart-bundle-promo-row" style="display: none;">
                     <span id="cart-bundle-promo-label">2-brush-bundle-special</span>
-                    <span id="cart-bundle-promo-val">-£0</span>
+                    <span id="cart-bundle-promo-val">-£0.00</span>
                   </div>
                   <div class="miroooo-discount-detail-item" id="cart-gift-discount-row">
                     <span>Unlocked Free Gifts</span>
-                    <span id="cart-gift-discount-val">-£0</span>
+                    <span id="cart-gift-discount-val">-£0.00</span>
                   </div>
                 </div>
               </div>
@@ -1741,7 +1741,7 @@
                   <span class="cart-subtotal-label" style="font-size: 0.88rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.06em; color: #000000; display: block;">SUBTOTAL</span>
                   <span class="cart-subtotal-sub" style="font-size: 0.75rem; color: #666666; display: block; margin-top: 2px;">Includes all taxes.</span>
                 </div>
-                <div class="cart-subtotal-amount" id="cart-subtotal-val" style="font-size: 1.85rem; font-weight: 800; color: #000000; line-height: 1; letter-spacing: -0.02em;">£0</div>
+                <div class="cart-subtotal-amount" id="cart-subtotal-val" style="font-size: 1.85rem; font-weight: 800; color: #000000; line-height: 1; letter-spacing: -0.02em;">£0.00</div>
               </div>
               <div class="miroooo-checkout-btn-wrap">
                 <a href="/cart" class="cart-checkout-cta-btn miroooo-checkout-btn" is="hover-button" style="text-decoration: none;" onclick="window.MirooooCart.closeCart()">
@@ -1861,7 +1861,7 @@
                     <p class="miroooo-cart-item-desc" style="font-size: 0.76rem; color: #555555; margin: 3px 0 0; line-height: 1.35;">${headDesc}</p>
                   </div>
                   <div class="miroooo-cart-item-pricing">
-                    <span class="miroooo-cart-item-price">£${subtotal}</span>
+                    <span class="miroooo-cart-item-price">£${Number(subtotal).toFixed(2)}</span>
                   </div>
                 </div>
                 <div class="miroooo-cart-item-bottom">
@@ -1934,8 +1934,8 @@
                       <p class="miroooo-cart-item-desc" style="font-size: 0.76rem; color: #555555; margin: 3px 0 0; line-height: 1.35;">${prodDesc}</p>
                     </div>
                     <div class="miroooo-cart-item-pricing">
-                      <span class="miroooo-cart-item-price">£${itemPrice}</span>
-                      <span class="miroooo-cart-item-compare">£${itemCompare}</span>
+                      <span class="miroooo-cart-item-price">£${Number(itemPrice).toFixed(2)}</span>
+                      <span class="miroooo-cart-item-compare">£${Number(itemCompare).toFixed(2)}</span>
                     </div>
                   </div>
                   <div class="miroooo-cart-item-bottom">
@@ -1981,7 +1981,7 @@
                     </div>
                     <div class="miroooo-cart-item-pricing">
                       <span class="miroooo-cart-item-price" style="color: #22c55e; font-weight: 700;">Free</span>
-                      <span class="miroooo-cart-item-compare">£${compareVal}</span>
+                      <span class="miroooo-cart-item-compare">£${Number(compareVal).toFixed(2)}</span>
                     </div>
                   </div>
                   <div class="miroooo-cart-item-bottom">
@@ -2022,17 +2022,17 @@
         if (bundlePromoRow) {
           bundlePromoRow.style.display = "flex";
           if (bundlePromoLabelEl) bundlePromoLabelEl.textContent = (totalQty === 2 ? "2-brush-bundle-special" : "3-brush-bundle-offer");
-          if (bundlePromoValEl) bundlePromoValEl.textContent = `-£${Math.round(bundlePromoDiscount)}`;
+          if (bundlePromoValEl) bundlePromoValEl.textContent = `-£${Number(bundlePromoDiscount).toFixed(2)}`;
         }
       } else {
         if (bundlePromoRow) bundlePromoRow.style.display = "none";
       }
 
-      if (subtotalValEl) subtotalValEl.textContent = `£${Math.round(subtotal)}`;
-      if (totalValEl) totalValEl.textContent = `£${Math.round(subtotal)}`;
-      if (discountValEl) discountValEl.textContent = `-£${Math.round(totalDiscountNum)}`;
-      if (bundleDiscountValEl) bundleDiscountValEl.textContent = `-£${Math.round(bundleSavings)}`;
-      if (giftDiscountValEl) giftDiscountValEl.textContent = `-£${Math.round(totalGiftValueNum)}`;
+      if (subtotalValEl) subtotalValEl.textContent = `£${Number(subtotal).toFixed(2)}`;
+      if (totalValEl) totalValEl.textContent = `£${Number(subtotal).toFixed(2)}`;
+      if (discountValEl) discountValEl.textContent = `-£${Number(totalDiscountNum).toFixed(2)}`;
+      if (bundleDiscountValEl) bundleDiscountValEl.textContent = `-£${Number(bundleSavings).toFixed(2)}`;
+      if (giftDiscountValEl) giftDiscountValEl.textContent = `-£${Number(totalGiftValueNum).toFixed(2)}`;
     },
 
     startTimer() {
