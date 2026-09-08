@@ -1119,7 +1119,7 @@ p {
   text-transform: uppercase;
 }
 
-.site-footer__column a {
+.site-footer__column a:not(.site-footer__social-btn) {
   min-height: auto;
   display: inline-block;
   padding: 2px 0;
@@ -2960,20 +2960,35 @@ body.is-ready [data-hero-reveal] {
 .gb-coach-promo {
   display: grid;
   grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
-  min-height: 720px;
-  background: #151816;
+  align-items: stretch;
+  min-height: 0;
+  background: #080909;
   color: #f4f2ec;
 }
 
 .gb-coach-promo__media {
-  min-height: 720px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 0;
+  width: 100%;
+  height: 100%;
   overflow: hidden;
+  padding: 0;
+  margin: 0;
+  transform: none !important;
+  opacity: 1 !important;
 }
 
 .gb-coach-promo__media img {
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  aspect-ratio: 1 / 1;
+  object-fit: contain;
+  display: block;
+  margin: 0;
+  padding: 0;
+  transform: none !important;
 }
 
 .gb-coach-promo__content {
@@ -2981,7 +2996,7 @@ body.is-ready [data-hero-reveal] {
   flex-direction: column;
   align-items: flex-start;
   justify-content: center;
-  padding: clamp(64px, 8vw, 122px);
+  padding: clamp(20px, 3vw, 40px) clamp(32px, 6vw, 90px);
 }
 
 .gb-coach-promo__content .gb-kicker {
@@ -3286,24 +3301,37 @@ body.is-ready [data-hero-reveal] {
 }
 
 .site-footer__social-btn {
-  width: 38px;
-  height: 38px;
-  border-radius: 50%;
-  background: rgba(255, 255, 255, 0.08);
-  border: 1px solid rgba(255, 255, 255, 0.14);
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  color: #ffffff;
-  text-decoration: none;
-  transition: background 0.25s ease, border-color 0.25s ease, transform 0.25s ease;
+  width: 38px !important;
+  height: 38px !important;
+  border-radius: 50% !important;
+  background: rgba(255, 255, 255, 0.08) !important;
+  border: 1px solid rgba(255, 255, 255, 0.14) !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  box-sizing: border-box !important;
+  color: #ffffff !important;
+  text-decoration: none !important;
+  line-height: 0 !important;
+  transition: background 0.25s ease, border-color 0.25s ease, transform 0.25s ease !important;
 }
 
 .site-footer__social-btn:hover {
-  background: rgba(255, 255, 255, 0.16);
-  border-color: rgba(255, 255, 255, 0.3);
-  transform: translateY(-2px);
-  color: #ffffff;
+  background: rgba(255, 255, 255, 0.16) !important;
+  border-color: rgba(255, 255, 255, 0.3) !important;
+  transform: translateY(-2px) !important;
+  color: #ffffff !important;
+}
+
+.site-footer__social-btn svg {
+  display: block !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  width: 18px !important;
+  height: 18px !important;
+  flex-shrink: 0 !important;
 }
 
 .site-footer__bottom {
@@ -3504,7 +3532,11 @@ body.is-ready [data-hero-reveal] {
   }
 
   .gb-coach-promo__media {
-    min-height: 72vw;
+    min-height: 0 !important;
+    width: 100% !important;
+    max-width: min(100%, 540px) !important;
+    aspect-ratio: 1 / 1 !important;
+    margin: 0 auto !important;
     order: -1;
   }
 
@@ -3657,11 +3689,15 @@ body.is-ready [data-hero-reveal] {
   }
 
   .gb-coach-promo__media {
-    min-height: 100vw;
+    min-height: 0 !important;
+    width: 100% !important;
+    max-width: min(100%, 480px) !important;
+    aspect-ratio: 1 / 1 !important;
+    margin: 0 auto !important;
   }
 
   .gb-coach-promo__content {
-    padding: 65px 20px 72px;
+    padding: 36px 20px 44px;
   }
 
   .gb-coach-promo__content h2 {

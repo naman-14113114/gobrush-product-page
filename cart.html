@@ -2378,8 +2378,8 @@
         // Extra Percentage Promo Codes (MIROOOO / MIROOOO10 -> 10% off brushes)
         let promoDiscount = 0;
         if (appliedPromoCodes.includes("MIROOOO") || appliedPromoCodes.includes("MIROOOO10")) {
-          const brushNet = x2Net + x1Net;
-          promoDiscount = Number((brushNet * 0.10).toFixed(2));
+          const brushBaseAmount = (x2Count * 69) + (x1Count * 69);
+          promoDiscount = Number((brushBaseAmount * 0.10).toFixed(2));
         }
 
         const finalSubtotal = Math.max(0, Number((subtotal - promoDiscount).toFixed(2)));

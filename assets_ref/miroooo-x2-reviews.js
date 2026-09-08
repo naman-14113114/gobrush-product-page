@@ -52,7 +52,7 @@
       displayDate: '5 September 2026',
       variant: 'Pink / Single',
       title: 'Best travel setup ever—worth every penny',
-      body: 'Everything about this package is top notch. The magnetic box it comes in is super clean, and the included travel capsule fits right into my makeup bag without taking up space. The USB-C charging means I don\'t have to carry a separate brick when I go on trips. Used the Brush X1 by Miroooo this morning and my teeth feel polished. You get way more value here than buying the overpriced brand names.',
+      body: 'Everything about this package is top notch. The magnetic box it comes in is super clean, and the included travel capsule fits right into my makeup bag without taking up space. The USB-C charging means I don\'t have to carry a separate brick when I go on trips. Used the Brush X2 by Miroooo this morning and my teeth feel polished. You get way more value here than buying the overpriced brand names.',
       video: {
         src: '/assets_ref/x2/qb81f4-h264-hd.mp4',
         poster: '/assets_ref/x2/qb81f4-poster.webp'
@@ -1322,9 +1322,32 @@
     // Calculate columns based on window width (4 on desktop, 3 on tablet, 2 on mobile)
     const numCols = window.innerWidth >= 1024 ? 4 : (window.innerWidth >= 768 ? 3 : 2);
     const colBuckets = Array.from({ length: numCols }, () => []);
+    const colWeights = new Array(numCols).fill(0);
 
     visibleList.forEach((review, index) => {
-      colBuckets[index % numCols].push({ review, originalIndex: index });
+      // Calculate estimated review card weight/height
+      let cardWeight = 150;
+      if (review.video) {
+        cardWeight += 350;
+      }
+      if (review.images && review.images.length > 0) {
+        cardWeight += 220;
+      }
+      const textLength = (review.body ? review.body.length : 0) + (review.title ? review.title.length : 0);
+      cardWeight += textLength / 2;
+
+      // Distribute to the column with the minimum accumulated weight
+      let targetCol = 0;
+      let minWeight = colWeights[0];
+      for (let c = 1; c < numCols; c++) {
+        if (colWeights[c] < minWeight) {
+          minWeight = colWeights[c];
+          targetCol = c;
+        }
+      }
+
+      colBuckets[targetCol].push({ review, originalIndex: index });
+      colWeights[targetCol] += cardWeight;
     });
 
     let html = '';

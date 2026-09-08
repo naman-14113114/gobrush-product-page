@@ -79,9 +79,466 @@
   </div></section>
   <section class="section" aria-labelledby="model-guide"><div class="site-shell">
     <div class="section-heading reveal"><div><p class="eyebrow">Model guide</p><h2 id="model-guide">What changes between X1 and X2.</h2></div><p>The same calm design language, with different levels of guidance and battery life.</p></div>
-    <div class="compare-wrap reveal" tabindex="0" aria-label="Miroooo model comparison, scroll horizontally on small screens"><table class="compare-table"><thead><tr><th>Feature</th><th>Brush X1</th><th>Brush X2</th></tr></thead><tbody>
-      <tr><th>Best for</th><td>A simple, lightweight routine</td><td>More feedback and fewer charges</td></tr><tr><th>Battery</th><td>60+ days</td><td>Up to 90 days</td></tr><tr><th>Weight</th><td>51 g</td><td>Balanced aluminium body</td></tr><tr><th>Brushing guidance</th><td>Three modes</td><td>45° sweep guidance</td></tr><tr><th>Pressure-sensor ring</th><td>—</td><td><span class="check" aria-label="Included">✓</span></td></tr><tr><th>IPX7 water resistance</th><td>—</td><td><span class="check" aria-label="Included">✓</span></td></tr><tr><th>Travel case</th><td><span class="check" aria-label="Included">✓</span></td><td><span class="check" aria-label="Included">✓</span></td></tr><tr><th>USB-C charging</th><td><span class="check" aria-label="Included">✓</span></td><td><span class="check" aria-label="Included">✓</span></td></tr><tr><th>Warranty</th><td>Two years</td><td>Three years</td></tr><tr><th>Price</th><td data-price-gbp="69">£69</td><td data-price-gbp="69">£69</td></tr>
-    </tbody></table></div>
+    <style>
+      .compare-table .check {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        vertical-align: middle;
+        margin-right: 6px;
+      }
+
+      .x2-comp-mobile {
+        display: none;
+        width: 100%;
+        box-sizing: border-box;
+      }
+
+      @media (max-width: 767px) {
+        .compare-table {
+          display: none !important;
+        }
+        .compare-wrap {
+          overflow-x: visible !important;
+          background: #ffffff !important;
+          border: 1.5px solid rgba(0, 0, 0, 0.08) !important;
+          border-radius: 18px !important;
+          box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04) !important;
+          padding: 4px !important;
+        }
+        .x2-comp-mobile {
+          display: block !important;
+          width: 100%;
+          box-sizing: border-box;
+        }
+
+        .x2-comp-m-table {
+          width: 100%;
+          display: flex;
+          flex-direction: column;
+          position: relative;
+          box-sizing: border-box;
+          padding: 4px 6px;
+          background: #ffffff;
+        }
+
+        /* 2-Column Product Headers */
+        .x2-comp-m-head-row {
+          display: flex;
+          align-items: flex-end;
+          width: 100%;
+          border-bottom: 1.5px solid #e5e7eb;
+          padding-bottom: 12px;
+          box-sizing: border-box;
+          background: #ffffff;
+        }
+
+        .x2-comp-m-head-col {
+          flex: 1;
+          width: 50%;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          text-align: center;
+          padding: 6px 4px 0 4px;
+          box-sizing: border-box;
+          position: relative;
+          background: #ffffff;
+        }
+        .x2-comp-m-head-col:first-child {
+          border-right: 1px solid #f1f5f9;
+        }
+
+        .x2-comp-m-badge {
+          display: inline-block;
+          background: #16a34a;
+          color: #ffffff;
+          font-size: 0.6rem;
+          font-weight: 800;
+          letter-spacing: 0.04em;
+          padding: 2px 8px;
+          border-radius: 9999px;
+          text-transform: uppercase;
+          margin-bottom: 4px;
+          box-shadow: 0 2px 5px rgba(22, 163, 74, 0.25);
+        }
+
+        .x2-comp-m-brand-name {
+          font-family: var(--font-heading-family, 'Inter', -apple-system, sans-serif);
+          font-size: 0.96rem;
+          font-weight: 800;
+          color: #111111;
+          line-height: 1.2;
+          margin-bottom: 1px;
+        }
+
+        .x2-comp-m-tag {
+          font-size: 0.68rem;
+          font-weight: 700;
+          color: #15803d;
+          margin-bottom: 6px;
+        }
+        .x2-comp-m-tag--x1 {
+          color: #666666;
+          font-weight: 600;
+        }
+
+        .x2-comp-m-head-img-wrap {
+          height: 85px;
+          width: 100%;
+          display: flex;
+          align-items: flex-end;
+          justify-content: center;
+          margin-top: auto;
+          line-height: 0;
+          background: #ffffff;
+        }
+
+        .x2-comp-m-head-img {
+          max-height: 85px;
+          width: auto;
+          object-fit: contain;
+          object-position: bottom center;
+          display: block;
+          margin: 0 auto;
+          padding: 0;
+          vertical-align: bottom;
+        }
+
+        /* Feature rows */
+        .x2-comp-m-row-group {
+          display: flex;
+          flex-direction: column;
+          border-bottom: 1px solid #f1f5f9;
+          padding: 8px 0 6px 0;
+          box-sizing: border-box;
+        }
+
+        .x2-comp-m-row-group:nth-child(even) {
+          background: #f9fafb;
+          border-radius: 6px;
+        }
+
+        .x2-comp-m-row-group--last {
+          border-bottom: none;
+          padding-bottom: 4px;
+        }
+
+        .x2-comp-m-feature-title {
+          font-family: var(--font-body-family, 'Inter', -apple-system, sans-serif);
+          font-size: 0.78rem;
+          font-weight: 700;
+          color: #111111;
+          padding: 0 4px 3px 4px;
+          text-align: center !important;
+          width: 100% !important;
+          display: block !important;
+          box-sizing: border-box;
+          margin: 0 auto;
+          line-height: 1.2;
+          text-transform: uppercase;
+          letter-spacing: 0.03em;
+        }
+
+        .x2-comp-m-values-row {
+          display: flex;
+          align-items: stretch;
+          width: 100%;
+        }
+
+        .x2-comp-m-val-cell {
+          flex: 1;
+          width: 50%;
+          min-height: 38px;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          justify-content: center;
+          text-align: center;
+          font-family: var(--font-body-family, 'Inter', -apple-system, sans-serif);
+          font-size: 0.78rem;
+          font-weight: 600;
+          color: #4b5563;
+          padding: 3px 6px;
+          box-sizing: border-box;
+          line-height: 1.25;
+        }
+        .x2-comp-m-val-cell:first-child {
+          border-right: 1px solid #f1f5f9;
+        }
+
+        .x2-comp-m-val-cell--x2 {
+          color: #111111 !important;
+          font-weight: 700;
+        }
+
+        .x2-comp-m-val-main {
+          font-size: 0.8rem;
+          font-weight: 700;
+          line-height: 1.2;
+        }
+
+        .x2-comp-m-val-cell--x2 .x2-comp-m-val-main {
+          color: #111111;
+          font-weight: 800;
+          display: inline-flex;
+          align-items: center;
+          gap: 4px;
+        }
+
+        .x2-comp-m-val-sub {
+          font-size: 0.65rem;
+          color: #666666;
+          margin-top: 1px;
+          line-height: 1.15;
+        }
+
+        .x2-comp-m-val-cell--x2 .x2-comp-m-val-sub {
+          color: #374151;
+          font-weight: 600;
+        }
+
+        .x2-comp-m-tick {
+          color: #16a34a;
+          font-weight: 900;
+          font-size: 0.85rem;
+        }
+
+        /* Mobile Price in Last Row */
+        .x2-comp-m-price-winner {
+          color: #15803d !important;
+          font-size: 1.18rem;
+          font-weight: 900;
+          line-height: 1.1;
+        }
+
+        .x2-comp-m-price-old {
+          font-size: 0.72rem;
+          color: #64748b;
+          font-weight: 700;
+          text-decoration: line-through;
+          display: block;
+          margin-top: 1px;
+        }
+
+        .x2-comp-m-price-standard {
+          color: #111111;
+          font-size: 1.1rem;
+          font-weight: 800;
+        }
+      }
+    </style>
+    <div class="compare-wrap reveal" tabindex="0" aria-label="Miroooo model comparison, scroll horizontally on small screens">
+      <!-- Desktop Table (>= 768px) -->
+      <table class="compare-table">
+        <thead>
+          <tr>
+            <th>Feature</th>
+            <th>Brush X1</th>
+            <th>Brush X2</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th>Battery Life</th>
+            <td>60 Days</td>
+            <td><span class="check" aria-label="Included">✓</span> 90+ Days</td>
+          </tr>
+          <tr>
+            <th>Motor Power (VPM)</th>
+            <td>32,000 VPM Sonic Motor</td>
+            <td><span class="check" aria-label="Included">✓</span> 40,000 VPM High-Torque Motor</td>
+          </tr>
+          <tr>
+            <th>Cleaning Motion</th>
+            <td>Standard Micro-Vibration (0°)</td>
+            <td><span class="check" aria-label="Included">✓</span> 45° Bass Sweep (Dentist Motion)</td>
+          </tr>
+          <tr>
+            <th>Cleaning Modes</th>
+            <td>Everyday Clean</td>
+            <td><span class="check" aria-label="Included">✓</span> 3 Modes (Clean, White, Deep)</td>
+          </tr>
+          <tr>
+            <th>Charging &amp; Travel</th>
+            <td>Bulky Charging Dock</td>
+            <td><span class="check" aria-label="Included">✓</span> Direct USB-C (No Bulky Dock)</td>
+          </tr>
+          <tr>
+            <th>Body Material</th>
+            <td>Aerospace Aluminium</td>
+            <td><span class="check" aria-label="Included">✓</span> Aerospace Aluminium</td>
+          </tr>
+          <tr>
+            <th>Warranty Coverage</th>
+            <td>2-Year Standard Warranty</td>
+            <td><span class="check" aria-label="Included">✓</span> 3-Year Warranty (Full Replacement)</td>
+          </tr>
+          <tr>
+            <th>Price</th>
+            <td><span data-price-gbp="69">£69</span></td>
+            <td>
+              <div style="display: inline-flex; align-items: baseline; gap: 6px;">
+                <span data-price-gbp="69" style="color: var(--signal-dark, #15803d); font-weight: 800;">£69</span>
+                <s data-price-compare-gbp="99" style="color: var(--mineral, #666666); font-size: 13px; font-weight: 500;">£99</s>
+              </div>
+              <span style="display: block; font-size: 11px; color: var(--signal-dark, #15803d); font-weight: 700; margin-top: 2px;">(for today only)</span>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+
+      <!-- Mobile Comparison Layout (<768px) -->
+      <div class="x2-comp-mobile">
+        <div class="x2-comp-m-table">
+
+          <!-- Mobile Headers (Side-by-Side) -->
+          <div class="x2-comp-m-head-row">
+            <!-- Left: Brush X2 (Winner Spotlight) -->
+            <div class="x2-comp-m-head-col">
+              <span class="x2-comp-m-badge">★ Flagship</span>
+              <span class="x2-comp-m-brand-name">Brush X2</span>
+              <span class="x2-comp-m-tag">Next-Gen Flagship</span>
+              <div class="x2-comp-m-head-img-wrap">
+                <img src="/assets_ref/x2/miroooo-x2-sonic-electric-toothbrush-model-comparison.webp" alt="Miroooo Brush X2 Sonic Electric Toothbrush with 45° Bass Sweep - Flagship Model" class="x2-comp-m-head-img" loading="eager" decoding="async" />
+              </div>
+            </div>
+            <!-- Right: Brush X1 (Standard) -->
+            <div class="x2-comp-m-head-col">
+              <span class="x2-comp-m-badge" style="visibility: hidden;">Placeholder</span>
+              <span class="x2-comp-m-brand-name">Brush X1</span>
+              <span class="x2-comp-m-tag x2-comp-m-tag--x1">Standard Model</span>
+              <div class="x2-comp-m-head-img-wrap">
+                <img src="/assets_ref/x/miroooo-x1-sonic-electric-toothbrush-model-comparison.webp" alt="Miroooo Brush X1 Sonic Electric Toothbrush - Standard Model" class="x2-comp-m-head-img" loading="eager" decoding="async" />
+              </div>
+            </div>
+          </div>
+
+          <!-- Feature 1: Battery Life -->
+          <div class="x2-comp-m-row-group">
+            <div class="x2-comp-m-feature-title">Battery Life</div>
+            <div class="x2-comp-m-values-row">
+              <div class="x2-comp-m-val-cell x2-comp-m-val-cell--x2">
+                <span class="x2-comp-m-val-main"><span class="x2-comp-m-tick">✓</span> 90+ Days</span>
+                <span class="x2-comp-m-val-sub">High-Density Cell</span>
+              </div>
+              <div class="x2-comp-m-val-cell">
+                <span class="x2-comp-m-val-main">60 Days</span>
+                <span class="x2-comp-m-val-sub">Standard Battery</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Feature 2: Motor Power (VPM) -->
+          <div class="x2-comp-m-row-group">
+            <div class="x2-comp-m-feature-title">Motor Power (VPM)</div>
+            <div class="x2-comp-m-values-row">
+              <div class="x2-comp-m-val-cell x2-comp-m-val-cell--x2">
+                <span class="x2-comp-m-val-main"><span class="x2-comp-m-tick">✓</span> 40,000 VPM</span>
+                <span class="x2-comp-m-val-sub">High-Torque Acoustic</span>
+              </div>
+              <div class="x2-comp-m-val-cell">
+                <span class="x2-comp-m-val-main">32,000 VPM</span>
+                <span class="x2-comp-m-val-sub">Standard Sonic</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Feature 3: Cleaning Motion -->
+          <div class="x2-comp-m-row-group">
+            <div class="x2-comp-m-feature-title">Cleaning Motion</div>
+            <div class="x2-comp-m-values-row">
+              <div class="x2-comp-m-val-cell x2-comp-m-val-cell--x2">
+                <span class="x2-comp-m-val-main"><span class="x2-comp-m-tick">✓</span> 45° Bass Sweep</span>
+                <span class="x2-comp-m-val-sub">Dentist-Recommended</span>
+              </div>
+              <div class="x2-comp-m-val-cell">
+                <span class="x2-comp-m-val-main">Micro-Vibration</span>
+                <span class="x2-comp-m-val-sub">0° Linear</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Feature 4: Cleaning Modes -->
+          <div class="x2-comp-m-row-group">
+            <div class="x2-comp-m-feature-title">Cleaning Modes</div>
+            <div class="x2-comp-m-values-row">
+              <div class="x2-comp-m-val-cell x2-comp-m-val-cell--x2">
+                <span class="x2-comp-m-val-main"><span class="x2-comp-m-tick">✓</span> 3 Modes</span>
+                <span class="x2-comp-m-val-sub">Clean, White, Deep</span>
+              </div>
+              <div class="x2-comp-m-val-cell">
+                <span class="x2-comp-m-val-main">Everyday Clean</span>
+                <span class="x2-comp-m-val-sub">Standard Mode</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Feature 5: Charging & Travel -->
+          <div class="x2-comp-m-row-group">
+            <div class="x2-comp-m-feature-title">Charging &amp; Travel</div>
+            <div class="x2-comp-m-values-row">
+              <div class="x2-comp-m-val-cell x2-comp-m-val-cell--x2">
+                <span class="x2-comp-m-val-main"><span class="x2-comp-m-tick">✓</span> Direct USB-C</span>
+                <span class="x2-comp-m-val-sub">No Bulky Dock Needed</span>
+              </div>
+              <div class="x2-comp-m-val-cell">
+                <span class="x2-comp-m-val-main">Charging Dock</span>
+                <span class="x2-comp-m-val-sub">Requires Bulky Base</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Feature 6: Body Material -->
+          <div class="x2-comp-m-row-group">
+            <div class="x2-comp-m-feature-title">Body Material</div>
+            <div class="x2-comp-m-values-row">
+              <div class="x2-comp-m-val-cell x2-comp-m-val-cell--x2">
+                <span class="x2-comp-m-val-main"><span class="x2-comp-m-tick">✓</span> Aerospace Aluminium</span>
+                <span class="x2-comp-m-val-sub">CNC Precision Handle</span>
+              </div>
+              <div class="x2-comp-m-val-cell">
+                <span class="x2-comp-m-val-main">Aerospace Aluminium</span>
+                <span class="x2-comp-m-val-sub">CNC Precision Handle</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Feature 7: Warranty Coverage -->
+          <div class="x2-comp-m-row-group">
+            <div class="x2-comp-m-feature-title">Warranty Coverage</div>
+            <div class="x2-comp-m-values-row">
+              <div class="x2-comp-m-val-cell x2-comp-m-val-cell--x2">
+                <span class="x2-comp-m-val-main"><span class="x2-comp-m-tick">✓</span> 3-Year Warranty</span>
+                <span class="x2-comp-m-val-sub">Full Replacement</span>
+              </div>
+              <div class="x2-comp-m-val-cell">
+                <span class="x2-comp-m-val-main">2-Year Standard</span>
+                <span class="x2-comp-m-val-sub">Standard Guarantee</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Feature 8: Price -->
+          <div class="x2-comp-m-row-group x2-comp-m-row-group--last">
+            <div class="x2-comp-m-feature-title">Price</div>
+            <div class="x2-comp-m-values-row">
+              <div class="x2-comp-m-val-cell x2-comp-m-val-cell--x2">
+                <div>
+                  <div class="x2-comp-m-price-winner" data-price-gbp="69">£69</div>
+                  <span class="x2-comp-m-price-old" data-price-compare-gbp="99">£99</span>
+                  <span style="font-size: 0.58rem; color: #15803d; font-weight: 700; display: block; line-height: 1; margin-top: 1px;">(for today only)</span>
+                </div>
+              </div>
+              <div class="x2-comp-m-val-cell">
+                <span class="x2-comp-m-price-standard" data-price-gbp="69">£69</span>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
   </div></section>
   <section class="section section--dark" aria-labelledby="included-title"><div class="site-shell">
     <div class="section-heading reveal"><div><p class="eyebrow eyebrow--light">Ready for the routine</p><h2 id="included-title">The essentials come with you.</h2></div><p>Each model includes its handle, brush head, charging cable and travel protection. Confirm the exact bundle on the product page before ordering.</p></div>
@@ -93,21 +550,17 @@
   (function() {
     function updateShopPrices() {
       if (!window.MirooooCurrency) return;
-      document.querySelectorAll('.product-card .price').forEach(function(el) {
-        var priceEl = el.querySelector('[data-price-gbp]');
-        var compEl = el.querySelector('[data-price-compare-gbp]');
-        if (priceEl) {
-          var gbp = parseFloat(priceEl.getAttribute('data-price-gbp')) || 69;
-          priceEl.textContent = window.MirooooCurrency.format(gbp);
-        }
-        if (compEl) {
-          var compGbp = parseFloat(compEl.getAttribute('data-price-compare-gbp')) || 139;
-          compEl.textContent = window.MirooooCurrency.format(compGbp);
+      document.querySelectorAll('[data-price-gbp]').forEach(function(el) {
+        var gbp = parseFloat(el.getAttribute('data-price-gbp'));
+        if (!isNaN(gbp)) {
+          el.textContent = window.MirooooCurrency.format(gbp);
         }
       });
-      document.querySelectorAll('.compare-table [data-price-gbp]').forEach(function(el) {
-        var gbp = parseFloat(el.getAttribute('data-price-gbp')) || 69;
-        el.textContent = window.MirooooCurrency.format(gbp);
+      document.querySelectorAll('[data-price-compare-gbp]').forEach(function(el) {
+        var compGbp = parseFloat(el.getAttribute('data-price-compare-gbp'));
+        if (!isNaN(compGbp)) {
+          el.textContent = window.MirooooCurrency.format(compGbp);
+        }
       });
     }
 
