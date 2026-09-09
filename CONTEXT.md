@@ -568,3 +568,23 @@ Append-only memory for the `gobrush-product-page` repository. Do not delete or s
   - `npm run build` completed cleanly, syncing updated review assets to `public/assets_ref/`.
   - Local browser DOM inspection verified dynamic rendering across desktop and mobile viewports for both Brush X1 and Brush X2.
 
+## 2026-09-09 08:15:00 +05:30 - Policy Pages Header Streamlining (Direct Title Display)
+
+- Task: Remove the circular icon badge (`.policy-icon-badge`) and "Store Policies" eyebrow (`.policy-eyebrow` / `.policy-eyebrow-badge`) across all policy pages so the header starts directly from the Policy Name.
+- Files Modified:
+  - `terms.html`
+  - `privacy.html`
+  - `shipping-policy.html`
+  - `refund-policy.html`
+  - `return-policy.html`
+  - `delivery-returns.html`
+  - `cookies-policy.html`
+- Changes:
+  - Stripped out `<div class="policy-icon-badge">...</div>` and `<p class="policy-eyebrow">Store Policies</p>` from `<header class="policy-header">`.
+  - Maintained title typography (`<h1>...<em>...</em></h1>`), subtitles/leads, quick-facts cards, dividers, content layout, and responsive styles intact.
+- Verification:
+  - `npm run verify` passed cleanly (43 required files, 17 storefront pages checked).
+  - `npm run build` compiled cleanly into `public/`.
+  - Visual verification via Chrome DevTools confirmed clean top alignment directly from Policy Name across Desktop (1440px) and Mobile (375px) on all 7 policy routes with 0 errors.
+
+
