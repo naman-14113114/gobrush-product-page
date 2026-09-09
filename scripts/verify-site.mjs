@@ -67,12 +67,12 @@ const sharedScript = await readFile(resolve(root, "assets/site.js"), "utf8");
 for (const marker of ["nav-link__flip", "mobile-panel__close", "service-strip", "data-drag-scroll"]) {
   if (!sharedScript.includes(marker)) errors.push(`assets/site.js: missing shared theme behaviour ${marker}`);
 }
-for (const marker of ["window.MirooooAttribution", "decorateUrl: decorateAttributionUrl", "enforceGeoBlock"]) {
+for (const marker of ["window.MirooooAttribution", "decorateUrl: decorateAttributionUrl"]) {
   if (!sharedScript.includes(marker)) errors.push(`assets/site.js: missing durable attribution handoff ${marker}`);
 }
 
 const productShellScript = await readFile(resolve(root, "assets/product-shell.js"), "utf8");
-for (const marker of ['sessionStorage.setItem("miroooo_attribution"', 'localStorage.setItem("miroooo_attribution"', "enforceGeoBlock"]) {
+for (const marker of ['sessionStorage.setItem("miroooo_attribution"', 'localStorage.setItem("miroooo_attribution"']) {
   if (!productShellScript.includes(marker)) errors.push(`assets/product-shell.js: missing durable attribution capture ${marker}`);
 }
 

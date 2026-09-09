@@ -1,91 +1,6 @@
 (function () {
   "use strict";
 
-  // Geo Blocking Guard: VN, HK, CN, SG, US -> 403 Forbidden
-  (function enforceGeoBlock() {
-    var BLOCKED_COUNTRIES = ["VN", "HK", "CN", "SG", "US"];
-    var BLOCKED_TIMEZONES = [
-      "ho_chi_minh", "saigon", "singapore", "hong_kong", "shanghai", "beijing",
-      "chongqing", "urumqi", "harbin", "kashgar", "new_york", "chicago",
-      "los_angeles", "denver", "phoenix", "anchorage", "honolulu", "detroit",
-      "boise", "adak", "juneau", "metlakatla", "nome", "sitka", "yakutat",
-      "menominee", "center", "knox", "marengo", "pike", "vevay", "vincennes",
-      "winamac", "beulah", "new_salem", "monticello", "louisville", "us/",
-      "america/indiana", "america/kentucky", "america/north_dakota"
-    ];
-
-    var userAgent = (navigator.userAgent || "").toLowerCase();
-    if (navigator.webdriver || userAgent.indexOf("klaviyo") !== -1) return;
-
-    function blockUser() {
-      try {
-        var cookies = document.cookie ? document.cookie.split(";") : [];
-        for (var i = 0; i < cookies.length; i++) {
-          var eqPos = cookies[i].indexOf("=");
-          var name = eqPos > -1 ? cookies[i].substr(0, eqPos).trim() : cookies[i].trim();
-          document.cookie = name + "=; expires=Thu, 01 Jan 1970 00:00:00 GMT; path=/;";
-          document.cookie = name + "=; expires=Thu, 01 Jan 1970 00:00:00 GMT; path=/; domain=" + window.location.hostname + ";";
-          var hostParts = window.location.hostname.split(".");
-          if (hostParts.length > 1) {
-            document.cookie = name + "=; expires=Thu, 01 Jan 1970 00:00:00 GMT; path=/; domain=." + hostParts.slice(-2).join(".") + ";";
-          }
-        }
-      } catch (e) {}
-
-      try { localStorage.clear(); } catch (e) {}
-      try { sessionStorage.clear(); } catch (e) {}
-
-      try {
-        if ("caches" in window) {
-          caches.keys().then(function (names) {
-            names.forEach(function (name) { caches.delete(name); });
-          });
-        }
-      } catch (e) {}
-
-      try {
-        if ("serviceWorker" in navigator) {
-          navigator.serviceWorker.getRegistrations().then(function (regs) {
-            regs.forEach(function (reg) { reg.unregister(); });
-          });
-        }
-      } catch (e) {}
-
-      var forbiddenHTML = '<head><meta charset="utf-8"><title>403 Forbidden</title><meta name="viewport" content="width=device-width,initial-scale=1"><style>body{margin:0;min-height:100vh;display:flex;align-items:center;justify-content:center;background:#080909;color:#fff;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;text-align:center;padding:24px}h1{font-size:32px;margin:0 0 12px;font-weight:700}p{color:#888;font-size:16px;line-height:1.5;margin:0;max-width:440px}</style></head><body><div><h1>403 Forbidden</h1><p>Access Denied. Access to this website is restricted in your region.</p></div></body>';
-      document.documentElement.innerHTML = forbiddenHTML;
-
-      if (window.stop) window.stop();
-    }
-
-    try {
-      var tz = (Intl.DateTimeFormat().resolvedOptions().timeZone || "").toLowerCase();
-      for (var i = 0; i < BLOCKED_TIMEZONES.length; i++) {
-        if (tz.indexOf(BLOCKED_TIMEZONES[i]) !== -1) {
-          blockUser();
-          return;
-        }
-      }
-    } catch (e) {}
-
-    try {
-      fetch("/api/geo/check")
-        .then(function (r) { return r.json(); })
-        .then(function (d) {
-          if (d && d.blocked) blockUser();
-        })
-        .catch(function () {});
-
-      fetch("https://api.country.is/")
-        .then(function (r) { return r.json(); })
-        .then(function (r) {
-          if (r && r.country && BLOCKED_COUNTRIES.indexOf(String(r.country).toUpperCase()) !== -1) {
-            blockUser();
-          }
-        })
-        .catch(function () {});
-    } catch (e) {}
-  })();
-
   // Automatic Client-Side Version Check & Cache Invalidation
   (function enforceClientCacheInvalidation() {
     var CURRENT_VERSION = "20260903_v1";
@@ -502,8 +417,8 @@
   const closeIcon = '<svg class="icon icon-close icon-sm" viewBox="0 0 20 20" stroke="currentColor" fill="none" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" d="M5 15L15 5M5 5L15 15"></path></svg>';
   const supportIcon = '<svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M4 13a8 8 0 0 1 16 0v4a2 2 0 0 1-2 2h-2v-6h4M4 13h4v6H6a2 2 0 0 1-2-2v-4Z"/></svg>';
   const deliveryIcon = '<svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M3 6h12v11H3zM15 10h3l3 3v4h-6z"/><circle cx="7" cy="18" r="2"/><circle cx="18" cy="18" r="2"/></svg>';
-  const trialIcon = '<svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M12 3 4.5 6v5.5c0 4.7 3.1 7.9 7.5 9.5 4.4-1.6 7.5-4.8 7.5-9.5V6L12 3Z"/><path d="m9 12 2 2 4-4"/></svg>';
-  const warrantyIcon = '<svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>';
+  const secureIcon = '<svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>';
+  const techIcon = '<svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><circle cx="12" cy="12" r="10"/><path d="m9 12 2 2 4-4"/></svg>';
 
   const userMenuIcon = '<svg class="dropdown-item__icon" viewBox="0 0 24 24" stroke="currentColor" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>';
   const currentPage = document.body.dataset.page || (window.location.pathname.includes("dentalcare-quiz") ? "dentalcare-quiz" : (window.location.pathname.includes("quiz") ? "quiz" : ""));
@@ -529,12 +444,10 @@
           <div class="miroooo-ticker-item"><span>50% OFF Today</span> <span class="miroooo-ticker-dot" aria-hidden="true"></span></div>
           <div class="miroooo-ticker-item"><span>Ultra Lightweight</span> <span class="miroooo-ticker-dot" aria-hidden="true"></span></div>
           <div class="miroooo-ticker-item"><span>4.9 Stars from 40,000+ Customers</span> <span class="miroooo-ticker-dot" aria-hidden="true"></span></div>
-          <div class="miroooo-ticker-item"><span>Risk-Free Home Trial</span> <span class="miroooo-ticker-dot" aria-hidden="true"></span></div>
           <div class="miroooo-ticker-item"><span>Free Shipping on all orders</span> <span class="miroooo-ticker-dot" aria-hidden="true"></span></div>
           <div class="miroooo-ticker-item"><span>50% OFF Today</span> <span class="miroooo-ticker-dot" aria-hidden="true"></span></div>
           <div class="miroooo-ticker-item"><span>Ultra Lightweight</span> <span class="miroooo-ticker-dot" aria-hidden="true"></span></div>
           <div class="miroooo-ticker-item"><span>4.9 Stars from 40,000+ Customers</span> <span class="miroooo-ticker-dot" aria-hidden="true"></span></div>
-          <div class="miroooo-ticker-item"><span>Risk-Free Home Trial</span> <span class="miroooo-ticker-dot" aria-hidden="true"></span></div>
         </div>
       </div>`;
 
@@ -733,17 +646,17 @@
             </div>
           </div>
           <div class="service-strip__item">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" class="service-strip__icon" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" class="service-strip__icon" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/></svg>
             <div>
-              <strong>Risk-Free Home Trial</strong>
-              <span>Take time to decide</span>
+              <strong>Secure checkout</strong>
+              <span>Encrypted &amp; protected</span>
             </div>
           </div>
           <div class="service-strip__item">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" class="service-strip__icon" aria-hidden="true"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" class="service-strip__icon" aria-hidden="true"><path d="M12 2L14.4 9.6L22 12L14.4 14.4L12 22L9.6 14.4L2 12L9.6 9.6L12 2Z"/></svg>
             <div>
-              <strong>Up to three-year warranty</strong>
-              <span>Model-specific cover</span>
+              <strong>Sonic technology</strong>
+              <span>Precision oral care</span>
             </div>
           </div>
         </aside>

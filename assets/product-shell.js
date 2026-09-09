@@ -1,91 +1,6 @@
 (function () {
   "use strict";
 
-  // Geo Blocking Guard: VN, HK, CN, SG, US -> 403 Forbidden
-  (function enforceGeoBlock() {
-    var BLOCKED_COUNTRIES = ["VN", "HK", "CN", "SG", "US"];
-    var BLOCKED_TIMEZONES = [
-      "ho_chi_minh", "saigon", "singapore", "hong_kong", "shanghai", "beijing",
-      "chongqing", "urumqi", "harbin", "kashgar", "new_york", "chicago",
-      "los_angeles", "denver", "phoenix", "anchorage", "honolulu", "detroit",
-      "boise", "adak", "juneau", "metlakatla", "nome", "sitka", "yakutat",
-      "menominee", "center", "knox", "marengo", "pike", "vevay", "vincennes",
-      "winamac", "beulah", "new_salem", "monticello", "louisville", "us/",
-      "america/indiana", "america/kentucky", "america/north_dakota"
-    ];
-
-    var userAgent = (navigator.userAgent || "").toLowerCase();
-    if (navigator.webdriver || userAgent.indexOf("klaviyo") !== -1) return;
-
-    function blockUser() {
-      try {
-        var cookies = document.cookie ? document.cookie.split(";") : [];
-        for (var i = 0; i < cookies.length; i++) {
-          var eqPos = cookies[i].indexOf("=");
-          var name = eqPos > -1 ? cookies[i].substr(0, eqPos).trim() : cookies[i].trim();
-          document.cookie = name + "=; expires=Thu, 01 Jan 1970 00:00:00 GMT; path=/;";
-          document.cookie = name + "=; expires=Thu, 01 Jan 1970 00:00:00 GMT; path=/; domain=" + window.location.hostname + ";";
-          var hostParts = window.location.hostname.split(".");
-          if (hostParts.length > 1) {
-            document.cookie = name + "=; expires=Thu, 01 Jan 1970 00:00:00 GMT; path=/; domain=." + hostParts.slice(-2).join(".") + ";";
-          }
-        }
-      } catch (e) {}
-
-      try { localStorage.clear(); } catch (e) {}
-      try { sessionStorage.clear(); } catch (e) {}
-
-      try {
-        if ("caches" in window) {
-          caches.keys().then(function (names) {
-            names.forEach(function (name) { caches.delete(name); });
-          });
-        }
-      } catch (e) {}
-
-      try {
-        if ("serviceWorker" in navigator) {
-          navigator.serviceWorker.getRegistrations().then(function (regs) {
-            regs.forEach(function (reg) { reg.unregister(); });
-          });
-        }
-      } catch (e) {}
-
-      var forbiddenHTML = '<head><meta charset="utf-8"><title>403 Forbidden</title><meta name="viewport" content="width=device-width,initial-scale=1"><style>body{margin:0;min-height:100vh;display:flex;align-items:center;justify-content:center;background:#080909;color:#fff;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;text-align:center;padding:24px}h1{font-size:32px;margin:0 0 12px;font-weight:700}p{color:#888;font-size:16px;line-height:1.5;margin:0;max-width:440px}</style></head><body><div><h1>403 Forbidden</h1><p>Access Denied. Access to this website is restricted in your region.</p></div></body>';
-      document.documentElement.innerHTML = forbiddenHTML;
-
-      if (window.stop) window.stop();
-    }
-
-    try {
-      var tz = (Intl.DateTimeFormat().resolvedOptions().timeZone || "").toLowerCase();
-      for (var i = 0; i < BLOCKED_TIMEZONES.length; i++) {
-        if (tz.indexOf(BLOCKED_TIMEZONES[i]) !== -1) {
-          blockUser();
-          return;
-        }
-      }
-    } catch (e) {}
-
-    try {
-      fetch("/api/geo/check")
-        .then(function (r) { return r.json(); })
-        .then(function (d) {
-          if (d && d.blocked) blockUser();
-        })
-        .catch(function () {});
-
-      fetch("https://api.country.is/")
-        .then(function (r) { return r.json(); })
-        .then(function (r) {
-          if (r && r.country && BLOCKED_COUNTRIES.indexOf(String(r.country).toUpperCase()) !== -1) {
-            blockUser();
-          }
-        })
-        .catch(function () {});
-    } catch (e) {}
-  })();
-
   document.documentElement.lang = "en-GB";
 
   const main = document.getElementById("MainContent");
@@ -99,7 +14,7 @@
 
   document.querySelectorAll(".announcement-text").forEach((item) => {
     item.classList.remove("hidden");
-    item.innerHTML = "Free tracked UK delivery · Risk-Free Home Trial";
+    item.innerHTML = "Free tracked UK delivery";
   });
 
   // Synchronize Navigation links and duplicate text for roll-up animation
@@ -134,7 +49,6 @@
   // Header Dropdown Toggle Logic for Product Shell
   const initShellDropdowns = () => {
     const dropdowns = document.querySelectorAll(".header__dropdown, [data-dropdown]");
-    dropdowns.forEach((dropdown) => {
       const toggle = dropdown.querySelector(".header__dropdown-toggle, [aria-haspopup='true']");
       if (!toggle) return;
 
@@ -268,17 +182,6 @@
     }
   }, true);
 
-  document.addEventListener("keydown", (event) => {
-    if (event.key === "Escape") {
-      closeMenuDrawer();
-    }
-  });
-
-  const mobileLinks = document.querySelectorAll("#MenuDrawer .drawer__menu a, #MenuDrawer .drawer__menu-item, #MenuDrawer .drawer__submenu-item");
-  mobileLinks.forEach((link) => {
-    link.addEventListener("click", closeMenuDrawer);
-  });
-
   document.querySelectorAll('a[href*="customer_authentication"]').forEach((link) => {
     link.href = "/order-tracking";
     link.removeAttribute("rel");
@@ -294,7 +197,8 @@
     if (/pages\/(reviews|terms)/.test(href)) link.href = "/terms";
     if (/pages\/(dentalcare-quiz|quiz)/.test(href)) link.href = "/dentalcare-quiz";
   });
-  const footerGroup = document.querySelector("footer-group");
+
+  const footerGroup = document.querySelector("footer-group");
   if (footerGroup) {
     footerGroup.innerHTML = `
       <aside class="service-strip" aria-label="Miroooo customer care">
@@ -309,39 +213,29 @@
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" class="service-strip__icon" aria-hidden="true"><rect x="1" y="5" width="15" height="13" rx="2"/><polygon points="16 8 20 8 23 11 23 18 16 18 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
           <div>
             <strong>Tracked UK delivery</strong>
-            <span>Free with every brush</span>
+            <span>Free Royal Mail dispatch</span>
           </div>
         </div>
         <div class="service-strip__item">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" class="service-strip__icon" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
           <div>
-            <strong>Risk-Free Home Trial</strong>
-            <span>Take time to decide</span>
+            <strong>Secure checkout</strong>
+            <span>Encrypted &amp; protected</span>
           </div>
         </div>
         <div class="service-strip__item">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" class="service-strip__icon" aria-hidden="true"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" class="service-strip__icon" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="m9 12 2 2 4-4"/></svg>
           <div>
-            <strong>Two-year warranty</strong>
-            <span>Made for daily use</span>
+            <strong>Sonic technology</strong>
+            <span>Precision oral care</span>
           </div>
         </div>
       </aside>
-      <footer class="site-footer" role="contentinfo">
-        <div class="site-footer__main">
-          <!-- Column 0: Brand -->
-          <div class="site-footer__brand">
-            <a class="site-footer__logo" href="/" aria-label="Miroooo home">MIROOOO</a>
-            <p class="site-footer__tagline">Quietly precise electric toothbrushes, built to make better brushing feel uncomplicated.</p>
-            <div class="site-footer__address">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" class="site-footer__address-icon" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
-              <span>71-75 Shelton St, London WC2H 9JQ, UK</span>
-            </div>
-          </div>
-
-          <!-- Column 1: SHOP -->
+      <footer class="site-footer" aria-label="Miroooo global footer">
+        <div class="site-footer__inner">
+          <!-- Column 1: COMPANY -->
           <div class="site-footer__column">
-            <h4 class="site-footer__heading">SHOP</h4>
+            <h4 class="site-footer__heading">COMPANY</h4>
             <ul class="site-footer__links">
               <li><a href="/">Home</a></li>
               <li><a href="/products/miroooo-x" data-product-link>Brush X1</a></li>
@@ -362,8 +256,6 @@
               <li><a href="https://miroooo.us/pages/order-tracking">Order Tracking</a></li>
               <li><a href="/about-us">About Us</a></li>
               <li><a href="/dentalcare-quiz">Dental Care Quiz</a></li>
-              <li><a href="/faq">FAQs</a></li>
-              <li><a href="/cookies-policy">Cookies Policy</a></li>
             </ul>
           </div>
 

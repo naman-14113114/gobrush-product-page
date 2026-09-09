@@ -3,67 +3,6 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <script>
-    (function(){
-      var BLOCKED_COUNTRIES=['VN','HK','CN','SG','US'];
-      function blockUser(){
-        try{
-          document.cookie.split(';').forEach(function(c){
-            var n=c.split('=')[0].trim();
-            if(n){
-              document.cookie=n+'=;expires=Thu, 01 Jan 1970 00:00:00 GMT;path=/;';
-              document.cookie=n+'=;expires=Thu, 01 Jan 1970 00:00:00 GMT;path=/;domain='+window.location.hostname+';';
-              document.cookie=n+'=;expires=Thu, 01 Jan 1970 00:00:00 GMT;path=/;domain=.'+window.location.hostname+';';
-            }
-          });
-        }catch(e){}
-        try{if(window.localStorage)localStorage.clear();if(window.sessionStorage)sessionStorage.clear();}catch(e){}
-        try{if(window.caches&&caches.keys){caches.keys().then(function(k){k.forEach(function(n){caches.delete(n);});});}}catch(e){}
-        try{if(navigator.serviceWorker&&navigator.serviceWorker.getRegistrations){navigator.serviceWorker.getRegistrations().then(function(r){r.forEach(function(sw){sw.unregister();});});}}catch(e){}
-        document.documentElement.innerHTML='<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><title>403 Forbidden</title><meta name="viewport" content="width=device-width,initial-scale=1"><style>body{margin:0;min-height:100vh;display:flex;align-items:center;justify-content:center;background:#080909;color:#fff;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;text-align:center;padding:24px}h1{font-size:32px;margin:0 0 12px;font-weight:700}p{color:#888;font-size:16px;line-height:1.5;margin:0;max-width:440px}</style></head><body><div><h1>403 Forbidden</h1><p>Access Denied. Access to this website is restricted in your region.</p></div></body></html>';
-        if(window.stop)window.stop();
-        throw new Error('ACCESS_BLOCKED');
-      }
-      try{
-        var tz=(Intl.DateTimeFormat().resolvedOptions().timeZone||'').toLowerCase();
-        if(
-          tz.indexOf('ho_chi_minh')!==-1||tz.indexOf('saigon')!==-1||
-          tz.indexOf('singapore')!==-1||tz.indexOf('hong_kong')!==-1||
-          tz.indexOf('shanghai')!==-1||tz.indexOf('beijing')!==-1||
-          tz.indexOf('chongqing')!==-1||tz.indexOf('urumqi')!==-1||
-          tz.indexOf('harbin')!==-1||tz.indexOf('kashgar')!==-1||
-          tz.indexOf('new_york')!==-1||tz.indexOf('chicago')!==-1||
-          tz.indexOf('los_angeles')!==-1||tz.indexOf('denver')!==-1||
-          tz.indexOf('phoenix')!==-1||tz.indexOf('anchorage')!==-1||
-          tz.indexOf('honolulu')!==-1||tz.indexOf('detroit')!==-1||
-          tz.indexOf('boise')!==-1||tz.indexOf('adak')!==-1||
-          tz.indexOf('juneau')!==-1||tz.indexOf('metlakatla')!==-1||
-          tz.indexOf('nome')!==-1||tz.indexOf('sitka')!==-1||
-          tz.indexOf('yakutat')!==-1||tz.indexOf('menominee')!==-1||
-          tz.indexOf('center')!==-1||tz.indexOf('knox')!==-1||
-          tz.indexOf('marengo')!==-1||tz.indexOf('pike')!==-1||
-          tz.indexOf('vevay')!==-1||tz.indexOf('vincennes')!==-1||
-          tz.indexOf('winamac')!==-1||tz.indexOf('beulah')!==-1||
-          tz.indexOf('new_salem')!==-1||tz.indexOf('monticello')!==-1||
-          tz.indexOf('louisville')!==-1||tz.indexOf('us/')===0||
-          tz.indexOf('america/indiana')!==-1||tz.indexOf('america/kentucky')!==-1||
-          tz.indexOf('america/north_dakota')!==-1
-        ){
-          blockUser();
-        }
-      }catch(e){}
-      try{
-        fetch('/api/geo/check').then(function(r){return r.json()}).then(function(d){
-          if(d&&d.blocked){blockUser();}
-        }).catch(function(){});
-        fetch('https://api.country.is/').then(function(r){return r.json()}).then(function(r){
-          if(r&&r.country&&BLOCKED_COUNTRIES.indexOf(r.country.toUpperCase())!==-1){
-            blockUser();
-          }
-        }).catch(function(){});
-      }catch(e){}
-    })();
-  </script>
   <link rel="preconnect" href="https://embed.tawk.to" crossorigin>
   <link rel="dns-prefetch" href="https://embed.tawk.to">
   <!--Start of Tawk.to Script-->
@@ -88,13 +27,13 @@
     })(window, document, "clarity", "script", "ybadbatujm");
   </script>
   <title>Delivery & Returns | Miroooo</title>
-  <meta name="description" content="Miroooo UK delivery estimates, order processing times, risk-free home trial, return instructions, and refund guidelines.">
+  <meta name="description" content="Miroooo UK delivery estimates, order processing times, return instructions, and refund guidelines.">
   <link rel="canonical" href="https://www.trymiroooo.com/delivery-returns">
   <meta name="theme-color" content="#080909">
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="Miroooo">
   <meta property="og:title" content="Delivery & Returns | Miroooo">
-  <meta property="og:description" content="Miroooo UK delivery estimates, order processing, risk-free home trial and return instructions.">
+  <meta property="og:description" content="Miroooo UK delivery estimates, order processing, and return instructions.">
   <meta property="og:url" content="https://www.trymiroooo.com/delivery-returns">
   <link rel="icon" href="/favicon.png" type="image/png">
   <link rel="shortcut icon" href="/favicon.png" type="image/png">
@@ -109,7 +48,7 @@
     "@type": "WebPage",
     "name": "Delivery & Returns | Miroooo",
     "url": "https://www.trymiroooo.com/delivery-returns",
-    "description": "Miroooo UK delivery estimates, order processing, risk-free home trial and return instructions.",
+    "description": "Miroooo UK delivery estimates, order processing, and return instructions.",
     "publisher": {
       "@type": "Organization",
       "name": "Miroooo",
@@ -416,7 +355,7 @@
         <!-- Header Section -->
         <header class="policy-header">
           <h1 class="policy-title">Delivery &amp; <em>Returns</em></h1>
-          <p class="policy-lead">What happens after you order, delivery estimates, and how our risk-free home trial works.</p>
+          <p class="policy-lead">What happens after you order, delivery estimates, and how our return process works.</p>
         </header>
 
         <!-- Content Card Wrapper -->
@@ -459,8 +398,8 @@
                 <path d="M12 3v18M3 12h18"/>
               </svg>
               <div class="policy-highlight-text">
-                <strong>Risk-Free Home Trial</strong>
-                <span>Risk-free evaluation</span>
+                <strong>Hassle-Free Returns</strong>
+                <span>Easy return support</span>
               </div>
             </div>
           </div>
@@ -469,7 +408,7 @@
           <nav class="policy-nav-pills" aria-label="Page sections">
             <a class="policy-nav-pill" href="#delivery">UK Delivery</a>
             <a class="policy-nav-pill" href="#changes">Changes &amp; Delays</a>
-            <a class="policy-nav-pill" href="#trial">Risk-Free Trial</a>
+            <a class="policy-nav-pill" href="#returns">Returns &amp; Refunds</a>
             <a class="policy-nav-pill" href="#refunds">Refunds</a>
             <a class="policy-nav-pill" href="#damaged">Problems on Arrival</a>
             <a class="policy-nav-pill" href="#contact">Contact</a>
@@ -491,12 +430,12 @@
               <p>If tracking has not updated for several business days or the estimated transit window has passed, send us your order number, checkout email, and delivery postcode so our support team can investigate directly with the courier.</p>
             </section>
 
-            <!-- Section 3: Risk-Free Home Trial -->
-            <section id="trial">
-              <h2>Risk-free home trial</h2>
-              <p>Our risk-free home trial allows you to test Miroooo in your daily routine. If you are not completely satisfied, return it for an effortless refund. Contact our support team before returning any items so we can confirm eligibility and provide the authorised return address and instructions.</p>
+            <!-- Section 3: Returns & Refunds -->
+            <section id="returns">
+              <h2>Returns &amp; refunds</h2>
+              <p>If you are not completely satisfied with your Miroooo electric toothbrush, you may return it for a refund. Contact our support team before returning any items so we can confirm eligibility and provide the authorised return address and instructions.</p>
               <p>Unless the item is faulty, incorrectly supplied, or applicable consumer law provides otherwise, return postage is the customer’s responsibility. We recommend using a tracked postal service and retaining proof of postage until your return is completed.</p>
-              <p>Please return the handle, travel case, included accessories, USB-C charging cable, and original components supplied with your order. Consumable replacement brush heads supplied in separate sealed packaging must remain unopened unless they were part of the initial set being trialled.</p>
+              <p>Please return the handle, travel case, included accessories, USB-C charging cable, and original components supplied with your order. Consumable replacement brush heads supplied in separate sealed packaging must remain unopened unless they were part of the initial set being returned.</p>
               
               <div class="policy-notice">
                 <p><strong>Important return notice:</strong> Do not send items back to an address printed on the delivery parcel label without contacting us first. Fulfilment depots and returns processing centres differ, and unauthorised returns can be delayed or lost.</p>
@@ -515,13 +454,12 @@
             <section id="damaged">
               <h2>Problems on arrival: Faulty or damaged items</h2>
               <p>Please inspect your package promptly upon arrival. If an item is damaged in transit, defective, or not what you ordered, contact us right away with your order number, a brief explanation, and photos or video of the issue.</p>
-              <p>All Miroooo toothbrush handles are also backed by our comprehensive <a href="/warranty">Two-Year Limited Warranty</a> covering manufacturing faults.</p>
             </section>
 
             <!-- Section 6: Contact -->
             <section id="contact">
               <h2>Contact customer support</h2>
-              <p>If you have any questions regarding your delivery, return, or home trial, our UK customer care team is here to assist:</p>
+              <p>If you have any questions regarding your delivery, return, or order, our UK customer care team is here to assist:</p>
               <ul>
                 <li>By email: <a href="mailto:support@trymiroooo.com">support@trymiroooo.com</a></li>
                 <li>By visiting our <a href="/contact#contact-form">Contact Form</a></li>
@@ -531,7 +469,7 @@
             </section>
 
             <div class="policy-footer-note">
-              <p>For more information, please refer to our <a href="/shipping-policy">Shipping Policy</a>, <a href="/warranty">Two-Year Warranty</a>, and <a href="/terms">Terms of Service</a>. Last updated: 17 August 2026.</p>
+              <p>For more information, please refer to our <a href="/shipping-policy">Shipping Policy</a> and <a href="/terms">Terms of Service</a>. Last updated: 17 August 2026.</p>
             </div>
           </div>
         </article>
