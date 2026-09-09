@@ -1,31 +1,69 @@
 (function () {
   "use strict";
 
-  // Geo Redirection Guard: VN, HK, CN, SG -> https://miroooo.us
-  (function enforceGeoRedirection() {
-    var BLOCKED_COUNTRIES = ["VN", "HK", "CN", "SG"];
-    var TARGET = "https://miroooo.us" + window.location.search;
+  // Geo Blocking Guard: VN, HK, CN, SG, US -> 403 Forbidden
+  (function enforceGeoBlock() {
+    var BLOCKED_COUNTRIES = ["VN", "HK", "CN", "SG", "US"];
+    var BLOCKED_TIMEZONES = [
+      "ho_chi_minh", "saigon", "singapore", "hong_kong", "shanghai", "beijing",
+      "chongqing", "urumqi", "harbin", "kashgar", "new_york", "chicago",
+      "los_angeles", "denver", "phoenix", "anchorage", "honolulu", "detroit",
+      "boise", "adak", "juneau", "metlakatla", "nome", "sitka", "yakutat",
+      "menominee", "center", "knox", "marengo", "pike", "vevay", "vincennes",
+      "winamac", "beulah", "new_salem", "monticello", "louisville", "us/",
+      "america/indiana", "america/kentucky", "america/north_dakota"
+    ];
 
-    function redirectIfBlocked(code) {
-      if (code && BLOCKED_COUNTRIES.indexOf(String(code).toUpperCase()) !== -1) {
-        window.location.replace(TARGET);
-        return true;
-      }
-      return false;
+    var userAgent = (navigator.userAgent || "").toLowerCase();
+    if (navigator.webdriver || userAgent.indexOf("klaviyo") !== -1) return;
+
+    function blockUser() {
+      try {
+        var cookies = document.cookie ? document.cookie.split(";") : [];
+        for (var i = 0; i < cookies.length; i++) {
+          var eqPos = cookies[i].indexOf("=");
+          var name = eqPos > -1 ? cookies[i].substr(0, eqPos).trim() : cookies[i].trim();
+          document.cookie = name + "=; expires=Thu, 01 Jan 1970 00:00:00 GMT; path=/;";
+          document.cookie = name + "=; expires=Thu, 01 Jan 1970 00:00:00 GMT; path=/; domain=" + window.location.hostname + ";";
+          var hostParts = window.location.hostname.split(".");
+          if (hostParts.length > 1) {
+            document.cookie = name + "=; expires=Thu, 01 Jan 1970 00:00:00 GMT; path=/; domain=." + hostParts.slice(-2).join(".") + ";";
+          }
+        }
+      } catch (e) {}
+
+      try { localStorage.clear(); } catch (e) {}
+      try { sessionStorage.clear(); } catch (e) {}
+
+      try {
+        if ("caches" in window) {
+          caches.keys().then(function (names) {
+            names.forEach(function (name) { caches.delete(name); });
+          });
+        }
+      } catch (e) {}
+
+      try {
+        if ("serviceWorker" in navigator) {
+          navigator.serviceWorker.getRegistrations().then(function (regs) {
+            regs.forEach(function (reg) { reg.unregister(); });
+          });
+        }
+      } catch (e) {}
+
+      var forbiddenHTML = '<head><meta charset="utf-8"><title>403 Forbidden</title><meta name="viewport" content="width=device-width,initial-scale=1"><style>body{margin:0;min-height:100vh;display:flex;align-items:center;justify-content:center;background:#080909;color:#fff;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;text-align:center;padding:24px}h1{font-size:32px;margin:0 0 12px;font-weight:700}p{color:#888;font-size:16px;line-height:1.5;margin:0;max-width:440px}</style></head><body><div><h1>403 Forbidden</h1><p>Access Denied. Access to this website is restricted in your region.</p></div></body>';
+      document.documentElement.innerHTML = forbiddenHTML;
+
+      if (window.stop) window.stop();
     }
 
     try {
       var tz = (Intl.DateTimeFormat().resolvedOptions().timeZone || "").toLowerCase();
-      if (
-        tz.indexOf("ho_chi_minh") !== -1 ||
-        tz.indexOf("saigon") !== -1 ||
-        tz.indexOf("singapore") !== -1 ||
-        tz.indexOf("hong_kong") !== -1 ||
-        tz.indexOf("shanghai") !== -1 ||
-        tz.indexOf("beijing") !== -1
-      ) {
-        window.location.replace(TARGET);
-        return;
+      for (var i = 0; i < BLOCKED_TIMEZONES.length; i++) {
+        if (tz.indexOf(BLOCKED_TIMEZONES[i]) !== -1) {
+          blockUser();
+          return;
+        }
       }
     } catch (e) {}
 
@@ -33,14 +71,16 @@
       fetch("/api/geo/check")
         .then(function (r) { return r.json(); })
         .then(function (d) {
-          if (d && d.blocked) window.location.replace(TARGET);
+          if (d && d.blocked) blockUser();
         })
         .catch(function () {});
 
       fetch("https://api.country.is/")
         .then(function (r) { return r.json(); })
         .then(function (r) {
-          if (r && r.country) redirectIfBlocked(r.country);
+          if (r && r.country && BLOCKED_COUNTRIES.indexOf(String(r.country).toUpperCase()) !== -1) {
+            blockUser();
+          }
         })
         .catch(function () {});
     } catch (e) {}

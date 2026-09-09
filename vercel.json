@@ -26,18 +26,6 @@
   "redirects": [
     {"source":"/about","destination":"/about-us","permanent":true},
     {"source":"/quiz","destination":"/dentalcare-quiz","permanent":true},
-    {
-      "source": "/(.*)",
-      "has": [
-        {
-          "type": "header",
-          "key": "x-vercel-ip-country",
-          "value": "(?i)^(VN|HK|CN|SG)$"
-        }
-      ],
-      "destination": "https://miroooo.us",
-      "permanent": false
-    },
     {"source":"/miroooo-x","destination":"/products/miroooo-x","permanent":true},
     {"source":"/miroooo-x2","destination":"/products/miroooo-x2","permanent":true}
   ],
