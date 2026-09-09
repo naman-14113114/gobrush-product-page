@@ -547,3 +547,24 @@ Append-only memory for the `gobrush-product-page` repository. Do not delete or s
 - Verification:
   - `npm run verify` passed cleanly (43 required files and 17 storefront pages checked).
   - `npm run build` completed cleanly, syncing updated review assets to `public/assets_ref/`.
+
+## 2026-09-09 08:05:00 +05:30 - Review Dates Shift by +3 Days for All Products
+
+- Task: Shift review dates forward by 3 days across all product reviews in `gobrush-product-page`.
+- Script: `update-review-dates.js 3`.
+- Files Modified:
+  - `assets_ref/miroooo-reviews.js` (Brush X1):
+    - 63 ISO dates shifted by +3 days (e.g., `2026-09-04` -> `2026-09-07`).
+    - 63 display dates shifted (e.g., `4 September 2026` -> `7 September 2026`).
+    - 8 merchant reply dates shifted (e.g., `6 July 2026` -> `9 July 2026`, `27 June 2026` -> `30 June 2026`).
+    - 1 base timestamp shifted (`2026-09-06T12:00:00Z` -> `2026-09-09T12:00:00Z`).
+  - `assets_ref/miroooo-x2-reviews.js` (Brush X2):
+    - 56 ISO dates shifted by +3 days (e.g., `2026-09-05` -> `2026-09-08`).
+    - 56 display dates shifted (e.g., `5 September 2026` -> `8 September 2026`).
+    - 6 merchant reply dates shifted (e.g., `19 March 2026` -> `22 March 2026`, `11 February 2026` -> `14 February 2026`).
+    - 1 base timestamp shifted (`2026-09-06T12:00:00Z` -> `2026-09-09T12:00:00Z`).
+- Verification:
+  - `npm run verify` passed cleanly (43 required files and 17 storefront pages checked).
+  - `npm run build` completed cleanly, syncing updated review assets to `public/assets_ref/`.
+  - Local browser DOM inspection verified dynamic rendering across desktop and mobile viewports for both Brush X1 and Brush X2.
+
