@@ -13,37 +13,37 @@
 
 ## Products
 
-### Miroooo Brush X1
+### Miroooo X1
 
 - Canonical page: https://www.trymiroooo.com/products/miroooo-x
 - Type: sonic electric toothbrush
 - Public features: three brushing modes, travel case, and stated battery life of more than 60 days
 - Display price recorded on 1 September 2026: GBP 59; verify on the product page before quoting
 
-### Miroooo Brush X2
+### Miroooo X2
 
 - Canonical page: https://www.trymiroooo.com/products/miroooo-x2
 - Type: guided sonic electric toothbrush
 - Public features: pressure feedback, IPX7 water resistance, travel case, USB-C charging, free Smile Coach access, and stated battery life of up to 90 days
 - Display price recorded on 2 September 2026: GBP 69; verify on the product page before quoting
 
-### Miroooo Brush X1 Heads
+### Miroooo X1 Heads
 
 - Canonical page: https://www.trymiroooo.com/products/miroooo-x1-heads
-- Contents: two replacement heads made for Brush X1
+- Contents: two replacement heads made for Miroooo X1
 - Display price recorded on 2 September 2026: GBP 10; verify on the product page before quoting
 
-### Miroooo Brush X2 Heads
+### Miroooo X2 Heads
 
 - Canonical page: https://www.trymiroooo.com/products/miroooo-x2-heads
-- Contents: two replacement heads made for Brush X2
+- Contents: two replacement heads made for Miroooo X2
 - Display price recorded on 1 September 2026: GBP 10; verify on the product page before quoting
 
 ## Dental Care Quiz
 
 - Canonical page: https://www.trymiroooo.com/dentalcare-quiz
 - Interactive preference-matching tool covering sensitivity, routine goals, travel frequency and brushing style
-- Compares Brush X1 and Brush X2 and suggests a personalised daily brushing routine
+- Compares Miroooo X1 and Miroooo X2 and suggests a personalised daily brushing routine
 - Client-side calculation with zero sign-up required; responses stay private in the user's browser
 - Recommendations are general product guidance and do not replace clinical or dental diagnosis
 

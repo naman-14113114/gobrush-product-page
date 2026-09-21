@@ -40,7 +40,7 @@
       model: "x2",
       badgeText: "Recommended Routine Match",
       pillClass: "quiz-pill-badge",
-      title: "Miroooo Brush X2 Flagship",
+      title: "Miroooo X2 Flagship",
       subtitle: "Ultra-Lightweight 51g Aerospace Aluminium, 90+ Day Battery Life, Whisper-Quiet & Travel-Ready",
       price: "£69",
       priceNumber: 69,
@@ -49,7 +49,7 @@
       saveText: "SAVE 50%",
       image: PRODUCT_ASSETS.x2.silver,
       isBundle: false,
-      ctaText: "Add Brush X2 to Cart · £69",
+      ctaText: "Add Miroooo X2 to Cart · £69",
       bullets: [
         {
           strong: "Ultra-Lightweight 51g Aerospace Aluminium:",
@@ -92,7 +92,7 @@
       model: "x2",
       badgeText: "Recommended Routine Match",
       pillClass: "quiz-pill-badge",
-      title: "Miroooo Brush X2 Flagship",
+      title: "Miroooo X2 Flagship",
       subtitle: "Ultra-Lightweight 51g Aerospace Aluminium, 90+ Day Battery Life, Whisper-Quiet & Enamel Polish",
       price: "£69",
       priceNumber: 69,
@@ -101,7 +101,7 @@
       saveText: "SAVE 50%",
       image: PRODUCT_ASSETS.x2.silver,
       isBundle: false,
-      ctaText: "Add Brush X2 to Cart · £69",
+      ctaText: "Add Miroooo X2 to Cart · £69",
       bullets: [
         {
           strong: "Ultra-Lightweight 51g Aerospace Aluminium:",
@@ -144,7 +144,7 @@
       model: "x1",
       badgeText: "Recommended Routine Match",
       pillClass: "quiz-pill-badge",
-      title: "Miroooo Brush X1 Essential",
+      title: "Miroooo X1 Essential",
       subtitle: "Ultralight 51g Acoustic Precision & 60-Day Travel Freedom",
       price: "£59",
       priceNumber: 59,
@@ -153,7 +153,7 @@
       saveText: "SAVE 50%",
       image: PRODUCT_ASSETS.x1.silver,
       isBundle: false,
-      ctaText: "Add Brush X1 to Cart · £59",
+      ctaText: "Add Miroooo X1 to Cart · £59",
       bullets: [
         {
           strong: "51g Ultra-Featherweight Chassis:",
@@ -196,7 +196,7 @@
       model: "x2",
       badgeText: "Recommended Household Match",
       pillClass: "quiz-pill-badge",
-      title: "Brush X2 Duo Bundle (Set of 2)",
+      title: "Miroooo X2 Duo Bundle (Set of 2)",
       subtitle: "Complete 2-Person Precision Set + 2x Free DuPont Heads",
       price: "£128",
       priceNumber: 128,
@@ -799,7 +799,7 @@
       id: isBundle ? "miroooo-x2-2" : (isX1 ? "miroooo-x-1" : "miroooo-x2-1"),
       productId: isX1 ? "1000000675113473" : "1000000675072187",
       productHandle: isX1 ? "miroooo-x" : "miroooo-x2",
-      title: isBundle ? "Brush X2 (Buy 2)" : (isX1 ? `Brush X1 (${selectedColor})` : `Brush X2 (${selectedColor})`),
+      title: isBundle ? "Miroooo X2 (Buy 2)" : (isX1 ? `Miroooo X1 (${selectedColor})` : `Miroooo X2 (${selectedColor})`),
       quantity: isBundle ? 2 : 1,
       bundleCount: isBundle ? 2 : 1,
       choices: isBundle ? ["Silver", "Pink"] : [selectedColor],

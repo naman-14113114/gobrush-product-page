@@ -238,8 +238,8 @@
             <h4 class="site-footer__heading">COMPANY</h4>
             <ul class="site-footer__links">
               <li><a href="/">Home</a></li>
-              <li><a href="/products/miroooo-x" data-product-link>Brush X1</a></li>
-              <li><a href="/products/miroooo-x2" data-product-link>Brush X2</a></li>
+              <li><a href="/products/miroooo-x" data-product-link>Miroooo X1</a></li>
+              <li><a href="/products/miroooo-x2" data-product-link>Miroooo X2</a></li>
               <li><a href="/privacy">Privacy Policy</a></li>
               <li><a href="/return-policy">Return Policy</a></li>
               <li><a href="/shipping-policy">Shipping Policy</a></li>

@@ -6,7 +6,7 @@
   var CURRENCY = "GBP";
   var PRODUCTS = {
     "miroooo-x": {
-      ProductName: "Brush X1",
+      ProductName: "Miroooo X1",
       ProductID: "1000000675113473",
       SKU: "MIROOOO-X1",
       Categories: ["Electric Toothbrushes", "Oral Care"],
@@ -17,7 +17,7 @@
       CompareAtPrice: 139
     },
     "miroooo-x2": {
-      ProductName: "Brush X2",
+      ProductName: "Miroooo X2",
       ProductID: "1000000675072187",
       SKU: "MIROOOO-X2",
       Categories: ["Electric Toothbrushes", "Oral Care"],
@@ -28,7 +28,7 @@
       CompareAtPrice: 139
     },
     "miroooo-x1-heads": {
-      ProductName: "Brush X1 Heads",
+      ProductName: "Miroooo X1 Heads",
       ProductID: "1000000675471182",
       SKU: "MIROOOO-X1-HEADS-2PK",
       Categories: ["Brush Heads", "Oral Care"],
@@ -39,7 +39,7 @@
       CompareAtPrice: 10
     },
     "miroooo-x2-heads": {
-      ProductName: "Brush X2 Heads",
+      ProductName: "Miroooo X2 Heads",
       ProductID: "1000000675616058",
       SKU: "MIROOOO-X2-HEADS-2PK",
       Categories: ["Brush Heads", "Oral Care"],

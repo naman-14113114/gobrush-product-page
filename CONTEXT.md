@@ -587,4 +587,29 @@ Append-only memory for the `gobrush-product-page` repository. Do not delete or s
   - `npm run build` compiled cleanly into `public/`.
   - Visual verification via Chrome DevTools confirmed clean top alignment directly from Policy Name across Desktop (1440px) and Mobile (375px) on all 7 policy routes with 0 errors.
 
+## 2026-09-22 00:15:00 +05:30 - Comprehensive Legal Policy Overhaul (Buudy Standard) & Rebranding to Miroooo X1 / Miroooo X2
+
+- Task:
+  1. Overhaul all legal policy pages (`shipping-policy.html`, `privacy.html`, `return-policy.html`, `refund-policy.html`, `terms.html`) with the authoritative xPage Drop / Buudy policy data and structure adapted for Miroooo while preserving Miroooo's luxury dark design, fonts, styling tokens, and layout.
+  2. Rebrand product naming across the entire storefront from `Brush X1` / `Brush X2` / `Brush X1 Heads` / `Brush X2 Heads` back to `Miroooo X1` and `Miroooo X2` / `Miroooo X1 Heads` / `Miroooo X2 Heads` everywhere (product pages, shop, homepage, cart, FAQ, dentalcare quiz, guides, reviews datasets, JavaScript assets, schema markup, and documentation).
+- Files Modified & Overhauled:
+  - **Policy Pages**:
+    - `shipping-policy.html` (Full 9-section Buudy standard policy adapted for Miroooo, including 1–3 business day processing, 7–20 business day transit, 2-hour address change window, customs notes, and xPage Drop contact).
+    - `privacy.html` (Full 15-section Buudy standard privacy policy adapted for Miroooo, including 9 collection categories, 12 usage criteria, cookie disclosures, user rights, and Delaware corporate entity).
+    - `return-policy.html` & `refund-policy.html` (Full 17-section Buudy standard return/refund policy adapted for Miroooo, including 12-hour cancellation window, 30-day return window with evidence, 5–10 business day refund initiation, and inspection terms).
+    - `terms.html` (Full 13-section Buudy standard terms of service adapted for Miroooo, including store definitions, product specifications, order acceptance, pricing error remedies, intellectual property, and Delaware governing law).
+  - **Storefront & PDP Pages**:
+    - `miroooo-x.html`, `miroooo-x2.html`, `miroooo-x1-heads.html`, `miroooo-x2-heads.html`, `index.html`, `shop.html`, `cart.html`, `faq.html`, `dentalcare-quiz.html`.
+    - `guides/sonic-vs-oscillating-electric-toothbrush.html`, `guides/how-often-replace-electric-toothbrush-head.html`, `guides/electric-toothbrush-travel-guide.html`, `guides/how-to-use-two-minute-toothbrush-timer.html`, `guides/index.html`, `smile-coach.html`.
+  - **JavaScript & Assets**:
+    - `assets/site.js`, `assets/product-shell.js`, `assets/dentalcare-quiz.js`, `assets/klaviyo.js`, `api/reviews/submit.js`, `lib/miroooo-lifecycle.js`.
+    - `assets_ref/miroooo-reviews.js`, `assets_ref/miroooo-x2-reviews.js`, `assets_ref/org_miroooo-reviews.js`, `assets_ref/org_miroooo-x2-reviews.js`.
+  - **Verification & Documentation**:
+    - `scripts/verify-site.mjs`, `llms.txt`, `llms-full.txt`, `PRODUCT.md`, `README.md`, `DESIGN.json`.
+- Verification:
+  - `node scripts/verify-site.mjs`: PASSED (43 required files and 17 storefront pages checked with 0 errors).
+  - `node scripts/build.mjs`: PASSED with 0 errors, compiling clean static assets to `public/`.
+  - Full-text ripgrep scan confirmed 0 residual instances of legacy `Brush X1` / `Brush X2` outside historical logs.
+  - Visual testing via local preview server (port 4173) and Chrome DevTools MCP verified clean rendering of all updated policy pages and PDP headings.
+
 

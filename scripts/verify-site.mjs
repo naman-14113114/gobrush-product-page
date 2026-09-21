@@ -56,7 +56,7 @@ const homepage = await readFile(resolve(root, "index.html"), "utf8");
 for (const marker of ["gb-hero", "gb-video-feature-section", "gb-story", "gb-coach-promo", "/smile-coach"]) {
   if (!homepage.includes(marker)) errors.push(`index.html: missing redesigned homepage marker ${marker}`);
 }
-if (!homepage.includes("Miroooo Electric Toothbrushes | Brush X1 &amp; X2 UK")) {
+if (!homepage.includes("Miroooo Electric Toothbrushes | Miroooo X1 &amp; X2 UK")) {
   errors.push("index.html: homepage title does not target the electric-toothbrush category");
 }
 if (homepage.includes("/assets/app/miroooo-smile-coach-lifestyle.png")) {
@@ -204,10 +204,10 @@ for (const marker of [
 const x1Page = await readFile(resolve(root, "miroooo-x.html"), "utf8");
 if (x1Page.includes('preload="auto"')) errors.push("miroooo-x.html: non-critical videos still use preload=auto");
 for (const [file, expectedTitle] of [
-  ["miroooo-x.html", "Miroooo Brush X1 Sonic Electric Toothbrush"],
-  ["miroooo-x2.html", "Miroooo Brush X2 Sonic Electric Toothbrush"],
-  ["miroooo-x1-heads.html", "Miroooo Brush X1 Heads"],
-  ["miroooo-x2-heads.html", "Miroooo Brush X2 Heads"]
+  ["miroooo-x.html", "Miroooo X1 Sonic Electric Toothbrush"],
+  ["miroooo-x2.html", "Miroooo X2 Sonic Electric Toothbrush"],
+  ["miroooo-x1-heads.html", "Miroooo X1 Heads"],
+  ["miroooo-x2-heads.html", "Miroooo X2 Heads"]
 ]) {
   try {
     const html = await readFile(resolve(root, file), "utf8");

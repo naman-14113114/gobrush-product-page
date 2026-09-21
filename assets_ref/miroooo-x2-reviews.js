@@ -52,7 +52,7 @@
       displayDate: '8 September 2026',
       variant: 'Pink / Single',
       title: 'Best travel setup ever—worth every penny',
-      body: 'Everything about this package is top notch. The magnetic box it comes in is super clean, and the included travel capsule fits right into my makeup bag without taking up space. The USB-C charging means I don\'t have to carry a separate brick when I go on trips. Used the Brush X2 by Miroooo this morning and my teeth feel polished. You get way more value here than buying the overpriced brand names.',
+      body: 'Everything about this package is top notch. The magnetic box it comes in is super clean, and the included travel capsule fits right into my makeup bag without taking up space. The USB-C charging means I don\'t have to carry a separate brick when I go on trips. Used the Miroooo X2 by Miroooo this morning and my teeth feel polished. You get way more value here than buying the overpriced brand names.',
       video: {
         src: '/assets_ref/x2/qb81f4-h264-hd.mp4',
         poster: '/assets_ref/x2/qb81f4-poster.webp'
@@ -70,7 +70,7 @@
       displayDate: '8 September 2026',
       variant: 'Silver / Single',
       title: 'Silent power upgrade from my loud Oral-B iO6',
-      body: 'I was using the Oral-B iO6 earlier, but after using this Brush X2 by Miroooo for the last few months I can completely see a change on my teeth. They feel way cleaner throughout the day, and the best part is that this brush is so silent! It doesn\'t cause that awful rattling noise like my old Oral-B.',
+      body: 'I was using the Oral-B iO6 earlier, but after using this Miroooo X2 by Miroooo for the last few months I can completely see a change on my teeth. They feel way cleaner throughout the day, and the best part is that this brush is so silent! It doesn\'t cause that awful rattling noise like my old Oral-B.',
       images: [],
       helpful: 84,
       verified: true
@@ -97,8 +97,8 @@
       date: '2026-09-07',
       displayDate: '7 September 2026',
       variant: 'Silver / Single',
-      title: 'Upgraded from Brush X1 at the same price—huge jump',
-      body: 'I\'ve been using the Brush X1 for the last few months, but got their new Brush X2 now on this deal at the same price. Must say the upgrade is immediately visible. The X2 45-degree sweep is way better than X1, definitely recommend buying now before the offer ends!',
+      title: 'Upgraded from Miroooo X1 at the same price—huge jump',
+      body: 'I\'ve been using the Miroooo X1 for the last few months, but got their new Miroooo X2 now on this deal at the same price. Must say the upgrade is immediately visible. The X2 45-degree sweep is way better than X1, definitely recommend buying now before the offer ends!',
       images: ['/assets_ref/reviews/Screenshot 2026-08-29 135004.png'],
       helpful: 69,
       verified: true
@@ -126,7 +126,7 @@
       displayDate: '6 September 2026',
       variant: 'Grey / Single',
       title: '51g featherweight and whisper quiet vs heavy Philips',
-      body: 'So light to use! Not like my previous Philips Sonicare which was heavy in the hand and so noisy as well. This Miroooo Brush X2 is whisper quiet, lightweight at only 51g, and cleans effortlessly without vibrating your entire hand.',
+      body: 'So light to use! Not like my previous Philips Sonicare which was heavy in the hand and so noisy as well. This Miroooo X2 is whisper quiet, lightweight at only 51g, and cleans effortlessly without vibrating your entire hand.',
       images: ['/assets_ref/reviews/miroooo-x2-review-oliver-harrison.png'],
       helpful: 58,
       verified: true
@@ -154,7 +154,7 @@
       displayDate: '5 September 2026',
       variant: 'Grey / Single',
       title: 'Wall mounted magnetic dock keeps sink spotless',
-      body: 'No more worrying about where to store your toothbrush on crowded counters—the magnetic wall mount comes included right in the box. It holds the Brush X2 upright seamlessly and keeps the whole bathroom looking super sleek and hygienic.',
+      body: 'No more worrying about where to store your toothbrush on crowded counters—the magnetic wall mount comes included right in the box. It holds the Miroooo X2 upright seamlessly and keeps the whole bathroom looking super sleek and hygienic.',
       images: ['/assets_ref/reviews/r5.webp'],
       helpful: 48,
       verified: true
@@ -322,7 +322,7 @@
       displayDate: '29 August 2026',
       variant: 'Silver / Double Pack',
       title: 'Whisper-quiet acoustic motor doesn\'t wake my partner',
-      body: 'My old electric brush sounded like a power tool in the morning. Brush X2 produces a quiet, soothing acoustic hum that doesn\'t disturb anyone early in the morning.',
+      body: 'My old electric brush sounded like a power tool in the morning. Miroooo X2 produces a quiet, soothing acoustic hum that doesn\'t disturb anyone early in the morning.',
       images: [],
       helpful: 21,
       verified: true
@@ -763,7 +763,7 @@
       merchantReply: {
         author: 'Miroooo Customer Care',
         date: '22 March 2026',
-        text: 'Hi Jack, thank you for your candid review! We are thrilled you find the Brush X2 to be the best electric toothbrush on the market. We run limited promotional offers to welcome new customers to the brand, and our team has credited a complimentary 2-pack of DuPont replacement heads to your account.'
+        text: 'Hi Jack, thank you for your candid review! We are thrilled you find the Miroooo X2 to be the best electric toothbrush on the market. We run limited promotional offers to welcome new customers to the brand, and our team has credited a complimentary 2-pack of DuPont replacement heads to your account.'
       }
     },
     {
@@ -801,7 +801,7 @@
       merchantReply: {
         author: 'Miroooo Customer Care',
         date: '6 March 2026',
-        text: 'Hi Oliver, we are sorry for the courier driver’s decision to leave your delivery unattended on the doorstep. While we are glad the Brush X2 reached you safely, we have logged a formal complaint with the carrier depot to enforce signature confirmation on all future orders.'
+        text: 'Hi Oliver, we are sorry for the courier driver’s decision to leave your delivery unattended on the doorstep. While we are glad the Miroooo X2 reached you safely, we have logged a formal complaint with the carrier depot to enforce signature confirmation on all future orders.'
       }
     },
     {
@@ -858,7 +858,7 @@
       merchantReply: {
         author: 'Miroooo Customer Care',
         date: '14 February 2026',
-        text: 'Dear Daniel, we completely understand your frustration regarding promotional timing. We love that the Brush X2 is providing you with an exceptional clean, and our team has added a complimentary 4-pack of DuPont replacement heads to your account to ensure you receive unbeatable value.'
+        text: 'Dear Daniel, we completely understand your frustration regarding promotional timing. We love that the Miroooo X2 is providing you with an exceptional clean, and our team has added a complimentary 4-pack of DuPont replacement heads to your account to ensure you receive unbeatable value.'
       }
     }
   ];

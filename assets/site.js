@@ -490,12 +490,12 @@
                   <ul class="drawer__submenu" role="list">
                     <li>
                       <a class="drawer__submenu-item flex flex-col" href="/products/miroooo-x">
-                        <span class="drawer__submenu-title">Brush X1</span>
+                        <span class="drawer__submenu-title">Miroooo X1</span>
                       </a>
                     </li>
                     <li>
                       <a class="drawer__submenu-item flex flex-col" href="/products/miroooo-x2">
-                        <span class="drawer__submenu-title">Brush X2</span>
+                        <span class="drawer__submenu-title">Miroooo X2</span>
                       </a>
                     </li>
                   </ul>
@@ -503,12 +503,12 @@
                   <ul class="drawer__submenu" role="list">
                     <li>
                       <a class="drawer__submenu-item flex flex-col" href="/products/miroooo-x1-heads">
-                        <span class="drawer__submenu-title">Brush X1 Heads</span>
+                        <span class="drawer__submenu-title">Miroooo X1 Heads</span>
                       </a>
                     </li>
                     <li>
                       <a class="drawer__submenu-item flex flex-col" href="/products/miroooo-x2-heads">
-                        <span class="drawer__submenu-title">Brush X2 Heads</span>
+                        <span class="drawer__submenu-title">Miroooo X2 Heads</span>
                       </a>
                     </li>
                   </ul>
@@ -677,10 +677,10 @@
               <h4 class="site-footer__heading">SHOP</h4>
               <ul class="site-footer__links">
                 <li><a href="/">Home</a></li>
-                <li><a href="/products/miroooo-x" data-product-link>Brush X1</a></li>
-                <li><a href="/products/miroooo-x2" data-product-link>Brush X2</a></li>
-                <li><a href="/products/miroooo-x1-heads" data-product-link>Brush X1 Heads</a></li>
-                <li><a href="/products/miroooo-x2-heads" data-product-link>Brush X2 Heads</a></li>
+                <li><a href="/products/miroooo-x" data-product-link>Miroooo X1</a></li>
+                <li><a href="/products/miroooo-x2" data-product-link>Miroooo X2</a></li>
+                <li><a href="/products/miroooo-x1-heads" data-product-link>Miroooo X1 Heads</a></li>
+                <li><a href="/products/miroooo-x2-heads" data-product-link>Miroooo X2 Heads</a></li>
                 <li><a href="/privacy">Privacy Policy</a></li>
                 <li><a href="/return-policy">Return Policy</a></li>
                 <li><a href="/shipping-policy">Shipping Policy</a></li>
@@ -978,11 +978,11 @@
                 <li>
                   <a href="/products/miroooo-x" class="shop-drawer__card" data-shop-item="brush-x1">
                     <div class="shop-drawer__thumb">
-                      <img src="/assets_ref/x/gallery/Miroooo_x_Pink-1.webp" alt="Brush X1" width="140" height="140" loading="lazy" />
+                      <img src="/assets_ref/x/gallery/Miroooo_x_Pink-1.webp" alt="Miroooo X1" width="140" height="140" loading="lazy" />
                     </div>
                     <div class="shop-drawer__info">
                       <span class="shop-drawer__eyebrow">The Essential</span>
-                      <h3 class="shop-drawer__product-title">Brush X1</h3>
+                      <h3 class="shop-drawer__product-title">Miroooo X1</h3>
                       <span class="shop-drawer__price"><span data-price-gbp="69">${MirooooCurrency.format(69)}</span> <s class="shop-drawer__compare" data-price-compare-gbp="139">${MirooooCurrency.format(139)}</s></span>
                     </div>
                     <svg class="shop-drawer__arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:16px!important;height:16px!important;min-width:16px!important;max-width:16px!important;min-height:16px!important;max-height:16px!important;flex-shrink:0!important;"><polyline points="9 18 15 12 9 6"></polyline></svg>
@@ -991,11 +991,11 @@
                 <li>
                   <a href="/products/miroooo-x2" class="shop-drawer__card" data-shop-item="brush-x2">
                     <div class="shop-drawer__thumb">
-                      <img src="/assets_ref/x2/gallery/miroooo-x2-sonic-electric-toothbrush-upright-grip.webp" alt="Brush X2" width="140" height="140" loading="lazy" />
+                      <img src="/assets_ref/x2/gallery/miroooo-x2-sonic-electric-toothbrush-upright-grip.webp" alt="Miroooo X2" width="140" height="140" loading="lazy" />
                     </div>
                     <div class="shop-drawer__info">
                       <span class="shop-drawer__eyebrow">Flagship Pro</span>
-                      <h3 class="shop-drawer__product-title">Brush X2</h3>
+                      <h3 class="shop-drawer__product-title">Miroooo X2</h3>
                       <span class="shop-drawer__price"><span data-price-gbp="69">${MirooooCurrency.format(69)}</span> <s class="shop-drawer__compare" data-price-compare-gbp="139">${MirooooCurrency.format(139)}</s></span>
                     </div>
                     <svg class="shop-drawer__arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:16px!important;height:16px!important;min-width:16px!important;max-width:16px!important;min-height:16px!important;max-height:16px!important;flex-shrink:0!important;"><polyline points="9 18 15 12 9 6"></polyline></svg>
@@ -1011,11 +1011,11 @@
                 <li>
                   <a href="/products/miroooo-x1-heads" class="shop-drawer__card" data-shop-item="brush-x1-heads">
                     <div class="shop-drawer__thumb">
-                      <img src="/assets_ref/x/heads/B1.webp" alt="Brush X1 Heads" width="140" height="140" loading="lazy" />
+                      <img src="/assets_ref/x/heads/B1.webp" alt="Miroooo X1 Heads" width="140" height="140" loading="lazy" />
                     </div>
                     <div class="shop-drawer__info">
                       <span class="shop-drawer__eyebrow">Replacement</span>
-                      <h3 class="shop-drawer__product-title">Brush X1 Heads</h3>
+                      <h3 class="shop-drawer__product-title">Miroooo X1 Heads</h3>
                       <span class="shop-drawer__price" data-price-gbp="10">${MirooooCurrency.format(10)}</span>
                     </div>
                     <svg class="shop-drawer__arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:16px!important;height:16px!important;min-width:16px!important;max-width:16px!important;min-height:16px!important;max-height:16px!important;flex-shrink:0!important;"><polyline points="9 18 15 12 9 6"></polyline></svg>
@@ -1024,11 +1024,11 @@
                 <li>
                   <a href="/products/miroooo-x2-heads" class="shop-drawer__card" data-shop-item="brush-x2-heads">
                     <div class="shop-drawer__thumb">
-                      <img src="/assets_ref/x2/heads/B1.webp" alt="Brush X2 Heads" width="140" height="140" loading="lazy" />
+                      <img src="/assets_ref/x2/heads/B1.webp" alt="Miroooo X2 Heads" width="140" height="140" loading="lazy" />
                     </div>
                     <div class="shop-drawer__info">
                       <span class="shop-drawer__eyebrow">Replacement</span>
-                      <h3 class="shop-drawer__product-title">Brush X2 Heads</h3>
+                      <h3 class="shop-drawer__product-title">Miroooo X2 Heads</h3>
                       <span class="shop-drawer__price" data-price-gbp="10">${MirooooCurrency.format(10)}</span>
                     </div>
                     <svg class="shop-drawer__arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:16px!important;height:16px!important;min-width:16px!important;max-width:16px!important;min-height:16px!important;max-height:16px!important;flex-shrink:0!important;"><polyline points="9 18 15 12 9 6"></polyline></svg>
@@ -1762,8 +1762,8 @@
                     productHandle: h,
                     productId: item.productId || (h === "miroooo-x2" ? "1000000675072187" : (h === "miroooo-x2-heads" ? "1000000675616058" : (h === "miroooo-x1-heads" ? "1000000675471182" : "1000000675113473"))),
                     variantId: item.variantId || (h === "miroooo-x2" ? (color === "Pink" ? "1000020700182882" : (color === "Silver" ? "1000020700182884" : "1000020700182883")) : (h === "miroooo-x2-heads" ? "1000020718937117" : (h === "miroooo-x1-heads" ? "1000020710139724" : (color === "Pink" ? "1000020700958562" : (color === "Silver" ? "1000020700958563" : "1000020700958564"))))),
-                    title: item.title || (h === "miroooo-x2" ? "Brush X2" : (h === "miroooo-x2-heads" ? "Brush X2 Heads" : (h === "miroooo-x1-heads" ? "Brush X1 Heads" : "Brush X1"))),
-                    subtitle: item.subtitle || (h === "miroooo-x2-heads" ? "DuPont precision heads for Brush X2." : (h === "miroooo-x1-heads" ? "DuPont precision heads for Brush X1." : (h === "miroooo-x2" ? "Includes free luxury travel case, wall-mounted storage & 90-day battery life." : "Electric Toothbrush with 32,000 VPM acoustic motor & 60-day battery."))),
+                    title: item.title || (h === "miroooo-x2" ? "Miroooo X2" : (h === "miroooo-x2-heads" ? "Miroooo X2 Heads" : (h === "miroooo-x1-heads" ? "Miroooo X1 Heads" : "Miroooo X1"))),
+                    subtitle: item.subtitle || (h === "miroooo-x2-heads" ? "DuPont precision heads for Miroooo X2." : (h === "miroooo-x1-heads" ? "DuPont precision heads for Miroooo X1." : (h === "miroooo-x2" ? "Includes free luxury travel case, wall-mounted storage & 90-day battery life." : "Electric Toothbrush with 32,000 VPM acoustic motor & 60-day battery."))),
                     color: color,
                     quantity: qty,
                     unitPrice: item.unitPrice || (h === "miroooo-x1-heads" || h === "miroooo-x2-heads" ? 10 : 69),
@@ -1793,8 +1793,8 @@
                   productHandle: handle,
                   productId: isX2Heads ? "1000000675616058" : "1000000675471182",
                   variantId: isX2Heads ? "1000020718937117" : "1000020710139724",
-                  title: isX2Heads ? "Brush X2 Heads" : "Brush X1 Heads",
-                  subtitle: isX2Heads ? "DuPont precision heads for Brush X2." : "DuPont precision heads for Brush X1.",
+                  title: isX2Heads ? "Miroooo X2 Heads" : "Miroooo X1 Heads",
+                  subtitle: isX2Heads ? "DuPont precision heads for Miroooo X2." : "DuPont precision heads for Miroooo X1.",
                   color: "Default",
                   quantity: qty,
                   unitPrice: 10,
@@ -1828,7 +1828,7 @@
                     productHandle: handle,
                     productId: isX2 ? "1000000675072187" : "1000000675113473",
                     variantId: vId,
-                    title: isX2 ? "Brush X2" : "Brush X1",
+                    title: isX2 ? "Miroooo X2" : "Miroooo X1",
                     subtitle: isX2 ? "Includes free luxury travel case, wall-mounted storage & 90-day battery life." : "Electric Toothbrush with 32,000 VPM acoustic motor & 60-day battery.",
                     color: normColor,
                     quantity: cCount,
@@ -1926,8 +1926,8 @@
             productHandle: handle,
             productId: pId,
             variantId: vId,
-            title: newItem.title || (isX2Heads ? "Brush X2 Heads" : "Brush X1 Heads"),
-            subtitle: newItem.subtitle || (isX2Heads ? "DuPont precision heads for Brush X2." : "DuPont precision heads for Brush X1."),
+            title: newItem.title || (isX2Heads ? "Miroooo X2 Heads" : "Miroooo X1 Heads"),
+            subtitle: newItem.subtitle || (isX2Heads ? "DuPont precision heads for Miroooo X2." : "DuPont precision heads for Miroooo X1."),
             color: "Default",
             quantity: qtyToAdd,
             unitPrice: 10,
@@ -1967,7 +1967,7 @@
               productHandle: handle,
               productId: isX2 ? "1000000675072187" : "1000000675113473",
               variantId: vId,
-              title: isX2 ? "Brush X2" : "Brush X1",
+              title: isX2 ? "Miroooo X2" : "Miroooo X1",
               subtitle: isX2 ? "Includes free luxury travel case, wall-mounted storage & 90-day battery life." : "Electric Toothbrush with 32,000 VPM acoustic motor & 60-day battery.",
               color: color,
               quantity: count,
@@ -2245,8 +2245,8 @@
       if (extraBrushHeadSets > 0) {
         const sets = extraBrushHeadSets;
         const heads = sets * 2;
-        const title = `Free Brush X2 Heads (${sets} ${sets > 1 ? "Sets" : "Set"})`;
-        const subtitle = `${sets} complimentary ${sets > 1 ? "sets contain" : "set contains"} ${heads} DuPont precision heads for Brush X2.`;
+        const title = `Free Miroooo X2 Heads (${sets} ${sets > 1 ? "Sets" : "Set"})`;
+        const subtitle = `${sets} complimentary ${sets > 1 ? "sets contain" : "set contains"} ${heads} DuPont precision heads for Miroooo X2.`;
         const compareVal = sets * 10;
         itemsHtml += `
           <div class="miroooo-cart-item">
