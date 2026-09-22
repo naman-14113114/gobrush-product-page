@@ -1762,8 +1762,8 @@
                     productHandle: h,
                     productId: item.productId || (h === "miroooo-x2" ? "1000000675072187" : (h === "miroooo-x2-heads" ? "1000000675616058" : (h === "miroooo-x1-heads" ? "1000000675471182" : "1000000675113473"))),
                     variantId: item.variantId || (h === "miroooo-x2" ? (color === "Pink" ? "1000020700182882" : (color === "Silver" ? "1000020700182884" : "1000020700182883")) : (h === "miroooo-x2-heads" ? "1000020718937117" : (h === "miroooo-x1-heads" ? "1000020710139724" : (color === "Pink" ? "1000020700958562" : (color === "Silver" ? "1000020700958563" : "1000020700958564"))))),
-                    title: item.title || (h === "miroooo-x2" ? "Miroooo X2" : (h === "miroooo-x2-heads" ? "Miroooo X2 Heads" : (h === "miroooo-x1-heads" ? "Miroooo X1 Heads" : "Miroooo X1"))),
-                    subtitle: item.subtitle || (h === "miroooo-x2-heads" ? "DuPont precision heads for Miroooo X2." : (h === "miroooo-x1-heads" ? "DuPont precision heads for Miroooo X1." : (h === "miroooo-x2" ? "Includes free luxury travel case, wall-mounted storage & 90-day battery life." : "Electric Toothbrush with 32,000 VPM acoustic motor & 60-day battery."))),
+                    title: (h === "miroooo-x2" ? "Miroooo X2" : (h === "miroooo-x2-heads" ? "Miroooo X2 Heads" : (h === "miroooo-x1-heads" ? "Miroooo X1 Heads" : "Miroooo X1"))),
+                    subtitle: (h === "miroooo-x2-heads" ? "DuPont precision heads for Miroooo X2." : (h === "miroooo-x1-heads" ? "DuPont precision heads for Miroooo X1." : (h === "miroooo-x2" ? "Includes free luxury travel case, wall-mounted storage & 90-day battery life." : "Electric Toothbrush with 32,000 VPM acoustic motor & 60-day battery."))),
                     color: color,
                     quantity: qty,
                     unitPrice: item.unitPrice || (h === "miroooo-x1-heads" || h === "miroooo-x2-heads" ? 10 : 69),
@@ -2197,10 +2197,11 @@
         const count = item.quantity || 1;
         const itemPrice = item.unitPrice * count;
         const itemCompare = item.comparePrice * count;
+        const canonicalBase = (item.productHandle === "miroooo-x2" ? "Miroooo X2" : (item.productHandle === "miroooo-x2-heads" ? "Miroooo X2 Heads" : (item.productHandle === "miroooo-x1-heads" ? "Miroooo X1 Heads" : "Miroooo X1")));
         const isBrush = item.productHandle === "miroooo-x2" || item.productHandle === "miroooo-x";
         const displayTitle = isBrush
-          ? (item.color ? `${item.title} (${item.color})` : item.title)
-          : item.title;
+          ? (item.color ? `${canonicalBase} (${item.color})` : canonicalBase)
+          : canonicalBase;
 
         itemsHtml += `
           <div class="miroooo-cart-item" data-id="${item.id}">

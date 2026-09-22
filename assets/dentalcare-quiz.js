@@ -799,7 +799,7 @@
       id: isBundle ? "miroooo-x2-2" : (isX1 ? "miroooo-x-1" : "miroooo-x2-1"),
       productId: isX1 ? "1000000675113473" : "1000000675072187",
       productHandle: isX1 ? "miroooo-x" : "miroooo-x2",
-      title: isBundle ? "Miroooo X2 (Buy 2)" : (isX1 ? `Miroooo X1 (${selectedColor})` : `Miroooo X2 (${selectedColor})`),
+      title: isBundle ? "Miroooo X2" : (isX1 ? "Miroooo X1" : "Miroooo X2"),
       quantity: isBundle ? 2 : 1,
       bundleCount: isBundle ? 2 : 1,
       choices: isBundle ? ["Silver", "Pink"] : [selectedColor],

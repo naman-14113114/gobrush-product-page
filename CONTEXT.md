@@ -631,5 +631,20 @@ Append-only memory for the `gobrush-product-page` repository. Do not delete or s
   - `npm run verify` passed cleanly (43 required files and 17 storefront pages checked).
   - `npm run build` completed cleanly, syncing updated review assets to `public/assets_ref/`.
 
+## 2026-09-22 13:30:00 +05:30 - Miroooo X1 & Miroooo X2 Cart Canonical Title Normalization
+
+- Issue: Cart page (`/cart` and slide-out cart drawer) was displaying legacy `Brush X2 (Silver)` instead of `Miroooo X2 (Silver)` when users had prior cached cart state stored in browser `localStorage`. In `normalizeCartState()` (`cart.html`) and `getCart()` (`assets/site.js`), `item.title` from cached objects was overriding authoritative product titles.
+- Fix:
+  1. Updated `cart.html` (`normalizeCartState` and `renderCartView`): Always enforce canonical model titles (`Miroooo X1`, `Miroooo X2`, `Miroooo X1 Heads`, `Miroooo X2 Heads`) derived deterministically from `productHandle`/`productId`.
+  2. Updated `assets/site.js` (`getCart` and `renderCartDrawer`): Always map stored items to canonical `Miroooo X1` / `Miroooo X2` titles and subtitles.
+  3. Updated `cart.html` discount breakdown row to label free gift heads as `Free Miroooo X2 Heads` (or `Free Miroooo X1 Heads`).
+  4. Updated `assets/dentalcare-quiz.js` to construct base item title `Miroooo X1` / `Miroooo X2` without appending duplicate color string.
+  5. Updated `scripts/miroooo-email-system.cjs` and `scripts/test-miroooo-lifecycle.cjs` catalog definitions and tests to `Miroooo X1` / `Miroooo X2`.
+- Verification:
+  - `node --test scripts/test-miroooo-lifecycle.cjs`: 6/6 tests passed with 0 failures.
+  - `npm run verify`: Passed (43 required files, 17 storefront pages).
+  - `npm run build`: Compiled cleanly to `public/`.
+  - Ripgrep verified 0 residual instances of `Brush X` in code.
+
 
 

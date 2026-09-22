@@ -86,7 +86,7 @@ test('Klaviyo AND-of-OR groups admit exactly one recovery stage and the right ow
   assert.deepEqual(heads.map(f=>evaluate(f.definition.triggers[0].trigger_filter,{Verified:true,HasX1:true,HasX2:false})),[true,false]);
   assert.deepEqual(heads.map(f=>evaluate(f.definition.triggers[0].trigger_filter,{Verified:true,HasX1:false,HasX2:true})),[false,true]);
   const checkout=flows.find(f=>f.name.includes('Checkout validation'));
-  assert.equal(evaluate(checkout.definition.triggers[0].trigger_filter,{ItemNames:['Brush X2']}),true);
+  assert.equal(evaluate(checkout.definition.triggers[0].trigger_filter,{ItemNames:['Miroooo X2']}),true);
   assert.equal(evaluate(checkout.definition.triggers[0].trigger_filter,{ItemNames:['Unrelated brand']}),false);
   for(const f of flows) for(const group of f.definition.profile_filter.condition_groups) assert.equal(group.conditions.length,1,'Every safety prerequisite must be ANDed: '+f.name);
 });

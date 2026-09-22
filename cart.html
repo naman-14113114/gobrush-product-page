@@ -2092,8 +2092,8 @@
             } else {
               const obj = createItemObject(h, color, qty);
               if (item.image) obj.image = item.image;
-              if (item.title) obj.title = item.title;
-              if (item.subtitle) obj.subtitle = item.subtitle;
+              obj.title = (h === "miroooo-x2" ? "Miroooo X2" : (h === "miroooo-x2-heads" ? "Miroooo X2 Heads" : (h === "miroooo-x1-heads" ? "Miroooo X1 Heads" : "Miroooo X1")));
+              obj.subtitle = (h === "miroooo-x2-heads" ? "DuPont precision heads for Miroooo X2." : (h === "miroooo-x1-heads" ? "DuPont precision heads for Miroooo X1." : (h === "miroooo-x2" ? "Includes free luxury travel case, wall-mounted storage & 90-day battery life." : "Electric Toothbrush with 32,000 VPM acoustic motor & 60-day battery.")));
               merged.push(obj);
             }
           });
@@ -2436,10 +2436,11 @@
             const itemPrice = item.unitPrice * count;
             const itemCompare = item.comparePrice * count;
             const itemUrl = item.url || `/products/${item.productHandle}`;
+            const canonicalTitle = (item.productHandle === "miroooo-x2" ? "Miroooo X2" : (item.productHandle === "miroooo-x2-heads" ? "Miroooo X2 Heads" : (item.productHandle === "miroooo-x1-heads" ? "Miroooo X1 Heads" : "Miroooo X1")));
             const isBrush = item.productHandle === "miroooo-x2" || item.productHandle === "miroooo-x";
             const displayTitle = isBrush
-              ? (item.color ? `${item.title} (${item.color})` : item.title)
-              : item.title;
+              ? (item.color ? `${canonicalTitle} (${item.color})` : canonicalTitle)
+              : canonicalTitle;
 
             html += `
               <div class="cart-line-item" data-id="${item.id}" data-handle="${item.productHandle}" data-color="${item.color}">
@@ -2694,7 +2695,7 @@
             if (headsLabel) {
               headsLabel.innerHTML = `
                 <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7.01" y2="7"></line></svg>
-                Free Brush Heads ${totals.extraBrushHeadSets > 0 ? `(${totals.extraBrushHeadSets} ${totals.extraBrushHeadSets > 1 ? "Sets" : "Set"})` : ''}
+                Free ${totals.isX2 ? "Miroooo X2 Heads" : "Miroooo X1 Heads"} ${totals.extraBrushHeadSets > 0 ? `(${totals.extraBrushHeadSets} ${totals.extraBrushHeadSets > 1 ? "Sets" : "Set"})` : ''}
               `;
             }
             const headsVal = breakdownGiftHeads.querySelector("span:last-child");
