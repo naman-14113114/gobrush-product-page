@@ -1971,8 +1971,21 @@
 
       // 4. CART STATE MANAGEMENT
       let dismissedCoupons = { "2": false, "3": false, "bundle_2": false, "bundle_3": false };
-      const VALID_PROMOS = ["MIROOOO", "MIROOOO10", "FREE2HEADS", "FREE4HEADS", "2-BRUSH-BUNDLE-SPECIAL", "3-BRUSH-BUNDLE-OFFER"];
+      const VALID_PROMOS = ["MIROOOO10", "FREE2HEADS", "FREE4HEADS", "2-BRUSH-BUNDLE-SPECIAL", "3-BRUSH-BUNDLE-OFFER", "3-BRUSH-BUNDLE-SPECIAL"];
       let appliedPromoCodes = [];
+      let isMorocco = false;
+      try {
+        const geoParams = new URLSearchParams(window.location.search);
+        const countryParam = geoParams.get("country") ? `?country=${encodeURIComponent(geoParams.get("country"))}` : "";
+        fetch(`/api/geo/check${countryParam}`)
+          .then(res => res.json())
+          .then(data => {
+            if (data?.country === "MA" || data?.country === "MOROCCO" || data?.isMorocco) {
+              isMorocco = true;
+            }
+          })
+          .catch(() => {});
+      } catch (_) {}
       try {
         const storedPromos = JSON.parse(localStorage.getItem("miroooo_promo_codes") || "[]");
         if (Array.isArray(storedPromos)) {
@@ -2796,6 +2809,12 @@
           if (e) e.preventDefault();
           if (!cartState || !Array.isArray(cartState.items) || cartState.items.length === 0) return;
 
+          if (isMorocco) {
+            resetCheckoutButtons();
+            window.alert("The checkout has not been connected, and no order has been placed.");
+            return;
+          }
+
           const allCheckoutBtns = [checkoutBtn, stickyBtn].filter(Boolean);
           allCheckoutBtns.forEach(btn => {
             btn.disabled = true;
@@ -2828,6 +2847,7 @@
           const items = cartState.items.map(item => ({
             productId: item.productId,
             variantId: item.variantId,
+            color: item.color,
             quantity: item.quantity
           }));
 
@@ -2836,6 +2856,7 @@
             items.push({
               productId: "1000000675616058",
               variantId: "1000020718937117",
+              color: "Heads",
               quantity: totals.extraBrushHeadSets
             });
           }
@@ -2883,100 +2904,38 @@
                 if (prepData && prepData.checkoutUrl) {
                   checkoutUrl = prepData.checkoutUrl;
                 }
+              } else {
+                const prepErr = await prepRes.json().catch(() => null);
+                if (prepErr?.error) {
+                  resetCheckoutButtons();
+                  window.alert(prepErr.error);
+                  return;
+                }
               }
             } catch (err) {
               console.warn("Server prepare fallback, using direct client API", err);
             }
 
-            // Step 2: Direct Client Fallback if API route unavailable
             if (!checkoutUrl) {
-              if (validDiscountCodes.length > 1) {
-                throw new Error("Could not apply every promo code to checkout.");
-              }
-
-              const createRes = await fetch("https://muuhu.onshopbase.com/api/checkout/next/cart.json", {
-                method: "POST",
-                headers: { "Accept": "application/json" }
-              });
-              const createJson = await createRes.json();
-              const cartToken = createJson?.result?.token;
-              const checkoutToken = createJson?.result?.checkout_token;
-
-              if (!cartToken || !checkoutToken) {
-                throw new Error("Could not initialize PlusBase checkout session");
-              }
-
-              const properties = [];
-              allowed.forEach(key => {
-                if (attribution[key]) {
-                  properties.push({ name: `_blfm_${key}`, value: String(attribution[key]).slice(0, 500) });
-                }
-              });
-
-              for (const itm of items) {
-                await fetch(`https://muuhu.onshopbase.com/api/checkout/next/cart.json?cart_token=${encodeURIComponent(cartToken)}`, {
-                  method: "PUT",
-                  headers: {
-                    "Accept": "application/json",
-                    "Content-Type": "application/json"
-                  },
-                  body: JSON.stringify({
-                    cartItem: {
-                      product_id: Number(itm.productId),
-                      variant_id: Number(itm.variantId),
-                      qty: Number(itm.quantity) || 1,
-                      properties: properties,
-                      metadata: { image_preview_id: "" }
-                    },
-                    from: "add-to-cart"
-                  })
-                });
-              }
-
-              checkoutUrl = `https://miroooo.us/checkouts/${checkoutToken}`;
-              if (checkoutUrlFallbackPromo) {
-                checkoutUrl += `?discount=${encodeURIComponent(checkoutUrlFallbackPromo)}`;
-              }
-              const allowedParams = new URLSearchParams();
-              allowed.forEach(k => {
-                if (attribution[k]) allowedParams.set(k, attribution[k]);
-              });
-              const allowedStr = allowedParams.toString();
-              if (allowedStr) {
-                checkoutUrl += (checkoutUrl.includes("?") ? "&" : "?") + allowedStr;
-              }
+              throw new Error("Could not initialize checkout session.");
             }
 
             window.dispatchEvent(new CustomEvent("miroooo:started-checkout", {
               detail: { checkoutUrl: checkoutUrl }
             }));
-            window.location.href = checkoutUrl;
-          } catch (error) {
-            console.error("Checkout redirection failed, redirecting to PlusBase checkout:", error);
-            if (validDiscountCodes.length > 1) {
-              resetCheckoutButtons();
-              window.alert("We couldn't apply every promo code. Please try checkout again.");
-              return;
-            }
 
-            try {
-              const primaryItem = cartState.items[0] || {};
-              const firstVariantId = primaryItem.variantId || "1000020700182883";
-              const firstProductId = primaryItem.productId || "1000000675072187";
-              const bridgeUrl = new URL("https://miroooo.us/pages/add-to-cart");
-              bridgeUrl.searchParams.set("product_id", firstProductId);
-              bridgeUrl.searchParams.set("variant_id", firstVariantId);
-              bridgeUrl.searchParams.set("quantity", String(primaryItem.quantity || 1));
-              bridgeUrl.searchParams.set("source", primaryItem.productHandle || "miroooo");
-              allowed.forEach(k => {
-                if (attribution[k]) bridgeUrl.searchParams.set(k, attribution[k]);
-              });
-              if (checkoutUrlFallbackPromo) bridgeUrl.searchParams.set("discount", checkoutUrlFallbackPromo);
-              window.location.href = bridgeUrl.toString();
-            } catch (_) {
-              resetCheckoutButtons();
-              window.location.href = "https://miroooo.us/checkouts";
-            }
+            const checkoutLink = document.createElement("a");
+            checkoutLink.href = checkoutUrl;
+            checkoutLink.rel = "noreferrer noopener";
+            checkoutLink.referrerPolicy = "no-referrer";
+            checkoutLink.hidden = true;
+            document.body.appendChild(checkoutLink);
+            checkoutLink.click();
+            checkoutLink.remove();
+          } catch (error) {
+            console.error("Checkout redirection failed:", error);
+            resetCheckoutButtons();
+            window.alert(error.message || "Failed to start checkout. Please try again.");
           }
         }
 
