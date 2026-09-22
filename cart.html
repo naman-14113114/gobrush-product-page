@@ -2845,6 +2845,9 @@
 
           // Build complete items payload from all items in cart
           const items = cartState.items.map(item => ({
+            id: item.id,
+            productHandle: item.productHandle,
+            title: item.title,
             productId: item.productId,
             variantId: item.variantId,
             color: item.color,
@@ -2854,8 +2857,11 @@
           // Add extra free brush heads set(s) for X2 when Buy 2 (1 set = 2 heads) or Buy 3 (2 sets = 4 heads)
           if (totals.extraBrushHeadSets > 0) {
             items.push({
-              productId: "1000000675616058",
-              variantId: "1000020718937117",
+              id: "miroooo-x1-heads:free",
+              productHandle: "miroooo-x1-heads",
+              title: "Miroooo X1 Heads",
+              productId: "1000000675471182",
+              variantId: "1000020710139724",
               color: "Heads",
               quantity: totals.extraBrushHeadSets
             });
