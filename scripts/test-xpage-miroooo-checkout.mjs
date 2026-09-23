@@ -1,39 +1,51 @@
 import assert from "node:assert";
-import { createXpageCartCheckout, mapCartToXpageVariants, XPAGE_MIROOOO_VARIANTS } from "../lib/xpage-checkout.js";
+import { createXpageCartCheckout, mapCartToXpageVariants, XPAGE_VARIANTS, XPAGE_MIROOOO_VARIANTS } from "../lib/xpage-checkout.js";
 import handler from "../api/checkout/prepare.js";
 
-console.log("--- TEST 1: Variant Mapping ---");
+console.log("--- TEST 1: Miroooo X1 & X2 Variant Mapping ---");
 const testLines = [
+  // Miroooo X1
   { productId: "miroooo-x", color: "Pink", quantity: 1 },
   { productId: "miroooo-x", color: "Grey", quantity: 2 },
   { productId: "miroooo-x", color: "Silver", quantity: 1 },
   { productId: "miroooo-x1-heads", color: "Heads", quantity: 3 },
-  // Standalone heads as serialized by cart.html:
   { id: "miroooo-x1-heads:Default", productHandle: "miroooo-x1-heads", productId: "1000000675471182", variantId: "1000020710139724", title: "Miroooo X1 Heads", color: "Default", quantity: 2 },
-  // Standalone heads with only PlusBase numeric IDs:
   { productId: "1000000675471182", variantId: "1000020710139724", color: "Default", quantity: 1 },
-  // Standalone X2 heads with only PlusBase numeric IDs:
+
+  // Miroooo X2
+  { productId: "miroooo-x2", color: "Pink", quantity: 1 },
+  { productId: "miroooo-x2", color: "Grey", quantity: 1 },
+  { productId: "miroooo-x2", color: "Silver", quantity: 2 },
+  { productId: "miroooo-x2-heads", color: "Default", quantity: 3 },
+  { id: "miroooo-x2-heads:Default", productHandle: "miroooo-x2-heads", productId: "1000000675616058", variantId: "1000020718937117", title: "Miroooo X2 Heads", color: "Default", quantity: 2 },
   { productId: "1000000675616058", variantId: "1000020718937117", color: "Default", quantity: 1 },
 ];
 
 const mapped = mapCartToXpageVariants(testLines);
 console.log("Mapped lines:", mapped);
 
-assert.strictEqual(mapped.find(i => i.variant_id === XPAGE_MIROOOO_VARIANTS.pink)?.quantity, 1);
-assert.strictEqual(mapped.find(i => i.variant_id === XPAGE_MIROOOO_VARIANTS.grey)?.quantity, 2);
-assert.strictEqual(mapped.find(i => i.variant_id === XPAGE_MIROOOO_VARIANTS.silver)?.quantity, 1);
-assert.strictEqual(mapped.find(i => i.variant_id === XPAGE_MIROOOO_VARIANTS.heads)?.quantity, 7); // 3 + 2 + 1 + 1
-console.log("✓ Variant mapping passed!");
+// Verify X1 mappings
+assert.strictEqual(mapped.find(i => i.variant_id === XPAGE_VARIANTS.x1_pink)?.quantity, 1);
+assert.strictEqual(mapped.find(i => i.variant_id === XPAGE_VARIANTS.x1_grey)?.quantity, 2);
+assert.strictEqual(mapped.find(i => i.variant_id === XPAGE_VARIANTS.x1_silver)?.quantity, 1);
+assert.strictEqual(mapped.find(i => i.variant_id === XPAGE_VARIANTS.x1_heads)?.quantity, 6); // 3 + 2 + 1
 
-console.log("\n--- TEST 1B: Standalone Miroooo X1 Heads Live XPage Session Creation ---");
-const sessionHeadsOnly = await createXpageCartCheckout({
+// Verify X2 mappings
+assert.strictEqual(mapped.find(i => i.variant_id === XPAGE_VARIANTS.x2_pink)?.quantity, 1);
+assert.strictEqual(mapped.find(i => i.variant_id === XPAGE_VARIANTS.x2_grey)?.quantity, 1);
+assert.strictEqual(mapped.find(i => i.variant_id === XPAGE_VARIANTS.x2_silver)?.quantity, 2);
+assert.strictEqual(mapped.find(i => i.variant_id === XPAGE_VARIANTS.x2_heads)?.quantity, 6); // 3 + 2 + 1
+console.log("✓ Variant mapping for X1 and X2 passed!");
+
+console.log("\n--- TEST 2: Standalone Miroooo X2 Heads Live XPage Session ---");
+const sessionX2Heads = await createXpageCartCheckout({
   cart: [
     {
-      id: "miroooo-x1-heads:Default",
-      productHandle: "miroooo-x1-heads",
-      productId: "1000000675471182",
-      variantId: "1000020710139724",
-      title: "Miroooo X1 Heads",
+      id: "miroooo-x2-heads:Default",
+      productHandle: "miroooo-x2-heads",
+      productId: "1000000675616058",
+      variantId: "1000020718937117",
+      title: "Miroooo X2 Heads",
       color: "Default",
       quantity: 2
     }
@@ -43,102 +55,143 @@ const sessionHeadsOnly = await createXpageCartCheckout({
   currency: "GBP"
 });
 
-console.log("Standalone heads checkout URL:", sessionHeadsOnly.checkoutUrl);
-console.log("Standalone heads cart payload:", sessionHeadsOnly.cart);
-assert.ok(sessionHeadsOnly.ok);
-assert.strictEqual(sessionHeadsOnly.cart.length, 1);
-assert.strictEqual(sessionHeadsOnly.cart[0].variant_id, XPAGE_MIROOOO_VARIANTS.heads);
-assert.strictEqual(sessionHeadsOnly.cart[0].quantity, 2);
-console.log("\n--- TEST 1C: Mixed Cart (Pink Brush + Miroooo X1 Heads) Live XPage Session ---");
-const sessionMixed = await createXpageCartCheckout({
+console.log("Standalone X2 heads checkout URL:", sessionX2Heads.checkoutUrl);
+console.log("Standalone X2 heads cart payload:", sessionX2Heads.cart);
+assert.ok(sessionX2Heads.ok);
+assert.strictEqual(sessionX2Heads.cart.length, 1);
+assert.strictEqual(sessionX2Heads.cart[0].variant_id, XPAGE_VARIANTS.x2_heads);
+assert.strictEqual(sessionX2Heads.cart[0].quantity, 2);
+console.log("✓ Standalone Miroooo X2 Heads session passed!");
+
+console.log("\n--- TEST 3: Miroooo X2 Buy 1 + MIROOOO10 Live XPage Session ---");
+const sessionX2Single = await createXpageCartCheckout({
   cart: [
     {
-      id: "miroooo-x:Pink",
-      productHandle: "miroooo-x",
-      productId: "1000000675113473",
-      variantId: "1000020700958562",
-      title: "Miroooo X1",
+      id: "miroooo-x2:Silver",
+      productHandle: "miroooo-x2",
+      productId: "1000000675072187",
+      variantId: "1000020700182884",
+      title: "Miroooo X2",
+      color: "Silver",
+      quantity: 1
+    }
+  ],
+  discountCode: "MIROOOO10",
+  attribution: { utm_source: "bing", msclkid: "msclkid-x2-test" },
+  currency: "GBP"
+});
+
+console.log("Miroooo X2 Buy 1 checkout URL:", sessionX2Single.checkoutUrl);
+console.log("Miroooo X2 Buy 1 cart payload:", sessionX2Single.cart);
+assert.ok(sessionX2Single.ok);
+assert.ok(sessionX2Single.checkoutUrl.includes("8e9c584880e3.myxpage.shop"));
+assert.ok(sessionX2Single.checkoutUrl.includes("discount=MIROOOO10"));
+assert.strictEqual(sessionX2Single.cart[0].variant_id, XPAGE_VARIANTS.x2_silver);
+console.log("✓ Miroooo X2 Buy 1 + MIROOOO10 passed!");
+
+console.log("\n--- TEST 4: Miroooo X2 Buy 2 (+ 2-BRUSH-BUNDLE-SPECIAL + 1 Free Miroooo X2 Heads set) Live Session ---");
+const sessionX2Buy2 = await createXpageCartCheckout({
+  cart: [
+    {
+      id: "miroooo-x2:Pink",
+      productHandle: "miroooo-x2",
+      productId: "1000000675072187",
+      variantId: "1000020700182882",
+      title: "Miroooo X2",
       color: "Pink",
       quantity: 1
     },
     {
-      id: "miroooo-x1-heads:Default",
-      productHandle: "miroooo-x1-heads",
-      productId: "1000000675471182",
-      variantId: "1000020710139724",
-      title: "Miroooo X1 Heads",
-      color: "Default",
-      quantity: 2
+      id: "miroooo-x2:Silver",
+      productHandle: "miroooo-x2",
+      productId: "1000000675072187",
+      variantId: "1000020700182884",
+      title: "Miroooo X2",
+      color: "Silver",
+      quantity: 1
+    },
+    {
+      id: "miroooo-x2-heads:free",
+      productHandle: "miroooo-x2-heads",
+      productId: "1000000675616058",
+      variantId: "1000020718937117",
+      title: "Miroooo X2 Heads",
+      color: "Heads",
+      quantity: 1
     }
-  ],
-  discountCode: "MIROOOO10",
-  attribution: { utm_source: "google" },
-  currency: "GBP"
-});
-
-console.log("Mixed checkout URL:", sessionMixed.checkoutUrl);
-console.log("Mixed cart payload:", sessionMixed.cart);
-assert.ok(sessionMixed.ok);
-assert.strictEqual(sessionMixed.cart.length, 2);
-assert.strictEqual(sessionMixed.cart.find(i => i.variant_id === XPAGE_MIROOOO_VARIANTS.pink)?.quantity, 1);
-assert.strictEqual(sessionMixed.cart.find(i => i.variant_id === XPAGE_MIROOOO_VARIANTS.heads)?.quantity, 2);
-console.log("✓ Mixed Cart (Pink Brush + Miroooo X1 Heads) passed!");
-
-console.log("\n--- TEST 2: Live XPage Session Creation (Single Brush + MIROOOO10) ---");
-const session1 = await createXpageCartCheckout({
-  cart: [
-    { color: "Pink", quantity: 1 },
-    { productId: "miroooo-x1-heads", quantity: 1 }
-  ],
-  discountCode: "MIROOOO10",
-  attribution: { utm_source: "bing", msclkid: "test-msclkid-123" },
-  currency: "GBP"
-});
-
-console.log("Single brush checkout URL:", session1.checkoutUrl);
-assert.ok(session1.ok);
-assert.ok(session1.checkoutUrl.includes("8e9c584880e3.myxpage.shop"));
-assert.ok(session1.checkoutUrl.includes("discount=MIROOOO10"));
-console.log("✓ Single brush + MIROOOO10 passed!");
-
-console.log("\n--- TEST 3: Live XPage Session Creation (Buy 2 Brushes + 2-BRUSH-BUNDLE-SPECIAL + FREE2HEADS) ---");
-const session2 = await createXpageCartCheckout({
-  cart: [
-    { color: "Silver", quantity: 1 },
-    { color: "Grey", quantity: 1 },
-    { productId: "miroooo-x1-heads", quantity: 1 }
   ],
   discountCode: "2-BRUSH-BUNDLE-SPECIAL",
   attribution: { utm_source: "google" },
   currency: "GBP"
 });
 
-console.log("Buy 2 checkout URL:", session2.checkoutUrl);
-assert.ok(session2.ok);
-assert.ok(session2.checkoutUrl.includes("8e9c584880e3.myxpage.shop"));
-assert.ok(session2.checkoutUrl.includes("discount=2-BRUSH-BUNDLE-SPECIAL"));
-console.log("✓ Buy 2 session passed!");
+console.log("Miroooo X2 Buy 2 checkout URL:", sessionX2Buy2.checkoutUrl);
+console.log("Miroooo X2 Buy 2 cart payload:", sessionX2Buy2.cart);
+assert.ok(sessionX2Buy2.ok);
+assert.ok(sessionX2Buy2.checkoutUrl.includes("8e9c584880e3.myxpage.shop"));
+assert.ok(sessionX2Buy2.checkoutUrl.includes("discount=2-BRUSH-BUNDLE-SPECIAL"));
+assert.strictEqual(sessionX2Buy2.cart.find(i => i.variant_id === XPAGE_VARIANTS.x2_pink)?.quantity, 1);
+assert.strictEqual(sessionX2Buy2.cart.find(i => i.variant_id === XPAGE_VARIANTS.x2_silver)?.quantity, 1);
+assert.strictEqual(sessionX2Buy2.cart.find(i => i.variant_id === XPAGE_VARIANTS.x2_heads)?.quantity, 1);
+console.log("✓ Miroooo X2 Buy 2 session passed!");
 
-console.log("\n--- TEST 4: Live XPage Session Creation (Buy 3 Brushes + 3-BRUSH-BUNDLE-OFFER + FREE4HEADS) ---");
-const session3 = await createXpageCartCheckout({
+console.log("\n--- TEST 5: Miroooo X2 Buy 3 (+ 3-BRUSH-BUNDLE-OFFER + 2 Free Miroooo X2 Heads sets) Live Session ---");
+const sessionX2Buy3 = await createXpageCartCheckout({
   cart: [
-    { color: "Pink", quantity: 1 },
-    { color: "Silver", quantity: 1 },
-    { color: "Grey", quantity: 1 },
-    { productId: "miroooo-x1-heads", quantity: 2 }
+    {
+      id: "miroooo-x2:Pink",
+      productHandle: "miroooo-x2",
+      productId: "1000000675072187",
+      variantId: "1000020700182882",
+      title: "Miroooo X2",
+      color: "Pink",
+      quantity: 1
+    },
+    {
+      id: "miroooo-x2:Grey",
+      productHandle: "miroooo-x2",
+      productId: "1000000675072187",
+      variantId: "1000020700182883",
+      title: "Miroooo X2",
+      color: "Grey",
+      quantity: 1
+    },
+    {
+      id: "miroooo-x2:Silver",
+      productHandle: "miroooo-x2",
+      productId: "1000000675072187",
+      variantId: "1000020700182884",
+      title: "Miroooo X2",
+      color: "Silver",
+      quantity: 1
+    },
+    {
+      id: "miroooo-x2-heads:free",
+      productHandle: "miroooo-x2-heads",
+      productId: "1000000675616058",
+      variantId: "1000020718937117",
+      title: "Miroooo X2 Heads",
+      color: "Heads",
+      quantity: 2
+    }
   ],
   discountCode: "3-BRUSH-BUNDLE-OFFER",
   attribution: { utm_source: "bing" },
   currency: "GBP"
 });
 
-console.log("Buy 3 checkout URL:", session3.checkoutUrl);
-assert.ok(session3.ok);
-assert.ok(session3.checkoutUrl.includes("8e9c584880e3.myxpage.shop"));
-assert.ok(session3.checkoutUrl.includes("discount=3-BRUSH-BUNDLE-OFFER"));
-console.log("✓ Buy 3 session passed!");
+console.log("Miroooo X2 Buy 3 checkout URL:", sessionX2Buy3.checkoutUrl);
+console.log("Miroooo X2 Buy 3 cart payload:", sessionX2Buy3.cart);
+assert.ok(sessionX2Buy3.ok);
+assert.ok(sessionX2Buy3.checkoutUrl.includes("8e9c584880e3.myxpage.shop"));
+assert.ok(sessionX2Buy3.checkoutUrl.includes("discount=3-BRUSH-BUNDLE-OFFER"));
+assert.strictEqual(sessionX2Buy3.cart.find(i => i.variant_id === XPAGE_VARIANTS.x2_pink)?.quantity, 1);
+assert.strictEqual(sessionX2Buy3.cart.find(i => i.variant_id === XPAGE_VARIANTS.x2_grey)?.quantity, 1);
+assert.strictEqual(sessionX2Buy3.cart.find(i => i.variant_id === XPAGE_VARIANTS.x2_silver)?.quantity, 1);
+assert.strictEqual(sessionX2Buy3.cart.find(i => i.variant_id === XPAGE_VARIANTS.x2_heads)?.quantity, 2);
+console.log("✓ Miroooo X2 Buy 3 session passed!");
 
-console.log("\n--- TEST 5: Morocco IP Blocker in prepare.js ---");
+console.log("\n--- TEST 6: Morocco IP Blocker in prepare.js ---");
 let moroccoStatus = 0;
 let moroccoBody = null;
 
@@ -160,7 +213,17 @@ const mockReqMorocco = {
     "x-vercel-ip-country": "MA"
   },
   body: {
-    items: [{ color: "Pink", quantity: 1 }]
+    items: [
+      {
+        id: "miroooo-x2:Pink",
+        productHandle: "miroooo-x2",
+        productId: "1000000675072187",
+        variantId: "1000020700182882",
+        title: "Miroooo X2",
+        color: "Pink",
+        quantity: 1
+      }
+    ]
   }
 };
 

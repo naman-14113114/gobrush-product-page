@@ -1,6 +1,7 @@
-import { createXpageCartCheckout, XPAGE_MIROOOO_VARIANTS } from "../../lib/xpage-checkout.js";
+import { createXpageCartCheckout, XPAGE_VARIANTS, XPAGE_MIROOOO_VARIANTS } from "../../lib/xpage-checkout.js";
 
 const validDiscountCodes = [
+  "MIROOOO",
   "MIROOOO10",
   "FREE2HEADS",
   "FREE4HEADS",
