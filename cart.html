@@ -3082,7 +3082,9 @@
               promoInput.value = "";
               if (promoMsg) {
                 promoMsg.className = "cart-promo-msg cart-promo-msg--success";
-                promoMsg.textContent = `Enter ${code} again at secure checkout to apply it. Bundle pricing will not combine with this code.`;
+                promoMsg.textContent = computeTotals(cartState).bundleEligible
+                  ? `${code} is included with your bundle offer. Check the final total at secure checkout.`
+                  : `Enter ${code} at secure checkout for this cart. Check the final total before paying.`;
                 promoMsg.style.display = "block";
               }
               renderCartView();
