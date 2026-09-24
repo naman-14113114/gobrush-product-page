@@ -521,15 +521,6 @@
             </nav>
             <div class="drawer__footer grid w-full">
               <div class="drawer__footer-bottom flex items-center justify-between gap-6">
-                <a href="/order-tracking" class="button button--primary icon-with-text" style="background-color: #000000 !important; border: none !important; outline: none !important; color: #ffffff !important; box-shadow: none !important;" is="hover-button" rel="nofollow" aria-label="Account">
-                  <span class="btn-fill" data-fill></span>
-                  <span class="btn-text">
-                    <svg class="icon icon-account-alt icon-xs" viewBox="0 0 16 17" stroke="#ffffff" fill="none" style="stroke: #ffffff !important; color: #ffffff !important;" xmlns="http://www.w3.org/2000/svg">
-                      <rect width="6.5" height="6.5" x="4.75" y="1.917" rx="3.25" stroke="#ffffff"></rect>
-                      <path stroke-linecap="round" stroke="#ffffff" d="M8 10.834c1 0 2.667.222 3 .333.333.11 2.467.533 3 1.333.667 1 .667 1.334.667 2.667M8 10.834c-1 0-2.667.222-3 .333-.333.11-2.467.533-3 1.333-.667 1-.667 1.334-.667 2.667"></path>
-                    </svg>
-                  </span>
-                </a>
               </div>
             </div>
           </div>
@@ -576,28 +567,6 @@
               </nav>
             </div>
             <div class="header__buttons flex items-center gap-1d5">
-              <div class="header__dropdown header__account-dropdown relative" data-dropdown>
-                <button type="button" class="account-link header__dropdown-toggle flex items-center justify-center cursor-pointer" aria-expanded="false" aria-haspopup="true" aria-label="Account" is="magnet-button">
-                  <span class="sr-only">Account</span>
-                  ${accountIcon}
-                </button>
-                <div class="dropdown-menu dropdown-menu--right" role="menu">
-                  <div class="dropdown-menu__header">
-                    <p class="dropdown-menu__eyebrow">MIROOOO ACCOUNT</p>
-                    <p class="dropdown-menu__subtitle">Save profile and order history</p>
-                  </div>
-                  <div class="dropdown-menu__body">
-                    <a href="https://miroooo.us/sign-in" class="dropdown-item" role="menuitem">
-                      ${userMenuIcon}
-                      <div class="dropdown-item__title">Sign in</div>
-                    </a>
-                    <a href="https://miroooo.us/sign-up" class="dropdown-item" role="menuitem">
-                      ${userMenuIcon}
-                      <div class="dropdown-item__title">Sign up</div>
-                    </a>
-                  </div>
-                </div>
-              </div>
               <a class="site-actions__bag cart-drawer-button flex items-center justify-center relative" href="/cart" aria-label="Cart" is="magnet-link" aria-controls="CartDrawer" aria-expanded="false" data-no-instant>
                 <span class="sr-only">Cart</span>
                 ${bagIcon}
@@ -696,7 +665,6 @@
                 <li><a href="/smile-coach">Free Smile Coach App</a></li>
                 <li><a href="/dentalcare-quiz">Dental Care Quiz</a></li>
                 <li><a href="/contact">Contact Us</a></li>
-                <li><a href="https://miroooo.us/pages/order-tracking">Order Tracking</a></li>
                 <li><a href="/about-us">About Us</a></li>
                 <li><a href="/guides">Oral Care Guides</a></li>
                 <li><a href="/faq">FAQs</a></li>
@@ -2503,28 +2471,106 @@
     }
   });
 
-  // Global Button Click Loader (Exact from muuhu-store)
+  // Global Button Click Loader (Strictly Scoped to Filled CTA Buttons ONLY)
   document.addEventListener("click", (e) => {
-    // Ignore navigation/drawer toggles, review controls, gift message, and small controls from receiving intrusive 5-dot overlay
+    // 1. STRICT EXCLUSIONS: Ignore accordions, FAQ questions/toggles, header navigation, mobile drawers, footers, swatches, steppers, remove buttons, review controls, modals, and plaintext cards
     if (e.target.closest(
-      ".nav-toggle, .menu-drawer-button, .drawer__close, .mobile-panel__close, " +
-      ".miroooo-cart-close-btn, .header__dropdown-toggle, [data-dropdown] button, " +
-      ".miroooo-stepper-btn, .cart-stepper-btn, .miroooo-cart-remove-btn, .cart-remove-button, " +
-      "[aria-controls='MenuDrawer'], [aria-controls='CartDrawer'], .site-actions__bag, .flickity-button, " +
-      ".miroooo-helpful-btn, .miroooo-lightbox-helpful-btn, .miroooo-read-more-btn, " +
-      ".miroooo-star-btn, .miroooo-star-trigger, .miroooo-sort-trigger, .miroooo-dropdown-trigger, " +
-      ".miroooo-dropdown-item, .miroooo-filter-pill, .miroooo-breakdown-row, " +
-      ".miroooo-lightbox-close, .miroooo-write-close, .miroooo-lightbox-close-btn, .miroooo-write-close-btn, " +
-      ".miroooo-form-cancel, .miroooo-success-close, .miroooo-empty-reset-btn, #miroooo-clear-all-link, " +
-      ".accordion-summary, summary, [is='accordion-details'], " +
-      ".gift-msg-toggle, #gift-msg-toggle-btn, .gift-msg-save-btn, #gift-msg-save-btn, " +
-      ".cart-discount-toggle, #discount-toggle-btn, .cart-promo-remove-btn, #remove-promo-btn, #cart-more-discount-link"
+      ".faq-card__button, .faq-card, [data-faq-card], .faq-accordion, .faq-item, .faq-question, " +
+      ".accordion-summary, summary, [is='accordion-details'], .details__summary, .product__accordion, " +
+      ".accordion__toggle, .accordion__title, .accordion-item, .accordion-header, [aria-controls^='faq'], [id^='faq-trigger'], " +
+      ".site-header, .menu-drawer, #MenuDrawer, .drawer__menu, nav, .site-nav, .header__menu, .header__dropdown, [data-dropdown], .header__dropdown-toggle, .nav-toggle, .menu-drawer-button, .header-cart-icon, .cart-drawer-button, .site-actions__bag, .header__menu-item, .drawer__menu-item, .menu__item, .account-link, " +
+      ".site-footer, .service-strip, .contact-service-card, .guide-card, .policy-card, " +
+      ".color-swatch-btn, .standalone-swatch-btn, .brush-color-swatches, .brush-selection-row, .tier-addon-checkbox-wrap, .bundle-tier-card, .tier-header-btn, .tier-gift-strip, .swatch, .swatch-btn, .color-swatch, .variant-picker__option, .quiz-option, .quiz-reset-btn, [data-option-id], " +
+      ".miroooo-stepper-btn, .cart-stepper-btn, .miroooo-cart-remove-btn, .cart-remove-button, .drawer__close, .miroooo-cart-close-btn, .mobile-panel__close, .flickity-button, .flickity-prev-next-button, .flickity-page-dots, .quick-view__button, .miroooo-gallery__thumb, .miroooo-gallery__nav-arrow, " +
+      ".miroooo-helpful-btn, .miroooo-lightbox-helpful-btn, .miroooo-read-more-btn, .miroooo-star-btn, .miroooo-star-trigger, .miroooo-sort-trigger, .miroooo-dropdown-trigger, .miroooo-dropdown-item, .miroooo-filter-pill, .miroooo-breakdown-row, .miroooo-lightbox-close, .miroooo-write-close, .miroooo-lightbox-close-btn, .miroooo-write-close-btn, .miroooo-form-cancel, .miroooo-success-close, .miroooo-empty-reset-btn, #miroooo-clear-all-link, " +
+      ".gift-msg-toggle, #gift-msg-toggle-btn, .gift-msg-save-btn, #gift-msg-save-btn, .cart-discount-toggle, #discount-toggle-btn, .cart-promo-remove-btn, #remove-promo-btn, #cart-more-discount-link, .cart-promo-apply-btn, .cart-promo-pill-remove, #quiz-retake-btn, dialog, .modal-close, " +
+      ".button--outline, .btn--outline, .coach-button--quiet, .coach-button--secondary, .text-button, .gb-text-link, .contact-social-link, .about-contact-pill"
     )) {
       return;
     }
 
-    const btn = e.target.closest("button, a.gb-button, a.btn, .btn, .cart-checkout-cta-btn, .product-form__submit, #hero-cta, #sticky-bar-cta-btn, .miroooo-sticky-btn, .miroooo-checkout-btn, .proxy-bundle-btn, [is='magnet-button'], [is='hover-button'], button[type='submit']");
-    if (!btn || btn.disabled) return;
+    // 2. TARGET ONLY FILLED ACTION CTA BUTTONS
+    const ctaSelector = [
+      // Home page CTAs
+      "a.gb-button",
+      ".gb-button",
+      ".gb-button--light",
+      ".gb-button--dark",
+      ".gb-button--primary",
+      ".btn-hero-primary",
+      ".hero__button",
+
+      // Product page Add to Cart buttons & Sticky Add to Cart buttons
+      ".product-form__submit",
+      "#hero-cta",
+      ".hero-cta",
+      "#sticky-bar-cta-btn",
+      ".miroooo-sticky-btn",
+      ".sticky-add-to-cart__button",
+      ".proxy-bundle-btn",
+      "button[data-action='add-to-cart']",
+      "button#AddToCart",
+      ".smile-coach-btn",
+
+      // About Us page primary buttons
+      ".about-hero__cta",
+      ".about-btn-action",
+      ".about-page-wrapper .button--primary",
+      "body[data-page='about'] .button--primary",
+      "body[data-page='about-us'] .button--primary",
+
+      // Contact Us page Send button
+      "button[type='submit']",
+      ".contact-form__submit",
+      ".contact-submit-btn",
+      "#contact-submit-btn",
+      ".contact-form-submit",
+      "form.contact-form button[type='submit']",
+      "form#contact-form button[type='submit']",
+      "form#contact-form-element button[type='submit']",
+
+      // Cart Drawer & Cart Page Checkout buttons
+      ".cart-checkout-cta-btn",
+      "#main-checkout-btn",
+      "#sticky-checkout-btn",
+      ".miroooo-checkout-btn",
+      ".cart-drawer-checkout-btn",
+
+      // Dental Quiz Next/CTA buttons
+      ".quiz-btn-next",
+      "#quiz-next-btn",
+      "[data-quiz-next]",
+      "#quiz-primary-cta",
+      "#quiz-bottom-cta",
+      "[data-quiz-cta]",
+      ".quiz-actions .button--primary",
+      ".results-cta-btn-primary",
+
+      // Smile Coach action buttons
+      ".coach-start-btn",
+      ".coach-action-btn",
+      ".coach-button--primary",
+      "#onboarding-next",
+      "#onboarding-finish",
+      "[data-start-session]"
+    ].join(", ");
+
+    const btn = e.target.closest(ctaSelector);
+    if (!btn || btn.disabled || btn.hasAttribute("disabled")) return;
+
+    // Reject outline, secondary, quiet, or toggle elements
+    if (
+      btn.classList.contains("button--outline") ||
+      btn.classList.contains("btn--outline") ||
+      btn.classList.contains("button--secondary") ||
+      btn.classList.contains("coach-button--quiet") ||
+      btn.classList.contains("coach-button--secondary") ||
+      btn.classList.contains("contact-faq-link") ||
+      btn.classList.contains("faq-card__button") ||
+      btn.hasAttribute("aria-expanded")
+    ) {
+      return;
+    }
 
     // Detect background brightness to choose white vs black dots
     const compStyle = window.getComputedStyle(btn);

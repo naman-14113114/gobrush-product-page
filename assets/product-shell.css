@@ -172,6 +172,7 @@
   display: flex !important;
   align-items: center !important;
   justify-content: flex-end !important;
+  gap: 14px !important;
 }
 
 #shopify-section-sections--24203576967513__header .header__logo-link {
@@ -239,14 +240,7 @@
   #shopify-section-sections--24203576967513__header .site-nav--right {
     display: flex !important;
     align-items: center !important;
-    margin-right: 28px !important;
-  }
-
-  .header__buttons .account-link,
-  .site-actions__track,
-  .header__buttons a[href*="customer_authentication"],
-  .header__buttons a[href="/order-tracking"] {
-    display: inline-flex !important;
+    margin-right: 0 !important;
   }
 }
 
@@ -295,17 +289,6 @@
 
   #shopify-section-sections--24203576967513__header .header__icons--end .menu-drawer-button {
     display: none !important;
-  }
-
-  .header__buttons .account-link,
-  .site-actions__track,
-  .header__buttons a[href*="customer_authentication"],
-  .header__buttons a[href="/order-tracking"],
-  #shopify-section-sections--24203576967513__header .header__icons--end a[href="/order-tracking"],
-  #shopify-section-sections--24203576967513__header .header__icons--end .account-link {
-    display: inline-flex !important;
-    align-items: center !important;
-    justify-content: center !important;
   }
 
   .header__buttons .cart-drawer-button,

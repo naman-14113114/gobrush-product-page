@@ -15,7 +15,6 @@
     {"source":"/policies/refund-policy","destination":"/refund-policy.html"},
     {"source":"/policies/terms-of-service","destination":"/terms.html"},
     {"source":"/policies/cookies-policy","destination":"/cookies-policy.html"},
-    {"source":"/pages/order-tracking","destination":"/order-tracking.html"},
     {"source":"/pages/contact-us","destination":"/contact.html"},
     {"source":"/app","destination":"/smile-coach.html"},
     {"source":"/about-us","destination":"/about-us.html"},
@@ -27,7 +26,9 @@
     {"source":"/about","destination":"/about-us","permanent":true},
     {"source":"/quiz","destination":"/dentalcare-quiz","permanent":true},
     {"source":"/miroooo-x","destination":"/products/miroooo-x","permanent":true},
-    {"source":"/miroooo-x2","destination":"/products/miroooo-x2","permanent":true}
+    {"source":"/miroooo-x2","destination":"/products/miroooo-x2","permanent":true},
+    {"source":"/order-tracking","destination":"/delivery-returns","permanent":true},
+    {"source":"/pages/order-tracking","destination":"/delivery-returns","permanent":true}
   ],
   "headers": [
     {"source":"/(.*)","headers":[{"key":"X-Content-Type-Options","value":"nosniff"},{"key":"Referrer-Policy","value":"strict-origin-when-cross-origin"},{"key":"Permissions-Policy","value":"camera=(), microphone=(), geolocation=()"}]},

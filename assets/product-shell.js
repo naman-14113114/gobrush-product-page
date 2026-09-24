@@ -49,6 +49,7 @@
   // Header Dropdown Toggle Logic for Product Shell
   const initShellDropdowns = () => {
     const dropdowns = document.querySelectorAll(".header__dropdown, [data-dropdown]");
+    dropdowns.forEach((dropdown) => {
       const toggle = dropdown.querySelector(".header__dropdown-toggle, [aria-haspopup='true']");
       if (!toggle) return;
 
@@ -182,11 +183,6 @@
     }
   }, true);
 
-  document.querySelectorAll('a[href*="customer_authentication"]').forEach((link) => {
-    link.href = "/order-tracking";
-    link.removeAttribute("rel");
-  });
-
   document.querySelectorAll("a[href]").forEach((link) => {
     const href = link.getAttribute("href") || "";
     if (/collections\/frontpage|blogs\/news|pages\/onze-verantwoordelijkheid/.test(href)) link.href = "/shop";
@@ -253,7 +249,6 @@
             <h4 class="site-footer__heading">SUPPORT</h4>
             <ul class="site-footer__links">
               <li><a href="/contact">Contact Us</a></li>
-              <li><a href="https://miroooo.us/pages/order-tracking">Order Tracking</a></li>
               <li><a href="/about-us">About Us</a></li>
               <li><a href="/dentalcare-quiz">Dental Care Quiz</a></li>
             </ul>

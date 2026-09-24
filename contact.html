@@ -33,7 +33,7 @@
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="Miroooo">
   <meta property="og:title" content="Contact Miroooo | Customer support and enquiries">
-  <meta property="og:description" content="We are here to help. Contact Miroooo for product guidance, order tracking, and care support.">
+  <meta property="og:description" content="We are here to help. Contact Miroooo for product guidance, delivery guidance, and care support.">
   <meta property="og:url" content="https://www.trymiroooo.com/contact">
   <meta property="og:image" content="https://www.trymiroooo.com/assets/miroooo-x2-sonic-electric-toothbrush-sticky-add-to-cart.webp">
   <meta name="twitter:card" content="summary_large_image">
@@ -50,7 +50,7 @@
     "@type": "ContactPage",
     "name": "Contact Miroooo Support",
     "url": "https://www.trymiroooo.com/contact",
-    "description": "Contact Miroooo for product guidance, order tracking, returns, and care support for your electric toothbrushes.",
+    "description": "Contact Miroooo for product guidance, delivery guidance, returns, and care support for your electric toothbrushes.",
     "mainEntity": {
       "@type": "Organization",
       "name": "Miroooo",
@@ -168,20 +168,20 @@
               </div>
             </a>
 
-            <!-- Card 2: Order Tracking -->
-            <a class="contact-service-card reveal" href="/order-tracking">
+            <!-- Card 2: Delivery & Returns -->
+            <a class="contact-service-card reveal" href="/delivery-returns">
               <div class="contact-service-card__icon">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
-                  <rect x="1" y="3" width="15" height="13"/>
+                  <rect x="1" y="3" width="15" height="13" rx="2"/>
                   <polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/>
                   <circle cx="5.5" cy="18.5" r="2.5"/>
                   <circle cx="18.5" cy="18.5" r="2.5"/>
                 </svg>
               </div>
-              <h3 class="contact-service-card__title">Order tracking</h3>
-              <p class="contact-service-card__copy">Check the latest delivery status after your order has shipped.</p>
+              <h3 class="contact-service-card__title">Delivery &amp; returns</h3>
+              <p class="contact-service-card__copy">Learn about tracked UK shipping, dispatch times, and our 30-day return policy.</p>
               <div class="contact-service-card__action">
-                <span>Track order</span>
+                <span>Delivery details</span>
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
               </div>
             </a>
@@ -384,7 +384,6 @@
       }
 
       function setFormState(state, message, mailtoHref) {
-        removeClickLoaders();
         if (state === "submitting") {
           submitBtn.disabled = true;
           if (btnLoader) btnLoader.hidden = false;
@@ -392,6 +391,7 @@
           if (btnText) btnText.textContent = "Sending...";
           if (feedbackBox) feedbackBox.hidden = true;
         } else if (state === "success") {
+          removeClickLoaders();
           submitBtn.disabled = false;
           if (btnLoader) btnLoader.hidden = true;
           if (btnSendIcon) btnSendIcon.hidden = false;
@@ -406,6 +406,7 @@
           }
           form.reset();
         } else if (state === "error") {
+          removeClickLoaders();
           submitBtn.disabled = false;
           if (btnLoader) btnLoader.hidden = true;
           if (btnSendIcon) btnSendIcon.hidden = false;

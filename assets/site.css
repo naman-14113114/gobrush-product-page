@@ -3910,14 +3910,14 @@ body[data-page="cart"] .site-header--cart .header__logo {
   display: flex !important;
   align-items: center !important;
   justify-content: flex-end !important;
-  gap: 12px !important;
+  gap: 14px !important;
 }
 
 .header__navigation--right,
 .site-nav--right {
   display: flex !important;
   align-items: center !important;
-  margin-right: 28px !important;
+  margin-right: 0 !important;
 }
 
 /* Desktop vs Mobile Controls (Hide Hamburger on Desktop) */
@@ -3944,16 +3944,7 @@ body[data-page="cart"] .site-header--cart .header__logo {
   .site-nav--right {
     display: flex !important;
     align-items: center !important;
-    margin-right: 28px !important;
-  }
-
-  .site-header__right .account-link,
-  .account-link,
-  .header__buttons .account-link,
-  .site-actions__track,
-  .header__buttons a[href*="customer_authentication"],
-  .header__buttons a[href="/order-tracking"] {
-    display: inline-flex !important;
+    margin-right: 0 !important;
   }
 }
 
@@ -4023,22 +4014,6 @@ body[data-page="cart"] .site-header--cart .header__logo {
     display: flex !important;
     align-items: center !important;
     gap: 6px !important;
-  }
-
-  .site-header__right .account-link,
-  .account-link,
-  .header__buttons .account-link,
-  .site-actions__track,
-  .header__buttons a[href*="customer_authentication"],
-  .header__buttons a[href="/order-tracking"],
-  .site-header .header__icons--end a[href="/order-tracking"],
-  .site-header .header__icons--end .account-link {
-    display: inline-flex !important;
-    align-items: center !important;
-    justify-content: center !important;
-    width: 44px !important;
-    height: 44px !important;
-    color: #ffffff !important;
   }
 
   .site-header__right .cart-drawer-button,
