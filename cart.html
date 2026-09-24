@@ -2292,7 +2292,7 @@
         const isX1 = x1Count > 0;
         const isHeadsOnly = (x2HeadsCount > 0 || x1HeadsCount > 0) && x2Count === 0 && x1Count === 0;
         const manualCode = appliedPromoCodes.find(c => c === "MIROOOO" || c === "MIROOOO10");
-        const bundleEligible = !manualCode && x2HeadsCount === 0 && x1HeadsCount === 0 &&
+        const bundleEligible = x2HeadsCount === 0 && x1HeadsCount === 0 &&
           ((x2Count >= 1 && x2Count <= 3 && x1Count === 0) ||
            (x1Count >= 1 && x1Count <= 3 && x2Count === 0));
 
@@ -2391,8 +2391,9 @@
         const headsNet = (x2HeadsCount * 10) + (x1HeadsCount * 10);
         const subtotal = Math.max(0, x2Net + x1Net + headsNet);
 
-        // A saved manual code is entered and priced by the secure checkout.
-        let promoDiscount = 0;
+        // The matching native promo option prices the welcome code alongside
+        // the bundle and free heads. Mixed carts are priced by hosted checkout.
+        const promoDiscount = manualCode && bundleEligible ? Math.round(subtotal * 0.10) : 0;
 
         const finalSubtotal = Math.max(0, Number((subtotal - promoDiscount).toFixed(2)));
         const bundleSavings = baseBrushCompareSavings + x1BundleDiscount;
@@ -2749,8 +2750,10 @@
         const offerNote = document.getElementById("checkout-offer-note");
         if (offerNote) {
           const manualCode = appliedPromoCodes.find(c => c === "MIROOOO" || c === "MIROOOO10");
-          offerNote.textContent = manualCode
-            ? `Enter ${manualCode} on the secure checkout page to apply it. This code does not combine with the bundle offer; check the final total before paying.`
+          offerNote.textContent = manualCode && totals.bundleEligible
+            ? `${manualCode} and your bundle offer are included. Check the final total on the secure checkout page.`
+            : manualCode
+              ? `Enter ${manualCode} at secure checkout. Mixed carts use standard item pricing; check the final total before paying.`
             : totals.bundleEligible
               ? "Your bundle items and final total are confirmed on the secure checkout page."
               : "Extra items and mixed carts use standard item pricing; bundle gifts are not included. Check the final total before paying.";

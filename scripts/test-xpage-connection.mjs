@@ -44,6 +44,20 @@ test("unknown products and invalid quantities stop checkout; non-bundle combinat
   assert.equal(detectBundlePayload([brush("x1", "Silver", 1000000)]), null);
 });
 
+test("MIROOOO10 selects native discounted X1 and X2 tiers with matching free heads", () => {
+  for (const product of ["x1", "x2"]) {
+    for (const quantity of [1, 2, 3]) {
+      const cart = [brush(product, "Pink", quantity)];
+      const payload = detectBundlePayload(cart, "MIROOOO10");
+      const option = XPAGE_BUNDLES[product][`promoBuy${quantity}`];
+      assert.equal(payload.bundle_option_id, option.optionId);
+      assert.equal(payload.bundle_selected_variants.conditions[option.conditionId].length, quantity);
+      assert.equal(Object.values(payload.bundle_selected_variants.offered)[0]?.length || 0, quantity - 1);
+      assert.equal(detectBundlePayload(cart, "MIROOOO").bundle_option_id, option.optionId);
+    }
+  }
+});
+
 test("provider checkout sessions are shown only on matching Miroooo domains", () => {
   const path = `/encoded-store/checkout/${"a".repeat(64)}`;
   const provider = `https://8e9c584880e3.myxpage.shop${path}`;

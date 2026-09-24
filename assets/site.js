@@ -2132,7 +2132,7 @@
       try { savedPromos = JSON.parse(localStorage.getItem("miroooo_promo_codes") || "[]"); } catch (_) {}
       if (!Array.isArray(savedPromos)) savedPromos = [];
       const hasManualCode = savedPromos.some(code => ["MIROOOO", "MIROOOO10"].includes(String(code).toUpperCase()));
-      const bundleEligible = !hasManualCode && x2HeadsCount === 0 && x1HeadsCount === 0 &&
+      const bundleEligible = x2HeadsCount === 0 && x1HeadsCount === 0 &&
         ((x2Count >= 1 && x2Count <= 3 && x1Count === 0) ||
          (x1Count >= 1 && x1Count <= 3 && x2Count === 0));
 
@@ -2162,12 +2162,13 @@
       const x1Net = (x1Count * 69) - x1BundleDiscount;
       const headsNet = (x2HeadsCount * 10) + (x1HeadsCount * 10);
       const subtotal = Math.max(0, x2Net + x1Net + headsNet);
+      const welcomeDiscount = hasManualCode && bundleEligible ? Math.round(subtotal * 0.10) : 0;
 
       let totalGiftValueNum = 0;
       if (extraBrushHeadSets > 0) totalGiftValueNum += extraBrushHeadSets * 10;
       if (bundleEligible && x1Count >= 2) totalGiftValueNum += 36;
 
-      const totalDiscountNum = bundleSavings + x2BundlePromoDiscount + totalGiftValueNum;
+      const totalDiscountNum = bundleSavings + x2BundlePromoDiscount + totalGiftValueNum + welcomeDiscount;
 
       // Render Line Items in Drawer List
       let itemsHtml = "";
@@ -2283,7 +2284,7 @@
         if (bundlePromoRow) bundlePromoRow.style.display = "none";
       }
 
-      if (subtotalValEl) subtotalValEl.textContent = MirooooCurrency.format(subtotal);
+      if (subtotalValEl) subtotalValEl.textContent = MirooooCurrency.format(subtotal - welcomeDiscount);
       if (discountValEl) discountValEl.textContent = `-${MirooooCurrency.format(totalDiscountNum)}`;
       if (bundleDiscountValEl) bundleDiscountValEl.textContent = `-${MirooooCurrency.format(bundleSavings)}`;
       if (giftDiscountValEl) giftDiscountValEl.textContent = `-${MirooooCurrency.format(totalGiftValueNum)}`;

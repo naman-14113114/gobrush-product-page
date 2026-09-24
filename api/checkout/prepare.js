@@ -27,7 +27,7 @@ export function collectRequestedDiscountCode(body) {
     .map(normalizeDiscountCode)
     .filter((code) => validDiscountCodes.includes(code));
 
-  // Native XPage offers already include the bundle and free-head discounts.
+  // Bundle and gift codes are represented by the native offer itself.
   return matched.find((c) => c === "MIROOOO10" || c === "MIROOOO") || "";
 }
 
@@ -97,14 +97,14 @@ export default async function handler(req, res) {
       cart: rawItems,
       attribution,
       currency: "GBP",
-      forceStandardCart: Boolean(discountCode),
+      discountCode: discountCode === "MIROOOO" ? "MIROOOO10" : discountCode,
     });
 
     return res.status(200).json({
       ok: true,
       checkoutUrl: result.checkoutUrl,
-      appliedDiscountCode: null,
-      discountCodeToEnter: discountCode || null,
+      appliedDiscountCode: result.isPromoBundle ? discountCode : null,
+      discountCodeToEnter: result.isBundle ? null : discountCode || null,
       offerType: result.isBundle ? "native_bundle" : "standard_cart",
       cart: result.cart,
     });
