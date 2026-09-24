@@ -268,6 +268,9 @@ for (const file of ["index.html", "miroooo-x.html", "miroooo-x2.html", "miroooo-
 
 const cartPage = await readFile(resolve(root, "cart.html"), "utf8");
 if (!cartPage.includes('<meta name="robots" content="noindex,follow">')) errors.push("cart.html: cart must be noindex,follow");
+if (!cartPage.includes('<span class="cart-subtotal-label">SUBTOTAL</span>') || /ESTIMATED SUBTOTAL/i.test(cartPage)) {
+  errors.push("cart.html: subtotal must not be labelled estimated");
+}
 
 const config = JSON.parse(await readFile(resolve(root, "vercel.json"), "utf8"));
 if (config.cleanUrls !== true) errors.push("vercel.json: cleanUrls must remain enabled");
