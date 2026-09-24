@@ -69,5 +69,7 @@ test("provider checkout sessions are shown only on matching Miroooo domains", ()
 test("a saved manual coupon is selected for entry at ordinary checkout", () => {
   assert.equal(collectRequestedDiscountCode({ discountCode: "MIROOOO10" }), "MIROOOO10");
   assert.equal(collectRequestedDiscountCode({ discountCodes: ["FREE2HEADS", "MIROOOO10"] }), "MIROOOO10");
-  assert.equal(collectRequestedDiscountCode({ discountCode: "FREE2HEADS" }), "");
+  for (const code of ["FREE2HEADS", "FREE4HEADS", "2-BRUSH-BUNDLE-SPECIAL", "3-BRUSH-BUNDLE-OFFER", "3-BRUSH-BUNDLE-SPECIAL"]) {
+    assert.equal(collectRequestedDiscountCode({ discountCode: code }), "");
+  }
 });

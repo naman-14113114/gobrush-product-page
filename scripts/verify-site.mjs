@@ -271,6 +271,12 @@ if (!cartPage.includes('<meta name="robots" content="noindex,follow">')) errors.
 if (!cartPage.includes('<span class="cart-subtotal-label">SUBTOTAL</span>') || /ESTIMATED SUBTOTAL/i.test(cartPage)) {
   errors.push("cart.html: subtotal must not be labelled estimated");
 }
+for (const file of ["cart.html", "assets/site.js", "api/checkout/prepare.js"]) {
+  const source = file === "cart.html" ? cartPage : await readFile(resolve(root, file), "utf8");
+  if (/FREE2HEADS|FREE4HEADS|2-BRUSH-BUNDLE-SPECIAL|3-BRUSH-BUNDLE-(?:OFFER|SPECIAL)/.test(source)) {
+    errors.push(`${file}: legacy bundle codes must not be used by checkout`);
+  }
+}
 
 const config = JSON.parse(await readFile(resolve(root, "vercel.json"), "utf8"));
 if (config.cleanUrls !== true) errors.push("vercel.json: cleanUrls must remain enabled");

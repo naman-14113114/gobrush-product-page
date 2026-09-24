@@ -1971,8 +1971,7 @@
       ];
 
       // 4. CART STATE MANAGEMENT
-      let dismissedCoupons = { "2": false, "3": false, "bundle_2": false, "bundle_3": false };
-      const VALID_PROMOS = ["MIROOOO", "MIROOOO10", "FREE2HEADS", "FREE4HEADS", "2-BRUSH-BUNDLE-SPECIAL", "3-BRUSH-BUNDLE-OFFER", "3-BRUSH-BUNDLE-SPECIAL"];
+      const VALID_PROMOS = ["MIROOOO", "MIROOOO10"];
       let appliedPromoCodes = [];
       let isMorocco = false;
       try {
@@ -1997,13 +1996,6 @@
         }
       } catch (_) {
         appliedPromoCodes = [];
-      }
-
-      function getCheckoutUrlFallbackPromo(discountCodes) {
-        return (Array.isArray(discountCodes) ? discountCodes : String(discountCodes || "").split(","))
-          .map(c => String(c).trim().toUpperCase())
-          .filter(c => VALID_PROMOS.includes(c))
-          .pop() || "";
       }
 
       function normalizeColor(color) {
@@ -2312,42 +2304,13 @@
         let extraBrushHeadSets = 0;
 
         if (x2Count === 2) {
-          if (!dismissedCoupons["bundle_2"] && !appliedPromoCodes.includes("2-BRUSH-BUNDLE-SPECIAL")) {
-            appliedPromoCodes = appliedPromoCodes.filter(c => c !== "3-BRUSH-BUNDLE-OFFER");
-            appliedPromoCodes.push("2-BRUSH-BUNDLE-SPECIAL");
-          }
-          if (!dismissedCoupons["2"] && !appliedPromoCodes.includes("FREE2HEADS")) {
-            appliedPromoCodes = appliedPromoCodes.filter(c => c !== "FREE4HEADS");
-            appliedPromoCodes.push("FREE2HEADS");
-          }
-          appliedPromoCodes = appliedPromoCodes.filter(c => c !== "3-BRUSH-BUNDLE-OFFER" && c !== "FREE4HEADS");
-          if (appliedPromoCodes.includes("2-BRUSH-BUNDLE-SPECIAL")) {
-            x2BundlePromoDiscount = 10;
-            x2BundlePromoName = "2-brush-bundle-special";
-          }
+          x2BundlePromoDiscount = 10;
+          x2BundlePromoName = "Buy 2 bundle";
           extraBrushHeadSets = 1;
         } else if (x2Count >= 3) {
-          if (!dismissedCoupons["bundle_3"] && !appliedPromoCodes.includes("3-BRUSH-BUNDLE-OFFER")) {
-            appliedPromoCodes = appliedPromoCodes.filter(c => c !== "2-BRUSH-BUNDLE-SPECIAL");
-            appliedPromoCodes.push("3-BRUSH-BUNDLE-OFFER");
-          }
-          if (!dismissedCoupons["3"] && !appliedPromoCodes.includes("FREE4HEADS")) {
-            appliedPromoCodes = appliedPromoCodes.filter(c => c !== "FREE2HEADS");
-            appliedPromoCodes.push("FREE4HEADS");
-          }
-          appliedPromoCodes = appliedPromoCodes.filter(c => c !== "2-BRUSH-BUNDLE-SPECIAL" && c !== "FREE2HEADS");
-          if (appliedPromoCodes.includes("3-BRUSH-BUNDLE-OFFER")) {
-            x2BundlePromoDiscount = 30 + (x2Count - 3) * 10;
-            x2BundlePromoName = "3-brush-bundle-offer";
-          }
+          x2BundlePromoDiscount = 30 + (x2Count - 3) * 10;
+          x2BundlePromoName = "Buy 3 bundle";
           extraBrushHeadSets = x2Count - 1;
-        } else {
-          appliedPromoCodes = appliedPromoCodes.filter(c =>
-            c !== "2-BRUSH-BUNDLE-SPECIAL" &&
-            c !== "3-BRUSH-BUNDLE-OFFER" &&
-            c !== "FREE2HEADS" &&
-            c !== "FREE4HEADS"
-          );
         }
 
         // X1 Bundle Discounts
@@ -2363,9 +2326,6 @@
           x2BundlePromoName = "";
           extraBrushHeadSets = 0;
           x1BundleDiscount = 0;
-          appliedPromoCodes = appliedPromoCodes.filter(c =>
-            c !== "2-BRUSH-BUNDLE-SPECIAL" && c !== "3-BRUSH-BUNDLE-OFFER" &&
-            c !== "FREE2HEADS" && c !== "FREE4HEADS");
         }
 
         try {
@@ -2377,7 +2337,7 @@
         let giftsValue = 0;
         let unlockedGiftsCount = 0;
 
-        if (x2Count >= 2) {
+        if (extraBrushHeadSets > 0) {
           giftsValue += extraBrushHeadSets * 10;
           unlockedGiftsCount += 1;
         }
@@ -2589,12 +2549,6 @@
               const targetItem = cartState.items.find(i => i.id === itemId);
               if (targetItem) {
                 targetItem.quantity = (targetItem.quantity || 1) + 1;
-                if (targetItem.productHandle === "miroooo-x2") {
-                  dismissedCoupons["2"] = false;
-                  dismissedCoupons["3"] = false;
-                  dismissedCoupons["bundle_2"] = false;
-                  dismissedCoupons["bundle_3"] = false;
-                }
                 persistCart(cartState);
                 renderCartView();
               }
@@ -2611,12 +2565,6 @@
                 if (item.quantity <= 0) {
                   cartState.items.splice(targetIndex, 1);
                 }
-                if (item.productHandle === "miroooo-x2") {
-                  dismissedCoupons["2"] = false;
-                  dismissedCoupons["3"] = false;
-                  dismissedCoupons["bundle_2"] = false;
-                  dismissedCoupons["bundle_3"] = false;
-                }
                 persistCart(cartState);
                 renderCartView();
               }
@@ -2627,10 +2575,6 @@
             btn.addEventListener("click", () => {
               const itemId = btn.getAttribute("data-id");
               cartState.items = cartState.items.filter(i => i.id !== itemId);
-              dismissedCoupons["2"] = false;
-              dismissedCoupons["3"] = false;
-              dismissedCoupons["bundle_2"] = false;
-              dismissedCoupons["bundle_3"] = false;
               persistCart(cartState);
               renderCartView();
             });
@@ -2762,8 +2706,6 @@
         function formatPromoCodeDisplay(code) {
           if (!code) return "";
           const upper = String(code).toUpperCase();
-          if (upper === "2-BRUSH-BUNDLE-SPECIAL") return "2-BRUSH-B...";
-          if (upper === "3-BRUSH-BUNDLE-OFFER") return "3-BRUSH-B...";
           if (upper.length > 12) return upper.slice(0, 9) + "...";
           return upper;
         }
@@ -2783,10 +2725,6 @@
             badgesContainer.querySelectorAll("button[data-remove-code]").forEach(btn => {
               btn.addEventListener("click", () => {
                 const codeToRemove = btn.getAttribute("data-remove-code");
-                if (codeToRemove === "2-BRUSH-BUNDLE-SPECIAL") dismissedCoupons["bundle_2"] = true;
-                if (codeToRemove === "3-BRUSH-BUNDLE-OFFER") dismissedCoupons["bundle_3"] = true;
-                if (codeToRemove === "FREE2HEADS") dismissedCoupons["2"] = true;
-                if (codeToRemove === "FREE4HEADS") dismissedCoupons["3"] = true;
                 appliedPromoCodes = appliedPromoCodes.filter(c => c !== codeToRemove);
                 try {
                   localStorage.setItem("miroooo_promo_codes", JSON.stringify(appliedPromoCodes));
@@ -2865,8 +2803,6 @@
             ? appliedPromoCodes.filter(c => VALID_PROMOS.includes(c))
             : [];
           const validDiscountCode = validDiscountCodes.join(",");
-          const checkoutUrlFallbackPromo = getCheckoutUrlFallbackPromo(validDiscountCodes);
-
           // Build complete items payload from all items in cart
           const items = cartState.items.map(item => ({
             id: item.id,
@@ -3000,79 +2936,7 @@
             const code = promoInput.value.trim().toUpperCase();
             if (!code) return;
 
-            const totals = computeTotals(cartState);
-            const isX2 = totals.isX2;
-            const count = totals.x2Count;
-
-            if (isX2 && code === "2-BRUSH-BUNDLE-SPECIAL" && count === 2) {
-              dismissedCoupons["bundle_2"] = false;
-              if (!appliedPromoCodes.includes("2-BRUSH-BUNDLE-SPECIAL")) {
-                appliedPromoCodes = appliedPromoCodes.filter(c => c !== "3-BRUSH-BUNDLE-OFFER");
-                appliedPromoCodes.push("2-BRUSH-BUNDLE-SPECIAL");
-                try {
-                  localStorage.setItem("miroooo_promo_codes", JSON.stringify(appliedPromoCodes));
-                  localStorage.setItem("miroooo_promo_code", appliedPromoCodes.join(","));
-                } catch (_) {}
-              }
-              promoInput.value = "";
-              if (promoMsg) {
-                promoMsg.className = "cart-promo-msg cart-promo-msg--success";
-                promoMsg.textContent = "Bundle offer selected. Final price is shown at secure checkout.";
-                promoMsg.style.display = "block";
-              }
-              renderCartView();
-            } else if (isX2 && code === "3-BRUSH-BUNDLE-OFFER" && count >= 3) {
-              dismissedCoupons["bundle_3"] = false;
-              if (!appliedPromoCodes.includes("3-BRUSH-BUNDLE-OFFER")) {
-                appliedPromoCodes = appliedPromoCodes.filter(c => c !== "2-BRUSH-BUNDLE-SPECIAL");
-                appliedPromoCodes.push("3-BRUSH-BUNDLE-OFFER");
-                try {
-                  localStorage.setItem("miroooo_promo_codes", JSON.stringify(appliedPromoCodes));
-                  localStorage.setItem("miroooo_promo_code", appliedPromoCodes.join(","));
-                } catch (_) {}
-              }
-              promoInput.value = "";
-              if (promoMsg) {
-                promoMsg.className = "cart-promo-msg cart-promo-msg--success";
-                promoMsg.textContent = "Bundle offer selected. Final price is shown at secure checkout.";
-                promoMsg.style.display = "block";
-              }
-              renderCartView();
-            } else if (isX2 && code === "FREE2HEADS" && count >= 2) {
-              dismissedCoupons["2"] = false;
-              if (!appliedPromoCodes.includes("FREE2HEADS")) {
-                appliedPromoCodes = appliedPromoCodes.filter(c => c !== "FREE4HEADS");
-                appliedPromoCodes.push("FREE2HEADS");
-                try {
-                  localStorage.setItem("miroooo_promo_codes", JSON.stringify(appliedPromoCodes));
-                  localStorage.setItem("miroooo_promo_code", appliedPromoCodes.join(","));
-                } catch (_) {}
-              }
-              promoInput.value = "";
-              if (promoMsg) {
-                promoMsg.className = "cart-promo-msg cart-promo-msg--success";
-                promoMsg.textContent = "Bundle offer selected. Final price is shown at secure checkout.";
-                promoMsg.style.display = "block";
-              }
-              renderCartView();
-            } else if (isX2 && code === "FREE4HEADS" && count >= 3) {
-              dismissedCoupons["3"] = false;
-              if (!appliedPromoCodes.includes("FREE4HEADS")) {
-                appliedPromoCodes = appliedPromoCodes.filter(c => c !== "FREE2HEADS");
-                appliedPromoCodes.push("FREE4HEADS");
-                try {
-                  localStorage.setItem("miroooo_promo_codes", JSON.stringify(appliedPromoCodes));
-                  localStorage.setItem("miroooo_promo_code", appliedPromoCodes.join(","));
-                } catch (_) {}
-              }
-              promoInput.value = "";
-              if (promoMsg) {
-                promoMsg.className = "cart-promo-msg cart-promo-msg--success";
-                promoMsg.textContent = "Bundle offer selected. Final price is shown at secure checkout.";
-                promoMsg.style.display = "block";
-              }
-              renderCartView();
-            } else if (code === "MIROOOO" || code === "MIROOOO10") {
+            if (code === "MIROOOO" || code === "MIROOOO10") {
               appliedPromoCodes = appliedPromoCodes.filter(c => c !== "MIROOOO" && c !== "MIROOOO10");
               appliedPromoCodes.push(code);
               try {

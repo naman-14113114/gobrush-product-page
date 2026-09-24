@@ -3,11 +3,6 @@ import { createXpageCartCheckout } from "../../lib/xpage-checkout.js";
 const validDiscountCodes = [
   "MIROOOO",
   "MIROOOO10",
-  "FREE2HEADS",
-  "FREE4HEADS",
-  "2-BRUSH-BUNDLE-SPECIAL",
-  "3-BRUSH-BUNDLE-OFFER",
-  "3-BRUSH-BUNDLE-SPECIAL",
 ];
 
 function normalizeDiscountCode(code) {
@@ -27,7 +22,7 @@ export function collectRequestedDiscountCode(body) {
     .map(normalizeDiscountCode)
     .filter((code) => validDiscountCodes.includes(code));
 
-  // Bundle and gift codes are represented by the native offer itself.
+  // Bundle pricing and gifts are represented by the native offer, not coupons.
   return matched.find((c) => c === "MIROOOO10" || c === "MIROOOO") || "";
 }
 

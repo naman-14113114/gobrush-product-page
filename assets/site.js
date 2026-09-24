@@ -1635,7 +1635,7 @@
       } catch (_) {}
     }
 
-    const validCodes = ["MIROOOO", "MIROOOO10", "FREE2HEADS", "FREE4HEADS", "2-BRUSH-BUNDLE-SPECIAL", "3-BRUSH-BUNDLE-OFFER", "3-BRUSH-BUNDLE-SPECIAL"];
+    const validCodes = ["MIROOOO", "MIROOOO10"];
     let promoList = [];
     try {
       const storedArr = JSON.parse(localStorage.getItem("miroooo_promo_codes") || "[]");
@@ -1651,16 +1651,6 @@
           if (validCodes.includes(trimmed)) promoList.push(trimmed);
         });
       }
-    }
-
-    if (x2Count === 2) {
-      promoList = promoList.filter((c) => c !== "3-BRUSH-BUNDLE-OFFER" && c !== "FREE4HEADS");
-      if (!promoList.includes("2-BRUSH-BUNDLE-SPECIAL")) promoList.unshift("2-BRUSH-BUNDLE-SPECIAL");
-      if (!promoList.includes("FREE2HEADS")) promoList.push("FREE2HEADS");
-    } else if (x2Count >= 3) {
-      promoList = promoList.filter((c) => c !== "2-BRUSH-BUNDLE-SPECIAL" && c !== "FREE2HEADS");
-      if (!promoList.includes("3-BRUSH-BUNDLE-OFFER")) promoList.unshift("3-BRUSH-BUNDLE-OFFER");
-      if (!promoList.includes("FREE4HEADS")) promoList.push("FREE4HEADS");
     }
 
     promoList = [...new Set(promoList)];
