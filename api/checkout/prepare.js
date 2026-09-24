@@ -14,7 +14,7 @@ function normalizeDiscountCode(code) {
   return String(code || "").trim().toUpperCase();
 }
 
-function collectRequestedDiscountCode(body) {
+export function collectRequestedDiscountCode(body) {
   const candidates = [];
   if (Array.isArray(body.discountCodes)) {
     candidates.push(...body.discountCodes);
@@ -93,29 +93,25 @@ export default async function handler(req, res) {
     }
 
     const discountCode = collectRequestedDiscountCode(body);
-    if (discountCode) {
-      return res.status(409).json({
-        error: `${discountCode} has not been verified on XPageDrop. Remove it before checkout.`,
-      });
-    }
-
     const result = await createXpageCartCheckout({
       cart: rawItems,
       attribution,
       currency: "GBP",
+      forceStandardCart: Boolean(discountCode),
     });
 
     return res.status(200).json({
       ok: true,
       checkoutUrl: result.checkoutUrl,
       appliedDiscountCode: null,
+      discountCodeToEnter: discountCode || null,
       offerType: result.isBundle ? "native_bundle" : "standard_cart",
       cart: result.cart,
     });
   } catch (error) {
     console.error("XPage checkout preparation failed:", error);
     return res.status(500).json({
-      error: error.message || "Failed to create checkout session",
+      error: "Secure checkout is temporarily unavailable. Please try again.",
     });
   }
 }

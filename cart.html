@@ -1706,13 +1706,14 @@
             <!-- Subtotal & Taxes -->
             <div class="cart-subtotal-section">
               <div>
-                <span class="cart-subtotal-label">SUBTOTAL</span>
+                <span class="cart-subtotal-label">ESTIMATED SUBTOTAL</span>
                 <span class="cart-subtotal-sub">Includes all taxes.</span>
               </div>
               <div class="text-right">
                 <span class="cart-subtotal-amount" id="summary-subtotal-price">£110.00</span>
               </div>
             </div>
+            <p id="checkout-offer-note" style="font-size:0.78rem;line-height:1.45;color:#5b6470;margin:0 0 14px;"></p>
 
             <!-- Checkout CTA Button -->
             <button
@@ -2290,6 +2291,10 @@
         const isX2 = x2Count > 0;
         const isX1 = x1Count > 0;
         const isHeadsOnly = (x2HeadsCount > 0 || x1HeadsCount > 0) && x2Count === 0 && x1Count === 0;
+        const manualCode = appliedPromoCodes.find(c => c === "MIROOOO" || c === "MIROOOO10");
+        const bundleEligible = !manualCode && x2HeadsCount === 0 && x1HeadsCount === 0 &&
+          ((x2Count >= 1 && x2Count <= 3 && x1Count === 0) ||
+           (x1Count >= 1 && x1Count <= 3 && x2Count === 0));
 
         // Compare At & Base Subtotals
         const x2Compare = x2Count * 139;
@@ -2353,6 +2358,16 @@
           x1BundleDiscount = 30 + (x1Count - 3) * 10;
         }
 
+        if (!bundleEligible) {
+          x2BundlePromoDiscount = 0;
+          x2BundlePromoName = "";
+          extraBrushHeadSets = 0;
+          x1BundleDiscount = 0;
+          appliedPromoCodes = appliedPromoCodes.filter(c =>
+            c !== "2-BRUSH-BUNDLE-SPECIAL" && c !== "3-BRUSH-BUNDLE-OFFER" &&
+            c !== "FREE2HEADS" && c !== "FREE4HEADS");
+        }
+
         try {
           localStorage.setItem("miroooo_promo_codes", JSON.stringify(appliedPromoCodes));
           localStorage.setItem("miroooo_promo_code", appliedPromoCodes.join(","));
@@ -2366,7 +2381,7 @@
           giftsValue += extraBrushHeadSets * 10;
           unlockedGiftsCount += 1;
         }
-        if (x1Count >= 1) {
+        if (bundleEligible && x1Count >= 2) {
           giftsValue += 36; // £16 Travel Case + £20 Miroooo X1 Heads
           unlockedGiftsCount += 2;
         }
@@ -2376,12 +2391,8 @@
         const headsNet = (x2HeadsCount * 10) + (x1HeadsCount * 10);
         const subtotal = Math.max(0, x2Net + x1Net + headsNet);
 
-        // Extra Percentage Promo Codes (MIROOOO / MIROOOO10 -> 10% off brushes)
+        // A saved manual code is entered and priced by the secure checkout.
         let promoDiscount = 0;
-        if (appliedPromoCodes.includes("MIROOOO") || appliedPromoCodes.includes("MIROOOO10")) {
-          const brushBaseAmount = (x2Count * 69) + (x1Count * 69);
-          promoDiscount = Number((brushBaseAmount * 0.10).toFixed(2));
-        }
 
         const finalSubtotal = Math.max(0, Number((subtotal - promoDiscount).toFixed(2)));
         const bundleSavings = baseBrushCompareSavings + x1BundleDiscount;
@@ -2408,7 +2419,8 @@
           x2Count: x2Count,
           x1Count: x1Count,
           x2HeadsCount: x2HeadsCount,
-          x1HeadsCount: x1HeadsCount
+          x1HeadsCount: x1HeadsCount,
+          bundleEligible: bundleEligible
         };
       }
 
@@ -2535,7 +2547,7 @@
           }
 
           // Render Free Gifts for X1 (Travel Case + Extra X1 Heads)
-          if (totals.isX1) {
+          if (totals.bundleEligible && totals.x1Count >= 2) {
             const lineItemGifts = GIFTS_DATA.filter(g => g.id === "brush-heads");
             lineItemGifts.forEach(gift => {
               const giftUrl = "/products/miroooo-x1-heads";
@@ -2683,7 +2695,7 @@
           if (breakdownBundlePromoRow) breakdownBundlePromoRow.style.display = "none";
         }
 
-        if (totals.isX1) {
+        if (totals.bundleEligible && totals.x1Count >= 2) {
           if (breakdownGiftCase) {
             breakdownGiftCase.style.display = "flex";
             const caseLabel = breakdownGiftCase.querySelector("span:first-child");
@@ -2700,7 +2712,7 @@
           if (breakdownGiftCase) breakdownGiftCase.style.display = "none";
         }
 
-        if (totals.extraBrushHeadSets > 0 || totals.isX1) {
+        if (totals.extraBrushHeadSets > 0 || (totals.bundleEligible && totals.x1Count >= 2)) {
           if (breakdownGiftHeads) {
             breakdownGiftHeads.style.display = "flex";
             const headsLabel = breakdownGiftHeads.querySelector("span:first-child");
@@ -2734,6 +2746,15 @@
         }
 
         if (summarySubtotalPrice) summarySubtotalPrice.textContent = MirooooCurrency ? MirooooCurrency.format(totals.finalSubtotal) : ('£' + formatMoney(totals.finalSubtotal));
+        const offerNote = document.getElementById("checkout-offer-note");
+        if (offerNote) {
+          const manualCode = appliedPromoCodes.find(c => c === "MIROOOO" || c === "MIROOOO10");
+          offerNote.textContent = manualCode
+            ? `Enter ${manualCode} on the secure checkout page to apply it. This code does not combine with the bundle offer; check the final total before paying.`
+            : totals.bundleEligible
+              ? "Your bundle items and final total are confirmed on the secure checkout page."
+              : "Extra items and mixed carts use standard item pricing; bundle gifts are not included. Check the final total before paying.";
+        }
 
         function formatPromoCodeDisplay(code) {
           if (!code) return "";
@@ -2786,7 +2807,7 @@
         }
       }
 
-      // 7. CHECKOUT REDIRECTION (XPageDrop hosted checkout)
+      // 7. CHECKOUT REDIRECTION (branded hosted checkout)
       function initCheckoutAction() {
         const checkoutBtn = document.getElementById("main-checkout-btn");
         const stickyBtn = document.getElementById("sticky-checkout-btn");
@@ -2909,9 +2930,9 @@
                 const prepData = await prepRes.json();
                 if (prepData && prepData.checkoutUrl) {
                   const checkout = new URL(prepData.checkoutUrl);
-                  if (checkout.origin !== "https://8e9c584880e3.myxpage.shop" ||
+                  if (!["https://x1.miroooo.us", "https://offer.miroooo.us"].includes(checkout.origin) ||
                       !/\/checkout\/[\da-f]{64}$/i.test(checkout.pathname)) {
-                    throw new Error("Checkout is not ready on XPageDrop yet.");
+                    throw new Error("Secure checkout is not ready yet.");
                   }
                   checkoutUrl = checkout.toString();
                 }
@@ -2924,7 +2945,7 @@
                 }
               }
             } catch (err) {
-              console.warn("XPageDrop checkout preparation failed", err);
+              console.warn("Checkout preparation failed", err);
             }
 
             if (!checkoutUrl) {
@@ -2993,7 +3014,7 @@
               promoInput.value = "";
               if (promoMsg) {
                 promoMsg.className = "cart-promo-msg cart-promo-msg--success";
-                promoMsg.textContent = "Promo code applied successfully.";
+                promoMsg.textContent = "Bundle offer selected. Final price is shown at secure checkout.";
                 promoMsg.style.display = "block";
               }
               renderCartView();
@@ -3010,7 +3031,7 @@
               promoInput.value = "";
               if (promoMsg) {
                 promoMsg.className = "cart-promo-msg cart-promo-msg--success";
-                promoMsg.textContent = "Promo code applied successfully.";
+                promoMsg.textContent = "Bundle offer selected. Final price is shown at secure checkout.";
                 promoMsg.style.display = "block";
               }
               renderCartView();
@@ -3027,7 +3048,7 @@
               promoInput.value = "";
               if (promoMsg) {
                 promoMsg.className = "cart-promo-msg cart-promo-msg--success";
-                promoMsg.textContent = "Promo code applied successfully.";
+                promoMsg.textContent = "Bundle offer selected. Final price is shown at secure checkout.";
                 promoMsg.style.display = "block";
               }
               renderCartView();
@@ -3044,7 +3065,7 @@
               promoInput.value = "";
               if (promoMsg) {
                 promoMsg.className = "cart-promo-msg cart-promo-msg--success";
-                promoMsg.textContent = "Promo code applied successfully.";
+                promoMsg.textContent = "Bundle offer selected. Final price is shown at secure checkout.";
                 promoMsg.style.display = "block";
               }
               renderCartView();
@@ -3058,7 +3079,7 @@
               promoInput.value = "";
               if (promoMsg) {
                 promoMsg.className = "cart-promo-msg cart-promo-msg--success";
-                promoMsg.textContent = "Promo code applied successfully.";
+                promoMsg.textContent = `Enter ${code} again at secure checkout to apply it. Bundle pricing will not combine with this code.`;
                 promoMsg.style.display = "block";
               }
               renderCartView();

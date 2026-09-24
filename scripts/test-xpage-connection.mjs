@@ -1,7 +1,7 @@
 import assert from "node:assert/strict";
 import { test } from "node:test";
-import { detectBundlePayload, mapCartToXpageVariants, XPAGE_BUNDLES, XPAGE_VARIANTS } from "../lib/xpage-checkout.js";
-import handler from "../api/checkout/prepare.js";
+import { brandedCheckoutUrl, detectBundlePayload, mapCartToXpageVariants, XPAGE_BUNDLES, XPAGE_VARIANTS } from "../lib/xpage-checkout.js";
+import { collectRequestedDiscountCode } from "../api/checkout/prepare.js";
 
 const brush = (product, color, quantity = 1) => ({ productHandle: `miroooo-${product}`, color, quantity });
 const gift = (product, quantity) => ({ id: `miroooo-${product}-heads:free`, productHandle: `miroooo-${product}-heads`, quantity });
@@ -33,23 +33,27 @@ test("a displayed free gift is not misclassified as an extra brush", () => {
   assert.equal(mapCartToXpageVariants(cart).find((item) => item.variant_id === XPAGE_VARIANTS.x2_heads).quantity, 1);
 });
 
-test("unknown products, invalid quantity, and incorrect gifts stop checkout", () => {
+test("unknown products and invalid quantities stop checkout; non-bundle combinations use the cart", () => {
   assert.throws(() => mapCartToXpageVariants([{ productHandle: "unknown", quantity: 1 }]));
   assert.throws(() => mapCartToXpageVariants([brush("x1", "Silver", 0)]));
-  assert.throws(() => detectBundlePayload([brush("x2", "Pink", 2), gift("x1", 1)]));
-  assert.throws(() => detectBundlePayload([brush("x2", "Pink", 2), gift("x2", 2)]));
+  assert.equal(detectBundlePayload([brush("x2", "Pink", 2), gift("x1", 1)]), null);
+  assert.equal(detectBundlePayload([brush("x2", "Pink", 2), gift("x2", 2)]), null);
+  assert.equal(detectBundlePayload([brush("x2", "Pink", 2), {productHandle:"miroooo-x2-heads",quantity:1}]), null);
+  assert.equal(detectBundlePayload([brush("x1", "Silver", 4), gift("x1", 3)]), null);
+  assert.equal(mapCartToXpageVariants([brush("x1", "Silver", 101)])[0].quantity, 101);
+  assert.equal(detectBundlePayload([brush("x1", "Silver", 1000000)]), null);
 });
 
-test("the prepare endpoint refuses an unverified legacy manual coupon", async () => {
-  let status, body;
-  const response = {
-    setHeader() {},
-    status(code) { status = code; return this; },
-    json(value) { body = value; return this; },
-  };
-  await handler({ method: "POST", headers: {}, body: {
-    items: [brush("x2", "Silver")], discountCode: "MIROOOO10",
-  } }, response);
-  assert.equal(status, 409);
-  assert.match(body.error, /not been verified on XPageDrop/);
+test("provider checkout sessions are shown only on matching Miroooo domains", () => {
+  const path = `/encoded-store/checkout/${"a".repeat(64)}`;
+  const provider = `https://8e9c584880e3.myxpage.shop${path}`;
+  assert.equal(brandedCheckoutUrl(provider, "x1"), `https://x1.miroooo.us${path}`);
+  assert.equal(brandedCheckoutUrl(provider, "x2"), `https://offer.miroooo.us${path}`);
+  assert.throws(() => brandedCheckoutUrl(`https://example.com${path}`, "x2"));
+});
+
+test("a saved manual coupon is selected for entry at ordinary checkout", () => {
+  assert.equal(collectRequestedDiscountCode({ discountCode: "MIROOOO10" }), "MIROOOO10");
+  assert.equal(collectRequestedDiscountCode({ discountCodes: ["FREE2HEADS", "MIROOOO10"] }), "MIROOOO10");
+  assert.equal(collectRequestedDiscountCode({ discountCode: "FREE2HEADS" }), "");
 });

@@ -1684,21 +1684,21 @@
         const data = await response.json();
         if (data?.checkoutUrl) {
           const checkout = new URL(data.checkoutUrl);
-          if (checkout.origin !== "https://8e9c584880e3.myxpage.shop" ||
+          if (!["https://x1.miroooo.us", "https://offer.miroooo.us"].includes(checkout.origin) ||
               !/\/checkout\/[\da-f]{64}$/i.test(checkout.pathname)) {
-            throw new Error("Checkout is not ready on XPageDrop yet.");
+            throw new Error("Secure checkout is not ready yet.");
           }
           return decorateCheckoutUrl(checkout.toString(), attribution, "");
         }
       }
       const errorBody = await response.json().catch(() => null);
-      prepareError = new Error(errorBody?.error || "Could not prepare the XPageDrop checkout.");
+      prepareError = new Error(errorBody?.error || "Could not prepare secure checkout.");
     } catch (err) {
       prepareError = err;
-      console.warn("XPageDrop checkout preparation failed", err);
+      console.warn("Checkout preparation failed", err);
     }
 
-    throw prepareError || new Error("Could not prepare the XPageDrop checkout.");
+    throw prepareError || new Error("Could not prepare secure checkout.");
   }
 
   const MirooooCart = {
@@ -2128,6 +2128,14 @@
         else if (item.productHandle === "miroooo-x1-heads") x1HeadsCount += qty;
       });
 
+      let savedPromos = [];
+      try { savedPromos = JSON.parse(localStorage.getItem("miroooo_promo_codes") || "[]"); } catch (_) {}
+      if (!Array.isArray(savedPromos)) savedPromos = [];
+      const hasManualCode = savedPromos.some(code => ["MIROOOO", "MIROOOO10"].includes(String(code).toUpperCase()));
+      const bundleEligible = !hasManualCode && x2HeadsCount === 0 && x1HeadsCount === 0 &&
+        ((x2Count >= 1 && x2Count <= 3 && x1Count === 0) ||
+         (x1Count >= 1 && x1Count <= 3 && x2Count === 0));
+
       // Calculate totals
       let x2BundlePromoDiscount = 0;
       let extraBrushHeadSets = 0;
@@ -2142,6 +2150,11 @@
       let x1BundleDiscount = 0;
       if (x1Count === 2) x1BundleDiscount = 10;
       else if (x1Count >= 3) x1BundleDiscount = 30 + (x1Count - 3) * 10;
+      if (!bundleEligible) {
+        x2BundlePromoDiscount = 0;
+        extraBrushHeadSets = 0;
+        x1BundleDiscount = 0;
+      }
 
       const baseBrushCompareSavings = (x2Count + x1Count) * (139 - 69);
       const bundleSavings = baseBrushCompareSavings + x1BundleDiscount;
@@ -2152,7 +2165,7 @@
 
       let totalGiftValueNum = 0;
       if (extraBrushHeadSets > 0) totalGiftValueNum += extraBrushHeadSets * 10;
-      if (x1Count >= 1) totalGiftValueNum += 36;
+      if (bundleEligible && x1Count >= 2) totalGiftValueNum += 36;
 
       const totalDiscountNum = bundleSavings + x2BundlePromoDiscount + totalGiftValueNum;
 
