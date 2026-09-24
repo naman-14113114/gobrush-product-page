@@ -1559,7 +1559,7 @@
     }
   }
 
-  async function createPlusbaseCheckoutSession(cartOrItem, extraParams = {}) {
+  async function createXpageCheckoutSession(cartOrItem, extraParams = {}) {
     const rawCart = MirooooCart.getCart();
     let itemsToProcess = [];
 
@@ -1586,6 +1586,8 @@
 
       if (isHeads) {
         items.push({
+          id: item.id,
+          productHandle: h,
           productId: isX1Heads ? "1000000675471182" : "1000000675616058",
           variantId: isX1Heads ? "1000020710139724" : "1000020718937117",
           quantity: qty
@@ -1596,6 +1598,9 @@
         const vId = variants[color] || variants["Grey"] || variants["Gray"] || variants["Pink"] || variants["Silver"] || (isX2 ? "1000020700182883" : "1000020700958564");
         const pId = isX2 ? "1000000675072187" : "1000000675113473";
         items.push({
+          id: item.id,
+          productHandle: h,
+          color,
           productId: pId,
           variantId: vId,
           quantity: qty
@@ -1607,6 +1612,9 @@
     if (x2Count >= 2) {
       const extraSets = x2Count - 1;
       items.push({
+        id: "miroooo-x2-heads:free",
+        productHandle: "miroooo-x2-heads",
+        isFree: true,
         productId: "1000000675616058",
         variantId: "1000020718937117",
         quantity: extraSets
@@ -1674,66 +1682,23 @@
       });
       if (response.ok) {
         const data = await response.json();
-        if (data?.checkoutUrl) return decorateCheckoutUrl(data.checkoutUrl, attribution, "");
+        if (data?.checkoutUrl) {
+          const checkout = new URL(data.checkoutUrl);
+          if (checkout.origin !== "https://8e9c584880e3.myxpage.shop" ||
+              !/\/checkout\/[\da-f]{64}$/i.test(checkout.pathname)) {
+            throw new Error("Checkout is not ready on XPageDrop yet.");
+          }
+          return decorateCheckoutUrl(checkout.toString(), attribution, "");
+        }
       }
-      prepareError = new Error("Server checkout preparation did not apply every promo code.");
+      const errorBody = await response.json().catch(() => null);
+      prepareError = new Error(errorBody?.error || "Could not prepare the XPageDrop checkout.");
     } catch (err) {
       prepareError = err;
-      console.warn("Server prepare fallback", err);
+      console.warn("XPageDrop checkout preparation failed", err);
     }
 
-    if (promoList.length > 1) {
-      throw prepareError || new Error("Could not apply every promo code to checkout.");
-    }
-
-    // 2. Direct client-side PlusBase session creation
-    try {
-      const createRes = await fetch("https://muuhu.onshopbase.com/api/checkout/next/cart.json", {
-        method: "POST",
-        headers: { "Accept": "application/json" }
-      });
-      const createJson = await createRes.json();
-      const cartToken = createJson?.result?.token;
-      const checkoutToken = createJson?.result?.checkout_token;
-
-      if (cartToken && checkoutToken) {
-        const allowed = ["utm_source", "utm_medium", "utm_campaign", "utm_term", "utm_content", "msclkid", "gclid", "fbclid", "source"];
-        const properties = [];
-        allowed.forEach(key => {
-          if (attribution[key]) {
-            properties.push({ name: `_blfm_${key}`, value: String(attribution[key]).slice(0, 500) });
-          }
-        });
-
-        for (const itm of items) {
-          await fetch(`https://muuhu.onshopbase.com/api/checkout/next/cart.json?cart_token=${encodeURIComponent(cartToken)}`, {
-            method: "PUT",
-            headers: {
-              "Accept": "application/json",
-              "Content-Type": "application/json"
-            },
-            body: JSON.stringify({
-              cartItem: {
-                product_id: Number(itm.productId),
-                variant_id: Number(itm.variantId),
-                qty: Number(itm.quantity) || 1,
-                properties: properties,
-                metadata: { image_preview_id: "" }
-              },
-              from: "add-to-cart"
-            })
-          });
-        }
-
-        const fallbackDiscountCode = promoList[promoList.length - 1] || "";
-        return decorateCheckoutUrl(`https://miroooo.us/checkouts/${checkoutToken}`, attribution, fallbackDiscountCode);
-      }
-    } catch (directErr) {
-      console.error("Direct PlusBase session creation failed", directErr);
-    }
-
-    const fallbackDiscountCode = promoList[promoList.length - 1] || "";
-    return decorateCheckoutUrl("https://miroooo.us/checkouts", attribution, fallbackDiscountCode);
+    throw prepareError || new Error("Could not prepare the XPageDrop checkout.");
   }
 
   const MirooooCart = {
@@ -2374,13 +2339,14 @@
       }
 
       try {
-        const checkoutUrl = await createPlusbaseCheckoutSession(cart);
+        const checkoutUrl = await createXpageCheckoutSession(cart);
         window.location.assign(checkoutUrl);
       } catch (err) {
         console.error("Checkout redirection failed:", err);
         if (typeof window.resetButtonLoadingStates === "function") {
           window.resetButtonLoadingStates();
         }
+        window.alert(err.message || "Checkout is unavailable. Please try again.");
       }
     }
   };

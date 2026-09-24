@@ -1,4 +1,4 @@
-import { createXpageCartCheckout, XPAGE_VARIANTS, XPAGE_MIROOOO_VARIANTS } from "../../lib/xpage-checkout.js";
+import { createXpageCartCheckout } from "../../lib/xpage-checkout.js";
 
 const validDiscountCodes = [
   "MIROOOO",
@@ -27,8 +27,8 @@ function collectRequestedDiscountCode(body) {
     .map(normalizeDiscountCode)
     .filter((code) => validDiscountCodes.includes(code));
 
-  // Pick primary coupon (e.g. MIROOOO10, bundle promo, or free heads)
-  return matched.find((c) => c === "MIROOOO10") || matched[matched.length - 1] || "";
+  // Native XPage offers already include the bundle and free-head discounts.
+  return matched.find((c) => c === "MIROOOO10" || c === "MIROOOO") || "";
 }
 
 export default async function handler(req, res) {
@@ -93,10 +93,14 @@ export default async function handler(req, res) {
     }
 
     const discountCode = collectRequestedDiscountCode(body);
+    if (discountCode) {
+      return res.status(409).json({
+        error: `${discountCode} has not been verified on XPageDrop. Remove it before checkout.`,
+      });
+    }
 
     const result = await createXpageCartCheckout({
       cart: rawItems,
-      discountCode,
       attribution,
       currency: "GBP",
     });
@@ -104,7 +108,8 @@ export default async function handler(req, res) {
     return res.status(200).json({
       ok: true,
       checkoutUrl: result.checkoutUrl,
-      appliedDiscountCode: discountCode || null,
+      appliedDiscountCode: null,
+      offerType: result.isBundle ? "native_bundle" : "standard_cart",
       cart: result.cart,
     });
   } catch (error) {

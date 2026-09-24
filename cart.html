@@ -2786,7 +2786,7 @@
         }
       }
 
-      // 7. CHECKOUT REDIRECTION (Direct PlusBase Checkout Handshake)
+      // 7. CHECKOUT REDIRECTION (XPageDrop hosted checkout)
       function initCheckoutAction() {
         const checkoutBtn = document.getElementById("main-checkout-btn");
         const stickyBtn = document.getElementById("sticky-checkout-btn");
@@ -2908,7 +2908,12 @@
               if (prepRes.ok) {
                 const prepData = await prepRes.json();
                 if (prepData && prepData.checkoutUrl) {
-                  checkoutUrl = prepData.checkoutUrl;
+                  const checkout = new URL(prepData.checkoutUrl);
+                  if (checkout.origin !== "https://8e9c584880e3.myxpage.shop" ||
+                      !/\/checkout\/[\da-f]{64}$/i.test(checkout.pathname)) {
+                    throw new Error("Checkout is not ready on XPageDrop yet.");
+                  }
+                  checkoutUrl = checkout.toString();
                 }
               } else {
                 const prepErr = await prepRes.json().catch(() => null);
@@ -2919,7 +2924,7 @@
                 }
               }
             } catch (err) {
-              console.warn("Server prepare fallback, using direct client API", err);
+              console.warn("XPageDrop checkout preparation failed", err);
             }
 
             if (!checkoutUrl) {
