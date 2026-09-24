@@ -2007,7 +2007,7 @@
                     <span id="cart-bundle-discount-val">-${MirooooCurrency.format(0)}</span>
                   </div>
                   <div class="miroooo-discount-detail-item" id="cart-bundle-promo-row" style="display: none;">
-                    <span id="cart-bundle-promo-label">2-brush-bundle-special</span>
+                    <span id="cart-bundle-promo-label">Buy 2 bundle</span>
                     <span id="cart-bundle-promo-val">-${MirooooCurrency.format(0)}</span>
                   </div>
                   <div class="miroooo-discount-detail-item" id="cart-gift-discount-row">
@@ -2090,29 +2090,24 @@
       try { savedPromos = JSON.parse(localStorage.getItem("miroooo_promo_codes") || "[]"); } catch (_) {}
       if (!Array.isArray(savedPromos)) savedPromos = [];
       const hasManualCode = savedPromos.some(code => ["MIROOOO", "MIROOOO10"].includes(String(code).toUpperCase()));
-      const bundleEligible = x2HeadsCount === 0 && x1HeadsCount === 0 &&
-        ((x2Count >= 1 && x2Count <= 3 && x1Count === 0) ||
-         (x1Count >= 1 && x1Count <= 3 && x2Count === 0));
+      const hasX2Bundle = x2Count >= 2 && x1Count === 0;
+      const hasX1Bundle = x1Count >= 2 && x2Count === 0;
+      const bundleEligible = (x2Count >= 1 && x1Count === 0) || (x1Count >= 1 && x2Count === 0);
 
       // Calculate totals
       let x2BundlePromoDiscount = 0;
       let extraBrushHeadSets = 0;
-      if (x2Count === 2) {
+      if (x2Count === 2 && x1Count === 0) {
         x2BundlePromoDiscount = 10;
         extraBrushHeadSets = 1;
-      } else if (x2Count >= 3) {
+      } else if (x2Count >= 3 && x1Count === 0) {
         x2BundlePromoDiscount = 30 + (x2Count - 3) * 10;
         extraBrushHeadSets = x2Count - 1;
       }
 
       let x1BundleDiscount = 0;
-      if (x1Count === 2) x1BundleDiscount = 10;
-      else if (x1Count >= 3) x1BundleDiscount = 30 + (x1Count - 3) * 10;
-      if (!bundleEligible) {
-        x2BundlePromoDiscount = 0;
-        extraBrushHeadSets = 0;
-        x1BundleDiscount = 0;
-      }
+      if (x1Count === 2 && x2Count === 0) x1BundleDiscount = 10;
+      else if (x1Count >= 3 && x2Count === 0) x1BundleDiscount = 30 + (x1Count - 3) * 10;
 
       const baseBrushCompareSavings = (x2Count + x1Count) * (139 - 69);
       const bundleSavings = baseBrushCompareSavings + x1BundleDiscount;
@@ -2120,11 +2115,11 @@
       const x1Net = (x1Count * 69) - x1BundleDiscount;
       const headsNet = (x2HeadsCount * 10) + (x1HeadsCount * 10);
       const subtotal = Math.max(0, x2Net + x1Net + headsNet);
-      const welcomeDiscount = hasManualCode && bundleEligible ? Math.round(subtotal * 0.10) : 0;
+      const welcomeDiscount = hasManualCode ? Math.round(subtotal * 0.10) : 0;
 
       let totalGiftValueNum = 0;
       if (extraBrushHeadSets > 0) totalGiftValueNum += extraBrushHeadSets * 10;
-      if (bundleEligible && x1Count >= 2) totalGiftValueNum += 36;
+      if (x1Count >= 2 && x2Count === 0) totalGiftValueNum += 36;
 
       const totalDiscountNum = bundleSavings + x2BundlePromoDiscount + totalGiftValueNum + welcomeDiscount;
 
@@ -2235,7 +2230,7 @@
       if (x2BundlePromoDiscount > 0) {
         if (bundlePromoRow) {
           bundlePromoRow.style.display = "flex";
-          if (bundlePromoLabelEl) bundlePromoLabelEl.textContent = (x2Count === 2 ? "2-brush-bundle-special" : "3-brush-bundle-offer");
+          if (bundlePromoLabelEl) bundlePromoLabelEl.textContent = (x2Count === 2 ? "Buy 2 bundle" : "Buy 3 bundle");
           if (bundlePromoValEl) bundlePromoValEl.textContent = `-${MirooooCurrency.format(x2BundlePromoDiscount)}`;
         }
       } else {

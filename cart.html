@@ -1651,7 +1651,7 @@
               <div class="cart-discount-breakdown-row" id="breakdown-bundle-promo-row" style="display: none;">
                 <span class="flex items-center gap-1.5 uppercase" id="breakdown-bundle-promo-label">
                   <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7.01" y2="7"></line></svg>
-                  2-brush-bundle-special
+                  Buy 2 bundle
                 </span>
                 <span id="breakdown-bundle-promo-val">-£10.00</span>
               </div>
@@ -2284,9 +2284,9 @@
         const isX1 = x1Count > 0;
         const isHeadsOnly = (x2HeadsCount > 0 || x1HeadsCount > 0) && x2Count === 0 && x1Count === 0;
         const manualCode = appliedPromoCodes.find(c => c === "MIROOOO" || c === "MIROOOO10");
-        const bundleEligible = x2HeadsCount === 0 && x1HeadsCount === 0 &&
-          ((x2Count >= 1 && x2Count <= 3 && x1Count === 0) ||
-           (x1Count >= 1 && x1Count <= 3 && x2Count === 0));
+        const hasX2Bundle = x2Count >= 2 && x1Count === 0;
+        const hasX1Bundle = x1Count >= 2 && x2Count === 0;
+        const bundleEligible = (x2Count >= 1 && x1Count === 0) || (x1Count >= 1 && x2Count === 0);
 
         // Compare At & Base Subtotals
         const x2Compare = x2Count * 139;
@@ -2321,13 +2321,6 @@
           x1BundleDiscount = 30 + (x1Count - 3) * 10;
         }
 
-        if (!bundleEligible) {
-          x2BundlePromoDiscount = 0;
-          x2BundlePromoName = "";
-          extraBrushHeadSets = 0;
-          x1BundleDiscount = 0;
-        }
-
         try {
           localStorage.setItem("miroooo_promo_codes", JSON.stringify(appliedPromoCodes));
           localStorage.setItem("miroooo_promo_code", appliedPromoCodes.join(","));
@@ -2341,7 +2334,7 @@
           giftsValue += extraBrushHeadSets * 10;
           unlockedGiftsCount += 1;
         }
-        if (bundleEligible && x1Count >= 2) {
+        if (x1Count >= 2) {
           giftsValue += 36; // £16 Travel Case + £20 Miroooo X1 Heads
           unlockedGiftsCount += 2;
         }
@@ -2351,9 +2344,8 @@
         const headsNet = (x2HeadsCount * 10) + (x1HeadsCount * 10);
         const subtotal = Math.max(0, x2Net + x1Net + headsNet);
 
-        // The matching native promo option prices the welcome code alongside
-        // the bundle and free heads. Mixed carts are priced by hosted checkout.
-        const promoDiscount = manualCode && bundleEligible ? Math.round(subtotal * 0.10) : 0;
+        // Welcome code discount applies 10% on eligible subtotal
+        const promoDiscount = manualCode ? Math.round(subtotal * 0.10) : 0;
 
         const finalSubtotal = Math.max(0, Number((subtotal - promoDiscount).toFixed(2)));
         const bundleSavings = baseBrushCompareSavings + x1BundleDiscount;
@@ -2508,7 +2500,7 @@
           }
 
           // Render Free Gifts for X1 (Travel Case + Extra X1 Heads)
-          if (totals.bundleEligible && totals.x1Count >= 2) {
+          if (totals.x1Count >= 2) {
             const lineItemGifts = GIFTS_DATA.filter(g => g.id === "brush-heads");
             lineItemGifts.forEach(gift => {
               const giftUrl = "/products/miroooo-x1-heads";
@@ -2640,7 +2632,7 @@
           if (breakdownBundlePromoRow) breakdownBundlePromoRow.style.display = "none";
         }
 
-        if (totals.bundleEligible && totals.x1Count >= 2) {
+        if (totals.x1Count >= 2) {
           if (breakdownGiftCase) {
             breakdownGiftCase.style.display = "flex";
             const caseLabel = breakdownGiftCase.querySelector("span:first-child");
@@ -2657,7 +2649,7 @@
           if (breakdownGiftCase) breakdownGiftCase.style.display = "none";
         }
 
-        if (totals.extraBrushHeadSets > 0 || (totals.bundleEligible && totals.x1Count >= 2)) {
+        if (totals.extraBrushHeadSets > 0 || totals.x1Count >= 2) {
           if (breakdownGiftHeads) {
             breakdownGiftHeads.style.display = "flex";
             const headsLabel = breakdownGiftHeads.querySelector("span:first-child");
@@ -2694,13 +2686,9 @@
         const offerNote = document.getElementById("checkout-offer-note");
         if (offerNote) {
           const manualCode = appliedPromoCodes.find(c => c === "MIROOOO" || c === "MIROOOO10");
-          offerNote.textContent = manualCode && totals.bundleEligible
+          offerNote.textContent = manualCode
             ? `${manualCode} and your bundle offer are included. Check the final total on the secure checkout page.`
-            : manualCode
-              ? `Enter ${manualCode} at secure checkout. Mixed carts use standard item pricing; check the final total before paying.`
-            : totals.bundleEligible
-              ? "Your bundle items and final total are confirmed on the secure checkout page."
-              : "Extra items and mixed carts use standard item pricing; bundle gifts are not included. Check the final total before paying.";
+            : "Your bundle items and final total are confirmed on the secure checkout page.";
         }
 
         function formatPromoCodeDisplay(code) {
@@ -2869,7 +2857,7 @@
                 const prepData = await prepRes.json();
                 if (prepData && prepData.checkoutUrl) {
                   const checkout = new URL(prepData.checkoutUrl);
-                  if (!["https://x1.miroooo.us", "https://offer.miroooo.us"].includes(checkout.origin) ||
+                  if (!["https://x1.miroooo.us", "https://offer.miroooo.us", "https://x1heads.miroooo.us", "https://x2heads.miroooo.us"].includes(checkout.origin) ||
                       !/\/checkout\/[\da-f]{64}$/i.test(checkout.pathname)) {
                     throw new Error("Secure checkout is not ready yet.");
                   }
