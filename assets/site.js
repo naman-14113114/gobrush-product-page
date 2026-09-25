@@ -1576,9 +1576,8 @@
       }
     });
 
-    // Unlocked free brush heads for pure X2 Buy 2+
-    const hasPaidHeads = items.some(i => i.productHandle === "miroooo-x2-heads" || i.productHandle === "miroooo-x1-heads");
-    if (!hasPaidHeads && x2Count >= 2 && x2Count <= 3) {
+    // Unlocked free brush heads for X2 Buy 2+
+    if (x2Count >= 2 && x2Count <= 3) {
       const extraSets = x2Count - 1;
       items.push({
         id: "miroooo-x2-heads:free",
@@ -2089,14 +2088,13 @@
       if (!Array.isArray(savedPromos)) savedPromos = [];
       const hasManualCode = savedPromos.some(code => ["MIROOOO", "MIROOOO10"].includes(String(code).toUpperCase()));
 
-      const hasPaidHeads = (x2HeadsCount > 0 || x1HeadsCount > 0);
-      const isPureX2Bundle = !hasPaidHeads && x1Count === 0 && (x2Count === 2 || x2Count === 3);
-      const isPureX1Bundle = !hasPaidHeads && x2Count === 0 && (x1Count === 2 || x1Count === 3);
+      const isX2Bundle = x1Count === 0 && (x2Count === 2 || x2Count === 3);
+      const isX1Bundle = x2Count === 0 && (x1Count === 2 || x1Count === 3);
 
       // Calculate totals
       let x2BundlePromoDiscount = 0;
       let extraBrushHeadSets = 0;
-      if (isPureX2Bundle) {
+      if (isX2Bundle) {
         if (x2Count === 2) {
           x2BundlePromoDiscount = 10;
           extraBrushHeadSets = 1;
@@ -2108,7 +2106,7 @@
 
       let x1BundleDiscount = 0;
       let extraX1BrushHeadSets = 0;
-      if (isPureX1Bundle) {
+      if (isX1Bundle) {
         if (x1Count === 2) {
           x1BundleDiscount = 10;
           extraX1BrushHeadSets = 1;

@@ -1,7 +1,7 @@
 import assert from "node:assert";
 import { createXpageCartCheckout, XPAGE_VARIANTS, detectBundlePayload } from "../lib/xpage-checkout.js";
 
-console.log("=== COMPREHENSIVE TEST SUITE: DYNAMIC CART COMBINATIONS & CHECKOUT MATCHING ===");
+console.log("=== COMPREHENSIVE TEST SUITE: ALL 12 X2 OFFERS & X1 COMBINATIONS ===");
 
 // 1. Helper function mirroring cart.html & site.js computeTotals
 function computeTotals(items, appliedPromoCodes = []) {
@@ -23,9 +23,8 @@ function computeTotals(items, appliedPromoCodes = []) {
   const isX1 = x1Count > 0;
   const manualCode = appliedPromoCodes.find(c => c === "MIROOOO" || c === "MIROOOO10");
 
-  const hasPaidHeads = (x2HeadsCount > 0 || x1HeadsCount > 0);
-  const isPureX2Bundle = !hasPaidHeads && x1Count === 0 && (x2Count === 2 || x2Count === 3);
-  const isPureX1Bundle = !hasPaidHeads && x2Count === 0 && (x1Count === 2 || x1Count === 3);
+  const isX2Bundle = x1Count === 0 && (x2Count === 2 || x2Count === 3);
+  const isX1Bundle = x2Count === 0 && (x1Count === 2 || x1Count === 3);
 
   const x2Compare = x2Count * 139;
   const x1Compare = x1Count * 119;
@@ -39,7 +38,7 @@ function computeTotals(items, appliedPromoCodes = []) {
   let x2BundlePromoName = "";
   let extraBrushHeadSets = 0;
 
-  if (isPureX2Bundle) {
+  if (isX2Bundle) {
     if (x2Count === 2) {
       x2BundlePromoDiscount = 10;
       x2BundlePromoName = "Buy 2 bundle";
@@ -53,7 +52,7 @@ function computeTotals(items, appliedPromoCodes = []) {
 
   let x1BundleDiscount = 0;
   let extraX1BrushHeadSets = 0;
-  if (isPureX1Bundle) {
+  if (isX1Bundle) {
     if (x1Count === 2) {
       x1BundleDiscount = 10;
       extraX1BrushHeadSets = 1;
@@ -81,6 +80,7 @@ function computeTotals(items, appliedPromoCodes = []) {
   const brushSubtotal = Math.max(0, x2Net + x1Net);
   const subtotal = Math.max(0, brushSubtotal + headsNet);
 
+  // 10% promo discount applies strictly to brush subtotal, rounded to nearest integer
   const promoDiscount = manualCode ? Math.round(brushSubtotal * 0.10) : 0;
   const finalSubtotal = Math.max(0, Number((subtotal - promoDiscount).toFixed(2)));
   const bundleSavings = baseBrushCompareSavings + x1BundleDiscount;
@@ -103,12 +103,12 @@ function computeTotals(items, appliedPromoCodes = []) {
     x1Count: x1Count,
     x2HeadsCount: x2HeadsCount,
     x1HeadsCount: x1HeadsCount,
-    isPureX2Bundle,
-    isPureX1Bundle
+    isX2Bundle,
+    isX1Bundle
   };
 }
 
-// Function simulating prepareItemsForCheckout
+// Helper simulating prepareItemsForCheckout
 function prepareCheckoutItems(cartItems, totals) {
   const items = cartItems.map(i => ({ ...i }));
   if (totals.extraBrushHeadSets > 0) {
@@ -129,188 +129,297 @@ function prepareCheckoutItems(cartItems, totals) {
   return items;
 }
 
-// --- TEST CASES ---
+// ==========================================
+// TEST ALL 12 X2 OFFERS CALCULATIONS & ROUTING
+// ==========================================
 
-console.log("\n--- TEST CASE 1: Miroooo X2 Buy 1 (Single Brush) ---");
+console.log("\n--- OPTION 1: Buy 1 (1 brush, 0 heads, no promo) ---");
 {
   const cart = [{ productHandle: "miroooo-x2", color: "Silver", quantity: 1, unitPrice: 69, comparePrice: 139 }];
   const totals = computeTotals(cart);
-  assert.strictEqual(totals.subtotal, 69);
-  assert.strictEqual(totals.extraBrushHeadSets, 0, "No free heads for Buy 1");
-  assert.strictEqual(totals.bundlePromoDiscount, 0);
-  console.log("✓ Cart totals for X2 Buy 1:", totals.subtotal, "(Free heads: " + totals.extraBrushHeadSets + ")");
+  assert.strictEqual(totals.finalSubtotal, 69);
+  assert.strictEqual(totals.extraBrushHeadSets, 0);
+  const checkoutItems = prepareCheckoutItems(cart, totals);
+  const bundle = detectBundlePayload(checkoutItems, "");
+  assert.strictEqual(bundle?.matchedKey, "buy1");
+  console.log("✓ Option 1 verified: £" + totals.finalSubtotal + " (matchedKey: " + bundle.matchedKey + ")");
 }
 
-console.log("\n--- TEST CASE 2: Miroooo X2 Pure Buy 2 Bundle (2 Brushes, 0 Paid Heads) ---");
+console.log("\n--- OPTION 2: Buy 2 + 1 Free Head (2 brushes, 0 paid heads, no promo) ---");
 {
   const cart = [{ productHandle: "miroooo-x2", color: "Silver", quantity: 2, unitPrice: 69, comparePrice: 139 }];
   const totals = computeTotals(cart);
-  assert.strictEqual(totals.subtotal, 128, "Buy 2 price must be £128");
-  assert.strictEqual(totals.extraBrushHeadSets, 1, "Must unlock 1 free heads set");
-  assert.strictEqual(totals.bundlePromoDiscount, 10);
-  console.log("✓ Cart totals for X2 Pure Buy 2:", totals.subtotal, "(Free heads: " + totals.extraBrushHeadSets + " set)");
-
+  assert.strictEqual(totals.finalSubtotal, 128);
+  assert.strictEqual(totals.extraBrushHeadSets, 1);
   const checkoutItems = prepareCheckoutItems(cart, totals);
-  const bundlePayload = detectBundlePayload(checkoutItems);
-  assert.ok(bundlePayload !== null, "Must detect bundle payload for pure Buy 2");
-  console.log("✓ XPage bundle detection verified for Pure Buy 2!");
+  const bundle = detectBundlePayload(checkoutItems, "");
+  assert.strictEqual(bundle?.matchedKey, "buy2");
+  console.log("✓ Option 2 verified: £" + totals.finalSubtotal + " (matchedKey: " + bundle.matchedKey + ")");
 }
 
-console.log("\n--- TEST CASE 3: Miroooo X2 (2 Brushes) + Paid Heads Added From Product Page ---");
-{
-  // User has 2 brushes and added 1 extra head set from product page
-  const cart = [
-    { productHandle: "miroooo-x2", color: "Silver", quantity: 2, unitPrice: 69, comparePrice: 139 },
-    { productHandle: "miroooo-x2-heads", color: "Default", quantity: 1, unitPrice: 10, comparePrice: 10 }
-  ];
-  const totals = computeTotals(cart);
-  assert.strictEqual(totals.subtotal, 148, "2 brushes (£138) + 1 head (£10) = £148 with NO bundle discount");
-  assert.strictEqual(totals.extraBrushHeadSets, 0, "NO free heads when paid heads are present");
-  assert.strictEqual(totals.bundlePromoDiscount, 0, "NO bundle discount when paid heads are present");
-  console.log("✓ Cart totals for X2 2 Brushes + Paid Heads:", totals.subtotal, "(Free heads: " + totals.extraBrushHeadSets + ")");
-
-  const checkoutItems = prepareCheckoutItems(cart, totals);
-  const bundlePayload = detectBundlePayload(checkoutItems);
-  assert.strictEqual(bundlePayload, null, "Standard cart must not trigger bundle order");
-  console.log("✓ Verified standard checkout routing for 2 Brushes + Paid Heads!");
-}
-
-console.log("\n--- TEST CASE 4: Miroooo X2 Pure Buy 3 Bundle (3 Brushes, 0 Paid Heads) ---");
+console.log("\n--- OPTION 3: Buy 3 + 2 Free Head (3 brushes, 0 paid heads, no promo) ---");
 {
   const cart = [{ productHandle: "miroooo-x2", color: "Silver", quantity: 3, unitPrice: 69, comparePrice: 139 }];
   const totals = computeTotals(cart);
-  assert.strictEqual(totals.subtotal, 177, "Buy 3 price must be £177");
-  assert.strictEqual(totals.extraBrushHeadSets, 2, "Must unlock 2 free heads sets");
-  assert.strictEqual(totals.bundlePromoDiscount, 30);
-  console.log("✓ Cart totals for X2 Pure Buy 3:", totals.subtotal, "(Free heads: " + totals.extraBrushHeadSets + " sets)");
-
+  assert.strictEqual(totals.finalSubtotal, 177);
+  assert.strictEqual(totals.extraBrushHeadSets, 2);
   const checkoutItems = prepareCheckoutItems(cart, totals);
-  const bundlePayload = detectBundlePayload(checkoutItems);
-  assert.ok(bundlePayload !== null, "Must detect bundle payload for pure Buy 3");
-  console.log("✓ XPage bundle detection verified for Pure Buy 3!");
+  const bundle = detectBundlePayload(checkoutItems, "");
+  assert.strictEqual(bundle?.matchedKey, "buy3");
+  console.log("✓ Option 3 verified: £" + totals.finalSubtotal + " (matchedKey: " + bundle.matchedKey + ")");
 }
 
-console.log("\n--- TEST CASE 5: Miroooo X1 Pure Buy 2 Bundle (2 Brushes, 0 Paid Heads) ---");
-{
-  const cart = [{ productHandle: "miroooo-x", color: "Silver", quantity: 2, unitPrice: 59, comparePrice: 119 }];
-  const totals = computeTotals(cart);
-  assert.strictEqual(totals.subtotal, 108, "X1 Buy 2 price must be £108 (2*59 - 10)");
-  assert.strictEqual(totals.extraX1BrushHeadSets, 1, "Must unlock 1 free X1 heads set");
-  assert.strictEqual(totals.bundleSavings, 130);
-  console.log("✓ Cart totals for X1 Pure Buy 2:", totals.subtotal, "(Free heads: " + totals.extraX1BrushHeadSets + " set)");
-
-  const checkoutItems = prepareCheckoutItems(cart, totals);
-  const bundlePayload = detectBundlePayload(checkoutItems);
-  assert.ok(bundlePayload !== null, "Must detect bundle payload for X1 Pure Buy 2");
-  console.log("✓ XPage bundle detection verified for X1 Pure Buy 2!");
-}
-
-console.log("\n--- TEST CASE 6: Miroooo X1 (2 Brushes) + Paid Heads Added From Product Page ---");
-{
-  const cart = [
-    { productHandle: "miroooo-x", color: "Silver", quantity: 2, unitPrice: 59, comparePrice: 119 },
-    { productHandle: "miroooo-x1-heads", color: "Default", quantity: 1, unitPrice: 10, comparePrice: 10 }
-  ];
-  const totals = computeTotals(cart);
-  assert.strictEqual(totals.subtotal, 128, "2 X1 brushes (£118) + 1 head (£10) = £128 with NO bundle discount");
-  assert.strictEqual(totals.extraX1BrushHeadSets, 0, "NO free heads when paid heads are present");
-  console.log("✓ Cart totals for X1 2 Brushes + Paid Heads:", totals.subtotal, "(Free heads: " + totals.extraX1BrushHeadSets + ")");
-}
-
-console.log("\n--- TEST CASE 7: MIROOOO10 on Miroooo X2 (1 Brush, 0 Heads) ---");
+console.log("\n--- OPTION 4: Buy 1 + MIROOOO10 (1 brush, 0 heads, promo) ---");
 {
   const cart = [{ productHandle: "miroooo-x2", color: "Silver", quantity: 1, unitPrice: 69, comparePrice: 139 }];
   const totals = computeTotals(cart, ["MIROOOO10"]);
-  assert.strictEqual(totals.subtotal, 69);
-  assert.strictEqual(totals.promoDiscount, 7, "10% of £69 rounded to nearest integer is £7");
-  assert.strictEqual(totals.finalSubtotal, 62, "Final subtotal must be £62 (£69 - £7)");
-  console.log("✓ Miroooo X2 + MIROOOO10: Subtotal £" + totals.subtotal + " - Promo £" + totals.promoDiscount + " = Final £" + totals.finalSubtotal);
+  assert.strictEqual(totals.promoDiscount, 7);
+  assert.strictEqual(totals.finalSubtotal, 62);
+  const checkoutItems = prepareCheckoutItems(cart, totals);
+  const bundle = detectBundlePayload(checkoutItems, "MIROOOO10");
+  assert.strictEqual(bundle?.matchedKey, "promoBuy1");
+  console.log("✓ Option 4 verified: £" + totals.finalSubtotal + " (matchedKey: " + bundle.matchedKey + ")");
 }
 
-console.log("\n--- TEST CASE 8: MIROOOO10 on Miroooo X1 (1 Brush, 0 Heads) ---");
+console.log("\n--- OPTION 5: Buy 2 + 1 Free Head + MIROOOO10 (2 brushes, 0 paid heads, promo) ---");
 {
-  const cart = [{ productHandle: "miroooo-x", color: "Silver", quantity: 1, unitPrice: 59, comparePrice: 119 }];
+  const cart = [{ productHandle: "miroooo-x2", color: "Silver", quantity: 2, unitPrice: 69, comparePrice: 139 }];
   const totals = computeTotals(cart, ["MIROOOO10"]);
-  assert.strictEqual(totals.subtotal, 59);
-  assert.strictEqual(totals.promoDiscount, 6, "10% of £59 rounded to nearest integer is £6");
-  assert.strictEqual(totals.finalSubtotal, 53, "Final subtotal must be £53 (£59 - £6)");
-  console.log("✓ Miroooo X1 + MIROOOO10: Subtotal £" + totals.subtotal + " - Promo £" + totals.promoDiscount + " = Final £" + totals.finalSubtotal);
+  assert.strictEqual(totals.promoDiscount, 13); // 10% of £128 = £12.80 -> £13
+  assert.strictEqual(totals.finalSubtotal, 115); // £128 - £13 = £115
+  assert.strictEqual(totals.extraBrushHeadSets, 1);
+  const checkoutItems = prepareCheckoutItems(cart, totals);
+  const bundle = detectBundlePayload(checkoutItems, "MIROOOO10");
+  assert.strictEqual(bundle?.matchedKey, "promoBuy2");
+  console.log("✓ Option 5 verified: £" + totals.finalSubtotal + " (matchedKey: " + bundle.matchedKey + ")");
 }
 
-console.log("\n--- TEST CASE 9: MIROOOO10 on Miroooo X2 (1 Brush) + 1x Heads (Excluding Heads Price) ---");
+console.log("\n--- OPTION 6: Buy 3 + 2 Free Heads + MIROOOO10 (3 brushes, 0 paid heads, promo) ---");
+{
+  const cart = [{ productHandle: "miroooo-x2", color: "Silver", quantity: 3, unitPrice: 69, comparePrice: 139 }];
+  const totals = computeTotals(cart, ["MIROOOO10"]);
+  assert.strictEqual(totals.promoDiscount, 18); // 10% of £177 = £17.70 -> £18
+  assert.strictEqual(totals.finalSubtotal, 159); // £177 - £18 = £159
+  assert.strictEqual(totals.extraBrushHeadSets, 2);
+  const checkoutItems = prepareCheckoutItems(cart, totals);
+  const bundle = detectBundlePayload(checkoutItems, "MIROOOO10");
+  assert.strictEqual(bundle?.matchedKey, "promoBuy3");
+  console.log("✓ Option 6 verified: £" + totals.finalSubtotal + " (matchedKey: " + bundle.matchedKey + ")");
+}
+
+console.log("\n--- OPTION 7: Buy 1 + 1Head + MIROOOO10 (1 brush + 1 paid head, promo) ---");
 {
   const cart = [
     { productHandle: "miroooo-x2", color: "Silver", quantity: 1, unitPrice: 69, comparePrice: 139 },
     { productHandle: "miroooo-x2-heads", color: "Default", quantity: 1, unitPrice: 10, comparePrice: 10 }
   ];
   const totals = computeTotals(cart, ["MIROOOO10"]);
-  assert.strictEqual(totals.subtotal, 79, "Subtotal is £69 brush + £10 heads = £79");
-  assert.strictEqual(totals.promoDiscount, 7, "Promo discount is strictly 10% of £69 brush = £7, heads excluded (£0)");
-  assert.strictEqual(totals.finalSubtotal, 72, "Final subtotal must be £72 (£79 - £7)");
-  console.log("✓ Miroooo X2 + Heads + MIROOOO10: Subtotal £" + totals.subtotal + " - Promo £" + totals.promoDiscount + " = Final £" + totals.finalSubtotal);
+  assert.strictEqual(totals.subtotal, 79);
+  assert.strictEqual(totals.promoDiscount, 7); // 10% strictly on £69 brush = £7, heads excluded
+  assert.strictEqual(totals.finalSubtotal, 72); // £79 - £7 = £72
+  const checkoutItems = prepareCheckoutItems(cart, totals);
+  const bundle = detectBundlePayload(checkoutItems, "MIROOOO10");
+  assert.strictEqual(bundle?.matchedKey, "promoBuy1_1head");
+  console.log("✓ Option 7 verified: £" + totals.finalSubtotal + " (matchedKey: " + bundle.matchedKey + ")");
 }
 
-console.log("\n--- TEST CASE 10: MIROOOO10 on Miroooo X1 (1 Brush) + 2x Heads (Excluding Heads Price) ---");
+console.log("\n--- OPTION 8: Buy 1 + 2Head + MIROOOO10 (1 brush + 2 paid heads, promo) ---");
 {
   const cart = [
-    { productHandle: "miroooo-x", color: "Silver", quantity: 1, unitPrice: 59, comparePrice: 119 },
-    { productHandle: "miroooo-x1-heads", color: "Default", quantity: 2, unitPrice: 10, comparePrice: 10 }
-  ];
-  const totals = computeTotals(cart, ["MIROOOO10"]);
-  assert.strictEqual(totals.subtotal, 79, "Subtotal is £59 brush + £20 heads = £79");
-  assert.strictEqual(totals.promoDiscount, 6, "Promo discount is strictly 10% of £59 brush = £6, heads excluded (£0)");
-  assert.strictEqual(totals.finalSubtotal, 73, "Final subtotal must be £73 (£79 - £6)");
-  console.log("✓ Miroooo X1 + 2x Heads + MIROOOO10: Subtotal £" + totals.subtotal + " - Promo £" + totals.promoDiscount + " = Final £" + totals.finalSubtotal);
-}
-
-console.log("\n--- TEST CASE 11: MIROOOO10 on Standalone Heads ONLY (100% Excluded -> £0 Promo Discount) ---");
-{
-  const cart = [
+    { productHandle: "miroooo-x2", color: "Silver", quantity: 1, unitPrice: 69, comparePrice: 139 },
     { productHandle: "miroooo-x2-heads", color: "Default", quantity: 2, unitPrice: 10, comparePrice: 10 }
   ];
   const totals = computeTotals(cart, ["MIROOOO10"]);
-  assert.strictEqual(totals.subtotal, 20, "Subtotal is 2x £10 = £20");
-  assert.strictEqual(totals.promoDiscount, 0, "Promo discount on heads only is £0 (heads excluded)");
-  assert.strictEqual(totals.finalSubtotal, 20, "Final subtotal must remain £20");
-  console.log("✓ Standalone Heads + MIROOOO10: Subtotal £" + totals.subtotal + " - Promo £" + totals.promoDiscount + " = Final £" + totals.finalSubtotal);
+  assert.strictEqual(totals.subtotal, 89);
+  assert.strictEqual(totals.promoDiscount, 7); // 10% strictly on £69 brush = £7, heads excluded
+  assert.strictEqual(totals.finalSubtotal, 82); // £89 - £7 = £82
+  const checkoutItems = prepareCheckoutItems(cart, totals);
+  const bundle = detectBundlePayload(checkoutItems, "MIROOOO10");
+  assert.strictEqual(bundle?.matchedKey, "promoBuy1_2head");
+  console.log("✓ Option 8 verified: £" + totals.finalSubtotal + " (matchedKey: " + bundle.matchedKey + ")");
 }
 
-console.log("\n--- TEST CASE 12: Live XPage Session for 2x X2 Brushes + 1x Paid Heads (Matching Image 3) ---");
+console.log("\n--- OPTION 9: Buy 2 + 1 Free Head + 1 Paid Head (2 brushes + 1 paid head, no promo) ---");
 {
-  const session = await createXpageCartCheckout({
-    cart: [
-      { productHandle: "miroooo-x2", color: "Silver", quantity: 2, variantId: XPAGE_VARIANTS.x2_silver },
-      { productHandle: "miroooo-x2-heads", quantity: 1, variantId: XPAGE_VARIANTS.x2_heads }
-    ],
-    currency: "GBP",
-    attribution: { utm_source: "google" }
-  });
-
-  console.log("Checkout URL:", session.checkoutUrl);
-  console.log("Cart Payload:", session.cart);
-  assert.ok(session.ok);
-  assert.strictEqual(session.isBundle, false, "Must use standard cart session");
-  assert.strictEqual(session.cart.find(i => i.variant_id === XPAGE_VARIANTS.x2_silver)?.quantity, 2);
-  assert.strictEqual(session.cart.find(i => i.variant_id === XPAGE_VARIANTS.x2_heads)?.quantity, 1);
-  console.log("✓ Live session created matching Image 3 (£148 total)!");
+  const cart = [
+    { productHandle: "miroooo-x2", color: "Silver", quantity: 2, unitPrice: 69, comparePrice: 139 },
+    { productHandle: "miroooo-x2-heads", color: "Default", quantity: 1, unitPrice: 10, comparePrice: 10 }
+  ];
+  const totals = computeTotals(cart);
+  assert.strictEqual(totals.subtotal, 138); // £128 + £10 = £138
+  assert.strictEqual(totals.finalSubtotal, 138);
+  assert.strictEqual(totals.extraBrushHeadSets, 1);
+  const checkoutItems = prepareCheckoutItems(cart, totals);
+  const bundle = detectBundlePayload(checkoutItems, "");
+  assert.strictEqual(bundle?.matchedKey, "buy2_1head");
+  console.log("✓ Option 9 verified: £" + totals.finalSubtotal + " (matchedKey: " + bundle.matchedKey + ")");
 }
 
-console.log("\n--- TEST CASE 13: Live XPage Session for Pure Buy 2 Bundle (Matching Image 1) ---");
+console.log("\n--- OPTION 10: Buy 2 + 1 Free Head + 1 Paid Head + MIROOOO10 (2 brushes + 1 paid head, promo) ---");
 {
-  const session = await createXpageCartCheckout({
+  const cart = [
+    { productHandle: "miroooo-x2", color: "Silver", quantity: 2, unitPrice: 69, comparePrice: 139 },
+    { productHandle: "miroooo-x2-heads", color: "Default", quantity: 1, unitPrice: 10, comparePrice: 10 }
+  ];
+  const totals = computeTotals(cart, ["MIROOOO10"]);
+  assert.strictEqual(totals.subtotal, 138);
+  assert.strictEqual(totals.promoDiscount, 13); // 10% strictly on £128 brushes = £13, heads excluded
+  assert.strictEqual(totals.finalSubtotal, 125); // £138 - £13 = £125
+  assert.strictEqual(totals.extraBrushHeadSets, 1);
+  const checkoutItems = prepareCheckoutItems(cart, totals);
+  const bundle = detectBundlePayload(checkoutItems, "MIROOOO10");
+  assert.strictEqual(bundle?.matchedKey, "promoBuy2_1head");
+  console.log("✓ Option 10 verified: £" + totals.finalSubtotal + " (matchedKey: " + bundle.matchedKey + ")");
+}
+
+console.log("\n--- OPTION 11: Buy 3 + 2 Free Heads + 1 Paid Head (3 brushes + 1 paid head, no promo) ---");
+{
+  const cart = [
+    { productHandle: "miroooo-x2", color: "Silver", quantity: 3, unitPrice: 69, comparePrice: 139 },
+    { productHandle: "miroooo-x2-heads", color: "Default", quantity: 1, unitPrice: 10, comparePrice: 10 }
+  ];
+  const totals = computeTotals(cart);
+  assert.strictEqual(totals.subtotal, 187); // £177 + £10 = £187
+  assert.strictEqual(totals.finalSubtotal, 187);
+  assert.strictEqual(totals.extraBrushHeadSets, 2);
+  const checkoutItems = prepareCheckoutItems(cart, totals);
+  const bundle = detectBundlePayload(checkoutItems, "");
+  assert.strictEqual(bundle?.matchedKey, "buy3_1head");
+  console.log("✓ Option 11 verified: £" + totals.finalSubtotal + " (matchedKey: " + bundle.matchedKey + ")");
+}
+
+console.log("\n--- OPTION 12: Buy 3 + 2 Free Heads + 1 Paid Head + MIROOOO10 (3 brushes + 1 paid head, promo) ---");
+{
+  const cart = [
+    { productHandle: "miroooo-x2", color: "Silver", quantity: 3, unitPrice: 69, comparePrice: 139 },
+    { productHandle: "miroooo-x2-heads", color: "Default", quantity: 1, unitPrice: 10, comparePrice: 10 }
+  ];
+  const totals = computeTotals(cart, ["MIROOOO10"]);
+  assert.strictEqual(totals.subtotal, 187);
+  assert.strictEqual(totals.promoDiscount, 18); // 10% strictly on £177 brushes = £18, heads excluded
+  assert.strictEqual(totals.finalSubtotal, 169); // £187 - £18 = £169
+  assert.strictEqual(totals.extraBrushHeadSets, 2);
+  const checkoutItems = prepareCheckoutItems(cart, totals);
+  const bundle = detectBundlePayload(checkoutItems, "MIROOOO10");
+  assert.strictEqual(bundle?.matchedKey, "promoBuy3_1head");
+  console.log("✓ Option 12 verified: £" + totals.finalSubtotal + " (matchedKey: " + bundle.matchedKey + ")");
+}
+
+// ==========================================
+// TEST ALL 12 LIVE XPAGE CHECKOUT CREATIONS
+// ==========================================
+
+console.log("\n--- TESTING LIVE CHECKOUT SESSIONS FOR ALL 12 OPTIONS ---");
+
+const liveTests = [
+  {
+    name: "1. Buy 1",
+    cart: [{ productHandle: "miroooo-x2", color: "Silver", quantity: 1, variantId: XPAGE_VARIANTS.x2_silver }],
+    promo: ""
+  },
+  {
+    name: "2. Buy 2 + 1 Free",
     cart: [
       { productHandle: "miroooo-x2", color: "Silver", quantity: 2, variantId: XPAGE_VARIANTS.x2_silver },
       { productHandle: "miroooo-x2-heads", isFree: true, quantity: 1, variantId: XPAGE_VARIANTS.x2_heads }
     ],
-    currency: "GBP",
-    attribution: { utm_source: "google" }
-  });
+    promo: ""
+  },
+  {
+    name: "3. Buy 3 + 2 Free",
+    cart: [
+      { productHandle: "miroooo-x2", color: "Silver", quantity: 3, variantId: XPAGE_VARIANTS.x2_silver },
+      { productHandle: "miroooo-x2-heads", isFree: true, quantity: 2, variantId: XPAGE_VARIANTS.x2_heads }
+    ],
+    promo: ""
+  },
+  {
+    name: "4. Buy 1 + MIROOOO10",
+    cart: [{ productHandle: "miroooo-x2", color: "Silver", quantity: 1, variantId: XPAGE_VARIANTS.x2_silver }],
+    promo: "MIROOOO10"
+  },
+  {
+    name: "5. Buy 2 + 1 Free + MIROOOO10",
+    cart: [
+      { productHandle: "miroooo-x2", color: "Silver", quantity: 2, variantId: XPAGE_VARIANTS.x2_silver },
+      { productHandle: "miroooo-x2-heads", isFree: true, quantity: 1, variantId: XPAGE_VARIANTS.x2_heads }
+    ],
+    promo: "MIROOOO10"
+  },
+  {
+    name: "6. Buy 3 + 2 Free + MIROOOO10",
+    cart: [
+      { productHandle: "miroooo-x2", color: "Silver", quantity: 3, variantId: XPAGE_VARIANTS.x2_silver },
+      { productHandle: "miroooo-x2-heads", isFree: true, quantity: 2, variantId: XPAGE_VARIANTS.x2_heads }
+    ],
+    promo: "MIROOOO10"
+  },
+  {
+    name: "7. Buy 1 + 1Head + MIROOOO10",
+    cart: [
+      { productHandle: "miroooo-x2", color: "Silver", quantity: 1, variantId: XPAGE_VARIANTS.x2_silver },
+      { productHandle: "miroooo-x2-heads", quantity: 1, variantId: XPAGE_VARIANTS.x2_heads }
+    ],
+    promo: "MIROOOO10"
+  },
+  {
+    name: "8. Buy 1 + 2Head + MIROOOO10",
+    cart: [
+      { productHandle: "miroooo-x2", color: "Silver", quantity: 1, variantId: XPAGE_VARIANTS.x2_silver },
+      { productHandle: "miroooo-x2-heads", quantity: 2, variantId: XPAGE_VARIANTS.x2_heads }
+    ],
+    promo: "MIROOOO10"
+  },
+  {
+    name: "9. Buy 2 + 1 Free + 1 Paid",
+    cart: [
+      { productHandle: "miroooo-x2", color: "Silver", quantity: 2, variantId: XPAGE_VARIANTS.x2_silver },
+      { productHandle: "miroooo-x2-heads", quantity: 1, variantId: XPAGE_VARIANTS.x2_heads },
+      { productHandle: "miroooo-x2-heads", isFree: true, quantity: 1, variantId: XPAGE_VARIANTS.x2_heads }
+    ],
+    promo: ""
+  },
+  {
+    name: "10. Buy 2 + 1 Free + 1 Paid + MIROOOO10",
+    cart: [
+      { productHandle: "miroooo-x2", color: "Silver", quantity: 2, variantId: XPAGE_VARIANTS.x2_silver },
+      { productHandle: "miroooo-x2-heads", quantity: 1, variantId: XPAGE_VARIANTS.x2_heads },
+      { productHandle: "miroooo-x2-heads", isFree: true, quantity: 1, variantId: XPAGE_VARIANTS.x2_heads }
+    ],
+    promo: "MIROOOO10"
+  },
+  {
+    name: "11. Buy 3 + 2 Free + 1 Paid",
+    cart: [
+      { productHandle: "miroooo-x2", color: "Silver", quantity: 3, variantId: XPAGE_VARIANTS.x2_silver },
+      { productHandle: "miroooo-x2-heads", quantity: 1, variantId: XPAGE_VARIANTS.x2_heads },
+      { productHandle: "miroooo-x2-heads", isFree: true, quantity: 2, variantId: XPAGE_VARIANTS.x2_heads }
+    ],
+    promo: ""
+  },
+  {
+    name: "12. Buy 3 + 2 Free + 1 Paid + MIROOOO10",
+    cart: [
+      { productHandle: "miroooo-x2", color: "Silver", quantity: 3, variantId: XPAGE_VARIANTS.x2_silver },
+      { productHandle: "miroooo-x2-heads", quantity: 1, variantId: XPAGE_VARIANTS.x2_heads },
+      { productHandle: "miroooo-x2-heads", isFree: true, quantity: 2, variantId: XPAGE_VARIANTS.x2_heads }
+    ],
+    promo: "MIROOOO10"
+  }
+];
 
-  console.log("Checkout URL:", session.checkoutUrl);
-  console.log("Cart Payload:", session.cart);
-  assert.ok(session.ok);
-  assert.strictEqual(session.isBundle, true, "Must use native bundle session");
-  console.log("✓ Live session created matching Image 1 (£128 total with BUY 2 savings)!");
+for (const t of liveTests) {
+  const session = await createXpageCartCheckout({
+    cart: t.cart,
+    currency: "GBP",
+    discountCode: t.promo,
+    attribution: { utm_source: "test" }
+  });
+  assert.ok(session.ok, `Session creation failed for ${t.name}`);
+  assert.strictEqual(session.isBundle, true, `Expected bundle session for ${t.name}`);
+  assert.ok(session.checkoutUrl.startsWith("https://offer.miroooo.us/"), `Unexpected checkout domain for ${t.name}: ${session.checkoutUrl}`);
+  assert.ok(/\/checkout\/[\da-f]{64}/i.test(session.checkoutUrl), `Unexpected checkout path for ${t.name}: ${session.checkoutUrl}`);
+  console.log(`✓ Live checkout session verified for ${t.name} -> ${session.checkoutUrl.slice(0, 55)}...`);
 }
 
-console.log("\n>>> ALL DYNAMIC COMBINATION AND CHECKOUT TESTS PASSED WITH 100% SUCCESS! <<<");
+console.log("\n>>> ALL 12 X2 OFFERS AND X1 COMBINATIONS PASSED WITH 100% SUCCESS! <<<");

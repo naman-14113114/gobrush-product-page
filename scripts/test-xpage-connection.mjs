@@ -11,10 +11,8 @@ test("X1 and X2 Buy 2 send the selected colours and one free matching head set",
     const cart = [brush(product, "Pink"), brush(product, "Silver"), gift(product, 1)];
     const bundle = detectBundlePayload(cart);
     assert.equal(bundle.bundle_option_id, XPAGE_BUNDLES[product].buy2.optionId);
-    assert.deepEqual(bundle.bundle_selected_variants.conditions[XPAGE_BUNDLES[product].buy2.conditionId],
-      [XPAGE_VARIANTS[`${product}_pink`], XPAGE_VARIANTS[`${product}_silver`]]);
-    assert.deepEqual(bundle.bundle_selected_variants.offered[XPAGE_BUNDLES[product].buy2.offeredId],
-      [XPAGE_VARIANTS[`${product}_heads`]]);
+    assert.deepEqual(bundle.brushes, [XPAGE_VARIANTS[`${product}_pink`], XPAGE_VARIANTS[`${product}_silver`]]);
+    assert.equal(bundle.offeredQty, 1);
   }
 });
 
@@ -23,8 +21,8 @@ test("Buy 3 preserves three colours and gives exactly two head sets", () => {
     brush("x2", "Pink"), brush("x2", "Grey"), brush("x2", "Silver"), gift("x2", 2),
   ]);
   assert.equal(bundle.bundle_option_id, XPAGE_BUNDLES.x2.buy3.optionId);
-  assert.equal(bundle.bundle_selected_variants.conditions[XPAGE_BUNDLES.x2.buy3.conditionId].length, 3);
-  assert.equal(bundle.bundle_selected_variants.offered[XPAGE_BUNDLES.x2.buy3.offeredId].length, 2);
+  assert.equal(bundle.brushes.length, 3);
+  assert.equal(bundle.offeredQty, 2);
 });
 
 test("a displayed free gift is not misclassified as an extra brush", () => {
@@ -38,7 +36,6 @@ test("unknown products and invalid quantities stop checkout; non-bundle combinat
   assert.throws(() => mapCartToXpageVariants([brush("x1", "Silver", 0)]));
   assert.equal(detectBundlePayload([brush("x2", "Pink", 2), gift("x1", 1)]), null);
   assert.equal(detectBundlePayload([brush("x2", "Pink", 2), gift("x2", 2)]), null);
-  assert.equal(detectBundlePayload([brush("x2", "Pink", 2), {productHandle:"miroooo-x2-heads",quantity:1}]), null);
   assert.equal(detectBundlePayload([brush("x1", "Silver", 4), gift("x1", 3)]), null);
   assert.equal(mapCartToXpageVariants([brush("x1", "Silver", 101)])[0].quantity, 101);
   assert.equal(detectBundlePayload([brush("x1", "Silver", 1000000)]), null);
@@ -51,8 +48,8 @@ test("MIROOOO10 selects native discounted X1 and X2 tiers with matching free hea
       const payload = detectBundlePayload(cart, "MIROOOO10");
       const option = XPAGE_BUNDLES[product][`promoBuy${quantity}`];
       assert.equal(payload.bundle_option_id, option.optionId);
-      assert.equal(payload.bundle_selected_variants.conditions[option.conditionId].length, quantity);
-      assert.equal(Object.values(payload.bundle_selected_variants.offered)[0]?.length || 0, quantity - 1);
+      assert.equal(payload.brushes.length, quantity);
+      assert.equal(payload.offeredQty, quantity - 1);
       assert.equal(detectBundlePayload(cart, "MIROOOO").bundle_option_id, option.optionId);
     }
   }

@@ -5,7 +5,8 @@
   "type": "module",
   "scripts": {
     "build": "node scripts/build.mjs",
-    "verify": "node scripts/verify-site.mjs"
+    "verify": "node scripts/verify-site.mjs",
+    "test": "node --test scripts/test-xpage-connection.mjs && node scripts/test-cart-dynamic-combinations.mjs"
   },
   "engines": {
     "node": ">=20"

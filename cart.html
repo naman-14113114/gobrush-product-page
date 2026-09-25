@@ -2283,10 +2283,9 @@
         const isHeadsOnly = (x2HeadsCount > 0 || x1HeadsCount > 0) && x2Count === 0 && x1Count === 0;
         const manualCode = appliedPromoCodes.find(c => c === "MIROOOO" || c === "MIROOOO10");
 
-        // Pure bundle offers apply ONLY IF no extra paid heads are in cart and only 1 product family is present
-        const hasPaidHeads = (x2HeadsCount > 0 || x1HeadsCount > 0);
-        const isPureX2Bundle = !hasPaidHeads && x1Count === 0 && (x2Count === 2 || x2Count === 3);
-        const isPureX1Bundle = !hasPaidHeads && x2Count === 0 && (x1Count === 2 || x1Count === 3);
+        // Bundle offers apply to multi-brush purchases (Buy 2 and Buy 3)
+        const isX2Bundle = x1Count === 0 && (x2Count === 2 || x2Count === 3);
+        const isX1Bundle = x2Count === 0 && (x1Count === 2 || x1Count === 3);
 
         // Compare At & Base Subtotals
         const x2Compare = x2Count * 139;
@@ -2303,7 +2302,7 @@
         let x2BundlePromoName = "";
         let extraBrushHeadSets = 0;
 
-        if (isPureX2Bundle) {
+        if (isX2Bundle) {
           if (x2Count === 2) {
             x2BundlePromoDiscount = 10;
             x2BundlePromoName = "Buy 2 bundle";
@@ -2318,7 +2317,7 @@
         // X1 Bundle Discounts & Free Heads
         let x1BundleDiscount = 0;
         let extraX1BrushHeadSets = 0;
-        if (isPureX1Bundle) {
+        if (isX1Bundle) {
           if (x1Count === 2) {
             x1BundleDiscount = 10;
             extraX1BrushHeadSets = 1;
@@ -2382,7 +2381,7 @@
           x1Count: x1Count,
           x2HeadsCount: x2HeadsCount,
           x1HeadsCount: x1HeadsCount,
-          bundleEligible: isPureX2Bundle || isPureX1Bundle
+          bundleEligible: isX2Bundle || isX1Bundle
         };
       }
 
@@ -2737,10 +2736,10 @@
         const upsellAddBtn = document.getElementById("cart-upsell-add-btn");
 
         // Determine recommendation eligibility:
-        // Only show if exactly 1 brush is in cart and 0 heads are in cart (Buy 1 option).
-        // Hide if Buy 2/Buy 3 bundle is selected, if extra heads are present, or if no brush is present.
+        // Show Miroooo X2 Heads for Buy 1, Buy 2, Buy 3 of X2 when no paid X2 heads are in cart yet.
+        // Show Miroooo X1 Heads only when X1 brush is in cart (and no X2 brush) when no paid X1 heads are in cart yet.
         let upsellTarget = null;
-        if (totals.x2Count === 1 && totals.x1Count === 0 && totals.x2HeadsCount === 0 && totals.x1HeadsCount === 0) {
+        if (totals.x2Count > 0 && totals.x2HeadsCount === 0) {
           upsellTarget = {
             handle: "miroooo-x2-heads",
             title: "Miroooo X2 Heads (1 Set)",
@@ -2750,7 +2749,7 @@
             alt: "Miroooo X2 Precision Replacement Heads 1 Set",
             price: 10
           };
-        } else if (totals.x1Count === 1 && totals.x2Count === 0 && totals.x2HeadsCount === 0 && totals.x1HeadsCount === 0) {
+        } else if (totals.x1Count > 0 && totals.x2Count === 0 && totals.x1HeadsCount === 0) {
           upsellTarget = {
             handle: "miroooo-x1-heads",
             title: "Miroooo X1 Heads (1 Set)",
@@ -3100,7 +3099,7 @@
           const totals = computeTotals(cartState);
           let targetHandle = addBtn.getAttribute("data-target-handle");
           if (!targetHandle) {
-            targetHandle = (totals.x1Count === 1 && totals.x2Count === 0) ? "miroooo-x1-heads" : "miroooo-x2-heads";
+            targetHandle = (totals.x1Count > 0 && totals.x2Count === 0) ? "miroooo-x1-heads" : "miroooo-x2-heads";
           }
 
           const existingItem = cartState.items.find(i => i.productHandle === targetHandle);
