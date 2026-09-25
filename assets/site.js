@@ -2681,10 +2681,71 @@
     }
   }, true);
 
+  // Universal Shipping Info Tooltip Interactivity (? icon)
+  document.addEventListener("click", function (e) {
+    const btn = e.target.closest(".shipping-info-btn");
+    if (btn) {
+      e.preventDefault();
+      e.stopPropagation();
+      const wrapper = btn.closest(".shipping-info-wrapper");
+      const tooltip = wrapper ? wrapper.querySelector(".shipping-info-tooltip") : null;
+      if (tooltip) {
+        const isOpen = tooltip.classList.contains("is-active") || tooltip.style.display === "block";
+        document.querySelectorAll(".shipping-info-tooltip").forEach(function (t) {
+          t.classList.remove("is-active");
+          t.style.display = "none";
+        });
+        document.querySelectorAll(".shipping-info-btn").forEach(function (b) {
+          b.setAttribute("aria-expanded", "false");
+        });
+        if (!isOpen) {
+          tooltip.classList.add("is-active");
+          tooltip.style.display = "block";
+          btn.setAttribute("aria-expanded", "true");
+        }
+      }
+      return;
+    }
+
+    const closeBtn = e.target.closest(".shipping-info-close");
+    if (closeBtn) {
+      e.preventDefault();
+      e.stopPropagation();
+      const tooltip = closeBtn.closest(".shipping-info-tooltip");
+      if (tooltip) {
+        tooltip.classList.remove("is-active");
+        tooltip.style.display = "none";
+        const wrapper = tooltip.closest(".shipping-info-wrapper");
+        const trigger = wrapper ? wrapper.querySelector(".shipping-info-btn") : null;
+        if (trigger) trigger.setAttribute("aria-expanded", "false");
+      }
+      return;
+    }
+
+    if (e.target.closest(".shipping-info-tooltip")) {
+      return;
+    }
+
+    document.querySelectorAll(".shipping-info-tooltip").forEach(function (t) {
+      t.classList.remove("is-active");
+      t.style.display = "none";
+    });
+    document.querySelectorAll(".shipping-info-btn").forEach(function (b) {
+      b.setAttribute("aria-expanded", "false");
+    });
+  });
+
   // Close on Escape key
   document.addEventListener("keydown", (e) => {
     if (e.key === "Escape") {
       MirooooCart.closeCart();
+      document.querySelectorAll(".shipping-info-tooltip").forEach(function (t) {
+        t.classList.remove("is-active");
+        t.style.display = "none";
+      });
+      document.querySelectorAll(".shipping-info-btn").forEach(function (b) {
+        b.setAttribute("aria-expanded", "false");
+      });
     }
   });
 })();

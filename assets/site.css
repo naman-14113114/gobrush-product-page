@@ -7805,4 +7805,55 @@ button[style*="background: #ffffff"] .miroooo-button-click-loader {
   }
 }
 
+/* ==========================================================================
+   SHIPPING ESTIMATE TOOLTIP (? ICON)
+   ========================================================================== */
+.shipping-info-wrapper {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+}
+
+.shipping-info-btn {
+  width: 18px;
+  height: 18px;
+  border-radius: 9999px;
+  font-size: 10px;
+  font-weight: 700;
+  line-height: 1;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  padding: 0;
+  transition: all 0.2s ease;
+  user-select: none;
+}
+
+.shipping-info-btn:hover {
+  opacity: 0.85;
+  transform: scale(1.08);
+}
+
+.shipping-info-btn:active {
+  transform: scale(0.95);
+}
+
+.shipping-info-tooltip {
+  display: none;
+  position: absolute;
+  right: 0;
+  top: calc(100% + 8px);
+  z-index: 1000;
+  width: 270px;
+  border-radius: 12px;
+  padding: 12px 14px;
+  text-align: left;
+}
+
+.shipping-info-tooltip.is-active {
+  display: block !important;
+}
+
+
 

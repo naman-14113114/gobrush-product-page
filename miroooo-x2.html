@@ -3956,12 +3956,27 @@ theme.variantStrings = {
   </div>
 
   <!-- Delivery Countdown Timer Box -->
-  <div class="delivery-timer-box rounded-xl p-3.5 my-4 flex items-center gap-3 text-sm" style="background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 255, 255, 0.1); color: rgba(255, 255, 255, 0.85); margin: 16px 0;">
+  <div class="delivery-timer-box rounded-xl p-3.5 my-4 flex items-center gap-3 text-sm" style="background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 255, 255, 0.1); color: rgba(255, 255, 255, 0.85); margin: 16px 0; position: relative;">
     <div class="w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0" style="background: rgba(255, 255, 255, 0.1); color: #ffffff; width: 32px; height: 32px; border-radius: 9999px; display: inline-flex; align-items: center; justify-content: center;">
       <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width: 16px; height: 16px;"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
     </div>
     <div class="flex-1 text-xs sm:text-sm leading-snug" style="font-size: 13px; line-height: 1.4;">
       Order within <strong class="font-mono font-bold" id="bundle-countdown-timer" style="color: #ffffff; font-weight: 700; font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;">14:38</strong> to receive it by <strong class="font-bold" id="bundle-delivery-date" style="color: #ffffff; font-weight: 700;">Friday 21 Aug</strong>
+    </div>
+    <!-- Shipping Info Tooltip / Question Mark Button -->
+    <div class="shipping-info-wrapper" style="position: relative; flex-shrink: 0;">
+      <button type="button" class="shipping-info-btn" aria-label="Shipping information" aria-expanded="false" style="width: 18px; height: 18px; border-radius: 9999px; background: rgba(255, 255, 255, 0.1); border: 1px solid rgba(255, 255, 255, 0.2); color: rgba(255, 255, 255, 0.6); font-size: 10px; font-weight: 700; line-height: 1; display: inline-flex; align-items: center; justify-content: center; cursor: pointer; padding: 0; transition: all 0.2s ease;">
+        ?
+      </button>
+      <div class="shipping-info-tooltip" style="display: none; position: absolute; right: 0; top: calc(100% + 8px); z-index: 50; width: 270px; background: #18191a; border: 1px solid rgba(255, 255, 255, 0.15); border-radius: 12px; padding: 12px 14px; box-shadow: 0 12px 30px rgba(0, 0, 0, 0.7); text-align: left; color: rgba(255, 255, 255, 0.85);">
+        <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 6px;">
+          <span style="font-weight: 700; font-size: 12px; color: #ffffff;">Delivery Estimate</span>
+          <button type="button" class="shipping-info-close" style="background: none; border: none; color: rgba(255, 255, 255, 0.6); font-size: 13px; cursor: pointer; padding: 0; line-height: 1;" aria-label="Close">✕</button>
+        </div>
+        <p style="font-size: 11.5px; line-height: 1.5; margin: 0; color: rgba(255, 255, 255, 0.8);">
+          This is the earliest date you can receive your order, but the average shipping time is 4–7 days. For more information, please visit our <a href="/shipping-policy" style="color: #ffffff; text-decoration: underline;">shipping policy</a> page.
+        </p>
+      </div>
     </div>
   </div>
 
