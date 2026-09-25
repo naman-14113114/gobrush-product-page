@@ -78,9 +78,10 @@ function computeTotals(items, appliedPromoCodes = []) {
   const x2Net = (x2Count * 69) - x2BundlePromoDiscount;
   const x1Net = (x1Count * 59) - x1BundleDiscount;
   const headsNet = (x2HeadsCount * 10) + (x1HeadsCount * 10);
-  const subtotal = Math.max(0, x2Net + x1Net + headsNet);
+  const brushSubtotal = Math.max(0, x2Net + x1Net);
+  const subtotal = Math.max(0, brushSubtotal + headsNet);
 
-  const promoDiscount = manualCode ? Math.round(subtotal * 0.10) : 0;
+  const promoDiscount = manualCode ? Math.round(brushSubtotal * 0.10) : 0;
   const finalSubtotal = Math.max(0, Number((subtotal - promoDiscount).toFixed(2)));
   const bundleSavings = baseBrushCompareSavings + x1BundleDiscount;
   const totalSavings = Number((bundleSavings + x2BundlePromoDiscount + giftsValue + promoDiscount).toFixed(2));
@@ -216,7 +217,65 @@ console.log("\n--- TEST CASE 6: Miroooo X1 (2 Brushes) + Paid Heads Added From P
   console.log("✓ Cart totals for X1 2 Brushes + Paid Heads:", totals.subtotal, "(Free heads: " + totals.extraX1BrushHeadSets + ")");
 }
 
-console.log("\n--- TEST CASE 7: Live XPage Session for 2x X2 Brushes + 1x Paid Heads (Matching Image 3) ---");
+console.log("\n--- TEST CASE 7: MIROOOO10 on Miroooo X2 (1 Brush, 0 Heads) ---");
+{
+  const cart = [{ productHandle: "miroooo-x2", color: "Silver", quantity: 1, unitPrice: 69, comparePrice: 139 }];
+  const totals = computeTotals(cart, ["MIROOOO10"]);
+  assert.strictEqual(totals.subtotal, 69);
+  assert.strictEqual(totals.promoDiscount, 7, "10% of £69 rounded to nearest integer is £7");
+  assert.strictEqual(totals.finalSubtotal, 62, "Final subtotal must be £62 (£69 - £7)");
+  console.log("✓ Miroooo X2 + MIROOOO10: Subtotal £" + totals.subtotal + " - Promo £" + totals.promoDiscount + " = Final £" + totals.finalSubtotal);
+}
+
+console.log("\n--- TEST CASE 8: MIROOOO10 on Miroooo X1 (1 Brush, 0 Heads) ---");
+{
+  const cart = [{ productHandle: "miroooo-x", color: "Silver", quantity: 1, unitPrice: 59, comparePrice: 119 }];
+  const totals = computeTotals(cart, ["MIROOOO10"]);
+  assert.strictEqual(totals.subtotal, 59);
+  assert.strictEqual(totals.promoDiscount, 6, "10% of £59 rounded to nearest integer is £6");
+  assert.strictEqual(totals.finalSubtotal, 53, "Final subtotal must be £53 (£59 - £6)");
+  console.log("✓ Miroooo X1 + MIROOOO10: Subtotal £" + totals.subtotal + " - Promo £" + totals.promoDiscount + " = Final £" + totals.finalSubtotal);
+}
+
+console.log("\n--- TEST CASE 9: MIROOOO10 on Miroooo X2 (1 Brush) + 1x Heads (Excluding Heads Price) ---");
+{
+  const cart = [
+    { productHandle: "miroooo-x2", color: "Silver", quantity: 1, unitPrice: 69, comparePrice: 139 },
+    { productHandle: "miroooo-x2-heads", color: "Default", quantity: 1, unitPrice: 10, comparePrice: 10 }
+  ];
+  const totals = computeTotals(cart, ["MIROOOO10"]);
+  assert.strictEqual(totals.subtotal, 79, "Subtotal is £69 brush + £10 heads = £79");
+  assert.strictEqual(totals.promoDiscount, 7, "Promo discount is strictly 10% of £69 brush = £7, heads excluded (£0)");
+  assert.strictEqual(totals.finalSubtotal, 72, "Final subtotal must be £72 (£79 - £7)");
+  console.log("✓ Miroooo X2 + Heads + MIROOOO10: Subtotal £" + totals.subtotal + " - Promo £" + totals.promoDiscount + " = Final £" + totals.finalSubtotal);
+}
+
+console.log("\n--- TEST CASE 10: MIROOOO10 on Miroooo X1 (1 Brush) + 2x Heads (Excluding Heads Price) ---");
+{
+  const cart = [
+    { productHandle: "miroooo-x", color: "Silver", quantity: 1, unitPrice: 59, comparePrice: 119 },
+    { productHandle: "miroooo-x1-heads", color: "Default", quantity: 2, unitPrice: 10, comparePrice: 10 }
+  ];
+  const totals = computeTotals(cart, ["MIROOOO10"]);
+  assert.strictEqual(totals.subtotal, 79, "Subtotal is £59 brush + £20 heads = £79");
+  assert.strictEqual(totals.promoDiscount, 6, "Promo discount is strictly 10% of £59 brush = £6, heads excluded (£0)");
+  assert.strictEqual(totals.finalSubtotal, 73, "Final subtotal must be £73 (£79 - £6)");
+  console.log("✓ Miroooo X1 + 2x Heads + MIROOOO10: Subtotal £" + totals.subtotal + " - Promo £" + totals.promoDiscount + " = Final £" + totals.finalSubtotal);
+}
+
+console.log("\n--- TEST CASE 11: MIROOOO10 on Standalone Heads ONLY (100% Excluded -> £0 Promo Discount) ---");
+{
+  const cart = [
+    { productHandle: "miroooo-x2-heads", color: "Default", quantity: 2, unitPrice: 10, comparePrice: 10 }
+  ];
+  const totals = computeTotals(cart, ["MIROOOO10"]);
+  assert.strictEqual(totals.subtotal, 20, "Subtotal is 2x £10 = £20");
+  assert.strictEqual(totals.promoDiscount, 0, "Promo discount on heads only is £0 (heads excluded)");
+  assert.strictEqual(totals.finalSubtotal, 20, "Final subtotal must remain £20");
+  console.log("✓ Standalone Heads + MIROOOO10: Subtotal £" + totals.subtotal + " - Promo £" + totals.promoDiscount + " = Final £" + totals.finalSubtotal);
+}
+
+console.log("\n--- TEST CASE 12: Live XPage Session for 2x X2 Brushes + 1x Paid Heads (Matching Image 3) ---");
 {
   const session = await createXpageCartCheckout({
     cart: [
@@ -236,7 +295,7 @@ console.log("\n--- TEST CASE 7: Live XPage Session for 2x X2 Brushes + 1x Paid H
   console.log("✓ Live session created matching Image 3 (£148 total)!");
 }
 
-console.log("\n--- TEST CASE 8: Live XPage Session for Pure Buy 2 Bundle (Matching Image 1) ---");
+console.log("\n--- TEST CASE 13: Live XPage Session for Pure Buy 2 Bundle (Matching Image 1) ---");
 {
   const session = await createXpageCartCheckout({
     cart: [

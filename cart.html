@@ -2349,10 +2349,11 @@
         const x2Net = (x2Count * 69) - x2BundlePromoDiscount;
         const x1Net = (x1Count * 59) - x1BundleDiscount;
         const headsNet = (x2HeadsCount * 10) + (x1HeadsCount * 10);
-        const subtotal = Math.max(0, x2Net + x1Net + headsNet);
+        const brushSubtotal = Math.max(0, x2Net + x1Net);
+        const subtotal = Math.max(0, brushSubtotal + headsNet);
 
-        // Welcome code discount applies 10% on eligible subtotal
-        const promoDiscount = manualCode ? Math.round(subtotal * 0.10) : 0;
+        // Welcome code discount applies 10% on eligible brush subtotal only (heads excluded), rounded to nearest integer
+        const promoDiscount = manualCode ? Math.round(brushSubtotal * 0.10) : 0;
 
         const finalSubtotal = Math.max(0, Number((subtotal - promoDiscount).toFixed(2)));
         const bundleSavings = baseBrushCompareSavings + x1BundleDiscount;

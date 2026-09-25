@@ -2123,8 +2123,9 @@
       const x2Net = (x2Count * 69) - x2BundlePromoDiscount;
       const x1Net = (x1Count * 59) - x1BundleDiscount;
       const headsNet = (x2HeadsCount * 10) + (x1HeadsCount * 10);
-      const subtotal = Math.max(0, x2Net + x1Net + headsNet);
-      const welcomeDiscount = hasManualCode ? Math.round(subtotal * 0.10) : 0;
+      const brushSubtotal = Math.max(0, x2Net + x1Net);
+      const subtotal = Math.max(0, brushSubtotal + headsNet);
+      const welcomeDiscount = hasManualCode ? Math.round(brushSubtotal * 0.10) : 0;
 
       let totalGiftValueNum = 0;
       if (extraBrushHeadSets > 0) totalGiftValueNum += extraBrushHeadSets * 10;
