@@ -10028,7 +10028,9 @@ function handleAddToCartAndRedirect() {
     });
 
     const isBuy1HeadsChecked = (activeTierId === 'single') && Boolean(document.getElementById('buy1-heads-checkbox')?.checked);
-    if (isBuy1HeadsChecked) {
+    if (activeTierId === 'bundle-2' || activeTierId === 'bundle-3') {
+      cart.items = cart.items.filter(i => i.productHandle !== 'miroooo-x2-heads');
+    } else if (isBuy1HeadsChecked) {
       const headsExistingIndex = cart.items.findIndex(i => i.productHandle === 'miroooo-x2-heads');
       if (headsExistingIndex > -1) {
         cart.items[headsExistingIndex].quantity = (cart.items[headsExistingIndex].quantity || 0) + 1;

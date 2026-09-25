@@ -1672,11 +1672,7 @@
         const storedStandard = localStorage.getItem("miroooo_cart");
         if (storedStandard) {
           const parsed = JSON.parse(storedStandard);
-          if (parsed) {
-            if (Array.isArray(parsed.items) && parsed.items.length > 0) {
-              return {
-                version: 2,
-                items: parsed.items.map(item => {
+              let itemsList = parsed.items.map(item => {
                   const h = item.productHandle || "miroooo-x";
                   const color = item.color || "Grey";
                   const qty = Math.max(1, parseInt(item.quantity || "1", 10));
@@ -1694,7 +1690,25 @@
                     image: item.image || (h === "miroooo-x2-heads" ? "/assets_ref/x2/heads/B1.webp" : (h === "miroooo-x1-heads" ? "/assets_ref/x/heads/B1.webp" : (h === "miroooo-x2" ? "/assets_ref/x2/gallery/miroooo-x2-sonic-electric-toothbrush-grey-checkout.webp" : "/assets_ref/x/gallery/Miroooo_x_Grey-2.webp"))),
                     url: item.url || `/products/${h}`
                   };
-                }),
+                });
+
+              let x2Count = 0;
+              let x1Count = 0;
+              itemsList.forEach(i => {
+                const q = i.quantity || 1;
+                if (i.productHandle === "miroooo-x2") x2Count += q;
+                if (i.productHandle === "miroooo-x") x1Count += q;
+              });
+              if (x2Count >= 2) {
+                itemsList = itemsList.filter(i => i.productHandle !== "miroooo-x2-heads");
+              }
+              if (x1Count >= 2) {
+                itemsList = itemsList.filter(i => i.productHandle !== "miroooo-x1-heads");
+              }
+
+              return {
+                version: 2,
+                items: itemsList,
                 promoCode: "AUTO",
                 promoApplied: true
               };
@@ -1708,7 +1722,7 @@
               const isX2 = parsed.productId === "miroooo-x2";
               const handle = isX2Heads ? "miroooo-x2-heads" : (isX1Heads ? "miroooo-x1-heads" : (isX2 ? "miroooo-x2" : "miroooo-x"));
               const qty = Math.max(1, parseInt(parsed.quantity || "1", 10));
-              const items = [];
+              let items = [];
 
               if (isHeads) {
                 items.push({
@@ -1763,6 +1777,20 @@
                 });
               }
 
+              let x2Count = 0;
+              let x1Count = 0;
+              items.forEach(i => {
+                const q = i.quantity || 1;
+                if (i.productHandle === "miroooo-x2") x2Count += q;
+                if (i.productHandle === "miroooo-x") x1Count += q;
+              });
+              if (x2Count >= 2) {
+                items = items.filter(i => i.productHandle !== "miroooo-x2-heads");
+              }
+              if (x1Count >= 2) {
+                items = items.filter(i => i.productHandle !== "miroooo-x1-heads");
+              }
+
               return {
                 version: 2,
                 items: items,
@@ -1779,6 +1807,20 @@
     saveCart(cart) {
       try {
         if (cart && Array.isArray(cart.items) && cart.items.length > 0) {
+          let x2Count = 0;
+          let x1Count = 0;
+          cart.items.forEach(i => {
+            const q = i.quantity || 1;
+            if (i.productHandle === "miroooo-x2") x2Count += q;
+            if (i.productHandle === "miroooo-x") x1Count += q;
+          });
+          if (x2Count >= 2) {
+            cart.items = cart.items.filter(i => i.productHandle !== "miroooo-x2-heads");
+          }
+          if (x1Count >= 2) {
+            cart.items = cart.items.filter(i => i.productHandle !== "miroooo-x1-heads");
+          }
+
           const totalQty = cart.items.reduce((sum, item) => sum + (item.quantity || 1), 0);
           const allColors = [];
           cart.items.forEach(i => {

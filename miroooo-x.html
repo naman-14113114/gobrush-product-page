@@ -6054,6 +6054,10 @@ function handleAddToCartAndRedirect() {
       }
     });
 
+    if (activeTierId === 'bundle-2' || activeTierId === 'bundle-3') {
+      cart.items = cart.items.filter(i => i.productHandle !== 'miroooo-x1-heads');
+    }
+
     if (window.MirooooCart && typeof window.MirooooCart.saveCart === 'function') {
       window.MirooooCart.saveCart(cart);
     } else {
