@@ -2019,7 +2019,6 @@
               <div class="cart-subtotal-section" style="display: flex; align-items: center; justify-content: space-between; padding-top: 14px; border-top: 1px solid rgba(0, 0, 0, 0.08); margin-bottom: 16px;">
                 <div>
                   <span class="cart-subtotal-label" style="font-size: 0.88rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.06em; color: #000000; display: block;">SUBTOTAL</span>
-                  <span class="cart-subtotal-sub" style="font-size: 0.75rem; color: #666666; display: block; margin-top: 2px;">Includes all taxes.</span>
                 </div>
                 <div class="cart-subtotal-amount" id="cart-subtotal-val" style="font-size: 1.85rem; font-weight: 800; color: #000000; line-height: 1; letter-spacing: -0.02em;">${MirooooCurrency.format(0)}</div>
               </div>

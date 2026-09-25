@@ -1707,14 +1707,11 @@
             <div class="cart-subtotal-section">
               <div>
                 <span class="cart-subtotal-label">SUBTOTAL</span>
-                <span class="cart-subtotal-sub">Includes all taxes.</span>
               </div>
               <div class="text-right">
                 <span class="cart-subtotal-amount" id="summary-subtotal-price">£110.00</span>
               </div>
             </div>
-            <p id="checkout-offer-note" style="font-size:0.78rem;line-height:1.45;color:#5b6470;margin:0 0 14px;"></p>
-
             <!-- Checkout CTA Button -->
             <button
               type="button"
@@ -2683,14 +2680,6 @@
         }
 
         if (summarySubtotalPrice) summarySubtotalPrice.textContent = MirooooCurrency ? MirooooCurrency.format(totals.finalSubtotal) : ('£' + formatMoney(totals.finalSubtotal));
-        const offerNote = document.getElementById("checkout-offer-note");
-        if (offerNote) {
-          const manualCode = appliedPromoCodes.find(c => c === "MIROOOO" || c === "MIROOOO10");
-          offerNote.textContent = manualCode
-            ? `${manualCode} and your bundle offer are included. Check the final total on the secure checkout page.`
-            : "Your bundle items and final total are confirmed on the secure checkout page.";
-        }
-
         function formatPromoCodeDisplay(code) {
           if (!code) return "";
           const upper = String(code).toUpperCase();
@@ -2934,9 +2923,7 @@
               promoInput.value = "";
               if (promoMsg) {
                 promoMsg.className = "cart-promo-msg cart-promo-msg--success";
-                promoMsg.textContent = computeTotals(cartState).bundleEligible
-                  ? `${code} is included with your bundle offer. Check the final total at secure checkout.`
-                  : `Enter ${code} at secure checkout for this cart. Check the final total before paying.`;
+                promoMsg.textContent = "Promo code applied successfully!";
                 promoMsg.style.display = "block";
               }
               renderCartView();
