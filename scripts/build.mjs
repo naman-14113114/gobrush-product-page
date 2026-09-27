@@ -68,6 +68,11 @@ const klaviyoOnsiteSnippet = `<script async type='text/javascript' src='https://
   !function(){if(!window.klaviyo){window._klOnsite=window._klOnsite||[];try{window.klaviyo=new Proxy({},{get:function(n,i){return"push"===i?function(){var n;(n=window._klOnsite).push.apply(n,arguments)}:function(){for(var n=arguments.length,o=new Array(n),w=0;w<n;w++)o[w]=arguments[w];var t="function"==typeof o[o.length-1]?o.pop():void 0,e=new Promise((function(n){window._klOnsite.push([i].concat(o,[function(i){t&&t(i),n(i)}]))}));return e}}})}catch(n){window.klaviyo=window.klaviyo||[],window.klaviyo.push=function(){var n;(n=window._klOnsite).push.apply(n,arguments)}}}}();
   </script>`;
 const klaviyoTrackingScript = '<script src="/assets/klaviyo.js?v=20260901" defer></script>';
+const speedInsightsSnippet = `  <!-- Vercel Speed Insights -->
+  <script>
+    window.si = window.si || function () { (window.siq = window.siq || []).push(arguments); };
+  </script>
+  <script defer src="/_vercel/speed-insights/script.js"></script>`;
 const claritySnippet = `  <!-- Microsoft Clarity -->
   <script type="text/javascript">
     (function(c,l,a,r,i,t,y){
@@ -89,6 +94,9 @@ try {
 for (const htmlFile of outputHtmlFiles) {
   const html = await readFile(htmlFile, "utf8");
   let instrumentedHtml = html;
+  if (!instrumentedHtml.includes("/_vercel/speed-insights/script.js")) {
+    instrumentedHtml = instrumentedHtml.replace("</head>", `${speedInsightsSnippet}\n</head>`);
+  }
   if (!instrumentedHtml.includes("https://www.clarity.ms/tag/") || !instrumentedHtml.includes("ybadbatujm")) {
     instrumentedHtml = instrumentedHtml.replace("</head>", `${claritySnippet}\n</head>`);
   }

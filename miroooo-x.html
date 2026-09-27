@@ -6,84 +6,22 @@
   <meta name="facebook-domain-verification" content="p6rg23yo3utyjbedkv3n1g1b2rhda2"/>
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <script>
-    (function(){
-      if (window.location.hash) return;
-      if (window.matchMedia && !window.matchMedia('(min-width: 1024px)').matches) return;
-
-      var getProductStart = function(){
-        var productGrid = document.querySelector('#shopify-section-template--24203751129433__main-product .featured-product.product');
-        if (!productGrid) return 0;
-        return Math.max(0, Math.round(productGrid.getBoundingClientRect().top + window.pageYOffset - 12));
-      };
-
-      // Desktop product entries should land on the product grid, not a restored bundle-card scroll position.
-      var resetProductScroll = function(){
-        var targetTop = getProductStart();
-        window.scrollTo(0, targetTop);
-        document.documentElement.scrollTop = targetTop;
-        if (document.body) document.body.scrollTop = targetTop;
-      };
-
-      window.__mirooooProductResetScroll = resetProductScroll;
-
-      try {
-        if ('scrollRestoration' in window.history) {
-          window.history.scrollRestoration = 'manual';
-        }
-      } catch(e) {}
-
-      resetProductScroll();
-      document.addEventListener('DOMContentLoaded', function(){
-        resetProductScroll();
-        window.requestAnimationFrame(resetProductScroll);
-        window.setTimeout(resetProductScroll, 120);
-      }, { once: true });
-      window.addEventListener('load', function(){
-        resetProductScroll();
-        window.requestAnimationFrame(resetProductScroll);
-        window.setTimeout(resetProductScroll, 240);
-      }, { once: true });
-      window.addEventListener('pageshow', function(){
-        resetProductScroll();
-        window.requestAnimationFrame(resetProductScroll);
-      });
-    })();
+    try {
+      if ('scrollRestoration' in window.history) {
+        window.history.scrollRestoration = 'manual';
+      }
+      window.scrollTo(0, 0);
+    } catch (_) {}
   </script>
   <link rel="preload" as="image" href="/assets_ref/x/gallery/Miroooo_x_Pink-1.webp" type="image/webp" fetchpriority="high">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
-  <link rel="preconnect" href="https://embed.tawk.to" crossorigin>
-  <link rel="dns-prefetch" href="https://embed.tawk.to">
-  <!--Start of Tawk.to Script-->
-  <script type="text/javascript">
-  var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
-  (function(){
-    function loadTawk(){
-      if (window._tawkLoaded) return;
-      window._tawkLoaded = true;
-      var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
-      s1.async=true;
-      s1.src='https://embed.tawk.to/6a94f3ac266bf9344afa81da/1k1atfn2e';
-      s1.charset='UTF-8';
-      s1.setAttribute('crossorigin','*');
-      s0.parentNode.insertBefore(s1,s0);
-    }
-    if (document.readyState === 'complete') {
-      if ('requestIdleCallback' in window) requestIdleCallback(loadTawk, { timeout: 3000 });
-      else setTimeout(loadTawk, 2000);
-    } else {
-      window.addEventListener('load', function(){
-        if ('requestIdleCallback' in window) requestIdleCallback(loadTawk, { timeout: 3000 });
-        else setTimeout(loadTawk, 2000);
-      });
-    }
-    ['mousemove','touchstart','scroll','keydown'].forEach(function(evt){
-      window.addEventListener(evt, loadTawk, { once: true, passive: true });
-    });
-  })();
+  <!-- Vercel Speed Insights -->
+  <script>
+    window.si = window.si || function () { (window.siq = window.siq || []).push(arguments); };
   </script>
-  <!--End of Tawk.to Script-->
+  <script defer src="/_vercel/speed-insights/script.js"></script>
   <!-- Microsoft Clarity -->
   <script type="text/javascript">
     (function(c,l,a,r,i,t,y){
@@ -97,12 +35,6 @@
   <link rel="icon" href="/favicon.png" type="image/png">
   <link rel="shortcut icon" href="/favicon.png" type="image/png">
   <link rel="manifest" href="/site.webmanifest">
-  <link rel="preconnect" href="https://cdn.shopify.com" crossorigin>
-  <link rel="preconnect" href="https://fonts.shopifycdn.com" crossorigin>
-
-  <link rel="dns-prefetch" href="https://ajax.googleapis.com">
-  <link rel="dns-prefetch" href="https://maps.googleapis.com">
-  <link rel="dns-prefetch" href="https://maps.gstatic.com">
 
 <title>Miroooo X1 Sonic Electric Toothbrush | UK</title><meta name="description" content="Meet the Miroooo X1 sonic electric toothbrush with three brushing modes, 60+ days of battery life, a travel case and free tracked UK delivery."><meta property="og:site_name" content="Miroooo">
 <meta property="og:url" content="https://www.trymiroooo.com/products/miroooo-x">
@@ -5348,9 +5280,6 @@ theme.variantStrings = {
       <span id="MirooooGalleryLightboxCurrent">1</span> / <span id="MirooooGalleryLightboxTotal">9</span>
     </div>
   </div>
-
-  <script src="https://cdn.shopify.com/s/files/1/0810/6023/3561/t/6/assets/instant-page.js?v=99963444960178710701733490075" type="module" fetchpriority="low" defer="defer"></script>
-  <script src="https://cdn.shopify.com/storefront/standard-actions.js" type="module" data-source-attribution="shopify.standard_actions"></script>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/flickity/2.3.0/flickity.pkgd.min.js" defer></script>
 <script>

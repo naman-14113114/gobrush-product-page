@@ -3419,3 +3419,15 @@ body.nav-open .miroooo-sticky-cart-wrap {
   }
 }
 
+/* Suppress any third-party floating loaders or bottom-right chat indicators */
+iframe[src*="tawk.to"],
+iframe[title*="chat widget"],
+div[id*="tawk"],
+div[class*="tawk"],
+.widget-visible,
+#tawk-default-container {
+  display: none !important;
+  visibility: hidden !important;
+  opacity: 0 !important;
+  pointer-events: none !important;
+}

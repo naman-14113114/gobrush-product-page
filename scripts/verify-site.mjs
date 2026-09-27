@@ -41,6 +41,7 @@ for (const file of newPages) {
   if (!/<html lang="en-GB">/.test(html)) errors.push(`${file}: missing en-GB language`);
   if (!html.includes("/assets/site.css")) errors.push(`${file}: missing shared stylesheet`);
   if (!html.includes("/assets/site.js")) errors.push(`${file}: missing shared script`);
+  if (!html.includes("/_vercel/speed-insights/script.js")) errors.push(`${file}: missing Vercel Speed Insights snippet`);
   if (!html.includes("https://www.clarity.ms/tag/") || !html.includes("ybadbatujm")) errors.push(`${file}: missing Microsoft Clarity snippet (ybadbatujm)`);
   if (/(?:go)brush|Miroooo\.nl|https?:\/\/miroooo\.com|hello@domain\.com/i.test(html)) errors.push(`${file}: inherited or placeholder brand reference`);
   if (file !== "404.html" && !html.includes("https://www.trymiroooo.com/")) errors.push(`${file}: missing trymiroooo.com canonical or metadata`);
@@ -115,6 +116,9 @@ if (!buildScript.includes('cp(resolve(root, "guides"), resolve(output, "guides")
 if (!buildScript.includes("/assets/klaviyo.js?v=20260901")) {
   errors.push("scripts/build.mjs: Klaviyo browser tracking is not injected into built pages");
 }
+if (!buildScript.includes("/_vercel/speed-insights/script.js")) {
+  errors.push("scripts/build.mjs: Vercel Speed Insights snippet is not checked or injected into built pages");
+}
 if (!buildScript.includes("ybadbatujm")) {
   errors.push("scripts/build.mjs: Microsoft Clarity snippet (ybadbatujm) is not checked or injected into built pages");
 }
@@ -179,6 +183,7 @@ for (const [file, route] of productPagesToCheck) {
   if (!/<html[^>]+lang="en-GB"/.test(html)) errors.push(`${file}: missing en-GB language`);
   if (!html.includes(`rel="canonical" href="https://www.trymiroooo.com${route}"`)) errors.push(`${file}: incorrect canonical`);
   if (!html.includes("/assets/product-shell.css") || !html.includes("/assets/product-shell.js")) errors.push(`${file}: missing shared product shell`);
+  if (!html.includes("/_vercel/speed-insights/script.js")) errors.push(`${file}: missing Vercel Speed Insights snippet`);
   if (!html.includes("https://www.clarity.ms/tag/") || !html.includes("ybadbatujm")) errors.push(`${file}: missing Microsoft Clarity snippet (ybadbatujm)`);
   if (/(?:go)brush|Miroooo\.nl|https?:\/\/miroooo\.com|hello@domain\.com|lang="nl"/i.test(html)) errors.push(`${file}: inherited store contamination remains`);
   if (/€|\bEUR\b/.test(html)) errors.push(`${file}: non-GBP currency remains`);
