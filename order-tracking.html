@@ -61,7 +61,7 @@
             "name": "When will I get my order?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "We offer free tracked UK delivery. Orders are processed within 1 to 3 business days and shipped with a fully tracked courier service. Once dispatched, transit usually takes 3 to 10 business days."
+              "text": "We offer free tracked UK delivery. Orders are processed within 1 to 3 business days and shipped with a fully tracked courier service. Once dispatched, transit usually takes 7 to 20 business days."
             }
           },
           {
@@ -69,7 +69,7 @@
             "name": "Can I add or remove products from my order?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "To ensure your order arrives on time, we generally begin processing an order as soon as it is placed. As a result, we are unable to make any changes to your order after it is placed."
+              "text": "Address changes must be requested within 2 hours of order placement, and order cancellations within 12 hours before fulfillment begins. Because orders enter automated fulfilment rapidly, changes cannot be guaranteed once processing starts."
             }
           },
           {
@@ -958,7 +958,7 @@
             Once your order has shipped, you will receive an email from us with a link to track your order. You can also enter the order number and your email in the box below to get the status of your shipment.
           </p>
           <p class="track-subintro">
-            If you just received a shipment notification, please allow 1 to 2 business days for the tracking information to appear.
+            If you just received a shipment notification, please allow 24 to 72 hours for the tracking information to appear.
           </p>
         </header>
 
@@ -1117,7 +1117,7 @@
                 <div class="track-faq-panel-inner">
                   <div class="track-faq-divider"></div>
                   <div class="track-faq-answer">
-                    <p>We offer free tracked UK delivery. Orders are processed within <strong>1 to 3 business days</strong> and shipped with a fully tracked courier service. Once dispatched, transit usually takes <strong>3 to 10 business days</strong>.</p>
+                    <p>We offer free tracked UK delivery. Orders are processed within <strong>1 to 3 business days</strong> and shipped with a fully tracked courier service. Once dispatched, transit usually takes <strong>7 to 20 business days</strong>.</p>
                     <p><strong>Please note:</strong> Your order may split into multiple shipments when it includes a pre-ordered or back-ordered item. If this occurs, you will receive tracking details for each separate shipment.</p>
                     <p>Read the full <a class="track-link" href="/shipping-policy">Shipping Policy</a>.</p>
                   </div>
@@ -1139,7 +1139,7 @@
                 <div class="track-faq-panel-inner">
                   <div class="track-faq-divider"></div>
                   <div class="track-faq-answer">
-                    <p>Sorry! To ensure your order arrives on time, we generally begin processing an order as soon as it is placed. As a result we are unable to make any changes to your order after it is placed.</p>
+                    <p>To ensure prompt delivery, fulfillment begins quickly after order placement. Address changes must be submitted within <strong>2 hours</strong> and order cancellations within <strong>12 hours</strong> of placing your order. We are unable to guarantee adjustments once processing has started.</p>
                   </div>
                 </div>
               </div>
@@ -1352,7 +1352,7 @@
             resultStatusTitle.textContent = "In Transit";
             resultBannerIcon.classList.add("track-status-icon-wrap--transit");
             resultBannerTitle.textContent = "In Transit — Royal Mail Regional Hub";
-            bannerDescText = "Your parcel has departed the national sorting centre and is en route to your local delivery office. Expected delivery in 1–2 business days.";
+            bannerDescText = "Your parcel has departed the national sorting centre and is en route to your local delivery office.";
 
             timelineHtml = `
               <div class="track-timeline-item is-done">

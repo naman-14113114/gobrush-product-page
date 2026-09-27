@@ -60,7 +60,7 @@
           text: "High-density lithium cell requires only a single 2-hour USB-C charge every quarter — zero counter clutter."
         },
         {
-          strong: "Whisper-Quiet Sonic Motor (<50 dB):",
+          strong: "Whisper-Quiet Sonic Motor (<45 dB):",
           text: "Discreet, powerful acoustic vibration for seamless morning routines without disturbing anyone."
         },
         {
@@ -112,7 +112,7 @@
           text: "High-density lithium cell requires only a single 2-hour USB-C charge every quarter — zero counter clutter."
         },
         {
-          strong: "Whisper-Quiet Sonic Motor (<50 dB):",
+          strong: "Whisper-Quiet Sonic Motor (<45 dB):",
           text: "Whitening Mode provides a repeatable powered routine for everyday surface-stain care; cosmetic results vary."
         },
         {
@@ -216,7 +216,7 @@
           text: "Each brush has stated battery life of up to 90 days, with real-world duration varying by use."
         },
         {
-          strong: "Whisper-Quiet Sonic Motors (<50 dB):",
+          strong: "Whisper-Quiet Sonic Motors (<45 dB):",
           text: "Both instruments run silent enough for peaceful morning routines without disturbing anyone in the household."
         },
         {

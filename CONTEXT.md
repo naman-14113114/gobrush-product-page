@@ -94,7 +94,7 @@ Append-only memory for the `gobrush-product-page` repository. Do not delete or s
 - Changes made:
   - Added `#shopify-section-template--miroooo-comparison` directly below the reviews container and above Package Contents in `miroooo-x2.html`.
   - Configured Winner column for `Brush X2` with image `/assets_ref/x2/gallery/miroooo-x2-sonic-electric-toothbrush-silver-upright-grip.webp`.
-  - Set specs: 90 Days battery life, ultra-lightweight unibody, travel case, wall-mounted storage, dental care app, aluminium alloy body, 2x DuPont heads, whisper quiet (<50dB), risk-free home trial, free tracked delivery.
+  - Set specs: 90 Days battery life, ultra-lightweight unibody, travel case, wall-mounted storage, dental care app, aluminium alloy body, 2x DuPont heads, whisper quiet (<45dB), risk-free home trial, free tracked delivery.
   - Set image to sit flush/colinear directly on the green bottom border line of the column.
   - Added "Wall-Mounted Storage" row (X2: ✓, Oral-B: ✗, Philips: ✗, Suri: ✓).
   - Added "Dental Care App" row (X2: ✓, Oral-B: ✗, Philips: ✗, Suri: ✗).
