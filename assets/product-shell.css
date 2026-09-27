@@ -1522,8 +1522,8 @@
   align-items: center;
   justify-content: space-between;
   gap: 20px;
-  padding: 28px 0 120px !important;
-  padding-bottom: 120px !important;
+  padding: 28px 0 !important;
+  padding-bottom: 28px !important;
   border-top: 1px solid rgba(255, 255, 255, 0.08);
   color: #777777;
   font-size: 11px;
@@ -1535,6 +1535,7 @@
   color: #777777;
   font-size: 11px;
   letter-spacing: 0.06em;
+  padding-bottom: 0 !important;
 }
 
 .site-footer__payments {
@@ -1552,15 +1553,38 @@
   align-items: center;
 }
 
-.site-footer__payments svg {
+.site-footer__payments svg,
+.site-footer__payments img {
   width: 38px;
   height: 24px;
   border-radius: 3px;
   display: block;
+  object-fit: contain;
 }
 
 #shopify-section-sections--24203576869209__footer-copyright,
 .footer-copyright {
+  padding-bottom: 0 !important;
+}
+
+/* Scoped bottom padding strictly to product pages for sticky add-to-cart bar */
+body:has(.product) .site-footer__bottom,
+body:has([id*="main-product"]) .site-footer__bottom,
+body:has(.product-sticky-form) .site-footer__bottom,
+body:has(.product-form__submit) .site-footer__bottom,
+.template-product .site-footer__bottom,
+[data-page="product-x"] .site-footer__bottom,
+[data-page="product-x2"] .site-footer__bottom,
+[data-page="product-x1-heads"] .site-footer__bottom,
+[data-page="product-x2-heads"] .site-footer__bottom {
+  padding: 28px 0 120px !important;
+  padding-bottom: 120px !important;
+}
+
+body:has(.product) #shopify-section-sections--24203576869209__footer-copyright,
+body:has(.product) .footer-copyright,
+.template-product #shopify-section-sections--24203576869209__footer-copyright,
+.template-product .footer-copyright {
   padding-bottom: 130px !important;
 }
 
@@ -1621,6 +1645,19 @@
     flex-direction: column;
     text-align: center;
     gap: 16px;
+    padding: 24px 0 !important;
+    padding-bottom: 24px !important;
+  }
+
+  body:has(.product) .site-footer__bottom,
+  body:has([id*="main-product"]) .site-footer__bottom,
+  body:has(.product-sticky-form) .site-footer__bottom,
+  body:has(.product-form__submit) .site-footer__bottom,
+  .template-product .site-footer__bottom,
+  [data-page="product-x"] .site-footer__bottom,
+  [data-page="product-x2"] .site-footer__bottom,
+  [data-page="product-x1-heads"] .site-footer__bottom,
+  [data-page="product-x2-heads"] .site-footer__bottom {
     padding: 24px 0 120px !important;
     padding-bottom: 120px !important;
   }
@@ -3419,15 +3456,4 @@ body.nav-open .miroooo-sticky-cart-wrap {
   }
 }
 
-/* Suppress any third-party floating loaders or bottom-right chat indicators */
-iframe[src*="tawk.to"],
-iframe[title*="chat widget"],
-div[id*="tawk"],
-div[class*="tawk"],
-.widget-visible,
-#tawk-default-container {
-  display: none !important;
-  visibility: hidden !important;
-  opacity: 0 !important;
-  pointer-events: none !important;
-}
+

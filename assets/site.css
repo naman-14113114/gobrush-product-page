@@ -3371,11 +3371,13 @@ body.is-ready [data-hero-reveal] {
   align-items: center;
 }
 
-.site-footer__payments svg {
+.site-footer__payments svg,
+.site-footer__payments img {
   width: 38px;
   height: 24px;
   border-radius: 3px;
   display: block;
+  object-fit: contain;
 }
 
 /* Shared supporting pages */
@@ -3894,19 +3896,26 @@ body[data-page="cart"] .site-header--cart .header__logo {
   gap: 16px !important;
 }
 
+.site-header__inner > * {
+  grid-area: auto !important;
+}
+
 .site-header__left {
+  grid-column: 1 !important;
   display: flex !important;
   align-items: center !important;
   justify-content: flex-start !important;
 }
 
 .site-header__center {
+  grid-column: 2 !important;
   display: flex !important;
   align-items: center !important;
   justify-content: center !important;
 }
 
 .site-header__right {
+  grid-column: 3 !important;
   display: flex !important;
   align-items: center !important;
   justify-content: flex-end !important;
@@ -7855,15 +7864,4 @@ button[style*="background: #ffffff"] .miroooo-button-click-loader {
   display: block !important;
 }
 
-/* Suppress any third-party floating loaders or bottom-right chat indicators */
-iframe[src*="tawk.to"],
-iframe[title*="chat widget"],
-div[id*="tawk"],
-div[class*="tawk"],
-.widget-visible,
-#tawk-default-container {
-  display: none !important;
-  visibility: hidden !important;
-  opacity: 0 !important;
-  pointer-events: none !important;
-}
+

@@ -81,6 +81,21 @@ const claritySnippet = `  <!-- Microsoft Clarity -->
         y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
     })(window, document, "clarity", "script", "ybadbatujm");
   </script>`;
+const tawkSnippet = `  <link rel="preconnect" href="https://embed.tawk.to" crossorigin>
+  <link rel="dns-prefetch" href="https://embed.tawk.to">
+  <!--Start of Tawk.to Script-->
+  <script type="text/javascript">
+  var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
+  (function(){
+  var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
+  s1.async=true;
+  s1.src='https://embed.tawk.to/6a94f3ac266bf9344afa81da/1k1atfn2e';
+  s1.charset='UTF-8';
+  s1.setAttribute('crossorigin','*');
+  s0.parentNode.insertBefore(s1,s0);
+  })();
+  </script>
+  <!--End of Tawk.to Script-->`;
 const outputHtmlFiles = [
   ...(await readdir(output)).filter((name) => name.endsWith(".html")).map((name) => resolve(output, name)),
   ...(await readdir(resolve(output, "products"))).filter((name) => name.endsWith(".html")).map((name) => resolve(output, "products", name)),
@@ -96,6 +111,9 @@ for (const htmlFile of outputHtmlFiles) {
   let instrumentedHtml = html;
   if (!instrumentedHtml.includes("/_vercel/speed-insights/script.js")) {
     instrumentedHtml = instrumentedHtml.replace("</head>", `${speedInsightsSnippet}\n</head>`);
+  }
+  if (!instrumentedHtml.includes("https://embed.tawk.to/6a94f3ac266bf9344afa81da/1k1atfn2e")) {
+    instrumentedHtml = instrumentedHtml.replace("</head>", `${tawkSnippet}\n</head>`);
   }
   if (!instrumentedHtml.includes("https://www.clarity.ms/tag/") || !instrumentedHtml.includes("ybadbatujm")) {
     instrumentedHtml = instrumentedHtml.replace("</head>", `${claritySnippet}\n</head>`);

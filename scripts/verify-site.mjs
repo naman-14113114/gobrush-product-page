@@ -42,6 +42,7 @@ for (const file of newPages) {
   if (!html.includes("/assets/site.css")) errors.push(`${file}: missing shared stylesheet`);
   if (!html.includes("/assets/site.js")) errors.push(`${file}: missing shared script`);
   if (!html.includes("/_vercel/speed-insights/script.js")) errors.push(`${file}: missing Vercel Speed Insights snippet`);
+  if (!html.includes("https://embed.tawk.to/6a94f3ac266bf9344afa81da/1k1atfn2e")) errors.push(`${file}: missing Tawk.to live chat snippet`);
   if (!html.includes("https://www.clarity.ms/tag/") || !html.includes("ybadbatujm")) errors.push(`${file}: missing Microsoft Clarity snippet (ybadbatujm)`);
   if (/(?:go)brush|Miroooo\.nl|https?:\/\/miroooo\.com|hello@domain\.com/i.test(html)) errors.push(`${file}: inherited or placeholder brand reference`);
   if (file !== "404.html" && !html.includes("https://www.trymiroooo.com/")) errors.push(`${file}: missing trymiroooo.com canonical or metadata`);
@@ -184,6 +185,7 @@ for (const [file, route] of productPagesToCheck) {
   if (!html.includes(`rel="canonical" href="https://www.trymiroooo.com${route}"`)) errors.push(`${file}: incorrect canonical`);
   if (!html.includes("/assets/product-shell.css") || !html.includes("/assets/product-shell.js")) errors.push(`${file}: missing shared product shell`);
   if (!html.includes("/_vercel/speed-insights/script.js")) errors.push(`${file}: missing Vercel Speed Insights snippet`);
+  if (!html.includes("https://embed.tawk.to/6a94f3ac266bf9344afa81da/1k1atfn2e")) errors.push(`${file}: missing Tawk.to live chat snippet`);
   if (!html.includes("https://www.clarity.ms/tag/") || !html.includes("ybadbatujm")) errors.push(`${file}: missing Microsoft Clarity snippet (ybadbatujm)`);
   if (/(?:go)brush|Miroooo\.nl|https?:\/\/miroooo\.com|hello@domain\.com|lang="nl"/i.test(html)) errors.push(`${file}: inherited store contamination remains`);
   if (/€|\bEUR\b/.test(html)) errors.push(`${file}: non-GBP currency remains`);

@@ -512,10 +512,10 @@ ${tickerItemSet.repeat(12)}
                     </li>
                   </ul>
                 </li>
-                <li><a class="drawer__menu-item block heading text-2xl leading-none tracking-tight" href="/about-us">About Us</a></li>
-                <li><a class="drawer__menu-item block heading text-2xl leading-none tracking-tight" href="/dentalcare-quiz">Dental Care Quiz</a></li>
-                <li><a class="drawer__menu-item block heading text-2xl leading-none tracking-tight" href="/contact">Contact Us</a></li>
-                <li><a class="drawer__menu-item block heading text-2xl leading-none tracking-tight" href="/faq">FAQs</a></li>
+                <li><a class="drawer__menu-item block heading text-2xl leading-none tracking-tight" href="/pages/about-us">About Us</a></li>
+                <li><a class="drawer__menu-item block heading text-2xl leading-none tracking-tight" href="/pages/dentalcare-quiz">Dental Care Quiz</a></li>
+                <li><a class="drawer__menu-item block heading text-2xl leading-none tracking-tight" href="/pages/contact-us">Contact Us</a></li>
+                <li><a class="drawer__menu-item block heading text-2xl leading-none tracking-tight" href="/pages/faqs">FAQs</a></li>
               </ul>
             </nav>
             <div class="drawer__footer grid w-full">
@@ -545,8 +545,8 @@ ${tickerItemSet.repeat(12)}
                       <span class="btn-text btn-duplicate flex items-center">Shop ${chevronDownIcon}</span>
                     </button>
                   </li>
-                  ${menuPill("/about-us", "About Us", ["about", "about-us"])}
-                  ${menuPill("/dentalcare-quiz", "Dental Care Quiz", ["dentalcare-quiz", "quiz"])}
+                  ${menuPill("/pages/about-us", "About Us", ["about", "about-us"])}
+                  ${menuPill("/pages/dentalcare-quiz", "Dental Care Quiz", ["dentalcare-quiz", "quiz"])}
                 </ul>
               </nav>
             </div>
@@ -560,8 +560,8 @@ ${tickerItemSet.repeat(12)}
             <div class="header__navigation header__navigation--right hidden lg:flex items-center">
               <nav class="header__menu site-nav site-nav--right hidden lg:flex" role="navigation" aria-label="Secondary">
                 <ul class="flex flex-wrap list-menu with-block">
-                  ${menuPill("/contact", "Contact Us", ["contact"])}
-                  ${menuPill("/faq", "FAQs", ["faq"])}
+                  ${menuPill("/pages/contact-us", "Contact Us", ["contact", "contact-us"])}
+                  ${menuPill("/pages/faqs", "FAQs", ["faq", "faqs"])}
                 </ul>
               </nav>
             </div>
@@ -649,11 +649,11 @@ ${tickerItemSet.repeat(12)}
                 <li><a href="/products/miroooo-x2" data-product-link>Miroooo X2</a></li>
                 <li><a href="/products/miroooo-x1-heads" data-product-link>Miroooo X1 Heads</a></li>
                 <li><a href="/products/miroooo-x2-heads" data-product-link>Miroooo X2 Heads</a></li>
-                <li><a href="/privacy">Privacy Policy</a></li>
-                <li><a href="/return-policy">Return Policy</a></li>
-                <li><a href="/shipping-policy">Shipping Policy</a></li>
-                <li><a href="/refund-policy">Refund Policy</a></li>
-                <li><a href="/terms">Terms of Service</a></li>
+                <li><a href="/policies/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/policies/return-policy">Return Policy</a></li>
+                <li><a href="/policies/shipping-policy">Shipping Policy</a></li>
+                <li><a href="/policies/refund-policy">Refund Policy</a></li>
+                <li><a href="/policies/terms-of-service">Terms of Service</a></li>
               </ul>
             </div>
 
@@ -661,13 +661,13 @@ ${tickerItemSet.repeat(12)}
             <div class="site-footer__column">
               <h4 class="site-footer__heading">SUPPORT</h4>
               <ul class="site-footer__links">
-                <li><a href="/smile-coach">Free Smile Coach App</a></li>
-                <li><a href="/dentalcare-quiz">Dental Care Quiz</a></li>
-                <li><a href="/contact">Contact Us</a></li>
-                <li><a href="/about-us">About Us</a></li>
+                <li><a href="/pages/smile-coach">Free Smile Coach App</a></li>
+                <li><a href="/pages/dentalcare-quiz">Dental Care Quiz</a></li>
+                <li><a href="/pages/contact-us">Contact Us</a></li>
+                <li><a href="/pages/about-us">About Us</a></li>
                 <li><a href="/guides">Oral Care Guides</a></li>
-                <li><a href="/faq">FAQs</a></li>
-                <li><a href="/cookies-policy">Cookies Policy</a></li>
+                <li><a href="/pages/faqs">FAQs</a></li>
+                <li><a href="/policies/cookies-policy">Cookies Policy</a></li>
               </ul>
             </div>
 
