@@ -437,17 +437,16 @@
     const headerTarget = document.querySelector("[data-site-header]");
     if (!headerTarget) return;
 
+    const tickerItemSet = `
+          <div class="miroooo-ticker-item"><span>Free Shipping on all orders</span> <span class="miroooo-ticker-dot" aria-hidden="true"></span></div>
+          <div class="miroooo-ticker-item"><span>50% OFF Today</span> <span class="miroooo-ticker-dot" aria-hidden="true"></span></div>
+          <div class="miroooo-ticker-item"><span>Ultra Lightweight</span> <span class="miroooo-ticker-dot" aria-hidden="true"></span></div>
+          <div class="miroooo-ticker-item"><span>4.9 Stars from 40,000+ Customers</span> <span class="miroooo-ticker-dot" aria-hidden="true"></span></div>`;
+
     const announcementHTML = `
       <div class="announcement" style="background: #e6e6e6; color: #111111; padding: 4px 0; overflow: hidden; width: 100%; min-height: 24px; border-bottom: 1px solid rgba(0, 0, 0, 0.08);">
         <div class="miroooo-announcement-ticker">
-          <div class="miroooo-ticker-item"><span>Free Shipping on all orders</span> <span class="miroooo-ticker-dot" aria-hidden="true"></span></div>
-          <div class="miroooo-ticker-item"><span>50% OFF Today</span> <span class="miroooo-ticker-dot" aria-hidden="true"></span></div>
-          <div class="miroooo-ticker-item"><span>Ultra Lightweight</span> <span class="miroooo-ticker-dot" aria-hidden="true"></span></div>
-          <div class="miroooo-ticker-item"><span>4.9 Stars from 40,000+ Customers</span> <span class="miroooo-ticker-dot" aria-hidden="true"></span></div>
-          <div class="miroooo-ticker-item"><span>Free Shipping on all orders</span> <span class="miroooo-ticker-dot" aria-hidden="true"></span></div>
-          <div class="miroooo-ticker-item"><span>50% OFF Today</span> <span class="miroooo-ticker-dot" aria-hidden="true"></span></div>
-          <div class="miroooo-ticker-item"><span>Ultra Lightweight</span> <span class="miroooo-ticker-dot" aria-hidden="true"></span></div>
-          <div class="miroooo-ticker-item"><span>4.9 Stars from 40,000+ Customers</span> <span class="miroooo-ticker-dot" aria-hidden="true"></span></div>
+${tickerItemSet.repeat(12)}
         </div>
       </div>`;
 

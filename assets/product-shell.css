@@ -78,7 +78,7 @@
   align-items: center !important;
   width: max-content !important;
   will-change: transform !important;
-  animation: mirooooTickerScroll 28s linear infinite !important;
+  animation: mirooooTickerScroll 168s linear infinite !important;
   animation-play-state: running !important;
 }
 

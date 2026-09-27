@@ -12,11 +12,6 @@
     document.body.prepend(skip);
   }
 
-  document.querySelectorAll(".announcement-text").forEach((item) => {
-    item.classList.remove("hidden");
-    item.innerHTML = "Free tracked UK delivery";
-  });
-
   // Synchronize Navigation links and duplicate text for roll-up animation
   const desktopLinks = document.querySelectorAll(".header__menu > ul > li > a, .site-nav > ul > li > a");
   desktopLinks.forEach((link) => {
