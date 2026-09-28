@@ -38,27 +38,6 @@ try {
   await cp(resolve(root, "miroooo-x2-heads.html"), resolve(output, "products", "miroooo-x2-heads.html"));
 } catch (_) {}
 
-// Clean URL folder copies for local server and static preview
-for (const [src, destDir] of [
-  ["miroooo-x.html", "products/miroooo-x"],
-  ["miroooo-x2.html", "products/miroooo-x2"],
-  ["miroooo-x1-heads.html", "products/miroooo-x1-heads"],
-  ["miroooo-x2-heads.html", "products/miroooo-x2-heads"],
-  ["shop.html", "shop"],
-  ["about-us.html", "about-us"],
-  ["about.html", "about"],
-  ["faq.html", "faq"],
-  ["contact.html", "contact"],
-  ["smile-coach.html", "smile-coach"],
-  ["cart.html", "cart"],
-  ["dentalcare-quiz.html", "dentalcare-quiz"]
-]) {
-  try {
-    await mkdir(resolve(output, destDir), { recursive: true });
-    await cp(resolve(root, src), resolve(output, destDir, "index.html"));
-  } catch (_) {}
-}
-
 await cp(resolve(root, "guides"), resolve(output, "guides"), { recursive: true });
 
 const microsoftTrackingScript = '<script src="/assets/microsoft-ads.js?v=20260901" defer></script>';
@@ -96,6 +75,7 @@ const tawkSnippet = `  <link rel="preconnect" href="https://embed.tawk.to" cross
   })();
   </script>
   <!--End of Tawk.to Script-->`;
+
 const outputHtmlFiles = [
   ...(await readdir(output)).filter((name) => name.endsWith(".html")).map((name) => resolve(output, name)),
   ...(await readdir(resolve(output, "products"))).filter((name) => name.endsWith(".html")).map((name) => resolve(output, "products", name)),
@@ -130,6 +110,35 @@ for (const htmlFile of outputHtmlFiles) {
   if (instrumentedHtml !== html) {
     await writeFile(htmlFile, instrumentedHtml, "utf8");
   }
+}
+
+// Clean URL folder copies for local server and static preview
+for (const [src, destDir] of [
+  ["miroooo-x.html", "products/miroooo-x"],
+  ["miroooo-x2.html", "products/miroooo-x2"],
+  ["miroooo-x1-heads.html", "products/miroooo-x1-heads"],
+  ["miroooo-x2-heads.html", "products/miroooo-x2-heads"],
+  ["shop.html", "shop"],
+  ["about-us.html", "about-us"],
+  ["about.html", "about"],
+  ["faq.html", "faq"],
+  ["contact.html", "contact"],
+  ["smile-coach.html", "smile-coach"],
+  ["cart.html", "cart"],
+  ["dentalcare-quiz.html", "dentalcare-quiz"],
+  ["shipping-policy.html", "shipping-policy"],
+  ["privacy.html", "privacy"],
+  ["terms.html", "terms"],
+  ["return-policy.html", "return-policy"],
+  ["refund-policy.html", "refund-policy"],
+  ["cookies-policy.html", "cookies-policy"],
+  ["delivery-returns.html", "delivery-returns"],
+  ["warranty.html", "warranty"]
+]) {
+  try {
+    await mkdir(resolve(output, destDir), { recursive: true });
+    await cp(resolve(output, src), resolve(output, destDir, "index.html"));
+  } catch (_) {}
 }
 
 for (const directory of ["assets", "assets_ref", "gallery_orig"]) {
