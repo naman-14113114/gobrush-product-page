@@ -4,7 +4,7 @@ import { resolve } from "node:path";
 const root = resolve(import.meta.dirname, "..");
 const required = [
   "index.html", "shop.html", "miroooo-x.html", "miroooo-x2.html", "miroooo-x1-heads.html", "cart.html", "about.html", "about-us.html", "faq.html",
-  "contact.html", "delivery-returns.html", "warranty.html", "order-tracking.html", "privacy.html",
+  "contact.html", "warranty.html", "order-tracking.html", "privacy.html",
   "terms.html", "return-policy.html", "shipping-policy.html", "refund-policy.html", "cookies-policy.html",
   "404.html", "assets/site.css", "assets/site.js", "assets/microsoft-ads.js", "assets/klaviyo.js", "vercel.json", "sitemap.xml",
   "robots.txt", "llms.txt", "smile-coach.html", "assets/smile-coach.css", "assets/smile-coach.js",
@@ -21,7 +21,7 @@ for (const file of required) {
 }
 
 const newPages = [
-  "index.html", "shop.html", "cart.html", "about.html", "about-us.html", "faq.html", "contact.html", "delivery-returns.html",
+  "index.html", "shop.html", "cart.html", "about.html", "about-us.html", "faq.html", "contact.html",
   "warranty.html", "order-tracking.html", "privacy.html", "terms.html", "return-policy.html",
   "shipping-policy.html", "refund-policy.html", "cookies-policy.html", "404.html"
 ];
@@ -293,7 +293,7 @@ if (!config.redirects?.some((rule) => rule.source === "/about" && rule.destinati
 }
 
 const sitemap = await readFile(resolve(root, "sitemap.xml"), "utf8");
-for (const route of ["/shop", "/products/miroooo-x", "/products/miroooo-x2", "/products/miroooo-x1-heads", "/products/miroooo-x2-heads", "/dentalcare-quiz", "/smile-coach", "/guides", "/guides/sonic-vs-oscillating-electric-toothbrush", "/guides/how-often-replace-electric-toothbrush-head", "/guides/electric-toothbrush-travel-guide", "/guides/how-to-use-two-minute-toothbrush-timer", "/delivery-returns", "/privacy", "/terms"]) {
+for (const route of ["/shop", "/products/miroooo-x", "/products/miroooo-x2", "/products/miroooo-x1-heads", "/products/miroooo-x2-heads", "/dentalcare-quiz", "/smile-coach", "/guides", "/guides/sonic-vs-oscillating-electric-toothbrush", "/guides/how-often-replace-electric-toothbrush-head", "/guides/electric-toothbrush-travel-guide", "/guides/how-to-use-two-minute-toothbrush-timer", "/privacy", "/terms"]) {
   if (!sitemap.includes(`<loc>https://www.trymiroooo.com${route}</loc>`)) errors.push(`sitemap.xml: missing ${route}`);
 }
 if (sitemap.includes("https://trymiroooo.com") || /<loc>https:\/\/www\.trymiroooo\.com\/(?:cart|about)<\/loc>/.test(sitemap)) errors.push("sitemap.xml: redirecting, non-canonical or noindex URL remains");

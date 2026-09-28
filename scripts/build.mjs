@@ -132,7 +132,6 @@ for (const [src, destDir] of [
   ["return-policy.html", "return-policy"],
   ["refund-policy.html", "refund-policy"],
   ["cookies-policy.html", "cookies-policy"],
-  ["delivery-returns.html", "delivery-returns"],
   ["warranty.html", "warranty"]
 ]) {
   try {

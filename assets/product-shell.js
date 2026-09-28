@@ -184,7 +184,9 @@
     if (/pages\/(contact|klantenservice)/.test(href)) link.href = "/contact";
     if (/pages\/(faq|over-ons)/.test(href)) link.href = "/faq";
     if (/pages\/(privacybeleid|privacy-policy)/.test(href)) link.href = "/privacy";
-    if (/pages\/(retouren-garantie|shipping-policy|returns)/.test(href)) link.href = "/delivery-returns";
+    if (/pages\/(shipping-policy)/.test(href)) link.href = "/shipping-policy";
+    if (/pages\/(retouren-garantie|return-policy|returns)/.test(href)) link.href = "/return-policy";
+    if (/pages\/(refund-policy)/.test(href)) link.href = "/refund-policy";
     if (/pages\/(reviews|terms)/.test(href)) link.href = "/terms";
     if (/pages\/(dentalcare-quiz|quiz)/.test(href)) link.href = "/dentalcare-quiz";
   });

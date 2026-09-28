@@ -9,8 +9,8 @@ Static storefront for Miroooo X1 and Miroooo X2, designed for UK English and GBP
 - `/products/miroooo-x` — Miroooo X1 product foundation
 - `/products/miroooo-x2` — Miroooo X2 product foundation
 - `/about`, `/faq`, `/contact` — brand and support
-- `/delivery-returns`, `/warranty`, `/order-tracking` — post-purchase support
-- `/privacy`, `/terms` — store policies
+- `/warranty`, `/order-tracking` — post-purchase support
+- `/privacy`, `/terms`, `/shipping-policy`, `/return-policy`, `/refund-policy` — store policies
 
 ## Local verification
 
