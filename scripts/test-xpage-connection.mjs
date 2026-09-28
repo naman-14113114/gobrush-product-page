@@ -60,6 +60,8 @@ test("provider checkout sessions are shown only on matching Miroooo domains", ()
   const provider = `https://8e9c584880e3.myxpage.shop${path}`;
   assert.equal(brandedCheckoutUrl(provider, "x1"), `https://x1.miroooo.us${path}`);
   assert.equal(brandedCheckoutUrl(provider, "x2"), `https://offer.miroooo.us${path}`);
+  assert.equal(brandedCheckoutUrl(`https://offer.miroooo.us${path}`, "x2"), `https://offer.miroooo.us${path}`);
+  assert.throws(() => brandedCheckoutUrl(`https://x1.miroooo.us${path}`, "x2"));
   assert.throws(() => brandedCheckoutUrl(`https://example.com${path}`, "x2"));
 });
 
