@@ -1684,9 +1684,9 @@ ${tickerItemSet.repeat(12)}
               subtitle: (h === "miroooo-x2-heads" ? "DuPont precision heads for Miroooo X2." : (h === "miroooo-x1-heads" ? "DuPont precision heads for Miroooo X1." : (h === "miroooo-x2" ? "Includes free luxury travel case, wall-mounted storage & 90-day battery life." : "Electric Toothbrush with 32,000 VPM acoustic motor & 60-day battery."))),
               color: color,
               quantity: qty,
-              unitPrice: item.unitPrice || (h === "miroooo-x1-heads" || h === "miroooo-x2-heads" ? 10 : (h === "miroooo-x" ? 59 : 69)),
-              comparePrice: item.comparePrice || (h === "miroooo-x1-heads" || h === "miroooo-x2-heads" ? 10 : (h === "miroooo-x" ? 119 : 139)),
-              image: item.image || (h === "miroooo-x2-heads" ? "/assets_ref/x2/heads/B1.webp" : (h === "miroooo-x1-heads" ? "/assets_ref/x/heads/1.webp" : (h === "miroooo-x2" ? "/assets_ref/x2/gallery/miroooo-x2-sonic-electric-toothbrush-grey-checkout.webp" : "/assets_ref/x/gallery/Miroooo_x_Grey-2.webp"))),
+              unitPrice: item.unitPrice || (h === "miroooo-x1-heads" || h === "miroooo-x2-heads" ? 10 : 69),
+              comparePrice: item.comparePrice || (h === "miroooo-x1-heads" || h === "miroooo-x2-heads" ? 10 : 139),
+              image: item.image || (h === "miroooo-x2-heads" ? "/assets_ref/x2/heads/B1.webp" : (h === "miroooo-x1-heads" ? "/assets_ref/x/heads/B1.webp" : (h === "miroooo-x2" ? "/assets_ref/x2/gallery/miroooo-x2-sonic-electric-toothbrush-grey-checkout.webp" : "/assets_ref/x/gallery/Miroooo_x_Grey-2.webp"))),
               url: item.url || `/products/${h}`
             };
           });
@@ -1721,7 +1721,7 @@ ${tickerItemSet.repeat(12)}
               quantity: qty,
               unitPrice: 10,
               comparePrice: 10,
-              image: isX2Heads ? "/assets_ref/x2/heads/B1.webp" : "/assets_ref/x/heads/1.webp",
+              image: isX2Heads ? "/assets_ref/x2/heads/B1.webp" : "/assets_ref/x/heads/B1.webp",
               url: `/products/${handle}`
             });
           } else {
@@ -1754,8 +1754,8 @@ ${tickerItemSet.repeat(12)}
                 subtitle: isX2 ? "Includes free luxury travel case, wall-mounted storage & 90-day battery life." : "Electric Toothbrush with 32,000 VPM acoustic motor & 60-day battery.",
                 color: normColor,
                 quantity: cCount,
-                unitPrice: isX2 ? 69 : 59,
-                comparePrice: isX2 ? 139 : 119,
+                unitPrice: 69,
+                comparePrice: 139,
                 image: img,
                 url: `/products/${handle}`
               });
@@ -1852,7 +1852,7 @@ ${tickerItemSet.repeat(12)}
             quantity: qtyToAdd,
             unitPrice: 10,
             comparePrice: 10,
-            image: newItem.image || (isX2Heads ? "/assets_ref/x2/heads/B1.webp" : "/assets_ref/x/heads/1.webp"),
+            image: newItem.image || (isX2Heads ? "/assets_ref/x2/heads/B1.webp" : "/assets_ref/x/heads/B1.webp"),
             url: newItem.url || `/products/${handle}`
           });
         }
@@ -1891,8 +1891,8 @@ ${tickerItemSet.repeat(12)}
               subtitle: isX2 ? "Includes free luxury travel case, wall-mounted storage & 90-day battery life." : "Electric Toothbrush with 32,000 VPM acoustic motor & 60-day battery.",
               color: color,
               quantity: count,
-              unitPrice: isX2 ? 69 : 59,
-              comparePrice: isX2 ? 139 : 119,
+              unitPrice: 69,
+              comparePrice: 139,
               image: img,
               url: `/products/${handle}`
             });
@@ -2103,22 +2103,22 @@ ${tickerItemSet.repeat(12)}
         }
       }
 
-      let x1BundleDiscount = 0;
+      let x1BundlePromoDiscount = 0;
       let extraX1BrushHeadSets = 0;
       if (isX1Bundle) {
         if (x1Count === 2) {
-          x1BundleDiscount = 10;
+          x1BundlePromoDiscount = 10;
           extraX1BrushHeadSets = 1;
         } else if (x1Count === 3) {
-          x1BundleDiscount = 30;
+          x1BundlePromoDiscount = 30;
           extraX1BrushHeadSets = 2;
         }
       }
 
-      const baseBrushCompareSavings = (x2Count * (139 - 69)) + (x1Count * (119 - 59));
-      const bundleSavings = baseBrushCompareSavings + x1BundleDiscount;
+      const baseBrushCompareSavings = (x2Count * (139 - 69)) + (x1Count * (139 - 69));
+      const bundleSavings = baseBrushCompareSavings;
       const x2Net = (x2Count * 69) - x2BundlePromoDiscount;
-      const x1Net = (x1Count * 59) - x1BundleDiscount;
+      const x1Net = (x1Count * 69) - x1BundlePromoDiscount;
       const headsNet = (x2HeadsCount * 10) + (x1HeadsCount * 10);
       const brushSubtotal = Math.max(0, x2Net + x1Net);
       const subtotal = Math.max(0, brushSubtotal + headsNet);
@@ -2128,7 +2128,7 @@ ${tickerItemSet.repeat(12)}
       if (extraBrushHeadSets > 0) totalGiftValueNum += extraBrushHeadSets * 10;
       if (extraX1BrushHeadSets > 0) totalGiftValueNum += extraX1BrushHeadSets * 10;
 
-      const totalDiscountNum = bundleSavings + x2BundlePromoDiscount + totalGiftValueNum + welcomeDiscount;
+      const totalDiscountNum = bundleSavings + x2BundlePromoDiscount + x1BundlePromoDiscount + totalGiftValueNum + welcomeDiscount;
 
       // Render Line Items in Drawer List
       let itemsHtml = "";
@@ -2212,6 +2212,37 @@ ${tickerItemSet.repeat(12)}
         `;
       }
 
+      // Render Free Extra Brush Heads item in drawer for pure X1 Buy 2+
+      if (extraX1BrushHeadSets > 0) {
+        const sets = extraX1BrushHeadSets;
+        const heads = sets * 2;
+        const title = `Free Miroooo X1 Heads (${sets} ${sets > 1 ? "Sets" : "Set"})`;
+        const subtitle = `${sets} complimentary ${sets > 1 ? "sets contain" : "set contains"} ${heads} DuPont precision heads for Miroooo X1.`;
+        const compareVal = sets * 10;
+        itemsHtml += `
+          <div class="miroooo-cart-item">
+            <div class="miroooo-cart-item-thumb">
+              <img src="/assets_ref/x/heads/B1.webp" alt="${title}" />
+            </div>
+            <div class="miroooo-cart-item-content">
+              <div class="miroooo-cart-item-top">
+                <div>
+                  <h4 class="miroooo-cart-item-title">${title}</h4>
+                  <p class="miroooo-cart-item-desc" style="font-size: 0.76rem; color: #555555; margin: 3px 0 0; line-height: 1.35;">${subtitle}</p>
+                </div>
+                <div class="miroooo-cart-item-pricing">
+                  <span class="miroooo-cart-item-price" style="color: #22c55e; font-weight: 700;">Free</span>
+                  <span class="miroooo-cart-item-compare">${MirooooCurrency.format(compareVal)}</span>
+                </div>
+              </div>
+              <div class="miroooo-cart-item-bottom">
+                <span style="font-size: 0.72rem; font-weight: 700; color: #22c55e; letter-spacing: 0.05em;">UNLOCKED FREE GIFT</span>
+              </div>
+            </div>
+          </div>
+        `;
+      }
+
       itemsList.innerHTML = itemsHtml;
 
       // Update Summary Values
@@ -2234,11 +2265,13 @@ ${tickerItemSet.repeat(12)}
         bundleDiscountRow.style.display = bundleSavings > 0 ? "flex" : "none";
       }
 
-      if (x2BundlePromoDiscount > 0) {
+      const totalBundlePromoDiscount = x2BundlePromoDiscount + x1BundlePromoDiscount;
+      if (totalBundlePromoDiscount > 0) {
         if (bundlePromoRow) {
           bundlePromoRow.style.display = "flex";
-          if (bundlePromoLabelEl) bundlePromoLabelEl.textContent = (x2Count === 2 ? "Buy 2 bundle" : "Buy 3 bundle");
-          if (bundlePromoValEl) bundlePromoValEl.textContent = `-${MirooooCurrency.format(x2BundlePromoDiscount)}`;
+          const count = x2Count || x1Count;
+          if (bundlePromoLabelEl) bundlePromoLabelEl.textContent = (count === 2 ? "Buy 2 bundle" : "Buy 3 bundle");
+          if (bundlePromoValEl) bundlePromoValEl.textContent = `-${MirooooCurrency.format(totalBundlePromoDiscount)}`;
         }
       } else {
         if (bundlePromoRow) bundlePromoRow.style.display = "none";
