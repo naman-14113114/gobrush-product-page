@@ -33,6 +33,8 @@ Thumbs.db
 .vercel
 public/
 scratch/
+output/
+.playwright-cli/
 
 # Environment variables
 .env
