@@ -707,3 +707,38 @@ Append-only memory for the `gobrush-product-page` repository. Do not delete or s
      - `npm test` passed with 100% success on all 12 offer/cart combinations.
   5. Scope discipline: All work kept strictly local. Zero git commits or pushes executed.
 
+
+
+## 2026-09-30 00:00:51 IST - Final reference-state correction after independent GoBrush cleanup
+
+- Final read-only reconciliation discovered GoBrush main/origin/main had independently advanced to272a69177b9865dc64fc30924675a009ada7899a (commit time2026-09-29 23:26:57IST), ahead/behind0/0 and clean, including the earlier context append. This agent did not commit or push GoBrush. This corrects the preceding closeout's now-stale statement that source HEAD was922e47b with only an uncommitted context change. All earlier history is retained.
+- Inspected git status/log/show/stat and diff922e47b..272a691 plus the new GoBrush context entry. The only page diff removes two already-commented disabled X1 reels and renumbers comments; remaining deletions are unused assets/scratch/output, plus ignore rules. No rendered HTML, visible copy, active section order, offer, checkout code or route change was introduced by that commit. Therefore no new reference frontend change requires UK implementation, and no new UK code was edited. The user-approved922e47b visual baseline remains applicable. Do not copy source unused-asset deletion blindly: UK may use its own asset paths.
+- UK publication state at this correction: Miroooo main HEAD/origin/main97e70069b7c900519daf9f00d7cd98145da5635a,0/0, clean before this append. Implementation8490c19 and docs97e7006 were pushed by this agent with the user's explicit authorization. Latest UK Vercel deployment dpl_6yt9n37E5PkdHoKkyDvA3SjMnCNc for97e7006 is READY with aliasError null and miroooo-uk-xi.vercel.app assigned. Earlier implementation deployment also READY. Live video/gallery/mobile menu/sticky ATC-to-cart GBP128/persistence checks passed; no order or payment was submitted.
+- Scope/files/actions: this correction changes only append-only context records in Miroooo, GoBrush and workspace. GoBrush application code/assets and Miroooo US/shared files remain unmodified by this task. Miroooo will receive a docs-only correction commit/push to retain a clean worktree; no further application build/test is needed for documentation. No source commit/push, branch/PR/manual deployment, settings/provider action, reset/merge/rebase/stash or actual purchase occurred. Source state after this append is272a691 with only this context correction locally modified. Full context reread and preservation of every previous byte verified. Existing XPage quote mismatch/unavailable checkout limitation remains; all app/test details are in the prior entries.
+
+
+## 2026-09-30 12:12 IST - Read-only reference for UK screenshot correction task
+
+- Reference repository remains main HEAD/origin/main272a69177b9865dc64fc30924675a009ada7899a, ahead/behind0/0 after fetch. Only prior known CONTEXT.md append was modified before this entry. User requests fixes in Miroooo UK for card image hover, button contrast, circular menu close, phone sticky cart and visible-row statistics animation. Inspected current contexts/product/design/README, site.js gallery pointer mapping and shared footer SVG, site.css and live https://www.trymiroooo.com/. GoBrush application code/assets/offers/routes remain read-only. Miroooo main5e34392 matches upstream and is starting UK-only corrections. No GoBrush code changes, commits, pushes, branches, deploys or settings changes occurred. Final verification will be recorded in Miroooo context; this entry records reference use only. Prior history preserved.
+
+
+## 2026-09-30 16:00:42 India Standard Time - UK reference task completed; GoBrush remains unedited
+
+- GoBrush main HEAD/origin/main272a691,0/0; application code/assets remain unchanged. Only append-only CONTEXT.md entries from this and prior work remain locally modified. Reference source card hover mapping and footer sparkle were used to correct Miroooo UK; live GoBrush contact hover defect was fixed in UK only. No GoBrush commit,push,branch,PR or deployment.
+- UK implementation4665b8b and docs6c8173a pushed; exact6c8173a nowREADY on UK alias via Git-triggered Vercel dpl_Cx6dnGdkKxWVyyEjjYxWZgtoiRn3. Local62interactionchecks/52routechecks/389staticchecks/6commerce tests/build/lint/typecheck passed;10livechecks passed. No US/shared edits or provider changes. Full detailed file list, test corrections and publishing history are in Miroooo CONTEXT.md. Initial delayed deployment recovered automatically; manual deployment approval request became unnecessary and no manual action occurred. Source reference use is complete; original context bytes retained and complete updated file re-read.
+
+
+## 2026-09-30 19:15:00 IST - Miroooo Homepage Hero Video Autoplay Restoration
+
+- **Root Cause Identified**: The hero `<video id="hero-featured-video">` in `index.html` was referencing an external remote Vercel preview URL (`https://miroooo-us.vercel.app/media/products/miroooo-electric-toothbrush-x2/videos/31-miroooo-electric-toothbrush-x2-demo-1.mp4`) that returned an HTTP 404 Not Found error. Because the video resource failed to load over the network, browser playback aborted and only the static poster frame (`hero-video-poster.webp`) was shown frozen.
+- **Fix Completed (Strict Minimal Changes)**:
+  - In `index.html`: Replaced the 404 remote video URL with the authentic local Miroooo X1 video asset: `/assets_ref/x/gallery/miroooo-video-1.mp4` (which matches the exact scene of the woman in the blue robe and toothbrush in the bathroom shown on the poster).
+  - Configured `preload="auto"` alongside existing `autoplay`, `loop`, `muted`, `playsinline`, `disablepictureinpicture`, and `controlslist` attributes.
+  - Zero unrelated changes made to markup, layout, styles, scripts, or other products.
+- **Rebuild & Verification**:
+  - `npm run build`: Static storefront rebuilt into `public/` cleanly with 0 errors.
+  - `npm run verify`: Passed (42 required files and 16 storefront pages verified).
+  - `npm test`: Passed (all 7 unit tests and all 12 dynamic cart/checkout combinations passed with 100% success).
+  - Visual Browser Verification via Chrome DevTools MCP: Started preview on port 8080 and verified in Chromium: `paused: false`, `readyState: 4`, active playback progression (`currentTime: 2.46s+`), and confirmed visual frame progression via screenshot.
+  - Scope discipline: Local only; zero unrequested git commit, push, or deployment.
+
